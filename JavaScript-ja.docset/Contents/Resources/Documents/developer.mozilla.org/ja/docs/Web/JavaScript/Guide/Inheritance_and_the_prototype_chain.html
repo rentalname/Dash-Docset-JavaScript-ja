@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>継承とプロトタイプチェーン - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../index.html">
+  <link rel="copyright" href="Inheritance_and_the_prototype_chain.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1324c0a" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1324c0a" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain$json">
+  <link rel="canonical" href="Inheritance_and_the_prototype_chain.html" >
+
+            <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="继承与原型链">
+          <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="Inheritance and the prototype chain">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="상속과 프로토타입">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide_ru/Inheritance_and_the_prototype_chain_ru" title="Наследование и цепочка прототипов">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="Héritage et chaîne de prototypes">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="ইনহেরিটেন্স এবং প্রোটোটাইপ-চেইন">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="Herança e cadeia de protótipos (prototype chain)">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="継承とプロトタイプチェーン">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">
+  <meta name="twitter:title" content="継承とプロトタイプチェーン">
+    <meta property="og:description" content="JavaScript は、 Java や C++ のようなクラスベースの言語を経験した開発者にとってやや紛らわしく、動的で、かつ class の実装が提供されません（ class というキーワードが予約語で、変数名に用いることができないにもかかわらず)。">
+  <meta name="description" content="JavaScript は、 Java や C++ のようなクラスベースの言語を経験した開発者にとってやや紛らわしく、動的で、かつ class の実装が提供されません（ class というキーワードが予約語で、変数名に用いることができないにもかかわらず)。">
+  <meta name="twitter:description" content="JavaScript は、 Java や C++ のようなクラスベースの言語を経験した開発者にとってやや紛らわしく、動的で、かつ class の実装が提供されません（ class というキーワードが予約語で、変数名に用いることができないにもかかわらず)。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1324c0a',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": null}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": null}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": null}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Inheritance_and_the_prototype_chain.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Inheritance_and_the_prototype_chain.html#language">言語の選択</a></li>
+          <li><a href="Inheritance_and_the_prototype_chain.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Tools.html">ツール</a></li><li><a href="../../../../demos/index.html">MDN デモ</a></li><li><a href="../../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="继承与原型链">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="Inheritance and the prototype chain">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="상속과 프로토타입">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide_ru/Inheritance_and_the_prototype_chain_ru" title="Наследование и цепочка прототипов">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="Héritage et chaîne de prototypes">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="ইনহেরিটেন্স এবং প্রোটোটাইপ-চেইন">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" title="Herança e cadeia de protótipos (prototype chain)">Português (do Brasil)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Inheritance_and_the_prototype_chain.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../JavaScript.html" rel="v:url" property="v:title">JavaScript</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Guide.html" rel="v:url" property="v:title">JavaScript ガイド</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">継承とプロトタイプチェーン</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Inheritance_and_the_prototype_chain.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>継承とプロトタイプチェーン</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Inheritance_and_the_prototype_chain.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><code></code><code></code><code></code><li><a href="Inheritance_and_the_prototype_chain.html#Inheritance_with_the_prototype_chain" rel="internal">プロトタイプチェーンと継承</a><ol><li><a href="Inheritance_and_the_prototype_chain.html#Inheriting_properties" rel="internal">プロパティの継承</a><code></code><li><a href="Inheritance_and_the_prototype_chain.html#Inheriting_.22methods.22" rel="internal">「メソッド」の継承</a></ol></li><li><a href="Inheritance_and_the_prototype_chain.html#Different_ways_to_create_objects_and_the_resulting_prototype_chain" rel="internal">オブジェクトの色々な作成方法と、発生するプロトタイプチェーン</a><ol><li><a href="Inheritance_and_the_prototype_chain.html#Objects_created_with_syntax_constructs" rel="internal">構文構造によるオブジェクト生成</a><li><a href="Inheritance_and_the_prototype_chain.html#With_a_constructor" rel="internal">コンストラクタ関数を用いる方法</a><li><a href="Inheritance_and_the_prototype_chain.html#With_Object.create" rel="internal">Object.create メソッドを用いる方法</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>JavaScript は、 Java や C++ のようなクラスベースの言語を経験した開発者にとってやや紛らわしく、動的で、かつ <code>class</code> の実装が提供されません（ <code>class</code> というキーワードが予約語で、変数名に用いることができないにもかかわらず)。</p>
+<p>継承に関して言えば、 JavaScript には 1 つだけオブジェクトに関する概念があります。あるオブジェクトは<strong>プロトタイプ</strong>と呼ばれる、他のオブジェクト（または <code>null</code> ）への内部的な繋がりを持ちます。このオブジェクトは、あるオブジェクトがそのプロトタイプとして <code>null</code> を持つまで、なおプロトタイプを持ちます。このような、オブジェクトが他のオブジェクトのプロトタイプとなることの<em>連鎖</em>を、<strong>プロトタイプチェーン</strong>と呼びます。</p>
+<h2 id="Inheritance_with_the_prototype_chain" name="Inheritance_with_the_prototype_chain">プロトタイプチェーンと継承</h2>
+<h3 id="Inheriting_properties" name="Inheriting_properties">プロパティの継承</h3>
+<p>JavaScript のオブジェクトはプロパティ（<strong>自身のプロパティ</strong>を指す）の動的な「かばん」で、プロトタイプオブジェクト（または <code>null</code> ）への繋がりを持っています。以下に、プロパティにアクセスを試みたときに、何が起こるのかを示します。</p>
+<pre class="brush: js">// o というオブジェクトとそのプロトタイプチェーンについて、以下のように仮定してみましょう。
+// {a:1, b:2} ---&gt; {b:3, c:4} ---&gt; null
+// 'a' と 'b' は o 自身のプロパティです。
+
+// この例では、 someObject.[[Prototype]] は someObject のプロトタイプを指定します。
+// これは ECMAScript 標準で使われているものに基づく単一表記法で、スクリプトの中で使用することはできません。
+
+console.log(o.a); // 1
+// o には、自身のプロパティとして 'a' があるでしょうか？はい、その値は1です。
+
+console.log(o.b); // 2
+// o には、自身のプロパティとして 'b' があるでしょうか？はい、その値は2です。
+// o のプロトタイプにも 'b' プロパティがありますが、アクセスされません。これを「property shadowing」と呼びます。
+
+console.log(o.c); // 4
+// o には、自身のプロパティとして 'c' があるでしょうか？いいえ、そのプロトタイプを確認します。
+// o.[[Prototype]] には、自身のプロパティとして 'c' があるでしょうか？はい、その値は4です。
+
+console.log(o.d); // undefined
+// o には、自身のプロパティとして 'd' があるでしょうか？いいえ、そのプロトタイプを確認します。
+// o.[[Prototype]] には、自身のプロパティとして 'd' があるでしょうか？いいえ、そのプロトタイプを確認します。
+// o.[[Prototype]].[[Prototype]] は null であるため探索を中止し、プロパティが見つからなかったため undefined を返します。
+</pre>
+<p>あるオブジェクトにプロパティをセットすると、自身のプロパティが作られます。この取得と設定の動作の規則の唯一の例外は、 <a href="Working_with_Objects.html#Defining_getters_and_setters" title="JavaScript/Guide/Working_with_Objects#Defining_getters_and_setters">getter または setter</a> とのプロパティの継承が起こるときです。</p>
+<h3 id="Inheriting_.22methods.22" name="Inheriting_.22methods.22">「メソッド」の継承</h3>
+<p>JavaScript それ自体に「メソッド」はありません。 JavaScript には関数があり、これらの関数はプロパティの値として使用することができます。 関数の継承（<em>メソッドのオーバーライド</em>の一種）は、上で見せたような property shadowing を含めたどのような値とも、同じように働きます。</p>
+<p>関数がオブジェクトのプロパティ（自身の、または継承された）であることのたった1つの違いは、関数が実行されるときの <a href="../Reference/Operators/this.html" title="JavaScript/Reference/Operators/this">this</a> の値です。</p>
+<pre class="brush: js">var o = {
+  a: 2,
+  m: function(b){
+    return this.a + 1;
+  }
+};
+
+console.log(o.m()); // 3
+// この場合に o.m が呼び出されたとき、 'this' は o を指します。
+
+var p = Object.create(o);
+// p はオブジェクトで、 p.[[Prototype]] は o です。
+
+p.a = 12; // p に a という自身のプロパティを作ります。
+console.log(p.m()); // 13
+// p.m が呼び出されるとき、 'this' は p　を指します。 'this.a' は p 自身のプロパティです。
+</pre>
+<h2 id="Different_ways_to_create_objects_and_the_resulting_prototype_chain" name="Different_ways_to_create_objects_and_the_resulting_prototype_chain">オブジェクトの色々な作成方法と、発生するプロトタイプチェーン</h2>
+<h3 id="Objects_created_with_syntax_constructs" name="Objects_created_with_syntax_constructs">構文構造によるオブジェクト生成</h3>
+<pre class="brush: js">var o = {a: 1};
+
+// このオブジェクトは Object.prototype をプロトタイプとして生成されます。
+// これは o.hasOwnProperty('a') と呼び出すことを許すものです。
+// hasOwnProperty は Object.prototype 自身のプロパティです。
+// Object.prototype のプロトタイプは null です。
+// o ---&gt; Object.prototype ---&gt; null
+
+var a = ["yo", "whadup", "?"];
+
+// 配列は Array.prototype （ indexOf 、 forEach などのようなメソッドを持っている） から継承します。 
+// プロトタイプチェーンは以下のようになります。
+// a ---&gt; Array.prototype ---&gt; Object.prototype ---&gt; null
+
+function f() {
+  return 2;
+}
+
+// 関数は Function.prototype （ call、bind などのようなメソッドを持つ） から継承します。
+// f ---&gt; Function.prototype ---&gt; Object.prototype ---&gt; null</pre>
+<h3 id="With_a_constructor" name="With_a_constructor">コンストラクタ関数を用いる方法</h3>
+<p>JavaScriptに於ける「コンストラクタ」は、関数を <a href="../Reference/Operators/new.html" title="JavaScript/Reference/Operators/new">new 演算子</a>を使って呼び出す事で実現可能です。</p>
+<pre class="brush: js">function Graph() {
+  this.vertexes = [];
+  this.edges = [];
+}
+
+Graph.prototype = {
+  addVertex: function(v){
+    this.vertexes.push(v);
+  }
+};
+
+var g = new Graph();
+// g は「vertexes」と「edges」の自身のプロパティを持つオブジェクトです。
+// g.[[Prototype]] はインスタンス化する時点の Graph.prototype の値です。
+</pre>
+<p><span style="color: darkgreen; background: #ef9;">【訳注: 他の関数と区別しやすくする目的で、コンストラクタ関数の関数名の最初の一文字を大文字にしておく慣例があります。】</span></p>
+<h3 id="With_Object.create" name="With_Object.create">Object.create メソッドを用いる方法</h3>
+<p>ECMAScript 5 は <a href="../Reference/Global_Objects/Object/create.html" title="JavaScript/Reference/Global_Objects/Object/create">Object.create</a> という新しいメソッドを紹介しています。このメソッドを呼び出すと、新しいオブジェクトが生成されます。関数の最初の引数が、このオブジェクトのプロトタイプになります。</p>
+<pre class="brush: js">var a = {a: 1}; 
+// a ---&gt; Object.prototype ---&gt; null
+
+var b = Object.create(a);
+// b ---&gt; a ---&gt; Object.prototype ---&gt; null
+console.log(b.a); // 1 (継承された)
+
+var c = Object.create(b);
+// c ---&gt; b ---&gt; a ---&gt; Object.prototype ---&gt; null
+
+var d = Object.create(null);
+// d ---&gt; null
+console.log(d.hasOwnProperty); // undefined、なぜなら d は Object.prototype から継承していないからです。
+</pre>
+                                                </article>
+
+              
+                <!-- attachments list -->
+                
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../../tag/JavaScript.html">JavaScript</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/OOP">OOP</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Inheritance">Inheritance</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../profiles/ethertank.html">ethertank</a>, <a href="../../../../profiles/sii.html">sii</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-28T13:01:47-07:00">2013/05/28 13:01:47</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" selected>
+          日本語
+        </option>
+                  <option value="/zh-CN/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">
+            中文 (简体)
+          </option>          <option value="/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">
+            English (US)
+          </option>          <option value="/ko/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">
+            한국어
+          </option>          <option value="/ru/docs/Web/JavaScript/Guide_ru/Inheritance_and_the_prototype_chain_ru">
+            Русский
+          </option>          <option value="/fr/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">
+            Français
+          </option>          <option value="/bn-BD/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/pt-BR/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">
+            Português (do Brasil)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="../../../../jsi18n/build-1324c0a.js"></script>
+  
+      <!--[if lte IE 8]><script src="/media/redesign/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1324c0a"></script>
+
+          <script>
+        mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1324c0a"></script>
+      
+    <script type="text/javascript">
+      jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":797}</script></body>
+</html>

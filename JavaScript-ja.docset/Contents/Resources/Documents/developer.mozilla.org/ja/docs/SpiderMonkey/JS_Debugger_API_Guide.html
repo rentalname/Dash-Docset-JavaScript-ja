@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>JS Debugger API Guide - SpiderMonkey | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../index.html">
+  <link rel="copyright" href="JS_Debugger_API_Guide.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/SpiderMonkey/JS_Debugger_API_Guide$json">
+  <link rel="canonical" href="JS_Debugger_API_Guide.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/JS_Debugger_API_Guide" title="JS Debugger API Guide">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="JS Debugger API Guide">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/JS_Debugger_API_Guide">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/JS_Debugger_API_Guide">
+  <meta name="twitter:title" content="JS Debugger API Guide">
+    <meta property="og:description" content="新しいJavaScript デバッガAPIはSpiderMonkey 1.8.6で紹介され、 JavaScriptのデバッグ機能の実装である古い版の JSDBGAPI よりも便利で使いやすいAPIとして提供されています。このAPIは、JavaScriptエンジンがデバッガを実装するために何をしているのか、コードを実行する際の進行状況をモニターするために、chromeコードから内部の状態をみることを許可するための必要なフックを提供します。コードの内容は利用できません。">
+  <meta name="description" content="新しいJavaScript デバッガAPIはSpiderMonkey 1.8.6で紹介され、 JavaScriptのデバッグ機能の実装である古い版の JSDBGAPI よりも便利で使いやすいAPIとして提供されています。このAPIは、JavaScriptエンジンがデバッガを実装するために何をしているのか、コードを実行する際の進行状況をモニターするために、chromeコードから内部の状態をみることを許可するための必要なフックを提供します。コードの内容は利用できません。">
+  <meta name="twitter:description" content="新しいJavaScript デバッガAPIはSpiderMonkey 1.8.6で紹介され、 JavaScriptのデバッグ機能の実装である古い版の JSDBGAPI よりも便利で使いやすいAPIとして提供されています。このAPIは、JavaScriptエンジンがデバッガを実装するために何をしているのか、コードを実行する際の進行状況をモニターするために、chromeコードから内部の状態をみることを許可するための必要なフックを提供します。コードの内容は利用できません。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="SpiderMonkey/JS_Debugger_API_Guide" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="JS_Debugger_API_Guide.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="JS_Debugger_API_Guide.html#language">言語の選択</a></li>
+          <li><a href="JS_Debugger_API_Guide.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/SpiderMonkey/JS_Debugger_API_Guide" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/SpiderMonkey/JS_Debugger_API_Guide" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../Web/HTML.html">HTML</a></li>
+              <li><a href="../Web/CSS.html">CSS</a></li>
+              <li><a href="../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../Web/API.html">API / DOM</a></li>
+              <li><a href="../Web/Apps.html">Apps</a></li>
+              <li><a href="../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Tools.html">ツール</a></li><li><a href="../../demos/index.html">MDN デモ</a></li><li><a href="../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/JS_Debugger_API_Guide" title="JS Debugger API Guide">English (US)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/JS_Debugger_API_Guide$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/JS_Debugger_API_Guide$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="JS_Debugger_API_Guide.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Mozilla/Projects.html" rel="v:url" property="v:title">Projects</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../SpiderMonkey.html" rel="v:url" property="v:title">SpiderMonkey</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">JS Debugger API Guide</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="JS_Debugger_API_Guide.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>JS Debugger API Guide</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="JS_Debugger_API_Guide.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="JS_Debugger_API_Guide.html#.E3.83.87.E3.83.90.E3.83.83.E3.82.AC.E3.81.AB.E3.82.A2.E3.82.AF.E3.82.BB.E3.82.B9.E3.81.99.E3.82.8B" rel="internal">デバッガにアクセスする</a><code></code><code></code><code></code><code></code><code></code><li><a href="JS_Debugger_API_Guide.html#.E7.94.A8.E8.AA.9E.E9.9B.86" rel="internal">用語集</a><ol><li><a href="JS_Debugger_API_Guide.html#Debuggee" rel="internal">Debuggee</a><li><a href="JS_Debugger_API_Guide.html#Debuggee_values" rel="internal">Debuggee values</a><code></code><li><a href="JS_Debugger_API_Guide.html#.E5.A4.A7.E5.9F.9F.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">大域オブジェクト</a><code></code><code></code><code></code><code></code><code></code><li><a href="JS_Debugger_API_Guide.html#.E3.82.A4.E3.83.B3.E3.83.9C.E3.82.B1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E9.96.A2.E6.95.B0" rel="internal">インボケーション関数</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="JS_Debugger_API_Guide.html#.E5.8F.82.E7.85.A7" rel="internal">参照</a><code></code></ol></li><li><a href="JS_Debugger_API_Guide.html#.E3.83.87.E3.83.90.E3.83.83.E3.82.B0.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E6.A4.9C.E6.9F.BB" rel="internal">デバッグオブジェクトの検査</a><ol><li><a href="JS_Debugger_API_Guide.html#Debugger.DebuggeeWouldRun_.E4.BE.8B.E5.A4.96" rel="internal">Debugger.DebuggeeWouldRun 例外</a><code></code><code></code><code></code></ol></li><li><a href="JS_Debugger_API_Guide.html#.E3.83.87.E3.83.90.E3.83.83.E3.82.B0.E5.AF.BE.E8.B1.A1.E3.81.AE.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0" rel="internal">デバッグ対象のフレーム</a><code></code><code></code><code></code><code></code><code></code><ol><li><a href="JS_Debugger_API_Guide.html#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0" rel="internal">ジェネレータフレーム</a><code></code><code></code><code></code><ol><li><a href="JS_Debugger_API_Guide.html#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.A8.E4.BB.96.E3.81.AE.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.A8.E3.81.AE.E7.9B.B8.E9.81.95" rel="internal">ジェネレータフレームと他のフレームとの相違</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="JS_Debugger_API_Guide.html#.E5.A6.82.E4.BD.95.E3.81.AB.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.A8.E4.BB.96.E3.81.AE.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.8C.E5.90.8C.E3.81.98.E3.81.AB.E3.81.AA.E3.82.8B.E3.81.8B" rel="internal">如何にジェネレータフレームと他のフレームが同じになるか</a><code></code><code></code><code></code><code></code><li><a href="JS_Debugger_API_Guide.html#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.AE.E7.94.9F.E5.AD.98.E6.9C.9F.E9.96.93" rel="internal">ジェネレータフレームの生存期間</a><code></code><code></code><code></code><code></code></ol></li><li><a href="JS_Debugger_API_Guide.html#.E4.BE.8B.E5.A4.96.E5.87.A6.E7.90.86" rel="internal">例外処理</a><ol><li><a href="JS_Debugger_API_Guide.html#.E4.BE.8B.E5.A4.96.E3.82.92.E3.81.BB.E3.81.A9.E3.81.8F" rel="internal">例外をほどく</a><code></code><code></code><code></code><code></code></ol></li></ol></li><li><a href="JS_Debugger_API_Guide.html#.E3.82.B9.E3.82.AF.E3.83.AA.E3.83.97.E3.83.88" rel="internal">スクリプト</a><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><ol><li><a href="JS_Debugger_API_Guide.html#.E3.81.A9.E3.81.AE.E3.82.88.E3.81.86.E3.81.ABDebugger.Scripts.E3.81.AF.E7.94.9F.E6.88.90.E3.81.95.E3.82.8C.E3.82.8B.E3.81.8B" rel="internal">どのようにDebugger.Scriptsは生成されるか</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li></ol></li><li><a href="JS_Debugger_API_Guide.html#.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">オブジェクト</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="JS_Debugger_API_Guide.html#.E5.A6.82.E4.BD.95.E3.81.AB.E5.80.A4.E3.81.AF.E3.83.87.E3.83.90.E3.83.83.E3.82.AC.E3.81.A8.E3.83.87.E3.83.90.E3.83.83.E3.82.B0.E5.AF.BE.E8.B1.A1.E3.81.AE.E9.96.93.E3.81.A7.E6.B8.A1.E3.81.95.E3.82.8C.E3.82.8B.E3.81.8B" rel="internal">如何に値はデバッガとデバッグ対象の間で渡されるか</a><code></code><code></code><code></code><code></code><code></code><li><a href="JS_Debugger_API_Guide.html#.E4.BB.A5.E4.B8.8B.E3.82.82.E5.8F.82.E7.85.A7.E3.81.97.E3.81.A6.E4.B8.8B.E3.81.95.E3.81.84" rel="internal">以下も参照して下さい</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p></p><div class="overheadIndicator jsMinVer jsMinVerHeader"> 
+    <p>この記事は <a class="new" href="https://developer.mozilla.org/ja/docs/SpiderMonkey/1.8.6">SpiderMonkey 1.8.6</a> の新機能について書かれています。</p> 
+</div><p></p>
+<p></p><div class="overheadIndicator draft"> 
+    <p><strong>草案</strong><br> 
+    このページは完成していません。</p> 
+</div><p></p>
+<p>新しいJavaScript デバッガAPIはSpiderMonkey 1.8.6で紹介され、 JavaScriptのデバッグ機能の実装である古い版の <a href="https://developer.mozilla.org/en/JSDBGAPI_Reference" title="JSDBGAPI Reference">JSDBGAPI</a> よりも便利で使いやすいAPIとして提供されています。このAPIは、JavaScriptエンジンがデバッガを実装するために何をしているのか、コードを実行する際の進行状況をモニターするために、chromeコードから内部の状態をみることを許可するための必要なフックを提供します。コードの内容は利用できません。</p>
+<div class="note">
+  <strong>Note:</strong> この新しいAPIは古い <a href="https://developer.mozilla.org/en/JSDBGAPI_Reference" title="JSDBGAPI Reference">JSDBGAPI</a>; に追加しています。一方のAPIを選択して使うべきですが、前提として、何の問題もなく両方のAPIを同時に使う事ができます。</div>
+<h2 id=".E3.83.87.E3.83.90.E3.83.83.E3.82.AC.E3.81.AB.E3.82.A2.E3.82.AF.E3.82.BB.E3.82.B9.E3.81.99.E3.82.8B">デバッガにアクセスする</h2>
+<p>JSデバッガAPIにアクセスするために、JavaScriptコードモジュールをインポートする必要があります。それによって <code>Debugger</code> オブジェクトへアクセスできます。これは <code>jsdebugger.jsm</code> コードモジュールであり、以下のようにしてインポートすることができます:</p>
+<pre class="plain">Components.utils.import("resource://gre/modules/jsdebugger.jsm");
+</pre>
+<p>これが終了すると、大域的な <code>Debugger</code> コンストラクタによって提供されるJavaScript デバッガAPIにアクセスすることができます:</p>
+<pre>var myDebugger = new Debugger;
+</pre>
+<p>これはデバッグ用のターゲットなしに <code>Debugger</code> オブジェクトを生成します。仮にデバッグ用のターゲットを規定したいならば、そのコンパートメントがデバッグの対象となる一つ以上の <strong> 大域的 </strong> オブジェクトを規定します:</p>
+<pre>var myDebugger = new Debugger(object1, object2, object3);
+</pre>
+<p>デバッグの対象となるコンパートメントに<a href="JS_Debugger_API_Guide.html#%E5%A4%A7%E5%9F%9F%E7%9A%84%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">大域的オブジェクト</a>を規定し、 <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger#addDebuggee()" title="en/SpiderMonkey/JS_Debugger_API_Reference/Debugger#addDebuggee()"><code>Debugger.addDebuggee()</code></a>を呼び出す事で、デバッグ対象となるコンパートメントを追加する事も可能です。</p>
+<h2 id=".E7.94.A8.E8.AA.9E.E9.9B.86">用語集</h2>
+<p>デバッガAPIドキュメントの中には、知っておく必要のある用語としていくつかの重要な用語があります。</p>
+<h3 id="Debuggee">Debuggee</h3>
+<p>A <strong>debuggee</strong> はデバッグの対象です。コンパートメントの中で動作するスクリプトの集まりです。</p>
+<h3 id="Debuggee_values">Debuggee values</h3>
+<p>A <strong>debuggee value</strong> 値は基本的な値であるか、Debugeeのコンパートメントの中にあるオブジェクトを参照する <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object" title="Debugger.Object"><code>Debugger.Object</code></a> のインスタンスです。</p>
+<h3 id=".E5.A4.A7.E5.9F.9F.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">大域オブジェクト</h3>
+<p>SpiderMonkeyでは、 <strong>大域オブジェクト</strong> はスクリプトが動作する環境を提供する"囲われた庭"です。FireFoxでは各 DOMの <a href="../Web/API/window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>window</code></a> は、大域オブジェクトであり、その所有するすべての核となるJavaScriptオブジェクト (<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" title="Object"><code>Object</code></a>, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" title="Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" title="Function"><code>Function</code></a>, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math" title="Math"><code>Math</code></a>, etc.)を持っています。これは、各ウィンドウ内のスクリプトに、他のタブやウィンドウのスクリプトに影響する事なしに、これらのオブジェクトを操作させます。</p>
+<p>大域オブジェクトとそのすべての内容は単一の <a href="https://developer.mozilla.org/en/SpiderMonkey/SpiderMonkey_compartments" title="en/SpiderMonkey/SpiderMonkey_compartments"> コンパートメント </a>の中にあります。観念的に、現段階で強制されていることではありませんが、各コンパートメントは単一の大域オブジェクトを含みます。</p>
+<p>デバッグ実行時、観察したい一つ以上の大域オブジェクトを選択し、そしてあなたが関心を持っているスクリプトのデバッグ情報を受け取るだけです。</p>
+<h3 id=".E3.82.A4.E3.83.B3.E3.83.9C.E3.82.B1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E9.96.A2.E6.95.B0">インボケーション関数</h3>
+<p><strong>インボケーション関数</strong> は デバッガAPI内のどの関数にもあり、デバッグするためのスクリプト内で、 <code>Debugger.Object.prototype.call()</code> や<code>Debugger.Frame.prototype.eval()</code>のようなコードを呼び出します。</p>
+<p>インボケーション関数の操作による一般的な処理手続きは、以下のようになります:</p>
+<ol>
+  <li>スタック上の <code>older</code>(より古い)フレームを最も最新のデバッグ用フレームにし、存在しないならば <code>null</code> にします。これは二度とデバッガが所有するフレームの一つにはなりません。</li>
+  <li>スタック上にステップ１で決定したようにolder属性を持つ"debugger"型の <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Frame" title="Debugger"><code>Debugger.Frame</code></a> をプッシュします。</li>
+  <li>適当なインボケーション関数を使用して、それが継続できるようにdebuggeeフレームを設定してdebuggeeコードを呼び出します。例えば、 <code>Debugger.Frame.prototype.eval()</code>を呼び出す場合、"eval"フレームが動作するコード上にプッシュされ、 <code>Debugger.Object.prototype.call()</code> は”call”フレームをプッシュします。</li>
+  <li>デバッガが完了したときに(正常に戻ったか、例外を投げたか、強制終了したかに関わらず)デバッガフレームをポップし、インボケーション関数からデバッガに適当な <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Completion_values" title="Completion values">完了値</a> を戻します。</li>
+</ol>
+<h3 id=".E5.8F.82.E7.85.A7">参照</h3>
+<p><strong>参照 </strong> 普通は <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object" title="Debugger.Object"><code>Debugger.Object</code></a> インスタンスである、他のオブジェクトによってオブジェクトが参照されることです。</p>
+<h2 id=".E3.83.87.E3.83.90.E3.83.83.E3.82.B0.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E6.A4.9C.E6.9F.BB">デバッグオブジェクトの検査</h2>
+<p>デバッガAPIは、デバッグ対象内で値の変更と検査をするためのメソッドを提供します。</p>
+<h3 id="Debugger.DebuggeeWouldRun_.E4.BE.8B.E5.A4.96">Debugger.DebuggeeWouldRun 例外</h3>
+<p>デバッガの完全な状態を保全するために、デバッガはあなたにデバッグ対象のデータ、そのデータはデバッグ対象がコードを動かすことを必要とする原因になるかもしれないデータ、へのアクセスを行わせません。代わりに、デバッガは<code>Debugger.DebuggeeWouldRun</code> 例外のインスタンスを投げます。</p>
+<p>これが発生した場合のいくつかの例では以下の事例を含みます:</p>
+<ul>
+  <li>大域で取得する側を走らせ、変数を読み込みます。</li>
+  <li>命令のオペランド<a href="https://developer.mozilla.org/en/JavaScript/Reference/Statements/with" title="with"><code>と</code></a> 変数を読み込みます。</li>
+  <li>オブジェクトがプロキシオブジェクト（これはトラップのハンドラを走らせます）の属性記述子を取得します。</li>
+</ul>
+<p>特別な目的を持つ関数だけが、デバッグ対象のコードを走らせることを許されています; <a href="JS_Debugger_API_Guide.html#%E3%82%A4%E3%83%B3%E3%83%9C%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E9%96%A2%E6%95%B0">インボケーション関数</a>と呼ばれるものです。その他の操作では、 <code>Debugger.DebuggeeWouldRun</code> 例外をなげて、デバッグ対象のコードを動作させます。</p>
+<h2 id=".E3.83.87.E3.83.90.E3.83.83.E3.82.B0.E5.AF.BE.E8.B1.A1.E3.81.AE.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0">デバッグ対象のフレーム</h2>
+<p>デバッグ対象内の各スタックフレームは、正確に一つの <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Frame" title="Debugger"><code>Debugger.Frame</code></a> のインスタンスにより表されている。デバッグ対象が固有のフレーム内で動作している間、呼び出されるすべてのフックとなるオブジェクトのメソッドは、同じフレームオブジェクトを受け取ります。同様に、スタックを移動して以前にアクセスされたデバッグ対象のスタックフレームに戻ることは、以前と同じフレームオブジェクトを取得する事です。デバッガは追加の属性をフレームオブジェクトに付け足すことができ、それらを後見つけることを要求します。これに加えて、二つの命令が同一のフレームを参照しているかどうかを判断するために、 <code>==</code> オペレータを使う事ができます。</p>
+<p>デバッグ対象がスタックフレームをポップするとき、例えば、-- 関数呼び出しが戻ったり、例外が投げられたような理由で -- <code>Debugger.Frame</code> のインスタンスが参照しているフレームは非アクティブになります。あなたは属性の有効性を調べることでこれを検出することができます。仮にこの属性が偽である場合、フレームは非アクティブになります。それは、その他の属性と例外を投げるすべてのメソッドが対象になります。</p>
+<div class="note">
+  <strong>Note:</strong> デバッガが信頼できるとき: --デバッグ対象が動作しているかまたは、スタックそれ自身からフレームを取り除くとき-- にだけ、フレームは非アクティブになります。</div>
+<p>デバッガはデバッグ対象とJavaScriptスタックを共有しますが、 <code>Debugger.Frame</code> によってデバッガに提供されているスタックフレームは、デバッガ固有のコードが動作するフレームを含む事はありません。</p>
+<div class="note">
+  <strong>Note:</strong> ジェネレータ- iterator(繰り返し処理に使います。以前の処理結果を保持し次の計算に渡します)オブジェクトを操作している状態に対応したスタックフレームは、特別な種類の <code>Debugger.Frame</code>を使う事に相当します。</div>
+<h3 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0">ジェネレータフレーム</h3>
+<p>SpiderMonkeyはジェネレータ-iteratorオブジェクトをサポートしています。関数や命令の実行時に繰り返す事で中断する変数群を提供します。例えば、 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Operators/yield" title="yield"><code>yield()</code></a> オペレータを用いた関数呼びだしは、ジェネレータ- iterator オブジェクトを提供します。そして、 <code>(各 i の値に対して　 i * i （ここで i [1, 2, 3 ]))</code>のような命令を実行して数値を求めます。</p>
+<p>ジェネレータ - iterator オブジェクトは、固定の継続したフレームなしにスタックフレームを参照します。ジェネレータのコードが動作している間、その繰り返し処理では、 <code>next()</code> メソッド（ジェネレータが次の結果を要求する）を呼び出すフレームは対象になります。ジェネレータが中断している間は、特別の継続処理用のフレームはありません。そして、それが再開したとき、再開のための継続処理フレームは以前の再開処理時のフレームとは異なっています。</p>
+<h4 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.A8.E4.BB.96.E3.81.AE.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.A8.E3.81.AE.E7.9B.B8.E9.81.95">ジェネレータフレームと他のフレームとの相違</h4>
+<p>ジェネレータフレームに相当する <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Frame" title="Debugger"><code>Debugger.Frame</code></a> のインスタンスは、通常のスタックフレームとは以下の点で異なっています:</p>
+<ul>
+  <li><code>generator</code> の属性が真</li>
+  <li><code>older</code> 属性は、 ジェネレータが動作している間はフレームの継続処理フレームを参照し、ジェネレータが中断している間は <code>null</code> を参照します。</li>
+  <li><code>depth</code> 属性は、処理が再開したときはスタック内のフレームの位置を反映し、ジェネレータ中断中は <code>null</code> を表します。</li>
+  <li><code>live</code> 属性は、フレームが戻るか、例外を投げるか、強制終了するまで真のままの状態を維持します。それは、スタックの上に存在しない間でもジェネレータのフレームは有効であることを意味しています。</li>
+  <li>ジェネレータフレームは、ジェネレータが値を分離し、処理が中断する各段階で消えてなくなります。ジェネレータが次の値を生み出すために再開するときに、スタックの最上位に再び現れます。同じ <code>Debugger.Frame</code> インスタンスは、それが戻るか、例外を投げるか、終了するまでジェネレータフレームを参照します。</li>
+</ul>
+<div class="note">
+  <strong>Note:</strong> ジェネレータが再開するとき、スタック上にある <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Frame" title="Debugger"><code>Debugger.Frame</code></a> オブジェクトは、新しいオブジェクトか、特定されていないすでにあるオブジェクトかに関わりません。この点で固有の動作に関して信頼すべきではありません。</div>
+<h4 id=".E5.A6.82.E4.BD.95.E3.81.AB.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.A8.E4.BB.96.E3.81.AE.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.8C.E5.90.8C.E3.81.98.E3.81.AB.E3.81.AA.E3.82.8B.E3.81.8B">如何にジェネレータフレームと他のフレームが同じになるか</h4>
+<p>すべての他の <code>Debugger.Frame</code> メソッドと属性にアクセスするものは、ジェネレータフレームが中断する時であっても、他の種類のフレームで動作します。あなたは、例えば、そのとき中断させた <a href="https://developer.mozilla.org/en/JavaScript/Reference/Operators/yield" title="yield"><code>yield()</code></a>オペレーションを監視するために <code>script</code> と <code>offset</code> 属性を使って、ジェネレータフレームの属性を検査することができます。</p>
+<h4 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.83.95.E3.83.AC.E3.83.BC.E3.83.A0.E3.81.AE.E7.94.9F.E5.AD.98.E6.9C.9F.E9.96.93">ジェネレータフレームの生存期間</h4>
+<p><a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Frame" title="Debugger"><code>Debugger.Frame</code></a> インスタンスがジェネレータ - iteratorフレームを参照するために、ジェネレータ- iteratorオブジェクトへのしっかりした参照を保持してます。フレームとそのオブジェクトは、<code>Debugger.Frame</code> インスタンスと同じ長さの有効期間を持っています。 しかし、一旦、ジェネレータ関数が戻るか、例外を投げるか、終了すると、 <code>Debugger.Frame</code> のインスタンスは非アクティブになり、 <code>live</code> 属性は偽となり、その他の種別のフレームはポップされます。</p>
+<p>一旦ジェネレータフレームが無効になると、ジェネレータ - iteratorオブジェクトへのしっかりした参照はもはや保持されません。</p>
+<h3 id=".E4.BE.8B.E5.A4.96.E5.87.A6.E7.90.86">例外処理</h3>
+<h4 id=".E4.BE.8B.E5.A4.96.E3.82.92.E3.81.BB.E3.81.A9.E3.81.8F">例外をほどく</h4>
+<p>例外が投げられた後、（例外発生時の処理状態等の情報を積み上げた）スタックをほどく必要があります。これは、ハンドラーがその例外を見つけて、スタックからフレームを取り除く処理になります。各フレームがほどく処理の間に至まで、SpiderMonkeyはフレーム内の現在のオフセットが 、投げられた例外を処理するための例外ハンドラーがあることを示している <a href="https://developer.mozilla.org/en/JavaScript/Reference/Statements/try...catch" title="try...catch"><code>try</code></a> ブロックの中にあれば、そのオフセットを注視します。もしそうであれば、操作はその例外に一致している <code>catch</code>/<code>finally</code> コードへジャンプします。さもなくば、フレームは破棄され、スタックをほどく処理を続けます。</p>
+<p>デバッガAPI はデバッガに、フレームをほどく処理の間、各デバッガのスクリプトフレームのために、 <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger#onExceptionUnwind()" title="en/SpiderMonkey/JS_Debugger_API_Reference/Debugger#onExceptionUnwind()"><code>Debugger.onExceptionUnwind()</code></a> メソッドを呼び出すことによって、例外処理の間中スタックをほどく処理をモニターさせます。メソッドはいかに処理の実行が進行するのかを示す、 <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Resumption_values" title="en/SpiderMonkey/JS_Debugger_API_Reference/Resumption_values">再開するための値(resumption value)</a> を戻します。</p>
+<h2 id=".E3.82.B9.E3.82.AF.E3.83.AA.E3.83.97.E3.83.88">スクリプト</h2>
+<p>各 JSAPI <a href="https://developer.mozilla.org/en/JSScript" title="en/JSScript"><code>JSScript</code></a> オブジェクトは <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Script" title="Debugger.Object"><code>Debugger.Script</code></a> インスタンスに対応しています。そのインスタンスはデバッグ対象内のバイトコードの処理手続きを参照します。それは、以下のような種別の <a href="https://developer.mozilla.org/en/JSScript" title="en/JSScript"><code>JSScript</code></a> オブジェクトからコードを表します:</p>
+<ul>
+  <li>関数のボディ、これは関数内のすべてのコードですが、ネストされた関数内のコードは含みません。</li>
+  <li>コードは単一の <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/eval" title="eval"><code>eval()</code></a>呼び出しに渡されます。そのコードによって定義される関数のボディはふくみません。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/script" title="HTML &lt;script> 要素は HTML または XHTML 文書内に実行可能なスクリプトを埋め込み、または外部参照するコードを指定する際に用いられます。"><code>&lt;script&gt;</code></a> 要素の内容</li>
+  <li>HTMLに組み込まれているか、他のJavaScriptコードによって要素に添付されているDOMのイベントハンドラ。</li>
+  <li>URL内に <code>javascript:</code> として表示されるコード。</li>
+</ul>
+<h4 id=".E3.81.A9.E3.81.AE.E3.82.88.E3.81.86.E3.81.ABDebugger.Scripts.E3.81.AF.E7.94.9F.E6.88.90.E3.81.95.E3.82.8C.E3.82.8B.E3.81.8B">どのようにDebugger.Scriptsは生成されるか</h4>
+<p><a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger" title="Debugger"><code>Debugger</code></a> インターフェイスは、存在するスクリプトオブジェクトを見つけるように、 <code>Debugger.Script</code> オブジェクトを生成します。デバッガコードは、スクリプトオブジェクトに所有する属性を追加することができます。これが起こるにはいくつかの方法があります。例えば:</p>
+<ul>
+  <li>フックであるオブジェクトメソッド <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger#onNewScript()" title="en/SpiderMonkey/JS_Debugger_API_Reference/Debugger#onNewScript()"><code>Debugger.onNewScript()</code></a> を呼び出す事。</li>
+  <li><code>Debugger.Frame.script</code> 属性値の変更。</li>
+  <li><code>Debugger.Object.functionScript()</code> メソッドを呼び出す事。</li>
+  <li>スクリプトを変更するかもしれないその他の機構。</li>
+</ul>
+<p>The <code>Debugger</code> インターフェイスは、正確に個別の原スクリプトオブジェクトの <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Script" title="Debugger.Object"><code>Debugger.Script</code></a> インスタンスを生成します。デバッガコードは、後で見つけて参照できるように、所有する属性をスクリプトオブジェクトに追加することができます。単純に二つの記号表示が同じスクリプトを参照しているかどうかを決めるのに <code>==</code> オペレータを使う事ができます。</p>
+<p>A <code>Debugger.Script</code> インスタンスは、 <a href="https://developer.mozilla.org/en/JSScript" title="en/JSScript"><code>JSScript</code></a> オブジェクトへのしっかりとした参照を保持しています。それによって、ガーベージコレクション処理により回収されることからスクリプトを保護します。しかし、 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/eval" title="eval"><code>eval()</code></a> に渡されるコードに相当するスクリプトは、 <code>eval()</code> が戻ったときに削除されます。そのため、あなたはスクリプトがデバッグ対象として存在しているかどうかを判断するために <code>live</code> 属性の値を検査すべきです。</p>
+<div class="note">
+  <strong>Note:</strong> SpiderMonkeyは、同じ <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Script" title="Debugger.Object"><code>Debugger.Script</code></a> インスタンスを複数の関数、あるいは、同じ構文解析環境で実行される同じソースファイル内の同じ位置にある同じソースコードに対応したコードセグメントを計算します。</div>
+<h2 id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">オブジェクト</h2>
+<p>A <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object" title="Debugger.Object"><code>Debugger.Object</code></a> インスタンスはデバッグしているスクリプト内のオブジェクトに対応しています。デバッガコードはデバッグ対象となるオブジェクトへは直接アクセスしません。代わりに <code>Debugger.Object</code> インスタンスによってデバッグ対象となるオブジェクトを操作し、変更し、参照します。</p>
+<p>各 <code>Debugger.Object</code> インスタンスは反応指向(reflection-oriented)なメソッドを持っています。それは参照しているオブジェクト変更、検査させます。あなたは、参照している属性にアクセスするために、 <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object#getOwnPropertyDescriptor()" title="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object#getOwnPropertyDescriptor()"><code>Debugger.Object.getOwnPropertyDescriptor()</code></a> と <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object#defineProperty()" title="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object#defineProperty()"><code>Debugger.Object.defineProperty()</code></a> のようなメソッドを使うことができます。これはデバッガが、そのデバッグ対象の属性を見るときに、不注意にデバッグ対象内のgetter や setter を呼び出すこのとないよう確認します。</p>
+<p>SpiderMonkeyは正確に デバッグ対象内の各オブジェクトのに対する一つの <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object" title="Debugger.Object"><code>Debugger.Object</code></a> インスタンスを生成します。もし、デバッガが複数の経路を経て（二つの関数が同じオブジェクトを呼び出すときのような）、同じオブジェクトに出くわす場合、毎回、同じ <code>Debugger.Object</code> のインスタンスが存在します。 これはデバッグ対象内で二つの <code>Debugger.Object</code> インスタンスが同じオブジェクトを参照しているときに、それを認識する為に == のようなオペレータを使う事ができることを意味しています。そして、デバッグ対象のオブジェクトに関するあなた固有のメタデータを保存する為に、あなた固有の属性を<code>Debugger.Object</code> インスタンスに追加することができます。</p>
+<p>多くの <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object" title="Debugger.Object"><code>Debugger.Object</code></a> インスタンスは、 デバッグ対象の動作と状態をデバッガに明らかにする間、SpiderMOnkeyによって生成されます。デバッガそれ自身は、デバッグ対象のコンパートメント内にオブジェクトを生成するために、 <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object#copy()" title="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object#copy()"><code>Debugger.Object.copy()</code></a> や <a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object#create()" title="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object#create()"><code>Debugger.Object.create()</code></a> を使います。</p>
+<p><a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object" title="Debugger.Object"><code>Debugger.Object</code></a> インスタンスは、ガーベージコレクションから回収対象として参照されることからオブジェクトを保護します。 <code>Debugger.Object</code> インスタンスが有効である限り、それが参照するものも同様に有効なもとして残ります。このように、ガーベージコレクションは、<code>Debugger.Object</code> のインスタンスに対してデバッガから見える影響はありません。</p>
+<h2 id=".E5.A6.82.E4.BD.95.E3.81.AB.E5.80.A4.E3.81.AF.E3.83.87.E3.83.90.E3.83.83.E3.82.AC.E3.81.A8.E3.83.87.E3.83.90.E3.83.83.E3.82.B0.E5.AF.BE.E8.B1.A1.E3.81.AE.E9.96.93.E3.81.A7.E6.B8.A1.E3.81.95.E3.82.8C.E3.82.8B.E3.81.8B">如何に値はデバッガとデバッグ対象の間で渡されるか</h2>
+<p>デバッガが安全にオブジェクトと値をデバッグ対象のコンパートメント内で検査、変更することを支援するために、 <code>Debugger</code> インターフェイスは以下の慣例に従います。:</p>
+<ul>
+  <li>基本的な値は、デバッガとデバッグ対象の間で自由に渡されます。それらの値でコピーとラッピングが必要となるものは、透過的に取り扱われます。</li>
+  <li>デバッグ対象から受け取るオブジェクトは、DOM要素のようなホストオブジェクトを保持します。それは、 <code>Debugger.Object</code> のインスタンスとしてデバッガに含まれています。それらの参照を検査するために反応指向(reflection-oriented) メソッドを提供します。</li>
+  <li>デバッガオブジェクトが所有する <code>Debugger.Object</code> インスタンスだけがデバッグ対象に渡す事ができます。これが起きるとき、デバッガは<code>Debugger.Object</code>それ自身ではなく、 <code>Debugger.Object</code> の参照を受け取ります。</li>
+</ul>
+<h2 id=".E4.BB.A5.E4.B8.8B.E3.82.82.E5.8F.82.E7.85.A7.E3.81.97.E3.81.A6.E4.B8.8B.E3.81.95.E3.81.84">以下も参照して下さい</h2>
+<ul>
+  <li><a href="https://developer.mozilla.org/en/SpiderMonkey/JS_Debugger_API_Reference" title="en/SpiderMonkey/JS_Debugger_API_Reference">JS Debugger API Reference</a></li>
+</ul>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/yoshitanaka">yoshitanaka</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/yoshitanaka">yoshitanaka</a>,
+                      <time datetime="2013-03-30T04:26:16-07:00">2013/03/30 4:26:16</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/SpiderMonkey/JS_Debugger_API_Guide" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Mozilla/Projects/SpiderMonkey/JS_Debugger_API_Guide">
+            English (US)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":710}</script></body>
+</html>

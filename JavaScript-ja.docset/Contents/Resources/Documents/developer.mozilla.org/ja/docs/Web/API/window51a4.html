@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/API/window.open$compare?to=168544&from=168543 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 23:49:21 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>リビジョンの比較 | window.open | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+          <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body  class="">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': true,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#content" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+                
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/API/window.open$compare?to=168544&amp;from=168543" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                          <span class="oauth-icon oauth-github" data-service="GitHub" data-href="/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FAPI%2Fwindow.open%24compare%3Fto%3D168544%26from%3D168543" title="GitHub"><i class="icon-github" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/API/window.open$compare?to=168544&amp;from=168543" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                                  <li><a href="https://developer.mozilla.org/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FAPI%2Fwindow.open%24compare%3Fto%3D168544%26from%3D168543" class="login-link" data-service="GitHub"><i class="icon-github" aria-hidden="true"></i>GitHub</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+  <article id="compare-revisions">
+
+    <h1>リビジョンの比較</h1>
+    <h2><a href="window-87.html">window.open</a></h2>
+
+      <section class="revision-diff">
+    <header>
+      <div class="rev-from">
+        <h3>
+                      <a href="window.open%24revision/168543.html">
+              リビジョン 168543:
+            </a>
+                  </h3>
+        <p>リビジョン 168543 （編集者: Potappo / 編集日時: <time datetime="2007-10-30T14:32:43-07:00">2007年10月30日 14:32:43-0700</time>）</p>
+      </div>
+      <div class="rev-to">
+        <h3>
+                      <a href="window.open%24revision/168544.html">
+              リビジョン 168544:
+            </a>
+                  </h3>
+        <p>リビジョン 168544 （編集者: Potappo / 編集日時: <time datetime="2007-10-30T15:52:38-07:00">2007年10月30日 15:52:38-0700</time>）</p>
+      </div>
+    </header>
+
+    <dl>
+      <dt>タイトル:</dt>
+      <dd class="rev-from">window.open</dd>
+      <dd class="rev-to">window.open</dd>
+
+      <dt>URL スラッグ:</dt>
+      <dd class="rev-from">DOM/window.open</dd>
+      <dd class="rev-to">DOM/window.open</dd>
+
+            <dt>タグ:</dt>
+      <dd class="rev-from"> DOM,  Gecko,  &#34;Gecko DOM Reference&#34;</dd>
+      <dd class="rev-to"> DOM,  Gecko,  &#34;Gecko DOM Reference&#34;</dd>
+      
+      <dt>内容:</dt>
+      <dd>
+    <table class="diff" id="difflib_chg_to162__top"
+           cellspacing="0" cellpadding="0" rules="groups" >
+        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
+        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
+        <thead><tr><th class="diff_next"><br /></th><th colspan="2" class="diff_header">リビジョン 168543</th><th class="diff_next"><br /></th><th colspan="2" class="diff_header">リビジョン 168544</th></tr></thead>
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__0"><a href="#difflib_chg_to162__1">n</a></td><td class="diff_header" id="from162_968">968</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name="Always_identify_links_which_will_create_.28or_will_</span></td><td class="diff_next"><a href="#difflib_chg_to162__1">n</a></td><td class="diff_header" id="to162_968">968</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E6.96.B0.E3.81.97.E3.81.84.E5.89.AF.E3.82.A6.E3.82</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">re-use.29_a_new.2C_secondary_window"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.82.92.E7.94.9F.E6.88.90.EF.BC.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">8.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF.E5.86.8D.E5.88.A9.E7.94.A8.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">EF.BC.89.E3.81.99.E3.82.8B.E3.83.AA.E3.83.B3.E3.82.AF.E3.82.92.E5</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.B8.B8.E3.81.AB.E8.AD.98.E5.88.A5.E3.81.A7.E3.81.8D.E3.82.8B.E3.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">2.88.E3.81.86.E3.81.AB.E3.81.99.E3.82.8B"&gt;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from162_969">969</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Always&nbsp;identify&nbsp;links&nbsp;which&nbsp;will&nbsp;create&nbsp;(or&nbsp;will&nbsp;re-use)&nbsp;a&nbsp;</span></td><td class="diff_next"></td><td class="diff_header" id="to162_969">969</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新しい副ウィンドウを生成（もしくは再利用）するリンクを常に識別できるようにする</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">new,&nbsp;secondary&nbsp;window</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__1"><a href="#difflib_chg_to162__2">n</a></td><td class="diff_header" id="from162_972">972</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Identify&nbsp;links&nbsp;that&nbsp;will&nbsp;open&nbsp;new&nbsp;windows&nbsp;in&nbsp;a&nbsp;way&nbsp;that&nbsp;hel</span></td><td class="diff_next"><a href="#difflib_chg_to162__2">n</a></td><td class="diff_header" id="to162_972">972</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;リンクの&nbsp;title&nbsp;属性を記述したり、リンクの最後にアイコンを追加したり、反応するカーソルを記述することによってユー</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">ps&nbsp;navigation&nbsp;for&nbsp;users&nbsp;by&nbsp;coding&nbsp;the&nbsp;title&nbsp;attribute&nbsp;of&nbsp;the&nbsp;link</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">ザに情報を与え、新しいウィンドウを開くことになるリンクを識別できるようにしてください。</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">,&nbsp;by&nbsp;adding&nbsp;an&nbsp;icon&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;link&nbsp;or&nbsp;by&nbsp;coding&nbsp;the&nbsp;curso</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">r&nbsp;accordingly.</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from162_973">973</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap"></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from162_974">974</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;</td><td class="diff_next"></td><td class="diff_header" id="to162_973">973</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_add">/</span>p&gt;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from162_975">975</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;purpose&nbsp;is&nbsp;to&nbsp;warn&nbsp;users&nbsp;in&nbsp;advance&nbsp;of&nbsp;context&nbsp;changes&nbsp;</span></td><td class="diff_next"></td><td class="diff_header" id="to162_974">974</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">to&nbsp;minimize&nbsp;confusion&nbsp;on&nbsp;the&nbsp;user's&nbsp;part:&nbsp;changing&nbsp;the&nbsp;current&nbsp;wi</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">ndow&nbsp;or&nbsp;popping&nbsp;up&nbsp;new&nbsp;windows&nbsp;can&nbsp;be&nbsp;very&nbsp;disorienting&nbsp;to&nbsp;users&nbsp;</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">(Back&nbsp;toolbar&nbsp;button&nbsp;is&nbsp;disabled).</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap"></td><td class="diff_next"></td><td class="diff_header" id="to162_975">975</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ユーザに警告をする目的は、コンテキストが変化するときに、ユーザの混乱を最小限にするためです。カレントウィンドウが変化し</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">たり、新しいウィンドウがポップアップすることは、ユーザを混乱させます（ツールバーボタンの戻るは使えません）。</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__2"><a href="#difflib_chg_to162__3">n</a></td><td class="diff_header" id="from162_979">979</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Users&nbsp;often&nbsp;don't&nbsp;notice&nbsp;that&nbsp;a&nbsp;new&nbsp;window&nbsp;has&nbsp;opened,&nbsp;e</span></td><td class="diff_next"><a href="#difflib_chg_to162__3">n</a></td><td class="diff_header" id="to162_979">979</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ユーザが新しいウィンドウが開いたことに気づかないことはけっこうあります。特に、小さなモニターを使用していて、ウィ</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">specially&nbsp;if&nbsp;they&nbsp;are&nbsp;using&nbsp;a&nbsp;small&nbsp;monitor&nbsp;where&nbsp;the&nbsp;windows&nbsp;are</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">ンドウが最大化されている場合です。元のページに戻ろうとするユーザは、&nbsp;&lt;i&gt;Back&lt;/i&gt;&nbsp;ボタンがグレーアウトしているので、混</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">&nbsp;maximized&nbsp;to&nbsp;fill&nbsp;up&nbsp;the&nbsp;screen.&nbsp;So&nbsp;a&nbsp;user&nbsp;who&nbsp;tries&nbsp;to&nbsp;return&nbsp;t</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">乱してしまいます。"&lt;br&gt;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">o&nbsp;the&nbsp;origin&nbsp;will&nbsp;be&nbsp;confused&nbsp;by&nbsp;a&nbsp;grayed&nbsp;out&nbsp;&lt;i&gt;Back&lt;/i&gt;&nbsp;button.</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">"&lt;br&gt;</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from162_980">980</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="diff_chg">quote&nbsp;from&nbsp;&lt;a</span>&nbsp;class="external"&nbsp;href="http://www.useit.com</td><td class="diff_next"></td><td class="diff_header" id="to162_980">980</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="diff_chg">引用元：&lt;a</span>&nbsp;class="external"&nbsp;href="http://www.useit.com/alertb</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">/alertbox/990530.html"&gt;The&nbsp;Top&nbsp;Ten&nbsp;&lt;i&gt;New&lt;/i&gt;&nbsp;Mistakes&nbsp;of&nbsp;Web&nbsp;Des</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ox/990530.html"&gt;The&nbsp;Top&nbsp;Ten&nbsp;&lt;i&gt;New&lt;/i&gt;&nbsp;Mistakes&nbsp;of&nbsp;Web&nbsp;Design&lt;/a&gt;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ign&lt;/a&gt;:&nbsp;2.&nbsp;Opening&nbsp;New&nbsp;Browser&nbsp;Windows,&nbsp;Jakob&nbsp;Nielsen,&nbsp;May&nbsp;1999</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">:&nbsp;2.&nbsp;Opening&nbsp;New&nbsp;Browser&nbsp;Windows,&nbsp;Jakob&nbsp;Nielsen,&nbsp;May&nbsp;1999<span class="diff_add">（&lt;a&nbsp;clas</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">s="external"&nbsp;href="http://www.usability.gr.jp/alertbox/990530.htm</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">l"&gt;日本語版&lt;/a&gt;）</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__3"><a href="#difflib_chg_to162__4">n</a></td><td class="diff_header" id="from162_984">984</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When&nbsp;extreme&nbsp;changes&nbsp;in&nbsp;context&nbsp;are&nbsp;explicitly&nbsp;identified&nbsp;b</span></td><td class="diff_next"><a href="#difflib_chg_to162__4">n</a></td><td class="diff_header" id="to162_984">984</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;コンテキストにおける急激な変化が発生する前にそれらが明確に示唆されるとき、ユーザは、そのまま進みたいかどうかを決めるこ</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">efore&nbsp;they&nbsp;occur,&nbsp;then&nbsp;the&nbsp;users&nbsp;can&nbsp;determine&nbsp;if&nbsp;they&nbsp;wish&nbsp;to&nbsp;pr</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">とができ、変化に対して準備することができます。ユーザを混乱させないだけでなく、より経験豊富なユーザは、そのようなリンクをどのように</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">oceed&nbsp;or&nbsp;so&nbsp;they&nbsp;can&nbsp;be&nbsp;prepared&nbsp;for&nbsp;the&nbsp;change:&nbsp;not&nbsp;only&nbsp;they&nbsp;wi</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">開くかに対するより良い決定を下すこともできます（新しいウィンドウとして開くかどうか、同じウインドウに読み込むか、新しいタブに開くど</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">ll&nbsp;not&nbsp;be&nbsp;confused&nbsp;or&nbsp;feel&nbsp;disoriented,&nbsp;but&nbsp;more&nbsp;experienced&nbsp;user</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">うか、"バックグラウンド"&nbsp;で開くかどうか）。</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">s&nbsp;can&nbsp;better&nbsp;decide&nbsp;how&nbsp;to&nbsp;open&nbsp;such&nbsp;links&nbsp;(in&nbsp;a&nbsp;new&nbsp;window&nbsp;or&nbsp;no</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">t,&nbsp;in&nbsp;the&nbsp;same&nbsp;window,&nbsp;in&nbsp;a&nbsp;new&nbsp;tab&nbsp;or&nbsp;not,&nbsp;in&nbsp;"background"&nbsp;or&nbsp;no</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">t).</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from162_985">985</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap"></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from162_986">986</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;</td><td class="diff_next"></td><td class="diff_header" id="to162_985">985</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_add">/</span>p&gt;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from162_987">987</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;References&lt;/b&gt;</span></td><td class="diff_next"></td><td class="diff_header" id="to162_986">986</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap"></td><td class="diff_next"></td><td class="diff_header" id="to162_987">987</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;リファレンス&lt;/b&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__4"><a href="#difflib_chg_to162__5">n</a></td><td class="diff_header" id="from162_990">990</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;"If&nbsp;your&nbsp;link&nbsp;spawns&nbsp;a&nbsp;new&nbsp;window,&nbsp;or&nbsp;causes&nbsp;another&nbsp;wi</span></td><td class="diff_next"><a href="#difflib_chg_to162__5">n</a></td><td class="diff_header" id="to162_990">990</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;"リンクが新しいウィンドウを開いたり、別のウィンドウをディスプレイにポップアップさせたり、システムのフォーカス</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">ndows&nbsp;to&nbsp;'pop&nbsp;up'&nbsp;on&nbsp;your&nbsp;display,&nbsp;or&nbsp;move&nbsp;the&nbsp;focus&nbsp;of&nbsp;the&nbsp;syste</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">を新しいフレームやウィンドウに移動させる場合、行うべき良策は、ユーザにそのようなことが起きるということを伝えることです。"&nbsp;&lt;a&nbsp;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">m&nbsp;to&nbsp;a&nbsp;new&nbsp;FRAME&nbsp;or&nbsp;Window,&nbsp;then&nbsp;the&nbsp;nice&nbsp;thing&nbsp;to&nbsp;do&nbsp;is&nbsp;to&nbsp;tell&nbsp;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">class="external"&nbsp;href="http://www.w3.org/WAI/wcag-curric/sam77-0.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">the&nbsp;user&nbsp;that&nbsp;something&nbsp;like&nbsp;that&nbsp;will&nbsp;happen."&nbsp;&lt;a&nbsp;class="externa</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">htm"&gt;World&nbsp;Wide&nbsp;Web&nbsp;Consortium&nbsp;Accessibility&nbsp;Initiative&nbsp;regarding</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">l"&nbsp;href="http://www.w3.org/WAI/wcag-curric/sam77-0.htm"&gt;World&nbsp;Wid</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">&nbsp;popups&lt;/a&gt;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">e&nbsp;Web&nbsp;Consortium&nbsp;Accessibility&nbsp;Initiative&nbsp;regarding&nbsp;popups&lt;/a&gt;</span></td><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__5"><a href="#difflib_chg_to162__6">n</a></td><td class="diff_header" id="from162_992">992</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;"Use&nbsp;link&nbsp;titles&nbsp;to&nbsp;provide&nbsp;users&nbsp;with&nbsp;a&nbsp;preview&nbsp;of&nbsp;whe</span></td><td class="diff_next"><a href="#difflib_chg_to162__6">n</a></td><td class="diff_header" id="to162_992">992</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;"リンクをクリックする前に、そのリンクでどこへ行くかの情報をユーザに提供するためにリンクタイトルを使用してくだ</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">re&nbsp;each&nbsp;link&nbsp;will&nbsp;take&nbsp;them,&nbsp;before&nbsp;they&nbsp;have&nbsp;clicked&nbsp;on&nbsp;it."&nbsp;&lt;a&nbsp;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">さい。"&nbsp;&lt;a&nbsp;class="external"&nbsp;href="http://www.useit.com/alertbox/9910</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">class="external"&nbsp;href="http://www.useit.com/alertbox/991003.html"</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">03.html"&gt;Ten&nbsp;Good&nbsp;Deeds&nbsp;in&nbsp;Web&nbsp;Design&lt;/a&gt;,&nbsp;Jakob&nbsp;Nielsen,&nbsp;October</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">&gt;Ten&nbsp;Good&nbsp;Deeds&nbsp;in&nbsp;Web&nbsp;Design&lt;/a&gt;,&nbsp;Jakob&nbsp;Nielsen,&nbsp;October&nbsp;1999</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">&nbsp;1999（&lt;a&nbsp;class="external"&nbsp;href="http://www.usability.gr.jp/alertb</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">ox/991003.html"&gt;日本語版&lt;/a&gt;）</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__6"><a href="#difflib_chg_to162__7">n</a></td><td class="diff_header" id="from162_995">995</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class="external"&nbsp;href="http://www.useit.com/alertbox/9</td><td class="diff_next"><a href="#difflib_chg_to162__7">n</a></td><td class="diff_header" id="to162_995">995</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;class="external"&nbsp;href="http://www.useit.com/alertbox/9</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">80111.html"&gt;Using&nbsp;Link&nbsp;Titles&nbsp;to&nbsp;Help&nbsp;Users&nbsp;Predict&nbsp;Where&nbsp;They&nbsp;Ar</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">80111.html"&gt;Using&nbsp;Link&nbsp;Titles&nbsp;to&nbsp;Help&nbsp;Users&nbsp;Predict&nbsp;Where&nbsp;They&nbsp;Ar</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">e&nbsp;Going&lt;/a&gt;,&nbsp;Jakob&nbsp;Nielsen,&nbsp;January&nbsp;1998</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">e&nbsp;Going&lt;/a&gt;,&nbsp;Jakob&nbsp;Nielsen,&nbsp;January&nbsp;1998<span class="diff_add">（&lt;a&nbsp;class="external"&nbsp;href</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">="http://www.usability.gr.jp/alertbox/980111.html"&gt;日本語版&lt;/a&gt;）</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__7"><a href="#difflib_chg_to162__8">n</a></td><td class="diff_header" id="from162_1002">1002</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example&nbsp;"New&nbsp;Window"&nbsp;Icons&nbsp;&amp;amp;&nbsp;Cursors</span></td><td class="diff_next"><a href="#difflib_chg_to162__8">n</a></td><td class="diff_header" id="to162_1002">1002</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"新しいウィンドウ"&nbsp;を示すアイコンとカーソルの例</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__8"><a href="#difflib_chg_to162__9">n</a></td><td class="diff_header" id="from162_1007">1007</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>yahoo.com"&nbsp;src="File:j</td><td class="diff_next"><a href="#difflib_chg_to162__9">n</a></td><td class="diff_header" id="to162_1007">1007</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="yahoo.com<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span>"&nbsp;src="File:ja/Media</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">a/Media_Gallery/NewwindowYahoo.png"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">_Gallery/NewwindowYahoo.png"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__9"><a href="#difflib_chg_to162__10">n</a></td><td class="diff_header" id="from162_1010">1010</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>microsoft.com"&nbsp;src="Fi</td><td class="diff_next"><a href="#difflib_chg_to162__10">n</a></td><td class="diff_header" id="to162_1010">1010</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="microsoft.com<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span>"&nbsp;src="File:ja/M</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">le:ja/Media_Gallery/NewwinMSIE.gif"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">edia_Gallery/NewwinMSIE.gif"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__10"><a href="#difflib_chg_to162__11">n</a></td><td class="diff_header" id="from162_1013">1013</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>webaim.org"&nbsp;src="File:</td><td class="diff_next"><a href="#difflib_chg_to162__11">n</a></td><td class="diff_header" id="to162_1013">1013</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="webaim.org<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span>"&nbsp;src="File:ja/Medi</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ja/Media_Gallery/Popup_requested_new_window.gif"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">a_Gallery/Popup_requested_new_window.gif"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__11"><a href="#difflib_chg_to162__12">n</a></td><td class="diff_header" id="from162_1016">1016</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>sun.com"&nbsp;src="File:ja/</td><td class="diff_next"><a href="#difflib_chg_to162__12">n</a></td><td class="diff_header" id="to162_1016">1016</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="sun.com<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span>"&nbsp;src="File:ja/Media_G</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">Media_Gallery/PopupImageSun.gif"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">allery/PopupImageSun.gif"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__12"><a href="#difflib_chg_to162__13">n</a></td><td class="diff_header" id="from162_1021">1021</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>bbc.co.uk"&nbsp;src="File:j</td><td class="diff_next"><a href="#difflib_chg_to162__13">n</a></td><td class="diff_header" id="to162_1021">1021</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="bbc.co.uk<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span>"&nbsp;src="File:ja/Media</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">a/Media_Gallery/Opennews_rb.gif"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">_Gallery/Opennews_rb.gif"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__13"><a href="#difflib_chg_to162__14">n</a></td><td class="diff_header" id="from162_1024">1024</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>Accessible&nbsp;Internet&nbsp;So</td><td class="diff_next"><a href="#difflib_chg_to162__14">n</a></td><td class="diff_header" id="to162_1024">1024</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="Accessible&nbsp;Internet&nbsp;Solutions<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">lutions"&nbsp;src="File:ja/Media_Gallery/AIS_NewWindowIcon.png"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add"></span>"&nbsp;src="File:ja/Media_Gallery/AIS_NewWindowIcon.png"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__14"><a href="#difflib_chg_to162__15">n</a></td><td class="diff_header" id="from162_1027">1027</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>accessify.com"&nbsp;src="Fi</td><td class="diff_next"><a href="#difflib_chg_to162__15">n</a></td><td class="diff_header" id="to162_1027">1027</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="accessify.com<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span>"&nbsp;src="File:ja/M</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">le:ja/Media_Gallery/Pop-up-launcher.gif"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">edia_Gallery/Pop-up-launcher.gif"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__15"><a href="#difflib_chg_to162__16">n</a></td><td class="diff_header" id="from162_1030">1030</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>webstyleguide.com"&nbsp;src</td><td class="diff_next"><a href="#difflib_chg_to162__16">n</a></td><td class="diff_header" id="to162_1030">1030</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="webstyleguide.com<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span>"&nbsp;src="File:</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">="File:ja/Media_Gallery/Webstyleguide_com_newwind.gif"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ja/Media_Gallery/Webstyleguide_com_newwind.gif"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__16"><a href="#difflib_chg_to162__17">n</a></td><td class="diff_header" id="from162_1035">1035</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="New&nbsp;window&nbsp;icon&nbsp;from&nbsp;an&nbsp;unknown&nbsp;source"&nbsp;src</span></td><td class="diff_next"><a href="#difflib_chg_to162__17">n</a></td><td class="diff_header" id="to162_1035">1035</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="ソース不明の新しいウィンドウアイコン"&nbsp;src="File:ja/Media_Gall</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">="File:ja/Media_Gallery/Popicon_1.gif"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">ery/Popicon_1.gif"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__17"><a href="#difflib_chg_to162__18">n</a></td><td class="diff_header" id="from162_1038">1038</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="New&nbsp;window&nbsp;icon&nbsp;from&nbsp;an&nbsp;unknown&nbsp;source"&nbsp;src</span></td><td class="diff_next"><a href="#difflib_chg_to162__18">n</a></td><td class="diff_header" id="to162_1038">1038</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="ソース不明の新しいウィンドウアイコン"&nbsp;src="File:ja/Media_Gall</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">="File:ja/Media_Gallery/New.gif"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">ery/New.gif"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__18"><a href="#difflib_chg_to162__19">n</a></td><td class="diff_header" id="from162_1041">1041</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_chg">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;an&nbsp;unknown&nbsp;source</span>"&nbsp;src</td><td class="diff_next"><a href="#difflib_chg_to162__19">n</a></td><td class="diff_header" id="to162_1041">1041</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_chg">ソース不明の新しいウィンドウアイコン</span>"&nbsp;src="File:ja/Media_Gall</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">="File:ja/Media_Gallery/WillCreateOrRecycleNewWindow.gif"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ery/WillCreateOrRecycleNewWindow.gif"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__19"><a href="#difflib_chg_to162__20">n</a></td><td class="diff_header" id="from162_1044">1044</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;icon&nbsp;from&nbsp;</span>gtalbot.org"&nbsp;src="File</td><td class="diff_next"><a href="#difflib_chg_to162__20">n</a></td><td class="diff_header" id="to162_1044">1044</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="gtalbot.org<span class="diff_add">&nbsp;の新しいウィンドウアイコン</span>"&nbsp;src="File:ja/Med</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">:ja/Media_Gallery/OpenRequestedPopup.png"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ia_Gallery/OpenRequestedPopup.png"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__20"><a href="#difflib_chg_to162__21">n</a></td><td class="diff_header" id="from162_1049">1049</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;cursor&nbsp;from&nbsp;</span>draig.de"&nbsp;src="File:</td><td class="diff_next"><a href="#difflib_chg_to162__21">n</a></td><td class="diff_header" id="to162_1049">1049</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="draig.de<span class="diff_add">&nbsp;の新しいウィンドウカーソル</span>"&nbsp;src="File:ja/Media_</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ja/Media_Gallery/Cursor_LinkNewWindowTargetBlank.png"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">Gallery/Cursor_LinkNewWindowTargetBlank.png"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to162__21"><a href="#difflib_chg_to162__top">t</a></td><td class="diff_header" id="from162_1052">1052</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="<span class="diff_sub">New&nbsp;window&nbsp;cursor&nbsp;from&nbsp;</span>mithgol.ru"&nbsp;src="Fil</td><td class="diff_next"><a href="#difflib_chg_to162__top">t</a></td><td class="diff_header" id="to162_1052">1052</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&nbsp;alt="mithgol.ru<span class="diff_add">&nbsp;の新しいウィンドウカーソル</span>"&nbsp;src="File:ja/Medi</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">e:ja/Media_Gallery/Cursor_newwindowSergeySokoloff.png"&gt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">a_Gallery/Cursor_newwindowSergeySokoloff.png"&gt;</td></tr>
+        </tbody>
+    </table></dd>
+    </dl>
+  </section>
+    <p><a href="window-227.html">前に戻る</a></p>
+
+  </article>
+
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                <form class="languages go" method="get" action="#">
+  <label for="language">他の言語:</label>
+          <input type="hidden" name="to" value="168544">
+              <input type="hidden" name="from" value="168543">
+        <select id="language" class="autosubmit" name="lang">
+    <option value="ar" >
+        عربي
+      </option><option value="bn-BD" >
+        বাংলা (বাংলাদেশ)
+      </option><option value="ca" >
+        català
+      </option><option value="cs" >
+        Čeština
+      </option><option value="de" >
+        Deutsch
+      </option><option value="el" >
+        Ελληνικά
+      </option><option value="en-US" >
+        English
+      </option><option value="es" >
+        Español
+      </option><option value="fa" >
+        فارسی
+      </option><option value="fi" >
+        suomi
+      </option><option value="fr" >
+        Français
+      </option><option value="fy-NL" >
+        Frysk
+      </option><option value="ga-IE" >
+        Gaeilge (Éire)
+      </option><option value="he" >
+        עברית
+      </option><option value="hi-IN" >
+        हिन्दी (भारत)
+      </option><option value="hr" >
+        Hrvatski
+      </option><option value="hu" >
+        Magyar
+      </option><option value="id" >
+        Bahasa Indonesia
+      </option><option value="it" >
+        Italiano
+      </option><option value="ja" selected>
+        日本語
+      </option><option value="ka" >
+        ქართული
+      </option><option value="ko" >
+        한국어
+      </option><option value="ml" >
+        മലയാളം
+      </option><option value="ms" >
+        ﺐﻫﺎﺳ ﻡﻼﻳﻭ
+      </option><option value="nl" >
+        Nederlands
+      </option><option value="pl" >
+        Polski
+      </option><option value="pt-BR" >
+        Português (do Brasil)
+      </option><option value="pt-PT" >
+        Português (Europeu)
+      </option><option value="ro" >
+        română
+      </option><option value="ru" >
+        Русский
+      </option><option value="sq" >
+        Shqip
+      </option><option value="ta" >
+        தமிழ்
+      </option><option value="th" >
+        ไทย
+      </option><option value="tr" >
+        Türkçe
+      </option><option value="vi" >
+        Tiếng Việt
+      </option><option value="zh-CN" >
+        中文 (简体)
+      </option><option value="zh-TW" >
+        正體中文 (繁體)
+      </option>  </select>
+  <noscript><button type="submit">移動</button></noscript>
+</form>                        </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+  <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlIKCElVEQFsSlcVW0tYCgtK","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":266}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/API/window.open$compare?to=168544&from=168543 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 23:49:21 GMT -->
+</html>

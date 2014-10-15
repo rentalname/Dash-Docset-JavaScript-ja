@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Firefox 3.5 for developers - Mozilla | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../index.html">
+  <link rel="copyright" href="3.5.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/3.5$json">
+  <link rel="canonical" href="3.5.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/Firefox/Releases/3.5" title="Firefox 3.5 for developers">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Firefox_3.5_f%C3%BCr_Entwickler" title="Firefox_3.5_für_Entwickler">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Firefox_3.5_para_desarrolladores" title="Firefox 3.5 para desarrolladores">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Mozilla/Firefox/Versions/3.5" title="Firefox 3.5 pour les développeurs">
+          <link rel="alternate" hreflang="pt-PT" href="https://developer.mozilla.org/pt-PT/docs/Firefox_3.5_para_desenvolvedores" title="Firefox 3.5 para desenvolvedores">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Firefox_3.5_%D0%B4%D0%BB%D1%8F_%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0" title="Firefox 3.5 для разработчика">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Firefox_3.5_for_developers" title="Firefox 3.5 for developers">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Firefox_3.1_%E6%8A%80%E8%A1%93%E6%96%87%E4%BB%B6" title="Firefox 3.1 技術文件">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Firefox 3.5 for developers">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/3.5">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/3.5">
+  <meta name="twitter:title" content="Firefox 3.5 for developers">
+    <meta property="og:description" content="Firefox 3.5 では数多くの新機能が導入され、また、幅広い種類のWeb 標準に対するサポートが追加および改善されます。この記事は主な変更点をカバーする記事へのリンクを伴う広範囲に及ぶ一覧を提供します。">
+  <meta name="description" content="Firefox 3.5 では数多くの新機能が導入され、また、幅広い種類のWeb 標準に対するサポートが追加および改善されます。この記事は主な変更点をカバーする記事へのリンクを伴う広範囲に及ぶ一覧を提供します。">
+  <meta name="twitter:description" content="Firefox 3.5 では数多くの新機能が導入され、また、幅広い種類のWeb 標準に対するサポートが追加および改善されます。この記事は主な変更点をカバーする記事へのリンクを伴う広範囲に及ぶ一覧を提供します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Mozilla/Firefox/Releases/3.5" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="3.5.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="3.5.html#language">言語の選択</a></li>
+          <li><a href="3.5.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Mozilla/Firefox/Releases/3.5" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Mozilla/Firefox/Releases/3.5" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Tools.html">ツール</a></li><li><a href="../../../../demos/index.html">MDN デモ</a></li><li><a href="../../Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/Firefox/Releases/3.5" title="Firefox 3.5 for developers">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Firefox_3.5_f%C3%BCr_Entwickler" title="Firefox_3.5_für_Entwickler">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Firefox_3.5_para_desarrolladores" title="Firefox 3.5 para desarrolladores">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Mozilla/Firefox/Versions/3.5" title="Firefox 3.5 pour les développeurs">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-PT/docs/Firefox_3.5_para_desenvolvedores" title="Firefox 3.5 para desenvolvedores">Português (Europeu)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Firefox_3.5_%D0%B4%D0%BB%D1%8F_%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0" title="Firefox 3.5 для разработчика">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Firefox_3.5_for_developers" title="Firefox 3.5 for developers">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Firefox_3.1_%E6%8A%80%E8%A1%93%E6%96%87%E4%BB%B6" title="Firefox 3.1 技術文件">正體中文 (繁體)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/3.5$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/3.5$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="3.5.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Firefox.html" rel="v:url" property="v:title">Firefox</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Releases.html" rel="v:url" property="v:title">Firefox 開発者向けリリースノート</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Firefox 3.5 for developers</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="3.5.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Firefox 3.5 for developers</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="3.5.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="3.5.html#Firefox_3.5_.E3.81.AE.E9.96.8B.E7.99.BA.E8.80.85.E5.90.91.E3.81.91.E6.96.B0.E6.A9.9F.E8.83.BD" rel="internal">Firefox 3.5 の開発者向け新機能</a><ol><li><a href="3.5.html#Web_.E3.82.B5.E3.82.A4.E3.83.88.E3.81.A8_Web_.E3.82.A2.E3.83.97.E3.83.AA.E3.82.B1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E9.96.8B.E7.99.BA.E8.80.85.E5.90.91.E3.81.91" rel="internal">Web サイトと Web アプリケーション開発者向け</a><ol><li><a href="3.5.html#HTML5_.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88" rel="internal">HTML5 サポート</a><li><a href="3.5.html#.E6.96.B0.E3.81.97.E3.81.8F.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.82.8B_CSS_.E3.81.AE.E6.A9.9F.E8.83.BD" rel="internal">新しくサポートされる CSS の機能</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="3.5.html#.E6.96.B0.E3.81.97.E3.81.84_DOM_.E3.81.AE.E6.A9.9F.E8.83.BD" rel="internal">新しい DOM の機能</a><code></code><code></code><li><a href="3.5.html#.E6.96.B0.E3.81.97.E3.81.84_JavaScript_.E3.81.AE.E6.A9.9F.E8.83.BD" rel="internal">新しい JavaScript の機能</a><li><a href="3.5.html#.E3.83.8D.E3.83.83.E3.83.88.E3.83.AF.E3.83.BC.E3.82.AF.E6.A9.9F.E8.83.BD" rel="internal">ネットワーク機能</a><code></code><code></code><code></code><code></code><li><a href="3.5.html#.E6.96.B0.E3.81.97.E3.81.84_Canvas_.E3.81.AE.E6.A9.9F.E8.83.BD" rel="internal">新しい Canvas の機能</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="3.5.html#.E6.96.B0.E3.81.97.E3.81.84_SVG_.E3.81.AE.E6.A9.9F.E8.83.BD" rel="internal">新しい SVG の機能</a><li><a href="3.5.html#.E9.9B.91.E5.A4.9A.E3.81.AA.E6.96.B0.E6.A9.9F.E8.83.BD" rel="internal">雑多な新機能</a></ol></li><li><a href="3.5.html#.E3.81.9D.E3.81.AE.E4.BB.96.E3.81.AE.E6.94.B9.E5.96.84" rel="internal">その他の改善</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="3.5.html#XUL_.E3.81.A8.E3.82.A2.E3.83.89.E3.82.AA.E3.83.B3.E9.96.8B.E7.99.BA.E8.80.85.E5.90.91.E3.81.91" rel="internal">XUL とアドオン開発者向け</a><ol><li><a href="3.5.html#.E6.96.B0.E3.81.97.E3.81.84.E3.82.B3.E3.83.B3.E3.83.9D.E3.83.BC.E3.83.8D.E3.83.B3.E3.83.88.E3.81.A8.E6.A9.9F.E8.83.BD" rel="internal">新しいコンポーネントと機能</a><li><a href="3.5.html#.E6.B3.A8.E7.9B.AE.E3.81.99.E3.81.B9.E3.81.8D.E5.A4.89.E6.9B.B4.E3.81.A8.E6.94.B9.E5.96.84" rel="internal">注目すべき変更と改善</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li></ol></li><li><a href="3.5.html#.E3.82.A8.E3.83.B3.E3.83.89.E3.83.A6.E3.83.BC.E3.82.B6.E5.90.91.E3.81.91.E6.96.B0.E6.A9.9F.E8.83.BD" rel="internal">エンドユーザ向け新機能</a><ol><li><a href="3.5.html#.E3.83.A6.E3.83.BC.E3.82.B6.E3.82.A8.E3.82.AF.E3.82.B9.E3.83.9A.E3.83.AA.E3.82.A8.E3.83.B3.E3.82.B9" rel="internal">ユーザエクスペリエンス</a><li><a href="3.5.html#.E3.82.BB.E3.82.AD.E3.83.A5.E3.83.AA.E3.83.86.E3.82.A3.E3.81.A8.E3.83.97.E3.83.A9.E3.82.A4.E3.83.90.E3.82.B7.E3.83.BC" rel="internal">セキュリティとプライバシー</a><li><a href="3.5.html#.E3.83.91.E3.83.95.E3.82.A9.E3.83.BC.E3.83.9E.E3.83.B3.E3.82.B9" rel="internal">パフォーマンス</a></ol></li><li><a href="3.5.html#See_also" rel="internal">参照</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p><a class="external" href="http://mozilla.jp/" title="http://mozilla.jp/">Firefox 3.5</a> では数多くの新機能が導入され、また、幅広い種類のWeb 標準に対するサポートが追加および改善されます。この記事は主な変更点をカバーする記事へのリンクを伴う広範囲に及ぶ一覧を提供します。</p>
+<div>
+  <span id="New_developer_features_in_Firefox_3.5"></span></div>
+<h2 id="Firefox_3.5_.E3.81.AE.E9.96.8B.E7.99.BA.E8.80.85.E5.90.91.E3.81.91.E6.96.B0.E6.A9.9F.E8.83.BD">Firefox 3.5 の開発者向け新機能</h2>
+<div>
+  <span id="For_web_site_and_application_developers"></span></div>
+<h3 id="Web_.E3.82.B5.E3.82.A4.E3.83.88.E3.81.A8_Web_.E3.82.A2.E3.83.97.E3.83.AA.E3.82.B1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E9.96.8B.E7.99.BA.E8.80.85.E5.90.91.E3.81.91">Web サイトと Web アプリケーション開発者向け</h3>
+<div>
+  <span id="HTML5_support"></span></div>
+<h4 id="HTML5_.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88">HTML5 サポート</h4>
+<dl>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Using_audio_and_video_in_Firefox" title="Using audio and video in Firefox">Using audio and video in Firefox</a></dt>
+  <dd>
+    Firefox 3.5 では HTML5 の <a href="https://developer.mozilla.org/ja/docs/HTML/Element/Audio" title="HTML/Element/Audio">audio</a> および <a href="https://developer.mozilla.org/ja/docs/HTML/Element/Video" title="HTML/Element/Video">video</a> 要素がサポートされます。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Offline_resources_in_Firefox" title="Offline resources in Firefox">Offline resources in Firefox</a></dt>
+  <dd>
+    Firefox 3.5 では HTML5 のオフラインリソース仕様をすべてサポートしています。</dd>
+  <dt>
+    <a href="../../../DragDrop/Drag_and_Drop.html" title="DragDrop/Drag and Drop">ドラッグ＆ドロップ</a></dt>
+  <dd>
+    HTML5 のドラッグ＆ドロップ API によって Web サイト内および Web サイト間のアイテムのドラッグ＆ドロップがサポートされます。これにより、拡張や Mozilla ベースアプリケーションに対してもより単純な API が提供されます</dd>
+</dl>
+<div>
+  <span id="Newly-supported_CSS_features"></span></div>
+<h4 id=".E6.96.B0.E3.81.97.E3.81.8F.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.82.8B_CSS_.E3.81.AE.E6.A9.9F.E8.83.BD">新しくサポートされる CSS の機能</h4>
+<dl>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/CSS/@font-face" title="CSS/@font-face">ダウンロードフォントのサポート</a></dt>
+  <dd>
+    新しい @規則である <a href="../../../Web/CSS/@font-face.html" title=""><code>@font-face</code></a> を利用して Web ページでダウンロードフォントを提供できます。これにより、ページ作者が期待する通りにサイトが描画されるようになります。</dd>
+  <dt>
+    <a href="../../../Web/Guide/CSS/Media_queries.html" title="CSS/Media queries">CSS メディアクエリー</a></dt>
+  <dd>
+    Firefox 3.5 では CSS メディアクエリーをサポートしています。これはメディア依存スタイルシートを拡張するものです。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:before" title=""><code>:before</code></a> および <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:after" title=""><code>:after</code></a> の CSS 2.1 への更新</dt>
+  <dd>
+    <code>:before</code> および <code>:after</code> 疑似要素が CSS 2.1 サポートを満たすように更新されました。<code>position</code>、<code>float</code>、<code>list-style-*</code>、そして、いくつかの <code>display</code> プロパティのサポートが追加されています。</dd>
+  <dt>
+    長さの単位 <code>ch</code></dt>
+  <dd>
+    単位 <code>ch</code> が通常の<a href="https://developer.mozilla.org/ja/docs/CSS/Length" title="CSS/length">長さの単位</a>として任意の場所で使えるようになりました。"1 ch" は文字 '0' の横幅です。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/opacity" title=""><code>opacity</code></a></dt>
+  <dd>
+    標準の <code>opacity</code> プロパティの先行実装である <code>-moz-opacity</code> という CSS への Mozilla 拡張が削除されました。</dd>
+  <dt>
+    <a href="../../../Web/CSS/text-shadow.html" title=""><code>text-shadow</code></a></dt>
+  <dd>
+    Web コンテンツにテキストとテキスト装飾に適用される影付き効果を指定できる <code>text-shadow</code> プロパティがサポートされました。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/word-wrap" title=""><code>word-wrap</code></a></dt>
+  <dd>
+    この新しくサポートされたプロパティはコンテンツに単語内で改行するかどうかを指定できます。これは単語内で改行しないと 1 行に収まらないときに発生する文字あふれを防ぐためのものです。</dd>
+  <dt>
+    <code>white-space</code> プロパティが値 <code>pre-line</code> をサポート</dt>
+  <dd>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/white-space" title=""><code>white-space</code></a> プロパティの値に <code>pre-line</code> を指定できるようになりました。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-box-shadow" title=""><code>-moz-box-shadow</code></a></dt>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-border-image" title=""><code>-moz-border-image</code></a></dt>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-column-rule" title=""><code>-moz-column-rule</code></a></dt>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-column-rule-width" title=""><code>-moz-column-rule-width</code></a></dt>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-column-rule-style" title=""><code>-moz-column-rule-style</code></a></dt>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-column-rule-color" title=""><code>-moz-column-rule-color</code></a></dt>
+  <dd>
+    Firefox 3.5 ではこれらの CSS への Mozilla 拡張に対するサポートが追加されます。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/color_value#Mozilla_Extensions" title=""><code>-moz-nativehyperlinktext</code></a> カラー値</dt>
+  <dd>
+    この新しいカラー値はユーザのシステムのデフォルトのハイパーリンクの色を表します。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-window-shadow" title=""><code>-moz-window-shadow</code></a> プロパティおよび <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-system-metric(mac-graphite-theme)" title=""><code>:-moz-system-metric(mac-graphite-theme)</code></a><code> </code>擬似クラス</dt>
+  <dd>
+    これらの新しい CSS 機能はテーマ作成を手助けするために追加されました。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-appearance" title=""><code>-moz-appearance</code></a> 向けの新しい値</dt>
+  <dd>
+    <code>-moz-win-glass</code> および <code>-moz-mac-unified-toolbar</code> という値が <code>-moz-appearance</code> 向けに追加されました。</dd>
+  <dt>
+    <a href="../../../Web/Guide/CSS/Using_CSS_transforms.html" title="CSS/Using CSS transforms">CSS transforms の利用</a></dt>
+  <dd>
+    Firefox 3.5 では CSS Transform がサポートされます。詳細は <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-transform" title=""><code>-moz-transform</code></a> および <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-transform-origin" title=""><code>-moz-transform-origin</code></a> を参照してください。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:nth-child" title=""><code>:nth-child</code></a></dt>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:nth-last-child" title=""><code>:nth-last-child</code></a></dt>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:nth-of-type" title=""><code>:nth-of-type</code></a></dt>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:nth-last-of-type" title=""><code>:nth-last-of-type</code></a></dt>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:first-of-type" title=""><code>:first-of-type</code></a></dt>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:last-of-type" title=""><code>:last-of-type</code></a></dt>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:only-of-type" title=""><code>:only-of-type</code></a></dt>
+  <dd>
+    これらのセレクタがすべて Firefox 3.5 で新たにサポートされます。</dd>
+</dl>
+<div>
+  <span id="New_DOM_features"></span></div>
+<h4 id=".E6.96.B0.E3.81.97.E3.81.84_DOM_.E3.81.AE.E6.A9.9F.E8.83.BD">新しい DOM の機能</h4>
+<dl>
+  <dt>
+    <a href="../../../DOM/Storage.html#localStorage" title="DOM/Storage#localStorage">localStorage</a></dt>
+  <dd>
+    Firefox 3.5 では Web Storage の <code>localStorage</code> プロパティをサポートします。これは Web アプリケーションがクライアントのコンピュータ上にローカルにデータを保存する方法を提供します。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Using_web_workers" title="Using web workers">Web Workers の使用</a></dt>
+  <dd>
+    Firefox 3.5 では Web アプリケーションでの簡単なマルチスレッドサポートを可能にする Web Workers をサポートします。</dd>
+  <dt>
+    <a href="../../../WebAPI/Using_geolocation.html" title="Using geolocation">ジオロケーションの使用</a></dt>
+  <dd>
+    Firefox 3.5 では Geolocation API をサポートします。これにより Web アプリケーションはユーザの現在位置についての情報を提供するプロバイダがインストールされ有効化されていれば、その情報を保持することができます。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/DOM/Locating_DOM_elements_using_selectors" title="DOM/Locating DOM elements using selectors">セレクタを使用した DOM 要素の指定</a></dt>
+  <dd>
+    Selectors API により与えられた選択ルールにマッチする要素を指定するために文書を検索できます。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mouse_gesture_events" title="DOM/Mouse gesture events">マウスジェスチャイベント</a></dt>
+  <dd>
+    Firefox 3.5 はトラックパッドスワイプのようなマウスジェスチャイベントをサポートします。</dd>
+  <dt>
+    <a href="../../../DOM/NodeIterator.html" title="DOM/NodeIterator">NodeIterator オブジェクト</a></dt>
+  <dd>
+    <code>NodeIterator</code> オブジェクトは DOM サブツリーのノードのリストを繰り返し処理するためのサポートを提供します。</dd>
+  <dt>
+    <a href="../../../Gecko-Specific_DOM_Events.html#MozAfterPaint" title="Gecko-Specific DOM Events#MozAfterPaint">MozAfterPaint イベント</a></dt>
+  <dd>
+    この新しい DOM イベントはウィンドウで塗り直し後に送られます。</dd>
+  <dt>
+    <a href="../../../Gecko-Specific_DOM_Events.html#MozMousePixelScroll" title="Gecko-Specific DOM Events#MozMousePixelScroll">MozMousePixelScroll イベント</a></dt>
+  <dd>
+    この新しい DOM イベントにより行ベースのスクロールイベントの代わりにピクセルベースのマウススクロールホイールイベントを検知できます。</dd>
+</dl>
+<div>
+  <span id="New_JavaScript_features"></span></div>
+<h4 id=".E6.96.B0.E3.81.97.E3.81.84_JavaScript_.E3.81.AE.E6.A9.9F.E8.83.BD">新しい JavaScript の機能</h4>
+<dl>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/New_in_JavaScript_1.8.1" title="New in JavaScript 1.8.1">JavaScript 1.8.1 の新機能</a></dt>
+  <dd>
+    JavaScript 1.8.1 における変更のすべての概要。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Core_JavaScript_1.5_Reference/Global_Objects/Object/GetPrototypeOf" title="Core JavaScript 1.5 Reference/Global Objects/Object/GetPrototypeOf">Object.getPrototypeOf()</a></dt>
+  <dd>
+    このメソッドは指定されたオブジェクトのプロトタイプを返します。</dd>
+  <dt>
+    <a href="../../../Using_native_JSON.html" title="Using_native_JSON">ネイティブ JSON の使用</a></dt>
+  <dd>
+    Firefox 3.5 は JSON をネイティブでサポートします。</dd>
+  <dt>
+    String オブジェクトの新しい trim メソッド</dt>
+  <dd>
+    String オブジェクトに <a href="https://developer.mozilla.org/ja/docs/Core_JavaScript_1.5_Reference/Global_Objects/String/Trim" title="Core JavaScript 1.5 Reference/Global Objects/String/Trim">trim()</a>、<a href="https://developer.mozilla.org/ja/docs/Core_JavaScript_1.5_Reference/Global_Objects/String/TrimLeft" title="Core JavaScript 1.5 Reference/Global Objects/String/TrimLeft">trimLeft()</a>、そして <a href="https://developer.mozilla.org/ja/docs/Core_JavaScript_1.5_Reference/Global_Objects/String/TrimRight" title="Core JavaScript 1.5 Reference/Global Objects/String/TrimRight">trimRight()</a> メソッドが定義されました。</dd>
+</dl>
+<div>
+  <span id="Networking"></span></div>
+<h4 id=".E3.83.8D.E3.83.83.E3.83.88.E3.83.AF.E3.83.BC.E3.82.AF.E6.A9.9F.E8.83.BD">ネットワーク機能</h4>
+<dl>
+  <dt>
+    <a href="../../../HTTP_access_control.html" title="HTTP access control">HTTP 向けのクロスサイトアクセスコントロール</a></dt>
+  <dd>
+    Firefox 3.5 では、サーバーがサポートする場合に、<code><a href="https://developer.mozilla.org/ja/docs/XMLHttpRequest" title="XMLHttpRequest">XMLHttpRequest</a></code> によるものも含む HTTP リクエストでドメインを超える動作が可能になりました。</dd>
+  <dt>
+    <code><a href="https://developer.mozilla.org/ja/docs/Using_XMLHttpRequest#Monitoring%20progress" title="Using XMLHttpRequest#Monitoring progress">XMLHttpRequest</a></code><a href="https://developer.mozilla.org/ja/docs/Using_XMLHttpRequest#Monitoring%20progress" title="Using XMLHttpRequest#Monitoring progress"> のための Progress イベント</a></dt>
+  <dd>
+    Progress イベントが拡張がリクエストの進捗を監視できるようにするために提供されるようになりました。</dd>
+  <dt>
+    同期 <code>XMLHttpRequest</code>サポートの改善</dt>
+  <dd>
+    <a class="external link-https" href="https://bugzilla.mozilla.org/show_bug.cgi?id=340345" title="https://bugzilla.mozilla.org/show_bug.cgi?id=340345">DOM Timeout</a> と <a class="external link-https" href="https://bugzilla.mozilla.org/show_bug.cgi?id=333198" title="https://bugzilla.mozilla.org/show_bug.cgi?id=333198">Input Events</a> が同期 <code>XMLHttpRequest中に抑制されるようになりました。</code></dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Controlling_DNS_prefetching" title="Controlling DNS prefetching">DNS プリフェッチの制御</a></dt>
+  <dd>
+    Firefox 3.5 では DNS プリフェッチが提供され、それにより現在のページに含まれるリンクのドメイン名解決が事前に行われ、リンクが実際にクリックされたときの時間を節約しま す。この記事では Web サイト側でプリフェッチを無効にする、もしくは、プリフェッチの動作を調整する方法について説明しています。</dd>
+</dl>
+<div>
+  <span id="New_SVG_features"></span></div>
+<h4 id=".E6.96.B0.E3.81.97.E3.81.84_Canvas_.E3.81.AE.E6.A9.9F.E8.83.BD">新しい Canvas の機能</h4>
+<dl>
+  <dt>
+    <code><a href="../../../Drawing_text_using_a_canvas.html" title="Drawing text using a canvas">Canvas</a></code><a href="../../../Drawing_text_using_a_canvas.html" title="Drawing text using a canvas"> 要素向けの HTML5 テキスト API</a></dt>
+  <dd>
+    Canvas 要素が HTML5 テキスト API をサポートするようになりました。</dd>
+  <dt>
+    <code><a href="https://developer.mozilla.org/ja/docs/Canvas_tutorial/Applying_styles_and_colors#Shadows" title="Canvas tutorial/Applying styles and colors#Shadows">Canvas</a></code><a href="https://developer.mozilla.org/ja/docs/Canvas_tutorial/Applying_styles_and_colors#Shadows" title="Canvas tutorial/Applying styles and colors#Shadows"> での影付き効果</a></dt>
+  <dd>
+    Canvas での影付き効果がサポートされるようになりました。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/HTML/Canvas/Pixel_manipulation_with_canvas#Creating_an_ImageData_object" title="En/HTML/Canvas/Pixel manipulation with canvas#Creating an ImageData object"><code>createImageData()</code></a></dt>
+  <dd>
+    Canvas の <code>createImageData()</code> メソッドがサポートされるようになりました。こ<code>のメソッドを利用することで、ImageData</code> オブジェクトを必要なときに自動的に作成させるのではなく、コードで明示的に作成することができます。オブジェクトを作成する必要性を無くすことができるので、このメソッドで他の <code>ImageData</code> を扱うメソッドのパフォーマンスを改善することができます。</dd>
+  <dt>
+    <code>moz-opaque</code> 属性</dt>
+  <dd>
+    <code>moz-opaque</code> DOM 属性が追加されたことにより、Canvas は半透明な要素があるかどうか知ることができます。Canvas が半透明な要素がないことを知った場合、ペインティングパフォーマンスが最適化されます。</dd>
+</dl>
+<div>
+  <span id="New_SVG_features"></span></div>
+<h4 id=".E6.96.B0.E3.81.97.E3.81.84_SVG_.E3.81.AE.E6.A9.9F.E8.83.BD">新しい SVG の機能</h4>
+<dl>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Applying_SVG_effects_to_HTML_content" title="Applying SVG effects to HTML content">HTML の内容への SVG 効果の適用</a></dt>
+  <dd>
+    SVG 効果を HTML および XHTML の内容に適用できるようになりました。この記事はその方法について説明しています。</dd>
+</dl>
+<div>
+  <span id="Miscellaneous_new_features"></span></div>
+<h4 id=".E9.9B.91.E5.A4.9A.E3.81.AA.E6.96.B0.E6.A9.9F.E8.83.BD">雑多な新機能</h4>
+<dl>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/ICC_color_correction_in_Firefox" title="ICC color correction in Firefox">Firefox での ICC カラー補正</a></dt>
+  <dd>
+    Firefox 3.5 では タグ付けられた画像に対して ICC カラー補正がサポートされています。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/HTML/Element/Script" title="HTML/Element/Script">script</a> 要素で defer 属性がサポート</dt>
+  <dd>
+    この属性はスクリプトが実行し終わるの待たずにブラウザにパースし描画し続けることを選択させます。</dd>
+</dl>
+<div>
+  <span id="Other_improvements"></span></div>
+<h3 id=".E3.81.9D.E3.81.AE.E4.BB.96.E3.81.AE.E6.94.B9.E5.96.84">その他の改善</h3>
+<ul>
+  <li>Text ノードの <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Text.wholeText" title="DOM/Text.wholeText"><code>wholeText</code></a> プロパティ と <code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Text.replaceWholeText" title="DOM/Text.replaceWholeText">replaceWholeText()</a></code> メソッドが実装されました。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Element.children" title="DOM/Element.children">element.children</a></code> プロパティが追加されました。これは与えられた要素の子要素の<em>コレクション</em>を返します。</li>
+  <li>DOM <a href="https://developer.mozilla.org/ja/docs/DOM/element" title="DOM/Element">Element</a> オブジェクトで Element Traversal API がサポートされました。</li>
+  <li>HTML document ノードを <code><a href="https://developer.mozilla.org/ja/docs/DOM/Node.CloneNode" title="DOM/Node.cloneNode">cloneNode()</a></code> を用いて複製できるようになりました。</li>
+  <li>非標準であるDOM の <code>getBoxObjectFor()</code> メソッドが削除されました。代わりとして <a href="https://developer.mozilla.org/ja/docs/DOM/element.getBoundingClientRect" title="DOM/Element.getBoundingClientRect"><code>getBoundingClientRect()</code></a> を利用すべきです。</li>
+  <li>伝達された DOM イベントを再伝達できるようになりました。これにより Firefox 3.5 は Acid 3 test 30 をパスします。</li>
+  <li>DOM 2 Range ハンドリングが改善されました。</li>
+  <li>非 Chrome スコープにおいて、例外でキャッチされるオブジェクトがスローされたオブジェクトを含む <a href="https://developer.mozilla.org/ja/docs/XPConnect" title="XPConnect">XPConnect</a> ラッパーではなく実際にスローされたオブジェクトになりました。</li>
+  <li>SVG ID 参照が動的な変更に対応するようになりました。</li>
+  <li>SVG フィルターが <code>foreignObject</code> でも動作するようになりました。</li>
+  <li>互換性のために <code>GetSVGDocument()</code> メソッドが <a href="https://developer.mozilla.org/ja/docs/HTML/Element/object" title="HTML/Element/object">object</a> および <a href="https://developer.mozilla.org/ja/docs/HTML/Element/iframe" title="HTML/Element/iframe">iframe</a> 要素に追加されました。</li>
+  <li>JavaScript においてオブジェクトおよび配列の初期化子によるプロパティの暗黙的な設定ではセッターの定義を行わないようになりました。詳細は <a href="https://developer.mozilla.org/web-tech/2009/04/29/object-and-array-initializers-should-not-invoke-setters-when-evaluated" title="https://developer.mozilla.org/editor/fckeditor/core/editor/web-tech/2009/04/29/object-and-array-initializers-should-not-invoke-setters-when-evaluated/">オブジェクトおよび配列の初期化子は評価時にセッターの定義を行うべきではない</a> というブログ投稿を参照してください。</li>
+  <li><code>gDownloadLastDir.path</code> 変数は、パスではなく <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIFile" title="">nsIFile</a></code> を参照しているので、 <code>gDownloadLastDir.file</code> に名称変更されました。</li>
+  <li>Firefox 3.5 から、<code>XPCNativeWrapper</code> オートメーションを得る Chrome パッケージでの <code>data:</code> バインディングを利用することはできなくなります。</li>
+</ul>
+<div>
+  <span id="For_XUL_and_add-on_developers"></span></div>
+<h3 id="XUL_.E3.81.A8.E3.82.A2.E3.83.89.E3.82.AA.E3.83.B3.E9.96.8B.E7.99.BA.E8.80.85.E5.90.91.E3.81.91">XUL とアドオン開発者向け</h3>
+<p>拡張開発者であるなら、<a href="https://developer.mozilla.org/ja/docs/Updating_extensions_for_Firefox_3.1" title="Updating extensions for Firefox 3.1">Firefox 3.5 向けに拡張を更新する</a> から読み始めるべきです。その記事ではあなたの拡張に影響しうる変更を知る上で役立つ概観を提供しています。</p>
+<div>
+  <span id="New_components_and_functionality"></span></div>
+<h4 id=".E6.96.B0.E3.81.97.E3.81.84.E3.82.B3.E3.83.B3.E3.83.9D.E3.83.BC.E3.83.8D.E3.83.B3.E3.83.88.E3.81.A8.E6.A9.9F.E8.83.BD">新しいコンポーネントと機能</h4>
+<dl>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Supporting_private_browsing_mode" title="Supporting private browsing mode">プライベートブラウジングモードのサポート</a></dt>
+  <dd>
+    Firefox 3.5 ではプライベートブラウジングモードが提供されます。これはユーザの活動を記録しません。拡張はこの記事で挙げるガイドラインに従ってプライベートブラウジングをサポートすることができます。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Security_changes_in_Firefox_3.5" title="Security changes in Firefox 3.5">Firefox 3.5 でのセキュリティの変更</a></dt>
+  <dd>
+    この記事は Firefox 3.5 でのセキュリティ関連の変更をカバーしています。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Theme_changes_in_Firefox_3.5" title="Theme changes in Firefox 3.5">Firefox 3.5 でのテーマの変更</a></dt>
+  <dd>
+    この記事は Firefox 3.5 でのテーマ関連の変更をカバーしています。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Monitoring_WiFi_access_points" title="Monitoring WiFi access points">WiFi アクセスポイントのモニタリング</a></dt>
+  <dd>
+    UniversalXPConnect 特権を持つコードで有効なアクセスポイントの一覧がモニタリング可能になり、個々の SSIDs、MAC アドレス、シグナル強度の情報が取得できます。 これを Geolocation と連携して用いることで WiFi ベースのロケーションサービスを提供できます。</dd>
+</dl>
+<div>
+  <span id="Notable_changes_and_improvements"></span></div>
+<h4 id=".E6.B3.A8.E7.9B.AE.E3.81.99.E3.81.B9.E3.81.8D.E5.A4.89.E6.9B.B4.E3.81.A8.E6.94.B9.E5.96.84">注目すべき変更と改善</h4>
+<ul>
+  <li>XUL <code><a href="https://developer.mozilla.org/ja/en/XUL/textbox" rel="internal">textbox</a></code> ウィジェットが検索フィールドとして利用するための <code><a href="https://developer.mozilla.org/ja/en/XUL/Attribute/textbox.type" rel="internal">search</a></code> type を提供するようになりました。</li>
+  <li>ウィンドウ間のタブのドラッグ＆ドロップのサポートのために、<code><a href="https://developer.mozilla.org/ja/docs/XUL/browser" rel="internal" title="XUL/browser">browser</a></code> ウィジェットに <code><span class="lang lang-en"><a href="https://developer.mozilla.org/ja/docs/XUL/Method/SwapDocShells" title="XUL/Method/swapDocShells">swapDocShells()</a></span></code>メソッドが定義されました。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/panel" rel="internal" title="XUL/panel">panel</a></code>　要素に <code><span class="lang lang-en"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/panel.level" rel="internal" title="XUL/Attribute/panel.level">level</a></span></code>属性が追加されました。 これは panel を他のアプリケーションの手前に表示するか、単純に panel が含まれるウィンドウの手前に表示するかどうかを指定できます。</li>
+  <li>XUL 要素が<code> clientHeight</code><span style="font-family: monospace;">、</span><code>clientWidth</code><span style="font-family: monospace;">、</span><code>scrollHeight</code>、および <code>scrollWidth </code>プロパティをサポートするようになりました。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/keyset" title="XUL/Keyset">keyset</a></code> 要素に <code>disabled</code> 属性が追加されました。</li>
+  <li>加えて、<code>keyset</code> 要素はノードの <code><a href="https://developer.mozilla.org/ja/docs/DOM/Node.removeChild" title="DOM/Node.removeChild">removeChild()</a></code> メソッドを用いて削除可能になりました。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageStatement" title="">mozIStorageStatement</a></code> には <code>initialize()</code> メソッドがありましたが、削除されました。利用者は新しいステートメントオブジェクトを得るための代替として <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageConnection#createStatement()">mozIStorageConnection.createStatement()</a></code> メソッドを使うべきです。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Storage" title="Storage">Storage</a> API が非同期リクエストのサポートを提供するようになりました。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsICookie2" title="">nsICookie2</a></code> インターフェースに新しく <code>creationTime</code> 属性が追加され、Cookie が作成された時間を取得できるようになりました。</li>
+  <li>プロトコルが登録することを許可されることを保証するために Chrome 登録の間にチェックされる<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIProtocolHandler" title="">nsIProtocolHandler</a></code> へのフラグが追加されました (<code>URI_IS_LOCAL_RESOURCE</code>)。</li>
+  <li>Linux で Firefox がプラグインを探すために <code>/usr/lib/mozilla/plugins</code> を見るようになりました。以前にサポートされていた場所も同様に検索対象です。</li>
+  <li>プラグイン API がプライベートブラウジングモードのサポートを含むために更新されました。これにより、<code>NPNprivateModeBool</code> を用いているプライベートブラウジングモードの状態を調べるために、<a class="new" href="https://developer.mozilla.org/ja/docs/NPN_GetValue" title="NPN GetValue">NPN_GetValue()</a> を使用できるようになりました。</li>
+</ul>
+<div>
+  <span id="New_features_for_end_users"></span></div>
+<h2 id=".E3.82.A8.E3.83.B3.E3.83.89.E3.83.A6.E3.83.BC.E3.82.B6.E5.90.91.E3.81.91.E6.96.B0.E6.A9.9F.E8.83.BD">エンドユーザ向け新機能</h2>
+<div>
+  <span id="User_experience"></span></div>
+<h3 id=".E3.83.A6.E3.83.BC.E3.82.B6.E3.82.A8.E3.82.AF.E3.82.B9.E3.83.9A.E3.83.AA.E3.82.A8.E3.83.B3.E3.82.B9">ユーザエクスペリエンス</h3>
+<dl>
+  <dt>
+    ロケーションアウェアブラウジング</dt>
+  <dd>
+    あなたが選択するなら、Firefox 3.5 が Web サイトと現在の位置についての情報を共有することを許可できます。Firefox 3.5 はあなたが接続しているネットワークについての情報をあなたの位置を共有するために用いることができます。もちろん、プライバシーを確保するために、そう する前にあなたに許可を求めます。</dd>
+  <dt>
+    オープンなオーディオとビデオのサポート</dt>
+  <dd>
+    Firefox 3.5 は、オーディオのための WAV 同様、オープンな Ogg フォーマットを用いた埋め込みビデオおよびオーディオをサポートします。プラグインは必要なく、何かあるいはどうやってもあなたのプラットフォームで利用出来ないものをインストールする必要があるという旨のエラーメッセージに混乱することはありません。</dd>
+  <dt>
+    ローカルデータストレージ</dt>
+  <dd>
+    Web アプリケーションはあなたのコンピュータにデータを保存するために Web Storage のローカルストレージ機能を利用できるようになります。これはサイト設定からより複雑なデータまであらゆるものにとって素晴らしく役立つものです。</dd>
+</dl>
+<div>
+  <span id="Security_and_privacy"></span></div>
+<h3 id=".E3.82.BB.E3.82.AD.E3.83.A5.E3.83.AA.E3.83.86.E3.82.A3.E3.81.A8.E3.83.97.E3.83.A9.E3.82.A4.E3.83.90.E3.82.B7.E3.83.BC">セキュリティとプライバシー</h3>
+<dl>
+  <dt>
+    プライベートブラウジング</dt>
+  <dd>
+    他人のコンピュータを利用する必要がありますか？プライベートブラウジングモードに切り替えることで、Cookie、履歴、その他のあらゆる潜在的なプライベートな情報を含んだあなたのセッションは全く記録されなくなります。</dd>
+  <dt>
+    より良いプライバシーコントロール</dt>
+  <dd>
+    プライバシー設定画面はユーザがプライベート情報をより細かくコントロールできるようにするために完全にデザインし直されました。ユー ザは履歴、Cookie、ダウンロード、フォーム入力のような情報を保持、破棄するかどうか選択できます。 さらに、ユーザは履歴とブックマークの内容をそれぞれロケーションバーの自動サジェストに含むかどうか指定できます。 ですから、ロケーションバーでタイプ中に意図せずプライベートな Web アドレスがポップアップすることを防ぐことができます。</dd>
+</dl>
+<div>
+  <span id="Performance"></span></div>
+<h3 id=".E3.83.91.E3.83.95.E3.82.A9.E3.83.BC.E3.83.9E.E3.83.B3.E3.82.B9">パフォーマンス</h3>
+<dl>
+  <dt>
+    より速い JavaScript パフォーマンス</dt>
+  <dd>
+    新しい TraceMonkey JavaScript エンジンを持つ Firefox 3.5 では "AJAX" の "J" である、JavaScript が劇的にスピードアップしています。Web アプリケーションは Firefox 3 よりももっとより速くなります。</dd>
+  <dt>
+    より速いページレンダリング</dt>
+  <dd>
+    "Speculative parsing（投機的解釈）" のような技術のおかげで、 Firefox 3.5 では Web コンテンツがより速く描画されます。あなたのユーザは「Firefox 3.5 ではコンテンツがより速く描画される」ということ以外は知る必要がありません。</dd>
+</dl>
+
+<h2 id="See_also" name="See_also">参照</h2>
+<div><div class="multiColumnList"> 
+<ul> 
+<li><a href="3.html">Firefox 3 for developers</a></li><li><a href="2.html">Firefox 2 for developers</a></li><li><a href="1.5.html">Firefox 1.5 for developers</a></li></ul> 
+</div></div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../../tag/Firefox.html">Firefox</a></li><li><a href="../../../tag/CSS.html">CSS</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/XUL">XUL</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Firefox%203.5">Firefox 3.5</a></li><li><a href="../../../tag/HTML.html">HTML</a></li><li><a href="../../../tag/JavaScript.html">JavaScript</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Storage">Storage</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../profiles/Potappo.html">Potappo</a>, <a href="../../../../profiles/ethertank.html">ethertank</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-04-19T04:12:52-07:00">2013/04/19 4:12:52</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Mozilla/Firefox/Releases/3.5" selected>
+          日本語
+        </option>
+                  <option value="/en-US/Firefox/Releases/3.5">
+            English (US)
+          </option>          <option value="/de/docs/Firefox_3.5_f%C3%BCr_Entwickler">
+            Deutsch
+          </option>          <option value="/es/docs/Firefox_3.5_para_desarrolladores">
+            Español
+          </option>          <option value="/fr/docs/Mozilla/Firefox/Versions/3.5">
+            Français
+          </option>          <option value="/pt-PT/docs/Firefox_3.5_para_desenvolvedores">
+            Português (Europeu)
+          </option>          <option value="/ru/docs/Firefox_3.5_%D0%B4%D0%BB%D1%8F_%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0">
+            Русский
+          </option>          <option value="/ko/docs/Firefox_3.5_for_developers">
+            한국어
+          </option>          <option value="/zh-TW/docs/Firefox_3.1_%E6%8A%80%E8%A1%93%E6%96%87%E4%BB%B6">
+            正體中文 (繁體)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":0,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":720}</script></body>
+</html>

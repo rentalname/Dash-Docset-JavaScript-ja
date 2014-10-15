@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Predefined Core Objects - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../../index.html">
+  <link rel="copyright" href="Predefined_Core_Objects.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects$json">
+  <link rel="canonical" href="Predefined_Core_Objects.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Predefined_Core_Objects" title="Predefined Core Objects">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Predefined_Core_Objects" title="内置核心对象">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Vordefinierte_Kernobjekte" title="Vordefinierte Kernobjekte">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Objets_%C3%A9l%C3%A9mentaires_JavaScript" title="Objets élémentaires JavaScript">
+          <link rel="alternate" hreflang="th" href="https://developer.mozilla.org/th/docs/Web/JavaScript/Guide/Predefined_Core_Objects" title="Predefined Core Objects">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Predefined Core Objects">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects">
+  <meta name="twitter:title" content="Predefined Core Objects">
+    <meta property="og:description" content="この章では、コア JavaScript で定義済みのオブジェクトである Array 、 Boolean 、 Date 、 Function 、 Math 、 Number 、 RegExp 、 String について説明します。">
+  <meta name="description" content="この章では、コア JavaScript で定義済みのオブジェクトである Array 、 Boolean 、 Date 、 Function 、 Math 、 Number 、 RegExp 、 String について説明します。">
+  <meta name="twitter:description" content="この章では、コア JavaScript で定義済みのオブジェクトである Array 、 Boolean 、 Date 、 Function 、 Math 、 Number 、 RegExp 、 String について説明します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+            notifications: [
+                                                            ],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Predefined_Core_Objects.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Predefined_Core_Objects.html#language">言語の選択</a></li>
+          <li><a href="Predefined_Core_Objects.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../HTML.html">HTML</a></li>
+              <li><a href="../../../CSS.html">CSS</a></li>
+              <li><a href="../../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../API.html">API / DOM</a></li>
+              <li><a href="../../../Apps.html">Apps</a></li>
+              <li><a href="../../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Reference.html">レファレンス</a></li>
+              <li><a href="../../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../../Tools.html">ツール</a></li><li><a href="../../../../../demos/index.html">MDN デモ</a></li><li><a href="../../../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Predefined_Core_Objects" title="Predefined Core Objects">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Predefined_Core_Objects" title="内置核心对象">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Vordefinierte_Kernobjekte" title="Vordefinierte Kernobjekte">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Objets_%C3%A9l%C3%A9mentaires_JavaScript" title="Objets élémentaires JavaScript">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/th/docs/Web/JavaScript/Guide/Predefined_Core_Objects" title="Predefined Core Objects">ไทย</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Predefined_Core_Objects.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../JavaScript.html" rel="v:url" property="v:title">JavaScript</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Guide.html" rel="v:url" property="v:title">JavaScript ガイド</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Obsolete_Pages" rel="v:url" property="v:title">Obsolete Pages</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Predefined Core Objects</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Predefined_Core_Objects.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Predefined Core Objects</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Predefined_Core_Objects.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Predefined_Core_Objects.html#Array_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">Array オブジェクト</a><ol><li><a href="Predefined_Core_Objects.html#.E9.85.8D.E5.88.97.E3.81.AE.E4.BD.9C.E6.88.90" rel="internal">配列の作成</a><li><a href="Predefined_Core_Objects.html#.E9.85.8D.E5.88.97.E8.A6.81.E7.B4.A0.E3.81.AE.E6.A0.BC.E7.B4.8D" rel="internal">配列要素の格納</a><li><a href="Predefined_Core_Objects.html#.E9.85.8D.E5.88.97.E8.A6.81.E7.B4.A0.E3.81.AE.E5.8F.82.E7.85.A7" rel="internal">配列要素の参照</a><li><a href="Predefined_Core_Objects.html#.E9.95.B7.E3.81.95.E3.81.AE.E6.8A.8A.E6.8F.A1" rel="internal">長さの把握</a><li><a href="Predefined_Core_Objects.html#.E9.85.8D.E5.88.97.E5.85.A8.E4.BD.93.E3.81.B8.E3.81.AE.E5.8F.8D.E5.BE.A9.E5.87.A6.E7.90.86" rel="internal">配列全体への反復処理</a><li><a href="Predefined_Core_Objects.html#Array_.E3.81.AE.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89" rel="internal">Array のメソッド</a><li><a href="Predefined_Core_Objects.html#.E5.A4.9A.E6.AC.A1.E5.85.83.E9.85.8D.E5.88.97" rel="internal">多次元配列</a><li><a href="Predefined_Core_Objects.html#.E9.85.8D.E5.88.97.E3.81.A8.E6.AD.A3.E8.A6.8F.E8.A1.A8.E7.8F.BE" rel="internal">配列と正規表現</a><li><a href="Predefined_Core_Objects.html#.E9.85.8D.E5.88.97.E7.8A.B6.E3.81.AE.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E6.89.B1.E3.81.86" rel="internal">配列状のオブジェクトを扱う</a><li><a href="Predefined_Core_Objects.html#.E9.85.8D.E5.88.97.E5.86.85.E5.8C.85" rel="internal">配列内包</a></ol></li><li><a href="Predefined_Core_Objects.html#Boolean_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">Boolean オブジェクト</a><li><a href="Predefined_Core_Objects.html#Date_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">Date オブジェクト</a><ol><li><a href="Predefined_Core_Objects.html#Date_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89" rel="internal">Date オブジェクトのメソッド</a><li><a href="Predefined_Core_Objects.html#Date_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E4.BD.BF.E7.94.A8.E4.BE.8B" rel="internal">Date オブジェクトの使用例</a></ol></li><li><a href="Predefined_Core_Objects.html#Function_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">Function オブジェクト</a><li><a href="Predefined_Core_Objects.html#Math_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">Math オブジェクト</a><li><a href="Predefined_Core_Objects.html#Number_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">Number オブジェクト</a><li><a href="Predefined_Core_Objects.html#RegExp_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">RegExp オブジェクト</a><li><a href="Predefined_Core_Objects.html#String_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">String オブジェクト</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>この章では、コア JavaScript で定義済みのオブジェクトである <code>Array</code>、<code>Boolean</code>、<code>Date</code>、<code>Function</code>、<code>Math</code>、<code>Number</code>、<code>RegExp</code>、<code>String</code> について説明します。</p>
+<p><span id="Array_Object"></span></p>
+<h2 id="Array_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">Array オブジェクト</h2>
+<p>JavaScript には、配列を表す明確なデータ型はありません。しかし、定義済みの <code>Array</code> オブジェクトとそのメソッドを使用することで、アプリケーションで配列を扱うことができます。<code>Array</code> オブジェクトには、さまざまな方法で配列を操作するメソッドがあります。例えば、配列の要素をつなぎ合わせたり、逆転したり、ソートしたりするものがあります。また、配列の長さを決定するプロパティや、正規表現とともに使用するプロパティもあります。</p>
+<p><em>配列</em> とは、その個々の値を名前やインデックスで参照する順序集合です。例えば、従業員番号でインデックス付けした、従業員の名前からなる <code>emp</code> という配列を作ることができます。すると、<code>emp[1]</code> は従業員番号 1 を、<code>emp[2]</code> は従業員番号 2 を、というように指します。</p>
+<p><span id="Creating_an_Array"></span></p>
+<h3 id=".E9.85.8D.E5.88.97.E3.81.AE.E4.BD.9C.E6.88.90">配列の作成</h3>
+<p><code>Array</code> オブジェクトは、次のようにして作成します。3 つの文は等価です:</p>
+<div style="overflow: hidden;">
+ <pre class="brush: js">var arr = new Array(element0, element1, ..., elementN);
+var arr = Array(element0, element1, ..., elementN);
+var arr = [element0, element1, ..., elementN];
+</pre>
+</div>
+<p><code>element0, element1, ..., elementN</code> は、配列の要素の値からなるリストです。この形式を用いると、配列の要素は指定した値で初期化されます。また、配列の <code>length</code> プロパティに引数の個数がセットされます。</p>
+<p>角括弧を用いる構文は "配列リテラル" または "配列初期化子" と呼ばれます。これは短縮表記であり、一般的に好まれています。配列リテラルの詳細については<a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Values,_Variables,_and_Literals#Array_Literals" title="ja/docs/JavaScript/Guide/Values, Variables, and Literals#Array Literals">配列リテラル</a>をご覧ください。</p>
+<p>アイテムを持たないが長さが 0 ではない配列は、次のうちいずれかの方法で作成できます:</p>
+<pre class="brush: js">var arr = new Array(arrayLength);
+var arr = Array(arrayLength);
+
+// こちらも同じ効果がある
+var arr = [];
+arr.length = arrayLength;
+</pre>
+<p>注意: 上記のコードにおいて、<code>arrayLength</code> は <code>Number</code> でなければなりません。さもなければ、要素が 1 つ (与えられた値) の配列が作成されます。<code>arr.length</code> を呼び出すと <code>arrayLength</code> が返りますが、実際は配列には空 (undefined) の要素が含まれています。配列で for...in ループを実行しても、配列の要素は何も返されません。</p>
+<p>これまで示したような新たに定義された変数に加えて、新規または既存のオブジェクトのプロパティとして配列を割り当てることもできます:</p>
+<pre class="brush: js">var obj = {};
+// ...
+obj.prop = [element0, element1, ..., elementN];
+
+// または
+var obj = {prop: [element0, element1, ...., elementN]}
+</pre>
+<p>要素が 1 つであり、またその要素が <code>Number</code> である配列を初期化したい場合は、括弧構文を使用しなければなりません。Array() コンストラクタまたは関数に <code>Number</code> の値が 1 つ渡されると、その値は単一の要素としてではなく <code>arrayLength</code> として解釈されます。</p>
+<pre><code>var arr = [42];
+var arr = Array(42); // 要素はありませんが、arr.length は 42 である配列を作成
+
+// 上のコードは以下と同じ
+var arr = [];
+arr.length = 42;</code>
+</pre>
+<p>さらに要素が 1 つであり、またその要素の値が整数ではない <code>Number</code> (無視できない端数を持つ数値) である配列を作成する場合は、<code>RangeError</code> が発生します。要素が 1 つであり、そのデータ型が不定である配列をコード中で作成する可能性がある場合は、配列リテラルを使用する方法か、始めに空の配列を作成してから値を埋める方法が安全です。</p>
+<pre>var arr = Array(9.3);  // RangeError: Invalid array length
+</pre>
+<p><span id="Populating_an_Array"></span></p>
+<h3 id=".E9.85.8D.E5.88.97.E8.A6.81.E7.B4.A0.E3.81.AE.E6.A0.BC.E7.B4.8D">配列要素の格納</h3>
+<p>値を要素に代入することで、配列要素を格納することができます。例えば、</p>
+<pre class="brush: js">var emp = [];
+emp[0] = "Casey Jones";
+emp[1] = "Phil Lesh";
+emp[2] = "August West";
+</pre>
+<p><strong>注意:</strong> 上記のコードで配列演算子に整数ではない値を与えると、配列の要素ではなく、配列を表すオブジェクトでプロパティが作成されます。</p>
+<pre> var arr = [];
+arr[3.4] = "Oranges";
+console.log(arr.length);                // 0
+console.log(arr.hasOwnProperty[3.4]);   // true
+</pre>
+<p>配列作成時に要素を格納することもできます:</p>
+<pre class="brush: js">var myArray = new Array("Hello", myVar, 3.14159);
+var myArray = ["Mango", "Apple", "Orange"]
+</pre>
+<p><span id="Referring_to_Array_Elements"></span></p>
+<h3 id=".E9.85.8D.E5.88.97.E8.A6.81.E7.B4.A0.E3.81.AE.E5.8F.82.E7.85.A7">配列要素の参照</h3>
+<p>要素の順番を表す数値を用いて、配列の要素を参照することができます。例えば、次の配列を定義したとします:</p>
+<pre class="brush: js">var myArray = ["Wind", "Rain", "Fire"];
+</pre>
+<p>配列の最初の要素は <code>myArray[0]</code> として、第 2 の要素は <code>myArray[1]</code> として参照できます。配列のインデックスは 0 から始まります。</p>
+<p><strong>注意:</strong> 配列演算子 (角括弧) は、配列のプロパティにアクセスするためにも使用できます (配列は JavaScript のオブジェクトでもあります)。例えば、</p>
+<pre> var arr = ["one", "two", "three"];
+arr[2];  // three
+arr["length"];  // 3
+</pre>
+<p><span id="Understanding_length"></span></p>
+<h3 id=".E9.95.B7.E3.81.95.E3.81.AE.E6.8A.8A.E6.8F.A1">長さの把握</h3>
+<p>実装レベルにおいて、JavaScript の配列はその要素を、インデックスをプロパティ名として用いる標準的なオブジェクトプロパティとして保存します。<code>length</code> プロパティは、常に最後の要素のインデックスを返す特別なプロパティです。JavaScript の配列のインデックスはゼロベースであることを忘れないようにしてください。1 ではなく、0 から始まります。よって、<code><code>length</code></code> プロパティは配列に保存されている最大のインデックスより 1 大きい値になります。</p>
+<pre class="brush: js">var cats = [];
+cats[30] = ['Dusty'];
+print(cats.length); // 31
+</pre>
+<p><code>length</code> プロパティに代入することもできます。保存されているアイテムの数より小さい値を書き込むと、配列が切り詰められます。0 を書き込むと、完全に空になります:</p>
+<pre class="brush: js">var cats = ['Dusty', 'Misty', 'Twiggy'];
+console.log(cats.length); // 3
+
+cats.length = 2;
+console.log(cats); // "Dusty,Misty" と表示。Twiggy は削除された
+
+cats.length = 0;
+console.log(cats); // 何も表示されない。配列 cats は空
+
+cats.length = 3;
+console.log(cats);  // [undefined, undefined, undefined]
+</pre>
+<p><span id="Iterating_over_arrays"></span></p>
+<h3 id=".E9.85.8D.E5.88.97.E5.85.A8.E4.BD.93.E3.81.B8.E3.81.AE.E5.8F.8D.E5.BE.A9.E5.87.A6.E7.90.86">配列全体への反復処理</h3>
+<p>配列の各値に何らかの処理を行って、全体に反復処理を行うことは一般的な操作です。これを行うもっとも単純な方法は、以下のとおりです:</p>
+<pre class="brush: js">var colors = ['red', 'green', 'blue'];
+for (var i = 0; i &lt; colors.length; i++) {
+  console.log(colors[i]);
+}
+</pre>
+<p>配列内に真偽値コンテキストで <code>false</code> に評価される要素がないことがわかっている (例えば、配列が <a href="../../../../DOM.html" title="ja/docs/DOM">DOM</a> ノードのみで構成されている) 場合は、より効率的な手法を使用できます:</p>
+<pre class="brush: js">var divs = document.getElementsByTagName('div');
+for (var i = 0, div; div = divs[i]; i++) {
+  /* div に何らかの処理を行う */
+}
+</pre>
+<p>この方法は配列の length を確認するオーバーヘッドを削減し、また利便性を高めるため <code>div</code> 変数に、ループの各回でカレントのアイテムが再割り当てされることを確実にします。</p>
+<p></p><div class="overheadIndicator jsMinVerHeader standardNote"> 
+<p><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> で導入</p> 
+</div><p></p>
+<p>JavaScript 1.6 で導入された <a href="../../Reference/Global_Objects/Array/forEach.html" title="ja/docs/JavaScript/Reference/Global_Objects/Array/forEach"><code>forEach()</code></a> メソッドは、配列全体に反復処理を行う別の方法です:</p>
+<pre class="brush: js">var colors = ['red', 'green', 'blue'];
+colors.forEach(function(color) {
+  console.log(color);
+});
+</pre>
+<p><code>forEach</code> に渡された関数は配列の全アイテムを対象として、関数の引数として渡された配列のアイテムに対して 1 回ずつ実行されます。未代入状態の値は <code>forEach</code> ループで反復処理が行われません。</p>
+<p>JavaScript の配列要素は標準的なオブジェクトプロパティとして保存されることから、JavaScript の配列では for...in ループによる反復処理を行わないことが賢明です。これは、通常の要素とすべての列挙可能なプロパティがともに一覧化されるためです。</p>
+<p><span id="Array_Methods"></span></p>
+<h3 id="Array_.E3.81.AE.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89">Array のメソッド</h3>
+<p><code>Array</code> オブジェクトには以下のメソッドがあります:</p>
+<ul>
+ <li><a href="../../Reference/Global_Objects/Array/concat.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/concat"><code>concat()</code></a> は 2 つの配列を結合し、新しい配列を返します。
+  <pre class="brush: js">var myArray = new Array("1", "2", "3");
+myArray = myArray.concat("a", "b", "c"); // myArray は ["1", "2", "3", "a", "b", "c"] となる
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/join.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/join"><code>join(deliminator = ",")</code></a> は配列の全要素を結合し、文字列にします。
+  <pre class="brush: js">var myArray = new Array("Wind", "Rain", "Fire");
+var list = myArray.join(" - "); // list は　"Wind - Rain - Fire" となる
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/push.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/push"><code>push()</code></a> は 1 つ以上の要素を配列の最後に追加し、追加後の配列の長さを返します。
+  <pre class="brush: js">var myArray = new Array("1", "2");
+myArray.push("3"); // MyArray は ["1", "2", "3"] となる
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/pop.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/pop"><code>pop()</code></a> は配列から最後の要素を取り除き、その要素を返します。
+  <pre class="brush: js">var myArray = new Array("1", "2", "3");
+var last = myArray.pop(); // MyArray は ["1", "2"] となり、last = "3" となる
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/shift.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/shift"><code>shift()</code></a> は配列から最初の要素を取り除き、その要素を返します。
+  <pre class="brush: js">var myArray = new Array ("1", "2", "3");
+var first = myArray.shift(); // MyArray は ["2", "3"] となり、first は "1" となる
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/unshift.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/unshift"><code>unshift()</code></a> は 1 つ以上の要素を配列の先頭に追加し、その配列の新しい長さを返します。
+  <pre class="brush: js">var myArray = new Array ("1", "2", "3");
+myArray.unshift("4", "5"); // myArray は ["4", "5", "1", "2", "3"] となる</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/slice.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/slice"><code>slice(start_index, upto_index)</code></a> は配列の一部分を抽出し、新しい配列として返します。
+  <pre class="brush: js">var myArray = new Array ("a", "b", "c", "d", "e");
+myArray = myArray.slice(1, 4); /* インデックス 1 からスタートし、インデックス 3 までの
+  全要素を抽出する。[ "b", "c", "d"] を返す */
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/splice.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/splice"><code>splice(index, count_to_remove, addelement1, addelement2, ...)</code></a> は配列から要素を取り除き、そして (任意で) それらを置き換えます。<br>
+  <pre class="brush: js">var myArray = new Array ("1", "2", "3", "4", "5");
+myArray.splice(1, 3, "a", "b", "c", "d"); // MyArray は ["1", "a", "b", "c", "d", "5"] となる
+  // このコードはインデックス 1 ("2" があるところ) からスタートし、そこから 3 要素を取り除き、 
+  // その場所に連続した要素をすべて挿入する
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/reverse.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/reverse"><code>reverse()</code></a> は配列の要素を逆順に並び替えます。最初の配列要素は最後に、最後のものは最初にきます。
+  <pre class="brush: js">var myArray = new Array ("1", "2", "3");
+myArray.reverse(); // 配列を並び替え、myArray = [ "3", "2", "1" ] となる
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/sort.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/sort"><code>sort()</code></a> は配列の要素をソートします。
+  <pre class="brush: js">var myArray = new Array("Wind", "Rain", "Fire");
+myArray.sort(); // 配列をソートし、myArrray = [ "Fire", "Rain", "Wind" ] となる
+</pre>
+  <p><code>sort()</code> は、配列の要素をどのようにソートするかを定めるコールバック関数を引数にとることもできます。関数は 2 つの値を比較し、3 つの値のうち 1 つの値を返します:</p>
+  <ul>
+   <li>ソートシステムにとって <code>a</code> が <code>b</code> より小さい場合、-1 (または任意の負数) を返します。</li>
+   <li>ソートシステムにとって <code>a</code> が <code>b</code> より大きい場合、1 (または任意の正数) を返します。</li>
+   <li><code>a</code> と <code>b</code> が等価とみなされる場合、0 を返します。</li>
+  </ul>
+  <p>例えば、次のコードは配列の最後の文字によってソートします:</p>
+  <pre class="brush: js">var sortFn = function(a, b){
+  if (a[a.length - 1] &lt; b[b.length - 1]) return -1;
+  if (a[a.length - 1] &gt; b[b.length - 1]) return 1;
+  if (a[a.length - 1] == b[b.length - 1]) return 0;
+}
+myArray.sort(sortFn); // 配列をソートし、myArray = ["Wind","Fire","Rain"] となる</pre>
+ </li>
+</ul>
+<p></p><div class="overheadIndicator jsMinVerHeader standardNote"> 
+<p><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> で導入</p> 
+</div><p></p>
+<p>古いブラウザ向けの互換性を持つコードは、各機能の個別ページに掲載しています。さまざまなブラウザにおけるこれらの機能のネイティブサポート状況は、 <a class="external" href="http://www.robertnyman.com/javascript/" title="http://www.robertnyman.com/javascript/">こちら</a>で確認できます。</p>
+<ul>
+ <li><a href="../../Reference/Global_Objects/Array/indexOf.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/indexOf"><code>indexOf(searchElement[, fromIndex])</code></a> は配列で <code>searchElement</code> を検索して、最初にマッチした要素のインデックスを返します。
+  <pre class="brush: js">var a = ['a', 'b', 'a', 'b', 'a'];
+alert(a.indexOf('b')); // 1 がアラート表示される
+// 前回マッチした場所の後ろから再び検索
+alert(a.indexOf('b', 2)); // 3 がアラート表示される
+alert(a.indexOf('z')); // -1 がアラート表示される。'z' は見つからないため。
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/lastIndexOf.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/lastIndexOf"><code>lastIndexOf(searchElement[, fromIndex])</code></a> は <code>indexOf</code> と同様に動作しますが、配列の最後から前に向けて検索します。
+  <pre class="brush: js">var a = ['a', 'b', 'c', 'd', 'a', 'b'];
+alert(a.lastIndexOf('b')); // 5 がアラート表示される
+// 前回マッチした場所の前から再び検索
+alert(a.lastIndexOf('b', 4)); // 1 がアラート表示される
+alert(a.lastIndexOf('z')); // -1 がアラート表示される
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/forEach.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/forEach"><code>forEach(callback[, thisObject])</code></a> は <code>callback</code> をすべての配列アイテムに対して実行します。
+  <pre class="brush: js">var a = ['a', 'b', 'c'];
+a.forEach(alert); // 順番にアラート表示を実行
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/map.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/map"><code>map(callback[, thisObject])</code></a> はすべての配列アイテムに対して <code>callback</code> を実行し、その戻り値による新たな配列を返します。
+  <pre class="brush: js">var a1 = ['a', 'b', 'c'];
+var a2 = a1.map(function(item) { return item.toUpperCase(); });
+alert(a2); // A,B,C をアラート表示
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/filter.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/filter"><code>filter(callback[, thisObject])</code></a> は、<code>callback</code> が true を返すアイテムを含む新たな配列を返します。
+  <pre class="brush: js">var a1 = ['a', 10, 'b', 20, 'c', 30];
+var a2 = a1.filter(function(item) { return typeof item == 'number'; });
+alert(a2); // 10,20,30 をアラート表示
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/every.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/every"><code>every(callback[, thisObject])</code></a> は、配列内の全アイテムについて <code>callback</code> が true を返す場合に、true を返します。
+  <pre class="brush: js">function isNumber(value){
+  return typeof value == 'number';
+}
+var a1 = [1, 2, 3];
+alert(a1.every(isNumber)); // true がアラート表示される
+var a2 = [1, '2', 3];
+alert(a2.every(isNumber)); // false がアラート表示される
+</pre>
+ </li>
+ <li><a href="../../Reference/Global_Objects/Array/some.html" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/some"><code>some(callback[, thisObject])</code></a> は、配列内で少なくとも 1 つのアイテムについて <code>callback</code> が true を返す場合に、true を返します。
+  <pre class="brush: js">function isNumber(value){
+  return typeof value == 'number';
+}
+var a1 = [1, 2, 3];
+alert(a1.some(isNumber)); // true がアラート表示される
+var a2 = [1, '2', 3];
+alert(a2.some(isNumber)); // true がアラート表示される
+var a3 = ['1', '2', '3'];
+alert(a3.some(isNumber)); // false がアラート表示される
+</pre>
+ </li>
+</ul>
+<p>コールバック関数を引数にとる上記メソッドは、配列全体にわたってさまざまな方法で反復処理を行うことから、<em>iterative methods</em> として知られます。各々のメソッドは <code>thisObject</code> と呼ばれる、省略可能な第 2 引数をとります。これが与えられると、<code>thisObject</code> はコールバック関数の本体内で <code>this</code> キーワードが指す値になります。これが与えられない場合は、<code>this</code> はグローバルオブジェクト (<a href="https://developer.mozilla.org/ja/docs/DOM/window" title="ja/docs/DOM/window"><code>window</code></a>) を参照します。他の例として、明示的なオブジェクトコンテキストの外部で呼び出された場合も同様です。</p>
+<p>コールバック関数は、実際は 3 つの引数を伴って呼び出されます。1 番目は現在のアイテムの値、2 番目は現在のアイテムの配列インデックス、3 番目は配列自身への参照です。JavaScript の関数はパラメータリストで名前がついていない引数を無視しますので、<code>alert</code> のように引数が 1 つだけのコールバック関数を与えても安全です。</p>
+<p></p><div class="overheadIndicator jsMinVerHeader standardNote"> 
+<p><a href="../../New_in_JavaScript/1.8.html">JavaScript 1.8</a> で導入</p> 
+</div><p></p>
+<ul>
+ <li><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/Array/Reduce" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/reduce"><code>reduce(callback[, initialValue])</code></a> はアイテムのリストを単一の値に減らすために、<code>callback(firstValue, secondValue)</code> を適用します。
+  <pre class="brush: js">var a = [10, 20, 30];
+var total = a.reduce(function(first, second) { return first + second; }, 0);
+alert(total) // 60 がアラート表示される
+</pre>
+ </li>
+ <li><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/Array/ReduceRight" title="ja/docs/JavaScript/Reference/Global
+
+    Objects/Array/reduceRight"><code>reduceRight(callback[, initialValue])</code></a> は <code>reduce()</code> と似た動作をしますが、最後の要素から処理を始めます。</li>
+</ul>
+<p><code>reduce</code> および <code>reduceRight</code> は、配列の反復処理メソッドでは理解しにくいものです。これらは、一連の値を単一の値へ減らすため 2 つの値を再帰的に結合するアルゴリズムで用いるべきです。</p>
+<p><span id="Multi-Dimensional_Arrays"></span></p>
+<h3 id=".E5.A4.9A.E6.AC.A1.E5.85.83.E9.85.8D.E5.88.97">多次元配列</h3>
+<p>配列は入れ子にすることができ、これは配列を別の配列の要素として収めることです。JavaScript の配列のこのような特徴を用いると、多次元配列を作成できます。</p>
+<p>次のコードは、2 次元配列を作成します。</p>
+<pre class="brush: js">var a = new Array(4);
+for (i = 0; i &lt; 4; i++) {
+  a[i] = new Array(4);
+  for (j = 0; j &lt; 4; j++) {
+    a[i][j] = "[" + i + "," + j + "]";
+  }
+}
+</pre>
+<p>この例では、次の行を持つ配列が作成されます:</p>
+<pre>Row 0: [0,0] [0,1] [0,2] [0,3]
+Row 1: [1,0] [1,1] [1,2] [1,3]
+Row 2: [2,0] [2,1] [2,2] [2,3]
+Row 3: [3,0] [3,1] [3,2] [3,3]
+</pre>
+<p><span id="Arrays_and_Regular_Expressions"></span></p>
+<h3 id=".E9.85.8D.E5.88.97.E3.81.A8.E6.AD.A3.E8.A6.8F.E8.A1.A8.E7.8F.BE">配列と正規表現</h3>
+<p>配列が正規表現と文字列との間のマッチ結果であるとき、その配列はマッチ内容についての情報を持つプロパティと要素を返します。配列は <a href="../../Reference/Global_Objects/RegExp/exec.html" title="ja/docs/JavaScript/Reference/Global Objects/RegExp/exec"><code>RegExp.exec()</code></a>、<a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/match" title="ja/docs/JavaScript/Reference/Global Objects/String/match"><code>String.match()</code></a>、<a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/split" title="ja/docs/JavaScript/Reference/Global
+
+Objects/String/split"><code>String.split()</code></a> の戻り値です。正規表現とともに配列を使用することに関する情報は、<a href="../Regular_Expressions.html" title="ja/docs/JavaScript/Guide/Regular Expressions">正規表現</a>をご覧ください。</p>
+<p><span id="Working_with_Array-like_objects"></span></p>
+<h3 id=".E9.85.8D.E5.88.97.E7.8A.B6.E3.81.AE.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E6.89.B1.E3.81.86">配列状のオブジェクトを扱う</h3>
+<p></p><div class="overheadIndicator jsMinVerHeader standardNote"> 
+<p><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> で導入</p> 
+</div><p></p>
+<p><a href="https://developer.mozilla.org/ja/docs/DOM/document.getElementsByTagName" title="ja/docs/DOM/document.getElementsByTagName"><code>document.getElementsByTagName()</code></a> が返す <a href="https://developer.mozilla.org/ja/docs/DOM/NodeList" title="ja/docs/DOM/NodeList"><code>NodeList</code></a> や関数の本体内で使用できる <a href="../../Reference/Functions_and_function_scope/arguments.html" title="ja/docs/JavaScript/Reference/Functions and
+
+function
+
+scope/arguments"><code>arguments</code></a> オブジェクトなど一部の JavaScript オブジェクトは、表面上は配列のように振る舞いますが、すべてのメソッドを共有してはいません。例えば <code>arguments</code> オブジェクトは <a href="../../Reference/Functions_and_function_scope/arguments/length.html" title="ja/docs/JavaScript/Reference/Functions
+
+and function
+
+scope/arguments/length"><code>length</code></a> 属性を持っていますが、<a href="../../Reference/Global_Objects/Array/forEach.html" title="ja/docs/JavaScript/Reference/Global Objects/Array/forEach"><code>forEach()</code></a> メソッドは実装していません。</p>
+<p>JavaScript 1.6 で導入された配列ジェネリクスは、他の配列状のオブジェクトに対して <code>Array</code> のメソッドを実行する手段を提供します。標準的な配列のメソッドはそれぞれ、<code>Array</code> オブジェクトに対応するメソッドを持っています。例えば:</p>
+<pre class="brush: js"> function alertArguments() {
+   Array.forEach(arguments, function(item) {
+     alert(item);
+   });
+ }
+</pre>
+<p>これらの一般的なメソッドは JavaScript の関数オブジェクトが提供する call メソッドを用いて、古いバージョンの JavaScript でより冗長な形でエミュレートできます:</p>
+<pre class="brush: js"> Array.prototype.forEach.call(arguments, function(item) {
+   alert(item);
+ });
+</pre>
+<p>配列の一般的なメソッドは文字列でも同様に用いることができます。これは、メソッドが配列へアクセスする方法と同様に、文字列の各文字へ順番にアクセスするためです:</p>
+<pre class="brush: js">Array.forEach("a string", function(chr) {
+   alert(chr);
+});</pre>
+<p>以下は配列のメソッドを文字列に適用する例であり、また <a href="../../New_in_JavaScript/1.8.html#Expression_closures" title="ja/docs/New_in_JavaScript_1.8#Expression_closures">JavaScript 1.8 の式クロージャ</a>を利用しています:</p>
+<pre class="brush: js">var str = 'abcdef';
+var consonantsOnlyStr = Array.filter(str, function (c) !(/[aeiou]/i).test(c)).join(''); // 'bcdf'
+var vowelsPresent = Array.some(str, function (c) (/[aeiou]/i).test(c)); // true
+var allVowels = Array.every(str, function (c) (/[aeiou]/i).test(c)); // false
+var interpolatedZeros = Array.map(str, function (c) c+'0').join(''); // 'a0b0c0d0e0f0'
+var numerologicalValue = Array.reduce(str, function (c, c2) c+c2.toLowerCase().charCodeAt()-96, 0);
+// 21 (reduce() は JS v1.8 以降で使用可能)
+</pre>
+<p><code>filter</code> および <code>map</code> は戻り値として、自動的に文字列へ戻した文字集合を返さないことに注意してください。配列が返されますので、文字列へ戻すために <code>join</code> を使用しなければなりません。</p>
+<p><span id="Array_comprehensions"></span></p>
+<h3 id=".E9.85.8D.E5.88.97.E5.86.85.E5.8C.85">配列内包</h3>
+<p></p><div class="overheadIndicator jsMinVerHeader standardNote"> 
+<p><a href="../../New_in_JavaScript/1.7.html">JavaScript 1.7</a> で導入</p> 
+</div><p></p>
+<p>JavaScript 1.7 で導入された配列内包は、別のコンテンツを元にして新たな配列を構築する有用な近道を提供します。配列内包は一般に、<code>map()</code> および <code>filter()</code> を呼び出す代わりとして、あるいはそれら 2 つを結合する手段として用いることができます。</p>
+<p>次の配列内包は数値の配列を取り込んで、その各数値を 2 倍した値による新しい配列を作成します。</p>
+<pre class="brush: js">var numbers = [1, 2, 3, 4];
+var doubled = [i * 2 for each (i in numbers)];
+alert(doubled); // 2,4,6,8 がアラート表示される
+</pre>
+<p>これは次の <code>map()</code> による操作と同等です:</p>
+<pre class="brush: js">var doubled = numbers.map(function(i) { return i * 2; });
+</pre>
+<p>配列内包は、特定の式にマッチするアイテムの選択に用いることもできます。以下は、偶数だけを選択する内包です:</p>
+<pre class="brush: js">var numbers = [1, 2, 3, 21, 22, 30];
+var evens = [i for each (i in numbers) if (i % 2 == 0)];
+alert(evens); // 2,22,30 をアラート表示
+</pre>
+<p>同じ目的で <code>filter()</code> を用いることができます:</p>
+<pre class="brush: js">var evens = numbers.filter(function(i) { return i % 2 == 0; });
+</pre>
+<p><code>map()</code> および <code>filter()</code> 方式の操作を、ひとつの配列内包に統合することができます。以下は偶数だけをフィルタリングして、それらを 2 倍した値を含む配列を作成します:</p>
+<pre class="brush: js">var numbers = [1, 2, 3, 21, 22, 30];
+var doubledEvens = [i * 2 for each (i in numbers) if (i % 2 == 0)];
+alert(doubledEvens); // 4,44,60 がアラート表示される
+</pre>
+<p>配列内包の角括弧は、スコープ目的の暗黙的なブロックをもたらします。新しい変数 (上記の例における i ) は、<code>let</code> を用いて宣言されたかのように扱われます。つまり、それらの変数は配列内包の外部で使用できません。</p>
+<p>配列内包の入力自体は、配列である必要はありません。<a href="../Iterators_and_Generators.html" title="ja/docs/JavaScript/Guide/Iterators and Generators">イテレータおよびジェネレータ</a> も使用できます。</p>
+<p>文字列を入力とすることもできます。(配列状のオブジェクトにおいて) 前出の filter や map の動作を実現するには以下のようにします:</p>
+<pre class="brush: js">var str = 'abcdef';
+var consonantsOnlyStr = [c for each (c in str) if (!(/[aeiouAEIOU]/).test(c))  ].join(''); // 'bcdf'
+var interpolatedZeros = [c+'0' for each (c in str) ].join(''); // 'a0b0c0d0e0f0'
+</pre>
+<p>繰り返しになりますが入力データの形式は維持されませんので、文字列へ戻すために <code>join()</code> を使用しなければなりません。</p>
+<p><span id="Boolean_Object"></span></p>
+<h2 id="Boolean_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">Boolean オブジェクト</h2>
+<p><code>Boolean</code> オブジェクトは、プリミティブな真偽値型のラッパです。<code>Boolean</code> オブジェクトを作成するには次の構文を使用します:</p>
+<pre class="brush: js">var booleanObjectName = new Boolean(value);
+</pre>
+<p>プリミティブな真偽値型の <code>true</code> と <code>false</code> を、<code>Boolean</code> オブジェクトの true や false という値を混同しないでください。false という値を持つ <code>Boolean</code> オブジェクトを含む、値が <code>undefined</code>、<code>null</code>、<code>0</code>、<code>NaN</code>、空文字列のどれでもないあらゆるオブジェクトは、条件文に通されると true に評価されます。詳しくは <a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Statements#if...else_Statement" title="ja/docs/JavaScript/Guide/Statements#if...else Statement">if...else 文</a>を参照してください。</p>
+<p><span id="Date_Object"></span></p>
+<h2 id="Date_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">Date オブジェクト</h2>
+<p>JavaScript には日付を表すデータ型がありません。しかしながら、<code>Date</code> オブジェクトとそのメソッドを使用することで、アプリケーションで日付と時刻を扱うことができます。<code>Date</code> オブジェクトには日付をセット、取得、操作するためのメソッドがたくさんあります。プロパティは一切ありません。</p>
+<p>JavaScript は Java と同じように日付を扱います。これら 2 つの言語に共通する、日付に関するメソッドが多くあります。また、両言語ともに日付を 1970 年 1 月 1 日 00:00:00 からのミリ秒数として保持します。</p>
+<p><code>Date</code> オブジェクトの範囲は 1970 年 1 月 1 日 (UTC) を基準に -100,000,000 日から 100,000,000 日です。</p>
+<p><code>Date</code> オブジェクトは次のようにして作成します:</p>
+<pre class="brush: js">var dateObjectName = new Date([parameters]);
+</pre>
+<p>ここで <code>dateObjectName</code> は、作成する <code>Date</code> オブジェクトの名前です。すなわち、新しいオブジェクトの名前か、既存のオブジェクトのプロパティ名です。</p>
+<p>new キーワードを伴わずに Date を呼び出すと、与えられた日付を文字列表現に変換します。</p>
+<p>上記の構文で、<code>parameters</code> は次のどの形式で指定してもかまいません:</p>
+<ul>
+ <li>引数なし: 今日の日付と時刻を作成します。例えば、<code>today = new Date();</code>。</li>
+ <li>次の形式 "月 日, 年 時:分:秒" で日付を表した文字列。例えば、<code>var Xmas95 = new Date("December 25, 1995 13:30:00")</code>。時、分、または秒を省略すると、その値は 0 にセットされます。</li>
+ <li>年、月、日を表す整数値のセット。例えば、<code>var Xmas95 = new Date(1995, 11, 25)</code>。</li>
+ <li>年、月、日、時、分、秒を表す整数値のセット。例えば、<code>var Xmas95 = new Date(1995, 11, 25, 9, 30, 0);</code>。</li>
+</ul>
+<p><strong>JavaScript 1.2 以前</strong><br>
+ <code>Date</code> オブジェクトは以下のように振る舞います:</p>
+<ul>
+ <li>1970 年より前の日付は許されません。</li>
+ <li>JavaScript はプラットフォーム特有の日付の機能や挙動に依存します。つまり、<code>Date</code> オブジェクトの挙動はプラットフォームごとに異なります。</li>
+</ul>
+<p><span id="Methods_of_the_Date_Object"></span></p>
+<h3 id="Date_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89">Date オブジェクトのメソッド</h3>
+<p><code>Date</code> オブジェクトの日付や時刻を扱うメソッドは、大まかに以下のカテゴリに分けることができます:</p>
+<ul>
+ <li>"set" メソッド : 日付や時刻の値を <code>Date</code> オブジェクトにセットします。</li>
+ <li>"get" メソッド : <code>Date</code> オブジェクトから日付や時刻の値を取得します。</li>
+ <li>"to" メソッド : <code>Date</code> オブジェクトから文字列の値を返します。</li>
+ <li>parse および UTC メソッド : <code>Date</code> 文字列をパースします。</li>
+</ul>
+<p>"get" および "set" メソッドを用いることで秒、分、時、日にち、曜日、月、年を別々に取得したりセットしたりできます。曜日を返す <code>getDay</code> メソッドはありますが、これに対応する <code>setDay</code> メソッドはありません。なぜならば、曜日は自動的にセットされるからです。これらのメソッドは、それらの値の表現に整数を用います:</p>
+<ul>
+ <li>秒および分 : 0 から 59</li>
+ <li>時 : 0 から 23</li>
+ <li>曜日 : 0 (日曜) から 6 (土曜)</li>
+ <li>日にち: 1 から 31</li>
+ <li>月: 0 (1 月) から 11 (12 月)</li>
+ <li>年: 1900 年から数えた年</li>
+</ul>
+<p>例えば、次の日付を定義したとします:</p>
+<pre class="brush: js">var Xmas95 = new Date("December 25, 1995");
+</pre>
+<p>すると、<code>Xmas95.getMonth()</code> は 11 を返し、<code>Xmas95.getFullYear()</code> は 1995 を返します。</p>
+<p><code>getTime</code> メソッドや <code>setTime</code> メソッドは、日付の比較に便利です。<code>getTime</code> メソッドは <code>Date</code> オブジェクトの、1970 年 1 月 1 日 00:00:00 からのミリ秒数を返します。</p>
+<p>例えば、次のコードは今年の残りの日数を表示します:</p>
+<pre class="brush: js">var today = new Date();
+var endYear = new Date(1995, 11, 31, 23, 59, 59, 999); // 日と月をセット
+endYear.setFullYear(today.getFullYear()); // 今年が何年かをセット
+var msPerDay = 24 * 60 * 60 * 1000; // 1 日のミリ秒数をセット
+var daysLeft = (endYear.getTime() - today.getTime()) / msPerDay;
+var daysLeft = Math.round(daysLeft); // 今年の残り日数を返す
+</pre>
+<p>この例では、今日の日付を保持する <code>today</code> という名前の <code>Date</code> オブジェクトを作成します。そして <code>endYear</code> という名前の <code>Date</code> オブジェクトを作成し、今年が何年かという値をセットします。さらに、1 日のミリ秒数を用いて <code>today</code> と <code>endYear</code> の間の日数を算出します。</p>
+<p><code>parse</code> メソッドは、日付を表す文字列から既存の <code>Date</code> オブジェクトに値を代入するのに便利です。例えば次のコードは、<code>parse</code> と <code>setTime</code> を用いて日付の値を <code>IPOdate</code> オブジェクトに代入します:</p>
+<pre class="brush: js">var IPOdate = new Date();
+IPOdate.setTime(Date.parse("Aug 9, 1995"));
+</pre>
+<p><span id="Using_the_Date_Object.3A_an_Example"></span></p>
+<h3 id="Date_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E4.BD.BF.E7.94.A8.E4.BE.8B">Date オブジェクトの使用例</h3>
+<p>次の例では、関数 <code>JSClock()</code> はデジタル時計のような形式で時刻を返します。</p>
+<pre class="brush: js">function JSClock() {
+  var time = new Date();
+  var hour = time.getHours();
+  var minute = time.getMinutes();
+  var second = time.getSeconds();
+  var temp = "" + ((hour &gt; 12) ? hour - 12 : hour);
+  if (hour == 0)
+    temp = "12";
+  temp += ((minute &lt; 10) ? ":0" : ":") + minute;
+  temp += ((second &lt; 10) ? ":0" : ":") + second;
+  temp += (hour &gt;= 12) ? " P.M." : " A.M.";
+  return temp;
+}
+</pre>
+<p><code>JSClock</code> 関数はまず <code>time</code> という新しい <code>Date</code> オブジェクトを作成します。引数は与えられないため、現在の日付と時刻で time が作成されます。そして <code>getHours</code>、<code>getMinutes</code>、および <code>getSeconds</code> メソッドを呼び出し、現在の時、分、秒の値を <code>hour</code>、<code>minute</code>、<code>second</code> にそれぞれ代入します。</p>
+<p>その次の 4 つの文は、時刻を元に文字列の値を構築します。最初の文は変数 <code>temp</code> を作成し、それに条件式を用いて値を代入します。<code>hour</code> が 12 より大きい場合は (<code>hour - 12</code>) を、それ以外の場合は単純に hour をそれぞれ代入します。ただし hour が 0 である場合は 12 とします。</p>
+<p>その次の文は <code>minute</code> の値を <code>temp</code> に付け加えます。<code>minute</code> の値が 10 より小さい場合は、条件式が区切りのコロンと分の先頭のゼロを追加し、そうでない場合は区切りのコロンだけを追加します。そして同様にして <code>second</code> の値を <code>temp</code> に付け加えます。</p>
+<p>最後に、条件式は <code>hour</code> が 12 以上の場合は "PM" を、そうでない場合は "AM" をそれぞれ <code>temp</code> に付け加えます。</p>
+<p><span id="Function_Object"></span></p>
+<h2 id="Function_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">Function オブジェクト</h2>
+<p>定義済みの <code>Function</code> オブジェクトは、関数としてコンパイルさせたい JavaScript コードの文字列を指定します。</p>
+<p><code>Function</code> オブジェクトを作成するには、次のようにします:</p>
+<pre class="brush: js">var functionObjectName = new Function ([arg1, arg2, ... argn], functionBody);
+</pre>
+<p><code>functionObjectName</code> は、変数名または既存のオブジェクトのプロパティ名です。オブジェクトに小文字のイベントハンドラ名を続けて、<code>window.onerror</code> のように指定することもできます。</p>
+<p><code>arg1</code>, <code>arg2</code>, ... <code>argn</code> は、関数が仮引数名として使用する引数です。それぞれが JavaScript の識別子として妥当な文字列である必要があります。例えば、"x" や "theForm" などです。</p>
+<p><code>functionBody</code> は、関数の本体としてコンパイルさせたい JavaScript コードを表す文字列です。</p>
+<p><code>Function</code> オブジェクトは、使用されるたびに評価されます。これは関数を宣言し、それをコード内で呼び出す方法よりも非効率です。宣言された関数はコンパイルされるからです。</p>
+<p>ここで説明した関数の定義方法に加えて、<a href="../../Reference/Statements/function.html" title="ja/docs/JavaScript/Reference/Statements/function"><code>function</code> 文</a> と関数式を用いることもできます。詳しくは <a href="../../Reference.html" title="ja/docs/JavaScript/Reference">JavaScript リファレンス</a> を参照してください。</p>
+<p>次のコードは関数を変数 <code>setBGColor</code> に代入します。この関数は、開いている文書の背景色をセットします。</p>
+<pre class="brush: js">var setBGColor = new Function("document.bgColor = 'antiquewhite'");
+</pre>
+<p><code>Function</code> オブジェクトを呼び出すには、それがあたかも関数であるかのように変数名を指定すればよいのです。次のコードは <code>setBGColor</code> 変数で指定された関数を実行します:</p>
+<pre class="brush: js">var colorChoice="antiquewhite";
+if (colorChoice=="antiquewhite") {setBGColor()}
+</pre>
+<p>次のどちらかの方法を使用することで、イベントハンドラに関数を割り当てることができます:</p>
+<ol>
+ <li>
+  <pre class="brush: js">document.form1.colorButton.onclick = setBGColor;
+</pre>
+ </li>
+ <li>
+  <pre class="brush: html">&lt;INPUT NAME="colorButton" TYPE="button"
+  VALUE="Change background color"
+  onClick="setBGColor()"&gt;
+</pre>
+ </li>
+</ol>
+<p>上記の変数 <code>setBGColor</code> を作成することは、次の関数の宣言と同じようなことです:</p>
+<pre class="brush: js">function setBGColor() {
+  document.bgColor = 'antiquewhite';
+}
+</pre>
+<p>関数を変数に代入することは関数を宣言することと似ていますが、異なる点もあります:</p>
+<ul>
+ <li><code>var setBGColor = new Function("...")</code> のようにして関数を変数に代入すると、<code>setBGColor</code> は <code>new Function()</code> を用いて作成した関数への参照を値に持つ変数になります。</li>
+ <li><code>function setBGColor() {...}</code> のようにして関数を作成すると、<code>setBGColor</code> は変数ではなく関数の名前になります。</li>
+</ul>
+<p>関数を関数の中に入れ子にすることができます。内側の関数は外側の関数に対してプライベートになります:</p>
+<ul>
+ <li>内側の関数には、外側の関数の文からしかアクセスできません。</li>
+ <li>内側の関数は、外側の関数の引数や変数を使用できます。外側の関数は、内側の関数の引数や変数を使用できません。</li>
+</ul>
+<p><span id="Math_Object"></span></p>
+<h2 id="Math_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">Math オブジェクト</h2>
+<p>定義済みの <code>Math</code> オブジェクトには、数学的な定数や関数を実現するプロパティやメソッドがあります。例えば、<code>Math</code> オブジェクトの <code>PI</code> プロパティは円周率の値 (3.141...) を表します。これはアプリケーションで次のように使用します。</p>
+<pre class="brush: js">Math.PI
+</pre>
+<p>同様に、標準的な数学関数が <code>Math</code> のメソッドになっています。これは三角関数、対数関数、指数関数などがあります。例えば、三角関数のサインを使用したい場合は次のように書きます。</p>
+<pre class="brush: js">Math.sin(1.56)
+</pre>
+<p><code>Math</code> の三角関数のメソッドは、すべて引数をラジアンでとることに注意してください。</p>
+<p>次の表で、<code>Math</code> オブジェクトのメソッドを簡単に説明します。</p>
+<table class="standard-table">
+ <caption>
+  Table 7.1 : Math のメソッド</caption>
+ <thead>
+  <tr>
+   <th scope="col">メソッド</th>
+   <th scope="col">説明</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>abs</code></td>
+   <td>絶対値です。</td>
+  </tr>
+  <tr>
+   <td><code>sin</code>, <code>cos</code>, <code>tan</code></td>
+   <td>標準的な三角関数です。引数はラジアンです。</td>
+  </tr>
+  <tr>
+   <td><code>acos</code>, <code>asin</code>, <code>atan</code>, <code>atan2</code></td>
+   <td>逆三角関数です。ラジアンの値を返します。</td>
+  </tr>
+  <tr>
+   <td><code>exp</code>, <code>log</code></td>
+   <td>指数関数と自然対数です。底は <code>e</code> です。</td>
+  </tr>
+  <tr>
+   <td><code>ceil</code></td>
+   <td>引数以上の整数のうち、最小のものを返します。</td>
+  </tr>
+  <tr>
+   <td><code>floor</code></td>
+   <td>引数以下の整数のうち、最大のものを返します。</td>
+  </tr>
+  <tr>
+   <td><code>min</code>, <code>max</code></td>
+   <td>2 つの引数のうち、小さいもの、大きいものをそれぞれ返します。</td>
+  </tr>
+  <tr>
+   <td><code>pow</code></td>
+   <td>累乗です。第 1 引数は底、第 2 引数は指数です。</td>
+  </tr>
+  <tr>
+   <td><code>random</code></td>
+   <td>0 から 1 までの間で乱数を返します。</td>
+  </tr>
+  <tr>
+   <td><code>round</code></td>
+   <td>引数を直近の整数に丸めます。</td>
+  </tr>
+  <tr>
+   <td><code>sqrt</code></td>
+   <td>平方根です。</td>
+  </tr>
+ </tbody>
+</table>
+<p>他の多くのオブジェクトとは異なり、決して自分用の <code>Math</code> オブジェクトを作成してはいけません。常に定義済みの <code>Math</code> オブジェクトを使用してください。</p>
+<p><span id="Number_Object"></span></p>
+<h2 id="Number_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">Number オブジェクト</h2>
+<p><code>Number</code> オブジェクトには、最大値、非数、無限大といった数値定数を表すプロパティがあります。これらのプロパティの値を変更することはできません。これらは次のように使用します:</p>
+<pre class="brush: js">var biggestNum = Number.MAX_VALUE;
+var smallestNum = Number.MIN_VALUE;
+var infiniteNum = Number.POSITIVE_INFINITY;
+var negInfiniteNum = Number.NEGATIVE_INFINITY;
+var notANum = Number.NaN;
+</pre>
+<p>常に上記のようにして、定義済みの <code>Number</code> オブジェクトのプロパティを参照します。自分で作成した <code>Number</code> オブジェクトのプロパティとして参照するのではありません。</p>
+<p>次の表では、<code>Number</code> オブジェクトのプロパティについて簡単に説明します。</p>
+<table class="standard-table">
+ <caption>
+  Table 7.2 : Number のプロパティ</caption>
+ <thead>
+  <tr>
+   <th scope="col">プロパティ</th>
+   <th scope="col">説明</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>MAX_VALUE</code></td>
+   <td>最大の表現可能な値です。</td>
+  </tr>
+  <tr>
+   <td><code>MIN_VALUE</code></td>
+   <td>最小の表現可能な値です。</td>
+  </tr>
+  <tr>
+   <td><code>NaN</code></td>
+   <td>"not a number" (非数) を表す特殊な値です。</td>
+  </tr>
+  <tr>
+   <td><code>NEGATIVE_INFINITY</code></td>
+   <td>負の無限大を表す特殊な値です。オーバーフロー時に返されます。</td>
+  </tr>
+  <tr>
+   <td><code>POSITIVE_INFINITY</code></td>
+   <td>正の無限大を表す特殊な値です。オーバーフロー時に返されます。</td>
+  </tr>
+ </tbody>
+</table>
+<p>Number のプロトタイプは、Number オブジェクトから情報をさまざまな形で取り出すメソッドを備えています。次の表では <code>Number.prototype</code> のメソッドについて簡単に説明します。</p>
+<table class="fullwidth-table">
+ <caption>
+  Table 7.3 : Number.prototype のメソッド</caption>
+ <thead>
+  <tr>
+   <th scope="col">メソッド</th>
+   <th scope="col">説明</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>toExponential</code></td>
+   <td>数値を指数表記で表現した文字列を返します。</td>
+  </tr>
+  <tr>
+   <td><code>toFixed</code></td>
+   <td>数値を固定小数点表記で表現した文字列を返します。</td>
+  </tr>
+  <tr>
+   <td><code>toPrecision</code></td>
+   <td>数値を指定した精度の固定小数点表記で表現した文字列を返します。</td>
+  </tr>
+  <tr>
+   <td><code>toSource</code></td>
+   <td>指定した <code>Number</code> オブジェクトを表現するオブジェクトリテラルを返します。この値を利用して、新しいオブジェクトを作成できます。<code>Object.toSource</code> メソッドをオーバーライドします。</td>
+  </tr>
+  <tr>
+   <td><code>toString</code></td>
+   <td>指定したオブジェクトを表現する文字列を返します。<code>Object.toString</code> メソッドをオーバーライドします。</td>
+  </tr>
+  <tr>
+   <td><code>valueOf</code></td>
+   <td>指定したオブジェクトのプリミティブ値を返します。<code>Object.valueOf</code> メソッドをオーバーライドします。</td>
+  </tr>
+ </tbody>
+</table>
+<p><span id="RegExp_Object"></span></p>
+<h2 id="RegExp_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">RegExp オブジェクト</h2>
+<p><code>RegExp</code> オブジェクトを用いることで、正規表現を使用できるようになります。これは<a href="../Regular_Expressions.html" title="ja/docs/JavaScript/Guide/Regular Expressions">正規表現</a>で説明しています。</p>
+<p><span id="String_Object"></span></p>
+<h2 id="String_.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">String オブジェクト</h2>
+<p><code>String</code> オブジェクトは、文字列のプリミティブデータ型のラッパです。文字列リテラルと <code>String</code> オブジェクトを混同してはいけません。例えば、次のコードは文字列リテラルの <code>s1</code> と <code>String</code> オブジェクトの <code>s2</code> を作成します:</p>
+<pre class="brush: js">var s1 = "foo"; // 文字列リテラルの値を作成
+var s2 = new String("foo"); // String オブジェクトを作成
+</pre>
+<p>文字列リテラルで、<code>String</code> オブジェクトのあらゆるメソッドを呼び出すことができます。JavaScript が自動的に文字列リテラルを一時的な <code>String</code> オブジェクトに変換し、メソッドを呼び出し、その一時的な <code>String</code> オブジェクトを破棄するのです。<code>String.length</code> プロパティを文字列リテラルで使用することもできます。</p>
+<p>特に <code>String</code> オブジェクトを使用する必要がない場合は、文字列リテラルを使うようにしてください。<code>String</code> オブジェクトは直感的でない挙動をとることがあるためです。例えば:</p>
+<pre class="brush: js">var s1 = "2 + 2"; // 文字列リテラル値を作成
+var s2 = new String("2 + 2"); // String オブジェクトを作成
+eval(s1); // 数値 4 を返す
+eval(s2); // 文字列 "2 + 2" を返す</pre>
+<p><code>String</code> オブジェクトにはプロパティが 1 つあります。それは <code>length</code> で、文字列中の文字の数を表します。例えば、次のコードは <code>x</code> に 13 という値を代入します。"Hello, World!" は 13 文字であるからです:</p>
+<pre class="brush: js">var mystring = "Hello, World!";
+var x = mystring.length;
+</pre>
+<p><code>String</code> オブジェクトには 2 種類のメソッドがあります。これは、<code>substring</code> や <code>toUpperCase</code> のように文字列そのものを変形させたものを返すメソッドと、<code>bold</code> や <code>link</code> のように文字列を HTML として整形したものを返すメソッドです。</p>
+<p>例えば先の例を流用すると、<code>mystring.toUpperCase()</code> も <code>"hello, world!".toUpperCase()</code> も、"HELLO, WORLD!" という文字列を返します。</p>
+<p><code>substring</code> メソッドは 2 つの引数をとり、それら 2 つの引数の間の文字列のサブセットを返します。先の例を流用すると、<code>mystring.substring(4, 9)</code> は "o, Wo" という文字列を返します。詳しくは JavaScript リファレンスで、<code>String</code> オブジェクトの <a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/substring" title="ja/docs/JavaScript/Reference/Global Objects/String/substring"><code>substring</code></a> メソッドを参照してください。</p>
+<p><code>String</code> オブジェクトには、自動的に HTML に整形するメソッドも多くあります。これは太字のテキストを生成する <code>bold</code> や、ハイパーリンクを生成する <code>link</code> などがあります。例えば、<code>link</code> メソッドを用いて架空の URL へのハイパーリンクを生成するには次のようにします:</p>
+<pre class="brush: js">mystring.link("http://www.helloworld.com")
+</pre>
+<p>次の表で、<code>String</code> オブジェクトのメソッドについて簡単に説明します。</p>
+<table class="fullwidth-table">
+ <caption>
+  Table 7.4 : String インスタンスのメソッド</caption>
+ <thead>
+  <tr>
+   <th scope="col">メソッド</th>
+   <th scope="col">説明</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/anchor" title="ja/docs/JavaScript/Reference/Global_Objects/String/anchor">anchor</a></code></td>
+   <td>HTML の名前付きアンカーを作成します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/big" title="ja/docs/JavaScript/Reference/Global_Objects/String/big">big</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/blink" title="ja/docs/JavaScript/Reference/Global_Objects/String/blink">blink</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/bold" title="ja/docs/JavaScript/Reference/Global_Objects/String/bold">bold</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/fixed" title="ja/docs/JavaScript/Reference/Global_Objects/String/fixed">fixed</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/italics" title="ja/docs/JavaScript/Reference/Global_Objects/String/italics">italics</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/small" title="ja/docs/JavaScript/Reference/Global_Objects/String/small">small</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/strike" title="ja/docs/JavaScript/Reference/Global_Objects/String/strike">strike</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/sub" title="ja/docs/JavaScript/Reference/Global_Objects/String/sub">sub</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/sup" title="ja/docs/JavaScript/Reference/Global_Objects/String/sup">sup</a></code></td>
+   <td>HTML の整形済み文字列を作成します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/charAt" title="ja/docs/JavaScript/Reference/Global_Objects/String/charAt">charAt</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/charCodeAt" title="ja/docs/JavaScript/Reference/Global_Objects/String/charCodeAt">charCodeAt</a></code></td>
+   <td>文字列中の指定した位置の文字または文字コードを返します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="../../Reference/Global_Objects/String/indexOf.html" title="ja/docs/JavaScript/Reference/Global_Objects/String/indexOf">indexOf</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/lastIndexOf" title="ja/docs/JavaScript/Reference/Global_Objects/String/lastIndexOf">lastIndexOf</a></code></td>
+   <td>文字列中の、指定した部分文字列の位置や、指定した部分文字列の最後の位置をそれぞれ返します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/link" title="ja/docs/JavaScript/Reference/Global_Objects/String/link">link</a></code></td>
+   <td>HTML のハイパーリンクを作成します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/concat" title="ja/docs/JavaScript/Reference/Global_Objects/String/concat">concat</a></code></td>
+   <td>2 つの文字列を連結し、新しい文字列を返します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/fromCharCode" title="ja/docs/JavaScript/Reference/Global_Objects/String/fromCharCode">fromCharCode</a></code></td>
+   <td>指定した Unicode 値の連続から文字列を構築します。これは String クラスのメソッドであり、String インスタンスのメソッドではありません。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/split" title="ja/docs/JavaScript/Reference/Global_Objects/String/split">split</a></code></td>
+   <td>文字列を部分文字列に分割することで、<code>String</code> オブジェクトを文字列の配列に分配します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/slice" title="ja/docs/JavaScript/Reference/Global_Objects/String/slice">slice</a></code></td>
+   <td>文字列から一部分を抽出し、新しい文字列を返します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/substring" title="ja/docs/JavaScript/Reference/Global_Objects/String/substring">substring</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/substr" title="ja/docs/JavaScript/Reference/Global_Objects/String/substr">substr</a></code></td>
+   <td>開始および終了位置のインデックス、または開始位置のインデックスおよび長さのいずれかを指定することで、文字列の指定したサブセットを返します。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/match" title="ja/docs/JavaScript/Reference/Global_Objects/String/match">match</a></code>, <code><a href="../../Reference/Global_Objects/String/replace.html" title="ja/docs/JavaScript/Reference/Global_Objects/String/replace">replace</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/search" title="ja/docs/JavaScript/Reference/Global_Objects/String/search">search</a></code></td>
+   <td>正規表現を取り扱います。</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/toLowerCase" title="ja/docs/JavaScript/Reference/Global_Objects/String/toLowerCase">toLowerCase</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/toUpperCase" title="ja/docs/JavaScript/Reference/Global_Objects/String/toUpperCase">toUpperCase</a></code></td>
+   <td>文字列をすべて小文字に、またはすべて大文字にしてそれぞれ返します。</td>
+  </tr>
+ </tbody>
+</table>
+<div>
+ </div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/NeedsEditorialReview">NeedsEditorialReview</a></li><li><a href="../../../../tag/NeedsTechnicalReview.html">NeedsTechnicalReview</a></li><li><a href="../../../../tag/JavaScript.html">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../../profiles/ethertank.html">ethertank</a>, <a href="../../../../../profiles/Mgjbot.html">Mgjbot</a>, <a href="../../../../../profiles/happysadman.html">happysadman</a>, <a href="../../../../../profiles/yyss.html">yyss</a>, <a href="../../../../../profiles/Electrolysis.html">Electrolysis</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../../profiles/yyss.html">yyss</a>,
+                      <time datetime="2014-06-15T07:18:52-07:00">2014/06/15 7:18:52</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/JavaScript/Guide/Obsolete_Pages/Predefined_Core_Objects" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/JavaScript/Guide/Predefined_Core_Objects">
+            English (US)
+          </option>          <option value="/zh-CN/docs/Web/JavaScript/Guide/Predefined_Core_Objects">
+            中文 (简体)
+          </option>          <option value="/de/docs/Web/JavaScript/Guide/Vordefinierte_Kernobjekte">
+            Deutsch
+          </option>          <option value="/fr/docs/Web/JavaScript/Guide/Objets_%C3%A9l%C3%A9mentaires_JavaScript">
+            Français
+          </option>          <option value="/th/docs/Web/JavaScript/Guide/Predefined_Core_Objects">
+            ไทย
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":918}</script></body>
+</html>

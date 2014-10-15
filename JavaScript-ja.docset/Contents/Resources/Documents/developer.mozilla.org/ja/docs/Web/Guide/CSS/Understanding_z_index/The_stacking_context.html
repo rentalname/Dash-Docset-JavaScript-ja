@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>スタック文脈 - Web developer guide | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../../index.html">
+  <link rel="copyright" href="The_stacking_context.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1324c0a" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1324c0a" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context$json">
+  <link rel="canonical" href="The_stacking_context.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" title="The stacking context">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/CSS/Comprendre_z-index/L'empilement_de_couches" title="L&#39;empilement de couches">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Web/CSS/Understanding_z-index/The_stacking_context" title="쌓임 맥락(stacking context) 이야기">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Understanding_z-index/The_stacking_context" title="The stacking context">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="スタック文脈">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context">
+  <meta name="twitter:title" content="スタック文脈">
+    <meta property="og:description" content="前回の例、 z-index の追加 では、ある DIV 要素の描画順がその要素の z-index 値から影響を受けていました。これは、DIV 要素が スタック文脈 を生じさせるような特定のプロパティを持っていたからです。">
+  <meta name="description" content="前回の例、 z-index の追加 では、ある DIV 要素の描画順がその要素の z-index 値から影響を受けていました。これは、DIV 要素が スタック文脈 を生じさせるような特定のプロパティを持っていたからです。">
+  <meta name="twitter:description" content="前回の例、 z-index の追加 では、ある DIV 要素の描画順がその要素の z-index 値から影響を受けていました。これは、DIV 要素が スタック文脈 を生じさせるような特定のプロパティを持っていたからです。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/Guide/CSS/Understanding_z_index/The_stacking_context" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1324c0a',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+            notifications: [
+                                                            ],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": null}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": null}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": null}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="The_stacking_context.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="The_stacking_context.html#language">言語の選択</a></li>
+          <li><a href="The_stacking_context.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../HTML.html">HTML</a></li>
+              <li><a href="../../../CSS.html">CSS</a></li>
+              <li><a href="../../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../API.html">API / DOM</a></li>
+              <li><a href="../../../Apps.html">Apps</a></li>
+              <li><a href="../../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Reference.html">レファレンス</a></li>
+              <li><a href="../../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../../Tools.html">ツール</a></li><li><a href="../../../../../demos/index.html">MDN デモ</a></li><li><a href="../../../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" title="The stacking context">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/CSS/Comprendre_z-index/L'empilement_de_couches" title="L&#39;empilement de couches">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Web/CSS/Understanding_z-index/The_stacking_context" title="쌓임 맥락(stacking context) 이야기">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Understanding_z-index/The_stacking_context" title="The stacking context">中文 (简体)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="The_stacking_context.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web/Guide/CSS/Understanding_z_index" rel="v:url" property="v:title">CSS の z-index の理解 リダイレクト 3</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">スタック文脈</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="The_stacking_context.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>スタック文脈</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="The_stacking_context.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="The_stacking_context.html#The_stacking_context" rel="internal">スタック文脈</a><code></code><code></code><li><a href="The_stacking_context.html#The_example" rel="internal">例</a><li><a href="The_stacking_context.html#Example_Source_Code" rel="internal">ソースコード例</a><ol><li><a href="The_stacking_context.html#Division_Element_.231" rel="internal">Div 要素 #1</a><li><a href="The_stacking_context.html#Division_Element_.232" rel="internal">Div 要素 #2</a><li><a href="The_stacking_context.html#Division_Element_.233" rel="internal">Div 要素 #3</a><li><a href="The_stacking_context.html#Division_Element_.234" rel="internal">Div 要素 #4</a><li><a href="The_stacking_context.html#Division_Element_.235" rel="internal">Div 要素 #5</a><li><a href="The_stacking_context.html#Division_Element_.236" rel="internal">Div 要素 #6</a></ol></li><li><a href="The_stacking_context.html#See_also" rel="internal">関連情報</a><li><a href="The_stacking_context.html#Original_Document_Information" rel="internal">原典情報</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>« <a href="../../../CSS.html" title="CSS">CSS</a> « <a href="https://developer.mozilla.org/ja/docs/CSS/Understanding_z-index" title="Understanding CSS z-index">CSS の z-index の理解</a></p>
+
+
+<h2 id="The_stacking_context" name="The_stacking_context">スタック文脈</h2>
+<p>前回の例、<a href="https://developer.mozilla.org/ja/docs/CSS/Understanding_z-index/Adding_z-index" title="Adding z-index">z-index の追加</a> では、ある DIV 要素の描画順がその要素の z-index 値から影響を受けていました。これは、DIV 要素が <em>スタック文脈 </em>を生じさせるような特定のプロパティを持っていたからです。</p>
+<p>スタック文脈は、次のうちのいずれかの要素によって、文書のどこであっても作られます</p>
+<ul>
+  <li>ルート要素（HTML）</li>
+  <li>位置指定されていて（absolutely か relatively）、z-index 値が "auto" 以外の要素</li>
+  <li>1 未満の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/opacity" title=""><code>opacity</code></a> 値を持つ要素（<a class="external" href="http://www.w3.org/TR/css3-color/#transparency" title="http://www.w3.org/TR/css3-color/#transparency">不透明度の仕様</a>をご覧ください）</li>
+  <li>mobile WebKit と Chrome 22+ では、<code>position: fixed</code> が常に新しいスタック文脈を作ります。z-index が "auto" の場合にもです（<a class="external" href="http://updates.html5rocks.com/2012/09/Stacking-Changes-Coming-to-position-fixed-elements" title="http://updates.html5rocks.com/2012/09/Stacking-Changes-Coming-to-position-fixed-elements">この記事</a>をご覧ください）</li>
+</ul>
+<p>スタック文脈の内部で、子要素は前に説明したルールに従って積み重なります。重要なのは、子要素の z-index 値は、その親要素に対してのみ意味を持つということです。スタック文脈は、その親のスタック文脈では不可分な一つの固まりとして扱われます。</p>
+<p>まとめると:</p>
+<ul>
+  <li>HTML 要素を位置指定し、z-index 値を与えるとスタック文脈が作られます（完全な不透明でないとき）</li>
+  <li>スタック文脈は他のスタック文脈に含めることができ、その結果スタック文脈の階層構造ができます。</li>
+  <li>スタック文脈はすべて、その兄弟要素と完全に独立しています: 積み重ね処理では、子孫要素だけが考慮されます。</li>
+  <li>スタック文脈ははめ込み式です:要素の中身が重ねられた後、その要素がまるごと、今度は親のスタック文脈のスタック順の中にあるとみなされます。</li>
+</ul>
+<div class="note">
+  <strong>注記:</strong> スタック文脈を作れるのが一部の要素に限定されるため、スタック文脈は HTML 要素の階層構造の部分集合です。それ自身のスタック文脈を作らない要素は、その親のスタック文脈に<em>同化される</em>、と言えます。</div>
+
+
+
+
+<h2 id="The_example" name="The_example">例</h2>
+
+<p><img alt="Example of stacking rules modified using z-index" src="https://developer.mozilla.org/@api/deki/files/913/=Understanding_zindex_04.png"></p>
+<p>この例では、位置指定された要素はすべて、位置と z-index の値によって、それ自身のスタック文脈を作ります。スタック文脈の階層構造が、次のように構成されます:</p>
+<ul>
+  <li>ルート要素
+    <ul>
+      <li>DIV #1</li>
+      <li>DIV #2</li>
+      <li>DIV #3
+        <ul>
+          <li>DIV #4</li>
+          <li>DIV #5</li>
+          <li>DIV #6</li>
+        </ul></li>
+    </ul></li>
+</ul>
+<p>重要なのは、DIV #4、DIV #5、DIV #6 は DIV #3 の子要素なので、DIV#3 の内側で重なり方が完全に決まることです。一旦DIV #3 内部の重ねあわせと描画が終われば、DIV #3 は ルート要素に丸ごと渡され、兄弟要素との重ねあわせ処理が行われます。</p>
+<div class="note">
+  <p><strong>注記:</strong></p>
+  <ul>
+    <li>DIV #4 は DIV #1 の下（奥）に描画されます。これは、DIV #1 の z-index (5) はルート要素のスタック文脈でだけ有効な値で、DIV #4 の z-index (6) は DIV #3 のスタック文脈でだけ有効な値だからです。DIV #4 は DIV #3 の内部にあり、DIV #3 は DIV #1 よりも小さな z-index 値を持っているので、DIV #4 は DIV #1 の下になります.</li>
+    <li>同じ理由で DIV #2 (z-index 2) は DIV#5 (z-index 1) の下に描画されます。これは DIV #5 が DIV #3 に含まれていて、DIV #3は DIV #2 より高い z-index 値を持っているからです。</li>
+    <li>DIV #3 の z-index は4ですが、この値は DIV #4、DIV#5、DIV#6 の z-index とは独立しています。異なるスタック文脈に含まれるためです。</li>
+    <li>Z軸方向に重なった要素の <em>描画順序 </em>の簡単な計算方法は、それがバージョン番号のようなものを持っていると考えることです。親要素のメジャーバージョン番号の下に、子要素のマイナーバージョン番号があるものとします。この方法で、z-index 1 を持つ要素 (DIV #5) がどうやって z-index 2 を持つ要素 (DIV #2) の上になるのか、そして、z-index 6 を持つ要素 (DIV #4) がどうやって z-index 5 を持つ要素 (DIV #1) の下になるのか、簡単にわかります。用意した例では次のようになります（以下は最終的な描画順に並べています）:
+      <ul>
+        <li>ルート要素
+          <ul>
+            <li>DIV #2 - z-index 2</li>
+            <li>DIV #3 - z-index 4
+              <ul>
+                <li>DIV #5 - z-index 1。z-index 4 を持つ要素の下に重なります。これは描画順序 4.1 から導かれる答えです</li>
+                <li>DIV #6 - z-index 3。z-index 4 を持つ要素の下に重なり、これは描画順序 4.3 から導かれる答えです</li>
+                <li>DIV #4 - z-index 6。z-index 4 を持つ要素の下に重なり、これは描画順序 4.6 から導かれる答えです</li>
+              </ul></li>
+            <li>DIV #1 - z-index 5</li>
+          </ul></li>
+      </ul></li>
+  </ul>
+</div>
+
+
+
+<h2 id="Example_Source_Code" name="Example_Source_Code">ソースコード例</h2>
+<pre class="brush: html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+  &lt;head&gt;
+
+    &lt;title&gt;Understanding CSS z-index: The Stacking Context: Example Source&lt;/title&gt;
+
+    &lt;style type="text/css"&gt;
+      * {
+        margin: 0;
+        }
+      html {
+        padding: 20px;
+        font: 12px/20px Arial, sans-serif;
+        }
+      div {
+        opacity: 0.7;
+        position: relative;
+        }
+      h1 {
+        font: inherit;
+        font-weight: bold;
+        }
+      #div1, #div2 {
+        border: 1px dashed #696;
+        padding: 10px;
+        background-color: #cfc;
+        }
+      #div1 {
+        z-index: 5;
+        margin-bottom: 190px;
+        }
+      #div2 {
+        z-index: 2;
+        }
+      #div3 {
+        z-index: 4;
+        opacity: 1;
+        position: absolute;
+        top: 40px;
+        left: 180px;
+        width: 330px;
+        border: 1px dashed #900;
+        background-color: #fdd;
+        padding: 40px 20px 20px;
+        }
+      #div4, #div5 {
+        border: 1px dashed #996;
+        background-color: #ffc;
+        }
+      #div4 {
+        z-index: 6;
+        margin-bottom: 15px;
+        padding: 25px 10px 5px;
+        }
+      #div5 {
+        z-index: 1;
+        margin-top: 15px;
+        padding: 5px 10px;
+        }
+      #div6 {
+        z-index: 3;
+        position: absolute;
+        top: 20px;
+        left: 180px;
+        width: 150px;
+        height: 125px;
+        border: 1px dashed #009;
+        padding-top: 125px;
+        background-color: #ddf;
+        text-align: center;
+        }
+    &lt;/style&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;div id="div1"&gt;
+      &lt;h1&gt;Division Element #1&lt;/h1&gt;
+      &lt;code&gt;position: relative;&lt;br/&gt;
+      z-index: 5;&lt;/code&gt;
+    &lt;/div&gt;
+
+    &lt;div id="div2"&gt;
+      &lt;h1&gt;Division Element #2&lt;/h1&gt;
+      &lt;code&gt;position: relative;&lt;br/&gt;
+      z-index: 2;&lt;/code&gt;
+    &lt;/div&gt;
+
+    &lt;div id="div3"&gt;
+
+      &lt;div id="div4"&gt;
+        &lt;h1&gt;Division Element #4&lt;/h1&gt;
+        &lt;code&gt;position: relative;&lt;br/&gt;
+        z-index: 6;&lt;/code&gt;
+      &lt;/div&gt;
+
+      &lt;h1&gt;Division Element #3&lt;/h1&gt;
+      &lt;code&gt;position: absolute;&lt;br/&gt;
+      z-index: 4;&lt;/code&gt;
+
+      &lt;div id="div5"&gt;
+        &lt;h1&gt;Division Element #5&lt;/h1&gt;
+        &lt;code&gt;position: relative;&lt;br/&gt;
+        z-index: 1;&lt;/code&gt;
+      &lt;/div&gt;
+   
+      &lt;div id="div6"&gt;
+        &lt;h1&gt;Division Element #6&lt;/h1&gt;
+        &lt;code&gt;position: absolute;&lt;br/&gt;
+        z-index: 3;&lt;/code&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+
+
+<h3 id="Division_Element_.231" name="Division_Element_.231">Div 要素 #1</h3>
+<pre class="brush:css">position: relative;
+z-index: 5;
+</pre>
+
+<div id="div2">
+<h3 id="Division_Element_.232" name="Division_Element_.232">Div 要素 #2</h3>
+<pre class="brush:css">position: relative;
+z-index: 2;
+</pre>
+</div>
+
+<div id="div3">
+<h3 id="Division_Element_.233" name="Division_Element_.233">Div 要素 #3</h3>
+<pre class="brush:css">position: absolute;
+z-index: 4;
+</pre>
+
+
+<div id="div4">
+<h3 id="Division_Element_.234" name="Division_Element_.234">Div 要素 #4</h3>
+<pre class="brush:css">position: relative;
+z-index: 6;
+</pre>
+</div>
+
+
+
+<div id="div5">
+<h3 id="Division_Element_.235" name="Division_Element_.235">Div 要素 #5</h3>
+<pre class="brush:css">position: relative;
+z-index: 1;
+</pre>
+</div>
+
+
+<div id="div6">
+<h3 id="Division_Element_.236" name="Division_Element_.236">Div 要素 #6</h3>
+<pre class="brush:css">position: absolute;
+z-index: 3;
+</pre>
+</div>
+
+
+
+<h2 id="See_also" name="See_also">関連情報</h2>
+<ul>
+  <li><a href="https://developer.mozilla.org/ja/docs/CSS/Understanding_z-index/Stacking_without_z-index" title="CSS/Understanding_z-index/Stacking_without_z-index">z-index なしのスタック</a> : デフォルトのスタック規則</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/CSS/Understanding_z-index/Stacking_and_float" title="CSS/Understanding_z-index/Stacking_and_float">スタックとフロート</a> : フロート要素の扱われ方</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/CSS/Understanding_z-index/Adding_z-index" title="CSS/Understanding_z-index/Adding_z-index">z-index の追加</a> : z-index を使ってデフォルトのスタックを変える</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/CSS/Understanding_z-index/Stacking_context_example_1" title="CSS/Understanding_z-index/Stacking_context_example_1">スタック文脈の例 1</a> : 2 レベルの HTML 階層構造、最終レベルで z-index を使う</li>
+
+  <li><a href="https://developer.mozilla.org/ja/docs/CSS/Understanding_z-index/Stacking_context_example_2" title="CSS/Understanding_z-index/Stacking_context_example_2">スタック文脈の例 2</a> : 2 レベルの HTML 階層構造、すべてのレベルで z-index を使う</li>
+
+  <li><a href="https://developer.mozilla.org/ja/docs/CSS/Understanding_z-index/Stacking_context_example_3" title="CSS/Understanding_z-index/Stacking_context_example_3">スタック文脈の例 3</a> : 3 レベルの HTML 階層構造、2 番めのレベルで z-index を使う</li>
+</ul>
+
+
+
+<div class="originaldocinfo">
+  <h2 id="Original_Document_Information" name="Original_Document_Information">原典情報</h2>
+  <ul>
+    <li>原著者: Paolo Lombardi</li>
+    <li>この記事は原著者が <a class="external" href="http://www.yappy.it">YappY</a> のためにイタリア語で書いた記事の英訳の邦訳です。<a class="external" href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons: Attribution-Sharealike license</a> の条件に従う限り、全内容の共有を認めます。</li>
+    <li>最終更新日: 2005 年 7 月 9 日</li>
+  </ul>
+</div></div>
+                                                </article>
+
+              
+                <!-- attachments list -->
+                                  <section id="page-attachments" class="wiki-block">
+
+  <h3><i aria-hidden="true" class="icon-paperclip"></i>添付ファイル <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/Contributing/Editor_guide/Editing#The_attachments_box"><i aria-hidden="true" title="Learn how to use Attachments" class="icon-question-sign editor-help-icon"></i></a></h3>
+
+  
+  <p id="page-attachments-no-message" class="hidden">
+    This document has no attachments. Images can be attached, and then embedded in the article.
+      </p>
+
+  <script>
+    mdn.wiki.attachments = [{"description": "", "creator": "Lombardp", "mime": "image/png", "date": "2005-07-16 18:16:21", "id": 790, "size": 6910, "title": "understanding_zindex_04.png", "url": "https://mdn.mozillademos.org/files/790/understanding_zindex_04.png", "html": "<tr data-revision-id=\"930\" data-attachment-id=\"790\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/790/understanding_zindex_04.png\" target=\"_blank\">understanding_zindex_04.png</a>\n      <div class=\"attachment-description\"></div>\n  </td>\n  <td>6910 \u30d0\u30a4\u30c8</td>\n  <td>2005-07-16 18:16:21</td>\n  <td><a href=\"/ja/profiles/Lombardp\">Lombardp</a></td>\n</tr>", "creator_url": "/ja/profiles/Lombardp", "revision": 930}, {"description": "", "creator": "ericjung", "mime": "image/png", "date": "2008-05-19 18:26:33", "id": 913, "size": 23532, "title": "XUL_REF_rgb2.png", "url": "https://mdn.mozillademos.org/files/913/XUL_REF_rgb2.png", "html": "<tr data-revision-id=\"1070\" data-attachment-id=\"913\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/913/XUL_REF_rgb2.png\" target=\"_blank\">XUL_REF_rgb2.png</a>\n      <div class=\"attachment-description\"></div>\n  </td>\n  <td>23532 \u30d0\u30a4\u30c8</td>\n  <td>2008-05-19 18:26:33</td>\n  <td><a href=\"/ja/profiles/ericjung\">ericjung</a></td>\n</tr>", "creator_url": "/ja/profiles/ericjung", "revision": 1070}];
+  </script>
+
+
+    <table cellpadding="0" cellspacing="0" id="page-attachments-table" class="">
+      <thead>
+        <th>ファイル</th>
+        <th>サイズ</th>
+        <th>日時</th>
+        <th>添付者:</th>
+      </thead>
+      <tbody>
+                  <tr data-revision-id="930" data-attachment-id="790">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/790/understanding_zindex_04.png" target="_blank">understanding_zindex_04.png</a>
+      <div class="attachment-description"></div>
+  </td>
+  <td>6910 バイト</td>
+  <td>2005-07-16 18:16:21</td>
+  <td><a href="https://developer.mozilla.org/ja/profiles/Lombardp">Lombardp</a></td>
+</tr>
+                  <tr data-revision-id="1070" data-attachment-id="913">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/913/XUL_REF_rgb2.png" target="_blank">XUL_REF_rgb2.png</a>
+      <div class="attachment-description"></div>
+  </td>
+  <td>23532 バイト</td>
+  <td>2008-05-19 18:26:33</td>
+  <td><a href="https://developer.mozilla.org/ja/profiles/ericjung">ericjung</a></td>
+</tr>
+              </tbody>
+    </table>
+
+
+  </section>                
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Understanding_CSS_z-index">Understanding_CSS_z-index</a></li><li><a href="../../../../tag/CSS.html">CSS</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../../profiles/sosleepy.html">sosleepy</a>, <a href="../../../../../profiles/ethertank.html">ethertank</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-17T05:55:10-07:00">2013/05/17 5:55:10</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context">
+            English (US)
+          </option>          <option value="/fr/docs/Web/CSS/Comprendre_z-index/L&#39;empilement_de_couches">
+            Français
+          </option>          <option value="/ko/docs/Web/CSS/Understanding_z-index/The_stacking_context">
+            한국어
+          </option>          <option value="/zh-CN/docs/Web/CSS/Understanding_z-index/The_stacking_context">
+            中文 (简体)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="../../../../../jsi18n/build-1324c0a.js"></script>
+  
+      <!--[if lte IE 8]><script src="/media/redesign/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1324c0a"></script>
+
+          <script>
+        mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1324c0a"></script>
+      
+    <script type="text/javascript">
+      jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":750}</script></body>
+</html>

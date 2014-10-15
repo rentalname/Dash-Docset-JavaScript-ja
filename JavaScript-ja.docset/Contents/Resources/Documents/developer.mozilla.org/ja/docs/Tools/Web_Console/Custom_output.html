@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Custom output in the Web Console - 開発ツール | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="Custom_output.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+                  <link rel="stylesheet" type="text/css" href="../../Tools$styles.css">
+          
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Tools/Web_Console/Custom_output$json">
+  <link rel="canonical" href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/Custom_output" >
+
+            <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Tools/Web_Konsole/Custom_output" title="Custom output in the Web Console">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Custom output in the Web Console">
+  <meta property="og:url" content="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/Custom_output">
+  <meta name="twitter:url" content="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/Custom_output">
+  <meta name="twitter:title" content="Custom output in the Web Console">
+    <meta property="og:description" content="This document describes how you can extend and customize the output of the Web Console and of the Browser Console. Here you can also learn how to extend the object previews we generate in the consoles and in the Object Inspector.">
+  <meta name="description" content="This document describes how you can extend and customize the output of the Web Console and of the Browser Console. Here you can also learn how to extend the object previews we generate in the consoles and in the Object Inspector.">
+  <meta name="twitter:description" content="This document describes how you can extend and customize the output of the Web Console and of the Browser Console. Here you can also learn how to extend the object previews we generate in the consoles and in the Object Inspector.">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Tools/Web_Console/Custom_output" contextmenu="edit-history-menu" class="document zone ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Custom_output.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Custom_output.html#language">言語の選択</a></li>
+          <li><a href="Custom_output.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Tools/Web_Console/Custom_output" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Tools/Web_Console/Custom_output" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+                <div class="zone-article-header" id="document-main"><div class="center">
+          <!-- zone title -->
+          <div class="zone-title"><a href="https://developer.mozilla.org/en-US/docs/Tools">Firefox Developer Tools</a></div>
+          <!-- zone image -->
+          <div class="zone-image"></div>
+        </div></div>
+      
+     <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" ><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+  
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Tools/Web_Konsole/Custom_output" title="Custom output in the Web Console">Deutsch</a></bdi></li>
+                              
+                              <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/Custom_output$locales">Add a translation</a></li>
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/Custom_output$translate?tolocale=ja" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Tools/Web_Console/Custom_output$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Custom_output.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Tools.html" rel="v:url" property="v:title">Firefox Developer Tools</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Web_Console.html" rel="v:url" property="v:title">Web Console</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Custom output in the Web Console</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Custom_output.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Custom output in the Web Console</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="Custom_output.html#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Custom_output.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Custom_output.html#Output_styling" rel="internal">Output styling</a><li><a href="Custom_output.html#Add_messages" rel="internal">Add messages</a><ol><li><a href="Custom_output.html#Use_the_nsIConsoleService" rel="internal">Use the <code>nsIConsoleService</code></a><li><a href="Custom_output.html#Use_the_console_API" rel="internal">Use the console API</a><li><a href="Custom_output.html#Use_the_Web_Console_output_API" rel="internal">Use the Web Console output API</a><ol><li><a href="Custom_output.html#Output_a_message_in_the_Browser_Console" rel="internal">Output a message in the Browser Console</a></ol></li><li><a href="Custom_output.html#Messages_API" rel="internal">Messages API</a><ol><li><a href="Custom_output.html#Messages.BaseMessage" rel="internal"><code>Messages.BaseMessage</code></a><li><a href="Custom_output.html#Messages.Simple" rel="internal"><code>Messages.Simple</code></a><li><a href="Custom_output.html#Messages.Extended" rel="internal"><code>Messages.Extended</code></a></ol></li><li><a href="Custom_output.html#Add_new_types_of_messages" rel="internal">Add new types of messages</a></ol></li><li><a href="Custom_output.html#Customize_previews_for_objects" rel="internal">Customize previews for objects</a><ol><li><a href="Custom_output.html#String-only_output" rel="internal">String-only output</a><li><a href="Custom_output.html#Rich_output" rel="internal">Rich output</a><ol><li><a href="Custom_output.html#Widgets_API" rel="internal">Widgets API</a><li><a href="Custom_output.html#Object_renderers_API" rel="internal">Object renderers API</a><li><a href="Custom_output.html#Add_an_object_renderer" rel="internal">Add an object renderer</a></ol></li><li><a href="Custom_output.html#Add_object_previewers_to_the_server" rel="internal">Add object previewers to the server</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                                          <div id="doc-pending-fallback" class="warning">
+                  この記事はまだ日本語に翻訳されていません。MDN の翻訳はボランティアによって行われています。<a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/Custom_output$translate?tolocale=ja">是非 MDN に登録し、私たちの力になって下さい。</a>                </div>
+              
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                  <p>This document describes how you can extend and customize the output of the <a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console">Web Console</a> and of the <a href="../Browser_Console.html">Browser Console</a>. Here you can also learn how to extend the object previews we generate in the consoles and in the Object Inspector.</p>
+<div class="note">
+ <p>This document is mainly intended for add-on developers who want to extend the Firefox developer tools.</p>
+</div>
+<h2 id="Output_styling">Output styling</h2>
+<p>The main style sheet loaded in the console output is <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/browser/themes/linux/devtools/webconsole.css" rel="custom">webconsole.css</a></code>. You will want to add any styles to this file in your theme. Use the <a href="https://developer.mozilla.org/docs/Tools/Browser_Toolbox">Browser Toolbox</a> or the <a class="external" href="https://addons.mozilla.org/firefox/addon/dom-inspector-6622/">DOM Inspector addon</a> to find the structure of the console output markup, the elements and classes used.</p>
+<p>In your extension you can add styles and custom behavior to the <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/browser/devtools/webconsole/webconsole.xul" rel="custom">webconsole.xul</a></code>.</p>
+<p><a href="https://developer.mozilla.org/Add-ons/Themes">Learn more about theming Firefox.</a></p>
+<h2 id="Add_messages">Add messages</h2>
+<p>To add a message to the Web Console you need to first determine which API you want to use and which tab the message belongs to. You have several options, as described below.</p>
+<h3 id="Use_the_nsIConsoleService">Use the <code>nsIConsoleService</code></h3>
+<p>Create an <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIScriptError" title="">nsIScriptError</a></code> instance and set the <code>innerWindowID</code> of the message to be the same as the inner window ID of the top level window of the tab where you want the message to be displayed. You can also use the inner window ID of any iframe contained within the tab.</p>
+<p>Any message arriving from the <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsiConsoleService" title="">nsiConsoleService</a></code> is put into one of the CSS, Security or JavaScript categories. Make sure you set the correct category and severity for the script error.</p>
+<p>If the script error does not have any inner window ID, or if the ID is incorrect, the message will not be shown in the Web Console of the tab you want. You should see all of these messages in the <a href="../Browser_Console.html">Browser Console</a> (introduced in Firefox 24).</p>
+<p>Example code which uses <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIScriptError" title="">nsIScriptError</a></code>:</p>
+<pre class="brush: js"><code>const { classes: Cc, interfaces: Ci, utils: Cu } = Components;
+const WARN_FLAG = Ci.nsIScriptError.warningFlag;
+const ERROR_FLAG = Ci.nsIScriptError.ERROR_FLAG;
+
+Cu.import("resource://gre/modules/Services.jsm");
+
+// Log a message to the Web Console using an nsIScriptError.
+function logMessage({flags, message, <code>category,</code> url,
+                     lineText, line, column, windowId}) {
+  let scriptError = Cc["@mozilla.org/scripterror;1"]
+                    .createInstance(Ci.nsIScriptError);
+  if (windowId) {
+    scriptError.initWithWindowID(message, url, lineText, line,
+                                 column, flags, category, windowId);
+  } else {
+    scriptError.init(message, url, lineText, line, column, flags, category);
+  }
+  Services.console.logMessage(scriptError);
+}
+
+// Get the innerWindowID of the given window.
+function getInnerWindowID(win) {
+  try {
+     let utils = win.QueryInterface(Ci.nsIInterfaceRequestor)
+                 .getInterface(Ci.nsIDOMWindowUtils);
+     return utils.currentInnerWindowID;
+  } catch (ex) {  }
+
+  return null;
+}
+
+// Log a "hello world" message for a given window |win|.
+logMessage({
+  flags: WARN_FLAG,
+  message: "hello world",
+  url: "http://example.com/script.js",
+  line: 10,
+  windowId: getInnerWindowID(win),
+});
+</code></pre>
+<p>You can also use <code><a href="https://developer.mozilla.org/docs/Components.utils.reportError">Cu.reportError()</a></code> to log script errors. This method is particularly useful with exceptions.</p>
+<p>To log a string to the Browser Console you can use <code><a href="https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/nsIConsoleService#logStringMessage()">nsIConsoleService.logStringMessage()</a></code>.</p>
+<h3 id="Use_the_console_API">Use the console API</h3>
+<p>For any window object you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/console" title="The console object provides access to the browser's debugging console (e.g. the Web Console in Firefox). The specifics of how it works vary from browser to browser, but there is a de facto set of features that are typically provided."><code>console API</code></a> to add messages to the Web Console. Do note that these messages are only associated to the "page logging" category and this should be avoided whenever possible. Users will be confused if they see messages that do not come from their scripts.</p>
+<p>Chrome windows will have their messages shown in the Browser Console. This is useful for addons.</p>
+<p>In <a href="https://developer.mozilla.org/docs/Mozilla/JavaScript_code_modules">JavaScript Modules</a> you can do the following: </p>
+<pre class="brush: js"><code>const {console} = Cu.import("resource://gre/modules/devtools/Console.jsm", {});
+console.log("hello world", foo);
+</code></pre>
+<p>Then any console API call will show in your terminal (string-only, if <a href="https://developer.mozilla.org/docs/Web/API/Window.dump"><code>dump()</code></a> is enabled) and in the Browser Console. Soon you will not need to import <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/toolkit/devtools/Console.jsm" rel="custom">Console.jsm</a></code> - once all patches from <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=965860" title="FIXED: Rewrite ConsoleAPI in C++">bug 965860</a> land.</p>
+<p></p><div> 
+    <span class="indicatorInHeadline minVer geckoMinVerMethod">(Firefox 29.0 / Thunderbird 29.0 / SeaMonkey 2.26)</span> 
+    <h3 id="Use_the_Web_Console_output_API">Use the Web Console output API</h3> 
+</div><p></p>
+<p>First you need to get the <code>WebConsole</code> object instance for the tab you want. For this you need to use the <a href="https://developer.mozilla.org/docs/Tools/DevToolsAPI">DevTools API</a>.</p>
+<pre class="brush: js"><code>const {gDevTools} = Cu.import("resource:///modules/devtools/gDevTools.jsm", {});
+const {devtools} = Cu.import("resource://gre/modules/devtools/Loader.jsm", {});
+
+function getWebConsole(tab) {
+  // |tab| is the XUL tab for the page you want.
+  let target = devtools.TargetFactory.forTab(tab);
+  let toolbox = gDevTools.getToolbox(target);
+  let panel = toolbox ? toolbox.getPanel("webconsole") : null;
+  return panel ? panel.hud : null;
+}</code>
+</pre>
+<p>Once you have the <code>WebConsole</code> object you can add a message like this:</p>
+<pre class="brush: js"><code>// Get the Messages object which holds the main classes of Messages
+// used by the Web Console.
+const {Messages} = devtools.require("devtools/webconsole/console-output");
+
+// Create the simplest message we can.
+let msg = new Messages.Simple("hello world", {
+  category: "js",
+  severity: "error",
+});
+
+// Add it to the output.
+let hud = getWebConsole(myTab);
+hud.ui.output.addMessage(msg);</code></pre>
+<div class="note">
+ <p>HUD (Heads-Up Display) is the old term we used for referring to the Web Console. We continue to use it for convenience.</p>
+</div>
+<h4 id="Output_a_message_in_the_Browser_Console">Output a message in the Browser Console</h4>
+<p>If you want to use the Web Console API to output a message to the Browser Console you can do this:</p>
+<pre class="brush: js"><code>// Get HUDService - the Web/Browser Consoles manager.
+const hudservice = devtools.require("devtools/webconsole/hudservice");
+
+// Get the Browser Console - there can only be one.
+// This method returns null if the Browser Console is not open.
+let browserConsole = hudservice.getBrowserConsole();
+
+// Add a message.
+browserConsole.ui.output.addMessage(msgObject);
+</code></pre>
+<p></p><div> 
+    <span class="indicatorInHeadline minVer geckoMinVerMethod">(Firefox 29.0 / Thunderbird 29.0 / SeaMonkey 2.26)</span> 
+    <h3 id="Messages_API">Messages API</h3> 
+</div><p></p>
+<p>In the following table you see a list of message classes you can use. To create a new message you can do:</p>
+<pre class="brush: js"><code>let msg = new Messages.ConstructorName();</code></pre>
+<table class="standard-table">
+ <caption>
+  List of <code>Message</code> classes</caption>
+ <thead>
+  <tr>
+   <th scope="col">Constructor</th>
+   <th scope="col">Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>BaseMessage()</code></td>
+   <td>The <code>BaseMessage</code> object is used for all types of messages. Every kind of message should use this object as its base. No functionality is provided by this class.</td>
+  </tr>
+  <tr>
+   <td><code>NavigationMarker(url, time)</code></td>
+   <td>
+    <p>The <code>NavigationMarker</code> is used to show a page load event. Arguments:</p>
+    <dl>
+     <dt>
+      <code>url</code> (string):</dt>
+     <dd>
+      the URL to display.</dd>
+     <dt>
+      <code>time</code> (number):</dt>
+     <dd>
+      the message timestamp (milliseconds since the <a class="external" href="https://en.wikipedia.org/wiki/Unix_time">Unix epoch</a>).</dd>
+    </dl>
+   </td>
+  </tr>
+  <tr>
+   <td><code>Simple(msg[, options])</code></td>
+   <td>The <code>Simple</code> message is used to show any basic message in the Web Console. <a href="Custom_output.html#Messages.Simple">See details about the constructor arguments.</a></td>
+  </tr>
+  <tr>
+   <td><code>Extended(msg[, options])</code></td>
+   <td>This class adds support for displaying messages with multiple links inline, objects and custom fragment rendering. <a href="Custom_output.html#Messages.Extended">See details about the constructor arguments.</a></td>
+  </tr>
+  <tr>
+   <td><code>JavaScriptEvalOutput(evalResponse[, errorMessage])</code></td>
+   <td>
+    <p>This is used by the Web Console to display the JS evaluation results. Arguments:</p>
+    <dl>
+     <dt>
+      <code>evalResponse</code> (object):</dt>
+     <dd>
+      the <a href="https://developer.mozilla.org/docs/Tools/Web_Console/remoting#JavaScript_evaluation">JS evaluation response packet</a> received from the server.</dd>
+     <dt>
+      <code>errorMessage</code> (optional, string):</dt>
+     <dd>
+      evaluation error message.</dd>
+    </dl>
+   </td>
+  </tr>
+  <tr>
+   <td><code>ConsoleGeneric(packet)</code></td>
+   <td>Displays a <a href="https://developer.mozilla.org/en-US/docs/Web/API/console" title="The console object provides access to the browser's debugging console (e.g. the Web Console in Firefox). The specifics of how it works vary from browser to browser, but there is a de facto set of features that are typically provided."><code>console API</code></a> method call as described by a <a href="https://developer.mozilla.org/docs/Tools/Web_Console/remoting#Console_API_messages"><code>consoleAPICall</code></a> packet received from the server through the <a class="external" href="https://wiki.mozilla.org/Remote_Debugging_Protocol">remote debugging protocol</a>. This message class is only used for the <code>log(), info(), warn(), error(), exception(), debug(), count()</code> and <code>assert()</code> methods.</td>
+  </tr>
+  <tr>
+   <td><code>ConsoleTrace(packet)</code></td>
+   <td>Displays a <a href="https://developer.mozilla.org/en-US/docs/Web/API/console.trace" title="Outputs a stack trace to the Web Console."><code>console.trace()</code></a> method call.</td>
+  </tr>
+ </tbody>
+</table>
+<div class="note">
+ <p>In this section we do not attempt to provide an exhaustive list of all kinds of messages, methods and properties. You should always check <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/browser/devtools/webconsole/console-output.js" rel="custom">console-output.js</a></code>.</p>
+</div>
+<h4 id="Messages.BaseMessage"><code>Messages.BaseMessage</code></h4>
+<p>The <code>BaseMessage</code> object is used for all types of messages. Every kind of message should use this object as its base. No functionality is provided by this class.</p>
+<table class="standard-table">
+ <caption>
+  <code>BaseMessage</code> methods and properties</caption>
+ <thead>
+  <tr>
+   <th scope="col">Method/property</th>
+   <th scope="col">Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>object output</code></td>
+   <td><code>ConsoleOutput</code> object instance.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement" title="The HTMLElement interface represents any HTML element. Some elements directly implement this interface, others implement it via an interface that inherits it."><code>HTMLElement</code></a> element</code></td>
+   <td>The message DOM element. This is available only after the message is rendered.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/document" title="Each web page loaded in the browser has its own document object. The Document interface serves as an entry point into the web page's content (the DOM tree, including elements such as &lt;body> and &lt;table>) and provides functionality which is global to the document (such as obtaining the page's URL and creating new elements in the document)."><code>document</code></a> document</code></td>
+   <td>The DOM document where the message exists.</td>
+  </tr>
+  <tr>
+   <td><code>string textContent</code></td>
+   <td>The text-only message representation.</td>
+  </tr>
+  <tr>
+   <td><code>object init(output[, parent])</code></td>
+   <td>
+    <p>Message initialization method. Arguments:</p>
+    <dl>
+     <dt>
+      <code>output</code> (object):</dt>
+     <dd>
+      the <code>ConsoleOutput</code> instance that will own the message.</dd>
+     <dt>
+      <code>parent</code> (optional, object):</dt>
+     <dd>
+      parent message. Currently unused.</dd>
+    </dl>
+    <p><strong>Return value:</strong> the message instance itself.</p>
+   </td>
+  </tr>
+  <tr>
+   <td><code>string getRepeatID()</code></td>
+   <td>Non-unique ID for this message object used for tracking duplicate messages. Different message kinds can identify themselves based their own criteria.</td>
+  </tr>
+  <tr>
+   <td><code>object render()</code></td>
+   <td>
+    <p>Render the message. After this method is invoked the <code>message.element</code> property will point to the DOM element of this message.</p>
+    <p><strong>Return value:</strong> the message instance itself.</p>
+   </td>
+  </tr>
+  <tr>
+   <td><code>void _addLinkCallback(element[, callback])</code></td>
+   <td>Add a click callback to the given DOM element. If the callback is not given, a generic anchor click handler is used for opening anchor links in new tabs. Note that the callback is invoked only for single left clicks, not for additional click events (no invocation for right/middle/double clicks). The default event handler is prevented before the callback is invoked.</td>
+  </tr>
+  <tr>
+   <td><code>void destroy()</code></td>
+   <td>Invoked when the message is removed.</td>
+  </tr>
+ </tbody>
+</table>
+<h4 id="Messages.Simple"><code>Messages.Simple</code></h4>
+<p>The <code>Simple</code> message is used to show any basic message in the Web Console. This class extends <code>BaseMessage</code>. Constructor arguments:</p>
+<dl>
+ <dt>
+  <code>message</code> (<code>string|<a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a>|function</code>):</dt>
+ <dd>
+  the message to display. If a DOM element is given the element will be inserted into the message body. If a function is given, then the function is invoked with one argument, the message object, and the result is expected to be a DOM element which is then inserted into the message body.</dd>
+ <dt>
+  <code>options</code> (optional, object):</dt>
+ <dd>
+  options for this message:
+  <dl>
+   <dt>
+    <code>category</code> (string):</dt>
+   <dd>
+    the category that this message belongs to. Defaults to no category.</dd>
+   <dt>
+    <code>severity</code> (string):</dt>
+   <dd>
+    severity of the message. Defaults to no severity.</dd>
+   <dt>
+    <code>timestamp</code> (number):</dt>
+   <dd>
+    date and time when the message was recorded. Defaults to <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/now"><code>Date.now()</code></a>.</dd>
+   <dt>
+    <code>link</code> (string):</dt>
+   <dd>
+    if provided, the message will be wrapped in an anchor pointing to the given URL here.</dd>
+   <dt>
+    <code>linkCallback</code> (function):</dt>
+   <dd>
+    if provided, the message will be wrapped in an anchor. The <code>linkCallback</code> function will be added as click event handler.</dd>
+   <dt>
+    <code>location</code> (object):</dt>
+   <dd>
+    tells the message source: <code>url</code>, <code>line</code>, <code>column</code> and <code>lineText</code>.</dd>
+   <dt>
+    <code>className</code> (string):</dt>
+   <dd>
+    additional element class names for styling purposes.</dd>
+   <dt>
+    <code>private</code> (boolean):</dt>
+   <dd>
+    mark this as a private message.</dd>
+   <dt>
+    <code>filterDuplicates</code> (boolean):</dt>
+   <dd>
+    <code>true</code> if you want this message to be filtered as a potential duplicate message, <code>false</code> otherwise.</dd>
+  </dl>
+ </dd>
+</dl>
+<p>The following table describes a part of the <code>Messages.Simple</code> API:</p>
+<table class="standard-table">
+ <caption>
+  <code>Messages.Simple</code> methods and properties</caption>
+ <thead>
+  <tr>
+   <th scope="col">Method/property</th>
+   <th scope="col">Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>string category</code></td>
+   <td>Message category.</td>
+  </tr>
+  <tr>
+   <td><code>string severity</code></td>
+   <td>Message severity.</td>
+  </tr>
+  <tr>
+   <td><code>object|null location</code></td>
+   <td>Message location: <code>url</code>, <code>line</code>, <code>column</code> and <code>lineText</code>.</td>
+  </tr>
+  <tr>
+   <td><code>number timestamp</code></td>
+   <td>Time in milliseconds since the Unix epoch.</td>
+  </tr>
+  <tr>
+   <td><code>boolean private</code></td>
+   <td>Tells if this message was logged in a private window/tab or not.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> _renderBody()</code></td>
+   <td>Render the message body DOM element.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> _renderRepeatNode()</code></td>
+   <td>Render the DOM element used to display the number of repeats.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> _renderLocation()</code></td>
+   <td>Render the message source location DOM element.</td>
+  </tr>
+ </tbody>
+</table>
+<p>The <code>Simple</code> message class should cover most common needs for message output. Extensions can override the <code>_render*()</code> methods to change the styling or behavior of these types of messages, based on any criteria (category, severity, location, etc).</p>
+<p>Examples:</p>
+<pre class="brush: js"><code>const {Messages} = devtools.require("devtools/webconsole/console-output");
+
+// Add a link.
+let msg = new Messages.Simple("this is a link", {
+  link: "http://example.com/page",
+});
+hud.output.addMessage(msg);
+
+// Add a link with a callback function.
+msg = new Messages.Simple("click me", {
+  linkCallback: function() {
+    msg.element.style.background = "red";
+  },
+});
+hud.output.addMessage(msg);</code></pre>
+<div class="note">
+ <p>Do you find the <code>hud</code> and <code>Messages</code> objects surprising? <a href="Custom_output.html#Use_the_Web_Console_output_API">Learn how to use the Web Console output API.</a></p>
+</div>
+<h4 id="Messages.Extended"><code>Messages.Extended</code></h4>
+<p>The <code>Extended</code> message class is used whenever the Web Console needs to display object actors or messages with multiple elements inline. This class extends the <code>Simple</code> class. Constructor arguments:</p>
+<dl>
+ <dt>
+  <code>messagePieces</code> (array):</dt>
+ <dd>
+  the message to display given as an array of elements. Each array element can be a DOM element, function, <code>ObjectActor</code>, <code>LongString</code> or a string.</dd>
+ <dt>
+  <code>options</code> (optional, object):</dt>
+ <dd>
+  same options as <code>Messages.Simple</code>, plus the following:
+  <dl>
+   <dt>
+    <code>quoteStrings</code> (boolean):</dt>
+   <dd>
+    tells if you want strings to be wrapped in quotes or not.</dd>
+  </dl>
+ </dd>
+</dl>
+<table class="standard-table">
+ <caption>
+  <code>Messages.Extended</code> methods and properties</caption>
+ <thead>
+  <tr>
+   <th scope="col">Method/property</th>
+   <th scope="col">Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> _renderBodyPieceSeparator()</code></td>
+   <td>Render the separator between the pieces of the message.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> _renderBodyPiece(piece)</code></td>
+   <td>Render an element from <code>messagePiece</code>s array.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> _renderValueGrip(grip[, options])</code></td>
+   <td>
+    <p>Render a grip that represents a value received from the server. This method picks the appropriate widget to render the value with. A grip can represent primitive values like strings and booleans, but it can also represent objects. In that case the grip is an <code>ObjectActor</code> grip.</p>
+    <p>Arguments:</p>
+    <dl>
+     <dt>
+      <code>grip</code>:</dt>
+     <dd>
+      the value grip received from the server.</dd>
+     <dt>
+      <code>options</code> (optional, object):</dt>
+     <dd>
+      options for displaying the value:
+      <dl>
+       <dt>
+        <code>noStringQuotes</code> (boolean):</dt>
+       <dd>
+        tells the renderer to not use quotes around strings.</dd>
+       <dt>
+        <code>concise</code> (boolean):</dt>
+       <dd>
+        tells the renderer to compactly display the grip. This is typically set to <code>true</code> when the object needs to be displayed in an array preview, or as a property value in object previews, etc.</dd>
+      </dl>
+     </dd>
+    </dl>
+    <p>This method is invoked by:</p>
+    <ul>
+     <li><code>_renderBodyPiece()</code> if the given <code>piece</code> is not a DOM element nor a function.</li>
+     <li>any other message method or widget method that needs to display inline a value grip. For example, previewers for arrays and objects invoke this method to show array elements or object property values.</li>
+    </ul>
+   </td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> _renderObjectActor(actor[, options])</code></td>
+   <td>Display an object actor with the appropriate renderer. This method takes the same options as <code>_renderValueGrip()</code>. <a href="Custom_output.html#Rich_output">Learn more about how object preview works.</a></td>
+  </tr>
+ </tbody>
+</table>
+<p>Example use:</p>
+<pre class="brush: js"><code>const {Messages} = devtools.require("devtools/webconsole/console-output");
+const XHTML_NS = "http://www.w3.org/1999/xhtml";
+
+// Create a DOM element to be added in this message.
+let file = hud.output.document.createElementNS(XHTML_NS, "a");
+file.textContent = "foobar.js";
+file.href = "http://example.com/foobar.js";
+
+// Use a function to display an interactive button.
+// This is invoked when the message is rendered.
+function button(msg) {
+  let clicks = 0;
+  let elem = msg.document.createElementNS(XHTML_NS, "button");
+  elem.textContent = "click me " + Date.now();
+  elem.onclick = function() {
+    elem.textContent = "clicks " + (++clicks);
+  };
+  return elem;
+}
+
+// Create the message object.
+let pieces = ["there was an error in ", file, button];
+let msg = new Messages.Extended(pieces, {
+  category: "js",
+  severity: "error",
+});
+
+// Make sure a click on the file name opens the anchor in a new tab.
+msg._addLinkCallback(file);
+
+// Add the new message.
+hud.output.addMessage(msg);</code>
+</pre>
+<div class="note">
+ <p>Do you find the <code>hud</code> and <code>Messages</code> objects surprising? <a href="Custom_output.html#Use_the_Web_Console_output_API">Learn how to use the Web Console output API.</a></p>
+</div>
+<h3 id="Add_new_types_of_messages">Add new types of messages</h3>
+<p>If you want to create complex kinds of messages in the Web Console you may want to create a reusable <code>Message</code> class. Simply extend any of the existing message classes:</p>
+<pre class="brush: js"><code>const {Messages} = devtools.require("devtools/webconsole/console-output");
+const Heritage = require("sdk/core/heritage");
+
+Messages.RandomPrefix = function(msg) {
+  this._onClick = this._onClick.bind(this);
+
+  let prefix = this._getPrefix();
+  Messages.Simple.call(this, prefix + msg, {
+    linkCallback: this._onClick,
+  });
+};
+
+Messages.RandomPrefix.prototype = Heritage.extend(Messages.Simple.prototype,
+{
+  _onClick: function() {
+    let body = this.element.querySelector(".body");
+    let newPrefix = this._getPrefix();
+    body.textContent = body.textContent.replace(/^\[[\d.]+\]/, newPrefix);
+  },
+
+  _getPrefix: function() {
+    return "[" + Math.random() + "] ";
+  },
+};
+
+// Later you can use this message class.
+let msg = new Messages.RandomPrefix("oh la la");
+hud.output.addMessage(msg);</code>
+</pre>
+<p>That's all you need for custom messages.</p>
+<h2 id="Customize_previews_for_objects">Customize previews for objects</h2>
+<p>The Web Console does not have direct access to the JavaScript objects from the content page. The console only receives a JSON packet that describes the JS object from the server - these are provided by the <a class="external" href="https://wiki.mozilla.org/Remote_Debugging_Protocol#Objects">Object Actor</a>. You can customize the output for such objects in console client code, and you can also extend the server to add anything you need to the JSON packet.</p>
+<p>For the purpose of this document we describe here the following object actor properties:</p>
+<dl>
+ <dt>
+  <code>type</code> (string):</dt>
+ <dd>
+  the result of <code>typeof</code> for the object.</dd>
+ <dt>
+  <code>class</code> (string):</dt>
+ <dd>
+  The ECMAScript Class of the object to which the instance refers, as a string. This can be anything from <code>RegExp, Number, Date, Array, Set, Map, Object</code> to <code>Window, HTMLDocument, HTMLBodyElement</code>, etc.</dd>
+ <dt>
+  <code>displayString</code> (optional, string):</dt>
+ <dd>
+  the server can include a suggested string for displaying the object.</dd>
+ <dt>
+  <code>preview</code> (optional, object):</dt>
+ <dd>
+  the server can include an object with additional presentational information. For example, for arrays the preview object includes the first 10 elements and the array length. For each object type the preview object can be different.
+  <dl>
+   <dt>
+    <code>kind</code> (optional, string):</dt>
+   <dd>
+    most commonly preview objects include the <code>kind</code> property to indicate the kind of object preview is expected. Different object classes and types can share the same preview kind. For example arrays, typed arrays, sets, <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList" title="The DOMTokenList interface represents a set of space-separated tokens. Such a set is returned by Element.classList, HTMLLinkElement.relList, HTMLAnchorElement.relList or HTMLAreaElement.relList. It is indexed beginning with 0 as with JavaScript Array objects. DOMTokenList is always case-sensitive."><code>DOMTokenList</code></a> and other object classes share the <code>ArrayLike</code> preview format.</dd>
+  </dl>
+ </dd>
+</dl>
+<p class="note">You should set <var>devtools.debugger.log</var> to <code>true</code> in <a>about:config</a> to see the raw JSON packets sent and received by the debugger server.</p>
+<p></p><div> 
+    <span class="indicatorInHeadline minVer geckoMinVerMethod">(Firefox 29.0 / Thunderbird 29.0 / SeaMonkey 2.26)</span> 
+    <h3 id="String-only_output">String-only output</h3> 
+</div><p></p>
+<p>String-only output is used by the object inspector in the Web Console and in the JS Debugger. The web console uses this approach when rich output renderers are not available for any given object.</p>
+<p>String-only previews are generated by <code>VariablesView.getString()</code> - see <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/browser/devtools/shared/widgets/VariablesView.jsm" rel="custom">VariablesView.jsm</a></code>. You can add stringifiers, functions that are given the value grip from the server.</p>
+<p>Stringifiers are grouped as follows:</p>
+<table class="standard-table">
+ <caption>
+  List of <code>VariablesView</code> stringifier categories</caption>
+ <thead>
+  <tr>
+   <th scope="col">Object</th>
+   <th scope="col">Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>VariablesView.stringifiers.byType</code></td>
+   <td>Here you can add a stringifier for the object type you want. For example <code>VariablesView.stringifiers.byType.string</code> is used for displaying strings. In this object you can also find stringifiers for <code>longString</code> and <code>object</code>.</td>
+  </tr>
+  <tr>
+   <td><code>VariablesView.stringifiers.byObjectClass</code></td>
+   <td>Stringifiers for native object classes. For example, here you can find functions for displaying <code>Number</code>. <code>Date</code>, <code>RegExp</code> and more.</td>
+  </tr>
+  <tr>
+   <td><code>VariablesView.stringifiers.byObjectKind</code></td>
+   <td>Stringifiers for object previewer "kinds". Here you can see the stringifiers used for <code>ArrayLike</code>, <code>MapLike</code>, <code>DOMNode</code> and more.</td>
+  </tr>
+ </tbody>
+</table>
+<p>Each of the objects in the table above holds a map of types, object classes or object kinds to functions. The function is invoked with the following arguments:</p>
+<dl>
+ <dt>
+  <code>valueGrip</code>:</dt>
+ <dd>
+  the value grip as defined in the <a class="external" href="https://wiki.mozilla.org/Remote_Debugging_Protocol#Grips">remote debugger protocol</a>.</dd>
+ <dt>
+  <code>options</code> (object, optional):</dt>
+ <dd>
+  Options for string display:
+  <dl>
+   <dt>
+    <code>concise</code> (boolean):</dt>
+   <dd>
+    tells if a concisely formatted string should be generated. This is used when the object preview is part of the preview of a parent object. For example, <code>concise</code> is set to <code>true</code> when previews for array elements are generated.</dd>
+   <dt>
+    <code>noStringQuotes</code> (boolean):</dt>
+   <dd>
+    tells to not quote strings.</dd>
+   <dt>
+    <code>noEllipsis</code> (boolean):</dt>
+   <dd>
+    tells to not add an ellipsis after the initial text of a <code>longString</code>.</dd>
+  </dl>
+ </dd>
+</dl>
+<div class="note">
+ <p>The stringifiers take the same arguments as <code>VariablesView.getString()</code>. This is the description of the <code>getString()</code> arguments.</p>
+</div>
+<p><strong>Return value:</strong> each stringifier is expected to return the string to be displayed. If the stringifier returns <code>null</code>, then a more generic stringifier is used. You can use this return value to explicitly notify you cannot provide a preview for the given value grip.</p>
+<p>Here is an example stringifier used for displaying functions:</p>
+<pre class="brush: js"><code>const {VariablesView} = Cu.import("resource:///modules/devtools/VariablesView.jsm", {});
+
+VariablesView.stringifiers.byObjectClass.Function = function(grip, {concise}) {
+  let name = grip.userDisplayName || grip.displayName || grip.name || "";
+  name = VariablesView.getString(name, { noStringQuotes: true });
+
+  let params = grip.parameterNames || "";
+  if (!concise) {
+    return "function " + name + "(" + params + ")";
+  }
+  return (name || "function ") + "(" + params + ")";
+};</code></pre>
+<p></p><div> 
+    <span class="indicatorInHeadline minVer geckoMinVerMethod">(Firefox 30.0 / Thunderbird 30.0 / SeaMonkey 2.27)</span> 
+    <h3 id="Rich_output">Rich output</h3> 
+</div><p></p>
+<p>The Web Console <code><a href="Custom_output.html#Messages_API">Message</a></code> objects use <code>Widgets</code> to display object actors, stack frames and other well-contained output elements that can be reused between different messages.</p>
+<p>Here is an example <code>Message</code> class that uses the <code>Stacktrace</code> widget:</p>
+<pre class="brush: js"><code>// Get the Widgets object - this is where we can find all of the
+// console output widgets.
+const {Messages, Widgets} = devtools.require("devtools/webconsole/console-output");
+const Heritage = require("sdk/core/heritage");
+
+// The stacktrace argument is expected to use the same format as that
+// of the console.trace() calls provided over the remote debugging protocol.
+Messages.StalkyMuch = function(stacktrace) {
+  Messages.BaseMessage.call(this);
+  this._stacktrace = stacktrace;
+};
+
+Messages.StalkyMuch.prototype = Heritage.extend(Messages.BaseMessage.prototype,
+{
+  render: function() {
+    let stack = new Widgets.Stacktrace(this, this._stacktrace).render();
+    let render = Messages.BaseMessage.prototype.render.bind(this);
+    render().element.appendChild(stack.element);
+    return this;
+  },
+};
+
+// Later you can do this:
+let msg = new Messages.StalkyMuch(stackFromServer);
+hud.output.addMessage(msg);</code></pre>
+<div class="note">
+ <p><strong>Tip 1:</strong> You can see the actual <code>Messages.ConsoleTrace</code> and <code>Widgets.Stacktrace</code> implementations in <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/browser/devtools/webconsole/console-output.js" rel="custom">console-output.js</a></code>.</p>
+ <p><strong>Tip 2:</strong> Do you find the <code>hud</code> and <code>Messages</code> objects surprising? <a href="Custom_output.html#Use_the_Web_Console_output_API">Learn how to use the Web Console output API.</a></p>
+</div>
+<h4 id="Widgets_API">Widgets API</h4>
+<p>The table below is an overview of the available widgets you can use.</p>
+<table class="standard-table">
+ <caption>
+  List of <code>Widget</code> classes</caption>
+ <thead>
+  <tr>
+   <th scope="col">Constructor</th>
+   <th scope="col">Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>BaseWidget(message)</code></td>
+   <td>This is the base class for all widgets. The <code>message</code> argument needs to be the parent message instance.</td>
+  </tr>
+  <tr>
+   <td><code>MessageTimestamp(message, timestamp)</code></td>
+   <td>Widget used to display the timestamp for each message. The <code>timestamp</code> argument must be the number of milliseconds since the UNIX epoch.</td>
+  </tr>
+  <tr>
+   <td><code>JSObject(message, objectActor[, options])</code></td>
+   <td>This is used to display object actors for which we do not have any more specific object renderer. This is also the base class for all of the <code>ObjectRenderers</code>.</td>
+  </tr>
+  <tr>
+   <td><code>LongString(message, longStringActor)</code></td>
+   <td>This is used to display long strings.</td>
+  </tr>
+  <tr>
+   <td><code>Stacktrace(message, stacktrace)</code></td>
+   <td>This is used to display stack traces.</td>
+  </tr>
+ </tbody>
+</table>
+<p>The <code>BaseWidget</code> API:</p>
+<table class="standard-table">
+ <caption>
+  The <code>BaseWidget</code> methods and properties</caption>
+ <thead>
+  <tr>
+   <th scope="col">Method/property</th>
+   <th scope="col">Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>object message</code></td>
+   <td>The owning message object.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> element</code></td>
+   <td>The DOM element of the widget. This is available after <code>render()</code> is invoked.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/document" title="Each web page loaded in the browser has its own document object. The Document interface serves as an entry point into the web page's content (the DOM tree, including elements such as &lt;body> and &lt;table>) and provides functionality which is global to the document (such as obtaining the page's URL and creating new elements in the document)."><code>document</code></a> document</code></td>
+   <td>The DOM document where the widget is rendered.</td>
+  </tr>
+  <tr>
+   <td><code>object output</code></td>
+   <td>The <code>ConsoleOutput</code> instance that owns this widget.</td>
+  </tr>
+  <tr>
+   <td><code>object render()</code></td>
+   <td>
+    <p>Renders the widget's DOM element. This method must make the <code>this.element</code> property available for use.</p>
+    <p><strong>Return value:</strong> the widget instance itself.</p>
+   </td>
+  </tr>
+  <tr>
+   <td><code>void destroy()</code></td>
+   <td>Destroy the widget instance - remove any event listeners to avoid memory leaks.</td>
+  </tr>
+  <tr>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> el(tagName[, attributes[, textContent]])</code><br>
+    <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/element" title="The Element interface represents an object of a Document. This interface describes methods and properties common to all kinds of elements. Specific behaviors are described in interfaces which inherit from Element but add additional functionality."><code>element</code></a> el(tagName[, textContent])</code></td>
+   <td>
+    <p>Helper for creating DOM elements. Arguments:</p>
+    <dl>
+     <dt>
+      <code>tagName</code> (string):</dt>
+     <dd>
+      the tag name for the new DOM element. Optionally you can add <code>#id</code> at the end and <code>.class.names.you.need</code>, these will be added as proper class names and the element ID will also be set.</dd>
+     <dt>
+      <code>attributes</code> (optional, object):</dt>
+     <dd>
+      a map of attribute names and values to set for the new DOM element.</dd>
+     <dt>
+      <code>textContent</code> (optional, string):</dt>
+     <dd>
+      the text content to add to the element.</dd>
+    </dl>
+    <p>Usage:</p>
+    <pre class="brush: js">
+<code>// Create element "tag" with ID "id"
+// and two class names: "class" and "names".
+this.el("tag#id.class.names");
+
+// A &lt;span attr1=value1&gt; element
+this.el("span", { attr1: "value1"}) 
+
+// A &lt;p attr1=value1&gt;text content&lt;p&gt; element.
+this.el("p", { attr1: "value1", ... }, "text content");
+
+// A &lt;p&gt;text content&lt;/p&gt; element.
+this.el("p", "text content");</code>
+</pre>
+   </td>
+  </tr>
+ </tbody>
+</table>
+<p>As an example, here is the <code>MessageTimestamp</code> widget from <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/browser/devtools/webconsole/console-output.js" rel="custom">console-output.js</a></code>:</p>
+<pre class="brush: js"><code>const {devtools} = Cu.import("resource://gre/modules/devtools/Loader.jsm", {});
+const {Widgets} = devtools.require("devtools/webconsole/console-output");
+const Heritage = require("sdk/core/heritage");
+const WebConsoleUtils = require("devtools/toolkit/webconsole/utils").Utils;
+const STRINGS_URI = "chrome://browser/locale/devtools/webconsole.properties";
+const l10n = new WebConsoleUtils.l10n(STRINGS_URI);
+const XHTML_NS = "http://www.w3.org/1999/xhtml";
+
+Widgets.MessageTimestamp = function(message, timestamp) {
+  Widgets.BaseWidget.call(this, message);
+  this.timestamp = timestamp;
+};
+
+Widgets.MessageTimestamp.prototype = Heritage.extend(Widgets.BaseWidget.prototype,
+{
+  timestamp: 0,
+  render: function() {
+    if (this.element) {
+      return this;
+    }
+
+    this.element = this.document.createElementNS(XHTML_NS, "span");
+    this.element.className = "timestamp devtools-monospace";
+    this.element.textContent = l10n.timestampString(this.timestamp) + " ";
+
+    return this;
+  },
+});</code></pre>
+<h4 id="Object_renderers_API">Object renderers API</h4>
+<p>For rich output of objects we use widgets and we keep them grouped in the <code>Widgets.ObjectRenderers</code> object. Most often <code>Widgets.JSObject</code> is the base class of all these object renderers, but that is not a requirement - it's just for convenience.</p>
+<table class="standard-table">
+ <caption>
+  List of <code>ObjectRenderer</code> categories</caption>
+ <thead>
+  <tr>
+   <th scope="col">Object</th>
+   <th scope="col">Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>Widgets.ObjectRenderers.byClass</code></td>
+   <td>Widgets for specific object classes. Here you can find the widgets used to display objects like <code>Date</code> and <code>Function</code>.</td>
+  </tr>
+  <tr>
+   <td><code>Widgets.ObjectRenderers.byKind</code></td>
+   <td>Widgets for specific preview kinds. Here you can find the widgets used to display <code>ArrayLike, MapLike, DOMEvent, DOMNode</code> objects and more.</td>
+  </tr>
+ </tbody>
+</table>
+<p>Each widget constructor from ObjectRenderers is invoked with the same arguments as the <code>_renderObjectActor(objectActor[, options])</code> method from <code><a href="Custom_output.html#Messages.Extended">Messages.Extended</a></code>:</p>
+<dl>
+ <dt>
+  <code>objectActor</code> (object):</dt>
+ <dd>
+  the <code>ObjectActor</code> grip received from the server.</dd>
+ <dt>
+  <code>options</code> (optional, object):</dt>
+ <dd>
+  options for displaying the value:
+  <dl>
+   <dt>
+    <code>noStringQuotes</code> (boolean):</dt>
+   <dd>
+    tells the renderer to not use quotes around strings.</dd>
+   <dt>
+    <code>concise</code> (boolean):</dt>
+   <dd>
+    tells the renderer to compactly display the grip. This is typically set to <code>true</code> when the object needs to be displayed in an array preview, or as a property value in object previews, etc.</dd>
+  </dl>
+ </dd>
+</dl>
+<p>The <code>ObjectRenderer</code> widgets can also have a static method named <code>canRender(objectActor)</code>. This is invoked, if available, before the widget is constructed. This method is given only the <code>ObjectActor</code> grip. If <code>true</code> is returned, the widget is used to display the object, otherwise a more generic renderer is used.</p>
+<h4 id="Add_an_object_renderer">Add an object renderer</h4>
+<p>We have a helper function for adding object renderers, this is <code>Widgets.ObjectRenders.add(descriptor)</code>. Properties:</p>
+<dl>
+ <dt>
+  <code>byClass</code> (optional, string):</dt>
+ <dd>
+  this renderer will be used for the given object class.</dd>
+ <dt>
+  <code>byKind</code> (optional, string):</dt>
+ <dd>
+  this renderer will be used for the given object kind. One of the <code>byClass</code> or <code>byKind</code> properties must be provided.</dd>
+ <dt>
+  <code>extends</code> (optional, object):</dt>
+ <dd>
+  the renderer object extends the given object. Default: <code>Widgets.JSObject</code>.</dd>
+ <dt>
+  <code>boolean canRender(objectActor)</code> (optional, function):</dt>
+ <dd>
+  this method is invoked when a candidate object needs to be displayed. The function is invoked as a static method, as such, none of the properties of the renderer object will be available. One argument is passed to the function: the object actor grip received from the server. If the method returns <code>true</code>, then this renderer is used for displaying the object, otherwise not.</dd>
+ <dt>
+  <code>void initialize(ownerMessage, objectActor[, options])</code> (optional, function):</dt>
+ <dd>
+  the constructor of the renderer widget. This function is invoked with the following arguments:
+  <ul>
+   <li>the owner message object instance,</li>
+   <li>the object actor grip to display, and</li>
+   <li>an options object. Read the previous section for details about this object.</li>
+  </ul>
+ </dd>
+ <dt>
+  <code>void render()</code> (required, function):</dt>
+ <dd>
+  the method that displays the given object actor. This method must make the <code>this.element</code> property available for use, as explained in the previous section.</dd>
+</dl>
+<p>Any other methods and properties in the descriptor will be set on the prototype of the new Widget object that is added to <code>Widgets.ObjectRenderers</code>.</p>
+<p>As an example here is the object renderer used for <code>Date</code>:</p>
+<pre class="brush: js"><code>const {devtools} = Cu.import("resource://gre/modules/devtools/Loader.jsm", {});
+const {Widgets} = devtools.require("devtools/webconsole/console-output");
+
+Widgets.ObjectRenderers.add({
+  byClass: "Date",
+
+  render: function() {
+    let {preview} = this.objectActor;
+    this.element = this.el("span.class-" + this.objectActor.class);
+
+    let anchorText = this.objectActor.class;
+    let anchorClass = "cm-variable";
+    if ("timestamp" in preview &amp;&amp; typeof preview.timestamp != "number") {
+      anchorText = new Date(preview.timestamp).toString(); // invalid date
+      anchorClass = "";
+    }
+
+    this._anchor(anchorText, { className: anchorClass });
+
+    if (!("timestamp" in preview) || typeof preview.timestamp != "number") {
+      return;
+    }
+
+    this._text(" ");
+
+    let elem = this.el("span.cm-string-2", new Date(preview.timestamp).toISOString());
+    this.element.appendChild(elem);
+  },
+});</code></pre>
+<p></p><div> 
+    <span class="indicatorInHeadline minVer geckoMinVerMethod">(Firefox 29.0 / Thunderbird 29.0 / SeaMonkey 2.26)</span> 
+    <h3 id="Add_object_previewers_to_the_server">Add object previewers to the server</h3> 
+</div> The debugger server sends <a class="external" href="https://wiki.mozilla.org/Remote_Debugging_Protocol#Objects">Object Actor</a> grips to the client. The JSON packets are generated in <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/toolkit/devtools/server/actors/script.js" rel="custom">script.js</a></code>. To add more details to object actors you need to add your function to the <code>DebuggerServer.ObjectActorPreviewers</code> object. This object maps native object class names to arrays of functions, see the <code>class</code> property of <code><a href="https://developer.mozilla.org/en-US/docs/SpiderMonkey/JS_Debugger_API_Reference/Debugger.Object">Debugger.Object</a></code>.<p></p>
+<p> </p>
+<p>When the debugger server is asked for an object actor with class <var>k</var> it goes through each function of <code>DebuggerServer.ObjectActorPreviewers[k]</code>. If the function returns <code>true</code> the search for an object previewer stops. If none of the functions return <code>true</code> then the search starts again in the generic "Object" class, the <code>DebuggerServer.ObjectActorPreviewers.Object</code> array. Here you can add functions that add preview details based on different criteria than the object class.</p>
+<p>Your function is invoked with the following arguments:</p>
+<dl>
+ <dt>
+  <code>objectActor</code> (object):</dt>
+ <dd>
+  the ObjectActor instance for which an object preview is needed.</dd>
+ <dt>
+  <code>grip</code> (object):</dt>
+ <dd>
+  the actor grip, the object which will be sent to the client through the remote debugging protocol.</dd>
+ <dt>
+  <code>rawObject</code> (optional, object):</dt>
+ <dd>
+  this is the raw JavaScript object from the content page without any content script changes. For example, given a DOM element you will not find properties added by the content scripts. This argument is optional because we cannot always provide an unmodified JS object.</dd>
+</dl>
+<p>The previewer function needs to modify the <code>grip</code> object to add any additional properties needed in the client. The convention is to use a <code>grip.preview</code> object where you add anything you see fit. Do note that these previewers are invoked often - please exercise care and pay attention to performance.</p>
+<p>Things to note:</p>
+<ul>
+ <li>the <code>objectActor</code> argument holds the <code>obj</code> property which is a <code>Debugger.Object</code> which wraps the JS object we work with.</li>
+ <li>you will need to use the aforementioned <code>Debugger.Object</code> API to read properties from <code>obj</code> and/or execute functions in the content page.</li>
+ <li>the <code>rawObj</code> argument is subject to <a href="https://developer.mozilla.org/docs/Mozilla/XPConnect/XPConnect_wrappers">XPConnect wrapping</a>.</li>
+ <li>before you can send an object to the client you need to: (1) make it a Debuggee value, using the <code>makeDebuggeeValue()</code> method of <code>Debugger.Object</code> (if it is not already a debugger object), then (2) call the <code>createValueGrip()</code> method of the <code>ThreadActor</code> - it is available through <code>objectActor.threadActor</code>.</li>
+ <li>rule of thumb: never trust that the object you work with has the expected properties. This is why you should always use the <a href="https://developer.mozilla.org/docs/SpiderMonkey/JS_Debugger_API_Guide">Debugger API</a> to work with such objects.</li>
+ <li>you will most-likely want to look at <code><a class="external" href="http://mxr.mozilla.org/mozilla-central/source/toolkit/devtools/server/actors/script.js" rel="custom">script.js</a></code>.</li>
+</ul>
+<p>Examples from the codebase:</p>
+<pre class="brush: js"><code>// Import the DebuggerServer.
+const {DebuggerServer} = Cu.import("resource://gre/modules/devtools/dbg-server.jsm", {});
+const {DevToolsUtils} = Cu.import("resource://gre/modules/devtools/DevToolsUtils.jsm", {});
+
+// Add the previewer for CSSStyleRules in the generic Object class.
+// Use unshift() to add elements in front of other previewers.
+DebuggerServer.ObjectActorPreviewers.Object
+  .unshift(function CSSStyleRule({obj, threadActor}, aGrip, aRawObj) {
+    // Check if this is the type of object we can provide previews for.
+    if (!aRawObj || !(aRawObj instanceof Ci.nsIDOMCSSStyleRule)) {
+      return false;
+    }
+    aGrip.preview = {
+      kind: "ObjectWithText",
+      text: threadActor.createValueGrip(aRawObj.selectorText),
+    };
+    return true;
+  },
+
+  // The previewer we use for Errors.
+  function Error({obj, threadActor}, aGrip) {
+    switch (obj.class) {
+      case "Error":
+      case "EvalError":
+      case "RangeError":
+      case "ReferenceError":
+      case "SyntaxError":
+      case "TypeError":
+      case "URIError":
+        let name = DevToolsUtils.getProperty(obj, "name");
+        let msg = DevToolsUtils.getProperty(obj, "message");
+        let stack = DevToolsUtils.getProperty(obj, "stack");
+        let fileName = DevToolsUtils.getProperty(obj, "fileName");
+        let lineNumber = DevToolsUtils.getProperty(obj, "lineNumber");
+        let columnNumber = DevToolsUtils.getProperty(obj, "columnNumber");
+        aGrip.preview = {
+          kind: "Error",
+          name: threadActor.createValueGrip(name),
+          message: threadActor.createValueGrip(msg),
+          stack: threadActor.createValueGrip(stack),
+          fileName: threadActor.createValueGrip(fileName),
+          lineNumber: threadActor.createValueGrip(lineNumber),
+          columnNumber: threadActor.createValueGrip(columnNumber),
+        };
+        return true;
+      default:
+        return false;
+    }
+  });</code></pre>
+<p>This is all! Thank you for reading and extending our developer tools! Do you have questions? <a class="external" href="https://wiki.mozilla.org/DevTools/GetInvolved">Contact the developer tools team.</a></p>
+                              </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Extensions">Extensions</a></li><li><a href="../../tag/Guide.html">Guide</a></li><li><a href="../../tag/Reference.html">Reference</a></li><li><a href="../../tag/web console.html">web console</a></li><li><a href="../../tag/Référence.html">Référence</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/Delapouite">Delapouite</a>, <a href="https://developer.mozilla.org/ja/profiles/cold%20sun">cold sun</a>, <a href="https://developer.mozilla.org/ja/profiles/mihaisucan">mihaisucan</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/cold%20sun">cold sun</a>,
+                      <time datetime="2014-08-28T14:15:22-07:00">2014/08/28 14:15:22</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="Custom_output.html#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                                  <!-- zone subnav -->
+                    <nav class="zone-subnav-container" role="navigation">
+    <div class="subnav" id="Subnav">
+      
+<ol>
+ <li><a href="Custom_output.html#">Creating</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Scratchpad">Scratchpad</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Style_Editor">Style Editor</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Shader_Editor">Shader Editor</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Audio_Editor">Web Audio Editor</a></li>
+  </ol>
+ </li>
+ <li><a href="Custom_output.html#">Debugging</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector">Page Inspector</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console">Web Console</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger">Debugger</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor">Network Monitor</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Storage_Inspector">Storage Inspector</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/GCLI">Developer Toolbar</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/3D_View">3D View</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Eyedropper">Eyedropper</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/tools/Working_with_iframes">Selecting iframes</a></li>
+  </ol>
+ </li>
+ <li><a href="Custom_output.html#">Mobile</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/Firefox_OS/Using_the_App_Manager">App Manager</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/WebIDE">WebIDE</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging/Firefox_for_Android">Firefox for Android</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Firefox_OS_Simulator">Firefox OS Simulator</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Responsive_Design_View">Responsive Design View</a></li>
+  </ol>
+ </li>
+ <li><a href="Custom_output.html#">Performance</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Performance">Performance</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Profiler">Profiler</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Paint_Flashing_Tool">Paint Flashing Tool</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Reflow_events">Reflow Event Logging</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor#Performance_analysis">Network Performance</a></li>
+  </ol>
+ </li>
+ <li><a href="Custom_output.html#">Debugging the browser</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Browser_Console">Browser Console</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Browser_Toolbox">Browser Toolbox</a></li>
+  </ol>
+ </li>
+ <li><a href="Custom_output.html#">Extending the devtools</a>
+  <ol>
+   <li><a href="https://wiki.mozilla.org/Remote_Debugging_Protocol">Remote Debugging Protocol</a></li>
+   <li><a href="https://wiki.mozilla.org/Remote_Debugging_Protocol_Stream_Transport">Stream Transport</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Editor">Source Editor</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger-API">The <code>Debugger</code> Interface</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/Custom_output">Web Console custom output</a></li>
+  </ol>
+ </li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Tools_Toolbox#Settings">Settings</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Tools/Release_notes">Release notes</a></li>
+</ol>
+    </div>
+  </nav>&nbsp;
+                
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/en-US/docs/Tools/Web_Console/Custom_output" selected>
+          English (US)
+        </option>
+                  <option value="/de/docs/Tools/Web_Konsole/Custom_output">
+            Deutsch
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":1000}</script></body>
+</html>

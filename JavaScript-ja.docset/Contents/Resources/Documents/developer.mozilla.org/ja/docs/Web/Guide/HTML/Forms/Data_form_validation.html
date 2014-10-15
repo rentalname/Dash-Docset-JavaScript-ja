@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>データフォームの検証 - Web developer guide | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../../index.html">
+  <link rel="copyright" href="Data_form_validation.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$json">
+  <link rel="canonical" href="Data_form_validation.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation" title="Data form validation">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="データフォームの検証">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation">
+  <meta name="twitter:title" content="データフォームの検証">
+    <meta property="og:description" content="サーバでは常にデータを検証するべきですが、追加のデータ検証を Web ページ自身で行うことにも多くの利点があります。いろいろな点で、 ユーザはフォームに悩まされています 。ユーザがフォームに入力している間にデータを検証することで、ユーザは何らかのミスをしたことを直ちに知ることができます。これはユーザが HTTP のレスポンスを待つ時間を減らし、またサーバで誤ったフォーム入力を扱うことがないようにします。本記事では、フォームの Web コンテンツでデータを検証する方法について扱います。">
+  <meta name="description" content="サーバでは常にデータを検証するべきですが、追加のデータ検証を Web ページ自身で行うことにも多くの利点があります。いろいろな点で、 ユーザはフォームに悩まされています 。ユーザがフォームに入力している間にデータを検証することで、ユーザは何らかのミスをしたことを直ちに知ることができます。これはユーザが HTTP のレスポンスを待つ時間を減らし、またサーバで誤ったフォーム入力を扱うことがないようにします。本記事では、フォームの Web コンテンツでデータを検証する方法について扱います。">
+  <meta name="twitter:description" content="サーバでは常にデータを検証するべきですが、追加のデータ検証を Web ページ自身で行うことにも多くの利点があります。いろいろな点で、 ユーザはフォームに悩まされています 。ユーザがフォームに入力している間にデータを検証することで、ユーザは何らかのミスをしたことを直ちに知ることができます。これはユーザが HTTP のレスポンスを待つ時間を減らし、またサーバで誤ったフォーム入力を扱うことがないようにします。本記事では、フォームの Web コンテンツでデータを検証する方法について扱います。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/Guide/HTML/Forms/Data_form_validation" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Data_form_validation.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Data_form_validation.html#language">言語の選択</a></li>
+          <li><a href="Data_form_validation.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/Guide/HTML/Forms/Data_form_validation" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/Guide/HTML/Forms/Data_form_validation" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../HTML.html">HTML</a></li>
+              <li><a href="../../../CSS.html">CSS</a></li>
+              <li><a href="../../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../API.html">API / DOM</a></li>
+              <li><a href="../../../Apps.html">Apps</a></li>
+              <li><a href="../../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Reference.html">レファレンス</a></li>
+              <li><a href="../../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../../Tools.html">ツール</a></li><li><a href="../../../../../demos/index.html">MDN デモ</a></li><li><a href="../../../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation" title="Data form validation">English (US)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Data_form_validation.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../HTML.html" rel="v:url" property="v:title">HTML</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Forms.html" rel="v:url" property="v:title">HTML フォームガイド</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">データフォームの検証</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Data_form_validation.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>データフォームの検証</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Data_form_validation.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Data_form_validation.html#Using_browser-supplied_form_validation" rel="internal">ブラウザが提供するフォーム検証の利用</a><ol><li><a href="Data_form_validation.html#When_an_element_is_invalid" rel="internal">要素が不正であるとき</a><li><a href="Data_form_validation.html#Validation_constraints_on_.7B.7BHTMLElement(.22input.22).7D.7D_elements" rel="internal"><code>&lt;input&gt;</code> 要素の検証制約</a><ol><li><a href="Data_form_validation.html#A_simple_example" rel="internal">例</a><li><a href="Data_form_validation.html#The_required_attribute" rel="internal">required 属性</a></ol></li><li><a href="Data_form_validation.html#Other_validation_constraints" rel="internal">その他の検証制約</a><li><a href="Data_form_validation.html#Customized_error_messages" rel="internal">独自のエラーメッセージ</a></ol></li><li><a href="Data_form_validation.html#Validating_forms_using_JavaScript" rel="internal">JavaScript を使用してフォームを検証する</a><ol><li><a href="Data_form_validation.html#The_HTML5_constraint_validation_API" rel="internal">HTML5 constraint validation API</a><ol><li><a href="Data_form_validation.html#Constraint_validation_API_properties" rel="internal">Constraint validation API のプロパティ</a><li><a href="Data_form_validation.html#Constraint_validation_API_methods" rel="internal">Constraint validation API のメソッド</a><li><a href="Data_form_validation.html#Example_using_the_constraint_validation_API" rel="internal">constraint validation API の使用例</a></ol></li><li><a href="Data_form_validation.html#Validating_forms_without_a_built-in_API" rel="internal">組み込み API を使用しないフォーム検証</a><ol><li><a href="Data_form_validation.html#Example_that_doesn't_use_the_constraint_validation_API" rel="internal">constraint validation API を使用しない例</a><li><a href="Data_form_validation.html#Remote_validation" rel="internal">リモート検証</a></ol></li></ol></li><li><a href="Data_form_validation.html#Conclusion" rel="internal">おわりに</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>サーバでは常にデータを検証するべきですが、追加のデータ検証を Web ページ自身で行うことにも多くの利点があります。いろいろな点で、<a class="external" href="http://www.slideshare.net/jwegesin/forms-suck" rel="external" title="http://www.slideshare.net/jwegesin/forms-suck">ユーザはフォームに悩まされています</a>。ユーザがフォームに入力している間にデータを検証することで、ユーザは何らかのミスをしたことを直ちに知ることができます。これはユーザが HTTP のレスポンスを待つ時間を減らし、またサーバで誤ったフォーム入力を扱うことがないようにします。本記事では、フォームの Web コンテンツでデータを検証する方法について扱います。</p>
+<h2 id="Using_browser-supplied_form_validation" name="Using_browser-supplied_form_validation">ブラウザが提供するフォーム検証の利用</h2>
+<p><a href="../../../HTML/HTML5.html" title="/ja/docs/HTML/HTML5">HTML5</a> の機能のひとつとして、スクリプトに頼ることなくほとんどのユーザデータを検証できることがあります。これは フォーム関連要素の<a class="new" href="https://developer.mozilla.org/ja/docs/HTML/HTML5/Constraint_validation" title="/ja/docs/HTML/HTML5/Constraint_validation">検証関連属性</a>で行われます。</p>
+<h3 id="When_an_element_is_invalid" name="When_an_element_is_invalid">要素が不正であるとき</h3>
+<p>要素が不正な状態であるとき、2 つのことが起こります:</p>
+<ul>
+  <li>要素が <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> CSS 疑似クラスにマッチします。これにより、不正な要素に特定のスタイルを適用できます。同様に、正当な状態の要素は <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:valid" title=""><code>:valid</code></a> 疑似クラスにマッチします。</li>
+  <li>ユーザがデータを送信しようとすると、ブラウザはフォームをブロックしてエラーメッセージを表示します。</li>
+</ul>
+<h3 id="Validation_constraints_on_.7B.7BHTMLElement(.22input.22).7D.7D_elements" name="Validation_constraints_on_.7B.7BHTMLElement(.22input.22).7D.7D_elements"><a href="../../../HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> 要素の検証制約</h3>
+<p>すべての <a href="../../../HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> 要素は、<code><a href="../../../HTML/Element/input.html#attr-pattern">pattern</a></code> 属性を使用して検証することができます。この属性は値として、大文字・小文字を区別した<a href="../../../JavaScript/Guide/Regular_Expressions.html" title="/ja/docs/JavaScript/Guide/Regular_Expressions">正規表現</a>を想定します。要素の値が空ではなく、また <code><a href="../../../HTML/Element/input.html#attr-pattern">pattern</a></code> 属性で指定された正規表現にマッチしないとき、その要素は不正であるとみなされます。</p>
+<h4 id="A_simple_example" name="A_simple_example">例</h4>
+<pre class="brush: html">&lt;form&gt;
+  &lt;label for="choose"&gt;Would you prefer a banana or a cherry?&lt;/label&gt;
+  &lt;input id="choose" name="i_like" pattern="banana|cherry"&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+<pre class="brush: css">input:invalid {
+  border: 1px solid red;
+}
+
+input:valid {
+  border: 1px solid green;
+}</pre>
+<p><iframe class="live-sample-frame" frameborder="0" height="50" src="https://mdn.mozillademos.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$samples/A_simple_example?revision=393065" width="100%"></iframe></p>
+<p>この例では、<a href="../../../HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> 要素は使用可能な値 3 つのうちいずれかを受け入れます: 空文字列、文字列 "banana"、または文字列 "cherry" です。</p>
+<h4 id="The_required_attribute" name="The_required_attribute">required 属性</h4>
+<p>フォームを送信する前に、ある要素で値が必要である場合は、その要素を <code><a href="../../../HTML/Element/input.html#attr-required">required</a></code> 属性でマークするとよいでしょう。この属性が真であるとき、フィールドは空にすることができません。</p>
+<pre class="brush: html">&lt;form&gt;
+  &lt;label for="choose"&gt;Would you prefer a banana or cherry?&lt;/label&gt;
+  &lt;input id="choose" name="i_like" pattern="banana|cherry" required&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+<pre class="brush: css">input:invalid {
+  border: 1px solid red;
+}
+
+input:valid {
+  border: 1px solid green;
+}</pre>
+<p>前の例とフィールドのボーダーが異なることに注意してください。</p>
+<p><iframe class="live-sample-frame" frameborder="0" height="50" src="https://mdn.mozillademos.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$samples/The_required_attribute?revision=393065" width="100%"></iframe></p>
+<div class="note">
+  <p><strong>注意:</strong> <code><a href="../../../HTML/Element/input.html#attr-type">type</a></code> 属性が <code>email</code> または <code>url</code> である <a href="../../../HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> 要素では、検証のための <code><a href="../../../HTML/Element/input.html#attr-pattern">pattern</a></code> 属性は不要です。<code>email</code> タイプを指定すると、フィールドの値が正しい形式の電子メールアドレス (<code><a href="../../../HTML/Element/input.html#attr-multiple">multiple</a></code> 属性がある場合は、カンマ区切りの電子メールアドレスのリスト) であることを要求します。<code>url</code> タイプのフィールドは、自動的に適切な形式の URL を要求します。</p>
+</div>
+<h3 id="Other_validation_constraints" name="Other_validation_constraints">その他の検証制約</h3>
+<p>ユーザの入力を受け入れるすべてのフォーム関連要素 (<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea" title="HTML &lt;textarea> 要素は、複数行のプレーンテキスト編集コントロールを表します。"><code>&lt;textarea&gt;</code></a>、<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/select" title="HTML の select 要素（&lt;select>）は、選択式のメニューを提供するコントロールを表します。メニューの中にある選択肢は、 &lt;optgroup> 要素でグループ化することのできる、 &lt;option> 要素で表されます。ユーザーのため、選択肢をあらかじめ選択しておくことができます。"><code>&lt;select&gt;</code></a> など) は <code><a href="../../../HTML/Element/input.html#attr-required">required</a></code> 属性をサポートしますが、<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea" title="HTML &lt;textarea> 要素は、複数行のプレーンテキスト編集コントロールを表します。"><code>&lt;textarea&gt;</code></a> 要素は <code><a href="../../../HTML/Element/input.html#attr-pattern">pattern</a></code> 属性をサポートしないことは知っておくべきです。</p>
+<p>すべてのテキストフィールド (<a href="../../../HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> または <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea" title="HTML &lt;textarea> 要素は、複数行のプレーンテキスト編集コントロールを表します。"><code>&lt;textarea&gt;</code></a>) は <code><a href="../../../HTML/Element/input.html#attr-maxlength">maxlength</a></code> 属性を使用してサイズを制限できます。フィールドの値が <code><a href="../../../HTML/Element/input.html#attr-maxlength">maxlength</a></code> 属性で指定した値を超えると、そのフィールドは不正になります。ただしほとんどの場合、ブラウザはユーザがテキストフィールドで想定される値より長く入力することを許可しません。</p>
+<p>数値フィールドでは、<code><a href="../../../HTML/Element/input.html#attr-min">min</a></code> 属性と <code><a href="../../../HTML/Element/input.html#attr-max">max</a></code> 属性も検証制約を提供します。フィールドの値が <code><a href="../../../HTML/Element/input.html#attr-min">min</a></code> 属性を下回ったり、<code><a href="../../../HTML/Element/input.html#attr-max">max</a></code> 属性を上回ったりすると、そのフィールドは不正になるでしょう。</p>
+<p>こちらが全体的な例です:</p>
+<pre class="brush: html">&lt;form&gt;
+  &lt;p&gt;
+    &lt;fieldset&gt;
+      &lt;legend&gt;Title&lt;abbr title="This field is mandatory"&gt;*&lt;/abbr&gt;&lt;/legend&gt;
+      &lt;input type="radio" required name="title" id="r1" value="Mr" &gt;&lt;label for="r1"&gt;Mr. &lt;/label&gt;
+      &lt;input type="radio" required name="title" id="r2" value="Ms"&gt;&lt;label for="r2"&gt;Ms.&lt;/label&gt;
+    &lt;/fieldset&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="n1"&gt;How old are you?&lt;/label&gt;
+    &lt;!-- pattern 属性は数値フィールドでは必要ありませんが、 
+         Firefox のように数値フィールドは実装していないが pattern 属性を 
+         サポートするブラウザ向けの代替策として動作できます。 --&gt;
+    &lt;input type="number" min="12" max="120" step="1" id="n1" name="age"
+           pattern="\d+"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="t1"&gt;What's your favorite fruit?&lt;abbr title="This field is mandatory"&gt;*&lt;/abbr&gt;&lt;/label&gt;
+    &lt;input type="text" id="t1" name="fruit" list="l1" required
+           pattern="[Bb]anana|[Cc]herry|[Aa]pple|[Ss]trawberry|[Ll]emon|[Oo]range"&gt;
+    &lt;datalist id="l1"&gt;
+        &lt;option&gt;Banana&lt;/option&gt;
+        &lt;option&gt;Cherry&lt;/option&gt;
+        &lt;option&gt;Apple&lt;/option&gt;
+        &lt;option&gt;Strawberry&lt;/option&gt;
+        &lt;option&gt;Lemon&lt;/option&gt;
+        &lt;option&gt;Orange&lt;/option&gt;
+    &lt;/datalist&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="t2"&gt;What's your e-mail?&lt;/label&gt;
+    &lt;input type="email" id="t2" name="email"&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;label for="t3"&gt;Leave a short message&lt;/label&gt;
+    &lt;textarea id="t3" name="msg" maxlength="140" rows="5"&gt;&lt;/textarea&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;button&gt;Submit&lt;/button&gt;
+  &lt;/p&gt;
+&lt;/form&gt;</pre>
+<pre class="brush: css">body {
+  font: 1em sans-serif;
+  padding: 0;
+  margin : 0;
+}
+
+form {
+  max-width: 200px;
+  margin: 0;
+  padding: 0 5px;
+}
+
+p &gt; label {
+  display: block;
+}
+
+input[type=text],
+input[type=email],
+input[type=number],
+textarea,
+fieldset {
+/* WebKit ベースのブラウザでフォーム関連要素に 
+   きちんとスタイルを設定するために必要 */
+  -webkit-appearance: none;
+  
+  width : 100%;
+  border: 1px solid #333;
+  margin: 0;
+  
+  font-family: inherit;
+  font-size: 90%;
+  
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:focus:invalid {
+  outline: none;
+}</pre>
+<p><iframe class="live-sample-frame" frameborder="0" height="420" src="https://mdn.mozillademos.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$samples/Other_validation_constraints?revision=393065" width="100%"></iframe></p>
+<h3 id="Customized_error_messages" name="Customized_error_messages">独自のエラーメッセージ</h3>
+<p>前出の例で見てきたように、ユーザが不正なフォームを送信しようとするたびにブラウザはエラーメッセージを表示します。このメッセージを表示する方法は、ブラウザにより異なります。</p>
+<p>これらの自動メッセージには、欠点が 2 つあります:</p>
+<ul>
+  <li>CSS でメッセージのルックアンドフィールを変更するための標準的な方法がありません。</li>
+  <li>メッセージはブラウザのロケールに依存しており、ある言語のページがあってもエラーメッセージが別の言語で表示されることがあります。</li>
+</ul>
+<table>
+  <caption>
+    フランス語版のブラウザで英語のページを表示する</caption>
+  <thead>
+    <tr>
+      <th scope="col">ブラウザ</th>
+      <th scope="col">レンダリング</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Firefox 17 (Windows 7)</td>
+      <td><img alt="Example of an error message with Firefox in French on an English page" src="https://developer.mozilla.org/files/4329/error-firefox-win7.png" style="width: 228px; height: 97px;"></td>
+    </tr>
+    <tr>
+      <td>Chrome 22 (Windows 7)</td>
+      <td><img alt="Example of an error message with Chrome in French on an English page" src="https://developer.mozilla.org/files/4327/error-chrome-win7.png" style="width: 261px; height: 96px;"></td>
+    </tr>
+    <tr>
+      <td>Opera 12.10 (Mac OSX)</td>
+      <td><img alt="Example of an error message with Opera in French on an English page" src="https://developer.mozilla.org/files/4331/error-opera-macos.png" style="width: 218px; height: 83px;"></td>
+    </tr>
+  </tbody>
+</table>
+<p>これらのメッセージの外見やテキストを変更するには、JavaScript を使用しなければなりません。HTML や CSS だけで変更する方法はありません。</p>
+<p>HTML5 では、フォーム要素の状態を確認したりカスタマイズしたりするための <a class="external" href="http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api" rel="external" title="http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api">constraint validation API</a> を提供します。特に、エラーメッセージのテキストを変更できます。簡単な例を見てみましょう:</p>
+<pre class="brush: html">&lt;form&gt;
+  &lt;label for="mail"&gt;I would like you to provide me an e-mail&lt;/label&gt;
+  &lt;input type="email" id="mail" name="mail"&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+<p>JavaScript で、<a class="new" href="https://developer.mozilla.org/ja/docs/HTML/HTML5/Constraint_validation#Constraint_API's_element.setCustomValidity()" title="/ja/docs/HTML/HTML5/Constraint_validation#Constraint_API's_element.setCustomValidity()"><code>setCutomValidity()</code></a> メソッドを呼び出します:</p>
+<pre class="brush: js">var email = document.getElementById("mail");
+
+email.addEventListener("keyup", function (event) {
+  if(email.validity.typeMismatch) {
+    email.setCustomValidity("I expect an e-mail, darling!");
+  } else {
+    email.setCustomValidity("");
+  }
+});</pre>
+<p><iframe class="live-sample-frame" frameborder="0" height="50" src="https://mdn.mozillademos.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$samples/Customized_error_messages?revision=393065" width="100%"></iframe></p>
+<h2 id="Validating_forms_using_JavaScript" name="Validating_forms_using_JavaScript">JavaScript を使用してフォームを検証する</h2>
+<p>ネイティブのエラーメッセージを制御したい場合や、HTML5 のフォーム検証をサポートしないブラウザに対処したい場合は、JavaScript を使用するしかありません。</p>
+<h3 id="The_HTML5_constraint_validation_API" name="The_HTML5_constraint_validation_API">HTML5 constraint validation API</h3>
+<p>多くのブラウザが constraint validation API をサポートしてきており、頼れるようになってきました。この API は各フォーム要素で使用できるメソッドやプロパティで構成されています。</p>
+<h4 id="Constraint_validation_API_properties" name="Constraint_validation_API_properties">Constraint validation API のプロパティ</h4>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">プロパティ</th>
+      <th scope="col">説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>validationMessage</code></td>
+      <td>
+        <p>コントロールが満たしていない検証制約を (もしあれば) 表す、ローカライズされたメッセージ、またはコントロールが検証制約の候補ではない場合 (<code>willValidate</code> が <code>false</code>) に空文字列、または要素の制約を満たす値です。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>validity</code></td>
+      <td>要素の検証状態を表す <a class="new" href="../../../API/ValidityState.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ValidityState</code></a> オブジェクトです。</td>
+    </tr>
+    <tr>
+      <td><code>validity.customError</code></td>
+      <td>要素が独自のエラー状態である場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。</td>
+    </tr>
+    <tr>
+      <td><code>validity.patternMismatch</code></td>
+      <td>要素の値が与えられたパターンにマッチしない場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。<br>
+        <br>
+        これが <code>true</code> を返す場合、要素は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスにマッチするでしょう。</td>
+    </tr>
+    <tr>
+      <td><code>validity.rangeOverflow</code></td>
+      <td>要素の値が与えられた最大値を超える場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。<br>
+        <br>
+        これが <code>true</code> を返す場合、要素は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスおよび <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:out-of-range" title=""><code>:out-of-range</code></a> 疑似クラスにマッチするでしょう。</td>
+    </tr>
+    <tr>
+      <td><code>validity.rangeUnderflow</code></td>
+      <td>要素の値が与えられた最小値を下回る場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。<br>
+        <br>
+        これが <code>true</code> を返す場合、要素は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスおよび <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:out-of-range" title=""><code>:out-of-range</code></a> 疑似クラスにマッチするでしょう。</td>
+    </tr>
+    <tr>
+      <td><code>validity.stepMismatch</code></td>
+      <td>要素の値が step 属性で与えられた規則に合わない場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。<br>
+        <br>
+        これが <code>true</code> を返す場合、要素は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスおよび <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:out-of-range" title=""><code>:out-of-range</code></a> 疑似クラスにマッチするでしょう。</td>
+    </tr>
+    <tr>
+      <td><code>validity.tooLong</code></td>
+      <td>要素の値が与えられた長さより長い場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。<br>
+        <br>
+        これが <code>true</code> を返す場合、要素は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスおよび <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:out-of-range" title=""><code>:out-of-range</code></a> 疑似クラスにマッチするでしょう。</td>
+    </tr>
+    <tr>
+      <td><code>validity.typeMismatch</code></td>
+      <td>要素の値が正しい構文ではない場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。<br>
+        <br>
+        これが <code>true</code> を返す場合、要素は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスにマッチするでしょう。</td>
+    </tr>
+    <tr>
+      <td><code>validity.valid</code></td>
+      <td>要素の値で妥当性の問題がない場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。<br>
+        <br>
+        これが <code>true</code> を返す場合、要素は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:valid" title=""><code>:valid</code></a> 疑似クラスにマッチするでしょう。そうでない場合は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスにマッチするでしょう。</td>
+    </tr>
+    <tr>
+      <td><code>validity.valueMissing</code></td>
+      <td>要素が入力必須のフィールドであるのに値がない場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。<br>
+        <br>
+        これが <code>true</code> を返す場合、要素は CSS の <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスにマッチするでしょう。</td>
+    </tr>
+    <tr>
+      <td><code>willValidate</code></td>
+      <td>フォームが送信されるときに要素が検証される場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="Constraint_validation_API_methods" name="Constraint_validation_API_methods">Constraint validation API のメソッド</h4>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">メソッド</th>
+      <th scope="col">説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>checkValidity()</code></td>
+      <td>要素の値で妥当性の問題がない場合に <code>true</code> を返します。そうでない場合は <code>false</code> を返します。要素が不正である場合、このメソッドは要素で <code><a class="new" href="https://developer.mozilla.org/ja/docs/Web/Reference/Events/invalid" title="/ja/docs/Web/Reference/Events/invalid">invalid</a></code> イベントを発生させます。</td>
+    </tr>
+    <tr>
+      <td><code>setCustomValidity(<em>message</em>)</code></td>
+      <td>要素に独自のエラーメッセージを追加します。独自のエラーメッセージを設定すると、要素が不正であるとみなされる場合に指定したエラーが表示されます。これにより JavaScript で、標準の constraint validation API で提供されるもの以外の検証失敗状態を作り出すことができます。ユーザに問題を報告する際に、メッセージが表示されます。<br>
+        <br>
+        引数が空文字列である場合は、独自のエラーがクリアされます。</td>
+    </tr>
+  </tbody>
+</table>
+<p>古いブラウザ向けに、constraint validation API の欠落を補うための <a class="external" href="https://github.com/ryanseddon/H5F" rel="external" title="https://github.com/ryanseddon/H5F">H5F といったポリフィル</a> を使用できます。いずれにせよすでに JavaScript を使用していますので、ポリフィルを使用することが Web サイトや Web アプリケーションの設計や実装での追加負担にはなりません。</p>
+<h4 id="Example_using_the_constraint_validation_API" name="Example_using_the_constraint_validation_API">constraint validation API の使用例</h4>
+<p>独自のエラーメッセージを作成するために API を使用する方法を見ていきましょう。始めに、HTML です:</p>
+<pre class="brush: html">&lt;form novalidate&gt;
+  &lt;p&gt;
+    &lt;label for="mail"&gt;
+      &lt;span&gt;Please enter an email address:&lt;/span&gt;
+      &lt;input type="email" id="mail" name="mail"&gt;
+      &lt;span class="error" aria-live="polite"&gt;&lt;/span&gt;
+    &lt;/label&gt;
+  &lt;p&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+<p>このサンプルフォームでは、ブラウザの自動検証を無効にするため <code><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/form#attr-novalidate">novalidate</a></code> 属性を使用しています。これで、検証を制御するためにスクリプトを使用できます。ただし、これは constraint validation API のサポートや CSS の疑似クラス <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:valid" title=""><code>:valid</code></a>、<a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a>、<a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:in-range" title=""><code>:in-range</code></a> および <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:out-of-range" title=""><code>:out-of-range</code></a> の適用は無効にしません。つまり、データを送信する前にブラウザが自動的なフォームの妥当性確認を行わないとしても、あなた自身で確認を行って、フォームの状態に応じたスタイル設定ができます。</p>
+<p><a class="new" href="https://developer.mozilla.org/ja/docs/Accessibility/ARIA/ARIA_Live_Regions" title="/ja/docs/Accessibility/ARIA/ARIA_Live_Regions"><code>aria-live</code></a> 属性は、スクリーンリーダーのような支援技術を使用している人々を含む皆に独自のエラーメッセージを提示するようにします。</p>
+<h5 id="CSS" name="CSS">CSS</h5>
+<p>この CSS はフォームへのスタイル設定と、エラー出力をより目立つようにします。</p>
+<pre class="brush: css">/* これはサンプルの見栄えをよくするスタイルです */
+body {
+  font: 1em sans-serif;
+  padding: 0;
+  margin : 0;
+}
+
+form {
+  max-width: 200px;
+}
+
+p * {
+  display: block;
+}
+
+input[type=email]{
+  -webkit-appearance: none;
+
+  width: 100%;
+  border: 1px solid #333;
+  margin: 0;
+
+  font-family: inherit;
+  font-size: 90%;
+
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* これは不正なフィールド向けのスタイルです */
+input:invalid{
+  border-color: #900;
+  background-color: #FDD;
+}
+
+input:focus:invalid {
+  outline: none;
+}
+
+/* これはエラーメッセージ向けのスタイルです */
+.error {
+  width  : 100%;
+  padding: 0;
+ 
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+ 
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}</pre>
+<h5 id="JavaScript" name="JavaScript">JavaScript</h5>
+<p>以下の JavaScript コードは独自のエラー検証を制御します。</p>
+<pre class="brush: js">// DOM ノードの選択法はたくさんあります。ここではフォーム自体、メールアドレス
+// 入力ボックス、そしてエラーメッセージを配置する span 要素を取得しています。
+
+var form  = document.getElementsByTagName('form')[0];
+var email = document.getElementById('mail');
+var error = document.querySelector('.error');
+
+email.addEventListener("keyup", function (event) {
+  // ユーザが何かを入力するたびに、メールアドレスのフィールドが妥当かを
+  // 確認します。
+  if (email.validity.valid) {
+    // エラーメッセージを表示している場合に、フィールドが妥当になれば
+    // エラーメッセージを取り除きます。
+    error.innerHTML = ""; // メッセージの内容物をリセットします
+    error.className = "error"; // メッセージの表示状態をリセットします
+  }
+}, false);
+form.addEventListener("submit", function (event) {
+  // ユーザがデータを送信しようとするたびに、メールアドレスの
+  // フィールドが妥当かをチェックします。
+  if (!email.validity.valid) {
+    
+    // フィールドが妥当ではない場合、独自のエラーメッセージを
+    // 表示します。
+    error.innerHTML = "I expect an e-mail, darling!";
+    error.className = "error active";
+    // また、イベントをキャンセルしてフォームの送信を止めます。
+    event.preventDefault();
+  }
+}, false);</pre>
+<p>こちらが実際の結果です:</p>
+<p><iframe class="live-sample-frame" frameborder="0" height="130" src="https://mdn.mozillademos.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$samples/Example_using_the_constraint_validation_API?revision=393065" width="100%"></iframe></p>
+<p>constraint validation API はフォーム検証を制御するための強力なツールであり、HTML および CSS のみで検証を行うよりもはるかにユーザインターフェイスをコントロールできます。</p>
+<h3 id="Validating_forms_without_a_built-in_API" name="Validating_forms_without_a_built-in_API">組み込み API を使用しないフォーム検証</h3>
+<p>時々、古いブラウザや<a href="https://developer.mozilla.org/ja/docs/HTML/Forms/How_to_build_custom_form_widgets" title="/ja/docs/HTML/Forms/How_to_build_custom_form_widgets">カスタムウィジェット</a>において、constraint validation API を使用できない (または使用したくない) ことがあるでしょう。このような場合でも、フォームを検証するために JavaScript を使用できます。フォーム検証は、実際のデータの検証よりもユーザインターフェイスの問題が多くなります。</p>
+<p>フォームを検証するために、あなたはいくつかの問いを自問しなければなりません:</p>
+<dl>
+  <dt>
+    どのような検証を実施するべきか?</dt>
+  <dd>
+    どのようにデータを検証するかを決めることが必要です: 文字列演算、型変換、正規表現 など。これはあなた次第です。フォームのデータは常にテキストであり、スクリプトには常に文字列として渡されることを忘れないようにしてください。</dd>
+  <dt>
+    フォームが妥当でない場合に何をするべきか?</dt>
+  <dd>
+    これは明らかに UI の問題です。フォームがどのように動作するかを決めなければなりません: それでもフォームのデータを送信しますか? エラー状態のフィールドを強調しますか? エラーメッセージを表示しますか?</dd>
+  <dt>
+    ユーザが不正なデータを直すために何をしますか?</dt>
+  <dd>
+    ユーザの不満を軽減する目的で、ユーザが入力内容を直せるよう案内するために、可能な限り役に立つ情報を提供することがとても重要です。明瞭なエラーメッセージはもちろん、ユーザが何を求められているかをわかるように前もって提案するべきです。<br>
+    <p>フォーム検証 UI の要件について深く学びたいのでしたら、ぜひ読むべきである有用な記事があります:</p>
+    <ul>
+      <li>SmashingMagazine: <a class="external" href="http://uxdesign.smashingmagazine.com/2012/06/27/form-field-validation-errors-only-approach/" rel="external" title="http://uxdesign.smashingmagazine.com/2012/06/27/form-field-validation-errors-only-approach/">Form-Field Validation: The Errors-Only Approach</a></li>
+      <li>SmashingMagazine: <a class="external" href="http://www.smashingmagazine.com/2009/07/07/web-form-validation-best-practices-and-tutorials/" rel="external" title="http://www.smashingmagazine.com/2009/07/07/web-form-validation-best-practices-and-tutorials/">Web Form Validation: Best Practices and Tutorials</a></li>
+      <li>Six Revision: <a class="external" href="http://sixrevisions.com/user-interface/best-practices-for-hints-and-validation-in-web-forms/" rel="external" title="http://sixrevisions.com/user-interface/best-practices-for-hints-and-validation-in-web-forms/">Best Practices for Hints and Validation in Web Forms</a></li>
+      <li>A List Apart: <a class="external" href="http://www.alistapart.com/articles/inline-validation-in-web-forms/" rel="external" title="http://www.alistapart.com/articles/inline-validation-in-web-forms/">Inline Validation in Web Forms</a></li>
+    </ul>
+  </dd>
+</dl>
+<h4 id="Example_that_doesn't_use_the_constraint_validation_API" name="Example_that_doesn't_use_the_constraint_validation_API">constraint validation API を使用しない例</h4>
+<p>これまでのことを説明するため、古いブラウザでも動作するように前出のサンプルを作り替えてみましょう:</p>
+<pre class="brush: html">&lt;form&gt;
+  &lt;p&gt;
+    &lt;label for="mail"&gt;
+        &lt;span&gt;Please enter an email address:&lt;/span&gt;
+        &lt;input type="text" class="mail" id="mail" name="mail"&gt;
+        &lt;span class="error" aria-live="polite"&gt;&lt;/span&gt;
+    &lt;/label&gt;
+  &lt;p&gt;
+  &lt;!-- 一部の古いブラウザでは `button` 要素で、`submit` を明示的に指定した
+       `type` 属性が必要です --&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+<p>ご覧いただけるように、HTML はほとんど同じであり、HTML5 の部分を取り除いただけです。<a href="https://developer.mozilla.org/ja/docs/Accessibility/ARIA" title="/ja/docs/Accessibility/ARIA">ARIA</a> は特に HTML5 との関係はない独立した仕様ですので、ここでは残されています。</p>
+<h5 id="CSS" name="CSS">CSS</h5>
+<p>同様に、CSS も大きく変更する必要はありません。<a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a> 疑似クラスから実クラスへの変更と、Internet Explorer 6 で動作しない属性セレクタの使用を避けただけです。</p>
+<pre class="brush: css">/* これはサンプルの見栄えをよくするスタイルです */
+body {
+  font: 1em sans-serif;
+  padding: 0;
+  margin : 0;
+}
+
+form {
+  max-width: 200px;
+}
+
+p * {
+  display: block;
+}
+
+input.mail {
+  -webkit-appearance: none;
+
+  width: 100%;
+  border: 1px solid #333;
+  margin: 0;
+
+  font-family: inherit;
+  font-size: 90%;
+
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* これは不正なフィールド向けのスタイルです */
+input.invalid{
+  border-color: #900;
+  background-color: #FDD;
+}
+
+input:focus.invalid {
+  outline: none;
+}
+
+/* これはエラーメッセージ向けのスタイルです */
+.error {
+  width  : 100%;
+  padding: 0;
+ 
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+ 
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}</pre>
+<h5 id="JavaScript" name="JavaScript">JavaScript</h5>
+<p>JavaScript コードでは大きな変更があり、多くの面倒な作業が必要です。</p>
+<pre class="brush: js">// 古いブラウザで DOM ノードを選択する方法は少ない
+var form  = document.getElementsByTagName('form')[0];
+var email = document.getElementById('mail');
+
+// 以下は DOM 内で次の兄弟要素にたどり着くための技です。
+// これは容易に無限ループになることがあるため、危険です。
+// 新しいブラウザでは、element.nextElementSibling を使用しましょう。
+var error = email;
+while ((error = error.nextSibling).nodeType != 1);
+
+// HTML5 仕様書より
+var emailRegExp = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+// 多くの古いブラウザは addEventListener メソッドをサポートしていません。
+// 以下はこれを扱うためのシンプルな方法です。なお唯一の方法ではありません。
+function addEvent(element, event, callback) {
+  var previousEventCallBack = element["on"+event];
+  element["on"+event] = function (e) {
+    var output = callback(e);
+    
+    // `false` を返すコールバックはコールバックチェーンを止めて、
+    // イベントコールバックの実行を中断します。
+    if (output === false) return false;
+
+    if (typeof previousEventCallBack === 'function') {
+      output = previousEventCallBack(e);
+      if(output === false) return false;
+    }
+  }
+};
+
+// ここから検証制約の再構築ができます。
+// CSS の疑似クラスに頼ることはできないため、メールアドレスフィールドで  
+// valid/invalid クラスを明示的に設定しなければなりません。
+addEvent(window, "load", function () {
+  // ここで、フィールドが空かを確認しています (フィールドは必須入力ではありません)
+  // 空でなければ、内容部が適切な電子メールアドレスかを確認します。
+  var test = email.value.length === 0 || emailRegExp.test(email.value);
+ 
+  email.className = test ? "valid" : "invalid";
+});
+
+// ユーザがフィールドに入力したときに、何をするかを定義します。
+addEvent(email, "keyup", function () {
+  var test = email.value.length === 0 || emailRegExp.test(email.value);
+  if (test) {
+    email.className = "valid";
+    error.innerHTML = "";
+    error.className = "error";
+  } else {
+    email.className = "invalid";
+  }
+});
+
+// ユーザがデータを送信しようとしたときに何をするかを定義します。
+addEvent(form, "submit", function () {
+  var test = email.value.length === 0 || emailRegExp.test(email.value);
+ 
+  if (!test) {
+    email.className = "invalid";
+    error.innerHTML = "I expect an e-mail, darling!";
+    error.className = "error active";
+
+    // 一部の古いブラウザは event.reventDefault() メソッドをサポートしていません。
+    return false;
+  } else {
+    email.className = "valid";
+    error.innerHTML = "";
+    error.className = "error";
+  }
+});</pre>
+<p>結果は以下のようになります:</p>
+<p><iframe class="live-sample-frame" frameborder="0" height="130" src="https://mdn.mozillademos.org/ja/docs/Web/Guide/HTML/Forms/Data_form_validation$samples/Example_that_doesn't_use_the_constraint_validation_API?revision=393065" width="100%"></iframe></p>
+<p>ご覧いただけるように、あなた自身で検証システムを構築するのは大変なことではありません。クロスプラットフォームで、またあなたが作成するであろうあらゆるフォームにおいて使用するのに包括的で十分なものにすることが難しい点です。フォーム検証を行うために利用できる、多くのライブラリがあります。使用するのをためらうべきではありません。いくつか例を挙げます:</p>
+<ul>
+  <li>単独のライブラリ
+    <ul>
+      <li><a class="external" href="http://validatious.org" rel="external" title="http://validatious.org">Validatious</a></li>
+      <li><a class="external" href="http://rickharrison.github.com/validate.js/" rel="external" title="http://rickharrison.github.com/validate.js/">Validate.js</a></li>
+    </ul>
+  </li>
+  <li>jQuery プラグイン:
+    <ul>
+      <li><a class="external" href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/" rel="external" title="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">Validation</a></li>
+      <li><a class="external" href="http://unwrongest.com/projects/valid8/" rel="external" title="http://unwrongest.com/projects/valid8/">Valid8</a><span style="display: none;"> </span></li>
+    </ul>
+  </li>
+</ul>
+<h4 id="Remote_validation" name="Remote_validation">リモート検証</h4>
+<p>場合によっては、リモートで検証を実行することが役に立つかもしれません。このタイプの検証は、アプリケーションのサーバ側で保存されている付加的なデータとユーザが入力したデータが結びつけられる際に必要になります。これの用途のひとつが、登録フォームでユーザ名を尋ねるときです。重複を避けるためにユーザ名が利用可能かを確認するには、ユーザにデータの送信を求めてからエラー状態のフォームを返すのではなく、AJAX リクエストを実施する方がスマートであす。</p>
+<p>このような検証を実施するには、いくつか用心が必要なことがあります:</p>
+<ul>
+  <li>API やいくつかのデータを広く公開することが必要です。機微な情報が無いようにしてください。</li>
+  <li>ネットワークの遅延により、非同期で検証を行うことが必要です。検証が正常に行われない場合でもユーザが邪魔されないようにするために、UI でいくらか作業が必要になります。</li>
+</ul>
+<h2 id="Conclusion" name="Conclusion">おわりに</h2>
+<p>フォーム検証は複雑な JavaScript を必要としませんが、ユーザについて注意深く考えることが必要です。ユーザが提供するデータを正しくするのを支援することをいつも忘れないようにしてください。最後に、以下のことを必ず行ってください:</p>
+<ul>
+  <li>明瞭なエラーメッセージを表示してください。</li>
+  <li>入力形式については寛容になってください。</li>
+  <li>どこでエラーが発生しているかを正確に示してください (特に大きなフォームで)。</li>
+</ul>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../../../tag/JavaScript.html">JavaScript</a></li><li><a href="../../../../tag/HTML.html">HTML</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Forms">Forms</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../../profiles/ethertank.html">ethertank</a>, <a href="../../../../../profiles/yyss.html">yyss</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-09T15:01:45-07:00">2013/05/09 15:01:45</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/Guide/HTML/Forms/Data_form_validation" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation">
+            English (US)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":682}</script></body>
+</html>

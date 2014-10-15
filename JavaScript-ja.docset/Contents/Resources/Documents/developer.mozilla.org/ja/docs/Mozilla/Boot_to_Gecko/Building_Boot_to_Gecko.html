@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Boot to Gecko のビルド - Mozilla | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="Building_Boot_to_Gecko.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+                  <link rel="stylesheet" type="text/css" href="../../../Firefox_OS$styles.css">
+          
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko$json">
+  <link rel="canonical" href="Building_Boot_to_Gecko.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/Firefox_OS/Building" title="Building Firefox OS">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/Firefox_OS/Building" title="建置 Boot to Gecko">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Firefox_OS/Building" title="构建B2G">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/Firefox_OS/Compilar_Boot_to_Gecko" title="Compilar Boot to Gecko">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Mozilla/Firefox_OS/Building" title="Firefox OS 빌드하기">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/Firefox_OS/Compilando_O_Firefox_OS" title="Compilando o Firefox OS">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/Firefox_OS/Building" title="Building Firefox OS">
+          <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/Firefox_OS/Building" title="Build-are Firefox OS">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/Firefox_OS/Building" title="Building Firefox OS">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Boot to Gecko のビルド">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko">
+  <meta name="twitter:title" content="Boot to Gecko のビルド">
+    <meta property="og:description" content="一旦 ビルドシステムのセットアップ が完了して、コードの 最初のプルと構成 を実行したら、Boot to Gecko をビルドすることができます。">
+  <meta name="description" content="一旦 ビルドシステムのセットアップ が完了して、コードの 最初のプルと構成 を実行したら、Boot to Gecko をビルドすることができます。">
+  <meta name="twitter:description" content="一旦 ビルドシステムのセットアップ が完了して、コードの 最初のプルと構成 を実行したら、Boot to Gecko をビルドすることができます。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko" contextmenu="edit-history-menu" class="document zone ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Building_Boot_to_Gecko.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Building_Boot_to_Gecko.html#language">言語の選択</a></li>
+          <li><a href="Building_Boot_to_Gecko.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+                <div class="zone-article-header" id="document-main"><div class="center">
+          <!-- zone title -->
+          <div class="zone-title"><a href="../../../Firefox_OS.html">Firefox OS</a></div>
+          <!-- zone image -->
+          <div class="zone-image"></div>
+        </div></div>
+      
+     <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" ><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/Firefox_OS/Building" title="Building Firefox OS">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/Firefox_OS/Building" title="建置 Boot to Gecko">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Firefox_OS/Building" title="构建B2G">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/Firefox_OS/Compilar_Boot_to_Gecko" title="Compilar Boot to Gecko">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Mozilla/Firefox_OS/Building" title="Firefox OS 빌드하기">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/Firefox_OS/Compilando_O_Firefox_OS" title="Compilando o Firefox OS">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/Firefox_OS/Building" title="Building Firefox OS">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/Firefox_OS/Building" title="Build-are Firefox OS">Italiano</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/Firefox_OS/Building" title="Building Firefox OS">Deutsch</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Building_Boot_to_Gecko.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Firefox_OS.html" rel="v:url" property="v:title">Firefox OS</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Boot to Gecko のビルド</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Building_Boot_to_Gecko.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Boot to Gecko のビルド</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="Building_Boot_to_Gecko.html#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Building_Boot_to_Gecko.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Building_Boot_to_Gecko.html#.E3.82.B3.E3.83.BC.E3.83.89.E3.82.92.E6.9B.B4.E6.96.B0.E3.81.99.E3.82.8B" rel="internal">コードを更新する</a><li><a href="Building_Boot_to_Gecko.html#.E3.83.93.E3.83.AB.E3.83.89" rel="internal">ビルド</a><ol><li><a href="Building_Boot_to_Gecko.html#.E7.89.B9.E5.AE.9A.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB.E3.81.AE.E3.83.93.E3.83.AB.E3.83.89" rel="internal">特定モジュールのビルド</a><li><a href="Building_Boot_to_Gecko.html#.E4.BD.BF.E7.94.A8.E3.81.99.E3.82.8B.E3.82.B3.E3.82.A2.E3.83.97.E3.83.AD.E3.82.BB.E3.83.83.E3.82.B5.E3.81.AE.E6.95.B0.E3.82.92.E8.A8.AD.E5.AE.9A.E3.81.99.E3.82.8B" rel="internal">使用するコアプロセッサの数を設定する</a><li><a href="Building_Boot_to_Gecko.html#.E8.A4.87.E6.95.B0.E3.83.AD.E3.82.B1.E3.83.BC.E3.83.AB.E3.81.AE.E3.83.93.E3.83.AB.E3.83.89" rel="internal">複数ロケールのビルド</a><ol><li><a href="Building_Boot_to_Gecko.html#Gaia" rel="internal">Gaia</a><li><a href="Building_Boot_to_Gecko.html#Gecko" rel="internal">Gecko</a></ol></li></ol></li><li><a href="Building_Boot_to_Gecko.html#.E6.97.A2.E7.9F.A5.E3.81.AE.E3.82.A8.E3.83.A9.E3.83.BC" rel="internal">既知のエラー</a><ol><li><a href="Building_Boot_to_Gecko.html#.22Build_failed!.22" rel="internal">"Build failed!"</a><li><a href="Building_Boot_to_Gecko.html#Mountain_Lion.E5.9B.BA.E6.9C.89.E3.81.AE.E3.83.93.E3.83.AB.E3.83.89.E3.82.A8.E3.83.A9.E3.83.BC" rel="internal">Mountain Lion固有のビルドエラー</a><li><a href="Building_Boot_to_Gecko.html#Undefined_symbols_.22_sqlite3_androidopt_handle_pragma.22_and_.22_sqlite3_androidopt_open.22" rel="internal">Undefined symbols "_sqlite3_androidopt_handle_pragma" and "_sqlite3_androidopt_open"</a><li><a href="Building_Boot_to_Gecko.html#KeyedVector.h.3A193.3A31.3A_error.3A_indexOfKey_was_not_declared_in_this_scope" rel="internal">KeyedVector.h:193:31: error: indexOfKey was not declared in this scope</a><li><a href="Building_Boot_to_Gecko.html#arm-linux-androideabi-g.2B.2B.3A_Internal_error.3A_Killed_(program_cc1plus)" rel="internal">arm-linux-androideabi-g++: Internal error: Killed (program cc1plus)</a><li><a href="Building_Boot_to_Gecko.html#.22...is_referenced_by_DSO.22_error" rel="internal">"...is referenced by DSO" error</a><li><a href="Building_Boot_to_Gecko.html#.E3.83.93.E3.83.AB.E3.83.89.E3.82.B7.E3.82.B9.E3.83.86.E3.83.A0.E3.81.AE.E3.83.86.E3.82.B9.E3.83.88.E4.B8.AD.E3.81.AB.E3.83.93.E3.83.AB.E3.83.89.E3.82.A8.E3.83.A9.E3.83.BC.E3.81.8C.E7.99.BA.E7.94.9F.E3.81.97.E3.81.9F.E5.A0.B4.E5.90.88" rel="internal">ビルドシステムのテスト中にビルドエラーが発生した場合</a><li><a href="Building_Boot_to_Gecko.html#Cannot_fetch_platform.2Flibcore" rel="internal">Cannot fetch platform/libcore</a><li><a href="Building_Boot_to_Gecko.html#Mac.E3.81.AEXcode_5.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.A6.E3.83.93.E3.83.AB.E3.83.89.E3.81.97.E3.81.A6.E3.81.84.E3.82.8B.E6.99.82.E3.81.AEclang.E3.81.AE.E3.82.A8.E3.83.A9.E3.83.BC" rel="internal">MacのXcode 5を使ってビルドしている時のclangのエラー</a><li><a href="Building_Boot_to_Gecko.html#Cannot_pull_files_from_backup_directory(backup.E3.83.87.E3.82.A3.E3.83.AC.E3.82.AF.E3.83.88.E3.83.AA.E3.81.8B.E3.82.89.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.82.92.E5.8F.96.E5.BE.97.E3.81.A7.E3.81.8D.E3.81.AA.E3.81.84)" rel="internal">Cannot pull files from backup directory(backupディレクトリからファイルを取得できない)</a><li><a href="Building_Boot_to_Gecko.html#.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AE.E3.83.93.E3.83.AB.E3.83.89.E3.81.AE.E5.95.8F.E9.A1.8C" rel="internal">エミュレータのビルドの問題</a><ol><li><a href="Building_Boot_to_Gecko.html#.E8.A7.A3No.1.3A_32bit.E3.81.A864bit.E4.B8.A1.E6.96.B9.E3.81.AEOpenGL_libs.E3.82.92.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB.E3.81.97.E3.80.81.E6.AD.A3.E3.81.97.E3.81.8Fsymlinks.E3.82.92.E4.BF.9D.E3.81.A4" rel="internal">解No.1: 32bitと64bit両方のOpenGL libsをインストールし、正しくsymlinksを保つ</a><li><a href="Building_Boot_to_Gecko.html#.E8.A7.A3No.2.3A_.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.8C64bit.E3.81.A0.E3.81.91.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B.E3.82.88.E3.81.86.E3.83.91.E3.83.83.E3.83.81.E3.82.92.E5.BD.93.E3.81.A6.E3.82.8B" rel="internal">解No.2: エミュレータが64bitだけをビルドするようパッチを当てる</a></ol></li></ol></li><li><a href="Building_Boot_to_Gecko.html#.E6.AC.A1.E3.81.AE.E3.82.B9.E3.83.86.E3.83.83.E3.83.97.E3.81.B8" rel="internal">次のステップへ</a><ol><li><a href="Building_Boot_to_Gecko.html#B2G.2FFirefox_OS.2FGaia.E3.81.AE.E3.83.90.E3.82.B0.E7.99.BB.E9.8C.B2" rel="internal">B2G/Firefox OS/Gaiaのバグ登録</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div>
+ </div>
+<p>一旦<a href="B2G_build_prerequisites.html" title="ja/docs/Mozilla/Boot_to_Gecko/B2G_build_prerequisites">ビルドシステムのセットアップ</a>が完了して、コードの<a href="Preparing_for_your_first_B2G_build.html" title="ja/docs/Mozilla/Boot_to_Gecko/Preparing_for_your_first_B2G_build">最初のプルと構成</a>を実行したら、Boot to Gecko をビルドすることができます。</p>
+<h2 id=".E3.82.B3.E3.83.BC.E3.83.89.E3.82.92.E6.9B.B4.E6.96.B0.E3.81.99.E3.82.8B">コードを更新する</h2>
+<p>もし B2G をビルドするのが全く初めてという場合でなければ、ビルドを始める前に最新版のコードをプルしたいかもしれません。これを行うには B2G ツール群と、それに依存関係があるものを、以下の二つのコマンドを使用して、両方とも更新する必要があります :</p>
+<pre class="language-html">git pull
+./repo sync -d
+</pre>
+<p>"-d"オプションは指定したプロジェクトをマニフェストのリビジョン(つまりデフォルトのメインストリームのリポジトリのバージョン)に戻すかを切り替えます。これは、リポジトリ(と関連ソース)に変更を加えているが、マスターのバージョンに一時的に戻したい時に有用です。途中段階や作業中のディレクトリの変更はそのままにされます (<a class="external" href="http://stackoverflow.com/questions/11448864/what-is-the-usage-for-repo-sync-d-in-android-source-repository">下記のSOの質問</a> を見れば全ての説明があります)。ソースコードに触れていない場合、下記のように通常のコマンドも使用できます:</p>
+<pre>git pull
+./repo sync
+</pre>
+<p>名前を指定することで、作成するターゲットのリポジトリを指定して更新することができます :</p>
+<pre>./repo sync gaia
+</pre>
+<p>repo コマンドには、興味深い、その他のオプションも利用可能です。<code>repo help</code> でたくさんの情報を得ることができます。</p>
+<h2 id=".E3.83.93.E3.83.AB.E3.83.89">ビルド</h2>
+<div class="note">
+ <p><strong>注意 :</strong> ビルドの前に、ビルドのカスタマイズをする <code>.userconfig</code> ファイルをセットアップしたいかもしれません。詳細は<a href="../../../Firefox_OS/Customization_with_the_.userconfig_file.html" title="/ja/docs/Mozilla/Boot_to_Gecko/Customization_with_the_.userconfig_file"> .userconfig ファイルのカスタマイズ</a>を参照してください。</p>
+</div>
+<p>Boot to Gecko をビルドするには、単純に <code>build.sh</code> ツールを使用してください :</p>
+<pre>cd B2G
+./build.sh
+</pre>
+<p>もう一回コーヒーブレークの時間です。昼寝もできるかもしれません（特にこれが初回のビルドなら、Core i7の8GB RAMで30分くらいかかります。）。前のページの設定ステップの中で、もしAndroidシステムが事前に展開されたディレクトリを使っている場合、 <code><code>build.shを実行する前に</code>ANDROIDFS_DIR</code>を設定すべきです。</p>
+<div class="note">
+ <p><strong>Note</strong>: 新しいビルドを電話機に焼くための詳しい情報は、<a href="Installing_Boot_to_Gecko_on_a_mobile_device.html">Boot to Gecko をモバイルデバイスにインストールする</a>を見て下さい。</p>
+</div>
+<h3 id=".E7.89.B9.E5.AE.9A.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB.E3.81.AE.E3.83.93.E3.83.AB.E3.83.89">特定モジュールのビルド</h3>
+<p>例えば Gecko などの、特定のモジュールだけビルドしたい場合は、名前で指定することができます :</p>
+<pre>./build.sh gecko
+</pre>
+<p>一つのアプリケーションだけを更新するには、<code>BUILD_APP_NAME</code> 環境変数を使用することで <code>gaia</code> モジュールのみをビルドすることができます :</p>
+<pre>BUILD_APP_NAME=calendar ./build.sh gaia
+</pre>
+<p>ビルド可能なモジュールのリストを取得するには、こうやってください :</p>
+<pre>./build.sh modules
+</pre>
+<h3 id=".E4.BD.BF.E7.94.A8.E3.81.99.E3.82.8B.E3.82.B3.E3.82.A2.E3.83.97.E3.83.AD.E3.82.BB.E3.83.83.E3.82.B5.E3.81.AE.E6.95.B0.E3.82.92.E8.A8.AD.E5.AE.9A.E3.81.99.E3.82.8B">使用するコアプロセッサの数を設定する</h3>
+<p>デフォルトでは、B2G ビルドスクリプトは、システムのコア数に 2 を足したものを、実行する並列タスクの数として使用します。これを <code>build.sh</code> を実行するときに <code>-j</code> パラメータを指定することで変更できます。 これはバックグラウンドでビルド中に、他のことにシステムを使っていて、CPU 負荷を少し減らしたい場合に有効でしょう。また、ビルドに問題がある場合も、実行しているのが一度に 1 つのタスクだけなら、ビルドプロセスからのエラー出力を読むのが楽ですよね！</p>
+<p>例えば、並行処理を 2 つ使用してビルドするには :</p>
+<pre>./build.sh -j2
+</pre>
+<p>しかし、この設定の最も一般的な使い方は、ビルドが並列処理を全く行わないようにすることです。処理のアウトプットが大変読みやすくなり、ビルドの問題が整理しやすくなります。これを実行するには :</p>
+<pre>./build.sh -j1
+</pre>
+<h3 id=".E8.A4.87.E6.95.B0.E3.83.AD.E3.82.B1.E3.83.BC.E3.83.AB.E3.81.AE.E3.83.93.E3.83.AB.E3.83.89">複数ロケールのビルド</h3>
+<p>複数ロケールのビルドを作成するには、下記に従います:</p>
+<h4 id="Gaia">Gaia</h4>
+<ol>
+ <li>どのGaia言語ファイルを使うかを決定します。我々は<a class="external" href="http://hg.mozilla.org/integration/gaia-nightly/file/e2eed5263e77/shared/resources/languages-dev.json"><code>locales/languages_dev.json</code></a> と<a class="external" href="http://hg.mozilla.org/integration/gaia-nightly/file/e2eed5263e77/shared/resources/languages-all.json"><code>locales/languages_all.json</code></a>をGaia言語ファイルとして使っています。</li>
+ <li><a class="external" href="http://hg.mozilla.org/gaia-l10n">http://hg.mozilla.org/gaia-l10n</a> からディレクトリへ適切なロケールを複製します。我々は<code>gaia-l10n/</code>を使います。locales/ディレクトリを使う事もできます。言語ファイルに記載されているロケールごとのrepoをクローンする必要があります。</li>
+ <li>あなたの環境で、<code>ステップ2のディレクトリの絶対パスをLOCALE_BASEDIRに設定します。</code><code>ステップ1の絶対パスをLOCALES_FILEに</code>設定します。</li>
+ <li>その他、デフォルトロケールを設定したい場合、GAIA_DEFAULT_LOCALEに設定します。</li>
+</ol>
+<pre class="language-html" style="font-size: 12px;">cd gaia/locales/
+hg clone https://hg.mozilla.org/releases/gaia-l10n/v1_2/es</pre>
+<div>
+ 環境変数の設定:</div>
+<div>
+  </div>
+<pre class="language-html">export LOCALE_BASEDIR=$PWD/locales
+export LOCALES_FILE=$PWD/locales/languages_dev.json
+export GAIA_DEFAULT_LOCALE=es
+</pre>
+<p><code>languages-dev.json</code>をあなた自身の<code>languages-own.json</code>のパスに置換できます。このように。ロケールディレクトリに複製されたrepo毎にエントリーを追加する必要があるでしょう<span style="line-height: 1.5;">:</span></p>
+<pre class="language-html">{
+  "en-US"     : "English (US)",
+  "es"        : "Español"
+}
+</pre>
+<p>バグ 884752 が落ち着いたため(2013年11月)、キーボードレイアウトを追加するため(Gaia内で入手可能なら)GAIA_KEYBOARD_LAYOUTSパラメータを使用できます。</p>
+<p>Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=884752</p>
+<p>Layouts: https://github.com/mozilla-b2g/gaia/tree/v1.2/keyboard/layouts</p>
+<p>例えば、スペイン語とイタリア語のキーボードレイアウトを追加するには先のコマンドに下記を付け足します。</p>
+<pre class="language-html">  GAIA_KEYBOARD_LAYOUTS=en,es,it</pre>
+<p><span style="line-height: 1.5;">この時点で初めてGaiaを電話機に焼く準備ができます、電話機を接続し、リモートデバッグが有効かSettings &gt; Device Information &gt; More Information &gt; Developerにてチェックします。これをたった一度だけでできます、Gaiaビルド用に、REMOTE_DEBUGGER=1という設定をオンにできるおかげで:</span></p>
+<pre class="language-html"> make clean &amp;&amp; make production LOCALES_FILE=locales/languages-own.json</pre>
+<div class="note">
+ <p>特定ブランチのサポートするロケール全てを取得や更新したい場合、<a class="external" href="https://gist.github.com/TheoChevalier/254461892d8bf118e1bc">このスクリプト</a>を使います。</p>
+</div>
+<h4 id="Gecko">Gecko</h4>
+<ol>
+ <li>どのGecko言語ファイルを使うかを決定します。我々は<a class="external" href="http://hg.mozilla.org/releases/mozilla-b2g18/file/default/b2g/locales/all-locales">b2g/locales/all-locales</a>をGecko言語ファイルとして使っています。</li>
+ <li>適切なロケールをディレクトリ(<code>ひょっとして gecko-l10n/</code>)にクローンします。.
+  <ul>
+   <li>For mozilla-central, use <a class="external" href="http://hg.mozilla.org/l10n-central/">http://hg.mozilla.org/l10n-central/</a></li>
+   <li>For mozilla-aurora, use <a class="external" href="http://hg.mozilla.org/releases/l10n/mozilla-aurora/">http://hg.mozilla.org/releases/l10n/mozilla-aurora/</a></li>
+   <li>For mozilla-beta or mozilla-b2g18 or mozilla-b2g26_v1_2, use <a class="external" href="http://hg.mozilla.org/releases/l10n/mozilla-beta/">http://hg.mozilla.org/releases/l10n/mozilla-beta/</a></li>
+  </ul>
+ </li>
+ <li><a class="external" href="http://hg.mozilla.org/build/compare-locales">compare-locales</a>をクローンします。gitを希望する場合、<span class="diff_add">RELEASE_0_9_7タグを使うようにします。</span></li>
+ <li>
+  <p>あなたの環境で、ステップ2で指定したパスの絶対パスを <code>L10NBASEDIR</code> にセットします。ステップ1のロケールをスペースで区切って <code>MOZ_CHROME_MULTILOCALE</code> にセットします。</p>
+  <p><code>compare-locales/scripts</code> ディレクトリを <code>PATH</code> に追加し、<code>compare-locales/lib</code> を <code>PYTHONPATH</code> に追加します。</p>
+ </li>
+ <li>例えば、
+  <pre class="language-html">export L10NBASEDIR=$PWD/gecko-l10n
+export MOZ_CHROME_MULTILOCALE="ja zh-TW"
+export PATH="$PATH:$PWD/compare-locales/scripts"
+export PYTHONPATH="$PWD/compare-locales/lib"
+</pre>
+  <p>いったん上記の設定が終わると、build.shを実行できます。</p>
+  <p>同じく <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=818560#c9/">.userconfigを使用します</a>:</p>
+  <pre class="language-html">## Gaia
+export GAIA_DEFAULT_LOCALE=es
+export LOCALE_BASEDIR=/b2g/gaia-l10n-transifex-v1.2/
+export LOCALES_FILE=/b2g/languages_propio.json
+
+## Gecko
+export L10NBASEDIR='/b2g/gecko-l10n-v1.2'
+export MOZ_CHROME_MULTILOCALE="es-ES eu ca gl pt-BR"
+export PATH="$PATH:/b2g/compare-locales/scripts"
+export PYTHONPATH="/b2g/compare-locales/lib"
+  </pre>
+ </li>
+</ol>
+<div class="note">
+ <p>Gaiaの言語とGeckoとで対応があります。例えば、Gaiaではスペイン語は"es"ですがGeckoは"Spanish of Spain" (es-ES)になっています。</p>
+</div>
+<p>これらの方法は、洗練させていくうちに変わるかもしれません。</p>
+<h2 id=".E6.97.A2.E7.9F.A5.E3.81.AE.E3.82.A8.E3.83.A9.E3.83.BC">既知のエラー</h2>
+<h3 id=".22Build_failed!.22">"Build failed!"</h3>
+<p>汎用的な"Build failed"というメッセージが出た時、いつも電話機をコンピューターに接続し直すべきです。色々な理由で電話機がアンマウントされます。</p>
+<div class="note">
+ <p><strong>Note that configuring and building B2G for Keon DOESN'T WORK on Mac</strong>. You'll need to use Linux to build for this device.</p>
+</div>
+<h3 id="Mountain_Lion.E5.9B.BA.E6.9C.89.E3.81.AE.E3.83.93.E3.83.AB.E3.83.89.E3.82.A8.E3.83.A9.E3.83.BC">Mountain Lion固有のビルドエラー</h3>
+<div>
+ <p>1. OS X 10.8 "Mountain Lion" (Xcode 4.4.1 以降)をビルドに使用して、下記のエラーが出た場合:</p>
+ <pre class="language-html" style="font-size: 14px;">external/qemu/android/skin/trackball.c:130:25: error: 'M_PI' undeclared (first use in this function)</pre>
+ <code style="font-size: 14px;">B2G/external/qemu/Makefile.android</code> のファイルを編集し、78行にこう挿入します:<br>
+ <pre class="language-html" style="font-size: 14px;">MY_CFLAGS += -DM_PI=3.14159265358979323846264338327950288   #/* B2G_fix: not finding M_PI constant */
+</pre>
+</div>
+<div>
+ 2. "Mountain Lion"上で./build.sh 実行中に、下記のエラーが出た場合:</div>
+<div>
+ <pre class="language-html">/System/Library/Frameworks/IOKit.framework/Headers/usb/USB.h:797:9: error: too many #pragma options align=reset</pre>
+ <p>/System/Library/Frameworks/IOKit.framework/Headers/usb/USB.h の中で '#pragma options align=reset' の箇所を '#pragma pack()' に置換して下さい。</p>
+</div>
+<h3 id="Undefined_symbols_.22_sqlite3_androidopt_handle_pragma.22_and_.22_sqlite3_androidopt_open.22">Undefined symbols "_sqlite3_androidopt_handle_pragma" and "_sqlite3_androidopt_open"</h3>
+<p>このエラーは、OS X 10.7 以降でXcode 4.5 以降にてビルドしている時に出ます。これを直すには、external/sqlite/dist/Android.mk のファイルに <a class="external" href="https://groups.google.com/forum/#%21msg/android-building/yAfPyUqCsiQ/7zvICk4GWjYJ">https://groups.google.com/forum/#!msg/android-building/yAfPyUqCsiQ/7zvICk4GWjYJ</a> のパッチをあてます。</p>
+<h3 id="KeyedVector.h.3A193.3A31.3A_error.3A_indexOfKey_was_not_declared_in_this_scope">KeyedVector.h:193:31: error: indexOfKey was not declared in this scope</h3>
+<p>このエラーは gcc のバージョンが新しすぎる場合に発生します。gcc/g++/g++-multilib 4.6.x バージョンをインストールしてください。</p>
+<p>詳細な情報については、<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Customization_with_the_.userconfig_file" title="Mozilla/Firefox_OS/Customization_with_the_.userconfig_file">.userconfigファイルをカスタマイズする</a>を参照してください。</p>
+<div class="note">
+ <p><strong>Community Note:</strong> It is possible to use gcc 4.7.x with slight modifications to the B2G code (gcc will guide you) but you won't get any help! Neither with modifying the code nor with bugs you encounter.</p>
+</div>
+<h3 id="arm-linux-androideabi-g.2B.2B.3A_Internal_error.3A_Killed_(program_cc1plus)">arm-linux-androideabi-g++: Internal error: Killed (program cc1plus)</h3>
+<p>このエラーが表示されたら、恐らく空きメモリが不足しています。<code>./build.sh</code> を実行する前に十分な空きメモリを確保してください。うまく実行させるには 4GB の RAM が必要です。</p>
+<h3 id=".22...is_referenced_by_DSO.22_error">"...is referenced by DSO" error</h3>
+<p>エミュレーターのビルド時に、このようなエラーが出た場合:<br>
+  /usr/bin/ld: out/host/linux-x86/obj/EXECUTABLES/triangleCM_intermediates/triangleCM: hidden symbol `_XGetRequest' in out/host/linux-x86/obj/STATIC_LIBRARIES/libSDL_intermediates/libSDL.a(SDL_x11dyn.o) is referenced by DSO.</p>
+<p>binutilskのいくらかのバージョンでこれが出ます。Debian安定版では、<code>binutils-gold</code> パッケージをインストールして <em>gold</em> リンカを使えます。<em>注意点としてgold</em> リンカは<code>binutils</code> によってインストール済ですがデフォルトでは使用されず、<code>binutils-gold</code>は単にそうします。</p>
+<h3 id=".E3.83.93.E3.83.AB.E3.83.89.E3.82.B7.E3.82.B9.E3.83.86.E3.83.A0.E3.81.AE.E3.83.86.E3.82.B9.E3.83.88.E4.B8.AD.E3.81.AB.E3.83.93.E3.83.AB.E3.83.89.E3.82.A8.E3.83.A9.E3.83.BC.E3.81.8C.E7.99.BA.E7.94.9F.E3.81.97.E3.81.9F.E5.A0.B4.E5.90.88">ビルドシステムのテスト中にビルドエラーが発生した場合</h3>
+<p>ビルドシステムのビルド後のテスト中に、時々（特にビルドツールやオペレーティングシステムの更新後に）このような奇妙なエラーが発生することがあります :</p>
+<pre>Generating permissions.sqlite...
+test -d profile || mkdir -p profile
+run-js-command  permissions
+WARNING: permission unknown:offline-app
+WARNING: permission unknown:indexedDB-unlimited
+build/permissions.js:122: NS_ERROR_UNEXPECTED: Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIPermissionManager.add]
+make[1]: *** [permissions] Error 3
+make: *** [gaia/profile.tar.gz] Error 2</pre>
+<p>このような状況になったら、<code>gaia/xulrunner-sdk</code> ディレクトリを削除して、コードを再度プルしてみてください :</p>
+<pre>rm -r gaia/xulrunner-sdk
+</pre>
+<p>これで、ビルドシステムが自動的に取得した、ダウンロード、プリコンパイル済みの <a href="https://developer.mozilla.org/ja/docs/XULRunner" title="/ja/docs/XULRunner">XULRunner</a> のコピーが削除され、次回のビルド時に、XULRunner の新しいコピーが自動的に取得されます。</p>
+<h3 id="Cannot_fetch_platform.2Flibcore">Cannot fetch platform/libcore</h3>
+<p>Nexus SでB2Gをビルドするconfigureの時(<code>./config.sh nexus-s</code>)にlibcore関連のエラーが出る場合、これを提供するlinaro gitの問題です。これを修正するには、下記のようにB2Gマニフェストを取得します:</p>
+<pre class="brush: bash  language-html"><code class="language-html">git clone https://github.com/mozilla-b2g/b2g-manifest.git</code></pre>
+<p>リポジトリ内の<code>nexus-s.xml</code>ファイルを修正し、linaro gitエントリーをasopエントリーに置き換え、下記のようにします:</p>
+<pre class="brush: xml  language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>default</span> <span class="token attr-name">revision</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>refs/tags/android-4.0.4_r1.2<span class="token punctuation">"</span></span>
+              <span class="token attr-name">remote</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>aosp<span class="token punctuation">"</span></span>
+              <span class="token attr-name">sync-j</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>4<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span></code></pre>
+<p>変更をコミットし (<code>git commit -a</code>) 、次に<code>、チェックアウトしたB2Gリポジトリのマスターブランチ内のconfig.sh</code>ファイルを編集し、あなたが修正したMozillaのマニフェストの代わりにローカルのマニフェストを指示するようにします:</p>
+<pre class="brush: bash  language-html"><code class="language-html">GITREPO=${GITREPO:-"file:///home/path/to/my/b2g-manifest"}</code></pre>
+<h3 id="Mac.E3.81.AEXcode_5.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.A6.E3.83.93.E3.83.AB.E3.83.89.E3.81.97.E3.81.A6.E3.81.84.E3.82.8B.E6.99.82.E3.81.AEclang.E3.81.AE.E3.82.A8.E3.83.A9.E3.83.BC">MacのXcode 5を使ってビルドしている時のclangのエラー</h3>
+<p>Mac OS X 10.8上のXcode 5でビルドしている時、下記の様なエラーをよく見かけるでしょう:</p>
+<pre class="brush: bash  language-html"><code class="language-html">clang: error: argument unused during compilation: '-include system/core/include/arch/darwin-x86/AndroidConfig.h'
+clang: error: argument unused during compilation: '-U DEBUG'
+clang: error: argument unused during compilation: '-U DEBUG'
+clang: error: argument unused during compilation: '-MF out/host/darwin-x86/obj/EXECUTABLES/obbtool_intermediates/Main.d'
+make: *** [out/host/darwin-x86/obj/EXECUTABLES/obbtool_intermediates/Main.o] Error 1</code></pre>
+<p>これはXcode 5がg++ コンパイラを<code>/usr/bin</code>に変更しているのが原因で、コンパイル時にそれを使おうとする時にビルドプロセスが停止します。この問題を回避するには <code>build/core/combo/HOST_darwin-x86.mkの下記の行を編集して下さい:</code></p>
+<pre class="brush: bash  language-html"><code class="language-html">HOST_CXX := g++</code></pre>
+<p>から</p>
+<pre class="brush: bash  language-html"><code class="language-html">HOST_CXX := g++-4.6
+ifeq (,$(wildcard /usr/local/bin/g++-4.6))
+ HOST_CXX := g++
+endif</code></pre>
+<p>まで。次にgccをアンインストールするため、brewを使います(すでに<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Firefox_OS_build_prerequisites#Run_Firefox_OS_Mac_Bootstrap">Mac OS bootstrap script</a> を使っている場合 — そうでない場合はそれを終わらせておく必要があります):</p>
+<pre class="brush: bash  language-html"><code class="language-html">brew uninstall gcc-4.6</code></pre>
+<p>ここでc++ をサポートしたgccとmultilibを再インストールします:</p>
+<pre class="brush: bash  language-html"><code class="language-html">brew install --enable-cxx https://gist.github.com/artlogic/6988658/raw/aeb9d1ea098274ad3f3fe2637b9df7f308a8a120/gcc-4.6.rb</code></pre>
+<p>PATH に /usr/local/bin iの記載があることを確認して下さい。一時的には、コマンドプロンプトで下記のようにタイプすることで可能です:</p>
+<pre class="brush: bash  language-html"><code class="language-html">export PATH=/usr/local/bin:$PATH</code></pre>
+<p>上記をホームディレクトリの<code>.bash_profileに追加しておけば、こ</code>の変更をずっと使えます。</p>
+<p>PATHの設定後、下記コマンドを両方実行してください:</p>
+<pre class="brush: bash  language-html"><code class="language-html">gcc-4.6 -v
+
+g++-4.6 -v</code></pre>
+<p>コマンドが失敗する場合、下記コマンドのようにbrewでgccを再リンクします:</p>
+<pre class="brush: bash  language-html"><code class="language-html">brew link --overwrite gcc-4.6</code></pre>
+<p><code>/usr/bin/c++</code> がXcode 5インストール時のように clang++ を指してなくなっている場合、下記も可能です。下記のようにタイプして決めることができます:</p>
+<pre class="brush: bash  language-html"><code class="language-html">ls -l /usr/bin/c++</code></pre>
+<p>このようなのが返ってくるはずです:</p>
+<pre class="brush: bash  language-html"><code class="language-html">lrwxr-xr-x 1 root admin 7 Sep 19 11:40 /usr/bin/c++ -&gt; clang++</code></pre>
+<p>c++ iが clang++以外を指してる場合、下記コマンドで更新します:</p>
+<pre class="brush: bash  language-html"><code class="language-html">sudo rm /usr/bin/c++
+
+sudo ln -s /usr/bin/clang++ /usr/bin/c++</code></pre>
+<h3 id="Cannot_pull_files_from_backup_directory(backup.E3.83.87.E3.82.A3.E3.83.AC.E3.82.AF.E3.83.88.E3.83.AA.E3.81.8B.E3.82.89.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.82.92.E5.8F.96.E5.BE.97.E3.81.A7.E3.81.8D.E3.81.AA.E3.81.84)">Cannot pull files from backup directory(backupディレクトリからファイルを取得できない)</h3>
+<p>これは(バックアップ)デバイスからコンピュータにデータ取得している時に、USB接続が壊れた場合に起こります。</p>
+<p>もう一度スクリプトを実行すると、おそらく下記のような出力(これはPeakデバイスの例)が出るでしょう:</p>
+<pre class="brush: bash  language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>Pulling files from ../../../backup-peak
+cat: ../../../backup-peak/system/build.prop: No such file or directory
+Found firmware with build ID
+Pulling "libaudioeq.so"
+cp: cannot stat `../../../backup-peak/system/lib/libaudioeq.so': No such file or directory
+Failed to pull libaudioeq.so. Giving up.
+
+&gt; Build failed! &lt;
+
+Build with |./build.sh -j1| for better messages
+If all else fails, use |rm -rf objdir-gecko| to clobber gecko and |rm -rf out| to clobber everything else.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span></code></pre>
+<p>これを解決するには、objdir-geckoや出力ディレクトリの全体を削除する必要はありません。バックアップのディレクトリだけを、このように消します(上記サンプルむけ):</p>
+<pre class="brush: bash  language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>brush: bash<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>$rm -rf backup-peak<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span></code></pre>
+<h3 id=".E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AE.E3.83.93.E3.83.AB.E3.83.89.E3.81.AE.E5.95.8F.E9.A1.8C"><strong>エミュレータのビルドの問題</strong></h3>
+<p><strong>emulator</strong> をビルドする時は、下記の問題にご注意ください：</p>
+<div class="note">
+ <p><strong>まず、x86のエミュレータは使用すべきではありませんーーーインストール困難で、サポートが良くないです。</strong></p>
+</div>
+<p>次に、エミュレータ用のビルドシステムは、32bit/64bit両方のエミュレータをビルドします。エミュレータはOpenGLに依存しているるため、32bit/64bit両方のOpenGLライブラリをシステムにインストールする必要があります。<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=897727" title="https://bugzilla.mozilla.org/show_bug.cgi?id=897727">bug 897727</a>(英語)の議論を見てください。</p>
+<p>この問題を解決するには２つの方法があります：</p>
+<h4 id=".E8.A7.A3No.1.3A_32bit.E3.81.A864bit.E4.B8.A1.E6.96.B9.E3.81.AEOpenGL_libs.E3.82.92.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB.E3.81.97.E3.80.81.E6.AD.A3.E3.81.97.E3.81.8Fsymlinks.E3.82.92.E4.BF.9D.E3.81.A4"><strong>解No.1</strong>: 32bitと64bit両方のOpenGL libsをインストールし、正しくsymlinksを保つ</h4>
+<p>もし使用するlinuxディストリビューションにOpenGLライブラリのmultilibパッケージがあるなら、インストールを試すことができます。そして手動でシンボリックリンクを作ることになるでしょう。</p>
+<p>例えば、Ubuntu 12.04 LTS x86-64での状況を示します。このディストリビューションでは<code>libgl1-mesa-dev</code>パッケージをx86-64版とi386版を同時にインストールできません。しかし、下記組み合わせのパッケージを同時インストールできます:</p>
+<pre class="bz_comment_text  language-html" id="comment_text_12"><code class="language-html">sudo apt-get install libgl1-mesa-dev libglapi-mesa:i386 libgl1-mesa-glx:i386</code></pre>
+<p>このコマンドを実行後、エミュレータのビルドを成功させるには、まだ手動でシンボリックリンクを作る必要があります。:</p>
+<pre class="note  language-html"><code class="language-html">$ sudo ln -s /usr/lib/i386-linux-gnu/libX11.so.6 /usr/lib/i386-linux-gnu/libX11.so
+$ sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so</code></pre>
+<h4 id=".E8.A7.A3No.2.3A_.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.8C64bit.E3.81.A0.E3.81.91.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B.E3.82.88.E3.81.86.E3.83.91.E3.83.83.E3.83.81.E3.82.92.E5.BD.93.E3.81.A6.E3.82.8B"><strong>解No.2: エミュレータが64bitだけを</strong>ビルドするようパッチを当てる</h4>
+<p>単に <a class="external" href="https://bug897727.bugzilla.mozilla.org/attachment.cgi?id=786280" title="https://bug897727.bugzilla.mozilla.org/attachment.cgi?id=786280">このパッチ</a> をB2Gリポジトリ以下のsdk/ git リポジトリに適用しまうｓ．これは64bitシステム上ではB2Gエミュレータが64bitのエミュレーターだけをビルドするようにします。 ゆえにmultilibのいかなる問題も回避します。64bitシステムではいずれにせよ32bitエミュレータを使用しません。これは、このパッチが最 終的にゴミクズ化（原語:bit-rot）するまでは最もシンプルな解決策です。</p>
+<p> </p>
+<h2 id=".E6.AC.A1.E3.81.AE.E3.82.B9.E3.83.86.E3.83.83.E3.83.97.E3.81.B8">次のステップへ</h2>
+<p>ビルド後の次のステップは、Boot to Gecko をエミュレータ用にビルドしたのか、もしくは実際のモバイルデバイス用なのかによって異なります。詳細は以下の記事を参照してください :</p>
+<ul>
+ <li><a href="Using_the_B2G_emulators.html" title="ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators">B2G エミュレータを使用する</a></li>
+ <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_desktop_client" title="ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_desktop_client">B2G デスクトップクライアントを使用する</a></li>
+ <li><a href="Installing_Boot_to_Gecko_on_a_mobile_device.html" title="ja/docs/Mozilla/Boot_to_Gecko/Installing_Boot_to_Gecko_on_a_mobile_device">Boot to Gecko をモバイルデバイスにインストールする</a></li>
+ <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Pandaboard" title="/ja/docs/Mozilla/Boot_to_Gecko/Pandaboard">Boot to Gecko を pandaboard にインストールする</a></li>
+</ul>
+<h3 id="B2G.2FFirefox_OS.2FGaia.E3.81.AE.E3.83.90.E3.82.B0.E7.99.BB.E9.8C.B2">B2G/Firefox OS/Gaiaのバグ登録</h3>
+<p>いったんB2G/Firefox OSのビルドを終えて実行すると、特定バージョンのバグを記録したくなるでしょう。Firefox OSコミュニティでは出来るだけ効率的に改善ができます。</p>
+<p>"Firefox OS"の下で<a class="external" href="https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox%20OS">Bugzillaのバグ登録</a>をしたくなるでしょう。ただバージョン情報を含める必要があります:</p>
+<ol>
+ <li>まず最初に、バージョン番号<em>、例えば1.4.0.0-prerelease</em>を教えてください。端末上で<em>はSettings &gt; Device Information</em>にあります。</li>
+ <li>gaiaとgeckoリポジトリから現在のハッシュを取得することで、もっと詳細なバージョンidを報告できます。このようにして:
+  <pre class="brush: bash language-html"><code class="language-bash">#!/bin/bash
+(cd gaia;  echo "gaia  $(git rev-parse HEAD)")
+(cd gecko; echo "gecko $(git rev-parse HEAD)")G</code></pre>
+ </li>
+</ol>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../tag/B2G.html">B2G</a></li><li><a href="../../tag/Firefox OS.html">Firefox OS</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Build%20documentation">Build documentation</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/taguchi-ch">taguchi-ch</a>, <a href="../../../profiles/Uemmra3.html">Uemmra3</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/Uemmra3.html">Uemmra3</a>,
+                      <time datetime="2014-09-20T20:01:02-07:00">2014/09/20 20:01:02</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="Building_Boot_to_Gecko.html#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                                  <!-- zone subnav -->
+                    <nav class="zone-subnav-container" role="navigation">
+    <div class="subnav" id="Subnav">
+      
+<ol>
+ <li><a href="../../../Firefox_OS/Introduction.html">イントロダクション</a></li>
+ <li><a href="../../../Firefox_OS/Platform.html" title="Documentation about the Firefox OS platform, including Gonk, Gaia, and everything in between.">プラットフォームガイド</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Platform/Architecture.html" title="An overview of how Firefox OS is structured internally; this is primarily of interest to platform developers and people doing porting work.">アーキテクチャ</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Apps_architecture.html" title="An overview of the application model on Firefox OS.">アプリ構造</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Gonk.html" title="Documentation about Gonk, the operating system layer underneath Gaia. This consists of a Linux kernel and a hardware abstraction layer to which Gecko communicates.">Gonk</a></li>
+   <li><a href="../Gecko.html" title="Gecko is the layer of Firefox OS that provides the same open web standards implementation used by Firefox and Thunderbird, as well as many other applications.">Gecko</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Gaia.html" title="Documentation about Gaia, the user interface application for Firefox OS devices; this is a Web application running atop the Firefox OS software stack.">Gaia</a></li>
+   <li><a href="../../../Firefox_OS/Security.html" title="Documentation about security in Firefox OS">セキュリティ</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Feature_support_chart.html" title="A chart of which features are available in which types of Firefox OS builds.">Feature support chart</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Settings_list.html" title="A list of common setting names that can be used with the settings API">Settings list</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Building_and_installing_Firefox_OS.html" title="This includes documentation for building and installing the platform onto devices, as well as building the simulator and emulators.">ビルド &amp; インストール</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Building_and_installing_Firefox_OS/Firefox_OS_build_overview.html">Firefox OSのビルドの概要</a></li>
+   <li><a href="B2G_build_prerequisites.html" title="Steps to take before you build Firefox OS for the first time.">Firefox OS ビルドの必要条件</a></li>
+   <li><a href="Preparing_for_your_first_B2G_build.html" title="Before you can build Firefox OS, you need to clone the repository and configure your build.">初回 B2G ビルドの準備</a></li>
+   <li><a href="Building_Boot_to_Gecko.html" title="How to build Firefox OS.">Firefox OSのビルド</a></li>
+   <li><a href="../../../Firefox_OS/Porting.html" title="Information about how to port Firefox OS to new devices.">Porting Firefox OS</a></li>
+   <li><a href="Choosing_how_to_run_Gaia_or_B2G.html" title="Using Gaia within Firefox, running Firefox OS on a mobile device, or in a desktop-based simulator. Which is best?">Gaia もしくは B2G の実行方法を選択する</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Using_the_B2G_desktop_client" title="Simulating the Gaia environment in a desktop application - more accurate than running Gaia in Firefox but not as accurate as the emulators.">B2G デスクトップクライアントを使用する</a></li>
+   <li><a href="Using_the_B2G_emulators.html" title="A guide to building and using the Firefox OS emulators, and when to use which emulator.">B2G エミュレータを使用する</a></li>
+   <li><a href="Installing_Boot_to_Gecko_on_a_mobile_device.html" title="How to install Firefox OS on a real mobile device.">B2G をモバイルデバイスにインストールする</a></li>
+   <li><a href="../../../Firefox_OS/Building_and_installing_Firefox_OS/Firefox_OS_update_packages.html">Creating and applying Firefox OS update packages</a></li>
+   <li><a href="../../../Firefox_OS/Runtime_tools.html">Runtime tools</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Developing_Firefox_OS.html" title="Hack the OS, customize your builds, get things the way you think they should be!">Firefox OS の開発</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Quickstart_guide_to_Gaia_development">Quickstart guide to Gaia development</a></li>
+   <li><a href="../../../Firefox_OS/Developing_Firefox_OS/Quickstart_guide_to_B2G_development.html">Quickstart guide to B2G development</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Platform/Gaia/Build_System_Primer">Build system primer</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Firefox_OS_bugwork">Firefox OS bugwork</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Platform/Gaia/Hacking">Hacking Gaia</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Gaia/Gaia_apps.html">Gaia apps guide</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Market_customizations_guide">Market customizations guide</a></li>
+   <li><a href="../../../Firefox_OS/Developing_Firefox_OS/modifying_hosts_file.html" title="A guide to what can be achieved by modifying the Firefox OS hosts file.">Modifying the hosts file</a></li>
+   <li><a href="../../../Firefox_OS/Customization_with_the_.userconfig_file.html" title="How to customize the build and execution of Firefox OS by changing the .userconfig file.">Customization with the .userconfig file</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Customizing_the_keyboard">Customizing the keyboard in Firefox OS apps</a></li>
+   <li><a href="../../../Firefox_OS/Developing_Firefox_OS/Customizing_the_b2g.sh_script.html">Customizing the b2g.sh script</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Localizing_Firefox_OS">Localizing Firefox OS</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Developer_phone_guide.html" title="A developer's guide to the Firefox OS developer phones available.">開発端末ガイド</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Phone_specs.html">Phone and device specs</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Geeksphone.html">Geeksphone</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/ZTE_OPEN.html">ZTE OPEN</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Flame.html">Flame</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Firefox_OS_device_features.html">General device features</a></li>
+   <li><a href="../../../Firefox_OS/トラブルシューティング.html" title="A guide to resolving common problems with Firefox OS.">Troubleshooting</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Best_practices_open_reference_devices.html">Best practices for open reference devices</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Releases.html" title="This section of the site contains release notes, explaining what new features and changes of significance to developers have landed in each new release of Gaia and Gecko on Firefox OS.">Firefox OS リリースノート</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Releases/1.3.html">Firefox OS 1.3 for developers</a></li>
+   <li><a href="../../../Firefox_OS/Releases/1.2.html">Firefox OS 1.2 for developers</a></li>
+   <li><a href="../../../Firefox_OS/Releases/1.1.html">Firefox OS 1.1 for developers</a></li>
+   <li><a href="../../../Firefox_OS/Releases/1.0.1.html">Firefox OS 1.0.1 for developers</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Platform/Testing.html">Testing</a></li>
+ <li><a href="../../../Firefox_OS/Debugging.html" title="A guide to debugging both your mobile apps and Firefox OS itself.">Debugging</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Debugging/Developer_settings.html">Developer settings for Firefox OS</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Connecting_a_Firefox_OS_device_to_the_desktop.html">Connecting a Firefox OS device to the desktop</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Setting_up.html">Setting up to debug Firefox OS using Firefox developer tools</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/On-device_console_logging.html">On-device console logging</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Installing_ADB.html">Installing and using ADB</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Firefox_OS_usage_tips/taking_screenshots">Taking screenshots</a></li>
+   <li><a href="../../../Firefox_OS/Using_the_App_Manager.html" title="A tool that allows you to install open web apps from your computer to a device capable of installing them (such as Firefox OS) - and debug any running app.">Using the Firefox OS app manager</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Debugging_OOMs.html">Debugging out of memory errors on Firefox OS</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Debugging_B2G_using_gdb.html">Debugging B2G using gdb</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Debugging_B2G_using_valgrind.html">Debugging B2G using Valgrind</a></li>
+  </ol>
+ </li>
+</ol>
+<p> </p>
+    </div>
+  </nav>&nbsp;
+                
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Mozilla/Boot_to_Gecko/Building_Boot_to_Gecko" selected>
+          日本語
+        </option>
+                  <option value="/en-US/Firefox_OS/Building">
+            English (US)
+          </option>          <option value="/zh-TW/Firefox_OS/Building">
+            正體中文 (繁體)
+          </option>          <option value="/zh-CN/docs/Mozilla/Firefox_OS/Building">
+            中文 (简体)
+          </option>          <option value="/es/Firefox_OS/Compilar_Boot_to_Gecko">
+            Español
+          </option>          <option value="/ko/docs/Mozilla/Firefox_OS/Building">
+            한국어
+          </option>          <option value="/pt-BR/Firefox_OS/Compilando_O_Firefox_OS">
+            Português (do Brasil)
+          </option>          <option value="/bn-BD/Firefox_OS/Building">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/it/Firefox_OS/Building">
+            Italiano
+          </option>          <option value="/de/Firefox_OS/Building">
+            Deutsch
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":768}</script></body>
+</html>

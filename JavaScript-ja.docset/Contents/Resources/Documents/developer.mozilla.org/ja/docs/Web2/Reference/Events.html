@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>DOM イベントリファレンス | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="Events.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web2/Reference/Events$json">
+  <link rel="canonical" href="Events.html" >
+
+  
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="DOM イベントリファレンス">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web2/Reference/Events">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web2/Reference/Events">
+  <meta name="twitter:title" content="DOM イベントリファレンス">
+    <meta property="og:description" content="以下のイベントは、DOM 要素 の element.addEventListener() メソッドを使用してイベントハンドラを追加することにより、捕捉することができます。">
+  <meta name="description" content="以下のイベントは、DOM 要素 の element.addEventListener() メソッドを使用してイベントハンドラを追加することにより、捕捉することができます。">
+  <meta name="twitter:description" content="以下のイベントは、DOM 要素 の element.addEventListener() メソッドを使用してイベントハンドラを追加することにより、捕捉することができます。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web2/Reference/Events" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+            notifications: [
+                                                            ],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Events.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Events.html#language">言語の選択</a></li>
+          <li><a href="Events.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web2/Reference/Events" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web2/Reference/Events" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                              <li class="smaller">No translations exist for this document.</li>
+              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web2/Reference/Events$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web2/Reference/Events$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Events.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../DOM.html" rel="v:url" property="v:title">DOM</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">DOM イベントリファレンス</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Events.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>DOM イベントリファレンス</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Events.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><li><a href="Events.html#DOM_events" rel="internal">DOM events</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Events.html#.E4.BB.95.E6.A7.98.E6.9B.B8" rel="internal">仕様書</a><li><a href="Events.html#.E5.8F.82.E7.85.A7" rel="internal">参照</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div>
+  <div class="overheadIndicator draft"> 
+    <p><strong>草案</strong><br> 
+    このページは完成していません。</p> 
+</div></div>
+<p>以下のイベントは、DOM 要素 の <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/element.addEventListener" title="The documentation about this has not yet been written; please consider contributing!"><code>element.addEventListener()</code></a> メソッドを使用してイベントハンドラを追加することにより、捕捉することができます。</p>
+<div class="note">
+  <strong>注記:</strong> このページ及び配下のページは未完成です。ご注意下さい。</div>
+<h2 id="DOM_events">DOM events</h2>
+<table class="standard-table" style="width: auto;">
+  <tbody>
+    <tr>
+    </tr>
+    <tr>
+      <td class="header">イベント名</td>
+      <td class="header">イベントの種類</td>
+      <td class="header">ターゲット</td>
+      <td class="header">仕様書</td>
+      <td class="header">説明</td>
+    </tr>
+    <tr>
+      <td><code>DOMActivate</code></td>
+      <td> </td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMActivate">DOM L3 Events</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>DOMAttrModified</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMAttrModified">DOM L3 Events</a></td>
+      <td><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a>.</td>
+    </tr>
+    <tr>
+      <td><code>DOMAttributeNameChanged</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationNameEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationNameEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMAttributeNameChanged">DOM L3 Events</a></td>
+      <td><span class="inlineIndicator unimplemented unimplementedInline">未実装</span> at least in Gecko. See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a>.</td>
+    </tr>
+    <tr>
+      <td><code>DOMCharacterDataModified</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMCharacterDataModified">DOM L3 Events</a></td>
+      <td><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a>.</td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/DOMContentLoaded">DOMContentLoaded</a></code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-end.html#the-end">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>DOMElementNameChanged</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationNameEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationNameEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMElementNameChanged">DOM L3 Events</a></td>
+      <td><span class="inlineIndicator unimplemented unimplementedInline">未実装</span> at least in Gecko. See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a>.</td>
+    </tr>
+    <tr>
+      <td><code>DOMFocusIn</code></td>
+      <td><a class="new" href="../../Web/API/FocusEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>FocusEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMFocusIn">DOM L3 Events</a></td>
+      <td>
+        <p><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> Use <code>focus</code>, <code>focusin</code>, and <code>focusout</code> events.</p>
+        <p><span class="inlineIndicator unimplemented unimplementedInline">未実装</span> in Gecko (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=396927" title="Implement the DOMFocusIn and DOMFocusOut events">バグ 396927</a>).</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>DOMFocusOut</code></td>
+      <td><a class="new" href="../../Web/API/FocusEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>FocusEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMFocusOut">DOM L3 Events</a></td>
+      <td>
+        <p><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> Use <code>focus</code>, <code>focusin</code>, and <code>focusout</code> events.</p>
+        <span class="inlineIndicator unimplemented unimplementedInline">未実装</span> in Gecko (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=396927" title="Implement the DOMFocusIn and DOMFocusOut events">バグ 396927</a>).</td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/DOMMouseScroll">DOMMouseScroll</a></code></td>
+      <td><a class="new" href="../../Web/API/MouseScrollEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseScrollEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>DOMNodeInserted</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMNodeInserted">DOM L3 Events</a></td>
+      <td><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a>.</td>
+    </tr>
+    <tr>
+      <td><code>DOMNodeInsertedIntoDocument</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMNodeInsertedIntoDocument">DOM L3 Events</a></td>
+      <td><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a>.</td>
+    </tr>
+    <tr>
+      <td><code>DOMNodeRemoved</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMNodeRemoved">DOM L3 Events</a></td>
+      <td><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a>.</td>
+    </tr>
+    <tr>
+      <td><code>DOMNodeRemovedFromDocument</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMNodeRemovedFromDocument">DOM L3 Events</a></td>
+      <td><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a>.</td>
+    </tr>
+    <tr>
+      <td><code>DOMSubtreeModified</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/MutationEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>MutationEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMSubtreeModified">DOM L3 Events</a></td>
+      <td><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> document の変更を通知する一般的なイベント。<a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Mutation_events" title="DOM/Mutation_events">Mutation events</a> を参照して下さい。</td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/MozMousePixelScroll">MozMousePixelScroll</a></code></td>
+      <td><a class="new" href="../../Web/API/MouseScrollEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseScrollEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>abort</code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a> (may also be <a class="new" href="../../Web/API/UIEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>UIEvent</code></a> and <a class="new" href="../../Web/API/ProgressEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ProgressEvent</code></a>)</td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="../../Web/API/XMLHttpRequest.html" title="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています。URL から データを読み出す簡単な方法を提供します。XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。"><code>XMLHttpRequest</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequestUpload" title="The documentation about this has not yet been written; please consider contributing!"><code>XMLHttpRequestUpload</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-abort">DOM L3 Events</a>, <a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-abort">HTML5</a>, <a class="external" href="http://www.w3.org/TR/XMLHttpRequest/#event-xhr-abort">XHR L2</a></td>
+      <td>Fired when the transfer of a resource was aborted.</td>
+    </tr>
+    <tr>
+      <td><code>afterprint</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td>文書の印刷が開始される前に送信される。使用例については、 <a class="new" href="https://developer.mozilla.org/ja/docs/Printing#Detecting_print_requests" title="https://developer.mozilla.org/ja/docs/Printing#Detecting_print_requests">印刷リクエストの検出</a> を参照して下さい。 </td>
+    </tr>
+    <tr>
+      <td><code>animationend</code></td>
+      <td><a class="new" href="../../Web/API/AnimationEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>AnimationEvent</code></a></td>
+      <td>?</td>
+      <td> </td>
+      <td><a href="https://developer.mozilla.org/ja/docs/CSS/CSS_animations" title="CSS/CSS animations">CSS animations</a> の頁を参照して下さい。</td>
+    </tr>
+    <tr>
+      <td><code>animationiteration</code></td>
+      <td><a class="new" href="../../Web/API/AnimationEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>AnimationEvent</code></a></td>
+      <td>?</td>
+      <td> </td>
+      <td><a href="https://developer.mozilla.org/ja/docs/CSS/CSS_animations" title="CSS/CSS animations">CSS animations</a> の頁を参照して下さい。</td>
+    </tr>
+    <tr>
+      <td><code>animationstart</code></td>
+      <td><a class="new" href="../../Web/API/AnimationEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>AnimationEvent</code></a></td>
+      <td>?</td>
+      <td> </td>
+      <td><a href="https://developer.mozilla.org/ja/docs/CSS/CSS_animations" title="CSS/CSS animations">CSS animations</a> の頁を参照して下さい。</td>
+    </tr>
+    <tr>
+      <td><code>beforeprint</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td>Fired before printing of a document begins. See <a class="new" href="https://developer.mozilla.org/ja/docs/Printing#Detecting_print_requests" title="https://developer.mozilla.org/ja/docs/Printing#Detecting_print_requests">Detecting print requests</a> for an example. </td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/beforeunload">beforeunload</a></code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td>IE-specific. Fired before a resource is unloaded (while unload is fired afterward)</td>
+    </tr>
+    <tr>
+      <td><code>blur</code></td>
+      <td><a class="new" href="../../Web/API/FocusEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>FocusEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a> (except <code>&lt;body&gt;</code> and <code>&lt;frameseet&gt;</code>), <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a></td>
+      <td> </td>
+      <td>Fired when an element target loses focus.</td>
+    </tr>
+    <tr>
+      <td><code>callschanged</code></td>
+      <td><a class="new" href="../../Web/API/CallEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>CallEvent</code></a></td>
+      <td> </td>
+      <td><a class="external link-https" href="https://wiki.mozilla.org/WebAPI/WebTelephony" title="https://wiki.mozilla.org/WebAPI/WebTelephony">WebTelephony</a></td>
+      <td>Fired when the list of ongoing phone calls changes.</td>
+    </tr>
+    <tr>
+      <td><code>canplay</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-canplay">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>canplaythrough</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-canplaythrough">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>click</code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-click">DOM L3 Events</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/compositionend">compositionend</a></code></td>
+      <td><a class="new" href="../../DOM/CompositionEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>CompositionEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a></td>
+      <td><a class="external" href="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#event-type-compositionend">DOM L3 Events</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/compositionstart">compositionstart</a></code></td>
+      <td><a class="new" href="../../DOM/CompositionEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>CompositionEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a></td>
+      <td><a class="external" href="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#event-type-compositionstart">DOM L3 Events</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/compositionupdate">compositionupdate</a></code></td>
+      <td><a class="new" href="../../DOM/CompositionEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>CompositionEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a></td>
+      <td><a class="external" href="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#event-type-compositionupdate">DOM L3 Events</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>contextmenu</code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/interactive-elements.html#context-menus">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>cuechange</code></td>
+      <td> </td>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/track" title="track 要素はメディア要素 (&lt;audio> および &lt;video>) の子として使用するもので、それ自身は何も表しません。この要素は、時間指定されたテキストトラック (または時系列データ) を指定できます。"><code>&lt;track&gt;</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/TextTrack" title="The documentation about this has not yet been written; please consider contributing!"><code>TextTrack</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#handler-texttrack-oncuechange">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>delivered</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/SmsEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>SmsEvent</code></a></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/SmsManager" title="The documentation about this has not yet been written; please consider contributing!"><code>SmsManager</code></a></td>
+      <td><a class="external link-https" href="https://wiki.mozilla.org/WebAPI/WebSMS">WebSMS API</a></td>
+      <td>Fired when an SMS is delivered to a recipient.</td>
+    </tr>
+    <tr>
+      <td><code>dblclick</code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-dblclick">DOM L3 Events</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>drag</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>dragend</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>dragenter</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>dragleave</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>dragover</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>dragstart</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>drop</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>durationchange</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-durationchange">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>emptied</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-emptied">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>ended</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-ended">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/error">error</a></code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a> (may also be <a class="new" href="../../Web/API/UIEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>UIEvent</code></a> and <a class="new" href="../../Web/API/ProgressEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ProgressEvent</code></a>)</td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="../../Web/API/XMLHttpRequest.html" title="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています。URL から データを読み出す簡単な方法を提供します。XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。"><code>XMLHttpRequest</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequestUpload" title="The documentation about this has not yet been written; please consider contributing!"><code>XMLHttpRequestUpload</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-error">DOM L3 Events</a>, <a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-error">HTML5</a>, <a class="external" href="http://www.w3.org/TR/XMLHttpRequest/#event-xhr-error">XHR L2</a></td>
+      <td>Fired when a resource fails to load (network error, script execution error, etc).</td>
+    </tr>
+    <tr>
+      <td><code>focus</code></td>
+      <td><a class="new" href="../../Web/API/FocusEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>FocusEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a> (except <code>&lt;body&gt;</code> and <code>&lt;frameseet&gt;</code>), <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-focus">DOM L3 Events</a></td>
+      <td>要素がフォーカスされた際に発生。</td>
+    </tr>
+    <tr>
+      <td><code>focusin</code></td>
+      <td><a class="new" href="../../Web/API/FocusEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>FocusEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-focusin">DOM L3 Events</a></td>
+      <td>
+        <p>Fired when an event target is about to receive focus but before the focus is shifted. This event occurs right before the focus event.</p>
+        <p>Gecko では <span class="inlineIndicator unimplemented unimplementedInline">未実装</span> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=687787" title="Add support for DOM3 focusin/focusout">バグ 687787</a>)</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>focusout</code></td>
+      <td><a class="new" href="../../Web/API/FocusEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>FocusEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-focusout">DOM L3 Events</a></td>
+      <td>
+        <p>Fired when an event target is about to lose focus but before the focus is shifted. This event occurs right before the blur event.</p>
+        <p>Gecko では <span class="inlineIndicator unimplemented unimplementedInline">未実装</span> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=687787" title="Add support for DOM3 focusin/focusout">バグ 687787</a>)</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>hashchange</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>incoming</code></td>
+      <td><a class="new" href="../../Web/API/CallEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>CallEvent</code></a></td>
+      <td> </td>
+      <td><a class="external link-https" href="https://wiki.mozilla.org/WebAPI/WebTelephony" title="https://wiki.mozilla.org/WebAPI/WebTelephony">WebTelephony</a></td>
+      <td>Fired when a new call is detected.</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/input">input</a></code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a></td>
+      <td><a class="external" href="http://dev.w3.org/html5/spec/common-input-element-apis.html#common-event-behaviors" title="http://dev.w3.org/html5/spec/common-input-element-apis.html#common-event-behaviors">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>invalid</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>keydown</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>KeyboardEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-keydown">DOM L3 Events</a></td>
+      <td>キーが最初に押下された時に送信される。これは、キーマッピングが行われた後に送信されるが、 IME (input method editors) が <code>keypress</code> を受け取る前に送信される。これは、文字コードが生成されないどのようなキーが押下されても送信される。</td>
+    </tr>
+    <tr>
+      <td><code>keypress</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>KeyboardEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-keypress">DOM L3 Events</a></td>
+      <td>
+        <p>キーが最初押下された時に送信されるが、キーが通常の文字の値を持つ場合にのみ送信される。これは、キーマッピングが行われた後に送信されるが、IME が <code>keypress</code> を受け取る前に送信される。 仕様書: <a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-keypress">W3C Draft</a></p>
+        <div class="note">
+          <strong>注記:</strong> このイベントは、<code>keydown</code> イベントに追加で送信され、代わりに送信されるものではない。</div>
+        <p>このイベントは、<code>textinput</code> の方が好まれるため非推奨。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>keyup</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>KeyboardEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-keyup">DOM L3 Events</a></td>
+      <td>キーが離された時に送信される。これはキーマッピングが行われた後に送信され、常に対応する <code>keydown</code> 及び <code>keypress</code> イベントに続いて送信される。</td>
+    </tr>
+    <tr>
+      <td><code>load</code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a> (may also be <a class="new" href="../../Web/API/UIEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>UIEvent</code></a> and <a class="new" href="../../Web/API/ProgressEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ProgressEvent</code></a>)</td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="../../Web/API/XMLHttpRequest.html" title="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています。URL から データを読み出す簡単な方法を提供します。XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。"><code>XMLHttpRequest</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequestUpload" title="The documentation about this has not yet been written; please consider contributing!"><code>XMLHttpRequestUpload</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-load">DOM L3 Events</a>, <a class="external" href="http://www.w3.org/TR/XMLHttpRequest/#event-xhr-load">XHR L2</a></td>
+      <td>Fired when the resource (document, element, defaultView) and depending resources (images, script downloading and execution, css loading, etc.) are loaded.</td>
+    </tr>
+    <tr>
+      <td><code>loadeddata</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-loadeddata">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>loadedmetadata</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-loadedmetadata">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>loadend</code></td>
+      <td><a class="new" href="../../Web/API/ProgressEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ProgressEvent</code></a></td>
+      <td><a href="../../Web/API/XMLHttpRequest.html" title="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています。URL から データを読み出す簡単な方法を提供します。XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。"><code>XMLHttpRequest</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/XMLHttpRequest/#event-xhr-loadend">XHR L2</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>loadstart</code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a> (may be <a class="new" href="../../Web/API/ProgressEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ProgressEvent</code></a>)</td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a>, <a href="../../Web/API/XMLHttpRequest.html" title="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています。URL から データを読み出す簡単な方法を提供します。XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。"><code>XMLHttpRequest</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequestUpload" title="The documentation about this has not yet been written; please consider contributing!"><code>XMLHttpRequestUpload</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-loadstart">HTML5</a>, <a class="external" href="http://www.w3.org/TR/XMLHttpRequest/#event-xhr-loadstart">XHR L2</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>message</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>mousedown</code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mousedown">DOM L3 Events</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/mouseenter">mouseenter</a></code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseenter">DOM L3 Events</a></td>
+      <td>Fired when entering an element or any of its descendants.</td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/mouseleave">mouseleave</a></code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td> </td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseleave">DOM L3 Events</a></td>
+      <td>Fired when leaving an element and all of its descendants.</td>
+    </tr>
+    <tr>
+      <td><code>mousemove</code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mousemove">DOM L3 Events</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>mouseout</code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseout">DOM L3 Events</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>mouseover</code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseover">DOM L3 Events</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>mouseup</code></td>
+      <td><a class="new" href="../../Web/API/MouseEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-mouseup">DOM L3 Events</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/mousewheel">mousewheel</a></code></td>
+      <td><a class="new" href="../../Web/API/MouseWheelEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>MouseWheelEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td>
+        <p><span class="inlineIndicator unimplemented unimplementedInline">未実装</span> in Gecko, supported by IE, Webkit and Opera.</p>
+        <p>see gecko-specific <code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/DOMMouseScroll">DOMMouseScroll</a></code> equivalent</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>mozfullscreenchange</code></td>
+      <td> </td>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a></td>
+      <td><span title="これは実験段階の API です。製品内のコードで使用しないようご注意ください。"><i class="icon-beaker"> </i></span></td>
+      <td>Sent to a document when an element its contains is granted full-screen mode, or leaves it. See <a href="../../Web/Guide/DOM/Using_full_screen_mode.html" title="DOM/Using full-screen mode">Using full-screen mode</a> for details. </td>
+    </tr>
+    <tr>
+      <td><code>offline</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#event-offline">HTML5</a></td>
+      <td><code>window</code>, <code>document</code>, <code>document.body</code> 上で使用可能。<a href="../../Online_and_offline_events.html" title="Online_and_offline_events">Online_and_offline_events</a> を参照。</td>
+    </tr>
+    <tr>
+      <td><code>online</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#event-online">HTML5</a></td>
+      <td><code>window</code>, <code>document</code>, <code>document.body</code> 上で使用可能。<a href="../../Online_and_offline_events.html" title="Online_and_offline_events">Online_and_offline_events</a> を参照。</td>
+    </tr>
+    <tr>
+      <td><code>pagehide</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>pageshow</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>pause</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-pause">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>play</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-play">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>playing</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-playing">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>popstate</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td>See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/window.onpopstate" title="DOM/window.onpopstate">window.onpopstate</a> and <a href="../../Web/Guide/DOM/Manipulating_the_browser_history.html" title="DOM/Manipulating_the_browser_history">Manipulating the browser history</a>.</td>
+    </tr>
+    <tr>
+      <td><code>progress</code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a> (may be <a class="new" href="../../Web/API/ProgressEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ProgressEvent</code></a>)</td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a>, <a href="../../Web/API/XMLHttpRequest.html" title="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています。URL から データを読み出す簡単な方法を提供します。XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。"><code>XMLHttpRequest</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequestUpload" title="The documentation about this has not yet been written; please consider contributing!"><code>XMLHttpRequestUpload</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-progress">HTML5</a>, <a class="external" href="http://www.w3.org/TR/XMLHttpRequest/#event-xhr-progress">XHR L2</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>ratechange</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-ratechange">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>readystatechange</code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a></td>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/XMLHttpRequest.html" title="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています。URL から データを読み出す簡単な方法を提供します。XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。"><code>XMLHttpRequest</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#event-readystatechange">HTML5</a>, <a class="external" href="http://www.w3.org/TR/XMLHttpRequest/#event-xhr-readystatechange">XHR L2</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>received</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/SmsEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>SmsEvent</code></a></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/SmsManager" title="The documentation about this has not yet been written; please consider contributing!"><code>SmsManager</code></a></td>
+      <td><a class="external link-https" href="https://wiki.mozilla.org/WebAPI/WebSMS">WebSMS API</a></td>
+      <td>Fired when an SMS is received.</td>
+    </tr>
+    <tr>
+      <td><code>reset</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>resize</code></td>
+      <td><a class="new" href="../../Web/API/UIEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>UIEvent</code></a></td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-resize">DOM L3 Events</a></td>
+      <td>Fired when the browser window is resized. May apply to &lt;iframe&gt;s.</td>
+    </tr>
+    <tr>
+      <td><code>scroll</code></td>
+      <td><a class="new" href="../../Web/API/UIEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>UIEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-scroll">DOM L3 Events</a></td>
+      <td>閲覧者が文書や要素のスクロール操作を行った際に発生。</td>
+    </tr>
+    <tr>
+      <td><code>seeked</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-seeked">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>seeking</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-seeking">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td><a class="new" href="../../Web/API/UIEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>UIEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-select">DOM L3 Events</a></td>
+      <td>閲覧者がテキストを選択した際に発生。</td>
+    </tr>
+    <tr>
+      <td><code>sent</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/SmsEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>SmsEvent</code></a></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/SmsManager" title="The documentation about this has not yet been written; please consider contributing!"><code>SmsManager</code></a></td>
+      <td><a class="external link-https" href="https://wiki.mozilla.org/WebAPI/WebSMS">WebSMS API</a></td>
+      <td>Fired when an SMS is sent.</td>
+    </tr>
+    <tr>
+      <td><code>show</code></td>
+      <td><a href="../../Web/API/Event.html" title="この章では DOM Event Model を解説します。 Event インターフェイスを解説し、同様に DOM ノードへのイベント登録インターフェイス、イベントリスナを解説します。そして、さまざまなイベントインターフェイスがお互いにどのように関連しているのかを示す長めの例をいくつか掲載します。"><code>Event</code></a></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/HTMLMenuElement" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMenuElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/interactive-elements.html#context-menus">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>stalled</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-stalled">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>storage</code></td>
+      <td><a class="new" href="../../Web/API/StorageEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>StorageEvent</code></a></td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>submit</code></td>
+      <td> </td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>suspend</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-suspend">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>textinput</code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/TextInput" title="The documentation about this has not yet been written; please consider contributing!"><code>TextInput</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a></td>
+      <td>古い DOM レベル 3 イベント仕様にて定義されていたが、廃止済。<code>keypress</code> イベントと似ているが、すべてのテキスト入力メソッド (IM) で動作し、キーボード入力だけに限定されない。テキストボックスへのテキストの貼り付けでも、このイベントが発生する。</td>
+      <td>
+        <p>IE and WebKit support this (the event name is textinput on IE, textInput on WebKit).</p>
+        <p><span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span> in favor of <code>input</code> event (see <a class="external link-https" href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=12958" title="https://www.w3.org/Bugs/Public/show_bug.cgi?id=12958">bug 12958</a>).</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>timeout</code></td>
+      <td><a class="new" href="../../Web/API/ProgressEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ProgressEvent</code></a></td>
+      <td><a href="../../Web/API/XMLHttpRequest.html" title="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています。URL から データを読み出す簡単な方法を提供します。XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。"><code>XMLHttpRequest</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequestUpload" title="The documentation about this has not yet been written; please consider contributing!"><code>XMLHttpRequestUpload</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/XMLHttpRequest/#event-xhr-timeout">XHR L2</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>timeupdate</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-timeupdate">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>touchstart</code></td>
+      <td><a class="new" href="../../Web/API/TouchEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>TouchEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/touch-events/#dfn-touchstart">Touch events v1</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>touchmove</code></td>
+      <td><a class="new" href="../../Web/API/TouchEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>TouchEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/touch-events/#dfn-touchmove">Touch events v1</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>touchend</code></td>
+      <td><a class="new" href="../../Web/API/TouchEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>TouchEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/touch-events/#dfn-touchend">Touch events v1</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>touchcancel</code></td>
+      <td><a class="new" href="../../Web/API/TouchEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>TouchEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/touch-events/#dfn-touchcancel">Touch events v1</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>unload</code></td>
+      <td><a class="new" href="../../Web/API/UIEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>UIEvent</code></a></td>
+      <td><a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/body" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/frameset" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></td>
+      <td><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-unload">DOM L3 Events</a></td>
+      <td>Fired when the resource (document, element, defaultView) or any depending resources (images, CSS file, etc.) is removed from the environment.</td>
+    </tr>
+    <tr>
+      <td><code>volumechange</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-volumechange">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>waiting</code></td>
+      <td> </td>
+      <td><a class="new" href="../../Web/API/HTMLMediaElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLMediaElement</code></a></td>
+      <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-video-element.html#event-media-waiting">HTML5</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_reference/wheel">wheel</a></code></td>
+      <td><a class="new" href="../../Web/API/WheelEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>WheelEvent</code></a></td>
+      <td><a href="../../Web/API/Element.html" title="Elementインターフェイスはドキュメントの一部分を表現します．このインターフェイスは個々の種類の要素に共通するメソッドとプロパティを記述するものです． 特異な挙動はElementから継承した特異なインターフェイスで記述します．例えばHTML要素にはHTMLElementインターフェイス，SVG要素にはSVGElementインターフェイスなど．"><code>Element</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a>, <a href="../../Web/API/Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></td>
+      <td><a class="external" href="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#event-type-wheel" title="http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#event-type-wheel">DOM L3 Events</a></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id=".E4.BB.95.E6.A7.98.E6.9B.B8">仕様書</h2>
+<p><a class="external" href="http://www.w3.org/TR/DOM-Level-3-Events/">DOM Level 3 Events</a> (W3C Working Draft)</p>
+<h2 id=".E5.8F.82.E7.85.A7">参照</h2>
+<ul>
+  <li><a href="https://developer.mozilla.org/ja/docs/DOM/element#Event_Handlers" title="DOM/element#Event_Handlers">DOM イベントハンドラ</a></li>
+  <li><a href="../../Gecko-Specific_DOM_Events.html" title="Gecko-Specific_DOM_Events">Gecko 固有の DOM イベント</a></li>
+  <li><a href="https://developer.mozilla.org/ja/docs/XUL/Events" title="XUL/Events">XUL イベント</a></li>
+</ul>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../tag/NeedsContent.html">NeedsContent</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/%E8%A6%81%E4%BF%AE%E6%AD%A3">要修正</a></li><li><a href="../../tag/DOM.html">DOM</a></li><li><a href="../../tag/要更新.html">要更新</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/NeedsRelocation">NeedsRelocation</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/ziyunfei">ziyunfei</a>, <a href="https://developer.mozilla.org/ja/profiles/Masayuki">Masayuki</a>, <a href="../../../profiles/ethertank.html">ethertank</a>, <a href="../../../profiles/Marsf.html">Marsf</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-19T05:40:39-07:00">2013/05/19 5:40:39</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                  </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":0,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":665}</script></body>
+</html>

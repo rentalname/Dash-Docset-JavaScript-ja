@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/JavaScript/New_in_JavaScript/1.7 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:16:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>JavaScript 1.7 の新機能 - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="1-6.json">
+  <link rel="canonical" href="1-6.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7" title="New in JavaScript 1.7">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/New_in_JavaScript/JavaScript_1.7_新鮮事" title="JavaScript 1.7 新鮮事">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/New_in_JavaScript/New_in_JavaScript_1.7" title="New in JavaScript 1.7">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/Web/JavaScript/New_in_JavaScript/Nowości_w_JavaScript_1.7" title="Nowości w JavaScript 1.7">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Novedades_en_JavaScript/1.7" title="Novedades en JavaScript 1.7">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/New_in_JavaScript/Nouveautés_dans_JavaScript_1.7" title="Nouveautés dans JavaScript 1.7">
+          <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/docs/Web/JavaScript/New_in_JavaScript/Novità_in_JavaScript_1.7" title="Novità in JavaScript 1.7">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/New_in_JavaScript/1.7" title="New in JavaScript 1.7">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Neu_in_JavaScript/1.7" title="Neu in JavaScript 1.7">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="JavaScript 1.7 の新機能">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/New_in_JavaScript/1.7">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/New_in_JavaScript/1.7">
+  <meta name="twitter:title" content="JavaScript 1.7 の新機能">
+    <meta property="og:description" content="JavaScript 1.7 はいくつかの新機能、特にジェネレータ ( generators )、イテレータ ( iterators )、配列内包 ( array comprehensions )、 let 式 ( let expressions )、および分割代入 ( destructuring assignment ) を取り入れた言語アップデートです。 JavaScript 1.6 のすべての機能も含まれています。">
+  <meta name="description" content="JavaScript 1.7 はいくつかの新機能、特にジェネレータ ( generators )、イテレータ ( iterators )、配列内包 ( array comprehensions )、 let 式 ( let expressions )、および分割代入 ( destructuring assignment ) を取り入れた言語アップデートです。 JavaScript 1.6 のすべての機能も含まれています。">
+  <meta name="twitter:description" content="JavaScript 1.7 はいくつかの新機能、特にジェネレータ ( generators )、イテレータ ( iterators )、配列内包 ( array comprehensions )、 let 式 ( let expressions )、および分割代入 ( destructuring assignment ) を取り入れた言語アップデートです。 JavaScript 1.6 のすべての機能も含まれています。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/JavaScript/New_in_JavaScript/1.7" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': true,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+                
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/New_in_JavaScript/1.7" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                          <span class="oauth-icon oauth-github" data-service="GitHub" data-href="/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FJavaScript%2FNew_in_JavaScript%2F1.7" title="GitHub"><i class="icon-github" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/New_in_JavaScript/1.7" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                                  <li><a href="https://developer.mozilla.org/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FJavaScript%2FNew_in_JavaScript%2F1.7" class="login-link" data-service="GitHub"><i class="icon-github" aria-hidden="true"></i>GitHub</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7" title="New in JavaScript 1.7">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/New_in_JavaScript/JavaScript_1.7_新鮮事" title="JavaScript 1.7 新鮮事">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/New_in_JavaScript/New_in_JavaScript_1.7" title="New in JavaScript 1.7">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/Web/JavaScript/New_in_JavaScript/Nowości_w_JavaScript_1.7" title="Nowości w JavaScript 1.7">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Novedades_en_JavaScript/1.7" title="Novedades en JavaScript 1.7">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/New_in_JavaScript/Nouveautés_dans_JavaScript_1.7" title="Nouveautés dans JavaScript 1.7">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/docs/Web/JavaScript/New_in_JavaScript/Novità_in_JavaScript_1.7" title="Novità in JavaScript 1.7">Italiano</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/New_in_JavaScript/1.7" title="New in JavaScript 1.7">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Neu_in_JavaScript/1.7" title="Neu in JavaScript 1.7">Deutsch</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/JavaScript/New_in_JavaScript/1.7%24edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="1-13.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../JavaScript.html" rel="v:url" property="v:title">JavaScript</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../New_in_JavaScript.html" rel="v:url" property="v:title">JavaScript の新機能</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">JavaScript 1.7 の新機能</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>JavaScript 1.7 の新機能</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#JavaScript_1.7_.E3.82.92.E4.BD.BF.E3.81.86" rel="internal">JavaScript 1.7 を使う</a><li><a href="#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.A8.E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF" rel="internal">ジェネレータとイテレータ</a><ol><li><a href="#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF" rel="internal">ジェネレータ</a><ol><li><a href="#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.AE.E6.99.82.E7.82.B9.E3.81.8B.E3.82.89.E5.86.8D.E9.96.8B.E3.81.99.E3.82.8B" rel="internal">ジェネレータを指定の時点から再開する</a><li><a href="#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E4.B8.AD.E3.81.A7.E3.81.AE.E4.BE.8B.E5.A4.96" rel="internal">ジェネレータ中での例外</a><li><a href="#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E9.96.89.E3.81.98.E3.82.8B" rel="internal">ジェネレータを閉じる</a><li><a href="#.E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AE.E4.BE.8B" rel="internal">ジェネレータの例</a></ol></li><li><a href="#.E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF" rel="internal">イテレータ</a></ol></li><li><a href="#.E9.85.8D.E5.88.97.E5.86.85.E5.8C.85" rel="internal">配列内包</a><ol><li><a href="#.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87" rel="internal">スコープの規則</a></ol></li><li><a href="#let_.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.9F.E3.83.96.E3.83.AD.E3.83.83.E3.82.AF.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97" rel="internal"><code>let</code> を使ったブロックスコープ</a><ol><li><a href="#let_.E6.96.87" rel="internal"><code>let</code> 文</a><ol><li><a href="#.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_2" rel="internal">スコープの規則</a></ol></li><li><a href="#let_.E5.BC.8F" rel="internal"><code>let</code> 式</a><ol><li><a href="#.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_3" rel="internal">スコープの規則</a></ol></li><li><a href="#let_.E5.AE.9A.E7.BE.A9" rel="internal"><code>let</code> 定義</a><ol><li><a href="#.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_4" rel="internal">スコープの規則</a></ol></li><li><a href="#for_.E3.83.AB.E3.83.BC.E3.83.97.E4.B8.AD.E3.81.A7.E3.81.AE_let_.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E5.A4.89.E6.95.B0" rel="internal"><code>for</code> ループ中での <code>let</code> スコープ変数</a><ol><li><a href="#.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_5" rel="internal">スコープの規則</a></ol></li></ol></li><li><a href="#.E5.88.86.E5.89.B2.E4.BB.A3.E5.85.A5" rel="internal">分割代入</a><ol><li><a href="#.E4.BE.8B" rel="internal">例</a><ol><li><a href="#.E4.B8.80.E6.99.82.E5.A4.89.E6.95.B0.E3.81.AE.E4.BD.BF.E7.94.A8.E3.82.92.E9.81.BF.E3.81.91.E3.82.8B" rel="internal">一時変数の使用を避ける</a><li><a href="#.E8.A4.87.E6.95.B0.E3.81.AE.E5.80.A4.E3.82.92.E8.BF.94.E3.81.99" rel="internal">複数の値を返す</a><li><a href="#.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B" rel="internal">オブジェクトを横断してループする</a><li><a href="#.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E9.85.8D.E5.88.97.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B" rel="internal">オブジェクトの配列を横断してループする</a><li><a href="#.E4.B8.80.E9.83.A8.E3.81.AE.E8.BF.94.E3.82.8A.E5.80.A4.E3.82.92.E7.84.A1.E8.A6.96.E3.81.99.E3.82.8B" rel="internal">一部の返り値を無視する</a><li><a href="#.E6.AD.A3.E8.A6.8F.E8.A1.A8.E7.8F.BE.E3.81.AE.E3.83.9E.E3.83.83.E3.83.81.E3.81.8B.E3.82.89.E5.80.A4.E3.82.92.E5.8F.96.E3.82.8A.E5.87.BA.E3.81.99" rel="internal">正規表現のマッチから値を取り出す</a></ol></li></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div>
+ </div>
+<p>JavaScript 1.7 はいくつかの新機能、特にジェネレータ (<span style="color: green;">generators</span>)、イテレータ (<span style="color: green;">iterators</span>)、配列内包 (<span style="color: green;">array comprehensions</span>)、<code>let</code> 式 (<span style="color: green;"><code>let</code> expressions</span>)、および分割代入 (<span style="color: green;">destructuring assignment</span>) を取り入れた言語アップデートです。<a href="https://developer.mozilla.org/ja/New_in_JavaScript_1.6" title="ja/New_in_JavaScript_1.6">JavaScript 1.6</a> のすべての機能も含まれています。</p>
+<p>JavaScript 1.7 のサポートは Firefox 2 に導入されました。</p>
+<p>この記事に含まれるコードの例は JavaScript シェルから実験できます。<a href="https://developer.mozilla.org/ja/Introduction_to_the_JavaScript_shell" title="ja/Introduction_to_the_JavaScript_shell">Introduction to the JavaScript shell</a> を読み、シェルのビルド方法と使い方を学んでください。</p>
+<div>
+ <span id="Using_JavaScript_1.7"></span></div>
+<h2 id="JavaScript_1.7_.E3.82.92.E4.BD.BF.E3.81.86" name="JavaScript_1.7_.E3.82.92.E4.BD.BF.E3.81.86">JavaScript 1.7 を使う</h2>
+<p>JavaScript 1.7 の一部の新機能を使うためには、JavaScript 1.7 が使いたいという宣言が必要です。HTML または XUL コードでは次のコードを使ってください。</p>
+<pre><code>&lt;script type="application/javascript;version=1.7"/&gt;</code></pre>
+<p><a href="https://developer.mozilla.org/ja/Introduction_to_the_JavaScript_shell" title="ja/Introduction_to_the_JavaScript_shell">JavaScript シェル</a>を使うときは、コマンドラインで <code>-version 170</code> スイッチを使うか、<code>version()</code> 関数を使って使いたいバージョンを設定する必要があります。</p>
+<pre><code>version(170);</code></pre>
+<p>新しいキーワード "yield" と "let" を使用する必要のある機能は、既存のコードでそれらのキーワードが変数や関数として利用されている恐れがあるため、バージョン 1.7 と宣言しなければ利用できません。新しいキーワードを導入していない機能 (分割代入と配列内包) は、JavaScript のバージョン宣言なしに利用できます。</p>
+<div>
+ <span id="Generators_and_iterators"></span></div>
+<h2 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.A8.E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF" name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.A8.E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF">ジェネレータとイテレータ</h2>
+<p>繰り返しの (<span style="color: green;">iterative</span>) アルゴリズム (リストの各要素に同じ処理をしたり、同じデータセットに繰り返し計算を行うなど) を含むコードを開発する際、しばしば計算処理の間その値が維持される必要のある状態変数が使われます。伝統的には、繰り返しのアルゴリズムの介在変数を得るにはコールバック関数を使わなくてはなりません。</p>
+<div>
+ <span id="Generators"></span></div>
+<h3 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF" name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF">ジェネレータ</h3>
+<p>フィボナッチ数を計算するこの繰り返しアルゴリズムについて考えてみましょう:</p>
+<pre class="brush:js">function do_callback(num) {
+  document.write(num + "&lt;br&gt;\n");
+}
+
+function fib() {
+  var i = 0, j = 1, n = 0;
+  while (n &lt; 10) {
+    do_callback(i);
+    var t = i;
+    i = j;
+    j += t;
+    n++;
+  }
+}
+
+fib();</pre>
+<p>このコードはアルゴリズムのそれぞれの繰り返しステップの処理を実行するのにコールバックルーチンを使っています。この場合、それぞれのフィボナッチ数は単純にコンソールに出力されます。</p>
+<p>ジェネレータ (<span style="color: green;">generators</span>) およびイテレータ (<span style="color: green;">iterators</span>) は相互に働き、新しく、より良くこれを実行する方法を提供します。ジェネレータを使って書かれたフィボナッチ数ルーチンがどうなっているか見てみましょう:</p>
+<pre class="brush:js">function fib() {
+  var i = 0, j = 1;
+  while (true) {
+    yield i;
+    var t = i;
+    i = j;
+    j += t;
+  }
+}
+
+var g = fib();
+
+for (var i = 0; i &lt; 10; i++) {
+  document.write(g.next() + "&lt;br&gt;\n");
+}</pre>
+<p><code>yield</code> キーワードを含む関数がジェネレータです。これを呼ぶと、ジェネレータの仮引数は実引数と結び付きますが、本体は実際には評価されません。代わりにジェネレータ・イテレータが返ってきます。ジェネレータ・イテレータの <code>next()</code> メソッドを呼び出すたびに、繰り返しのアルゴリズムが 1 回ずつ実行されます。それぞれのステップでの値は、<code>yield</code> キーワードで指定された値です。<code>yield</code> をアルゴリズムの繰り返しの範囲を示すジェネレータ・イテレータ版の <code>return</code> だと考えましょう。毎回 <code>next()</code> を呼び出すたび、ジェネレータのコードは <code>yield</code> の次の文から再開します。</p>
+<p>あなたはジェネレータ・イテレータを、その <code>next()</code> メソッドを繰り返し呼び出すことで、あなたが望んだ結果の状態にたどりつくまで反復させられます。この例では、私たちが欲しいだけの結果を手に入れるまで <code>g.next()</code> を呼び出し続けることで、私たちはどれだけでも多くのフィボナッチ数を得ることができます。</p>
+<div>
+ <span id="Resuming_a_generator_at_a_specific_point"></span></div>
+<h4 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.AE.E6.99.82.E7.82.B9.E3.81.8B.E3.82.89.E5.86.8D.E9.96.8B.E3.81.99.E3.82.8B" name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.AE.E6.99.82.E7.82.B9.E3.81.8B.E3.82.89.E5.86.8D.E9.96.8B.E3.81.99.E3.82.8B">ジェネレータを指定の時点から再開する</h4>
+<p>一度 <code>next()</code> メソッドを呼び出してジェネレータをスタートさせると、与えた特定の値を最後の <code>yield</code> の結果として扱わせる <code>send()</code> を使うことができます。その際ジェネレータはその次の <code>yield</code> のオペランドを返します。</p>
+<p>ジェネレータを勝手な時点から始めることはできません。特定の値を <code>send()</code> する前に必ず <code>next()</code> でジェネレータをスタートさせなければなりません。</p>
+<div class="note">
+ <strong>注:</strong> 興味深い点として、<code>send(undefined)</code> を呼び出すことは <code>next()</code> を呼び出すことと等価です。しかし <code>send()</code> を呼び出す際、生まれたてのジェネレータを undefined 以外の値からスタートさせようとすると <code>TypeError</code> 例外を引き起こします。</div>
+<div>
+ <span id="Exceptions_in_generators"></span></div>
+<h4 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E4.B8.AD.E3.81.A7.E3.81.AE.E4.BE.8B.E5.A4.96" name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E4.B8.AD.E3.81.A7.E3.81.AE.E4.BE.8B.E5.A4.96">ジェネレータ中での例外</h4>
+<p>投げさせたい例外の値を渡して <code>throw()</code> メソッドを呼び出すことで、ジェネレータに強制的に例外を投げさせることができます。この例外はその時点の中断されたジェネレータの文脈から、つまりあたかもその時点で一時停止されている <code>yield</code> が <code>throw <em>value</em></code> に置き換わったかのように投げられます。</p>
+<p>もし投げられた例外の処理中に yield に遭遇しなかった場合、その例外は <code>throw()</code> の呼び出し元に伝播し、それ以降 <code>next()</code> を呼び出すと <code>StopIteration</code> が投げられます。</p>
+<div>
+ <span id="Closing_a_generator"></span></div>
+<h4 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E9.96.89.E3.81.98.E3.82.8B" name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E9.96.89.E3.81.98.E3.82.8B">ジェネレータを閉じる</h4>
+<p>ジェネレータは自分自身を閉じさせる <code>close()</code> メソッドを持っています。ジェネレータを閉じることの効果は:</p>
+<ol>
+ <li>ジェネレータ内のアクティブなすべての <code>finally</code> 節が実行されます。</li>
+ <li>もし <code>finally</code> 節が <code>StopIteration</code> 以外の例外を投げた場合、その例外は <code>close()</code> メソッドの呼び出し元に伝播されます。</li>
+ <li>ジェネレータが終了します。</li>
+</ol>
+<div>
+ <span id="Generator_Example"></span></div>
+<h4 id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AE.E4.BE.8B" name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AE.E4.BE.8B">ジェネレータの例</h4>
+<p>このコードは 100 回ループするごとに yield するジェネレータを走らせます。</p>
+<pre class="brush:js">var gen = generator();
+
+function driveGenerator() {
+	if (gen.next()) {
+		window.setTimeout(driveGenerator, 0);	
+	} else {
+		gen.close();	
+	}
+}
+
+function generator() {
+	while (i &lt; something) {
+		/** 何か **/
+
+		++i;
+		/** 100 周ごとに yield **/
+		if ((i % 100) == 0) {
+			yield true;
+		} 
+	}
+
+	yield false;
+}</pre>
+<div>
+ <span id="Iterators"></span></div>
+<h3 id=".E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF" name=".E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF">イテレータ</h3>
+<p>イテレータ (<span style="color: green;">iterator</span>) とは、データへの繰り返しの処理をしやすくする特別なオブジェクトのことです。</p>
+<p>普通の使い方では、イテレータオブジェクトは「目に見えません」。つまりあなたはイテレータオブジェクトを明示的に操作する必要はなく、代わりに JavaScript の <a href="https://developer.mozilla.org/ja/Core_JavaScript_1.5_Guide/Object_Manipulation_Statements" title="ja/Core_JavaScript_1.5_Guide/Object_Manipulation_Statements"><code>for...in</code> や <code>for each...in</code> 文</a>を使うことで、オブジェクトのキーや値への繰り返し処理を自然と行うことができます。</p>
+<pre class="brush:js">var objectWithIterator = getObjectSomehow();
+
+for (var i in objectWithIterator) {
+  document.write(objectWithIterator[i] + "&lt;br&gt;\n");
+}</pre>
+<p>もし独自のイテレータオブジェクトを実装したり、イテレータを直接操作する何か別の必要があったりするならば、あなたは <code>next</code> メソッドと <code>StopIteration</code> 例外、そして <code>__iterator__</code> プロパティについて知る必要があります。</p>
+<p>あなたは <code>Iterator(<em>objectname</em>)</code> を呼び出すことで、あるオブジェクトのイテレータを生成することができますが、そのようなあるオブジェクトのイテレータは、そのオブジェクトの <code>__iterator__</code> メソッドを呼び出すことで見つけられます。もし <code>__iterator__</code> が存在しなければ、デフォルトのイテレータが生成されます。デフォルトのイテレータは、普通の <code>for...in</code> や <code>for each...in</code> のモデルに基づいて、オブジェクトのプロパティを yield します。もしあなたがカスタマイズしたイテレータを提供したいならば、<code>__iterator__</code> メソッドをあなたのカスタマイズしたイテレータのインスタンスを返すように上書きしてください。スクリプトからオブジェクトのイテレータを得るには、直接 <code>__iterator__</code> プロパティにアクセスせず <code>Iterator(<em>obj</em>)</code> を使ってください。後者は配列 (Array) に対しても使えますが、前者は使えません。</p>
+<p>一度イテレータを手に入れれば、そのイテレータの <code>next()</code> メソッドを呼び出すことで簡単にオブジェクトの次の項目を取得することができます。もしデータが残っていない場合は、<code>StopIteration</code> 例外が投げられます。</p>
+<p>ここに直接的なイテレータ操作の単純な例を示します:</p>
+<pre class="brush:js">var obj = {name:"Jack Bauer", username:"JackB", id:12345, agency:"CTU", region:"Los Angeles"}; 
+
+var it = Iterator(obj);
+
+try {
+  while (true) {
+    print(it.next() + "\n");
+  }
+} catch (err if err instanceof StopIteration) {
+  print("レコードの終わり。\n");
+} catch (err) {
+  print("不明なエラー: " + err.description + "\n");
+}</pre>
+<p>このプログラムの出力は次のようになります:</p>
+<pre>name,Jack Bauer
+username,JackB
+id,12345
+agency,CTU
+region,Los Angeles
+レコードの終わり。</pre>
+<p>イテレータを生成する際、オプションとして 2 つ目の引数を指定することができます。この引数は真偽値で、<code>next()</code> メソッドを呼び出すごとにキーの方だけを返してほしいかどうかを示します。このパラメータはユーザー定義の<code>__iterator__</code> 関数に唯一の引数として渡されます。上のサンプルで <code>var it = Iterator(obj);</code> を <code>var it = Iterator(obj, true);</code> に変えると、以下のような出力になります:</p>
+<pre>name
+username
+id
+agency
+region
+レコードの終わり。
+</pre>
+<p>どちらの場合でも、データが返ってくる実際の順番はその実装によって変わります。データの順番は無保証です。</p>
+<p>イテレータは、その中にあなたが気づいていないデータが含まれているかもしれないオブジェクトも含め、オブジェクト中のデータをスキャンする手軽な方法です。これは特に、アプリケーションが予想していないデータを保存する必要がある場合に便利です。</p>
+<div>
+ <span id="Array_comprehensions"></span></div>
+<h2 id=".E9.85.8D.E5.88.97.E5.86.85.E5.8C.85" name=".E9.85.8D.E5.88.97.E5.86.85.E5.8C.85">配列内包</h2>
+<p>配列内包 (<span style="color: green;">array comprehensions</span>) は、配列のパワフルな初期化を実行する簡便な方法を提供するジェネレータの使い方です。例えば:</p>
+<pre class="brush:js">function range(begin, end) {
+  for (let i = begin; i &lt; end; ++i) {
+    yield i;
+  }
+}</pre>
+<p><code>range()</code> は <var>begin</var> から <var>end</var> までのすべての数値を返すジェネレータです。このように定義すると、私たちはこれを次のように使うことができます:</p>
+<pre><code>var ten_squares = [i * i for each (i in range(0, 10))];</code></pre>
+<p>これは新しい配列 <var>ten_squares</var> を、<code>0..9</code> の範囲にある値の平方を含むようあらかじめ初期化します。</p>
+<p>あなたは配列を初期化する際、任意の条件文を使うことができます。もしある配列を 0 と 20 の間にある偶数が含まれるように初期化したいならば、次のコードを使うことができます:</p>
+<pre>var evens = [i for each (i in range(0, 21)) if (i % 2 == 0)];</pre>
+<p>JavaScript 1.7 以前では、これは次のようにコーディングしなければならないでしょう:</p>
+<pre class="brush:js">var evens = [];
+
+for (var i = 0; i &lt;= 20; i++) {
+  if (i % 2 == 0)
+    evens.push(i);
+}</pre>
+<p>配列内包はより一層コンパクトであるだけでなく、一度そのコンセプトに精通してしまえば、実際のところ読みやすいものです。</p>
+<div>
+ <span id="Scoping_rules"></span></div>
+<h3 id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87" name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87">スコープの規則</h3>
+<p>配列内包は暗黙的な <code>let</code> 宣言と同様に、角カッコの内側にあるすべてを含んだその周りに暗黙的なブロックを持ちます。</p>
+<p><em>Add details.</em></p>
+<div>
+ <span id="Block_scope_with_let"></span></div>
+<h2 id="let_.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.9F.E3.83.96.E3.83.AD.E3.83.83.E3.82.AF.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97" name="let_.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.9F.E3.83.96.E3.83.AD.E3.83.83.E3.82.AF.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97"><code>let</code> を使ったブロックスコープ</h2>
+<p>データや関数のブロックスコープを管理する <code>let</code> を使うにはいくつかの方法があります:</p>
+<ul>
+ <li><strong><code>let</code> 文</strong> は、あるブロックのスコープ内で、ブロックの外にある同じ名前の変数の値に影響を与えることなく、変数と値を関連付ける手段を提供します。</li>
+ <li><strong><code>let</code> 式</strong> は、1 つの式だけに対して変数スコープを確立することができます。</li>
+ <li><strong><code>let</code> 定義</strong> は、その定義が行われたブロックにスコープが拘束された変数を定義します。この構文は <code>var</code> に対し使われる構文に非常によく似ています。</li>
+ <li>また、<code>let</code> を使って <code>for</code> ループの文脈内でのみ存在しうる変数を確立することができます。</li>
+</ul>
+<div>
+ <span id="let_statement"></span></div>
+<h3 id="let_.E6.96.87" name="let_.E6.96.87"><code>let</code> 文</h3>
+<p><code>let</code> 文は変数に対するローカルスコープを提供します。<code>let</code> 文はコードのある 1 つのブロックのレキシカルスコープに 0 以上の変数を結びつけることによって働き、それ以外は<a href="https://developer.mozilla.org/ja/JavaScript/Reference/Statements/block" title="ja/JavaScript/Reference/Statements/block">ブロック文</a>と全く同じです。特に、<code>let</code> 文の内側で <code>var</code> を使って定義された変数のスコープは、<code>let</code> 文の外側でそれが定義された場合と同じであり、そのような変数は従来通り関数スコープを持つことに注意してください。</p>
+<p>例えば:</p>
+<pre class="brush:js">var x = 5;
+var y = 0;
+
+let ( x = x + 10, y = 12 ) {
+  print(x+y + "\n");
+}
+
+print( (x + y) + "\n" );</pre>
+<p>このプログラムからの出力は次のようになるでしょう:</p>
+<pre>27
+5</pre>
+<p>コードブロックに関するルールは JavaScript の他のコードブロックと同じです。<code>let</code> 宣言を使って確立されたブロック自身のローカル変数を持っているかもしれません。</p>
+<div class="note">
+ <strong>注:</strong> <code>let</code> 文の構文を使う時、<code>let</code> の後の丸カッコは必須です。これを入れないと構文エラーとなります。</div>
+<div>
+ <span id="Scoping_rules_2"></span></div>
+<h4 id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_2" name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_2">スコープの規則</h4>
+<p><code>let</code> を使って定義された変数のスコープは、<code>let</code> ブロック自身とその内部に含まれるすべてのブロックです。ただしそれらのブロックが同じ名前で変数を定義している場合を除きます。</p>
+<div>
+ <span id="let_expressions"></span></div>
+<h3 id="let_.E5.BC.8F" name="let_.E5.BC.8F"><code>let</code> 式</h3>
+<p><code>let</code> を使ってある 1 つの式だけに対してスコープを持つ変数を確立することができます:</p>
+<pre class="brush:js">var x = 5;
+var y = 0;
+
+document.write( let(x = x + 10, y = 12) x + y  + "&lt;br&gt;\n");
+document.write( x + y + "&lt;br&gt;\n" );</pre>
+<p>結果として出力されるのは:</p>
+<pre>27
+5</pre>
+<p>この場合、変数 <var>x</var>、<var>y</var> のそれぞれ <code>x+10</code>、<code>12</code> との結び付きは、式 <code>x+y</code> に対してのみスコープを持ちます。</p>
+<div>
+ <span id="Scoping_rules_3"></span></div>
+<h4 id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_3" name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_3">スコープの規則</h4>
+<p>以下の <code>let</code> 式があったとすると:</p>
+<pre><code>let (<var>decls</var>) <var>expr</var></code></pre>
+<p><var>expr</var> の周りに暗黙的なブロックが生成されます。</p>
+<div>
+ <span id="let_definitions"></span></div>
+<h3 id="let_.E5.AE.9A.E7.BE.A9" name="let_.E5.AE.9A.E7.BE.A9"><code>let</code> 定義</h3>
+<p><code>let</code> キーワードはブロック内で変数を定義するのにも使うことができます。</p>
+<div class="note">
+ <strong>注:</strong> もしあなたがより興味深い <code>let</code> 定義の使用例を知っているならば、どうぞここに追加することを検討してみてください。</div>
+<pre class="brush:js">if (x &gt; y) {
+  let gamma = 12.7 + y;
+  i = gamma * x;
+}</pre>
+<p><code>let</code> 文・式・定義はしばしば、内部関数が使われる際にコードを簡潔にさせることがあります。</p>
+<pre class="brush:js">var list = document.getElementById("list");
+for (var i = 1; i &lt;= 5; i++) {
+  var item = document.createElement("LI");
+
+  item.appendChild( document.createTextNode("Item " + i) );
+  let j = i;
+
+  item.onclick = function (ev) {
+    alert("Item " + j + " is clicked.");
+  };
+  
+  list.appendChild(item);
+}</pre>
+<p>上の例は、内部の無名関数の 5 つのインスタンスがそれぞれ変数 <code>j</code> の異なる 5 つのインスタンスを参照しているために、意図通りに動きます。もしこれで <code>let</code> を <code>var</code> に置き換えたり、変数 <code>j</code> を削除して単純に <code>i</code> を内部関数で使うと、これは意図通りには動かないことに注意してください。</p>
+<div>
+ <span id="Scoping_rules_4"></span></div>
+<h4 id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_4" name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_4">スコープの規則</h4>
+<p><code>let</code> によって宣言された変数は、その定義があったブロックと、その変数が再定義されていないすべてのサブブロックにスコープを持ちます。この場合、<code>let</code> は <code>var</code> に非常によく似た働きをします。おもな違いは <code>var</code> 変数のスコープがそれを囲む関数全体であることです:</p>
+<pre class="brush:js">function varTest() {
+    var x = 31;
+    if (true) {
+        var x = 71;  // 同じ変数!
+        alert(x);  // 71
+    }
+    alert(x);  // 71
+}
+
+function letTest() {
+    let x = 31;
+
+    if (true) {
+        let x = 71;  // 違う変数
+        alert(x);  // 71
+    }
+    alert(x);  // 31
+}</pre>
+<p><code>=</code> の右辺の式はブロックの内側になります。これは <code>let</code> 式や <code>let</code> 文のスコープの仕方と異なります:</p>
+<pre class="brush:js">function letTests() {
+    let x = 10;
+
+    // let 文
+    let (x = x + 20) {
+        alert(x);  // 30
+    }
+
+    // let 式
+    alert(let (x = x + 20) x);  // 30
+
+    // let 定義
+    {
+        let x = x + 20;  // ここでの x は undefined と評価される
+        alert(x);  // undefined + 20 ==&gt; NaN
+    }
+}</pre>
+<p>プログラムやクラス内では、<code>let</code> は <code>var</code> がするようにグローバルオブジェクトのプロパティを生成したりはせず、代わりにその文脈で文を評価する際に生成される暗黙的なブロックにプロパティを生成します。これが本質的に意味するのは、<code>let</code> はそれ以前に <code>var</code> を使って定義された変数を上書きできないということです。例えば:</p>
+<pre class="brush:js">// FF 2.0 b1 ではうまく動きません。"global" ではなく "42" を返してしまいます。
+var x = 'global';
+let x = 42;
+document.write( this.x + "&lt;br&gt;\n" );</pre>
+<p>このコードによって表示される出力は "42" ではなく、"global" です。</p>
+<p><b>暗黙的なブロック</b> (<span style="color: green;">implicit block</span>) とは、波カッコで囲まれていないブロックのことで、JavaScript エンジンによって暗黙的に生成されます。</p>
+<p>関数内で <code>eval()</code> によって実行された <code>let</code> は、<code>var</code> がするように variable object (activation object or innermost binding rib) にプロパティを生成しません。その代りに、そのプログラムで文を評価する際に生成される暗黙的なブロックにプロパティを生成します。これは <code>eval()</code> がプログラムに作用する性質と前述のルールによる結果です。</p>
+<p>別の言い方をすれば、コードを実行するのに <code>eval()</code> を使う際、そのコードは独立したプログラムとみなされ、そのコードの周りに暗黙的なブロックを持つのです。</p>
+<div>
+ <span id="let-scoped_variables_in_for_loops"></span></div>
+<h3 id="for_.E3.83.AB.E3.83.BC.E3.83.97.E4.B8.AD.E3.81.A7.E3.81.AE_let_.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E5.A4.89.E6.95.B0" name="for_.E3.83.AB.E3.83.BC.E3.83.97.E4.B8.AD.E3.81.A7.E3.81.AE_let_.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E5.A4.89.E6.95.B0"><code>for</code> ループ中での <code>let</code> スコープ変数</h3>
+<p><code>let</code> キーワードは単に <code>var</code> でやるようにして、<code>for</code> ループのスコープ内で局所的に変数を結びつけることにも使うことができます。</p>
+<pre class="brush:js">// obj を追加する
+var i = 0;
+
+for ( let i = i; i &lt; 10; i++ ) 
+    document.write(i + "&lt;br&gt;\n");
+
+    for ( let [name,value] in obj )
+        document.write("名前: " + name + ", 値: " + value + "&lt;br&gt;\n");</pre>
+<div>
+ <span id="Scoping_rules_5"></span></div>
+<h4 id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_5" name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8F.E5.89.87_5">スコープの規則</h4>
+<pre><code>for (let <var>expr1</var>; <var>expr2</var>; <var>expr3</var>) <var>statement</var></code></pre>
+<p>この例で、<var>expr2</var>、<var>expr3</var> と <var>statement</var> は、<code>let <var>expr1</var></code> によって宣言されたブロックローカルな変数を含む暗黙的なブロックに囲まれます。これは上の 1 つ目のループで実証しています。</p>
+<pre class="eval">for (let <var>expr1</var> in <var>expr2</var>) <var>statement</var>
+for each(let <var>expr1</var> in <var>expr2</var>) <var>statement</var></pre>
+<p>これら両方の場合では、それぞれ <var>statement</var> を含む暗黙的なブロックができます。1 つ目の方は上の 2 つ目のループで示しています。</p>
+<div>
+ <span id="Destructuring_assignment"></span></div>
+<h2 id=".E5.88.86.E5.89.B2.E4.BB.A3.E5.85.A5" name=".E5.88.86.E5.89.B2.E4.BB.A3.E5.85.A5">分割代入</h2>
+<p>分割代入 (<span style="color: green;">destructuring assignment</span>) は、配列やオブジェクトのリテラルの構造とそっくりの構文を使って、配列やオブジェクトからデータを抽出することを可能にします。</p>
+<p>配列やオブジェクトのリテラル式は、データのアドホックな (その場限りの) 詰め合わせを作る簡単な方法を提供します。一度そのようなデータの詰め合わせを作ってしまえば、あなたはそれを使いたいように使うことができます。関数から返すことさえできます。</p>
+<p>分割代入を使うと、次の節の例で示すようなさまざまな興味深いことができるようになりますが、特に便利なのは、一つの文によって全体の構造を読み込むことができるという点です。</p>
+<p>この能力は Perl や Python などの言語に存在する機能に似ています。</p>
+<div>
+ <span id="Examples"></span></div>
+<h3 id=".E4.BE.8B" name=".E4.BE.8B">例</h3>
+<p>分割代入は使用例を通じて説明するのが一番なので、ここではあなたが通読して学ぶためのいくつかの例を紹介します。</p>
+<div>
+ <span id="Avoiding_temporary_variables"></span></div>
+<h4 id=".E4.B8.80.E6.99.82.E5.A4.89.E6.95.B0.E3.81.AE.E4.BD.BF.E7.94.A8.E3.82.92.E9.81.BF.E3.81.91.E3.82.8B" name=".E4.B8.80.E6.99.82.E5.A4.89.E6.95.B0.E3.81.AE.E4.BD.BF.E7.94.A8.E3.82.92.E9.81.BF.E3.81.91.E3.82.8B">一時変数の使用を避ける</h4>
+<p>分割代入を使えば、例えば値を交換することができます:</p>
+<pre class="brush:js">var a = 1;
+var b = 3;
+
+[a, b] = [b, a];</pre>
+<p>このコードを実行後、 <var>b</var> は 1 に、<var>a</var> は 3 になります。分割代入がなければ、2 つの値の交換には一時変数 (あるいは一部の低級言語では <a class="external" href="http://ja.wikipedia.org/wiki/XOR交換アルゴリズム">XOR 交換のトリック</a>) が必要になります。</p>
+<p>同様に、3 つ以上の変数を順に交換することにも使えます。</p>
+<pre class="brush:js">var a = 'o';
+var b = "&lt;span style='color:green;'&gt;o&lt;/span&gt;";
+var c = 'o';
+var d = 'o';
+var e = 'o';
+var f = "&lt;span style='color:blue;'&gt;o&lt;/span&gt;";
+var g = 'o';
+var h = 'o';
+
+for (lp = 0; lp &lt; 40; lp++) {
+    [a, b, c, d, e, f, g, h] = [b, c, d, e, f, g, h, a];
+    document.write( a + '' + b + '' + c + '' + d + '' + e + '' + f + '' + g + '' + h + '' + "&lt;br /&gt;");
+}</pre>
+<p>このコードを実行すると、変数が循環する様子をカラフルな視覚情報として見ることができます。</p>
+<p>上で出てきたフィボナッチ数のジェネレータの例に戻ってみると、"i" と "j" の新しい値を単一のグループ代入文で計算することによって、一時変数 "t" を除去することができます。</p>
+<pre>function fib() {
+    var i = 0, j = 1;
+    while (true) {
+        yield i;
+        [i, j] = [j, i + j];
+    }
+}
+
+var g = fib();
+
+for (let i = 0; i &lt; 10; i++)
+  print(g.next());</pre>
+<div>
+ <span id="Multiple-value_returns"></span></div>
+<h4 id=".E8.A4.87.E6.95.B0.E3.81.AE.E5.80.A4.E3.82.92.E8.BF.94.E3.81.99" name=".E8.A4.87.E6.95.B0.E3.81.AE.E5.80.A4.E3.82.92.E8.BF.94.E3.81.99">複数の値を返す</h4>
+<p>分割代入のおかげで、関数は複数の値を返すことができます。関数から配列を返すこと自体はいつでもできたものの、分割代入はさらなる柔軟性を提供します。</p>
+<pre><code>function f() {
+    return [1, 2];
+}</code></pre>
+<p>見ての通り、すべての返り値を角カッコで囲んだ、配列に似た構文を使ってその結果を返します。この方法で任意の数の返り値を返すことができます。この例では、<code>f()</code> はその出力として <code>[1, 2]</code> を返します。</p>
+<pre><code>var a, b;
+[a, b] = f();
+document.write ("A is " + a + " B is " + b + "&lt;br&gt;\n");</code></pre>
+<p><code>['a, b'] = f()</code> というコマンドは、関数の返り値を角カッコ中の変数に順番に代入します。<var>a</var> は 1 にセットされ、<var>b</var> は 2 にセットされます。</p>
+<p>また、返り値を配列として受け取ることもできます。</p>
+<pre>var a = f();
+document.write ( "A is " + a );</pre>
+<p>この場合、<var>a</var> は値 1 と 2 を含む配列です。</p>
+<div>
+ <span id="Looping_across_objects"></span></div>
+<h4 id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B" name=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B">オブジェクトを横断してループする</h4>
+<p>オブジェクトからデータを取り出すために、分割代入を使うこともできます:</p>
+<pre class="brush:js">let obj = { width: 3, length: 1.5, color: "orange" };
+
+for (let[name, value] in Iterator(obj)) {
+    document.write ( "Name: " + name + ", Value: " + value + "&lt;br&gt;\n" );
+}</pre>
+<p>これは、オブジェクト <var>obj</var> の全てのキー/値の組についてループされ、それらの名前と値を表示します。この場合、出力は以下のようになります:</p>
+<pre>Name: width, Value: 3
+Name: length, Value: 1.5
+Name: color, Value: orange</pre>
+<p><code>obj</code> を囲む <code>Iterator()</code> は、JavaScript 1.7 では必須ではありません。しかし、<a href="https://developer.mozilla.org/ja/New_in_JavaScript_1.8" title="ja/New_in_JavaScript_1.8">JavaScript 1.8</a> では必須になるでしょう。これは配列での分割代入を可能にするためです（<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=366941" title='FIXED: Get rid of the "for([key, value] in obj)" form so that normal array destructuring works in for..in'>バグ 366941</a> を参照）。</p>
+<div>
+ <span id="Looping_across_values_in_an_array_of_objects"></span></div>
+<h4 id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E9.85.8D.E5.88.97.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B" name=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E9.85.8D.E5.88.97.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B">オブジェクトの配列を横断してループする</h4>
+<p>それぞれのオブジェクトから興味のあるフィールドだけを取り出しながら、オブジェクトの配列を横断してループすることもできます。</p>
+<pre class="brush:js">var people = [
+  {
+    name: "Mike Smith",
+    family: {
+      mother: "Jane Smith",
+      father: "Harry Smith",
+      sister: "Samantha Smith"
+    },
+    age: 35
+  }, {
+    name: "Tom Jones",
+    family: {
+      mother: "Norah Jones",
+      father: "Richard Jones",
+      brother: "Howard Jones"
+    },
+    age: 25
+  }
+];
+
+for each (let {name: n, family: { father: f } } in people) {
+  document.write ( "Name: " + n + ", Father: " + f + "&lt;br&gt;\n" );
+}</pre>
+<p>これは、<var>name</var> フィールドを <var>n</var> に、<var>family.father</var> フィールドを <var>f</var> に抜き出し、それを出力しています。これは <var>people</var> 配列のそれぞれのオブジェクトに対し行われます。出力はこのようになります:</p>
+<pre>Name: Mike Smith, Father: Harry Smith
+Name: Tom Jones, Father: Richard Jones</pre>
+<div>
+ <span id="Ignoring_some_returned_values"></span></div>
+<h4 id=".E4.B8.80.E9.83.A8.E3.81.AE.E8.BF.94.E3.82.8A.E5.80.A4.E3.82.92.E7.84.A1.E8.A6.96.E3.81.99.E3.82.8B" name=".E4.B8.80.E9.83.A8.E3.81.AE.E8.BF.94.E3.82.8A.E5.80.A4.E3.82.92.E7.84.A1.E8.A6.96.E3.81.99.E3.82.8B">一部の返り値を無視する</h4>
+<p>あなたはまた、興味のない返り値を無視することもできます:</p>
+<pre class="brush:js">function f() {
+  return [1, 2, 3];
+}
+
+var [a, , b] = f();
+document.write ( "A is " + a + " B is " + b + "&lt;br&gt;\n" );</pre>
+<p>このコードを実行後、<var>a</var> は 1 になり、<var>b</var> は 3になります。値 2 は無視されます。あなたはこの方法で任意の（あるいは全ての）返り値を無視することができます。例えば:</p>
+<pre><code>[,,,] = f();</code></pre>
+<div>
+ <span id="Pulling_values_from_a_regular_expression_match"></span></div>
+<h4 id=".E6.AD.A3.E8.A6.8F.E8.A1.A8.E7.8F.BE.E3.81.AE.E3.83.9E.E3.83.83.E3.83.81.E3.81.8B.E3.82.89.E5.80.A4.E3.82.92.E5.8F.96.E3.82.8A.E5.87.BA.E3.81.99" name=".E6.AD.A3.E8.A6.8F.E8.A1.A8.E7.8F.BE.E3.81.AE.E3.83.9E.E3.83.83.E3.83.81.E3.81.8B.E3.82.89.E5.80.A4.E3.82.92.E5.8F.96.E3.82.8A.E5.87.BA.E3.81.99">正規表現のマッチから値を取り出す</h4>
+<p>正規表現の <code><a href="https://developer.mozilla.org/ja/JavaScript/Reference/Global_Objects/RegExp/exec" title="ja/JavaScript/Reference/Global_Objects/RegExp/exec"> exec()</a></code> メソッドがマッチを見つけると、正規表現の全体にマッチした部分文字列を 1 つ目の要素に格納し、続いて正規表現内で括弧に囲まれたグループにマッチした部分文字列を順に格納した配列を返します。分割代入を使うと、全体のマッチを使う必要が無ければそれを無視して、配列の一部分のみを取り出すことが簡単にできるようになります。</p>
+<pre class="brush:js">// http / https / ftp 形式の URL にマッチする単純な正規表現
+var parsedURL = /^(\w+)\:\/\/([^\/]+)\/(.*)$/.exec(url);
+if (!parsedURL) return null;
+
+var [, protocol, fullhost, fullpath] = parsedURL;</pre>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/JavaScript_version_overviews">JavaScript_version_overviews</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/JavaScript">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/Taken">Taken</a>, <a href="https://developer.mozilla.org/ja/profiles/Yuichirou">Yuichirou</a>, <a href="https://developer.mozilla.org/ja/profiles/teoli">teoli</a>, <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/Shoot">Shoot</a>, <a href="https://developer.mozilla.org/ja/profiles/Mgjbot">Mgjbot</a>, <a href="https://developer.mozilla.org/ja/profiles/Potappo">Potappo</a>, <a href="https://developer.mozilla.org/ja/profiles/Okome">Okome</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/teoli">teoli</a>,
+                      <time datetime="2014-05-24T01:21:52-07:00">2014/05/24 1:21:52</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/JavaScript/New_in_JavaScript/1.7" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/JavaScript/New_in_JavaScript/1.7">
+            English (US)
+          </option>          <option value="/zh-TW/docs/Web/JavaScript/New_in_JavaScript/JavaScript_1.7_%E6%96%B0%E9%AE%AE%E4%BA%8B">
+            正體中文 (繁體)
+          </option>          <option value="/ko/docs/Web/JavaScript/New_in_JavaScript/New_in_JavaScript_1.7">
+            한국어
+          </option>          <option value="/pl/docs/Web/JavaScript/New_in_JavaScript/Nowo%C5%9Bci_w_JavaScript_1.7">
+            Polski
+          </option>          <option value="/es/docs/Web/JavaScript/Novedades_en_JavaScript/1.7">
+            Español
+          </option>          <option value="/fr/docs/Web/JavaScript/New_in_JavaScript/Nouveaut%C3%A9s_dans_JavaScript_1.7">
+            Français
+          </option>          <option value="/it/docs/Web/JavaScript/New_in_JavaScript/Novit%C3%A0_in_JavaScript_1.7">
+            Italiano
+          </option>          <option value="/zh-CN/docs/Web/JavaScript/New_in_JavaScript/1.7">
+            中文 (简体)
+          </option>          <option value="/de/docs/Web/JavaScript/Neu_in_JavaScript/1.7">
+            Deutsch
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":463}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/JavaScript/New_in_JavaScript/1.7 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:16:31 GMT -->
+</html>

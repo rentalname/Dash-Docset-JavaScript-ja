@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>スタイルエディタ - 開発ツール | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../index.html">
+  <link rel="copyright" href="Style_Editor.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+                  <link rel="stylesheet" type="text/css" href="../Tools$styles.css">
+          
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Tools/Style_Editor$json">
+  <link rel="canonical" href="Style_Editor.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Tools/Style_Editor" title="Style Editor">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Tools/Style_Editor" title="Style Editor">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/Tools/Editor_de_Estilos" title="Editor de Estilos">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/Tools/Style_Editor" title="স্টাইল এডিটর">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Outils/Style_Editor" title="Éditeur de Style">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Tools/Style_Editor" title="Style Editor">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Tools/Style_Editor" title="Style Editor">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/Narz%C4%99dzia/Style_Editor" title="Style Editor">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Tools/Editor_Estilo" title="Editor de Estilo">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="スタイルエディタ">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Tools/Style_Editor">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Tools/Style_Editor">
+  <meta name="twitter:title" content="スタイルエディタ">
+    <meta property="og:description" content="スタイルエディタでできること:">
+  <meta name="description" content="スタイルエディタでできること:">
+  <meta name="twitter:description" content="スタイルエディタでできること:">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Tools/Style_Editor" contextmenu="edit-history-menu" class="document zone ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Style_Editor.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Style_Editor.html#language">言語の選択</a></li>
+          <li><a href="Style_Editor.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Tools/Style_Editor" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Tools/Style_Editor" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../Web/HTML.html">HTML</a></li>
+              <li><a href="../Web/CSS.html">CSS</a></li>
+              <li><a href="../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../Web/API.html">API / DOM</a></li>
+              <li><a href="../Web/Apps.html">Apps</a></li>
+              <li><a href="../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Tools.html">ツール</a></li><li><a href="../../demos/index.html">MDN デモ</a></li><li><a href="../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+                <div class="zone-article-header" id="document-main"><div class="center">
+          <!-- zone title -->
+          <div class="zone-title"><a href="../Tools.html">開発ツール</a></div>
+          <!-- zone image -->
+          <div class="zone-image"></div>
+        </div></div>
+      
+     <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" ><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Tools/Style_Editor" title="Style Editor">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Tools/Style_Editor" title="Style Editor">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/Tools/Editor_de_Estilos" title="Editor de Estilos">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/Tools/Style_Editor" title="স্টাইল এডিটর">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Outils/Style_Editor" title="Éditeur de Style">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Tools/Style_Editor" title="Style Editor">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Tools/Style_Editor" title="Style Editor">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/Narz%C4%99dzia/Style_Editor" title="Style Editor">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Tools/Editor_Estilo" title="Editor de Estilo">Español</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Tools/Style_Editor$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Tools/Style_Editor$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Style_Editor.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Tools.html" rel="v:url" property="v:title">開発ツール</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">スタイルエディタ</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Style_Editor.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>スタイルエディタ</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="Style_Editor.html#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Style_Editor.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Style_Editor.html#The_style_sheet_pane" rel="internal">スタイルシートペイン</a><li><a href="Style_Editor.html#The_editor_pane" rel="internal">エディタペイン</a><li><a href="Style_Editor.html#The_media_sidebar" rel="internal">メディアサイドバー</a><li><a href="Style_Editor.html#Creating_and_importing_style_sheets" rel="internal">スタイルシートの作成とインポート</a><li><a href="Style_Editor.html#Source_map_support" rel="internal">ソースマップのサポート</a><ol><li><a href="Style_Editor.html#Viewing_original_sources" rel="internal">元のソースの表示</a><li><a href="Style_Editor.html#Editing_original_sources" rel="internal">元のソースの編集</a></ol></li><li><a href="Style_Editor.html#Keyboard_shortcuts" rel="internal">キーボードショートカット</a><ol><li><a href="Style_Editor.html#Source_editor_shortcuts" rel="internal">ソースエディタのショートカット</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>スタイルエディタでできること:</p>
+<ul>
+ <li>ページに関連づけられているすべてのスタイルシートの閲覧と編集</li>
+ <li>フロムスクラッチで新たなスタイルシートを作成して、ページに適用する</li>
+ <li>既存のスタイルシートをインポートして、ページに適用する</li>
+</ul>
+<p><iframe frameborder="0" height="360" src="https://www.youtube.com/embed/7839qc55r7o/?feature=player_detailpage" width="640"></iframe></p>
+<p>スタイルエディタを開くには、"Web 開発" メニュー (Mac では、"ツール" メニューのサブメニューです) で、"スタイルエディタ" を選択します。スタイルエディタをアクティブにして、ブラウザウィンドウの下部に<a href="Tools_Toolbox.html" title="Tools/DevTools_Window">ツールボックス</a>が現れます:</p>
+<p><img alt="" src="https://mdn.mozillademos.org/files/6941/style-editor.png" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>スタイルエディタは大きく 2 つに分けられます: 左側のスタイルシートペインと、右側のエディタです。</p>
+<div class="geckoVersionNote">
+ <p>Firefox 33 より、第 3 の構成要素である<a href="Style_Editor.html#The_media_sidebar">メディアサイドバー</a>があります。</p>
+</div>
+<h2 id="The_style_sheet_pane" name="The_style_sheet_pane">スタイルシートペイン</h2>
+<p>ウィンドウ左側のスタイルシートペインには、現在のドキュメントで使用しているすべてのスタイルシートの一覧を表示します。スタイルシート名の左にある目玉のアイコンをクリックすると、そのスタイルシートの有効／無効を素早く切り替えることができます。一覧の各シート項目の右下にある保存ボタンをクリックすると、スタイルシートの変更内容をローカルコンピュータに保存することができます。</p>
+<h2 id="The_editor_pane" name="The_editor_pane">エディタペイン</h2>
+<p>右側はエディタペインです。ここでは選択したスタイルシートのソースの閲覧や編集が可能です。変更した内容は、ページへ直ちに反映されます。これにより、実験・修正・確認がとても簡単にできます。変更内容に満足したら、スタイルシートペインの項目にある保存ボタンをクリックして、スタイルシートのコピーをローカルに保存できます。</p>
+<p>CSS を読みやすくするために、エディタには行番号の表示や文法のハイライト機能があります。また、いくつもの<a href="Style_Editor.html#Source_editor_shortcuts">キーボードショートカット</a>をサポートしています。</p>
+<p>最小化されたスタイルシートを検出すると、元のシートに影響がない形で自動的に最小化を解除します。これは、最適化済みのページで行う作業をより容易にします。</p>
+<p>スタイルエディタはオートコンプリートをサポートしています。入力を始めると、候補のリストを提供します。</p>
+<p><img alt="" src="https://mdn.mozillademos.org/files/6943/style-editor-autocomplete.png" style="display: block; margin-left: auto; margin-right: auto;">You can switch autocomplete off in the <a class="new" href="https://developer.mozilla.org/ja/docs/Tools_Toolbox#Style_Editor">スタイルエディタの設定</a>でオートコンプリート機能を無効にできます。</p>
+<h2 id="The_media_sidebar" name="The_media_sidebar">メディアサイドバー</h2>
+<p>Firefox 33 より、選択中のスタイルシートに <a href="../Web/Guide/CSS/Media_queries.html"><code>@media</code> 規則</a>が含まれている場合に、スタイルエディタの右側にサイドバーを表示します。このサイドバーは規則を一覧表示して、スタイルシートで規則が定義されている行へのリンクも提供します。項目をクリックすると、スタイルシート内で規則が存在する場所にジャンプします。現在適用していないメディアクエリ規則の条件文は、グレーアウト表示します。</p>
+<p><img alt="" src="https://mdn.mozillademos.org/files/8365/style-editor-media-sidebar-detail.png" style="display: block; margin-left: auto; margin-right: auto;">メディアサイドバーはモバイルレイアウトの作成やデバッグにおいて、<a href="Responsive_Design_View.html">レスポンシブデザインビュー</a>と組み合わせることで特に役立ちます:</p>
+<p><img alt="" src="https://mdn.mozillademos.org/files/8363/style-editor-media-sidebar.png" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h2 id="Creating_and_importing_style_sheets" name="Creating_and_importing_style_sheets">スタイルシートの作成とインポート</h2>
+<p>ツールバーの新規作成ボタンをクリックすると、新しいスタイルシートを作成できます。そして、新しいエディタに CSS の入力を始めて、他のシートに対する変更と同様にページへリルタイムに適用したものを確認できます。</p>
+<p>インポートボタンをクリックすると、スタイルシートをディスクから読み込んでページに適用できます。</p>
+<h2 id="Source_map_support" name="Source_map_support">ソースマップのサポート</h2>
+<p><iframe frameborder="0" height="360" src="https://www.youtube.com/embed/zu2eZbYtEUQ/?feature=player_detailpage" width="640"></iframe></p>
+<p>Web 開発者は <a class="external" href="http://sass-lang.com/">Sass</a>、<a class="external" href="http://lesscss.org/">Less</a>、<a class="external" href="http://learnboost.github.io/stylus/">Stylus</a> といったプリプロセッサを使用して CSS ファイルを作成することがよくあります。これらのツールは、リッチかつ表現性の高い構文から CSS ファイルを生成します。これを行うと、メンテナンスするものが生成された CSS ではなくプリプロセッサの構文になりますので、生成された CSS の閲覧や編集が可能でもあまり役に立ちません。よって生成された CSS を編集してから、元のソースへどのようにして再適用するかを手作業で考えなければなりません。</p>
+<p>ソースマップはツールが生成された CSS から元の構文への対応づけを行えるようにしますので、元の構文を表示して、編集および保存が可能になります。Firefox 29 より、スタイルエディタが CSS ソースマップを理解します。</p>
+<p>例えば Sass を使用すると、スタイルエディタは Sass ファイルから生成された CSS ではなく、Sass ファイルを表示して編集することが可能になります:</p>
+<p><img alt="" src="https://mdn.mozillademos.org/files/6939/style-editor-sourcemap-820.png" style="display: block; margin-left: auto; margin-right: auto;">ソースマップが動作するための必要条件は以下のとおりです:</p>
+<ul>
+ <li><a class="external" href="https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit">Source Map Revision 3 proposal</a> を理解する CSS プリプロセッサを使用する。現在は <a class="external" href="http://sass-lang.com/">Sass</a> 3.3.0 以上または <a class="external" href="http://roots.io/using-less-source-maps/">Less のバージョン 1.5.0</a> が該当します。他のプリプロセッサはサポートするために作業中、またはサポートを検討中です。</li>
+ <li>プリプロセッサにソースマップを生成するよう指示する。例えば Sass コマンドラインツールでは <code>--sourcemap</code> パラメータを与えます。</li>
+</ul>
+<h3 id="Viewing_original_sources" name="Viewing_original_sources">元のソースの表示</h3>
+<p><a class="new" href="https://developer.mozilla.org/ja/docs/Tools_Toolbox#Style_Editor">スタイルエディタの設定</a>で "Show original sources" にチェックを入れると、<a href="Page_Inspector.html#Rules_view">ルールビュー</a>で CSS 規則の隣にあるリンクが、スタイルエディタ内にある元のソースにリンクします。</p>
+<h3 id="Editing_original_sources" name="Editing_original_sources">元のソースの編集</h3>
+<p>スタイルエディタで元のソースを編集することや、それがページへ直ちに適用された結果を見ることも可能です。これを実現するための追加作業が 2 つあります。</p>
+<p>始めにプリプロセッサが元のソースを監視して、ソースが変更された際は自動的に CSS を再生成するようにセットアップします。Sass では <code>--watch</code> オプションを渡すことで可能になります:</p>
+<pre>sass index.scss:index.css --sourcemap --watch</pre>
+<p>次にソースエディタで、ファイル名の隣にある "保存" ボタンをクリックして元のファイルを上書き保存します。</p>
+<p>これで、スタイルエディタでソースファイルを変更したときに CSS が再生成され、変更結果をすぐに確認できます。</p>
+<h2 id="Keyboard_shortcuts" name="Keyboard_shortcuts">キーボードショートカット</h2>
+<h3 id="Source_editor_shortcuts" name="Source_editor_shortcuts">ソースエディタのショートカット</h3>
+<p></p><p>以下の表は、ソースエディタのデフォルトのショートカットの一覧です。</p>
+ <p>Vim や Emacs のキーバインドも選択できます。これらを選択するには、<code>about:config</code> で設定項目 <code>devtools.editor.keymap</code> を選択して、"vim" または "emacs" を設定してください。この設定により、ソースエディタを使用するすべての開発ツールで選択したキーバインドを使用します。設定を反映させるには、エディタを開き直さなければなりません。</p>
+ <p>Firefox 31 より、<code>devtools.editor.keymap</code> に "sublime" を設定することにより Sublime Text のキーバインドを選択できます。</p>
+ <table class="fullwidth-table"><tbody><tr><th scope="row" style="width: 40%;"> </th>
+    <th scope="col">Windows</th>
+    <th scope="col">Mac OS X</th>
+    <th scope="col">Linux</th>
+   </tr><tr><th scope="row">指定行へ移動</th>
+    <td style="width: 20%;">Ctrl + J</td>
+    <td>Cmd + J</td>
+    <td>Ctrl + J</td>
+   </tr><tr><th scope="row">ファイル内を検索</th>
+    <td>Ctrl + F</td>
+    <td style="width: 20%;">Cmd + F</td>
+    <td style="width: 20%;">Ctrl + F</td>
+   </tr><tr><th scope="row">再検索</th>
+    <td>Ctrl + G</td>
+    <td>Cmd + G</td>
+    <td>Ctrl + G</td>
+   </tr><tr><th scope="row">すべて選択</th>
+    <td>Ctrl + A</td>
+    <td>Cmd + A</td>
+    <td>Ctrl + A</td>
+   </tr><tr><th scope="row">切り取り</th>
+    <td>Ctrl + X</td>
+    <td>Cmd + X</td>
+    <td>Ctrl + X</td>
+   </tr><tr><th scope="row">コピー</th>
+    <td>Ctrl + C</td>
+    <td>Cmd + C</td>
+    <td>Ctrl + C</td>
+   </tr><tr><th scope="row">貼り付け</th>
+    <td>Ctrl + V</td>
+    <td>Cmd + V</td>
+    <td>Ctrl + V</td>
+   </tr><tr><th scope="row">元に戻す</th>
+    <td>Ctrl + Z</td>
+    <td>Cmd + Z</td>
+    <td>Ctrl + Z</td>
+   </tr><tr><th scope="row">やり直し</th>
+    <td>Ctrl + Shift + Z / Ctrl + Y</td>
+    <td>Cmd + Shift + Z / Cmd + Y</td>
+    <td>Ctrl + Shift + Z / Ctrl + Y</td>
+   </tr><tr><th scope="row">インデント挿入</th>
+    <td>Tab</td>
+    <td>Tab</td>
+    <td>Tab</td>
+   </tr><tr><th scope="row">インデント削除</th>
+    <td>Shift + Tab</td>
+    <td>Shift + Tab</td>
+    <td>Shift + Tab</td>
+   </tr><tr><th scope="row">行を上へ移動</th>
+    <td>Alt + ↑</td>
+    <td>Alt + ↑</td>
+    <td>Alt + ↑</td>
+   </tr><tr><th scope="row">行を下へ移動</th>
+    <td>Alt + ↓</td>
+    <td>Alt + ↓</td>
+    <td>Alt + ↓</td>
+   </tr><tr><th scope="row">行のコメント化/コメント解除</th>
+    <td>Ctrl + /</td>
+    <td>Cmd + /</td>
+    <td>Ctrl + /</td>
+   </tr></tbody></table><p></p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../tag/Tools.html">Tools</a></li><li><a href="../tag/CSS.html">CSS</a></li><li><a href="../tag/Web Development-Tools.html">Web Development:Tools</a></li><li><a href="../tag/Web Development.html">Web Development</a></li><li><a href="../tag/Stylesheets.html">Stylesheets</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../profiles/teoli.html">teoli</a>, <a href="../../profiles/yyss.html">yyss</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../profiles/yyss.html">yyss</a>,
+                      <time datetime="2014-08-19T07:34:45-07:00">2014/08/19 7:34:45</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="Style_Editor.html#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                                  <!-- zone subnav -->
+                    <nav class="zone-subnav-container" role="navigation">
+    <div class="subnav" id="Subnav">
+      
+<ol>
+ <li><a href="Style_Editor.html#">作成</a>
+  <ol>
+   <li><a href="Scratchpad.html" title="Scratchpad">スクラッチパッド</a></li>
+   <li><a href="Style_Editor.html" title="Style Editor">スタイルエディタ</a></li>
+   <li><a href="Shader_Editor.html">シェーダエディタ</a></li>
+   <li><a href="Web_Audio_Editor.html">Web Audio Editor</a></li>
+  </ol>
+ </li>
+ <li><a href="Style_Editor.html#">デバッグ</a>
+  <ol>
+   <li><a href="Page_Inspector.html" title="Tools/Page_Inspector">ページインスペクタ</a></li>
+   <li><a href="Web_Console.html" title="Web Console">Web コンソール</a></li>
+   <li><a href="Debugger.html" title="Debugger">デバッガ</a></li>
+   <li><a href="Network_Monitor.html" title="Network Monitor">ネットワークモニタ</a></li>
+   <li><a href="Storage_Inspector.html">Storage Inspector</a></li>
+   <li><a href="GCLI.html" title="GCLI">開発ツールバー</a></li>
+   <li><a href="Page_Inspector/3D_view.html" title="3D View">3D ビュー</a></li>
+   <li><a href="Eyedropper.html">スポイト</a></li>
+   <li><a href="Working_with_iframes.html">iframe の選択</a></li>
+  </ol>
+ </li>
+ <li><a href="Style_Editor.html#">モバイル</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/Firefox_OS/Using_the_App_Manager" title="App Manager">アプリマネージャ</a></li>
+   <li><a href="WebIDE.html">WebIDE</a></li>
+   <li><a href="Remote_Debugging/Firefox_for_Android.html" title="Debugging Firefox for Android">Android 版 Firefox</a></li>
+   <li><a href="Firefox_OS_Simulator.html" title="Firefox OS Simulator">Firefox OS Simulator</a></li>
+   <li><a href="Responsive_Design_View.html" title="Responsive Design View">レスポンシブデザインビュー</a></li>
+  </ol>
+ </li>
+ <li><a href="Style_Editor.html#">パフォーマンス</a>
+  <ol>
+   <li><a href="Performance.html">パフォーマンス</a></li>
+   <li><a href="Profiler.html" title="Profiler">プロファイラ</a></li>
+   <li><a href="Paint_Flashing_Tool.html" title="Paint Flashing Tool">Paint Flashing Tool</a></li>
+   <li><a href="Web_Console.html#Reflow_events" title="Reflow event logging">リフローイベントのログ記録</a></li>
+   <li><a href="Network_Monitor.html#Performance_analysis" title="Network Performance">ネットワークパフォーマンス</a></li>
+  </ol>
+ </li>
+ <li><a href="Style_Editor.html#">ブラウザのデバッグ</a>
+  <ol>
+   <li><a href="Browser_Console.html" title="Browser Console">ブラウザコンソール</a></li>
+   <li><a href="Browser_Toolbox.html" title="Browser Toolbox">ブラウザツールボックス</a></li>
+  </ol>
+ </li>
+ <li><a href="Style_Editor.html#">開発ツールの拡張</a>
+  <ol>
+   <li><a href="https://wiki.mozilla.org/Remote_Debugging_Protocol" title="Remote Debugging Protocol">リモートデバッグプロトコル</a></li>
+   <li><a href="https://wiki.mozilla.org/Remote_Debugging_Protocol_Stream_Transport">Stream Transport</a></li>
+   <li><a href="Editor.html" title="Source Editor">ソースエディタ</a></li>
+   <li><a href="Debugger-API.html"><code>Debugger</code> インターフェイス</a></li>
+   <li><a href="Web_Console/Custom_output.html">Web コンソールのカスタム出力</a></li>
+  </ol>
+ </li>
+ <li><a href="https://developer.mozilla.org/ja/docs/Tools_Toolbox#Settings">オプション</a></li>
+ <li><a href="Release_notes.html">リリースノート</a></li>
+</ol>
+    </div>
+  </nav>&nbsp;
+                
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Tools/Style_Editor" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Tools/Style_Editor">
+            English (US)
+          </option>          <option value="/de/docs/Tools/Style_Editor">
+            Deutsch
+          </option>          <option value="/pt-BR/docs/Tools/Editor_de_Estilos">
+            Português (do Brasil)
+          </option>          <option value="/bn-BD/docs/Tools/Style_Editor">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/fr/docs/Outils/Style_Editor">
+            Français
+          </option>          <option value="/zh-CN/docs/Tools/Style_Editor">
+            中文 (简体)
+          </option>          <option value="/ru/docs/Tools/Style_Editor">
+            Русский
+          </option>          <option value="/pl/docs/Narz%C4%99dzia/Style_Editor">
+            Polski
+          </option>          <option value="/es/docs/Tools/Editor_Estilo">
+            Español
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":476}</script></body>
+</html>

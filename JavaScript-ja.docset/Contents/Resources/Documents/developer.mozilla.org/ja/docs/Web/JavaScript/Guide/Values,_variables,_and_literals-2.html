@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Values%2C_variables%2C_and_literals by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 21:37:50 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Values, variables, and literals - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="Values%2c_variables%2c_and_literals%24json.json">
+  <link rel="canonical" href="Values%2c_variables%2c_and_literals.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Values, variables, and literals">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Valores, variáveis e literais">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide_ru/Values,_variables,_and_literals" title="Значения, переменные, и литералы">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="值，变量，以及语式量">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Values, variables, and literals">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="ভ্যালু, ভ্যারিয়েবল, এবং  লিটারেল">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Werte_Variablen_und_Literale" title="Werte, Variablen und Literale">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Valeurs,_variables,_et_littéraux" title="Valeurs, variables et littéraux">
+          <link rel="alternate" hreflang="th" href="https://developer.mozilla.org/th/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="ค่าข้อมูล, ตัวแปร, และตัวข้อมูล">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Values, variables, and literals">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Valores,_variables_y_literales" title="Valores, variables y literales">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Values, variables, and literals">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+  <meta name="twitter:title" content="Values, variables, and literals">
+    <meta property="og:description" content="この章では JavaScript が認識する値や、JavaScript の式の基本要素である変数、定数、リテラルについて説明します。">
+  <meta name="description" content="この章では JavaScript が認識する値や、JavaScript の式の基本要素である変数、定数、リテラルについて説明します。">
+  <meta name="twitter:description" content="この章では JavaScript が認識する値や、JavaScript の式の基本要素である変数、定数、リテラルについて説明します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/JavaScript/Guide/Values,_variables,_and_literals" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': true,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+                
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                          <span class="oauth-icon oauth-github" data-service="GitHub" data-href="/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FJavaScript%2FGuide%2FValues%2C_variables%2C_and_literals" title="GitHub"><i class="icon-github" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                                  <li><a href="https://developer.mozilla.org/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FJavaScript%2FGuide%2FValues%2C_variables%2C_and_literals" class="login-link" data-service="GitHub"><i class="icon-github" aria-hidden="true"></i>GitHub</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Values, variables, and literals">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Valores, variáveis e literais">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide_ru/Values,_variables,_and_literals" title="Значения, переменные, и литералы">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="值，变量，以及语式量">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Values, variables, and literals">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="ভ্যালু, ভ্যারিয়েবল, এবং  লিটারেল">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Werte_Variablen_und_Literale" title="Werte, Variablen und Literale">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Valeurs,_variables,_et_littéraux" title="Valeurs, variables et littéraux">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/th/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="ค่าข้อมูล, ตัวแปร, และตัวข้อมูล">ไทย</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" title="Values, variables, and literals">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Valores,_variables_y_literales" title="Valores, variables y literales">Español</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/JavaScript/Guide/Values%2C_variables%2C_and_literals%24edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="Values%2c_variables%2c_and_literals%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../JavaScript.html" rel="v:url" property="v:title">JavaScript</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Guide.html" rel="v:url" property="v:title">JavaScript ガイド</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Values, variables, and literals</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Values, variables, and literals</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#.E5.80.A4" rel="internal">値</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="#.E3.83.87.E3.83.BC.E3.82.BF.E5.9E.8B.E3.81.AE.E5.A4.89.E6.8F.9B" rel="internal">データ型の変換</a><li><a href="#.E6.96.87.E5.AD.97.E5.88.97.E3.81.8B.E3.82.89.E6.95.B0.E5.80.A4.E3.81.B8.E3.81.AE.E5.A4.89.E6.8F.9B" rel="internal">文字列から数値への変換</a><ol><li><a href="#parseInt()_.E3.81.8A.E3.82.88.E3.81.B3_parseFloat()" rel="internal"><code>parseInt()</code> および <code>parseFloat()</code></a><code></code><code></code><code></code><code></code><li><a href="#.2B_.E6.BC.94.E7.AE.97.E5.AD.90" rel="internal">+ 演算子</a><code></code></ol></li></ol></li><li><a href="#.E5.A4.89.E6.95.B0" rel="internal">変数</a><code></code><code></code><code></code><ol><li><a href="#.E5.A4.89.E6.95.B0.E3.81.AE.E5.AE.A3.E8.A8.80" rel="internal">変数の宣言</a><code></code><code></code><li><a href="#.E5.A4.89.E6.95.B0.E3.81.AE.E8.A9.95.E4.BE.A1" rel="internal">変数の評価</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#.E5.A4.89.E6.95.B0.E3.81.AE.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97" rel="internal">変数のスコープ</a><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#.E3.82.B0.E3.83.AD.E3.83.BC.E3.83.90.E3.83.AB.E5.A4.89.E6.95.B0" rel="internal">グローバル変数</a><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="#.E5.AE.9A.E6.95.B0" rel="internal">定数</a><code></code><code></code><li><a href="#.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB" rel="internal">リテラル</a><ol><li><a href="#.E9.85.8D.E5.88.97.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB" rel="internal">配列リテラル</a><code></code><code></code><code></code><ol><li><a href="#.E9.85.8D.E5.88.97.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB.E3.81.A7.E3.81.AE.E4.BD.99.E5.88.86.E3.81.AA.E3.82.B3.E3.83.B3.E3.83.9E" rel="internal">配列リテラルでの余分なコンマ</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="#.E7.9C.9F.E5.81.BD.E5.80.A4.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB" rel="internal">真偽値リテラル</a><code></code><code></code><code></code><code></code><li><a href="#.E6.95.B4.E6.95.B0" rel="internal">整数</a><li><a href="#.E6.B5.AE.E5.8B.95.E5.B0.8F.E6.95.B0.E7.82.B9.E6.95.B0.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB" rel="internal">浮動小数点数リテラル</a><li><a href="#.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB" rel="internal">オブジェクトリテラル</a><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#.E6.96.87.E5.AD.97.E5.88.97.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB" rel="internal">文字列リテラル</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="#.E6.96.87.E5.AD.97.E5.88.97.E3.81.A7.E3.81.AE.E7.89.B9.E6.AE.8A.E6.96.87.E5.AD.97.E3.81.AE.E4.BD.BF.E7.94.A8" rel="internal">文字列での特殊文字の使用</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#.E6.96.87.E5.AD.97.E3.81.AE.E3.82.A8.E3.82.B9.E3.82.B1.E3.83.BC.E3.83.97" rel="internal">文字のエスケープ</a><code></code></ol></li></ol></li><li><a href="#Unicode" rel="internal">Unicode</a><ol><li><a href="#Unicode_.E3.81.AE_ASCII_.E3.82.84_ISO_.E3.81.A8.E3.81.AE.E4.BA.92.E6.8F.9B.E6.80.A7" rel="internal">Unicode の ASCII や ISO との互換性</a><li><a href="#Unicode_.E3.82.A8.E3.82.B9.E3.82.B1.E3.83.BC.E3.83.97.E3.82.B7.E3.83.BC.E3.82.B1.E3.83.B3.E3.82.B9" rel="internal">Unicode エスケープシーケンス</a><li><a href="#JavaScript_.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.81.AB.E3.81.8A.E3.81.91.E3.82.8B_Unicode_.E6.96.87.E5.AD.97" rel="internal">JavaScript ファイルにおける Unicode 文字</a><li><a href="#Unicode_.E3.82.92.E7.94.A8.E3.81.84.E3.81.9F.E6.96.87.E5.AD.97.E3.81.AE.E8.A1.A8.E7.A4.BA" rel="internal">Unicode を用いた文字の表示</a></ol></li><li><a href="#.E3.83.AA.E3.82.BD.E3.83.BC.E3.82.B9" rel="internal">リソース</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>この章では JavaScript が認識する値や、JavaScript の式の基本要素である変数、定数、リテラルについて説明します。</p>
+<p><span id="Values"></span></p>
+<h2 id=".E5.80.A4">値</h2>
+<p>JavaScript は以下の値の型を認識します:</p>
+<ul>
+  <li><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/Number" title="ja/docs/JavaScript/Reference/Global Objects/Number">数値</a> : 42 や 3.14159 など</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/Boolean" title="ja/docs/JavaScript/Reference/Global Objects/Boolean">論理値 (真偽値)</a> : <code>true</code> または <code>false</code></li>
+  <li><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String" title="ja/docs/JavaScript/Reference/Global Objects/String">文字列</a> : "Howdy!" など</li>
+  <li><code>null</code> : null 値を意味する特殊なキーワードです。<code>null</code> はプリミティブ値でもあります。JavaScript は大文字・小文字を区別するため、<code>null</code> は <code>Null</code> や <code>NULL</code> などとは異なります。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/undefined" title="ja/docs/JavaScript/Reference/Global Objects/undefined">undefined</a></code> : その値が未定義であるトップレベルプロパティ。<code>undefined</code> はプリミティブ値でもあります。</li>
+</ul>
+<p>このように値の型、すなわち<em>データ型</em>の種類が比較的少ないことで、アプリケーションで便利な関数を実行することができます。整数と実数の間に明確な違いはありません。JavaScript には明確に日付を示すデータ型もありません。しかし、<code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/Date" title="ja/docs/JavaScript/Reference/Global Objects/Date">Date</a></code> オブジェクトとそのメソッドを用いて日付を扱うことができます。</p>
+<p><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/Object" title="ja/docs/JavaScript/Reference/Global Objects/Object">オブジェクト</a> と <a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/Function" title="ja/docs/JavaScript/Reference/Global Objects/Function">関数</a> も言語において基本的な要素です。オブジェクトは値を収める名前付きコンテナとして、関数はアプリケーションを実行可能にする手続きとして考えることができます。</p>
+<p><span id="Data_type_conversion"></span></p>
+<h3 id=".E3.83.87.E3.83.BC.E3.82.BF.E5.9E.8B.E3.81.AE.E5.A4.89.E6.8F.9B">データ型の変換</h3>
+<p>JavaScript は動的型付け言語です。そのため変数宣言時にデータ型を指定する必要がなく、またスクリプト実行時に必要に応じてデータ型が自動的に変換されます。例えば以下のように変数を定義したとします:</p>
+<div style="overflow: hidden;">
+  <pre class="brush:js">var answer = 42;
+</pre>
+</div>
+<p>その後、同じ変数に文字列を代入できます:</p>
+<div style="overflow: hidden;">
+  <pre class="brush: js">answer = "Thanks for all the fish...";
+</pre>
+</div>
+<p>JavaScript は動的型付けであるため、この代入時にエラーメッセージは出ません。</p>
+<p>数値と文字列を + 演算子で結合する式では、JavaScript は数値を文字列に変換します。以下の式を見てみましょう:</p>
+<div style="overflow: hidden;">
+  <pre class="brush: js">x = "The answer is " + 42 // "The answer is 42" を返します
+y = 42 + " is the answer" // "42 is the answer" を返します
+</pre>
+</div>
+<p>それ以外の演算子がある式では、JavaScript は数値を文字列に変換しません。例えば:</p>
+<pre class="brush: js">"37" - 7 // 30 を返す
+"37" + 7 // "377" を返す
+</pre>
+<p><span id="Converting_strings_to_numbers"></span></p>
+<h3 id=".E6.96.87.E5.AD.97.E5.88.97.E3.81.8B.E3.82.89.E6.95.B0.E5.80.A4.E3.81.B8.E3.81.AE.E5.A4.89.E6.8F.9B">文字列から数値への変換</h3>
+<p>数値を表す値が文字列として記憶されている場合、それを変換する手段があります。</p>
+<p><span id="parseInt()_and_parseFloat()"></span></p>
+<h4 id="parseInt()_.E3.81.8A.E3.82.88.E3.81.B3_parseFloat()"><code>parseInt()</code> および <code>parseFloat()</code></h4>
+<p><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/parseInt" title="ja/docs/JavaScript/Reference/Global Objects/parseInt">parseInt()</a></code> および <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/parseFloat" title="ja/docs/JavaScript/Reference/Global Objects/parseFloat">parseFloat()</a></code> のページをご覧ください。</p>
+<p><code>parseInt</code> は整数のみを返しますので、小数は切り捨てられます。加えて <code>parseInt</code> のベストプラクティスは、常に基数のパラメータを含めることです。</p>
+<p><span id="Plus_operator"></span></p>
+<h4 id=".2B_.E6.BC.94.E7.AE.97.E5.AD.90">+ 演算子</h4>
+<p>文字列から数値を取り出す代替手段は、<code>+</code> 演算子の利用です。</p>
+<pre class="brush: js">"1.1" + "1.1" = "1.11.1"
+(+"1.1") + (+"1.1") = 2.2   // 注: 括弧は明確さのために追加したもので、必須ではありません</pre>
+<p><span id="Variables"></span></p>
+<h2 id=".E5.A4.89.E6.95.B0">変数</h2>
+<p>アプリケーションで値を識別する名前として、変数を使用します。変数の名前は<em>識別子</em>とも呼ばれ、あるルールに従わなくてはなりません。</p>
+<p>JavaScript の識別子は必ずアルファベット、アンダースコア (_)、あるいはドル記号 ($) から始まらなくてはなりません。続く文字は数字 (0-9) も使用できます。JavaScript は大文字・小文字を区別するため、使用できるアルファベットは "A" から "Z" (大文字) と "a" から "z" (小文字) です。</p>
+<p>JavaScript 1.5 より、å や ü といった ISO 8859-1 や Unicode の文字も識別子で使用できます。\uXXXX 形式の <a href="#Unicode_escape_sequences">Unicode escape sequences</a> も識別子に使用できます。</p>
+<p><code>Number_hits</code>、<code>temp99</code>、<code>_name</code> が使用できる名前の例です。</p>
+<p><span id="Declaring_variables"></span></p>
+<h3 id=".E5.A4.89.E6.95.B0.E3.81.AE.E5.AE.A3.E8.A8.80">変数の宣言</h3>
+<p>2 つの方法で変数を宣言できます:</p>
+<ul>
+  <li><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Statements/var" title="ja/docs/JavaScript/Reference/Statements/var">var</a> キーワードを用います。例えば、<code>var x = 42</code> です。この構文は<a href="#Variable_Scope">ローカル変数およびグローバル変数</a>どちらの宣言にも使用可能です。</li>
+  <li>単に値を代入します。例えば、<code>x = 42</code> です。これはいつでも<a href="#Global_Variables">グローバル変数</a>を宣言できますが、厳格な JavaScript 警告 (<span style="color: green;">strict JavaScript warning</span>)が発生します。この方法は使用すべきではありません。</li>
+</ul>
+<p><span id="Evaluating_variables"></span></p>
+<h3 id=".E5.A4.89.E6.95.B0.E3.81.AE.E8.A9.95.E4.BE.A1">変数の評価</h3>
+<p><code>var</code> 文を使用して初期値なしで宣言された変数は、<code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/undefined" title="ja/docs/JavaScript/Reference/Global Objects/undefined">undefined</a></code> の値をとります。</p>
+<p>未宣言の変数にアクセスしようとすると、<code>ReferenceError</code> 例外が発生します:</p>
+<pre class="brush: js">var a;
+console.log("The value of a is " + a); // "The value of a is undefined" を出力
+console.log("The value of b is " + b); // ReferenceError 例外が発生
+</pre>
+<p><code>undefined</code> を用いて変数に値が入っているかを確認できます。以下のコードでは変数 <code>input</code> に値が代入されておらず、<code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Statements/if...else" title="ja/docs/JavaScript/Reference/Statements/if...else">if</a></code> 文での評価結果は <code>true</code> です。</p>
+<pre class="brush: js">var input;
+if(input === undefined){
+  doThis();
+} else {
+  doThat();
+}
+</pre>
+<p></p>
+<p><code>undefined</code> は真偽値コンテキストで使用されると <code>false</code> として振る舞います。例えば以下のコードでは、<code>myArray</code> の要素が未定義であるために関数 <code>myFunction</code> が実行されます:</p>
+<pre class="brush: js">var myArray = new Array();
+if (!myArray[0]) myFunction(); 
+</pre>
+<p><code>undefined</code> は数値コンテキストで使用されると <code>NaN</code> に変換されます。</p>
+<pre class="brush: js">var a;
+a + 2 = NaN</pre>
+<p>null の変数を評価すると、数値コンテキストにおいて null 値は 0 として振る舞います。また真偽値コンテキストでは false として振る舞います。例えば:</p>
+<pre class="brush: js">var n = null;
+console.log(n * 32); // 0 を出力
+</pre>
+<p><span id="Variable_scope"></span></p>
+<h3 id=".E5.A4.89.E6.95.B0.E3.81.AE.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97">変数のスコープ</h3>
+<p>変数を関数の外側で宣言すると、その変数はその文書のどのコードからも使用できるようになるため、<em>グローバル</em> (大域) 変数と呼ばれます。変数を関数の内部で宣言すると、その変数はその関数の中でしか使用できないため、<em>ローカル</em> (局所) 変数と呼ばれます。</p>
+<p>JavaScript には <a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Statements#Block_Statement" title="ja/docs/JavaScript/Guide/Statements#Block Statement">ブロック文</a> のスコープがありません。むしろ、そのブロックを内包しているコードに対して局所化されます。例えば以下のコードでは、<code>x</code> のスコープは <code>x</code> の定義を含む関数 (あるいはグローバルコンテキスト) でありブロック、すなわち <code>if</code> 文ではないことから <code>5</code> を出力します。</p>
+<pre class="brush: js">if (true) {
+  var x = 5;
+}
+console.log(x);
+</pre>
+<p>JavaScript の変数に関する独特なこととして、後に宣言される変数を例外を発生させることなく参照できるということが挙げられます。この考え方はホイスティングとして知られています。JavaScript の変数は関数や文の先頭まで、ある意味 "巻き上げ" あるいは持ち上げられます。ただし、まだ初期化されていない変数は <code>undefined</code> 値を返します。</p>
+<pre class="brush: js">/**
+ * 例 1
+ */
+console.log(x === undefined); // "true" が記録される
+var x = 3;
+
+
+/**
+ * 例 2
+ */
+// undefined 値が返ります
+var myvar = "my value";
+
+(function() {
+  console.log(myvar); // undefined
+  var myvar = "local value";
+})();
+</pre>
+<p>前出の例 2 は以下と同様に解釈されます:</p>
+<pre class="brush: js">var myvar = "my value";
+
+(function() {
+  var myvar;
+  console.log(myvar); // undefined
+  myvar = "local value";
+})();</pre>
+<p>ホイスティングにより、関数内にあるすべての <code>var</code> 文は関数内で可能な限り先頭に近い位置に置かれるでしょう。これはコードの明確さを高めるベストプラクティスです。</p>
+<p><span id="Global_variables"></span></p>
+<h3 id=".E3.82.B0.E3.83.AD.E3.83.BC.E3.83.90.E3.83.AB.E5.A4.89.E6.95.B0">グローバル変数</h3>
+<p>グローバル変数は、実際には<em>グローバルオブジェクト</em>のプロパティです。Web ページでのグローバルオブジェクトは <code><a href="https://developer.mozilla.org/ja/docs/DOM/window" title="ja/docs/DOM/window">window</a></code> です。そのため <code>window.<em>variable</em></code> という構文を用いてグローバル変数のセットやアクセスができます。</p>
+<p>従ってあるウィンドウやフレームで宣言したグローバル変数は、そのウィンドウやフレームの名前を指定することで別のウィンドウやフレームからアクセスできます。例えば <code>phoneNumber</code> 変数を <code>FRAMESET</code> 文書内で宣言すると、子フレームから <code>parent.phoneNumber</code> としてその変数を参照できます。</p>
+<p><span id="Constants"></span></p>
+<h2 id=".E5.AE.9A.E6.95.B0">定数</h2>
+<p><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Statements/const" title="ja/docs/JavaScript/Reference/Statements/const">const</a></code> キーワードを用いて、読み取り専用の名前付き定数を作成できます。定数識別子の構文は変数識別子の構文と同じです。識別子はアルファベットまたはアンダースコアから始まらなくてはならず、全体ではアルファベット、数値、アンダースコアから成るようにします。</p>
+<pre class="brush: js">const prefix = '212';
+</pre>
+<p>定数は代入によって値を変えたり、スクリプト実行中に再宣言したりすることはできません。</p>
+<p>定数のスコープルールは、<code>const</code> キーワードがグローバル定数に対しても常に必須であることを除いて、変数のルールと同じです。このキーワードを省略すると、その識別子は変数を表すとみなされます。</p>
+<p>同一スコープ内で、関数や変数と同じ名前の定数を宣言することはできません。例えば:</p>
+<pre class="brush: js">// この場合、エラーが発生
+function f() {};
+const f = 5;
+
+// この場合もエラーが発生
+function f() {
+  const g = 5;
+  var g;
+
+  // 文
+}
+</pre>
+<p><span id="Literals"></span></p>
+<h2 id=".E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB">リテラル</h2>
+<p>JavaScript では値の表現にリテラルを用います。これらは固定値であり変数ではなく、スクリプト中に直接記述します。このセクションでは、以下のリテラルについて説明します:</p>
+<ul>
+  <li><a href="#Array_literals">Array literals</a></li>
+  <li><a href="#Boolean_literals">Boolean literals</a></li>
+  <li><a href="#Floating-point_literals">Floating-point literals</a></li>
+  <li><a href="#Integers">Integers</a></li>
+  <li><a href="#Object_literals">Object literals</a></li>
+  <li><a href="#String_literals">String literals</a></li>
+</ul>
+<p><span id="Array_literals"></span></p>
+<h3 id=".E9.85.8D.E5.88.97.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB">配列リテラル</h3>
+<p>配列リテラルとは 0 個以上の式のリストであり、各々の式は配列の要素を表し、各括弧 ([]) で括られているもののことです。配列リテラルを用いて配列を作成すると、その配列は指定された値が要素として初期化され、また配列の長さは指定された引数の個数に設定されます。</p>
+<p>以下の例では 3 つの要素を持ち、長さが 3 である配列 <code>coffees</code> を作成します:</p>
+<pre class="brush: js">var coffees = ["French Roast", "Colombian", "Kona"];
+</pre>
+<p><strong>注意</strong>: 配列リテラルはオブジェクト初期化子の一種です。<a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Working_with_Objects#Using_Object_Initializers" title="ja/docs/JavaScript/Guide/Working with Objects#Using Object Initializers">オブジェクト初期化子の使用</a>を参照してください。</p>
+<p>トップレベルのスクリプト内でリテラルを用いて配列を作成した場合、JavaScript は配列リテラルを含む式を評価するたびに配列を解釈します。さらに関数内で使用されたリテラルは、関数が呼び出されるたびに生成されます。</p>
+<p>配列リテラルは <code>Array</code> オブジェクトでもあります。<code>Array</code> オブジェクトの詳細は <a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Predefined_Core_Objects#Array_Object" title="ja/docs/JavaScript/Guide/Predefined Core Objects#Array Object">Array オブジェクト</a>をご覧ください。</p>
+<p><span id="Extra_commas_in_array_literals"></span></p>
+<h4 id=".E9.85.8D.E5.88.97.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB.E3.81.A7.E3.81.AE.E4.BD.99.E5.88.86.E3.81.AA.E3.82.B3.E3.83.B3.E3.83.9E">配列リテラルでの余分なコンマ</h4>
+<p>配列リテラルですべての要素を指定する必要はありません。立て続けに 2 つのコンマを置くと、配列は未指定の要素を <code>undefined</code> として作成します。次の例では <code>fish</code> という配列を作成します:</p>
+<pre class="brush: js">var fish = ["Lion", , "Angel"];
+</pre>
+<p>この配列は、値を持つ要素を 2 つと空の要素を 1 つ持っています (<code>fish[0]</code> は "Lion"、<code>fish[1]</code> は <code>undefined</code>、<code>fish[2]</code> は "Angel")。</p>
+<p>要素のリストの最後にコンマをつけた場合、そのコンマは無視されます。次の例では、配列の長さは 3 です。<code>myList[3]</code> は存在しません。リスト内の他のコンマはすべて、新しい要素を示します。(<strong>注意</strong>: 末尾のコンマは古いブラウザでエラーを引き起こす場合がありますので、取り除くことがベストプラクティスです)</p>
+<pre class="brush: js">var myList = ['home', , 'school', ];
+</pre>
+<p>次の例では、配列の長さは 4 です。<code>myList[0]</code> と <code>myList[2]</code> が抜けています。</p>
+<pre class="brush: js">var myList = [ , 'home', , 'school'];
+</pre>
+<p>次の例では、配列の長さは 4 です。<code>myList[1]</code> と <code>myList[3]</code> が抜けています。最後のコンマのみが無視されます。</p>
+<pre class="brush: js">var myList = ['home', , 'school', , ];
+</pre>
+<p>自身のコードを記述する際に余分なコンマの動作を理解することは、言語としての JavaScript を理解するために重要です。欠落している要素を明示的に <code>undefined</code> として宣言することは、コードの明確さや保守性を高めるでしょう。</p>
+<p><span id="Boolean_literals"></span></p>
+<h3 id=".E7.9C.9F.E5.81.BD.E5.80.A4.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB">真偽値リテラル</h3>
+<p>真偽値型は 2 つのリテラル値、<code>true</code> と <code>false</code> があります。</p>
+<p>プリミティブな真偽値の <code>true</code> と <code>false</code>を、Boolean オブジェクトの true や false という値を混同してはいけません。Boolean オブジェクトは、プリミティブな真偽値型のラッパです。詳細は <a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Predefined_Core_Objects#Boolean_Object" title="ja/docs/JavaScript/Guide/Predefined Core Objects#Boolean Object">Boolean オブジェクト</a>を参照してください。</p>
+<p><span id="Integers"></span></p>
+<h3 id=".E6.95.B4.E6.95.B0">整数</h3>
+<p>整数は 10 進数、16 進数、8 進数で表現可能です。</p>
+<ul>
+  <li>10 進整数リテラルは、先頭が 0 (ゼロ) ではない一連の数字で構成されます。</li>
+  <li>整数リテラルにおいて先頭の 0 (ゼロ) は、それが 8 進数であることを示します。8 進整数は 0 から 7 までの数字のみで構成されます。</li>
+  <li>先頭の 0x (または 0X) は、16 進数を示します。16 進整数は数字 (0 から 9) と a から f および A から F のアルファベットで構成されます。</li>
+</ul>
+<p>8 進整数リテラルは廃止され、ECMA-262 第 3 版から取り除かれています (<em>strict mode</em> において)。JavaScript 1.5 では、依然として後方互換のためにサポートしています。</p>
+<p>整数リテラルの例は以下のようなものです:</p>
+<pre class="eval">0、117、-345 (10 進数)
+015、0001、-077 (8 進数) 
+0x1123、0x00111、-0xF1A7 (16 進数)
+</pre>
+<p><span id="Floating-point_literals"></span></p>
+<h3 id=".E6.B5.AE.E5.8B.95.E5.B0.8F.E6.95.B0.E7.82.B9.E6.95.B0.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB">浮動小数点数リテラル</h3>
+<p>浮動小数点数リテラルは、以下の部品で構成されます:</p>
+<ul>
+  <li>整数部 (先頭に "+" や "-" の符号をつけてよい)</li>
+  <li>小数点 (".")</li>
+  <li>小数部</li>
+  <li>指数部</li>
+</ul>
+<p>指数部は、"e" または "E" の後に整数が続く形であり、整数の前に符号 ("+" または "-") をつけることができます浮動小数点数リテラルは少なくとも 1 つの数字と、小数点もしくは "e" (または "E") が必要です。</p>
+<p>3.1415、-3.1E12、.1e12、2E-12 が浮動小数点数リテラルの例です。</p>
+<p>より簡潔に書けば、次の形式になります:</p>
+<pre class="eval">[digits][.digits][(E|e)[(+|-)]digits]
+</pre>
+<p>例:</p>
+<pre class="eval">3.14
+2345.789
+.3333333333333333333
+</pre>
+<p><span id="Object_literals"></span></p>
+<h3 id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB">オブジェクトリテラル</h3>
+<p>オブジェクトリテラルとは、0 個以上のプロパティ名とそれに結びつけられた値の組のリストであり、波括弧 ({}) でくくられます。オブジェクトリテラルを文の先頭で使わないようにしてください。{ がブロックの始まりと解釈されるため、エラーや予期せぬ動作を引き起こすことになります。</p>
+<p>以下にオブジェクトリテラルの例を示します。<code>car</code> オブジェクトの最初の要素は、<code>myCar</code> プロパティを定義します。2 番目の要素は、関数 (<code>CarTypes("Honda")</code>) を呼び出す <code>getCar</code> プロパティです。3 番目の要素は既存の変数 (<code>Sales</code>) を用いる <code>special</code> プロパティです。</p>
+<pre class="brush: js">var Sales = "Toyota";
+
+function CarTypes(name) {
+  return (name == "Honda") ?
+    name :
+    "Sorry, we don't sell " + name + "." ;
+}
+
+var car = { myCar: "Saturn", getCar: CarTypes("Honda"), special: Sales };
+
+console.log(car.myCar);   // Saturn
+console.log(car.getCar);  // Honda
+console.log(car.special); // Toyota 
+</pre>
+<p>さらに、数値リテラルや文字列リテラルをプロパティ名に使用することや、オブジェクトを別のオブジェクトの入れ子にすることができます。以下の例では、これらのオプションを使用しています。</p>
+<pre class="brush: js">var car = { manyCars: {a: "Saab", "b": "Jeep"}, 7: "Mazda" };
+
+console.log(car.manyCars.b); // Jeep
+console.log(car[7]); // Mazda
+</pre>
+<p>以下のことに注意してください:</p>
+<pre class="brush: js">var foo = {a: "alpha", 2: "two"};
+console.log(foo.a);    // alpha
+console.log(foo[2]);   // two
+//console.log(foo.2);  // Error: missing ) after argument list
+//console.log(foo[a]); // Error: a is not defined
+console.log(foo["a"]); // alpha
+console.log(foo["2"]); // two
+</pre>
+<p><span id="String_literals"></span></p>
+<h3 id=".E6.96.87.E5.AD.97.E5.88.97.E3.83.AA.E3.83.86.E3.83.A9.E3.83.AB">文字列リテラル</h3>
+<p>文字列リテラルとは、0 個以上の文字を二重引用符 (<code>"</code>) または単一引用符 (<code>'</code>) でくくったものです。文字列は同じ種類の引用符でくくらなければなりません。つまり、どちらも単一引用符にするか、またはどちらも二重引用符にします。以下が文字列リテラルの例です:</p>
+<ul>
+  <li><code>"foo"</code></li>
+  <li><code>'bar'</code></li>
+  <li><code>"1234"</code></li>
+  <li><code>"one line \n another line"</code></li>
+  <li><code>"John's cat"</code></li>
+</ul>
+<p>文字列リテラルの値では、String オブジェクトのあらゆるメソッドを呼び出すことができます。JavaScript が自動的に文字列リテラルを一時的な String オブジェクトに変換し、メソッドを呼び出し、そして一時的な String オブジェクトを破棄します。<code>String.length</code> プロパティを文字列リテラルで用いることもできます:</p>
+<pre class="brush: js">"John's cat".length
+</pre>
+<p>特に String オブジェクトを使う必要がない場合は、文字列リテラルを使うようにしてください。<code>String</code> オブジェクトの詳細は、<a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Predefined_Core_Objects#String_Object" title="ja/docs/JavaScript/Guide/Predefined Core Objects#String Object">String オブジェクト</a>をご覧ください。</p>
+<p><span id="Using_special_characters_in_strings"></span></p>
+<h4 id=".E6.96.87.E5.AD.97.E5.88.97.E3.81.A7.E3.81.AE.E7.89.B9.E6.AE.8A.E6.96.87.E5.AD.97.E3.81.AE.E4.BD.BF.E7.94.A8">文字列での特殊文字の使用</h4>
+<p>通常の文字に加えて、文字列では特殊文字も使用できます。次の例をご覧ください。</p>
+<pre class="brush: js">"one line \n another line"
+</pre>
+<p>ここで、JavaScript の文字列で使用できる特殊文字の表を示します。</p>
+<table class="standard-table">
+  <caption>
+    表 2.1 JavaScript の特殊文字</caption>
+  <thead>
+    <tr>
+      <th scope="col">文字</th>
+      <th scope="col">意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>\b</code></td>
+      <td>後退</td>
+    </tr>
+    <tr>
+      <td><code>\f</code></td>
+      <td>改ページ</td>
+    </tr>
+    <tr>
+      <td><code>\n</code></td>
+      <td>改行</td>
+    </tr>
+    <tr>
+      <td><code>\r</code></td>
+      <td>復帰</td>
+    </tr>
+    <tr>
+      <td><code>\t</code></td>
+      <td>タブ</td>
+    </tr>
+    <tr>
+      <td><code>\v</code></td>
+      <td>垂直タブ</td>
+    </tr>
+    <tr>
+      <td><code>\'</code></td>
+      <td>アポストロフィまたは単一引用符</td>
+    </tr>
+    <tr>
+      <td><code>\"</code></td>
+      <td>二重引用符</td>
+    </tr>
+    <tr>
+      <td><code>\\</code></td>
+      <td>バックスラッシュ (\)</td>
+    </tr>
+    <tr>
+      <td><code>\<em>XXX</em></code></td>
+      <td>0 から 377 までの 3 桁の 8 進数 <em>XXX</em> で指定された、Latin-1 エンコーディングの文字。例えば、\251 は著作権記号を示します。</td>
+    </tr>
+    <tr>
+      <td><code>\x<em>XX</em></code></td>
+      <td>00 から FF までの 2 桁の 16 進数 <em>XX</em> で指定された、Latin-1 エンコーディングの文字。例えば、\xA9 は著作権記号を示します。</td>
+    </tr>
+    <tr>
+      <td><code>\u<em>XXXX</em></code></td>
+      <td>4 桁の 16 進数 <em>XXXX</em> で指定された Unicode 文字。例えば、\u00A9 は著作権記号を示します。<a href="#Unicode_escape_sequences">Unicode escape sequences</a> をご覧ください。</td>
+    </tr>
+  </tbody>
+</table>
+<p><span id="Escaping_characters"></span></p>
+<h4 id=".E6.96.87.E5.AD.97.E3.81.AE.E3.82.A8.E3.82.B9.E3.82.B1.E3.83.BC.E3.83.97">文字のエスケープ</h4>
+<p>表 2.1 に掲載されていない文字は直前にバックスラッシュをつけても無視されますが、この使用法は廃止されましたので使用を避けるべきです。</p>
+<p>バックスラッシュを直前につけることで、引用符を文字列に含めることができます。これを「引用符を<em>エスケープする</em>」と言います。例えば:</p>
+<pre class="brush: js">var quote = "He read \"The Cremation of Sam McGee\" by R.W. Service.";
+console.log(quote);
+</pre>
+<p>この結果は次のようになります:</p>
+<pre class="eval">He read "The Cremation of Sam McGee" by R.W. Service.
+</pre>
+<p>文字列にバックスラッシュそのものを含めるには、バックスラッシュのエスケープが必要です。例えば、文字列に <code>c:\temp</code> というファイルパスを代入するには、以下のようにします:</p>
+<pre class="brush: js">var home = "c:\\temp";
+</pre>
+<p>改行の直前にバックスラッシュを置くことで、改行をエスケープすることもできます。バックスラッシュと改行の両方が、文字列の値から取り除かれます。</p>
+<pre class="brush: js">var str = "this string \
+is broken \
+across multiple\
+lines."
+console.log(str);   // this string is broken across multiplelines.
+</pre>
+<p>JavaScript に "ヒアドキュメント" 構文はありませんが、各行の末尾に改行のエスケープ表記とエスケープした改行を置くことで似たことができます:</p>
+<pre class="brush: js">var poem = 
+"Roses are red,\n\
+Violets are blue.\n\
+I'm schizophrenic,\n\
+And so am I."
+</pre>
+<h2 id="Unicode">Unicode</h2>
+<p>Unicode は、主要な文字言語の交換や表示を目指したユニバーサルな文字コードの標準です。これは南北アメリカ、ヨーロッパ、中東、アフリカ、インド、アジア、太平洋地域の言語、さらに歴史的な文字や技術記号をカバーしています。Unicode は多言語テキストの交換、処理、表示を可能にします。また一般的な技術記号や数学記号も扱えます。国ごとの文字の標準の違いなど、多言語処理に関する国際化問題を解消することが期待されています。しかしながら、今のところ現代の文字と古い文字がすべてサポートされているわけではありません。</p>
+<p>Unicode 文字セットはすべての有名なエンコーディングに使用できます。Unicode は ASCII (American Standard Code for Information Interchange) 文字セットをモデルにしています。これは各文字に対して数値と名前を割り当てています。文字エンコーディングは、その文字の識別情報およびその数値 (コードの位置)、さらにこの値のビット表示を指します。16 ビットの数値 (コード値) は、16 進数の値と接頭辞 U で定義されます。例えば、U+0041 は A を表します。この値に対する固有の名前は、LATIN CAPITAL LETTER A です。</p>
+<p><strong>JavaScript 1.3 より前のバージョンでは、Unicode をサポートしていません。</strong></p>
+<p><span id="Unicode_compatibility_with_ASCII_and_ISO"></span></p>
+<h3 id="Unicode_.E3.81.AE_ASCII_.E3.82.84_ISO_.E3.81.A8.E3.81.AE.E4.BA.92.E6.8F.9B.E6.80.A7">Unicode の ASCII や ISO との互換性</h3>
+<p>Unicode は ISO/IEC 10646-1; 1993 と完全互換であり、これは ISO 10646 のサブセットです。</p>
+<p>いくつかのエンコーディング標準 (UTF-8、UTF-16、ISO UCS-2 を含む) は、Unicode を実際のビットとして物理的に表記するために使用されます。</p>
+<p>Unicode の UTF-8 エンコーディングは ASCII 文字と互換性があり、多くのプログラムでサポートされています。Unicode 文字の最初の 128 文字は ASCII 文字に対応しており、同じバイト値をとります。Unicode 文字の U+0020 から U+007E までは、 ASCII 文字の 0x20 から 0x7E と同等です。ASCII はラテンアルファベットをサポートしており 7 ビット文字セットを使用しますが、UTF-8 は各文字について 1 オクテットから 4 オクテットを使用します ("オクテット" は 1 バイト、すなわち 8 ビット)。これにより数百万もの文字を表現できます。別のエンコーディング標準である UTF-16 は、Unicode 文字の表現に 2 オクテットを使用します。エスケープシーケンスによって、UTF-16 は Unicode の範囲全体を 4 オクテットで表現できるようになります。ISO UCS-2 (Universal Character Set) は 2 オクテットを使用します。</p>
+<p>JavaScript および Navigator は UTF-8/Unicode をサポートしているため、非ラテン文字、国際文字、地域化された文字、そして特殊な技術記号を JavaScript プログラムで使用できます。Unicode は多言語テキストをエンコードする標準の方法を提供します。Unicode の UTF-8 エンコーディングは ASCII と互換性があるため、ASCII 文字をプログラムで使用することもできます。また、非 ASCII 文字を JavaScript のコメント、文字列リテラル、識別子、および正規表現で使用することもできます。</p>
+<p><span id="Unicode_escape_sequences"></span></p>
+<h3 id="Unicode_.E3.82.A8.E3.82.B9.E3.82.B1.E3.83.BC.E3.83.97.E3.82.B7.E3.83.BC.E3.82.B1.E3.83.B3.E3.82.B9">Unicode エスケープシーケンス</h3>
+<p>文字列リテラル、正規表現、識別子において Unicode エスケープシーケンスを使用できます。エスケープシーケンスは ASCII 文字 6 文字で構成されます。それは \u と 4 桁の 16 進数です。例えば、\u00A9 は著作権記号を表します。JavaScript ではすべての Unicode エスケープシーケンスが 1 つの文字として解釈されます。</p>
+<p>次のコードは、著作権記号と "Netscape Communications" という文字列を返します。</p>
+<pre class="brush: js">var x = "\u00A9 Netscape Communications";</pre>
+<p>次の表で、よく使用される特殊文字とその Unicode 値を列挙します。</p>
+<table class="standard-table">
+  <caption>
+    表 2.2 特殊文字に対する Unicode 値</caption>
+  <thead>
+    <tr>
+      <th scope="col">カテゴリ</th>
+      <th scope="col">Unicode 値</th>
+      <th scope="col">名前</th>
+      <th scope="col">フォーマット名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4">ホワイトスペースの値</td>
+      <td>\u0009</td>
+      <td>タブ</td>
+      <td>&lt;TAB&gt;</td>
+    </tr>
+    <tr>
+      <td>\u000B</td>
+      <td>垂直タブ</td>
+      <td>&lt;VT&gt;</td>
+    </tr>
+    <tr>
+      <td>\u000C</td>
+      <td>改ページ</td>
+      <td>&lt;FF&gt;</td>
+    </tr>
+    <tr>
+      <td>\u0020</td>
+      <td>スペース</td>
+      <td>&lt;SP&gt;</td>
+    </tr>
+    <tr>
+      <td rowspan="2">行終端の値</td>
+      <td>\u000A</td>
+      <td>改行</td>
+      <td>&lt;LF&gt;</td>
+    </tr>
+    <tr>
+      <td>\u000D</td>
+      <td>復帰</td>
+      <td>&lt;CR&gt;</td>
+    </tr>
+    <tr>
+      <td rowspan="5">付加的な Unicode エスケープシーケンスの値</td>
+      <td>\u0008</td>
+      <td>後退</td>
+      <td>&lt;BS&gt;</td>
+    </tr>
+    <tr>
+      <td>\u0009</td>
+      <td>水平タブ</td>
+      <td>&lt;HT&gt;</td>
+    </tr>
+    <tr>
+      <td>\u0022</td>
+      <td>二重引用符</td>
+      <td>"</td>
+    </tr>
+    <tr>
+      <td>\u0027</td>
+      <td>単一引用符</td>
+      <td>'</td>
+    </tr>
+    <tr>
+      <td>\u005C</td>
+      <td>バックスラッシュ</td>
+      <td>\</td>
+    </tr>
+  </tbody>
+</table>
+<p>JavaScript での Unicode エスケープシーケンスの使用方法は、Java の使用方法と異なります。JavaScript では、エスケープシーケンスが最初から特殊文字として解釈されることはありません。例えば、文字列中にある行終端のエスケープシーケンスは、関数が文字列を解釈するより前にその文字列を打ち切ることがありません。どのエスケープシーケンスをコメントで使用しても、JavaScript はそれを無視します。Java では 1 行コメント内でエスケープシーケンスが使用された場合、それを Unicode 文字として解釈します。文字列リテラルでは、Java コンパイラは最初からエスケープシーケンスを解釈します。例えば行終端のエスケープ文字 (例: \u000A) は、Java で使用すると文字列リテラルを打ち切ります。また Java では行終端が文字列リテラル内では許可されていないため、エラーが発生します。文字列リテラルで改行を表したい場合は \n を使用しなければなりません。JavaScript ではエスケープシーケンスでも \n と同じように機能します。</p>
+<p><span id="Unicode_characters_in_JavaScript_files"></span></p>
+<h3 id="JavaScript_.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.81.AB.E3.81.8A.E3.81.91.E3.82.8B_Unicode_.E6.96.87.E5.AD.97">JavaScript ファイルにおける Unicode 文字</h3>
+<p>以前のバージョンの <a href="https://developer.mozilla.org/ja/docs/Gecko" title="ja/docs/Gecko">Gecko</a> では、XUL から読み込まれる JavaScript ファイルは Latin-1 文字エンコーディングを前提としていました。Gecko 1.8 より、文字エンコーディングは XUL ファイルのエンコーディングから推測されます。詳しくは <a href="https://developer.mozilla.org/ja/docs/International_characters_in_XUL_JavaScript" title="ja/docs/International_characters_in_XUL_JavaScript">XUL JavaScript における国際文字</a>を参照してください。</p>
+<p><span id="Displaying_characters_with_Unicode"></span></p>
+<h3 id="Unicode_.E3.82.92.E7.94.A8.E3.81.84.E3.81.9F.E6.96.87.E5.AD.97.E3.81.AE.E8.A1.A8.E7.A4.BA">Unicode を用いた文字の表示</h3>
+<p>Unicode を用いることで、異なる言語の文字や技術記号を表示することができます。文字を適切に表示させるには、Mozilla Firefox や Netscape といったクライアントが Unicode をサポートしている必要があります。さらに適切な Unicode フォントもそのクライアントで使用できなくてはならず、またクライアントのプラットフォームの　Unicode サポートも必要です。Unicode フォントが Unicode 文字を全部は表示できないことがよくあります。Windows 95 など、Unicode を部分的にサポートしているプラットフォームもあります。</p>
+<p>非 ASCII 文字の入力を受け取るには、クライアントが入力を Unicode として送信する必要があります。標準的な拡張キーボードを使用すると、Unicode でサポートされている付加的な文字をクライアントが簡単には入力できなくなります。Unicode 文字を入力する唯一の方法が、Unicode エスケープシーケンスを使用することという場合もあります。</p>
+<p>Unicode の詳細な情報については、<a class="external" href="http://www.unicode.org/">Unicode Home Page</a> や The Unicode Standard, Version 2.0 (出版元: Addison-Wesley、1996 年) をご覧ください。</p>
+<p><span id="Resources"></span></p>
+<h2 id=".E3.83.AA.E3.82.BD.E3.83.BC.E3.82.B9">リソース</h2>
+<ul>
+  <li><a class="external" href="http://0xcc.net/jsescape/" title="Text Escaping and Unescaping in JavaScript">Text Escaping and Unescaping in JavaScript</a> - 文字を JavaScript の Unicode 値に変換するユーティリティ</li>
+</ul>
+<div>
+  </div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/JavaScript">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/akiroom">akiroom</a>, <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/yyss">yyss</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>,
+                      <time datetime="2013-05-28T13:01:47-07:00">2013/05/28 13:01:47</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+            English (US)
+          </option>          <option value="/pt-BR/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+            Português (do Brasil)
+          </option>          <option value="/ru/docs/Web/JavaScript/Guide_ru/Values,_variables,_and_literals">
+            Русский
+          </option>          <option value="/zh-CN/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+            中文 (简体)
+          </option>          <option value="/ko/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+            한국어
+          </option>          <option value="/bn-BD/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/de/docs/Web/JavaScript/Guide/Werte_Variablen_und_Literale">
+            Deutsch
+          </option>          <option value="/fr/docs/Web/JavaScript/Guide/Valeurs,_variables,_et_litt%C3%A9raux">
+            Français
+          </option>          <option value="/th/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+            ไทย
+          </option>          <option value="/zh-TW/docs/Web/JavaScript/Guide/Values,_variables,_and_literals">
+            正體中文 (繁體)
+          </option>          <option value="/es/docs/Web/JavaScript/Guide/Valores,_variables_y_literales">
+            Español
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":516}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Values%2C_variables%2C_and_literals by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 21:37:51 GMT -->
+</html>

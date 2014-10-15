@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/CSS/angle by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:05:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>angle - CSS | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="angle%24json.json">
+  <link rel="canonical" href="angle.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/CSS/angle" title="&lt;angle&gt;">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/CSS/angle" title="angle">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/CSS/angle" title="&lt;angle&gt;">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="angle">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/CSS/angle">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/CSS/angle">
+  <meta name="twitter:title" content="angle">
+    <meta property="og:description" content="CSS の angle データ型は角度を表します。正の角度は右回りの、負の角度は左回りの角度を表します。 数量 データ型の直後に単位（ deg、grad、rad 、 turn ）を続けます。他の CSS の寸法と同様に、単位と数値の間に空白を置きません。">
+  <meta name="description" content="CSS の angle データ型は角度を表します。正の角度は右回りの、負の角度は左回りの角度を表します。 数量 データ型の直後に単位（ deg、grad、rad 、 turn ）を続けます。他の CSS の寸法と同様に、単位と数値の間に空白を置きません。">
+  <meta name="twitter:description" content="CSS の angle データ型は角度を表します。正の角度は右回りの、負の角度は左回りの角度を表します。 数量 データ型の直後に単位（ deg、grad、rad 、 turn ）を続けます。他の CSS の寸法と同様に、単位と数値の間に空白を置きません。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/CSS/angle" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/CSS/angle" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/CSS/angle" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/CSS/angle" title="&lt;angle&gt;">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/CSS/angle" title="angle">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/CSS/angle" title="&lt;angle&gt;">Deutsch</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/CSS/angle%24edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="angle%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../CSS.html" rel="v:url" property="v:title">CSS</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">angle</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>angle</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#Summary" rel="internal">概要</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#Examples" rel="internal">例</a><code></code><code style="white-space: nowrap;"></code><code></code><code></code><code></code><code style="white-space: nowrap;"></code><code></code><code></code><code style="white-space: nowrap;"></code><code></code><code></code><code></code><code style="white-space: nowrap;"></code><code></code><li><a href="#Specifications" rel="internal">仕様</a><li><a href="#Browser_compatibility" rel="internal">ブラウザ実装状況</a><code></code><code></code><li><a href="#See_also" rel="internal">関連情報</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div>
+  <section class="Quick_links" id="Quick_Links"><!-- --></section></div>
+<h2 id="Summary" name="Summary">概要</h2>
+<p><a href="https://developer.mozilla.org/ja/docs/CSS" title="CSS">CSS</a> の <code>&lt;angle&gt;</code> データ型は角度を表します。正の角度は右回りの、負の角度は左回りの角度を表します。<a href="number.html" title=""><code>&lt;数量&gt;</code></a> データ型の直後に単位（<code>deg、grad、rad</code> 、<code>turn</code>）を続けます。他の CSS の寸法と同様に、単位と数値の間に空白を置きません。</p>
+<p>静的なプロパティと単位では、1 つの角度を別の値で表すことができます: <code>90deg</code> と <code>-270deg</code> や、<code>1turn</code> と <code>4turn</code> は最終的に同じ位置を表します。とは言え、動的なプロパティ、例えば <a href="transition.html" title=""><code>transition</code></a> を <a href="transform.html" title=""><code>transform</code></a> プロパティに用いるような場合には、結果は変わるでしょう。</p>
+<p>次の単位を使えます:</p>
+<ul>
+  <li><code>deg</code>（<a class="external" href="http://en.wikipedia.org/wiki/Degree_(angle)" title="http://en.wikipedia.org/wiki/Degree_%28angle%29">度）</a>。一周は <code>360deg</code> です。例: <code>0deg</code>, <code>90deg</code>,<code> 360deg</code></li>
+  <li><code>grad</code>（<a class="external" href="http://en.wikipedia.org/wiki/Gradian" title="http://en.wikipedia.org/wiki/Gradian">グラード）</a>。一周は <code>400grad</code> です。例: <code>0grad</code>, <code>100grad</code>,<code> 400grad</code></li>
+  <li><code>rad</code> <a class="external" href="http://en.wikipedia.org/wiki/Radian" title="http://en.wikipedia.org/wiki/Radian">（ラジアン）。一周は</a> 2π ラジアン、約 <code>6.2832rad</code> です。<code>1rad</code> は 180/π 度です。例: <code>0rad</code>, <code>1.0708rad</code>,<code> 6.2832rad</code></li>
+  <li>
+    <p><code>turn</code> （ターン）。角度が何周したのかを表します。一周は <code>1turn</code> です。例: <code>0turn</code>, <code>0.25turn</code>,<code> 1turn</code></p>
+  </li>
+</ul>
+<p>仮に値 <code>0</code> がどの単位の角度でも同じ値を表すのだとしても、これは <a href="length.html" title=""><code>&lt;length&gt;</code></a> ではないため、単位を省略してはいけません。<code>0</code> は無効で、<code>0deg</code> や <code>0grad</code>、<code>0rad</code>、<code>0turn</code> を表しません。</p>
+<div class="note">
+  訳注：主要ブラウザではFirefoxを含めて、単位のない <code>0</code> を <code>0deg</code>とみなしているような動作をし、以前の日本語版記事にもそのように書かれていました。はっきりしたことがわかれば再更新します。</div>
+
+
+<h2 id="Examples" name="Examples">例</h2>
+
+
+<table style="width: 100%;">
+  <tbody>
+    <tr>
+      <td><img alt="Angle90.png" class="internal default" src="https://developer.mozilla.org/@api/deki/files/5704/=Angle90.png" style=""></td>
+      <td>
+        <p>直角: <code>90deg = 100grad = 0.25turn</code> <code style="white-space: nowrap;">≈</code><code> 1.5708rad</code></p>
+      </td>
+    </tr>
+    <tr>
+      <td><img alt="Angle180.png" class="internal default" src="https://developer.mozilla.org/@api/deki/files/5706/=Angle180.png"></td>
+      <td>180度: <code>180deg = 200grad = 0.5turn</code><code> </code><code style="white-space: nowrap;">≈</code><code> 3.1416rad</code></td>
+    </tr>
+    <tr>
+      <td><img alt="AngleMinus90.png" class="internal default" src="https://developer.mozilla.org/@api/deki/files/5707/=AngleMinus90.png"></td>
+      <td>直角（左向き） <code>-90deg = -100grad = -0.25turn</code> <code style="white-space: nowrap;">≈</code><code> -1.5708rad</code></td>
+    </tr>
+    <tr>
+      <td><img alt="Angle0.png" class="internal default" src="https://developer.mozilla.org/@api/deki/files/5708/=Angle0.png"></td>
+      <td>
+        <p>ゼロ度: <code>0deg = 0grad = 0turn</code><code> </code><code style="white-space: nowrap;">=</code><code> 0rad</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Specifications" name="Specifications">仕様</h2>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">仕様書</th>
+      <th scope="col">策定状況</th>
+      <th scope="col">コメント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a class="external" href="http://dev.w3.org/csswg/css3-values/#angles" lang="en" title="The definition of '&lt;angle>' in that specification.">CSS Values and Units Module Level 3</a></td>
+      <td><span class="spec-CR">勧告候補</span></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Browser_compatibility" name="Browser_compatibility">ブラウザ実装状況</h2>
+<div>
+  <div class="htab"> 
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a> 
+    <ul> 
+        <li class="selected"><a>デスクトップ</a></li> 
+        <li><a>モバイル</a></li> 
+    </ul> 
+</div></div>
+<div id="compat-desktop">
+  <table class="compat-table">
+    <tbody>
+      <tr>
+        <th>機能</th>
+        <th>Chrome</th>
+        <th>Firefox (Gecko)</th>
+        <th>Internet Explorer</th>
+        <th>Opera</th>
+        <th>Safari (WebKit)</th>
+      </tr>
+      <tr>
+        <td>基本サポート</td>
+        <td>2 (528.17)</td>
+        <td>3.6 (1.9.2)</td>
+        <td>9.0</td>
+        <td>no</td>
+        <td>4.0 (528.17)</td>
+      </tr>
+      <tr>
+        <td><code>turn</code> 単位</td>
+        <td>no</td>
+        <td>13.0</td>
+        <td>9.0</td>
+        <td>no</td>
+        <td>no</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="compat-mobile">
+  <table class="compat-table">
+    <tbody>
+      <tr>
+        <th>機能</th>
+        <th>Android</th>
+        <th>Firefox Mobile (Gecko)</th>
+        <th>IE Phone</th>
+        <th>Opera Mobile</th>
+        <th>Safari Mobile</th>
+      </tr>
+      <tr>
+        <td>基本サポート</td>
+        <td>?</td>
+        <td>yes</td>
+        <td>?</td>
+        <td>no</td>
+        <td>?</td>
+      </tr>
+      <tr>
+        <td><code>turn</code> 単位</td>
+        <td>no</td>
+        <td>13.0</td>
+        <td>?</td>
+        <td>no</td>
+        <td>no</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="noinclude">
+  <h2 id="See_also" name="See_also">関連情報</h2>
+  <ul>
+    <li><a href="https://developer.mozilla.org/ja/docs/CSS/CSS_Reference" title="CSS Reference">CSS リファレンス</a></li>
+    <li>CSS のデータ型 : <code><a href="https://developer.mozilla.org/ja/docs/CSS/angle">&lt;angle&gt;</a></code>, <code><a class="new" href="https://developer.mozilla.org/ja/docs/CSS/blend-mode">&lt;blend-mode&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/color_value">&lt;color&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/frequency">&lt;frequency&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/gradient">&lt;gradient&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/image">&lt;image&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/length">&lt;length&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/number">&lt;number&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/percentage">&lt;percentage&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/position">&lt;position&gt;</a></code>, <code><a class="new" href="https://developer.mozilla.org/ja/docs/CSS/ratio">&lt;ratio&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/resolution">&lt;resolution&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/shape">&lt;shape&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/string">&lt;string&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/time">&lt;time&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/timing-function">&lt;timing-function&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/uri">&lt;uri&gt;</a></code>, <code><a href="https://developer.mozilla.org/ja/docs/CSS/user-ident">&lt;user-ident&gt;</a></code></li>
+  </ul>
+</div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/CSS">CSS</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/CSS Reference">CSS Reference</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/CSS Référence">CSS Référence</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/sosleepy">sosleepy</a>, <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/Marsf">Marsf</a>, <a href="https://developer.mozilla.org/ja/profiles/FredB">FredB</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>,
+                      <time datetime="2013-05-10T15:28:22-07:00">2013/05/10 15:28:22</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+   <ol> 
+   
+    <li><a href="Reference.html">CSS リファレンス</a> 
+<ol> 
+<li>A  
+<ol>  
+<li><a href="_active.html" title=""><code>:active</code></a></li>  
+<li><a href="__after.html" title=""><code>::after (:after)</code></a></li>  
+<li><a href="align-content.html" title=""><code>align-content</code></a></li>  
+<li><a href="align-items.html" title=""><code>align-items</code></a></li>  
+<li><a href="align-self.html" title=""><code>align-self</code></a></li>  
+<li><a href="all.html" title=""><code>all</code></a></li>  
+<li><a href="angle.html" title=""><code>&lt;角度&gt;</code></a></li>  
+<li><a href="animation.html" title=""><code>animation</code></a></li>  
+<li><a href="animation-delay.html" title=""><code>animation-delay</code></a></li>  
+<li><a href="animation-direction.html" title=""><code>animation-direction</code></a></li>  
+<li><a href="animation-duration.html" title=""><code>animation-duration</code></a></li>  
+<li><a href="animation-fill-mode.html" title=""><code>animation-fill-mode</code></a></li>  
+<li><a href="animation-iteration-count.html" title=""><code>animation-iteration-count</code></a></li>  
+<li><a href="animation-name.html" title=""><code>animation-name</code></a></li>  
+<li><a href="animation-play-state.html" title=""><code>animation-play-state</code></a></li>  
+<li><a href="animation-timing-function.html" title=""><code>animation-timing-function</code></a></li>  
+<li><a href="attr.html" title=""><code>attr()</code></a></li>  
+<li><a href="auto.html" title=""><code>auto</code></a></li>  
+</ol></li> 
+<li>B 
+<ol>  
+<li><a href="backface-visibility.html" title=""><code>backface-visibility</code></a></li>  
+<li><a href="background.html" title=""><code>background</code></a></li>  
+<li><a href="background-attachment.html" title=""><code>background-attachment</code></a></li> 
+<li><a href="background-blend-mode.html" title=""><code>background-blend-mode</code></a></li>  
+<li><a href="background-clip.html" title=""><code>background-clip</code></a></li>  
+<li><a href="background-color.html" title=""><code>background-color</code></a></li>  
+<li><a href="background-image.html" title=""><code>background-image</code></a></li>  
+<li><a href="background-origin.html" title=""><code>background-origin</code></a></li>  
+<li><a href="background-position.html" title=""><code>background-position</code></a></li>  
+<li><a href="background-repeat.html" title=""><code>background-repeat</code></a></li>  
+<li><a href="background-size.html" title=""><code>background-size</code></a></li>  
+<li><a href="__before.html" title=""><code>::before (:before)</code></a></li> 
+<li><a href="blend-mode.html" title=""><code>&lt;blend-mode&gt;</code></a></li>  
+<li><a href="filter.html#blur()" title=""><code>blur()</code></a></li> 
+<li><a href="border.html" title=""><code>border</code></a></li>  
+<li><a href="border-bottom.html" title=""><code>border-bottom</code></a></li>  
+<li><a href="border-bottom-color.html" title=""><code>border-bottom-color</code></a></li>  
+<li><a href="border-bottom-left-radius.html" title=""><code>border-bottom-left-radius</code></a></li>  
+<li><a href="border-bottom-right-radius.html" title=""><code>border-bottom-right-radius</code></a></li>  
+<li><a href="border-bottom-style.html" title=""><code>border-bottom-style</code></a></li>  
+<li><a href="border-bottom-width.html" title=""><code>border-bottom-width</code></a></li>  
+<li><a href="border-collapse.html" title=""><code>border-collapse</code></a></li>  
+<li><a href="border-color.html" title=""><code>border-color</code></a></li>  
+<li><a href="border-image.html" title=""><code>border-image</code></a></li>  
+<li><a href="border-image-outset.html" title=""><code>border-image-outset</code></a></li>  
+<li><a href="border-image-repeat.html" title=""><code>border-image-repeat</code></a></li>  
+<li><a href="border-image-slice.html" title=""><code>border-image-slice</code></a></li>  
+<li><a href="border-image-source.html" title=""><code>border-image-source</code></a></li>  
+<li><a href="border-image-width.html" title=""><code>border-image-width</code></a></li>  
+<li><a href="border-left.html" title=""><code>border-left</code></a></li>  
+<li><a href="border-left-color.html" title=""><code>border-left-color</code></a></li>  
+<li><a href="border-left-style.html" title=""><code>border-left-style</code></a></li>  
+<li><a href="border-left-width.html" title=""><code>border-left-width</code></a></li>  
+<li><a href="border-radius.html" title=""><code>border-radius</code></a></li>  
+<li><a href="border-right.html" title=""><code>border-right</code></a></li>  
+<li><a href="border-right-color.html" title=""><code>border-right-color</code></a></li>  
+<li><a href="border-right-style.html" title=""><code>border-right-style</code></a></li>  
+<li><a href="border-right-width.html" title=""><code>border-right-width</code></a></li>  
+<li><a href="border-spacing.html" title=""><code>border-spacing</code></a></li>  
+<li><a href="border-style.html" title=""><code>border-style</code></a></li>  
+<li><a href="border-top.html" title=""><code>border-top</code></a></li>  
+<li><a href="border-top-color.html" title=""><code>border-top-color</code></a></li>  
+<li><a href="border-top-left-radius.html" title=""><code>border-top-left-radius</code></a></li>  
+<li><a href="border-top-right-radius.html" title=""><code>border-top-right-radius</code></a></li>  
+<li><a href="border-top-style.html" title=""><code>border-top-style</code></a></li>  
+<li><a href="border-top-width.html" title=""><code>border-top-width</code></a></li>  
+<li><a href="border-width.html" title=""><code>border-width</code></a></li>  
+<li><a href="bottom.html" title=""><code>bottom</code></a></li>  
+<li><a href="box-decoration-break.html" title=""><code>box-decoration-break</code></a></li>  
+<li><a href="box-shadow.html" title=""><code>box-shadow</code></a></li>  
+<li><a href="box-sizing.html" title=""><code>box-sizing</code></a></li>  
+<li><a href="break-after.html" title=""><code>break-after</code></a></li>  
+<li><a href="break-before.html" title=""><code>break-before</code></a></li>  
+<li><a href="break-inside.html" title=""><code>break-inside</code></a></li>  
+<li><a href="filter.html#brightness()" title=""><code>brightness()</code></a></li> 
+</ol></li> 
+<li>C 
+<ol>  
+<li><a href="calc.html" title=""><code>calc()</code></a></li>  
+<li><a href="caption-side.html" title=""><code>caption-side</code></a></li>  
+<li><a href="length.html#ch" title=""><code>ch</code></a></li>  
+<li><a href="%40charset.html" title=""><code>@charset</code></a></li>  
+<li><a href="_checked.html" title=""><code>:checked</code></a></li>  
+<li><a href="__choices.html" title=""><code>::choices</code></a></li>  
+<li><a href="clear.html" title=""><code>clear</code></a></li>  
+<li><a href="clip.html" title=""><code>clip</code></a></li>  
+<li><a href="clip-path.html" title=""><code>clip-path</code></a></li>  
+<li><a href="length.html#cm" title=""><code>cm</code></a></li> 
+<li><a href="color.html" title=""><code>color</code></a></li>  
+<li><a href="color_value.html" title=""><code>&lt;color&gt;</code></a></li>  
+<li><a href="columns.html" title=""><code>columns</code></a></li>  
+<li><a href="column-count.html" title=""><code>column-count</code></a></li>  
+<li><a href="column-fill.html" title=""><code>column-fill</code></a></li>  
+<li><a href="column-gap.html" title=""><code>column-gap</code></a></li>  
+<li><a href="column-rule.html" title=""><code>column-rule</code></a></li>  
+<li><a href="column-rule-color.html" title=""><code>column-rule-color</code></a></li>  
+<li><a href="column-rule-style.html" title=""><code>column-rule-style</code></a></li>  
+<li><a href="column-rule-width.html" title=""><code>column-rule-width</code></a></li>  
+<li><a href="column-span.html" title=""><code>column-span</code></a></li>  
+<li><a href="column-width.html" title=""><code>column-width</code></a></li>  
+<li><a href="content.html" title=""><code>content</code></a></li>  
+<li><a href="filter.html#contrast()" title=""><code>contrast()</code></a></li> 
+<li><a href="https://developer.mozilla.org/docs/en/CSS_Counters" title=""><code>&lt;カウンタ&gt;</code></a></li>  
+<li><a href="counter-increment.html" title=""><code>counter-increment</code></a></li>  
+<li><a href="counter-reset.html" title=""><code>counter-reset</code></a></li>  
+<li><a href="%40counter-style.html" title=""><code>@counter-style</code></a></li> 
+<li><a href="cross-fade.html" title=""><code>cross-fade()</code></a></li> 
+<li><a href="timing-function.html#The_cubic-bezier()_class_of_timing-functions" title=""><code>cubic-bezier()</code></a></li>  
+<li><a href="cursor.html" title=""><code>cursor</code></a></li> 
+<li><a href="custom-ident.html" title=""><code>&lt;custom-ident&gt;</code></a></li> 
+<li><a href="cycle.html" title=""><code>cycle()</code></a></li>  
+</ol></li> 
+<li>D 
+<ol>  
+<li><a href="_default.html" title=""><code>:default</code></a></li>  
+<li><a href="angle.html#deg" title=""><code>deg</code></a></li> 
+<li><a href="_dir.html" title=""><code>:dir()</code></a></li>  
+<li><a href="direction.html" title=""><code>direction</code></a></li>  
+<li><a href="_disabled.html" title=""><code>:disabled</code></a></li>  
+<li><a href="display.html" title=""><code>display</code></a></li>  
+<li><a href="%40document.html" title=""><code>@document</code></a></li> 
+<li><a href="resolution.html#dpcm" title=""><code>dpcm</code></a></li>  
+<li><a href="resolution.html#dpi" title=""><code>dpi</code></a></li>  
+<li><a href="resolution.html#dppx" title=""><code>dppx</code></a></li>  
+<li><a href="filter.html#drop-shadow()" title=""><code>drop-shadow()</code></a></li> 
+</ol></li> 
+<li>E 
+<ol>  
+<li><a href="element.html" title=""><code>element()</code></a></li>  
+<li><a href="length.html#em" title=""><code>em</code></a></li> 
+<li><a href="_empty.html" title=""><code>:empty</code></a></li>  
+<li><a href="empty-cells.html" title=""><code>empty-cells</code></a></li>  
+<li><a href="_enabled.html" title=""><code>:enabled</code></a></li>  
+<li><a href="length.html#ex" title=""><code>ex</code></a></li>  
+</ol></li> 
+<li>F 
+<ol>  
+<li><a href="filter.html" title=""><code>filter</code></a></li>  
+<li><a href="_first.html" title=""><code>:first</code></a></li>  
+<li><a href="_first-child.html" title=""><code>:first-child</code></a></li>  
+<li><a href="__first-letter.html" title=""><code>::first-letter (:first-letter)</code></a></li>  
+<li><a href="__first-line.html" title=""><code>::first-line (:first-line)</code></a></li>  
+<li><a href="_first-of-type.html" title=""><code>:first-of-type</code></a></li>  
+<li><a href="flex.html" title=""><code>flex</code></a></li>  
+<li><a href="flex-basis.html" title=""><code>flex-basis</code></a></li>  
+<li><a href="flex-direction.html" title=""><code>flex-direction</code></a></li>  
+<li><a href="flex-flow.html" title=""><code>flex-flow</code></a></li>  
+<li><a href="flex-grow.html" title=""><code>flex-grow</code></a></li>  
+<li><a href="flex-shrink.html" title=""><code>flex-shrink</code></a></li>  
+<li><a href="flex-wrap.html" title=""><code>flex-wrap</code></a></li>  
+<li><a href="float.html" title=""><code>float</code></a></li>  
+<li><a href="_focus.html" title=""><code>:focus</code></a></li>  
+<li><a href="font.html" title=""><code>font</code></a></li>  
+<li><a href="%40font-face.html" title=""><code>@font-face</code></a></li>  
+<li><a href="font-family.html" title=""><code>font-family</code></a></li>  
+<li><a href="font-feature-settings.html" title=""><code>font-feature-settings</code></a></li> 
+<li><a href="%40font-feature-values.html" title=""><code>@font-feature-values</code></a></li>  
+<li><a href="font-kerning.html" title=""><code>font-kerning</code></a></li>  
+<li><a href="font-language-override.html" title=""><code>font-language-override</code></a></li>  
+<li><a href="font-size.html" title=""><code>font-size</code></a></li>  
+<li><a href="font-size-adjust.html" title=""><code>font-size-adjust</code></a></li>  
+<li><a href="font-stretch.html" title=""><code>font-stretch</code></a></li>  
+<li><a href="font-style.html" title=""><code>font-style</code></a></li> 
+<li><a href="font-synthesis.html" title=""><code>font-synthesis</code></a></li> 
+<li><a href="font-variant.html" title=""><code>font-variant</code></a></li>  
+<li><a href="font-variant-alternates.html" title=""><code>font-variant-alternates</code></a></li>  
+<li><a href="font-variant-caps.html" title=""><code>font-variant-caps</code></a></li>  
+<li><a href="font-variant-east-asian.html" title=""><code>font-variant-east-asian</code></a></li>  
+<li><a href="font-variant-ligatures.html" title=""><code>font-variant-ligatures</code></a></li>  
+<li><a href="font-variant-numeric.html" title=""><code>font-variant-numeric</code></a></li>  
+<li><a href="font-variant-position.html" title=""><code>font-variant-position</code></a></li>  
+<li><a href="font-weight.html" title=""><code>font-weight</code></a></li>  
+<li><a href="frequency.html" title=""><code>&lt;周波数&gt;</code></a></li> 
+<li><a href="_fullscreen.html" title=""><code>:fullscreen</code></a></li>  
+</ol></li> 
+<li>G 
+<ol>  
+<li><a href="angle.html#grad" title=""><code>grad</code></a></li> 
+<li><a href="gradient.html" title=""><code>&lt;グラデーション&gt;</code></a></li> 
+<li><a href="filter.html#grayscale()" title=""><code>grayscale()</code></a></li> 
+<li><a href="grid.html" title=""><code>grid</code></a></li> 
+<li><a href="grid-area.html" title=""><code>grid-area</code></a></li> 
+<li><a href="grid-auto-columns.html" title=""><code>grid-auto-columns</code></a></li> 
+<li><a href="grid-auto-flow.html" title=""><code>grid-auto-flow</code></a></li> 
+<li><a href="grid-auto-position.html" title=""><code>grid-auto-position</code></a></li> 
+<li><a href="grid-auto-rows.html" title=""><code>grid-auto-rows</code></a></li> 
+<li><a href="grid-column.html" title=""><code>grid-column</code></a></li> 
+<li><a href="grid-column-start.html" title=""><code>grid-column-start</code></a></li> 
+<li><a href="grid-column-end.html" title=""><code>grid-column-end</code></a></li> 
+<li><a href="grid-row.html" title=""><code>grid-row</code></a></li> 
+<li><a href="grid-row-start.html" title=""><code>grid-row-start</code></a></li> 
+<li><a href="grid-row-end.html" title=""><code>grid-row-end</code></a></li> 
+<li><a href="grid-template.html" title=""><code>grid-template</code></a></li> 
+<li><a href="grid-template-areas.html" title=""><code>grid-template-areas</code></a></li> 
+<li><a href="grid-template-rows.html" title=""><code>grid-template-rows</code></a></li> 
+<li><a href="grid-template-columns.html" title=""><code>grid-template-columns</code></a></li> 
+ 
+</ol></li> 
+<li>H 
+<ol>  
+<li><a href="height.html" title=""><code>height</code></a></li>  
+<li><a href="_hover.html" title=""><code>:hover</code></a></li>  
+<li><a href="color_value.html#hsl()" title=""><code>hsl()</code></a></li>  
+<li><a href="color_value.html#hsla()" title=""><code>hsla()</code></a></li>  
+<li><a href="filter.html#hue-rotate()" title=""><code>hue-rotate()</code></a></li> 
+<li><a href="hyphens.html" title=""><code>hyphens</code></a></li> 
+<li><a href="frequency.html#Hz" title=""><code>hz</code></a></li> 
+</ol></li> 
+<li>I 
+<ol>  
+<li><a href="icon.html" title=""><code>icon</code></a></li>  
+<li><a href="image.html" title=""><code>&lt;画像&gt;</code></a></li>  
+<li><a href="image().html" title=""><code>image()</code></a></li>  
+<li><a href="image-rendering.html" title=""><code>image-rendering</code></a></li>  
+<li><a href="image-resolution.html" title=""><code>image-resolution</code></a></li>  
+<li><a href="image-orientation.html" title=""><code>image-orientation</code></a></li>  
+<li><a href="ime-mode.html" title=""><code>ime-mode</code></a></li>  
+<li><a href="%40import.html" title=""><code>@import</code></a></li>  
+<li><a href="length.html#in" title=""><code>in</code></a></li> 
+<li><a href="_indeterminate.html" title=""><code>:indeterminate</code></a></li>  
+<li><a href="_in-range.html" title=""><code>:in-range</code></a></li>  
+<li><a href="inherit.html" title=""><code>inherit</code></a></li>  
+<li><a href="initial.html" title=""><code>initial</code></a></li>  
+<li><a href="integer.html" title=""><code>&lt;整数値&gt;</code></a></li>  
+<li><a href="_invalid.html" title=""><code>:invalid</code></a></li>  
+<li><a href="filter.html#invert()" title=""><code>invert()</code></a></li> 
+</ol></li> 
+<li>J 
+<ol>  
+<li><a href="justify-content.html" title=""><code>justify-content</code></a></li> 
+</ol></li> 
+<li>K 
+<ol style="margin-left: 0; padding-left: 0; list-style-type: none;">  
+<li><a href="%40keyframes.html" title=""><code>@keyframes</code></a></li> 
+<li><a href="frequency.html#kHz" title=""><code>khz</code></a></li> 
+</ol></li> 
+<li>L 
+<ol>  
+<li><a href="_lang.html" title=""><code>:lang()</code></a></li>  
+<li><a href="_last-child.html" title=""><code>:last-child</code></a></li>  
+<li><a href="_last-of-type.html" title=""><code>:last-of-type</code></a></li>  
+<li><a href="left.html" title=""><code>left</code></a></li>  
+<li><a href="_left.html" title=""><code>:left</code></a></li>  
+<li><a href="length.html" title=""><code>&lt;length&gt;</code></a></li>  
+<li><a href="letter-spacing.html" title=""><code>letter-spacing</code></a></li>  
+<li><a href="linear-gradient.html" title=""><code>linear-gradient()</code></a></li>  
+<li><a href="_link.html" title=""><code>:link</code></a></li>  
+<li><a href="line-height.html" title=""><code>line-height</code></a></li>  
+<li><a href="list-style.html" title=""><code>list-style</code></a></li>  
+<li><a href="list-style-image.html" title=""><code>list-style-image</code></a></li>  
+<li><a href="list-style-position.html" title=""><code>list-style-position</code></a></li>  
+<li><a href="list-style-type.html" title=""><code>list-style-type</code></a></li> 
+</ol></li> 
+<li>M 
+<ol>  
+<li><a href="margin.html" title=""><code>margin</code></a></li>  
+<li><a href="margin-bottom.html" title=""><code>margin-bottom</code></a></li>  
+<li><a href="margin-left.html" title=""><code>margin-left</code></a></li>  
+<li><a href="margin-right.html" title=""><code>margin-right</code></a></li>  
+<li><a href="margin-top.html" title=""><code>margin-top</code></a></li>  
+<li><a href="marks.html" title=""><code>marks</code></a></li>  
+<li><a href="mask.html" title=""><code>mask</code></a></li>  
+<li><a href="mask-type.html" title=""><code>mask-type</code></a></li> 
+<li><a href="transform-function.html#matrix()" title=""><code>matrix()</code></a></li>  
+<li><a href="transform-function.html#matrix3d()" title=""><code>matrix3d()</code></a></li>  
+<li><a href="max-height.html" title=""><code>max-height</code></a></li>  
+<li><a href="max-width.html" title=""><code>max-width</code></a></li>  
+<li><a href="%40media.html" title=""><code>@media</code></a></li>  
+<li><a href="min-height.html" title=""><code>min-height</code></a></li>  
+<li><a href="minmax.html" title=""><code>minmax()</code></a></li> 
+<li><a href="min-width.html" title=""><code>min-width</code></a></li>  
+<li><a href="mix-blend-mode.html" title=""><code>mix-blend-mode</code></a></li>  
+<li><a href="length.html#mm" title=""><code>mm</code></a></li> 
+<li><a href="time.html#ms" title=""><code>ms</code></a></li> 
+</ol></li> 
+<li>N 
+<ol>  
+<li><a href="%40namespace.html" title=""><code>@namespace</code></a></li>  
+<li><a href="nav-down.html" title=""><code>nav-down</code></a></li>  
+<li><a href="nav-index.html" title=""><code>nav-index</code></a></li>  
+<li><a href="nav-left.html" title=""><code>nav-left</code></a></li>  
+<li><a href="nav-right.html" title=""><code>nav-right</code></a></li>  
+<li><a href="nav-up.html" title=""><code>nav-up</code></a></li>  
+<li><a href="none.html" title=""><code>none</code></a></li>  
+<li><a href="normal.html" title=""><code>normal</code></a></li>  
+<li><a href="_not.html" title=""><code>:not()</code></a></li>  
+<li><a href="_nth-child.html" title=""><code>:nth-child()</code></a></li>  
+<li><a href="_nth-last-child.html" title=""><code>:nth-last-child()</code></a></li>  
+<li><a href="_nth-last-of-type.html" title=""><code>:nth-last-of-type()</code></a></li>  
+<li><a href="_nth-of-type.html" title=""><code>:nth-of-type()</code></a></li>  
+<li><a href="number.html" title=""><code>&lt;数量&gt;</code></a></li> 
+</ol></li> 
+<li>O 
+<ol>  
+<li><a href="object-fit.html" title=""><code>object-fit</code></a></li>  
+<li><a href="object-position.html" title=""><code>object-position</code></a></li>  
+<li><a href="_only-child.html" title=""><code>:only-child</code></a></li>  
+<li><a href="_only-of-type.html" title=""><code>:only-of-type</code></a></li>  
+<li><a href="opacity.html" title=""><code>opacity</code></a></li>  
+<li><a href="filter.html#opacity()" title=""><code>opacity()</code></a></li> 
+<li><a href="_optional.html" title=""><code>:optional</code></a></li>  
+<li><a href="order.html" title=""><code>order</code></a></li>  
+<li><a href="orphans.html" title=""><code>orphans</code></a></li>  
+<li><a href="outline.html" title=""><code>outline</code></a></li>  
+<li><a href="outline-color.html" title=""><code>outline-color</code></a></li>  
+<li><a href="outline-offset.html" title=""><code>outline-offset</code></a></li>  
+<li><a href="outline-style.html" title=""><code>outline-style</code></a></li>  
+<li><a href="outline-width.html" title=""><code>outline-width</code></a></li>  
+<li><a href="_out-of-range.html" title=""><code>:out-of-range</code></a></li>  
+<li><a href="overflow.html" title=""><code>overflow</code></a></li>  
+<li><a href="https://developer.mozilla.org/en-US/docs/CSS/word-wrap" title=""><code>overflow-wrap</code></a></li>  
+<li><a href="overflow-x.html" title=""><code>overflow-x</code></a></li>  
+<li><a href="overflow-y.html" title=""><code>overflow-y</code></a></li> 
+<li><a href="overflow-clip-box.html" title=""><code>overflow-clip-box</code></a></li> 
+</ol></li> 
+<li>P 
+<ol>  
+<li><a href="padding.html" title=""><code>padding</code></a></li>  
+<li><a href="padding-bottom.html" title=""><code>padding-bottom</code></a></li>  
+<li><a href="padding-left.html" title=""><code>padding-left</code></a></li>  
+<li><a href="padding-right.html" title=""><code>padding-right</code></a></li>  
+<li><a href="padding-top.html" title=""><code>padding-top</code></a></li>  
+<li><a href="%40page.html" title=""><code>@page</code></a></li>  
+<li><a href="page-break-after.html" title=""><code>page-break-after</code></a></li>  
+<li><a href="page-break-before.html" title=""><code>page-break-before</code></a></li>  
+<li><a href="page-break-inside.html" title=""><code>page-break-inside</code></a></li>  
+<li><a href="length.html#pc" title=""><code>pc</code></a></li>  
+<li><a href="percentage.html" title=""><code>&lt;割合&gt;</code></a></li>  
+<li><a href="perspective.html" title=""><code>perspective</code></a></li>  
+<li><a href="transform-function.html#perspective()" title=""><code>perspective()</code></a></li>  
+<li><a href="perspective-origin.html" title=""><code>perspective-origin</code></a></li>  
+<li><a href="pointer-events.html" title=""><code>pointer-events</code></a></li>  
+<li><a href="position.html" title=""><code>position</code></a></li> 
+<li><a href="position_value.html" title=""><code>&lt;position&gt;</code></a></li>  
+<li><a href="length.html#pt" title=""><code>pt</code></a></li>  
+<li><a href="length.html#px" title=""><code>px</code></a></li> 
+</ol></li> 
+<li>Q 
+<ol>  
+<li><a href="quotes.html" title=""><code>quotes</code></a></li> 
+</ol></li> 
+<li>R 
+<ol> 
+<li><a href="angle.html#rad" title=""><code>rad</code></a></li> 
+<li><a href="radial-gradient.html" title=""><code>radial-gradient()</code></a></li>  
+<li><a href="ratio.html" title=""><code>&lt;画面比率&gt;</code></a></li>  
+<li><a href="_read-only.html" title=""><code>:read-only</code></a></li>  
+<li><a href="_read-write.html" title=""><code>:read-write</code></a></li>  
+<li><a href="shape.html#Syntax" title=""><code>rect()</code></a></li>  
+<li><a href="length.html#rem" title=""><code>rem</code></a></li> 
+<li><a href="repeat.html" title=""><code>repeat()</code></a></li> 
+<li><a href="__repeat-index.html" title=""><code>::repeat-index</code></a></li>  
+<li><a href="__repeat-item.html" title=""><code>::repeat-item</code></a></li>  
+<li><a href="repeating-linear-gradient.html" title=""><code>repeating-linear-gradient()</code></a></li>  
+<li><a href="repeating-radial-gradient.html" title=""><code>repeating-radial-gradient()</code></a></li>  
+<li><a href="_required.html" title=""><code>:required</code></a></li>  
+<li><a href="resize.html" title=""><code>resize</code></a></li>  
+<li><a href="resolution.html" title=""><code>&lt;解像度&gt;</code></a></li>  
+<li><a href="color_value.html#rgb()" title=""><code>rgb()</code></a></li> 
+<li><a href="color_value.html#rgba()" title=""><code>rgba()</code></a></li> 
+<li><a href="right.html" title=""><code>right</code></a></li>  
+<li><a href="_right.html" title=""><code>:right</code></a></li>  
+<li><a href="_root.html" title=""><code>:root</code></a></li>  
+<li><a href="transform-function.html#rotate()" title=""><code>rotate()</code></a></li>  
+<li><a href="transform-function.html#rotateX()" title=""><code>rotatex()</code></a></li>  
+<li><a href="transform-function.html#rotateY()" title=""><code>rotatey()</code></a></li>  
+<li><a href="transform-function.html#rotateZ()" title=""><code>rotatez()</code></a></li>  
+<li><a href="transform-function.html#rotate3d()" title=""><code>rotate3d()</code></a></li> 
+</ol></li> 
+<li>S 
+<ol>  
+<li><a href="time.html#s" title=""><code>s</code></a></li> 
+<li><a href="filter.html#saturate()" title=""><code>saturate()</code></a></li> 
+<li><a href="transform-function.html#scale()" title=""><code>scale()</code></a></li>  
+<li><a href="transform-function.html#scaleX()" title=""><code>scalex()</code></a></li>  
+<li><a href="transform-function.html#scaleY()" title=""><code>scaley()</code></a></li>  
+<li><a href="transform-function.html#scaleZ()" title=""><code>scalez()</code></a></li>  
+<li><a href="transform-function.html#scale3d()" title=""><code>scale3d()</code></a></li>  
+<li><a href="_scope.html" title=""><code>:scope</code></a></li>  
+<li><a href="__selection.html" title=""><code>::selection</code></a></li>  
+<li><a href="filter.html#sepia()" title=""><code>sepia()</code></a></li> 
+<li><a href="shape.html" title=""><code>&lt;形状&gt;</code></a></li>  
+<li><a href="transform-function.html#skew()" title=""><code>skew()</code></a></li>  
+<li><a href="transform-function.html#skewX()" title=""><code>skewx()</code></a></li>  
+<li><a href="transform-function.html#skewY()" title=""><code>skewy()</code></a></li>  
+<li><a href="timing-function.html#The_steps()_class_of_timing-functions" title=""><code>steps()</code></a></li>  
+<li><a href="string.html" title=""><code>&lt;文字列&gt;</code></a></li> 
+<li><a href="%40supports.html" title=""><code>@supports</code></a></li> 
+</ol>T 
+<ol>  
+<li><a href="table-layout.html" title=""><code>table-layout</code></a></li>  
+<li><a href="tab-size.html" title=""><code>tab-size</code></a></li> 
+<li><a href="_target.html" title=""><code>:target</code></a></li>  
+<li><a href="text-align.html" title=""><code>text-align</code></a></li>  
+<li><a href="text-align-last.html" title=""><code>text-align-last</code></a></li> 
+<li><a href="text-combine-horizontal.html" title=""><code>text-combine-horizontal</code></a></li> 
+<li><a href="text-decoration.html" title=""><code>text-decoration</code></a></li>  
+<li><a href="text-decoration-color.html" title=""><code>text-decoration-color</code></a></li>  
+<li><a href="text-decoration-line.html" title=""><code>text-decoration-line</code></a></li>  
+<li><a href="text-decoration-style.html" title=""><code>text-decoration-style</code></a></li>  
+<li><a href="text-indent.html" title=""><code>text-indent</code></a></li>  
+<li><a href="text-orientation.html" title=""><code>text-orientation</code></a></li> 
+<li><a href="text-overflow.html" title=""><code>text-overflow</code></a></li> 
+<li><a href="text-rendering.html" title=""><code>text-rendering</code></a></li> 
+<li><a href="text-shadow.html" title=""><code>text-shadow</code></a></li> 
+<li><a href="text-transform.html" title=""><code>text-transform</code></a></li> 
+<li><a href="text-underline-position.html" title=""><code>text-underline-position</code></a></li>  
+<li><a href="time.html" title=""><code>&lt;時間&gt;</code></a></li>  
+<li><a href="timing-function.html" title=""><code>&lt;タイミング関数&gt;</code></a></li>  
+<li><a href="top.html" title=""><code>top</code></a></li>  
+<li><a href="touch-action.html" title=""><code>touch-action</code></a></li>  
+<li><a href="transform.html" title=""><code>transform</code></a></li>  
+<li><a href="transform-origin.html" title=""><code>transform-origin</code></a></li>  
+<li><a href="transform-style.html" title=""><code>transform-style</code></a></li>  
+<li><a href="transition.html" title=""><code>transition</code></a></li>  
+<li><a href="transition-delay.html" title=""><code>transition-delay</code></a></li>  
+<li><a href="transition-duration.html" title=""><code>transition-duration</code></a></li>  
+<li><a href="transition-property.html" title=""><code>transition-property</code></a></li>  
+<li><a href="transition-timing-function.html" title=""><code>transition-timing-function</code></a></li>  
+<li><a href="transform-function.html#translate()" title=""><code>translate()</code></a></li>  
+<li><a href="transform-function.html#translateX()" title=""><code>translatex()</code></a></li>  
+<li><a href="transform-function.html#translateY()" title=""><code>translatey()</code></a></li>  
+<li><a href="transform-function.html#translateZ()" title=""><code>translatez()</code></a></li>  
+<li><a href="transform-function.html#translate3d()" title=""><code>translate3d()</code></a></li> 
+<li><a href="angle.html#turn" title=""><code>turn</code></a></li> 
+</ol></li> 
+<li>U 
+<ol>  
+<li><a href="unicode-bidi.html" title=""><code>unicode-bidi</code></a></li>  
+<li><a href="unicode-range.html" title=""><code>unicode-range</code></a></li> 
+<li><a href="unset.html" title=""><code>unset</code></a></li>  
+<li><a href="uri.html" title=""><code>&lt;uri&gt;</code></a></li>  
+<li><a href="uri.html#The_url()_functional_notation" title=""><code>url()</code></a></li> 
+<li><a href="user-ident.html" title=""><code>&lt;ユーザ定義識別子&gt;</code></a></li>  
+</ol></li> 
+<li>V 
+<ol>  
+<li><a href="_valid.html" title=""><code>:valid</code></a></li>  
+<li><a href="__value.html" title=""><code>::value</code></a></li>  
+<li><a href="var.html" title=""><code>var()</code></a></li> 
+<li><a href="vertical-align.html" title=""><code>vertical-align</code></a></li>  
+<li><a href="length.html#vh" title=""><code>vh</code></a></li> 
+<li><a href="%40viewport.html" title=""><code>@viewport</code></a></li>  
+<li><a href="visibility.html" title=""><code>visibility</code></a></li>  
+<li><a href="_visited.html" title=""><code>:visited</code></a></li>  
+<li><a href="length.html#vmax" title=""><code>vmax</code></a></li>  
+<li><a href="length.html#vmin" title=""><code>vmin</code></a></li>  
+<li><a href="length.html#vw" title=""><code>vw</code></a></li> 
+</ol></li> 
+<li>W 
+<ol>  
+<li><a href="white-space.html" title=""><code>white-space</code></a></li>  
+<li><a href="widows.html" title=""><code>widows</code></a></li>  
+<li><a href="width.html" title=""><code>width</code></a></li>  
+<li><a href="will-animate.html" title=""><code>will-animate</code></a></li>  
+<li><a href="word-break.html" title=""><code>word-break</code></a></li>  
+<li><a href="word-spacing.html" title=""><code>word-spacing</code></a></li>  
+<li><a href="word-wrap.html" title=""><code>word-wrap</code></a></li> 
+<li><a href="writing-mode.html" title=""><code>writing-mode</code></a></li> 
+</ol></li> 
+<li>X Y Z 
+<ol>  
+<li><a href="z-index.html" title=""><code>z-index</code></a></li> 
+</ol></li></ol></li>   
+   </ol> 
+  
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/CSS/angle" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/CSS/angle">
+            English (US)
+          </option>          <option value="/fr/docs/Web/CSS/angle">
+            Français
+          </option>          <option value="/de/docs/Web/CSS/angle">
+            Deutsch
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":288}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/CSS/angle by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:05:54 GMT -->
+</html>

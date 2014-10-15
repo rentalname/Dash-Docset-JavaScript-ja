@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>JSAPI Cookbook - SpiderMonkey | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../index.html">
+  <link rel="copyright" href="JSAPI_Cookbook.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/SpiderMonkey/JSAPI_Cookbook$json">
+  <link rel="canonical" href="JSAPI_Cookbook.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/JSAPI_Cookbook" title="JSAPI Cookbook">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="JSAPI Cookbook">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/JSAPI_Cookbook">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/JSAPI_Cookbook">
+  <meta name="twitter:title" content="JSAPI Cookbook">
+    <meta property="og:description" content="この記事は僅かなJavaScript共通の用語であるJSAPIについて記載しています。">
+  <meta name="description" content="この記事は僅かなJavaScript共通の用語であるJSAPIについて記載しています。">
+  <meta name="twitter:description" content="この記事は僅かなJavaScript共通の用語であるJSAPIについて記載しています。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="SpiderMonkey/JSAPI_Cookbook" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="JSAPI_Cookbook.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="JSAPI_Cookbook.html#language">言語の選択</a></li>
+          <li><a href="JSAPI_Cookbook.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/SpiderMonkey/JSAPI_Cookbook" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/SpiderMonkey/JSAPI_Cookbook" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../Web/HTML.html">HTML</a></li>
+              <li><a href="../Web/CSS.html">CSS</a></li>
+              <li><a href="../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../Web/API.html">API / DOM</a></li>
+              <li><a href="../Web/Apps.html">Apps</a></li>
+              <li><a href="../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Tools.html">ツール</a></li><li><a href="../../demos/index.html">MDN デモ</a></li><li><a href="../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/JSAPI_Cookbook" title="JSAPI Cookbook">English (US)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/JSAPI_Cookbook$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/JSAPI_Cookbook$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="JSAPI_Cookbook.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Mozilla/Projects.html" rel="v:url" property="v:title">Projects</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../SpiderMonkey.html" rel="v:url" property="v:title">SpiderMonkey</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">JSAPI Cookbook</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="JSAPI_Cookbook.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>JSAPI Cookbook</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="JSAPI_Cookbook.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="JSAPI_Cookbook.html#_.E5.9F.BA.E7.A4.8E_" rel="internal"> 基礎 </a><ol><li><a href="JSAPI_Cookbook.html#Finding_the_global_object" rel="internal">Finding the global object</a><code></code><code></code><li><a href="JSAPI_Cookbook.html#.E9.96.A2.E6.95.B0.E5.AE.9A.E7.BE.A9" rel="internal">関数定義</a><code></code><li><a href="JSAPI_Cookbook.html#.E9.85.8D.E5.88.97.E3.81.AE.E7.94.9F.E6.88.90" rel="internal">配列の生成</a><li><a href="JSAPI_Cookbook.html#.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E7.94.9F.E6.88.90" rel="internal">オブジェクトの生成</a><li><a href="JSAPI_Cookbook.html#.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E7.94.9F.E6.88.90.E3.81.A8.E5.88.9D.E6.9C.9F.E5.8C.96" rel="internal">オブジェクトの生成と初期化</a><code></code><code></code><code></code><code></code><code></code><li><a href="JSAPI_Cookbook.html#.E5.A4.A7.E5.9F.9F.E7.9A.84.E3.81.AAJS.E9.96.A2.E6.95.B0.E3.81.AE.E5.91.BC.E3.81.B3.E5.87.BA.E3.81.97" rel="internal">大域的なJS関数の呼び出し</a><li><a href="JSAPI_Cookbook.html#.E5.B1.80.E6.89.80.E5.A4.89.E6.95.B0.E3.82.92.E6.8A.95.E8.B3.87.E3.81.A6JS.E9.96.A2.E6.95.B0.E3.82.92.E5.91.BC.E3.81.B3.E5.87.BA.E3.81.99" rel="internal">局所変数を投資てJS関数を呼び出す</a><li><a href="JSAPI_Cookbook.html#Returning_an_integer" rel="internal">整数の戻り値</a><li><a href="JSAPI_Cookbook.html#Returning_a_floating-point_number" rel="internal">浮動小数点少数の戻り値</a></ol></li><li><a href="JSAPI_Cookbook.html#Exception_handling" rel="internal"> 例外処理 </a><ol><li><a href="JSAPI_Cookbook.html#throw" rel="internal"><code>throw</code></a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="JSAPI_Cookbook.html#catch" rel="internal"><code>catch</code></a><li><a href="JSAPI_Cookbook.html#finally" rel="internal"><code>finally</code></a><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="JSAPI_Cookbook.html#Object_properties" rel="internal">オブジェクトの属性</a><ol><li><a href="JSAPI_Cookbook.html#Getting_a_property" rel="internal">属性の取得</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="JSAPI_Cookbook.html#Setting_a_property" rel="internal">属性の設定</a><code></code><li><a href="JSAPI_Cookbook.html#Checking_for_a_property" rel="internal">属性の検査</a><code></code><li><a href="JSAPI_Cookbook.html#.E5.9B.BA.E5.AE.9A.E5.B1.9E.E6.80.A7.E3.82.92.E5.AE.9A.E7.BE.A9.E3.81.99.E3.82.8B" rel="internal">固定属性を定義する</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="JSAPI_Cookbook.html#.E8.A8.AD.E5.AE.9A.E3.81.A8.E5.8F.96.E5.BE.97.E3.81.AE.E5.B1.9E.E6.80.A7.E3.81.AE.E5.AE.9A.E7.BE.A9" rel="internal">設定と取得の属性の定義</a><code></code><code></code><code></code><code></code><li><a href="JSAPI_Cookbook.html#.E5.8F.96.E5.BE.97.E3.81.AE.E3.81.9F.E3.82.81.E3.81.AE.E5.91.BC.E3.81.B3.E5.87.BA.E3.81.97.E5.B0.82.E7.94.A8.E5.B1.9E.E6.80.A7.E3.81.AE.E5.AE.9A.E7.BE.A9" rel="internal">取得のための呼び出し専用属性の定義</a></ol></li><li><a href="JSAPI_Cookbook.html#Prototypes" rel="internal">プロトタイプチェインの働き</a><ol><li><a href="JSAPI_Cookbook.html#String.prototype.E3.81.AB.E3.83.8D.E3.82.A4.E3.83.86.E3.82.A3.E3.83.96.E3.81.A7.E3.81.AF.E8.AA.AD.E3.81.BF.E5.87.BA.E3.81.97.E5.B0.82.E7.94.A8.E5.B1.9E.E6.80.A7.E3.82.92.E5.AE.9A.E7.BE.A9.E3.81.97.E3.81.BE.E3.81.99" rel="internal">String.prototypeにネイティブでは読み出し専用属性を定義します</a></ol></li><li><a href="JSAPI_Cookbook.html#Wanted" rel="internal">Wanted</a><code></code><code></code>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>この記事は僅かなJavaScript共通の用語であるJSAPIについて記載しています。</p>
+<div class="note">
+  <strong>Note:</strong> The <a class="internal" href="https://developer.mozilla.org/En/SpiderMonkey/FOSS" title="En/SpiderMonkey/FOSS">FOSS</a> wiki page contains a few links to other libraries and programs that can make life easier when using SpiderMonkey and JSAPI.</div>
+<h2 id="_.E5.9F.BA.E7.A4.8E_"> 基礎 </h2>
+<h3 id="Finding_the_global_object">Finding the global object</h3>
+<p>それらのレシピの多くは、最初に現在の大域オブジェクトを見つけることを要求します。</p>
+<pre class="eval">// <strong>JavaScript</strong>
+var global = this;
+</pre>
+<p>There is a function, <code><a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_GetGlobalForScopeChain">JS_GetGlobalForScopeChain</a>(cx)</code>という関数があります。最良の考え方でありときにそれは大域オブジェクトの取得する場合最良の方法です。しかし<code><a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSNative">JSNative</a></code> の中では、これを実行する正しい方法は:</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+JSBool myNative(JSContext *cx, uintN argc, jsval *vp)
+{
+    CallArgs args = CallArgsFromVp(argc, vp);
+    JSObject *global = <a href="https://developer.mozilla.org/en-US/docs/SpiderMonkey/JSAPI_Reference/JS_GetGlobalForObject" title="/en-US/docs/SpiderMonkey/JSAPI_Reference/JS_GetGlobalForObject">JS_GetGlobalForObject</a>(cx, &amp;args.callee());
+    ...
+}
+</pre>
+<h3 id=".E9.96.A2.E6.95.B0.E5.AE.9A.E7.BE.A9">関数定義</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+function justForFun() {
+    return null;
+}
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong> */
+JSBool justForFun(JSContext *cx, uintN argc, jsval *vp)
+{
+    JS_SET_RVAL(cx, vp, <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_NULL" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_NULL">JSVAL_NULL</a>);
+    return JS_TRUE;
+}
+
+...
+
+/*
+ * Add this to your JSContext setup code.
+ * This makes your C function visible as a global function in JavaScript.
+ */
+if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_DefineFunction" title="en/SpiderMonkey/JSAPI_Reference/JS_DefineFunction">JS_DefineFunction</a>(cx, global, "justForFun", &amp;justForFun, 0, 0))
+    return JS_FALSE;
+</pre>
+<p>JSAPI関数を一度に定義する場合、JS_DefineFunctions. を用います。 <code><a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_DefineFunctions" title="en/SpiderMonkey/JSAPI_Reference/JS_DefineFunctions">JS_DefineFunctions</a></code>.</p>
+<h3 id=".E9.85.8D.E5.88.97.E3.81.AE.E7.94.9F.E6.88.90">配列の生成</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+var x = [];  // or "x = Array()", or "x = new Array"
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong> */
+JSObject *x = <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_NewArrayObject" title="en/SpiderMonkey/JSAPI_Reference/JS_NewArrayObject">JS_NewArrayObject</a>(cx, 0, NULL);
+if (x == NULL)
+    return JS_FALSE;
+</pre>
+<h3 id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E7.94.9F.E6.88.90">オブジェクトの生成</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+var x = {};  // or "x = Object()", or "x = new Object"
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong> */
+JSObject *x = <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_NewObject" title="en/SpiderMonkey/JSAPI_Reference/JS_NewObject">JS_NewObject</a>(cx, NULL, NULL, NULL);
+if (x == NULL)
+    return JS_FALSE;
+</pre>
+<h3 id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E7.94.9F.E6.88.90.E3.81.A8.E5.88.9D.E6.9C.9F.E5.8C.96">オブジェクトの生成と初期化</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+var person = new Person("Dave", 24);
+</pre>
+<p>JavaScriptではとても単純に処理されています。しかし、JSAPIのアプリケーションでは以下に記述するように３つのことを処理する必要があります:</p>
+<ul>
+  <li>コンストラクタを参照する、 <code>Person</code></li>
+  <li>引数を準備する <code>("Dave", 24)</code></li>
+  <li> <code>new</code> キーワードで示す処理を擬似的に作り出すために <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_New" title="en/SpiderMonkey/JSAPI_Reference/JS_New"><code>JS_New</code></a> を呼び出します。</li>
+</ul>
+<p>(コンストラクタがどのよいうな引数も取らないならば、２番目の段階は省略して ３段階目の処理である <code><a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_New" title="en/SpiderMonkey/JSAPI_Reference/JS_New">JS_New</a>(cx, constructor, 0, NULL)</code> を呼び出せます。）</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+
+jsval constructor_val;
+JSObject *constructor; /* BUG - not rooted */
+JSString *name_str;
+jsval argv[2];  /* BUG - not rooted */
+JSObject *obj;
+
+/* Step 1 - Get the value of |Person| and check that it is an object. */
+if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_GetProperty" title="en/SpiderMonkey/JSAPI_Reference/JS_GetProperty">JS_GetProperty</a>(cx, <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_GetGlobalObject" title="en/SpiderMonkey/JSAPI_Reference/JS_GetGlobalObject">JS_GetGlobalObject</a>(cx), "Person", &amp;constructor_val))
+    return JS_FALSE;
+if (<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE">JSVAL_IS_PRIMITIVE</a>(constructor_val)) {
+    <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_ReportError" title="en/SpiderMonkey/JSAPI_Reference/JS_ReportError">JS_ReportError</a>(cx, "Person is not a constructor");
+    return JS_FALSE;
+}
+constructor = <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT">JSVAL_TO_OBJECT</a>(constructor_val);
+
+/* Step 2 - Set up the arguments. */
+name_str = <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_NewStringCopyZ" title="en/SpiderMonkey/JSAPI_Reference/JS_NewStringCopyZ">JS_NewStringCopyZ</a>(cx, "Dave");
+if (!name_str)
+    return JS_FALSE;
+argv[0] = <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/STRING_TO_JSVAL" title="en/SpiderMonkey/JSAPI_Reference/STRING_TO_JSVAL">STRING_TO_JSVAL</a>(name_str);
+argv[1] = <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/INT_TO_JSVAL" title="en/SpiderMonkey/JSAPI_Reference/INT_TO_JSVAL">INT_TO_JSVAL</a>(24);
+
+/* Step 3 - Call |new Person(...argv)|, passing the arguments. */
+obj = <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_New" title="en/SpiderMonkey/JSAPI_Reference/JS_New">JS_New</a>(cx, constructor, 2, argv);
+if (!obj)
+    return JS_FALSE;
+</pre>
+<h3 id=".E5.A4.A7.E5.9F.9F.E7.9A.84.E3.81.AAJS.E9.96.A2.E6.95.B0.E3.81.AE.E5.91.BC.E3.81.B3.E5.87.BA.E3.81.97">大域的なJS関数の呼び出し</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+var r = foo();  // where f is a global function
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong>
+ *
+ * Suppose the script defines a global JavaScript
+ * function foo() and we want to call it from C.
+ */
+jsval r;
+if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_CallFunctionName" title="en/SpiderMonkey/JSAPI_Reference/JS_CallFunctionName">JS_CallFunctionName</a>(cx, <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_GetGlobalObject" title="en/SpiderMonkey/JSAPI_Reference/JS_GetGlobalObject">JS_GetGlobalObject</a>(cx), "foo", 0, NULL, &amp;r))
+   return JS_FALSE;
+</pre>
+<h3 id=".E5.B1.80.E6.89.80.E5.A4.89.E6.95.B0.E3.82.92.E6.8A.95.E8.B3.87.E3.81.A6JS.E9.96.A2.E6.95.B0.E3.82.92.E5.91.BC.E3.81.B3.E5.87.BA.E3.81.99">局所変数を投資てJS関数を呼び出す</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+var r = f();  // where f is a local variable
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong>
+ *
+ * Suppose f is a local C variable of type jsval.
+ */
+jsval r;
+if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_CallFunctionValue" title="en/SpiderMonkey/JSAPI_Reference/JS_CallFunctionValue">JS_CallFunctionValue</a>(cx, NULL, f, 0, NULL, &amp;r)
+    return JS_FALSE;
+</pre>
+<h3 id="Returning_an_integer" name="Returning_an_integer">整数の戻り値</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+return 23;
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong>
+ *
+ * Warning: This only works for integers that fit in 32 bits.
+ * Otherwise, convert the number to floating point (see the next example).
+ */
+<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_SET_RVAL" title="en/SpiderMonkey/JSAPI_Reference/JS_SET_RVAL">JS_SET_RVAL</a>(cx, vp, <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/INT_TO_JSVAL" title="en/SpiderMonkey/JSAPI_Reference/INT_TO_JSVAL">INT_TO_JSVAL</a>(23));
+return JS_TRUE;
+</pre>
+<h3 id="Returning_a_floating-point_number" name="Returning_a_floating-point_number">浮動小数点少数の戻り値</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+return 3.14159;
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong> */
+<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/jsdouble" title="en/SpiderMonkey/JSAPI_Reference/jsdouble">jsdouble</a> n = 3.14159;
+return <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_NewNumberValue" title="en/SpiderMonkey/JSAPI_Reference/JS_NewNumberValue">JS_NewNumberValue</a>(cx, n, rval);
+</pre>
+<h2 id="Exception_handling" name="Exception_handling"> 例外処理 </h2>
+<h3 id="throw" name="throw"><code>throw</code></h3>
+<p>新規に最も共通の用語である <code>エラー</code> オブジェクトを生成した場合、それをハンドラに投げる場合 <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_ReportError" title="en/SpiderMonkey/JSAPI_Reference/JS_ReportError"><code>JS_ReportError</code></a> が処理を行います。 Note JavaScript の例外はC++の例外処理とは異なります。JSAPIコードでは呼び出し側に誤りを通知するために <code>JS_FALSE</code> を返す必要があります。</p>
+<pre>// <strong>JavaScript</strong>
+throw new Error("Failed to grow " + varietal + ": too many greenflies.");
+</pre>
+<pre>/* <strong>JSAPI</strong> */
+<a>JS_ReportError</a>(cx, "Failed to grow %s: too many greenflies.", varietal);
+return JS_FALSE;
+</pre>
+<p>エラーメッセージを他国間対応にするには、 <code>SyntaxError</code> や <code>TypeError</code>等のようにエラー種別を投げるように、 <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_ReportErrorNumber" title="en/SpiderMonkey/JSAPI_Reference/JS_ReportErrorNumber"><code>JS_ReportErrorNumber</code></a> を代わりに用います。</p>
+<p>JavaScriptでは  <code>Error</code> オブジェクトだけでなく、他の値を渡す事もサポートしています。 C/C++ から <code>jsval</code> という値を受け取るために<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_SetPendingException" title="en/SpiderMonkey/JSAPI_Reference/JS_SetPendingException"><code>JS_SetPendingException</code></a> を使います。</p>
+<pre class="eval">// <strong>JavaScript</strong>
+throw exc;
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong> */
+<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_SetPendingException" title="en/SpiderMonkey/JSAPI_Reference/JS_SetPendingException">JS_SetPendingException</a>(cx, exc);
+return JS_FALSE;
+</pre>
+<p> <code>JS_ReportError</code> が新規に <code>Error</code> オブジェクトを生成するとき、現在実行中のスタックの先頭にあるJavaScriptコードの行の属性である <code>fileName</code> と <code>lineNumber</code> をセットします。　これは通常、あなたが本当に必要としているものとは一致しないネイティブ関数を呼び出したコードの行になります。JSAPIコードは直接 <code>Error</code> オブジェクトを生成し、コンストラクタに追加の引数を渡す事でことでこれを無視することができます:</p>
+<pre class="eval">// <strong>JavaScript</strong>
+throw new Error(message, filename, lineno);
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong> */
+JSBool ThrowError(JSContext *cx, JSObject *global,
+                  const char *message, const char *filename, int32 lineno)
+{
+    JSString *messageStr;
+    JSString *filenameStr;
+    jsval args[3];
+    jsval exc;
+
+    messageStr = JS_NewStringCopyZ(cx, message);
+    if (!messageStr)
+        return JS_FALSE;
+    filenameStr = JS_NewStringCopyZ(cx, filename);
+    if (!filenameStr)
+        return JS_FALSE;
+
+    args[0] = STRING_TO_JSVAL(messageStr);
+    args[1] = STRING_TO_JSVAL(filenameStr);
+    args[2] = INT_TO_JSVAL(lineno);
+    if (<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_CallFunctionName" title="en/SpiderMonkey/JSAPI_Reference/JS_CallFunctionName">JS_CallFunctionName</a>(cx, global, "Error", 3, args, &amp;exc))
+        <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_SetPendingException" title="en/SpiderMonkey/JSAPI_Reference/JS_SetPendingException">JS_SetPendingException</a>(cx, exc);
+    return JS_FALSE;
+}
+
+...
+
+return ThrowError(cx, global, message, __FILE__, __LINE__);
+</pre>
+<p>ここのJSAPIコードは、<code>new</code> がJSAPIを用いて擬似的に作り出すことが難しいため、 <code>new</code> なしに  <code>throw Error(message)</code> を擬似的に作り出します。この場合、スクリプトが  <code>Error</code>を再定義しなければ、同じ事になります。</p>
+<h3 id="catch" name="catch"><code>catch</code></h3>
+<pre class="eval">// <strong>JavaScript</strong>
+try {
+    // try some stuff here; for example:
+    foo();
+    bar();
+} catch (exc) {
+    // do error-handling stuff here
+}
+</pre>
+<pre class="eval">/* <strong>JSAPI</strong> */
+    jsval exc;
+
+    /* try some stuff here; for example: */
+    if (!JS_CallFunctionName(cx, global, "foo", 0, NULL, &amp;r))
+        goto catch_block;  /* instead of returning JS_FALSE */
+    if (!JS_CallFunctionName(cx, global, "bar", 0, NULL, &amp;r))
+        goto catch_block;  /* instead of returning JS_FALSE */
+    return JS_TRUE;
+
+catch_block:
+    if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_GetPendingException" title="en/SpiderMonkey/JSAPI_Reference/JS_GetPendingException">JS_GetPendingException</a>(cx, &amp;exc))
+        return JS_FALSE;
+    <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_ClearPendingException" title="en/SpiderMonkey/JSAPI_Reference/JS_ClearPendingException">JS_ClearPendingException</a>(cx);
+    /* do error-handling stuff here */
+    return JS_TRUE;
+</pre>
+<h3 id="finally" name="finally"><code>finally</code></h3>
+<pre class="eval">// <strong>JavaScript</strong>
+try {
+   foo();
+   bar();
+} finally {
+   cleanup();
+}
+</pre>
+<p>C/C++の浄化コードがJSAPI内にコールバックしなければ、処理は単純になります:</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+    <a href="https://developer.mozilla.org/En/SpiderMonkey/JSAPI_Reference/JSBool" title="En/SpiderMonkey/JSAPI_Reference/JSBool">JSBool</a> success = JS_FALSE;
+
+    if (!JS_CallFunctionName(cx, global, "foo", 0, NULL, &amp;r))
+        goto finally_block;  /* instead of returning JS_FALSE immediately */
+    if (!JS_CallFunctionName(cx, global, "bar", 0, NULL, &amp;r))
+        goto finally_block;
+    success = JS_TRUE;
+    /* Intentionally fall through to the finally block. */
+
+finally_block:
+    cleanup();
+    return success;
+</pre>
+<p> しかしながら、 <code>cleanup()</code> が実際にJavaScriptの関数であれば、それらはcatchされます。エラーが発生したとき、 <code>JSContext</code><em>の例外処理の待機がセットされます。</em> これは上の例で <code>foo()</code> や <code>bar()</code> で発生するならば、待機中の例外処理は より悪い状態になるであろう <code>cleanup()</code> 処理を呼び出しているときにセットされます。これを避ける為に、JSAPIコードの実装では  <code>finally</code> ブロックには以下のことが必要ですt:</p>
+<ul>
+  <li>古い例外を保存する</li>
+  <li>cleanupコードを走らせる為に、待機中の例外処理をクリアします</li>
+  <li>あなたのcleanup処理wp実行します</li>
+  <li>古い例外を復帰させます</li>
+  <li>例外が発生していたならば、例外処理を上位に伝えるために、JS_FALSEを戻り値として返します</li>
+</ul>
+<pre class="eval">/* <strong>JSAPI</strong> */
+    <a href="https://developer.mozilla.org/En/SpiderMonkey/JSAPI_Reference/JSBool" title="En/SpiderMonkey/JSAPI_Reference/JSBool">JSBool</a> success = JS_FALSE;
+    <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSExceptionState" title="en/SpiderMonkey/JSAPI_Reference/JSExceptionState">JSExceptionState</a> *exc_state;
+
+    if (!JS_CallFunctionName(cx, global, "foo", 0, NULL, &amp;r))
+        goto finally_block;  /* instead of returning JS_FALSE immediately */
+    if (!JS_CallFunctionName(cx, global, "bar", 0, NULL, &amp;r))
+        goto finally_block;
+    success = JS_TRUE;
+    /* Intentionally fall through to the finally block. */
+
+finally_block:
+    exc_state = <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_SaveExceptionState" title="en/SpiderMonkey/JSAPI_Reference/JS_SaveExceptionState">JS_SaveExceptionState</a>(cx);
+    if (exc_state == NULL)
+        return JS_FALSE;
+    <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_ClearPendingException" title="en/SpiderMonkey/JSAPI_Reference/JS_ClearPendingException">JS_ClearPendingException</a>(cx);
+
+    if (!JS_CallFunctionName(cx, global, "cleanup", 0, NULL, &amp;r)) {
+        /* The new error replaces the previous one, so discard the saved exception state. */
+        <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_DropExceptionState" title="en/SpiderMonkey/JSAPI_Reference/JS_DropExceptionState">JS_DropExceptionState</a>(cx, exc_state);
+        return JS_FALSE;
+    }
+    <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_RestoreExceptionState" title="en/SpiderMonkey/JSAPI_Reference/JS_RestoreExceptionState">JS_RestoreExceptionState</a>(cx, exc_state);
+    return success;
+</pre>
+<h2 id="Object_properties" name="Object_properties">オブジェクトの属性</h2>
+<h3 id="Getting_a_property" name="Getting_a_property">属性の取得</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+var x = y.myprop;
+</pre>
+<p>JSAPI関数で、属性を取得する関数が <code><a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_GetProperty" title="en/SpiderMonkey/JSAPI_Reference/JS_GetProperty">JS_GetProperty</a></code>です。<code>JSObject *</code> を引数として必要とします。 JavaScriptの値は、通常 <code>jsval</code> 変数に保存されるため、変数のキャストまたは変換が必要になります。</p>
+<p><code>y</code> (ブール値、数値、文字列、 <code>null</code>, または <code>undefined</code>などではなく)がオブジェクトであることが確実な場合、これは非常に単純です。 <code><a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT">JSVAL_TO_OBJECT</a></code> を使い、 <code>y</code> を <code>JSObject *</code>の型にキャストします。</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+jsval x;
+
+assert(<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_OBJECT" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE">!JSVAL_IS_PRIMITIVE</a>(y)); 
+if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_GetProperty" title="en/SpiderMonkey/JSAPI_Reference/JS_GetProperty">JS_GetProperty</a>(cx, <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT">JSVAL_TO_OBJECT</a>(y), "myprop", &amp;x))
+    return JS_FALSE;
+</pre>
+<p> もし <code>y</code> がオブジェクトでなければ、コードは壊れます。これはときに受け入れ難いことです。代替的にJavaScriptに振る舞いを擬似的に実行することになります。非常に良い考えですJavaScriptはクラッシュしません。しかし、その正確な振る舞いの実装では、非常に複雑なものになります。</p>
+<p>多くの実装では、特別に処理が扱いやすくなるわけではありません。通常、 <code>!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE">JSVAL_IS_PRIMITIVE</a>(y)</code> を検査し、良いメッセージとともに <code>Error</code> を投げることが最良な処理です。</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+jsval x;
+
+if (<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE">JSVAL_IS_PRIMITIVE</a>(y))
+    return ThrowError(cx, global, "Parameter y must be an object.", __FILE__, __LINE__);  /* see the <a href="JSAPI_Cookbook.html#throw">#throw</a> example */
+if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_GetProperty" title="en/SpiderMonkey/JSAPI_Reference/JS_GetProperty">JS_GetProperty</a>(cx, <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT">JSVAL_TO_OBJECT</a>(y), "myprop", &amp;x))
+    return JS_FALSE;
+</pre>
+<h3 id="Setting_a_property" name="Setting_a_property">属性の設定</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+y.myprop = x;
+</pre>
+<p><code>y</code> がオブジェクトではない場合を懸念するならば、上述の属性の取得を参照して下さい。</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+assert(!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE">JSVAL_IS_PRIMITIVE</a>(y));
+if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_SetProperty" title="en/SpiderMonkey/JSAPI_Reference/JS_SetProperty">JS_SetProperty</a>(cx, <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT">JSVAL_TO_OBJECT</a>(y), "myprop", &amp;x))
+    return JS_FALSE;
+</pre>
+<h3 id="Checking_for_a_property" name="Checking_for_a_property">属性の検査</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+if ("myprop" in y) {
+    // then do something
+}
+</pre>
+<p><code>y</code> がオブジェクトではない場合を懸念するならば、上述の属性の取得を参照して下さい。</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+JSBool found;
+
+assert(!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_IS_PRIMITIVE">JSVAL_IS_PRIMITIVE</a>(y));
+if (!<a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_HasProperty" title="en/SpiderMonkey/JSAPI_Reference/JS_HasProperty">JS_HasProperty</a>(cx, <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT" title="en/SpiderMonkey/JSAPI_Reference/JSVAL_TO_OBJECT">JSVAL_TO_OBJECT</a>(y), "myprop", &amp;found))
+    return JS_FALSE;
+if (found) {
+    // then do something
+}
+</pre>
+<h3 id=".E5.9B.BA.E5.AE.9A.E5.B1.9E.E6.80.A7.E3.82.92.E5.AE.9A.E7.BE.A9.E3.81.99.E3.82.8B">固定属性を定義する</h3>
+<p>これはビルトイン関数 <code>Object.defineProperty()</code>に関わる最初の３つの例です。この関数は、オブジェクトの個別の属性の挙動に関してはっきりした操作をJavaScriptのコードに与えます。</p>
+<p>この関数を使って、上書きや削除できない固定属性を生成できます。<code>writable: false</code> によって属性を読み出し専用に作り、 <code>configurable: false</code> に設定して、再定義や削除されることから防ぎます。 フラグ  <code>enumerable: true</code> は　forループ内にあるときにこの属性が設定されます。</p>
+<pre class="eval">// <strong>JavaScript</strong>
+Object.defineProperty(obj, "prop", {value: 123,
+                                    writable: false,
+                                    enumerable: true,
+                                    configurable: false});
+</pre>
+<p>JSAPI関数の類似した関数に、 <code><a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_DefineProperty" title="en/SpiderMonkey/JSAPI_Reference/JS_DefineProperty">JS_DefineProperty</a></code>があります。属性 <code>JSPROP_READONLY</code> を持っており、その属性は<code>writeable: false</code>に一致します。<code>JSPROP_ENUMERATE</code> は <code>enumerable: true</code>,に一致し、 <code>JSPROP_PERMANENT</code> は <code>configurable: false</code>にその属性が一致します。これらの設定の相対的な挙動を得るためには、必要ない属性のビットを単純に省いて下さい。</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+if (!JS_DefineProperty(cx, obj, "prop", INT_TO_JSVAL(123),
+                       JS_PropertyStub, JS_StrictPropertyStub,
+                       JSPROP_READONLY | JSPROP_ENUMERATE | JSPROP_PERMANENT)) {
+   return JS_FALSE;
+}
+</pre>
+<h3 id=".E8.A8.AD.E5.AE.9A.E3.81.A8.E5.8F.96.E5.BE.97.E3.81.AE.E5.B1.9E.E6.80.A7.E3.81.AE.E5.AE.9A.E7.BE.A9">設定と取得の属性の定義</h3>
+<p><code>Object.defineProperty()</code> は二つのアクセス関数の属性を定義する為に用いることができます。</p>
+<pre class="eval">// <strong>JavaScript</strong>
+Object.defineProperty(obj, "prop", {get: GetPropFunc,
+                                    set: SetPropFunc,
+                                    enumerable: true});
+</pre>
+<p>JSAPIバージョンでは、 <code>GetPropFunc</code> と <code>SetPropFunc</code> が <a href="https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JSNative" title="en/SpiderMonkey/JSAPI_Reference/JSNative"><code>JSNative</code></a>型のC/C++ 関数関数として用意されています。of type .</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+if (!JS_DefineProperty(cx, obj, "prop", JSVAL_VOID,
+                       (JSPropertyOp) GetPropFunc, (JSStrictPropertyOp) SetPropFunc,
+                       JSPROP_SHARED | JSPROP_NATIVE_ACCESSORS | JSPROP_ENUMERATE)) {
+    return JS_FALSE;
+}
+</pre>
+<h3 id=".E5.8F.96.E5.BE.97.E3.81.AE.E3.81.9F.E3.82.81.E3.81.AE.E5.91.BC.E3.81.B3.E5.87.BA.E3.81.97.E5.B0.82.E7.94.A8.E5.B1.9E.E6.80.A7.E3.81.AE.E5.AE.9A.E7.BE.A9">取得のための呼び出し専用属性の定義</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+Object.defineProperty(obj, "prop", {get: GetPropFunc,
+                                    enumerable: true});
+</pre>
+<p>JSAPIバージョン では、属性を読み出し専用に定義し、設定用にはNULLを通します。</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+if (!JS_DefineProperty(cx, obj, "prop", JSVAL_VOID,
+                       GetPropFunc, NULL,
+                       JSPROP_SHARED | JSPROP_NATIVE_ACCESSORS | JSPROP_ENUMERATE)) {
+    return JS_FALSE;
+}
+</pre>
+<h2 id="Prototypes" name="Prototypes">プロトタイプチェインの働き</h2>
+<h3 id="String.prototype.E3.81.AB.E3.83.8D.E3.82.A4.E3.83.86.E3.82.A3.E3.83.96.E3.81.A7.E3.81.AF.E8.AA.AD.E3.81.BF.E5.87.BA.E3.81.97.E5.B0.82.E7.94.A8.E5.B1.9E.E6.80.A7.E3.82.92.E5.AE.9A.E7.BE.A9.E3.81.97.E3.81.BE.E3.81.99">String.prototypeにネイティブでは読み出し専用属性を定義します</h3>
+<pre class="eval">// <strong>JavaScript</strong>
+Object.defineProperty(String.prototype, "md5sum", {get: GetMD5Func,
+                                                   enumerable: true});	
+</pre>
+<p>何かが大域的なStringオブジェクトを別な何かに取り替えるならば、以下のようなトリックは動作しません。</p>
+<pre class="eval">/* <strong>JSAPI</strong> */
+JSObject   *string, *string_prototype;
+jsval       val;
+
+// Get the String constructor from the global object.
+if (!JS_GetProperty(cx, global, "String", &amp;val))
+    return JS_FALSE;
+if (JSVAL_IS_PRIMITIVE(val))
+    return ThrowError(cx, global, "String is not an object", __FILE__, __LINE__);
+string = JSVAL_TO_OBJECT(val);
+
+// Get String.prototype.
+if (!JS_GetProperty(cx, string, "prototype", &amp;val))
+    return JS_FALSE;
+if (JSVAL_IS_PRIMITIVE(val))
+    return ThrowError(cx, global, "String.prototype is not an object", __FILE__, __LINE__);
+string_prototype = JSVAL_TO_OBJECT(val);
+
+// ...and now we can add some new functionality to all strings.
+if (!JS_DefineProperty(cx, string_prototype, "md5sum", JSVAL_VOID, GetMD5Func, NULL,
+                       JSPROP_SHARED | JSPROP_NATIVE_ACCESSORS | JSPROP_ENUMERATE))
+    return JS_FALSE;
+</pre>
+<h2 id="Wanted" name="Wanted">Wanted</h2>
+<ul>
+  <li>Simulating <code>for</code> and <code>for each</code>.</li>
+  <li>Actually outputting errors.</li>
+</ul>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/yoshitanaka">yoshitanaka</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/yoshitanaka">yoshitanaka</a>,
+                      <time datetime="2013-03-29T23:41:46-07:00">2013/03/29 23:41:46</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/SpiderMonkey/JSAPI_Cookbook" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Mozilla/Projects/SpiderMonkey/JSAPI_Cookbook">
+            English (US)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":453}</script></body>
+</html>

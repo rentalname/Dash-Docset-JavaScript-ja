@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>JavaScript 「再」入門 - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="A_re-introduction_to_JavaScript.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1324c0a" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1324c0a" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/A_re-introduction_to_JavaScript$json">
+  <link rel="canonical" href="A_re-introduction_to_JavaScript.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="A re-introduction to JavaScript (JS tutorial)">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/%E9%87%8D%E6%96%B0%E4%BB%8B%E7%B4%B9_JavaScript" title="重新介紹 JavaScript">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Une_r%C3%A9introduction_%C3%A0_JavaScript" title="Une réintroduction à JavaScript">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="重新介绍 JavaScript（JS教程）">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/A_re-introduction_to_JavaScript" title="JavaScript 재입문">
+          <link rel="alternate" hreflang="tr" href="https://developer.mozilla.org/tr/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="A re-introduction to JavaScript (JS Tutorial)">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="Uma reintrodução ao JavaScript (Tutorial de JS)">
+          <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/docs/Web/JavaScript/Una_reintroduzione_al_JavaScript" title="Una reintroduzione al Java Script (Tutorial JS)">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="A re-introduction to JavaScript (JS Tutorial)">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="নতুন করে শিখি জাভাস্ক্রিপ্ট (জাভাস্ক্রিপ্ট টিউটোরিয়াল)">
+          <link rel="alternate" hreflang="ro" href="https://developer.mozilla.org/ro/docs/Web/JavaScript/O_re-introducere_in_JavaScript" title="O re-introducere în JavaScript (Tutorial JS)">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Eine_Wiedereinfuehrung_in_JavaScript" title="Eine Wiedereinführung in JavaScript">
+          <link rel="alternate" hreflang="th" href="https://developer.mozilla.org/th/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="ทำความรู้จักจาวาสคริปต์กันใหม่">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Una_re-introducci%C3%B3n_a_JavaScript" title="Una re-introducción a JavaScript (Tutorial de JS)">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="JavaScript 「再」入門">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+  <meta name="twitter:title" content="JavaScript 「再」入門">
+    <meta property="og:description" content="なぜ 「再」入門 ( re-introduction ) なのか? なぜなら JavaScript は 世界で最も誤解されたプログラミング言語 【訳注: 日本語訳 】 であると言える合理的な理由があるからです。しばしばおもちゃだと馬鹿にされながら、しかしその人を欺くような単純さの下に、強力な言語機能が隠されているのです。2005 年は数々の高い注目を集める JavaScript アプリケーションが発表され、この技術の深い知識がどんなウェブ開発者にとっても重要なスキルだということが示されました。">
+  <meta name="description" content="なぜ 「再」入門 ( re-introduction ) なのか? なぜなら JavaScript は 世界で最も誤解されたプログラミング言語 【訳注: 日本語訳 】 であると言える合理的な理由があるからです。しばしばおもちゃだと馬鹿にされながら、しかしその人を欺くような単純さの下に、強力な言語機能が隠されているのです。2005 年は数々の高い注目を集める JavaScript アプリケーションが発表され、この技術の深い知識がどんなウェブ開発者にとっても重要なスキルだということが示されました。">
+  <meta name="twitter:description" content="なぜ 「再」入門 ( re-introduction ) なのか? なぜなら JavaScript は 世界で最も誤解されたプログラミング言語 【訳注: 日本語訳 】 であると言える合理的な理由があるからです。しばしばおもちゃだと馬鹿にされながら、しかしその人を欺くような単純さの下に、強力な言語機能が隠されているのです。2005 年は数々の高い注目を集める JavaScript アプリケーションが発表され、この技術の深い知識がどんなウェブ開発者にとっても重要なスキルだということが示されました。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/JavaScript/A_re-introduction_to_JavaScript" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1324c0a',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": null}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": null}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": null}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="A_re-introduction_to_JavaScript.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="A_re-introduction_to_JavaScript.html#language">言語の選択</a></li>
+          <li><a href="A_re-introduction_to_JavaScript.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/A_re-introduction_to_JavaScript" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="A re-introduction to JavaScript (JS tutorial)">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/%E9%87%8D%E6%96%B0%E4%BB%8B%E7%B4%B9_JavaScript" title="重新介紹 JavaScript">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Une_r%C3%A9introduction_%C3%A0_JavaScript" title="Une réintroduction à JavaScript">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="重新介绍 JavaScript（JS教程）">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/A_re-introduction_to_JavaScript" title="JavaScript 재입문">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/tr/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="A re-introduction to JavaScript (JS Tutorial)">Türkçe</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="Uma reintrodução ao JavaScript (Tutorial de JS)">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/docs/Web/JavaScript/Una_reintroduzione_al_JavaScript" title="Una reintroduzione al Java Script (Tutorial JS)">Italiano</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="A re-introduction to JavaScript (JS Tutorial)">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="নতুন করে শিখি জাভাস্ক্রিপ্ট (জাভাস্ক্রিপ্ট টিউটোরিয়াল)">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ro/docs/Web/JavaScript/O_re-introducere_in_JavaScript" title="O re-introducere în JavaScript (Tutorial JS)">română</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Eine_Wiedereinfuehrung_in_JavaScript" title="Eine Wiedereinführung in JavaScript">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/th/docs/Web/JavaScript/A_re-introduction_to_JavaScript" title="ทำความรู้จักจาวาสคริปต์กันใหม่">ไทย</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Una_re-introducci%C3%B3n_a_JavaScript" title="Una re-introducción a JavaScript (Tutorial de JS)">Español</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="../../../users/signin-next=|ja|docs|Web|JavaScript|A_re-introduction_to_JavaScript$edit.html" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="A_re-introduction_to_JavaScript$history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="A_re-introduction_to_JavaScript.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../JavaScript.html" rel="v:url" property="v:title">JavaScript</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">JavaScript 「再」入門</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="A_re-introduction_to_JavaScript.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>JavaScript 「再」入門</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="A_re-introduction_to_JavaScript.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="A_re-introduction_to_JavaScript.html#.E5.B0.8E.E5.85.A5" rel="internal">導入</a><li><a href="A_re-introduction_to_JavaScript.html#.E6.A6.82.E8.A6.81" rel="internal">概要</a><li><a href="A_re-introduction_to_JavaScript.html#.E6.95.B0.E5.80.A4" rel="internal">数値</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E6.96.87.E5.AD.97.E5.88.97" rel="internal">文字列</a><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E3.81.9D.E3.81.AE.E4.BB.96.E3.81.AE.E5.9E.8B" rel="internal">その他の型</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E5.A4.89.E6.95.B0" rel="internal">変数</a><code></code><code></code><code></code><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E6.BC.94.E7.AE.97.E5.AD.90" rel="internal">演算子</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E5.88.B6.E5.BE.A1.E6.A7.8B.E9.80.A0" rel="internal">制御構造</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">オブジェクト</a><li><a href="A_re-introduction_to_JavaScript.html#.E9.85.8D.E5.88.97" rel="internal">配列</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E9.96.A2.E6.95.B0" rel="internal">関数</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E3.82.AB.E3.82.B9.E3.82.BF.E3.83.A0.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88" rel="internal">カスタムオブジェクト</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E5.86.85.E9.83.A8.E9.96.A2.E6.95.B0" rel="internal">内部関数</a><code></code><li><a href="A_re-introduction_to_JavaScript.html#.E3.82.AF.E3.83.AD.E3.83.BC.E3.82.B8.E3.83.A3" rel="internal">クロージャ</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="A_re-introduction_to_JavaScript.html#.E3.83.A1.E3.83.A2.E3.83.AA.E3.83.AA.E3.83.BC.E3.82.AF" rel="internal">メモリリーク</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="A_re-introduction_to_JavaScript.html#.E5.8E.9F.E6.96.87.E6.83.85.E5.A0.B1" rel="internal">原文情報</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div>
+  <span id="Introduction"></span></div>
+<h2 id=".E5.B0.8E.E5.85.A5">導入</h2>
+<p>なぜ 「再」入門 (<span style="color: green;">re-introduction</span>) なのか? なぜなら <a href="../JavaScript.html" title="ja/docs/JavaScript">JavaScript</a> は<a class="external" href="http://javascript.crockford.com/javascript.html">世界で最も誤解されたプログラミング言語</a><span style="color: darkgreen; background: #ef9;">【訳注: <a class="external" href="http://d.hatena.ne.jp/brazil/20050829/1125321936">日本語訳</a>】</span>であると言える合理的な理由があるからです。しばしばおもちゃだと馬鹿にされながら、しかしその人を欺くような単純さの下に、強力な言語機能が隠されているのです。2005 年は数々の高い注目を集める JavaScript アプリケーションが発表され、この技術の深い知識がどんなウェブ開発者にとっても重要なスキルだということが示されました。</p>
+<p>この言語の歴史について理解することから始めるのが役立つでしょう。JavaScript は 1995 年、Netscape の技術者ブレンダン・アイク (<span style="color: green;">Brendan Eich</span>)によって創られ、1996 年初頭に Netscape 2 で初めてリリースされました。当初は LiveScript と呼ばれる予定でしたが、Sun Microsystems の Java 言語の人気にあやかろうという不運なるマーケティング上の決定により改名されました ― 2 つの言語が共通点をほとんど持っていないにもかかわらず。それ以来、このことは未だに混同の元となっています。</p>
+<p>Microsoft はその数か月後、IE3 とともに JScript というほとんど互換性のある言語をリリースしました。Netscape はこの言語をヨーロッパの標準化団体 <a class="external" href="http://www.ecma-international.org/">Ecma International</a> に提出し、その結果 1997 年に <a href="Language_Resources.html" title="ja/docs/ECMAScript">ECMAScript</a> という標準の第 1 版が生まれました。この標準は重要なアップデートを受けて 1999 年に <a class="external" href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript 第 3 版</a>となり、その後しばらくほとんど安定してきました。言語の複雑化に関する政治的な隔たりから、第 4 版は放棄されたものの、その多くのパーツは 2009 年 12 月に発行された新しい ECMAScript 第 5 版の基礎となりました。</p>
+<p>第 3 版からのこの安定性は、様々な実装系が標準に追い付くのに十分な時間が与えられたという意味で、開発者にとってうれしいニュースです。私はほとんどもっぱら第 3 版の方言に焦点を当てていきます。ただ、なじみの深さから JavaScript という語は最後まで使い続けるつもりです。</p>
+<p>大部分のプログラミング言語と違って、JavaScript という言語には入出力の概念がありません。この言語はあるホスト環境でのスクリプト言語として実行されるよう設計されており、外部の世界とコミュニケーションするための機構はそのホスト環境が提供するものとしているのです。もっとも一般的なホスト環境はブラウザですが、JavaScript のインタプリタは Adobe Acrobat や Photoshop、Yahoo! ウィジェットエンジン、さらにはサーバサイド環境にも見つけることができます。</p>
+<div>
+  <span id="Overview"></span></div>
+<h2 id=".E6.A6.82.E8.A6.81">概要</h2>
+<p>JavaScript はオブジェクト指向の動的言語であり、型や演算子、コアオブジェクト、メソッドがあります。その構文は Java や C 言語に由来するので、それらの言語の多くの構造が JavaScript にも同様に適用できます。重要な違いの一つに、JavaScript にはクラスがありません。その代わり、クラスの機能はオブジェクトプロトタイプによって達成されています。その他の主な違いは、関数もオブジェクトであるということです。それゆれ、関数に実行可能なコードを持たせて、他のオブジェクトと同じように受け渡しさせることができます。</p>
+<p>まずはあらゆる言語の構成要素、「型」を見ることから始めましょう。JavaScript のプログラムは値を操作し、それらの値はすべてある型に属しています。JavaScript の型は:</p>
+<ul>
+  <li><a href="Reference/Global_Objects/Number.html" title="ja/docs/JavaScript/Reference/Global_Objects/Number">数値</a></li>
+  <li><a href="Reference/Global_Objects/String.html" title="ja/docs/JavaScript/Reference/Global_Objects/String">文字列</a></li>
+  <li><a href="Reference/Global_Objects/Boolean.html" title="ja/docs/JavaScript/Reference/Global_Objects/Boolean">真偽値</a></li>
+  <li><a href="Reference/Global_Objects/Function.html" title="ja/docs/JavaScript/Reference/Global_Objects/Function">関数</a></li>
+  <li><a href="Reference/Global_Objects/Object.html" title="ja/docs/JavaScript/Reference/Global_Objects/Object">オブジェクト</a></li>
+</ul>
+<p>…ああ、あと Undefined と Null、これらはちょっと変わっています。そして <a href="Reference/Global_Objects/Array.html" title="ja/docs/JavaScript/Reference/Global_Objects/Array">Array (配列)</a>、これは特殊なオブジェクトの一種。さらに <a href="Reference/Global_Objects/Date.html" title="ja/docs/JavaScript/Reference/Global_Objects/Date">Date</a> と <a href="Reference/Global_Objects/RegExp.html" title="ja/docs/JavaScript/Reference/Global_Objects/RegExp">RegExp (正規表現)</a>、これらは自由に使えるオブジェクトです。あと技術的に正確なことを言うと、関数は単に特殊なオブジェクトの一種です。したがってこの型の図はより正確にはこうなります:</p>
+<ul>
+  <li>数値</li>
+  <li>文字列</li>
+  <li>真偽値</li>
+  <li>オブジェクト
+    <ul>
+      <li>関数</li>
+      <li>Array (配列)</li>
+      <li>Date</li>
+      <li>RegExp (正規表現)</li>
+    </ul>
+  </li>
+  <li>Null</li>
+  <li>Undefined</li>
+</ul>
+<p>さらにいくつかの組み込み <a href="Reference/Global_Objects/Error.html" title="ja/docs/JavaScript/Reference/Global_Objects/Error">Error</a> 型もあります。しかし最初の図のままでいく方が、物事はとても簡単になるでしょう。</p>
+<div>
+  <span id="Numbers"></span></div>
+<h2 id=".E6.95.B0.E5.80.A4">数値</h2>
+<p>JavaScript における数値は、仕様によると「倍精度 64 ビットフォーマット IEEE 754 値 (<span style="color: green;">double-precision 64-bit format IEEE 754 values</span>)」です。このことはいくつかの興味深い結果をもたらします。JavaScript には整数に当たるものがないので、あなたが C や Java の数学に慣れている場合は、数値計算に少し気を付ける必要があります。次のようなものに注意しましょう:</p>
+<pre class="eval">0.1 + 0.2 == 0.30000000000000004
+</pre>
+<p>実のところ、整数値は 32 ビット int 型として扱われます (一部のブラウザの実装では実際にそのように記憶されます) 。これはビット演算を行う際に重要なことです。詳しくは、<a class="external" href="http://www.hunlock.com/blogs/The_Complete_Javascript_Number_Reference" title="http://www.hunlock.com/blogs/The_Complete_Javascript_Number_Reference">The Complete JavaScript Number Reference</a> をご覧ください。</p>
+<p>足し算、引き算、モジュロ (剰余) など、標準的な<a href="Guide/Obsolete_Pages/Operators/Arithmetic_Operators.html" title="ja/docs/JavaScript/Reference/Operators/Arithmetic_Operators">算術演算</a>がサポートされています。さらに、これは先ほど言及し忘れたのですが、より高度な数学関数や定数を扱う <a href="Reference/Global_Objects/Math.html" title="ja/docs/JavaScript/Reference/Global_Objects/Math">Math</a> という組み込みオブジェクトもあります:</p>
+<pre class="eval">Math.sin(3.5);
+var d = Math.PI * r * r;
+</pre>
+<p>あなたは組み込みの <code><a href="Reference/Global_Objects/parseInt.html" title="ja/docs/JavaScript/Reference/Global_Functions/parseInt">parseInt()</a></code> 関数を使うことで、文字列を整数に変換することができます。この関数は省略可能な第 2 引数として変換の基数を取りますが、あなたは常にこの引数を与えるべきです:</p>
+<pre class="brush:js">&gt; parseInt("123", 10)
+123
+&gt; parseInt("010", 10)
+10
+</pre>
+<p>もし基数を与えなかったら、あなたは驚くような結果を得ることでしょう:</p>
+<pre class="brush:js">&gt; parseInt("010")
+8
+</pre>
+<p>こうなったのは、<code>parseInt</code> がこの文字列を先頭の 0 から 8 進数とみなすべきと判断したためです。</p>
+<p>もし2進数を整数に変換したいなら、単純に基数を変えましょう:</p>
+<pre class="brush:js">&gt; parseInt("11", 2)
+3
+</pre>
+<p>同様に浮動小数点数への変換を行う、組み込みの <code><a href="Reference/Global_Objects/parseFloat.html" title="ja/docs/JavaScript/Reference/Global Objects/parseFloat">parseFloat()</a></code> 関数があります。こちらは <a href="Reference/Global_Objects/parseInt.html" title="ja/docs/JavaScript/Reference/Global Objects/parseInt"><code>parseInt()</code></a> と異なり、基数は常に 10 が用いられます。</p>
+<p>また、単項演算子 <code>+</code> を使って値を数値に変換する:</p>
+<pre>&gt; + "42"
+42 
+</pre>
+<p>もし文字列が数でない場合、<code><a href="Reference/Global_Objects/NaN.html" title="ja/docs/JavaScript/Reference/Global_Properties/NaN">NaN</a></code> (非数、"Not a Number" の略) と呼ばれる特別な値が返ります:</p>
+<pre class="brush:js">&gt; parseInt("hello", 10)
+NaN
+</pre>
+<p><code>NaN</code> には毒性があります: これを入力としてどの算術演算に与えても、その結果は同様に <code>NaN</code> になるのです:</p>
+<pre class="brush:js">&gt; NaN + 5
+NaN
+</pre>
+<p>組み込みの <code><a href="Reference/Global_Objects/isNaN.html" title="ja/docs/JavaScript/Reference/Global_Functions/isNaN">isNaN()</a></code> 関数を使えば、<code>NaN</code> であるかを検査することができます:</p>
+<pre class="brush:js">&gt; isNaN(NaN)
+true
+</pre>
+<p>JavaScriptはまた、特別な値 <code><a href="Reference/Global_Objects/Infinity.html" title="ja/docs/JavaScript/Reference/Global_Properties/Infinity">Infinity</a></code> と <code>-Infinity</code> を持っています:</p>
+<pre class="brush:js">&gt; 1 / 0
+Infinity
+&gt; -1 / 0
+-Infinity
+</pre>
+<p>組み込みの <code><a href="Reference/Global_Objects/isFinite.html" title="ja/docs/JavaScript/Reference/Global_Functions/isFinite">isFinite()</a></code> 関数を使えば、<code>Infinity</code>、<code>-Infinity</code>、<code>NaN</code> であるかを検査することができます。:</p>
+<pre class="brush:js">&gt; isFinite(1/0)
+false
+&gt; isFinite(-Infinity)
+false
+&gt; isFinite(NaN)
+false
+</pre>
+<div class="note">
+  <strong>注意:</strong> <a href="Reference/Global_Objects/parseInt.html" title="ja/docs/JavaScript/Reference/Global Objects/parseInt"><code>parseInt()</code></a> および <code><a href="Reference/Global_Objects/parseFloat.html" title="ja/docs/JavaScript/Reference/Global Objects/parseFloat">parseFloat()</a></code> 関数は文字列を、規定の数値書式に該当しない文字が現れるまで解析し、その箇所までの数値を返します。一方、"+" 演算子は適切でない文字を含む文字列を <code>NaN</code> に変換します。ご自身でコンソールを用いて、文字列 "10.2abc" をそれぞれの方法で解析させるとその違いがよくわかるでしょう。</div>
+<div>
+  <span id="Strings"></span></div>
+<h2 id=".E6.96.87.E5.AD.97.E5.88.97">文字列</h2>
+<p>JavaScript における文字列は、文字の連なったもの (<span style="color: green;">sequences</span>)です。より正確に言えば、文字列は <a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Obsolete_Pages/Unicode" title="ja/docs/JavaScript/Guide/Unicode">Unicode 文字</a>の連なったものであり、つまりそれぞれの文字は 16 ビットの整数で表されます。これは国際化 (<span style="color: green;">internationalisation</span>)に対処しなければならない誰もが歓迎するニュースでしょう。</p>
+<p>もし単一文字を表したいなら、単純に長さ 1 の文字列を使います。</p>
+<p>文字列の長さを知るには、その文字列の <code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/length" title="ja/docs/JavaScript/Reference/Global_Objects/String/length">length</a></code> プロパティにアクセスしましょう:</p>
+<pre class="brush:js">&gt; "hello".length
+5
+</pre>
+<p>JavaScript のオブジェクトとの初めての接触です! 私、文字列もオブジェクトであると言いましたっけ? (<span style="color: green;">Did I mention that strings are objects too?</span>) 文字列はまた、<a href="Reference/Global_Objects/String.html#Methods" title="ja/docs/JavaScript/Reference/Global_Objects/String#Methods">メソッド</a>も持っています:</p>
+<pre class="brush:js">&gt; "hello".charAt(0)
+h
+&gt; "hello, world".replace("hello", "goodbye")
+goodbye, world
+&gt; "hello".toUpperCase()
+HELLO
+</pre>
+<div>
+  <span id="Other_types"></span></div>
+<h2 id=".E3.81.9D.E3.81.AE.E4.BB.96.E3.81.AE.E5.9E.8B">その他の型</h2>
+<p>JavaScript は <code>null</code> と <code>undefined</code> を区別します。<code>null</code> は、意図的に「値がない」ということを指し示す object 型のオブジェクトです。対して <code>undefined</code> とは、初期化されていない値 ― すなわち、「まだ値が代入されていない」ということを指し示す undefined 型のオブジェクトです。変数については後で話しますが、JavaScript では値を代入しないで変数を宣言することができるのです。そのようにした場合、その変数の型は <code>undefined</code> です。</p>
+<p>JavaScript は <code>true</code> と <code>false</code> (これらはともにキーワードです) を取りうる値とする真偽値型を持っています。どんな値でも以下のルールに基づいて真偽値に変換できます:</p>
+<ol>
+  <li><code>false</code>、<code>0</code>、空文字列 (<code>""</code>)、<code>NaN</code>、<code>null</code>、および <code>undefined</code> は、すべて <code>false</code> になる</li>
+  <li>その他の値はすべて <code>true</code> になる</li>
+</ol>
+<p><code>Boolean()</code> 関数を使うことで、明示的にこの変換を行うことができます:</p>
+<pre class="brush:js">&gt; Boolean("")
+false
+&gt; Boolean(234)
+true
+</pre>
+<p>しかしながら、これはほとんど必要ありません。なぜなら JavaScript は、<code>if</code> 文 (下記参照) の中といった真偽値が期待されるときに、無言でこの変換を行うからです。このような理由から、私たちは時々、真偽値に変換されるとき <code>true</code> または <code>false</code> になる値という意味で、それぞれ "true values" または "false values" と言うことがあります。あるいは、そのような値はそれぞれ "truthy" または "falsy" と呼ばれます。</p>
+<p><code>&amp;&amp;</code> (論理 AND) や <code>||</code> (論理 OR) 、<code>!</code> (論理 NOT) などの真偽値演算がサポートされています (下記参照)。</p>
+<div>
+  <span id="Variables"></span></div>
+<h2 id=".E5.A4.89.E6.95.B0">変数</h2>
+<p>JavaScript における新しい変数は <code><a href="Reference/Statements/var.html" title="ja/docs/JavaScript/Reference/Statements/var">var</a></code> キーワードを使って宣言されます:</p>
+<pre class="brush:js">var a;
+var name = "simon";
+</pre>
+<p>もし値を代入しないで変数を宣言すると、その型は <code>undefined</code> になります。</p>
+<p>Java など他の言語との重要な相違点は、JavaScript ではブロックがスコープを持たず、関数のみがスコープを持つことです。よって、変数が複合文内 (例えば <code>if</code> 制御構造の内部) で <code>var</code> を用いて定義された場合でも、その変数は関数全体でアクセス可能です。</p>
+<div>
+  <span id="Operators"></span></div>
+<h2 id=".E6.BC.94.E7.AE.97.E5.AD.90">演算子</h2>
+<p>JavaScript の算術演算子は、<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、そして剰余演算子の <code>%</code> です。値は <code>=</code> を使って代入されます。また <code>+=</code> や <code>-=</code> のような複合代入文もあります。これらは <code>x = x <em>演算子</em> y</code> と展開できるものです。</p>
+<pre class="brush:js">x += 5
+x = x + 5
+</pre>
+<p><code>++</code> や <code>--</code> を使ってインクリメントやデクリメントをすることができます。これらは前置あるいは後置演算子として使うことができます。</p>
+<p><a href="../../JavaScript/Reference/Operators/String_Operators.html" title="ja/docs/JavaScript/Reference/Operators/String_Operators"><code>+</code> 演算子</a>は文字列の結合もします:</p>
+<pre class="brush:js">&gt; "hello" + " world"
+hello world
+</pre>
+<p>文字列を数字 (や他の値) に足すと、全てのものはまず最初に文字列に変換されます。このことはミスを誘うかもしれません:</p>
+<pre class="brush:js">&gt; "3" + 4 + 5
+345
+&gt; 3 + 4 + "5"
+75
+</pre>
+<p>空文字列を足すのは、何かを文字列に変換する便利な方法です。</p>
+<p>JavaScript における<a href="Reference/Operators/Comparison_Operators.html" title="ja/docs/JavaScript/Reference/Operators/Comparison_Operators">比較</a>は、<code>&lt;</code> や <code>&gt;</code>、<code>&lt;=</code>、<code>&gt;=</code> を使ってすることができます。これらは文字列と数値のどちらでも機能します。等価性はちょっと明快ではありません。二重イコール演算子は、異なる型を与えると型強制 (<span style="color: green;">type coercion</span>)を行います。これは時に面白い結果を返します:</p>
+<pre class="brush:js">&gt; "dog" == "dog"
+true
+&gt; 1 == true
+true
+</pre>
+<p>型強制を防ぐには、三重イコール演算子を使います:</p>
+<pre class="brush:js">&gt; 1 === true
+false
+&gt; true === true
+true
+</pre>
+<p><code>!=</code> と <code>!==</code> 演算子もあります。</p>
+<p>JavaScript は<a href="../../JavaScript/Reference/Operators/Bitwise_Operators.html" title="ja/docs/JavaScript/Reference/Operators/Bitwise_Operators">ビット演算子</a>も持っています。使いたいなら、ちゃんとありますよ。</p>
+<div>
+  <span id="Control_structures"></span></div>
+<h2 id=".E5.88.B6.E5.BE.A1.E6.A7.8B.E9.80.A0">制御構造</h2>
+<p>JavaScript は C 言語ファミリーの他の言語とよく似た制御構造セットを持っています。条件文は <code>if</code> と <code>else</code> でサポートされています。必要ならこれらを連鎖させることもできます:</p>
+<pre class="brush:js">var name = "kittens";
+if (name == "puppies") {
+  name += "!";
+} else if (name == "kittens") {
+  name += "!!";
+} else {
+  name = "!" + name;
+}
+name == "kittens!!"
+</pre>
+<p>JavaScript は <code>while</code> ループと <code>do-while</code> ループを持っています。1 つ目は普通のループ処理に適しており、2 つ目はループの本体が少なくとも 1 回は実行されるようにしたいときのループです:</p>
+<pre class="brush:js">while (true) {
+  // 無限ループ!
+}
+
+var input;
+do {
+  input = get_input();
+} while (inputIsNotValid(input))
+</pre>
+<p>JavaScript の <code>for</code> ループは C や Java のと同じです。これはループの制御情報を 1 行で与えることができます。</p>
+<pre class="brush:js">for (var i = 0; i &lt; 5; i++) {
+  // 5 回実行されます
+}
+</pre>
+<p><code>&amp;&amp;</code> と <code>||</code> 演算子は、1 つ目のオペランドによって 2 つ目のオペランドを評価するか否かが決まる短絡論理 (<span style="color: green;">short-circuit logic</span>)を用いています。これはあるオブジェクトの属性にアクセスする前に、それが null オブジェクトかをチェックするのに便利です:</p>
+<pre class="brush:js">var name = o &amp;&amp; o.getName();
+</pre>
+<p>あるいはデフォルト値をセットするのにも便利です:</p>
+<pre class="brush:js">var name = otherName || "default";
+</pre>
+<p>JavaScript はワンライン条件文のための三項演算子を持っています:</p>
+<pre class="brush:js">var allowed = (age &gt; 18) ? "yes" : "no";
+</pre>
+<p>switch 文はある数値や文字列を元にした複数分岐に使われます:</p>
+<pre class="brush:js">switch(action) {
+    case 'draw':
+        drawit();
+        break;
+    case 'eat':
+        eatit();
+        break;
+    default:
+        donothing();
+}
+</pre>
+<p>もし <code>break</code> 文を入れなければ、処理は次の段階へフォールスルー (<span style="color: green;">fall through</span>)します。この動作が望むものであることは非常にまれでしょう ― 事実、もしそれが本当に意図するものならば、デバッグの補助として故意のフォールスルーをコメントで明確にラベリングするだけの価値があるでしょう:</p>
+<pre class="brush:js">switch(a) {
+    case 1: // フォールスルー
+    case 2:
+        eatit();
+        break;
+    default:
+        donothing();
+}
+</pre>
+<p>default 節は省略できます。必要ならば、switch 部と case 部のどちらにも式を置くことができます。比較はこれら2つの間で <code>===</code> 演算子を使って行われます:</p>
+<pre class="brush:js">switch(1 + 3) {
+    case 2 + 2:
+        yay();
+        break;
+    default:
+        neverhappens();
+}
+</pre>
+<div>
+  <span id="Objects"></span></div>
+<h2 id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">オブジェクト</h2>
+<p>JavaScript のオブジェクトは、名前と値のペアの単純なコレクションです。これは以下のものに似ています:</p>
+<ul>
+  <li>Python の辞書型</li>
+  <li>Perl や Ruby のハッシュ</li>
+  <li>C や C++ のハッシュテーブル</li>
+  <li>Java の HashMap クラス</li>
+  <li>PHP の連想配列</li>
+</ul>
+<p>このデータ構造が幅広く使われているという事実は、この構造の万能性の証拠でしょう。JavaScript において (コアデータ型を除いた) すべてのものはオブジェクトなので、どんな JavaScript プログラムも自然と非常に多くのハッシュテーブルのルックアップ (検索) を伴います。良いことにそれがとても速いのです!</p>
+<p>「名前」部は JavaScript における文字列であるのに対し、値は JavaScript のどんな値でも ― さらなるオブジェクトでも ― 構いません。この仕様が任意の複雑なデータ構造を作ることを可能にしています。</p>
+<p>空のオブジェクトを生成する 2 つの基本的な方法があります:</p>
+<pre class="brush:js">var obj = new Object();
+</pre>
+<p>そして:</p>
+<pre class="brush:js">var obj = {};
+</pre>
+<p>これらは意味的に等価です。2 つ目はオブジェクトリテラル構文と呼ばれ、こちらの方がより便利です。オブジェクトリテラル構文は JSON 書式の中核でもあり、こちらを採用するべきです。</p>
+<p>一度作ってしまえば、オブジェクトのプロパティには 2 つの方法のいずれかで再びアクセスすることができます:</p>
+<pre class="brush:js">obj.name = "Simon";
+var name = obj.name;
+</pre>
+<p>そして...</p>
+<pre class="brush:js">obj["name"] = "Simon";
+var name = obj["name"];
+</pre>
+<p>これらもまた意味的に等価です。2 つ目の方法はプロパティの名前を文字列として与えるという利点があり、つまりその名前を実行時に計算できることを意味します。ただ、この方法を用いると JavaScript エンジンや minifier による最適化が適用されなくなります。またこの方法は、<a href="Reference/Reserved_Words.html" title="ja/docs/JavaScript/Reference/Reserved_Words">予約語</a>と同じ名前のプロパティを設定したり取得したりするのに使うことができます:</p>
+<pre class="brush:js">obj.for = "Simon"; // 構文エラー。'for' が予約語であるため
+obj["for"] = "Simon"; // うまく動きます</pre>
+<p>オブジェクトリテラル記法はオブジェクトをそっくりそのまま初期化するのに使えます:</p>
+<pre class="brush:js">var obj = {
+    name: "Carrot",
+    "for": "Max",
+    details: {
+        color: "orange",
+        size: 12
+    }
+}
+</pre>
+<p>属性へのアクセスは同時に連鎖させることができます:</p>
+<pre class="brush:js">&gt; obj.details.color
+orange
+&gt; obj["details"]["size"]
+12
+</pre>
+<div>
+  <span id="Arrays"></span></div>
+<h2 id=".E9.85.8D.E5.88.97">配列</h2>
+<p>JavaScript における配列は、実は特別なタイプのオブジェクトです。普通のオブジェクトとほとんど同じように働きます (数字のプロパティは当然 [] の構文でのみアクセスできます) が、しかし配列は '<code>length</code>' という魔法のプロパティを持っています。これは常に配列の一番大きな添字より 1 大きい値を取ります。</p>
+<p>配列を生成する古いやり方は以下の通り:</p>
+<pre class="brush:js">&gt; var a = new Array();
+&gt; a[0] = "dog";
+&gt; a[1] = "cat";
+&gt; a[2] = "hen";
+&gt; a.length
+3
+</pre>
+<p>より便利な書き方は配列リテラルを使うことです:</p>
+<pre class="brush:js">&gt; var a = ["dog", "cat", "hen"];
+&gt; a.length
+3
+</pre>
+<p>配列リテラルの最後にカンマを残しておくのは、ブラウザ間で対応非対応があるので、してはいけません。</p>
+<p><code>array.length</code> は必ずしも配列中の要素の数ではないことに注意してください。以下の例を考えてみましょう:</p>
+<pre class="brush:js">&gt; var a = ["dog", "cat", "hen"];
+&gt; a[100] = "fox";
+&gt; a.length
+101
+</pre>
+<p>思い出してください ― 配列の長さは一番大きな添字より 1 大きい値です。</p>
+<p>もし存在しない配列の添字を要求すると、<code>undefined</code> が得られます:</p>
+<pre class="brush:js">&gt; typeof a[90]
+undefined
+</pre>
+<p>上記のことを考慮に入れれば、以下の方法を使って配列をイテレートする (各要素を順に巡る) ことができます:</p>
+<pre class="brush:js">for (var i = 0; i &lt; a.length; i++) {
+    // a[i] について何かする
+}
+</pre>
+<p>これは毎回 length プロパティをルックアップしているため少し非効率です。改善したのがこれ:</p>
+<pre class="brush:js">for (var i = 0, len = a.length; i &lt; len; i++) {
+    // a[i] について何かする
+}
+</pre>
+<p>よりすてきな形式は:</p>
+<pre class="brush:js">for (var i = 0, item; item = a[i++];) {
+    // item について何かする
+}
+</pre>
+<p>ここでは 2 つの変数を準備しています。<code>for</code> ループの中央部の代入文は、同時にそれが真であるか検査しています ― もしこれが真なら、ループは継続します。<code>i</code> は毎回インクリメントされるので、配列の要素は順番に item に代入されます。ループは "falsy" な要素 (例えば <code>undefined</code>) が見つかったとき止まります。</p>
+<p>このトリックは "falsy" な値が含まれないとわかっている配列 (例えばオブジェクトや <a href="../../DOM.html" title="ja/docs/DOM">DOM</a> ノードの配列) に対してのみ使われるべきであることに注意してください。もし 0 が含まれるかもしれない数値データや、空文字列が含まれるかもしれない文字列データをイテレートしようとするならば、代わりに <code>i, len</code> の形式を使うべきです。</p>
+<p>イテレートするもう 1 つの方法は <code><a href="Reference/Statements/for...in.html" title="ja/docs/JavaScript/Reference/Statements/for...in">for...in</a></code> ループを使うことです。ただし、もし誰かが <code>Array.prototype</code> に新しいプロパティを追加していたら、それらもこのループでイテレートされてしまうので注意してください:</p>
+<pre class="brush:js">for (var i in a) {
+  // a[i] について何かする
+}
+</pre>
+<p>配列に要素を追加したいなら、このようにするのが最も安全です:</p>
+<pre class="brush:js">a[a.length] = item;                 // a.push(item); と同じ
+</pre>
+<p><code>a.length</code> は一番大きな添字より 1 大きい値なので、このコードは配列の末尾にある空の場所に代入しようとすることを保証します。</p>
+<p>配列には多くのメソッドが付いてきます:</p>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">メソッド名</th>
+      <th scope="col">説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>a.toString()</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>a.toLocaleString()</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>a.concat(item[, itemN])</code></td>
+      <td>配列に要素を追加した、新しい配列を返します。</td>
+    </tr>
+    <tr>
+      <td><code>a.join(sep)</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>a.pop()</code></td>
+      <td>最後の要素を取り除いて、その要素を返します。</td>
+    </tr>
+    <tr>
+      <td><code>a.push(item[, itemN])</code></td>
+      <td><code>Push</code> は配列の末尾に 1 つ以上の要素を追加します。</td>
+    </tr>
+    <tr>
+      <td><code>a.reverse()</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>a.shift()</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>a.slice(start, end)</code></td>
+      <td>部分配列を返します。</td>
+    </tr>
+    <tr>
+      <td><code>a.sort([cmpfn])</code></td>
+      <td>オプションとして比較関数をとります。</td>
+    </tr>
+    <tr>
+      <td><code>a.splice(start, delcount[, itemN])</code></td>
+      <td>ある部分を削除して他の要素に置き換えることで、配列を修正することができます。</td>
+    </tr>
+    <tr>
+      <td><code>a.unshift([item])</code></td>
+      <td>要素を配列の先頭に挿入します。</td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <span id="Functions"></span></div>
+<h2 id=".E9.96.A2.E6.95.B0">関数</h2>
+<p>オブジェクトと共に、関数は JavaScript を理解するうえで核となる構成要素です。最も基本的な関数は極めてシンプルです:</p>
+<pre class="brush:js">function add(x, y) {
+    var total = x + y;
+    return total;
+}
+</pre>
+<p>これは基本的な関数について知るためのすべてを例示しています。JavaScript の関数は 0 以上の名前の付いた引数を取ることができます。関数の本体は好きなだけたくさんの文を含ませることができ、またその関数内で局所的な変数を宣言することができます。<code>return</code> 文は好きな時に関数を終了し値を返すために使うことができます。もし <code>return</code> 文が使われなかったら (あるいは値を付けない空の return が使われたら) 、JavaScript は <code>undefined</code> を返します。</p>
+<p>実のところ、名前の付いた引数はガイドラインのようなもの以上の何物でもありません。あなたは期待された引数を渡さずに関数を呼ぶことができます。その場合引数には <code>undefined</code> がセットされます。</p>
+<pre class="brush:js">&gt; add()
+NaN // You can't perform addition on undefined
+</pre>
+<p>あなたはまた、関数が期待しているより多くの引数を渡すこともできます:</p>
+<pre class="brush:js">&gt; add(2, 3, 4)
+5 // added the first two; 4 was ignored
+</pre>
+<p>これは少し馬鹿げているように見えるかもしれませんが、関数はその本体の中で <a href="Reference/Functions_and_function_scope/arguments.html" title="ja/docs/JavaScript/Reference/Functions_and_function_scope/arguments"><code>arguments</code></a> と呼ばれる追加の変数を利用することができます。これはその関数へ渡された全ての値を保持する配列のようなオブジェクトです。さあ、add 関数を好きなだけたくさんの値をとれるよう書き直してみましょう:</p>
+<pre class="brush:js">function add() {
+    var sum = 0;
+    for (var i = 0, j = arguments.length; i &lt; j; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}
+&gt; add(2, 3, 4, 5)
+14
+</pre>
+<p>しかしこれは <code>2 + 3 + 4 + 5</code> と書くより使い勝手がいいものでは全くありません。平均を取る関数を作ってみましょう:</p>
+<pre class="brush:js">function avg() {
+    var sum = 0;
+    for (var i = 0, j = arguments.length; i &lt; j; i++) {
+        sum += arguments[i];
+    }
+    return sum / arguments.length;
+}
+&gt; avg(2, 3, 4, 5)
+3.5
+</pre>
+<p>この関数はかなり便利ですが、新たな問題を提示しています。この <code>avg()</code> 関数はコンマ区切りのリストを引数に取りますが、もし配列の平均を知りたいときにはどうしたらいいでしょう? あなたは単純に関数を以下のように書き直すこともできます:</p>
+<pre class="brush:js">function avgArray(arr) {
+    var sum = 0;
+    for (var i = 0, j = arr.length; i &lt; j; i++) {
+        sum += arr[i];
+    }
+    return sum / arr.length;
+}
+&gt; avgArray([2, 3, 4, 5])
+3.5
+</pre>
+<p>しかし私たちがすでに作った関数を再利用できた方がいいですよね。幸運なことに、JavaScript は関数オブジェクトの <a href="Reference/Global_Objects/Function/apply.html" title="ja/docs/JavaScript/Reference/Global_Objects/Function/apply"><code>apply()</code></a> メソッドを使うことで関数を呼ぶ、あるいは引数に任意の配列を付けて呼ぶことができます。</p>
+<pre class="brush:js">&gt; avg.apply(null, [2, 3, 4, 5])
+3.5
+</pre>
+<p><code>apply()</code> の第 2 引数は引数として使う配列です。第 1 引数は後で論じます。このようなことは関数もまたオブジェクトであるという事実を強調します。</p>
+<p>JavaScript では無名関数 (<span style="color: green;">anonymous functions</span>)を作ることができます。</p>
+<pre class="brush:js">var avg = function() {
+    var sum = 0;
+    for (var i = 0, j = arguments.length; i &lt; j; i++) {
+        sum += arguments[i];
+    }
+    return sum / arguments.length;
+}
+</pre>
+<p>これは意味的には <code>function avg()</code> 形式と等価です。これは非常に強力です。あなたは普通は式を置くところならどこにでも完全な関数定義を置くことができるのです。これはあらゆる巧妙なトリックを可能にしています。ここではいくつかの局所変数を ― C のブロックスコープのように ― 「隠す」方法を示します:</p>
+<pre class="brush:js">&gt; var a = 1;
+&gt; var b = 2;
+&gt; (function() {
+    var b = 3;
+    a += b;
+})();
+&gt; a
+4
+&gt; b
+2
+</pre>
+<p>JavaScript では関数を再帰的に呼び出すことができます。これは特にブラウザの <a href="../../DOM.html" title="ja/docs/DOM">DOM</a> などから得られる木構造を取り扱うときに便利でしょう。</p>
+<pre class="brush:js">function countChars(elm) {
+    if (elm.nodeType == 3) { // TEXT_NODE
+        return elm.nodeValue.length;
+    }
+    var count = 0;
+    for (var i = 0, child; child = elm.childNodes[i]; i++) {
+        count += countChars(child);
+    }
+    return count;
+}
+</pre>
+<p>この例は無名関数に関するある潜在的な問題を際立たせます: 名前を持たない関数を再帰呼び出しさせるにはどうしたらよいのでしょう? <strike>その答えは <code>arguments</code> オブジェクトに隠されています。このオブジェクトは引数のリストとして振舞うのに加えて、<code>arguments.callee</code> と呼ばれるプロパティを提供しています。</strike><code>arguments.callee</code> の使用は非推奨になり、strict mode では使用不可になりました。これに代わり、以下のように "名前付き無名関数" を用いてください。:</p>
+<pre class="brush:js">var charsInBody = (function counter(elm) {
+    if (elm.nodeType == 3) { // TEXT_NODE
+        return elm.nodeValue.length;
+    }
+    var count = 0;
+    for (var i = 0, child; child = elm.childNodes[i]; i++) {
+        count += counter(child);
+    }
+    return count;
+})(document.body);
+</pre>
+<p>上記のように無名関数に与えられた名前は、(少なくとも) 関数自身のスコープ内でのみ有効です。これはエンジンによる高度な最適化と可読性の高いコードの両方を実現します。</p>
+<div>
+  <span id="Custom_objects"></span></div>
+<h2 id=".E3.82.AB.E3.82.B9.E3.82.BF.E3.83.A0.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88">カスタムオブジェクト</h2>
+<div class="note">
+  <strong>注意:</strong> JavaScript でのオブジェクト指向プログラミングの詳細な論考については、<a class="new" href="https://developer.mozilla.org/ja/docs/Introduction_to_Object-Oriented_JavaScript" title="https://developer.mozilla.org/ja/docs/Introduction_to_Object-Oriented_JavaScript">Introduction to Object Oriented JavaScript</a> をご覧ください。</div>
+<p>古典的なオブジェクト指向プログラミングにおいて、オブジェクトとはデータとそのデータを操作するメソッドの集まりです。JavaScript は、C++ や Java に見られる class 文を持たない、プロトタイプベースの言語です。(これは、class 文を持つ言語に慣れたプログラマを混乱させることでしょう。) 代わりに、JavaScript は関数をクラスとして用います。ファーストネームとラストネームのフィールドを持つ人物オブジェクトを考えてみましょう。その名前を表示させる方法には2種類が考えられます: "first last" と "last, first" です。ここまでで論じた関数とオブジェクトを使ってみると、次のようなやり方があります:</p>
+<pre class="brush:js">function makePerson(first, last) {
+    return {
+        first: first,
+        last: last
+    }
+}
+function personFullName(person) {
+    return person.first + ' ' + person.last;
+}
+function personFullNameReversed(person) {
+    return person.last + ', ' + person.first
+}
+&gt; s = makePerson("Simon", "Willison");
+&gt; personFullName(s)
+Simon Willison
+&gt; personFullNameReversed(s)
+Willison, Simon
+</pre>
+<p>これはこれでうまく行きますが、かなり見苦しいですね。グローバルな名前空間にいくつもの関数を作ることになってしまいます。本当にしたいことは関数をオブジェクトにくっつけることです。関数はオブジェクトなので、簡単にできます:</p>
+<pre class="brush:js">function makePerson(first, last) {
+    return {
+        first: first,
+        last: last,
+        fullName: function() {
+            return this.first + ' ' + this.last;
+        },
+        fullNameReversed: function() {
+            return this.last + ', ' + this.first;
+        }
+    }
+}
+&gt; s = makePerson("Simon", "Willison")
+&gt; s.fullName()
+Simon Willison
+&gt; s.fullNameReversed()
+Willison, Simon
+</pre>
+<p>おや、まだ見たことがないものがありますね: '<code><a href="Reference/Operators/this.html" title="ja/docs/JavaScript/Reference/Operators/Special_Operators/this_Operator">this</a></code>' キーワードです。関数内で使われると、'<code>this</code>' は現在のオブジェクトを参照します。実際に意味するところは関数の呼ばれ方によります。オブジェクト上で <a href="Reference/Operators/Property_Accessors.html" title="ja/docs/JavaScript/Reference/Operators/Member_Operators">ドットの記法や角カッコの記法</a> を使って呼び出すと、そのオブジェクトが '<code>this</code>' になります。ドット記法を使わずに呼び出すと、'<code>this</code>' はグローバルオブジェクトを参照します。このことはよくある失敗の原因になります。例えば:</p>
+<pre class="brush:js">&gt; s = makePerson("Simon", "Willison")
+&gt; var fullName = s.fullName;
+&gt; fullName()
+undefined undefined
+</pre>
+<p><code>fullName()</code> を呼び出すとき、'<code>this</code>' はグローバルオブジェクトに結び付けられます。<code>first</code> や <code>last</code> というグローバル変数はありませんので、それぞれに対して <code>undefined</code> が得られます。</p>
+<p>この '<code>this</code>' キーワードを活用することで、<code>makePerson</code> 関数を改良することができます:</p>
+<pre class="brush:js">function Person(first, last) {
+    this.first = first;
+    this.last = last;
+    this.fullName = function() {
+        return this.first + ' ' + this.last;
+    }
+    this.fullNameReversed = function() {
+        return this.last + ', ' + this.first;
+    }
+}
+var s = new Person("Simon", "Willison");
+</pre>
+<p>もう 1 つのキーワード '<code><a href="Reference/Operators/new.html" title="ja/docs/JavaScript/Reference/Operators/Special_Operators/new_Operator">new</a></code>' が出てきました。<code>new</code> は '<code>this</code>' と強い関連があります。これが何をするかというと、新しい空のオブジェクトを作り、'<code>this</code>' にその新しいオブジェクトをセットして、後に続く関数を呼びます。'<code>new</code>' によって呼ばれるよう設計された関数はコンストラクタ関数と呼ばれます。<code>new</code> によって呼ばれるということがわかるよう、先頭を大文字にすることがよく行われています。</p>
+<p>person オブジェクトはだいぶ良くなりましたが、まだ改善の余地があります。person オブジェクトを作るたびに、その中に 2 つの新しい関数オブジェクトを作っています。関数のコードは共有されたほうがいいですよね?</p>
+<pre class="brush:js">function personFullName() {
+    return this.first + ' ' + this.last;
+}
+function personFullNameReversed() {
+    return this.last + ', ' + this.first;
+}
+function Person(first, last) {
+    this.first = first;
+    this.last = last;
+    this.fullName = personFullName;
+    this.fullNameReversed = personFullNameReversed;
+}
+</pre>
+<p>このほうが良いですね。メソッド関数を一度だけ作って、コンストラクタの中でそれへの参照を代入しています。もっとよくなりませんかね? 答えは yes です:</p>
+<pre class="brush:js">function Person(first, last) {
+    this.first = first;
+    this.last = last;
+}
+Person.prototype.fullName = function() {
+    return this.first + ' ' + this.last;
+}
+Person.prototype.fullNameReversed = function() {
+    return this.last + ', ' + this.first;
+}
+</pre>
+<p><code>Person.prototype</code> は <code>Person</code> のすべてのインスタンスで共有されるオブジェクトです。これは (「プロトタイプチェーン」という特別な名前を持った) ルックアップチェーンの一部を構成します。<code>Person</code> の何もセットされていないプロパティにアクセスしようとするときはいつでも、JavaScript は <code>Person.prototype</code> が代わりのプロパティを持っているか確認します。結果として、<code>Person.prototype</code> に割り当てられたプロパティはすべて <code>this</code> オブジェクトを通じてコンストラクタのすべてのインスタンスで利用できるようになります。</p>
+<p>これはとても強力です。JavaScript では、プログラム上でいつでもどれかのプロトタイプを変更することができます。ということは、実行時に既存のオブジェクトに対して追加のメソッドを加えることができるのです:</p>
+<pre class="brush:js">&gt; s = new Person("Simon", "Willison");
+&gt; s.firstNameCaps();
+TypeError on line 1: s.firstNameCaps is not a function
+&gt; Person.prototype.firstNameCaps = function() {
+    return this.first.toUpperCase()
+}
+&gt; s.firstNameCaps()
+SIMON
+</pre>
+<p>興味深いことに、JavaScript の組み込みオブジェクトのプロトタイプにも差し込むことができます。<code>String</code> オブジェクトに文字列を逆さにして返すメソッドを加えてみましょう:</p>
+<pre class="brush:js">&gt; var s = "Simon";
+&gt; s.reversed()
+TypeError on line 1: s.reversed is not a function
+&gt; String.prototype.reversed = function() {
+    var r = "";
+    for (var i = this.length - 1; i &gt;= 0; i--) {
+        r += this[i];
+    }
+    return r;
+}
+&gt; s.reversed()
+nomiS
+</pre>
+<p>私たちの新しいメソッドは文字列リテラル上でさえも動きます!</p>
+<pre class="brush:js">&gt; "This can now be reversed".reversed()
+desrever eb won nac sihT
+</pre>
+<p>前にも言ったように、prototype は連鎖の一部を構成します。連鎖の根は <code>Object.prototype</code> であり、<code>toString()</code> メソッドを含んでいます。これはオブジェクトを文字列で表そうとするときに呼ばれるメソッドです。これは Person オブジェクトをデバッグするときに役に立ちます:</p>
+<pre class="brush:js">&gt; var s = new Person("Simon", "Willison");
+&gt; s
+[object Object]
+&gt; Person.prototype.toString = function() {
+    return '&lt;Person: ' + this.fullName() + '&gt;';
+}
+&gt; s
+&lt;Person: Simon Willison&gt;
+</pre>
+<p><code>avg.apply()</code> の第一引数が null であったことを覚えていますか? もう一度見てみましょう。<code>apply()</code> の第一引数は '<code>this</code>' として扱われるオブジェクトです。例えば、これは '<code>new</code>' のちょっとした実装です:</p>
+<pre class="brush:js">function trivialNew(constructor) {
+    var o = {}; // Create an object
+    constructor.apply(o, arguments);
+    return o;
+}
+</pre>
+<p>プロトタイプ連鎖を設定しないので、<code>trivalNew()</code> は <code>new</code> の完全な複製ではありません。<code>apply()</code> は理解しづらいです。よく使うことはないでしょうが、知っていると役に立ちます。</p>
+<p><code>apply()</code> には姉妹関数 <a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/Function/call" title="ja/docs/JavaScript/Reference/Global_Objects/Function/call"><code>call</code></a> があります。'<code>this</code>' を設定できる点は同じですが、引数に配列ではなく展開された値のリストをとります。</p>
+<pre class="brush:js">function lastNameCaps() {
+    return this.last.toUpperCase();
+}
+var s = new Person("Simon", "Willison");
+lastNameCaps.call(s);
+// Is the same as:
+s.lastNameCaps = lastNameCaps;
+s.lastNameCaps();
+</pre>
+<div>
+  <span id="Inner_functions"></span></div>
+<h2 id=".E5.86.85.E9.83.A8.E9.96.A2.E6.95.B0">内部関数</h2>
+<p>JavaScriptでの関数宣言は他の関数内でも行えます。これは初期の <code>makePerson()</code> 関数で見ています。大事なことは内部関数内で親関数スコープの変数にアクセスできることです:</p>
+<pre class="brush:js">function betterExampleNeeded() {
+    var a = 1;
+    function oneMoreThanA() {
+        return a + 1;
+    }
+    return oneMoreThanA();
+}
+</pre>
+<p>内部関数は保守しやすいコードを書くときに多大な利便性をもたらします。ある関数が他の部分のコードでは役立たない関数を一つか二つ使っているなら、これらのユーティリティ関数を他から呼び出される関数の入れ子にすることが出来ます。内部関数はグローバルスコープでなくなるので、いいことです。</p>
+<p>内部関数はグローバル変数を使うという誘惑に対する対抗措置です。複雑なコードを書くとき、複数の関数間で値を共有するためにグローバル変数を使いたくなります。しかし、これでは保守がしづらくなります。内部関数は親関数の変数を共有できるので、グローバルな名前空間を汚染せずに複数の関数をまとめることが出来ます。この仕組みは注意して使用する必要がありますが、便利です。</p>
+<div>
+  <span id="Closures"></span></div>
+<h2 id=".E3.82.AF.E3.83.AD.E3.83.BC.E3.82.B8.E3.83.A3">クロージャ</h2>
+<p>ここでは JavaScript が持つもっとも強力な、しかしもっともわかりにくいとも思われる概念のひとつを紹介します。これは何をしているのでしょうか?</p>
+<pre class="brush:js">function makeAdder(a) {
+    return function(b) {
+        return a + b;
+    }
+}
+x = makeAdder(5);
+y = makeAdder(20);
+x(6)
+?
+y(7)
+?
+</pre>
+<p><code>makeAdder</code> 関数がクロージャの正体を明らかにします。この関数は 1 つの引数とともに呼び出されたときに、その値と自身が生成されたときの引数の値とを加算する、新たな '加算' 関数を生成しています。</p>
+<p>ここで起きていることは、前出の内部関数で起きていることとほとんど同じです。つまり、ある関数の内部で定義された関数は、外側の関数が持つ変数にアクセスすることができます。唯一の違いは外側の関数が返されることであり、それゆえ一般的な考えではローカル変数は存在しなくなると考えられます。しかし、ここではそれが残り続けます。そうでなければ、加算関数は動作しないでしょう。さらに、<code>makeAdder</code> のローカル変数には異なる 2 つの "複製" が存在します。一方の <code>a</code> は 5、もう一方の <code>a</code> は 20 です。よって、これらの関数を呼び出した結果は以下のようになります:</p>
+<pre class="brush:js">x(6) // returns 11
+y(7) // returns 27
+</pre>
+<p>これは実際に起きていることです。JavaScript で関数を実行するときは必ず、その関数内で作成されたローカル変数を保持する 'scope' オブジェクトが作成されます。それは関数の引数として渡された変数とともに初期化されます。これはすべてのグローバル変数やグローバル関数が存在している global オブジェクトに似ていますが、2 つの重要な違いがあります。ひとつは、関数を実行し始めるたびに新たな scope オブジェクトが生成されること、もうひとつは、global オブジェクト (ブラウザでは window としてアクセス可能) とは異なり、これらの scope オブジェクトに JavaScript のコードから直接アクセスできないことです。例えば、現存する scope オブジェクトのプロパティをたどる仕組みはありません。</p>
+<p>よって <code>makeAdder</code> が呼び出されたときは、1 個のプロパティを持つ scope オブジェクトが生成されます。そのプロパティとは、<code>makeAdder</code> 関数に渡される引数の <code>a</code> です。そして <code>makeAdder</code> は、新たに生成された関数を返します。通常 JavaScript のガベージコレクタは、この時点で <code>makeAdder</code> のために生成された scope オブジェクトを破棄しますが、返された関数は scope オブジェクトへの参照を維持しています。その結果、scope オブジェクトは <code>makeAdder</code> が返した関数オブジェクトへの参照がなくなるまでの間、ガベージコレクトの対象になりません。</p>
+<p>JavaScript のオブジェクトシステムが利用するプロトタイプチェインと同様に、scope オブジェクトはスコープチェインと呼ばれるチェインを構成します。</p>
+<p>クロージャは、関数と関数が生成した scope オブジェクトを組み合わせたものです。</p>
+<p>クロージャは状態を保存します。従って、オブジェクトの代わりとしてよく使用されます。</p>
+<div>
+  <span id="Memory_leaks"></span></div>
+<h3 id=".E3.83.A1.E3.83.A2.E3.83.AA.E3.83.AA.E3.83.BC.E3.82.AF">メモリリーク</h3>
+<p>クロージャの良くない副作用として、Internet Explorer で簡単にメモリリークを発生させることがあります。JavaScript はガベージコレクトを行う言語です。オブジェクトは生成時にメモリが割り当てられ、オブジェクトへの参照がなくなったときにメモリがブラウザによって回収されます。ホストの環境から提供されるオブジェクトは、その環境に管理されます。</p>
+<p>ブラウザは、与えられた HTML ページを構成する多くのオブジェクト (<a href="../../DOM.html" title="ja/docs/DOM">DOM</a> のオブジェクト) を管理する必要があります。これらの割り当てや回収の管理を行うのはブラウザ次第です。</p>
+<p>Internet Explorer は自身のガベージコレクト機能を用いますが、JavaScript で使用される仕組みとは分離されています。これにはメモリリークを発生させる、2 つの相互作用があります。</p>
+<p>IE でのメモリリークは、JavaScript オブジェクトとネイティブオブジェクトとの間で循環参照が構成されたときに発生します。以下の例を考えてみましょう:</p>
+<pre class="brush:js">function leakMemory() {
+    var el = document.getElementById('el');
+    var o = { 'el': el };
+    el.o = o;
+}
+</pre>
+<p>上記の例で構成された循環参照はメモリリークを引き起こします。IE はブラウザが完全に再起動されるまで、<code>el</code> および <code>o</code> で使用されているメモリを解放しません。</p>
+<p>上記の例は気づかれない可能性があります。メモリリークはアプリケーションを長時間にわたって実行するときや、大きなデータ構造またはループ内でのリークが原因で大量のメモリがリークしたときのみ実際の問題になるためです。</p>
+<p>このように明白なメモリリークはめったにありません。メモリリークを起こしたデータ構造にはたいてい、多段階の参照と見つけにくい循環参照があります。</p>
+<p>クロージャでは、思わぬメモリリークが容易に発生します。以下のコードについて考えてみてください:</p>
+<pre class="brush:js">function addHandler() {
+    var el = document.getElementById('el');
+    el.onclick = function() {
+        this.style.backgroundColor = 'red';
+    }
+}
+</pre>
+<p>上記のコードは、要素がクリックされたときに色を赤に変えるものです。これはメモリリークが発生します。なぜでしょう? その理由は、無名の内部関数のために生成されたクロージャによって <code>el</code> への参照が意図せずキャッチされるためです。これは JavaScript オブジェクト (function) とネイティブオブジェクト (<code>el</code>) との間で循環参照を発生させます。</p>
+<pre class="script" style="font-size: 16px;">needsTechnicalReview();
+</pre>
+<p>この問題に対する回避策がいくつかあります。もっとも簡単な方法は、変数 <code>el</code> を使用しないことです:</p>
+<pre class="brush:js">function addHandler(){
+    document.getElementById('el').onclick = function(){
+        this.style.backgroundColor = 'red';
+    }
+}
+</pre>
+<p>驚いたことに、クロージャによって発生する循環参照を解消する手法のひとつが、別のクロージャを追加します:</p>
+<pre class="brush:js">function addHandler() {
+    var clickHandler = function() {
+        this.style.backgroundColor = 'red';
+    };
+    (function() {
+        var el = document.getElementById('el');
+        el.onclick = clickHandler;
+    })();
+}
+</pre>
+<p>内部関数は直ちに実行され、<code>clickHandler</code> によって作成されたクロージャからそのコンテンツを隠蔽します。</p>
+<p>クロージャに対する別の良い手法として、<code>window.onunload</code> イベント中に循環参照を解消することがあります。多くのイベントライブラリがこれを行うでしょう。ただし、これを行うと <a href="../../Using_Firefox_1.5_caching.html" title="ja/docs/Using_Firefox_1.5_caching">Firefox 1.5 の bfcache</a> が無効になりますので、他に理由がない限り Firefox では <code>unload</code> リスナを登録するべきではないことに注意してください。</p>
+<div class="originaldocinfo">
+  <h2 id=".E5.8E.9F.E6.96.87.E6.83.85.E5.A0.B1">原文情報</h2>
+  <ul>
+    <li>Author: <a class="external" href="http://simon.incutio.com/">Simon Willison</a></li>
+    <li>Last Updated Date: March 7, 2006</li>
+    <li>Copyright: © 2006 Simon Willison, contributed under the Creative Commons: Attribute-Sharealike 2.0 license.</li>
+    <li>More information: For more information about this tutorial (and for links to the original talk's slides), see Simon's <a class="external" href="http://simon.incutio.com/archive/2006/03/07/etech">Etech weblog post</a>.</li>
+  </ul>
+</div>
+<p> </p>
+                                                </article>
+
+              
+                <!-- attachments list -->
+                
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../tag/JavaScript.html">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/hokuto">hokuto</a>, <a href="../../../profiles/Yuichirou.html">Yuichirou</a>, <a href="../../../profiles/Mgjbot.html">Mgjbot</a>, <a href="../../../profiles/ethertank.html">ethertank</a>, <a href="../../../profiles/yyss.html">yyss</a>, <a href="../../../profiles/Potappo.html">Potappo</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-28T13:01:28-07:00">2013/05/28 13:01:28</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/JavaScript/A_re-introduction_to_JavaScript" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+            English (US)
+          </option>          <option value="/zh-TW/docs/Web/JavaScript/%E9%87%8D%E6%96%B0%E4%BB%8B%E7%B4%B9_JavaScript">
+            正體中文 (繁體)
+          </option>          <option value="/fr/docs/Web/JavaScript/Une_r%C3%A9introduction_%C3%A0_JavaScript">
+            Français
+          </option>          <option value="/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+            中文 (简体)
+          </option>          <option value="/ko/docs/A_re-introduction_to_JavaScript">
+            한국어
+          </option>          <option value="/tr/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+            Türkçe
+          </option>          <option value="/pt-BR/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+            Português (do Brasil)
+          </option>          <option value="/it/docs/Web/JavaScript/Una_reintroduzione_al_JavaScript">
+            Italiano
+          </option>          <option value="/ru/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+            Русский
+          </option>          <option value="/bn-BD/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/ro/docs/Web/JavaScript/O_re-introducere_in_JavaScript">
+            română
+          </option>          <option value="/de/docs/Web/JavaScript/Eine_Wiedereinfuehrung_in_JavaScript">
+            Deutsch
+          </option>          <option value="/th/docs/Web/JavaScript/A_re-introduction_to_JavaScript">
+            ไทย
+          </option>          <option value="/es/docs/Web/JavaScript/Una_re-introducci%C3%B3n_a_JavaScript">
+            Español
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="../../../jsi18n/build-1324c0a.js"></script>
+  
+      <!--[if lte IE 8]><script src="/media/redesign/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1324c0a"></script>
+
+          <script>
+        mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1324c0a"></script>
+      
+    <script type="text/javascript">
+      jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":589}</script></body>
+</html>

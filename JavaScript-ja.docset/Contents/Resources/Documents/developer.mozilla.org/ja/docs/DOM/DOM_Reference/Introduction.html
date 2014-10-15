@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>導入 - DOM | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="Introduction.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1324c0a" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1324c0a" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/DOM/DOM_Reference/Introduction$json">
+  <link rel="canonical" href="Introduction.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" title="Introduction">
+          <link rel="alternate" hreflang="pt-PT" href="https://developer.mozilla.org/pt-PT/docs/Gecko_DOM_Reference/Introduction" title="Introduction">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/R%C3%A9f%C3%A9rence_du_DOM_Gecko/Introduction" title="Introduction">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Referencia_DOM_de_Gecko/Introducci%C3%B3n" title="Introducción">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/Dokumentacja_Gecko_DOM/Wprowadzenie" title="Wprowadzenie">
+          <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/docs/Reference_del_DOM_di_Gecko/Introduzione" title="Introduzione">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Gecko_DOM_Reference/Introduction" title="Introduction">
+          <link rel="alternate" hreflang="cs" href="https://developer.mozilla.org/cs/docs/Gecko_DOM_Reference/Introduction" title="Introduction">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/DOM/DOM_Reference/Introduction" title="সূচনা">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction" title="DOM概述">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/DOM/DOM_Reference/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5" title="Введение">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="導入">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/DOM/DOM_Reference/Introduction">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/DOM/DOM_Reference/Introduction">
+  <meta name="twitter:title" content="導入">
+    <meta property="og:description" content="この節では、簡単かつ概念的に DOM を紹介します。それは何であり、 HTML や XML 文書にどのような構造を与え、アクセスはどのようにして可能であり、この API はどのようにして参照される情報を提供するかと、そして例を示します。">
+  <meta name="description" content="この節では、簡単かつ概念的に DOM を紹介します。それは何であり、 HTML や XML 文書にどのような構造を与え、アクセスはどのようにして可能であり、この API はどのようにして参照される情報を提供するかと、そして例を示します。">
+  <meta name="twitter:description" content="この節では、簡単かつ概念的に DOM を紹介します。それは何であり、 HTML や XML 文書にどのような構造を与え、アクセスはどのようにして可能であり、この API はどのようにして参照される情報を提供するかと、そして例を示します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="DOM/DOM_Reference/Introduction" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1324c0a',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": null}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": null}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": null}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Introduction.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Introduction.html#language">言語の選択</a></li>
+          <li><a href="Introduction.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/DOM/DOM_Reference/Introduction" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/DOM/DOM_Reference/Introduction" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" title="Introduction">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-PT/docs/Gecko_DOM_Reference/Introduction" title="Introduction">Português (Europeu)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/R%C3%A9f%C3%A9rence_du_DOM_Gecko/Introduction" title="Introduction">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Referencia_DOM_de_Gecko/Introducci%C3%B3n" title="Introducción">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/Dokumentacja_Gecko_DOM/Wprowadzenie" title="Wprowadzenie">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/docs/Reference_del_DOM_di_Gecko/Introduzione" title="Introduzione">Italiano</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Gecko_DOM_Reference/Introduction" title="Introduction">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/cs/docs/Gecko_DOM_Reference/Introduction" title="Introduction">Čeština</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/DOM/DOM_Reference/Introduction" title="সূচনা">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction" title="DOM概述">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/DOM/DOM_Reference/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5" title="Введение">Русский</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/DOM/DOM_Reference/Introduction$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/DOM/DOM_Reference/Introduction$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Introduction.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../DOM.html" rel="v:url" property="v:title">DOM</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../DOM_Reference.html" rel="v:url" property="v:title">DOM リファレンス</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">導入</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Introduction.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>導入</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="Introduction.html#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Introduction.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><li><ol><li><a href="Introduction.html#What_is_the_DOM.3F" rel="internal">DOM とはなにか?</a><code></code><code></code><code></code><code></code><li><a href="Introduction.html#DOM_and_JavaScript" rel="internal">DOM と JavaScript</a><li><a href="Introduction.html#How_Do_I_Access_the_DOM.3F" rel="internal">DOM にアクセスする方法</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Introduction.html#Important_Data_Types" rel="internal">重要なデータ型</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Introduction.html#DOM_Interfaces" rel="internal">DOM インタフェース</a><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="Introduction.html#Interfaces_and_Objects" rel="internal">インターフェイスとオブジェクト</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Introduction.html#Core_Interfaces_in_the_DOM" rel="internal">DOM の中で核となるインターフェイス</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="Introduction.html#Testing_the_DOM_API" rel="internal">DOM API のテスト</a><code></code><code></code><code></code><code></code></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p><span class="breadcrumbs domRef_breadcrumbs themeUpdated">« <a href="../DOM_Reference.html">DOM リファレンス</a></span> 
+ 
+ 
+</p><section class="Quick_links" id="Quick_Links"><!-- --></section><p></p>
+<p>この節では、簡単かつ概念的に DOM を紹介します。それは何であり、<a href="../../Web/HTML.html" title="ja/HTML">HTML</a> や <a href="../../XML.html" title="ja/XML">XML</a> 文書にどのような構造を与え、アクセスはどのようにして可能であり、この API はどのようにして参照される情報を提供するかと、そして例を示します。</p>
+<h3 id="What_is_the_DOM.3F" name="What_is_the_DOM.3F">DOM とはなにか?</h3>
+<p>Document Object Model (DOM) は HTML や XML 文書のためのプログラミング・インターフェースです。そして文書の構造化された表現を提供し、 プログラムから文書の構造やスタイル、コンテントを変更するためにその構造にアクセスする方法を定義します。DOM は文書の、ノードとオブジェクト (これらはさらにメソッドとプロパティをもちます) からなる構造的な集りとしての表現を提供します。ようするに、DOM は Web ページとスクリプトやプログラミング言語をつなぎます。</p>
+<p>Web ページは文書です。この文書はブラウザのウィンドウに表示されるか HTML ソースとして表示することが可能です。しかし両方の場合においてもそれは同じ文書です。ドキュメント・オブジェクト・モデル (DOM) はその同じ文書を表現、保存、操作する方法です。DOM は Web ページの完全なオブジェクト指向の表現で、JavaScript のようなスクリプト言語から変更できます。</p>
+<p><a class="external" href="http://www.w3.org/DOM/">W3C DOM</a> 標準はほとんどのモダンなブラウザで実装されている DOM の基本をなすものです。多くのブラウザは W3C 標準以上の独自拡張を提供しており、文書が多くのブラウザの異る DOM によってアクセスされる Web で独自拡張を使う場合には注意が必要です。</p>
+<p>例えば W3C DOM は以下のコードにおける <code>getElementsByTagName</code> メソッドは文書内のすべての &lt;p&gt; 要素のリストを返さなければならないと定義しています。</p>
+<pre>paragraphs = document.getElementsByTagName("P");
+// paragraphs[0] は最初の &lt;p&gt; 要素
+// paragraphs[1] は 2 番目の &lt;p&gt; 要素...
+alert(paragraphs[0].nodeName);
+</pre>
+<p>Web ページを操作したり、作成したりするために用意されているすべての属性、関数、イベントはオブジェクトとして提供されます (例えば、ドキュメント自身を表現する <code>document</code> オブジェクトや、 HTML のテーブルにアクセスするための特別な <code>HTMLTableElement</code> DOM インターフェイスを実装した <code>table</code> オブジェクト、などなど)。この文書は Gecko ベースのブラウザで実装されている DOM について、オブジェクトごとのリファレンスを提供します。</p>
+<h3 id="DOM_and_JavaScript" name="DOM_and_JavaScript">DOM と JavaScript</h3>
+<p>このリファレンスでの例と同様に、上の小さな例は JavaScript で書かれています。つまり、JavaScriptで<em>書かれて</em>いますが、しかし DOM を <em>利用</em> してウェブページとその要素にアクセスしています。DOM はプログラミング言語ではありません。しかし、DOM なしでは、JavaScript 言語は、 Web ページや XML ページ、主要な関心事項となる要素のモデルや概念を持ちません。 ドキュメント内のすべての要素—ドキュメント全体、HEAD、ドキュメント内のテーブル、テーブルのヘッダー、テーブルセル中のテキスト—はそのドキュメントのドキュメント・オブジェクト・モデルの一部であり、それゆえ DOM と JavaScript のようなスクリプト言語を通してそれらすべてにアクセスし、操作できます。</p>
+<p>初期には JavaScript と DOM は強く結びついていましたが、最終的には別々の存在ととして発展しました。ページのコンテントは DOM に格納され、JavaScript から操作できるでしょう。なのでこの近似の等式を書くことができるでしょう。</p>
+<p>API (web ないし XML ページ) = DOM + JS (スクリプト言語)</p>
+<p>DOM はいかなるプログラミング言語からも独立して作られていて、一つの一貫した API から構造的な表現を作ります。このリファレンスでは、JavaScript に特別な焦点を当てますが、DOM の実装はいかなる言語でもできます。ここに、Python の例を挙げます。</p>
+<pre class="eval"># Python DOM example
+import xml.dom.minidom as m
+doc = m.parse("C:\\Projects\\Py\\chap1.xml");
+doc.nodeName # DOM property of document object;
+p_list = doc.getElementsByTagName("para");
+</pre>
+<h3 id="How_Do_I_Access_the_DOM.3F" name="How_Do_I_Access_the_DOM.3F">DOM にアクセスする方法</h3>
+<p>DOM を使い始めるには、何も特別なものは必要ありません。異なるブラウザは異なる DOM の実装をもっています。そして、これらの実装の実際の DOM の規格への適応度はさまざまです (この話題に関してはこの文書では避けます)。しかし、すべての web ブラウザはスクリプトから web ページにアクセスできるように何らかのドキュメント・オブジェクト・モデルを持っています。</p>
+<p>インラインの <code>&lt;script&gt;</code> 要素であろうとも、スクリプトを読み込む命令によって web ページに埋め込まれていようとも、スクリプトを作れば、<code>document</code> や <code>window</code> 要素といった Web ページ中のさまざまな要素に対するに API をすぐに使い始めることが出来ます。それらの API でドキュメント自身を操作したり、ドキュメントの子要素を取り出したりできます。DOM でのプログラミングは以下のように簡単に出来ます。1 つは、<code><a href="https://developer.mozilla.org/Ja/DOM/window" title="Ja/DOM/window">window</a></code> オブジェクトの <code><a href="https://developer.mozilla.org/Ja/DOM/window.alert" title="Ja/DOM/window.alert">alert()</a></code> 関数を利用し、警告メッセージを表示しています。より長い例はより洗練された DOM 関数を使い、実際に新しいコンテンツを作り出しています。</p>
+<pre class="eval">&lt;body onload="window.alert('私のホームページへようこそ!');"&gt;
+</pre>
+<p>JavaScript が定義されている <code>&lt;script&gt;</code> 要素のほかに、この JavaScript は新しい <code>H1</code> 要素を作り、その要素にテキストを加え、文書のツリーに <code>H1</code> 要素を加えています。</p>
+<pre class="eval">&lt;html&gt;
+&lt;head&gt;
+&lt;script&gt;
+// この関数は文書が読みこまれた時に実行される
+window.onload = function() {
+   // create a couple of elements
+   // in an otherwise empty HTML page
+   heading = document.createElement("h1");
+   heading_text = document.createTextNode("Big Head!");
+   heading.appendChild(heading_text);
+   document.body.appendChild(heading);
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3 id="Important_Data_Types" name="Important_Data_Types">重要なデータ型</h3>
+<p>このリファレンスでは、様々なオブジェクトと種類をなるべく簡単な方法で説明します。しかし、API に渡される、注意しなければならないデータ型はたくさんあります。簡潔さのために、この API リファレンスでの構文の例は ノードを <code>element</code> とし、ノードの配列を <code>nodeList</code> (または、単純に <code>elements</code>)、さらに 属性ノードを単純に <code>attribute</code> として参照しています。</p>
+<p>以下の表はこれらのデータの種類を簡単に説明しています。</p>
+<table class="standard-table">
+  <tbody>
+    <tr>
+      <td><code>document</code></td>
+      <td>メンバ変数が <code>document</code> 型のオブジェクトを返すときは（例えば、element の <code>ownerDocument</code> 属性はそれが属する <code>document</code> を返します）、このオブジェクトはルート <code>document</code> オブジェクト自身です。<a href="https://developer.mozilla.org/Ja/DOM/document" title="Ja/DOM/document">DOM <code>document</code> Reference</a> の章は <code>document</code> オブジェクトを説明しています。</td>
+    </tr>
+    <tr>
+      <td><code>element</code></td>
+      <td><code>element</code> は要素、つまり DOM API のメンバ変数によって返される <code>element</code> 型のノードのことです。例えば、<code>document.createElement()</code> 関数はノードへのオブジェクトの参照を返すというより、むしろ単純に、この関数は DOM によってちょうど作られたばかりの <code>element</code> を返すと言います。 DOM の <code>Element</code> インターフェイスを実装した <code>element</code> オブジェクトとより基本の <code>Node</code> インターフェイスはこのリファレンスでは一緒にして含まれています。</td>
+    </tr>
+    <tr>
+      <td><code>nodeList</code></td>
+      <td><code>nodelist</code>とは、<code>document.getElementsByTagName()</code> などで返される要素の配列です。 <code>nodeList</code> 中の項目はインデックスを使って以下の２つの方法で収得できます。
+        <ul>
+          <li>list.item(1)</li>
+          <li>list<a href="https://developer.mozilla.org/ja/docs/DOM/DOM_Reference/1" title="1">1</a></li>
+        </ul>
+        <p>この 2 つの方法は等しいです。最初の方法では、<code>item()</code> は <code>nodeList</code> オブジェクトの一つの関数です。後者の方は、典型的な配列の構文を使いリスト中の 2 つ目の項目を取得しています。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>attribute</code></td>
+      <td><code>attribute</code> がメンバ変数によって返されるときは（例えば、<code>createAttribute()</code> 関数など）、属性のための特別な（ただし、小さな）インタフェイスを実装したオブジェクトの参照を返します。属性は要素のように DOM 中のノードですが、要素ほどは使われません。</td>
+    </tr>
+    <tr>
+      <td><code>namedNodeMap</code></td>
+      <td><code>namedNodeMap</code> は配列のようですが、名前とインデックスによって項目にアクセスされます。リストの中で特定の順序では並んでいないので、インデックスでアクセスするのはあまり便利な方法ではありません。この目的のために、<code>namedNodeMap</code> は <code>item()</code> 関数を用意しており、<code>namedNodeMap</code> から項目を追加・削除できます。</td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="DOM_Interfaces" name="DOM_Interfaces">DOM インタフェース</h3>
+<p>このガイドの目的は、DOM の階層構造を操作できるように、オブジェクトと実際の<em>もの</em>について説明することです。<code>HTML FORM</code> 要素をあらわすオブジェクトから <code>name</code> 属性を <code>HTMLFormElement</code> を通して取得することと、<strong><code>className</code></strong> 属性を <code>HTMLElement</code> から取得することにはたいてい差がありません。両方のケースともあなたの欲しい属性は単純に <code>form</code> オブジェクトの中にあります。</p>
+<p>しかし、DOM で実装されているオブジェクトとインターフェイスの関係は複雑なので、ここの節では、DOM の仕様での実際のインターフェイスとそれがどのように利用できるかについて少し説明しようと思います。</p>
+<h4 id="Interfaces_and_Objects" name="Interfaces_and_Objects">インターフェイスとオブジェクト</h4>
+<p>多くのオブジェクトは複数のインターフェイスを受けついでいます。例えば、table オブジェクトでは、特別な <a href="https://developer.mozilla.org/ja/DOM/table" title="ja/DOM/table">HTML Table Element インターフェース</a>を実装しており、そのインターフェイスは <code>createCaption</code> や <code>insertRow</code> といった関数を含んでいます。しかし、HTML の要素でもあるので、<a href="https://developer.mozilla.org/ja/Gecko_DOM_Reference/element" title="ja/Gecko_DOM_Reference/element">DOM <code>element</code> Reference</a> の章で説明している、<code>Element</code> インターフェイスも実装しています。さらには、HTML の要素は、DOM である限り、Web ページや XML ページのオブジェクトモデルを作りあげるノードツリーのノードであるので、table 要素は、<code>Element</code> が継承している、より基本的な <code>Node</code> インターフェイスを実装しています。</p>
+<p>次の例のように <code>table</code> オブジェクトの参照を入手したときは、知ることなく、このオブジェクトのこれら 3 つのインターフェイスをごく普通に交互に使います。</p>
+<pre>var table = document.getElementById("table");
+var tableAttrs = table.attributes; // Node/Element インターフェース
+for (var i = 0; i &lt; tableAttrs.length; i++) {
+  // HTMLTableElement インターフェース: border 属性
+  if(tableAttrs[i].nodeName.toLowerCase() == "border")
+    table.border = "1";
+}
+// HTMLTableElement インターフェース: summary 属性
+table.summary = "注意: 太くなった枠線";
+</pre>
+<h4 id="Core_Interfaces_in_the_DOM" name="Core_Interfaces_in_the_DOM">DOM の中で核となるインターフェイス</h4>
+<p>この節では DOM の中で最もよく使われるインターフェイスを列挙します。API がここで何をしているか記述するのではなく、DOM の中で非常に良く使われる関数や属性をちょっと示すのが狙いです。これらよく使われる API はこの本の最後の <a href="https://developer.mozilla.org/en/Gecko_DOM_Reference/Examples" title="en/Gecko_DOM_Reference/Examples">DOM の例</a> の章のより長い例の中で使われています。</p>
+<p><code>Document</code> と <code>window</code> オブジェクトが一般的に DOM プログラミングの中で最もよく使われます。簡単に言うと、<code>window</code> オブジェクトはブラウザのようなものを表現し、<code>document</code> オブジェクトはドキュメントのルート自身です。<code>Element</code> は一般的な <code>Node</code> インターフェイスを継承していて、あわせてこの 2 つのインターフェイスはここの要素で使われる多くの関数と属性を提供します。前節での <code>table</code> オブジェクトの例のように、これの要素はそれぞれが持つデータを扱うための特定のインターフェイスを持っている場合があります。</p>
+<p>以下は、DOM を使うウェブや XML ページのスクリプトでよく使われる API の簡単な一覧です。</p>
+<ul>
+  <li><code><a href="https://developer.mozilla.org/ja/DOM/document.getElementById" title="ja/DOM/document.getElementById">document.getElementById</a>(id)</code></li>
+  <li><code>element.<a href="https://developer.mozilla.org/ja/DOM/element.getElementsByTagName" title="ja/DOM/element.getElementsByTagName">getElementsByTagName</a>(name)</code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/DOM/document.createElement" title="ja/DOM/document.createElement">document.createElement</a>(name)</code></li>
+  <li><code>parentNode.<a href="https://developer.mozilla.org/ja/DOM/element.appendChild" title="ja/DOM/element.appendChild">appendChild</a>(node)</code></li>
+  <li><code>element.<a href="https://developer.mozilla.org/ja/DOM/element.innerHTML" title="ja/DOM/element.innerHTML">innerHTML</a></code></li>
+  <li><code>element.<a href="https://developer.mozilla.org/ja/DOM/element.style" title="ja/DOM/element.style">style</a>.left</code></li>
+  <li><code>element.<a href="https://developer.mozilla.org/ja/DOM/element.setAttribute" title="ja/DOM/element.setAttribute">setAttribute</a></code></li>
+  <li><code>element.<a href="https://developer.mozilla.org/ja/DOM/element.getAttribute" title="ja/DOM/element.getAttribute">getAttribute</a></code></li>
+  <li><code>element.<a href="https://developer.mozilla.org/ja/DOM/element.addEventListener" title="ja/DOM/element.addEventListener">addEventListener</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/DOM/window.content" title="ja/DOM/window.content">window.content</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/DOM/window.onload" title="ja/DOM/window.onload">window.onload</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/DOM/window.dump" title="ja/DOM/window.dump">window.dump</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/DOM/window.scrollTo" title="ja/DOM/window.scrollTo">window.scrollTo</a></code></li>
+</ul>
+<h3 id="Testing_the_DOM_API" name="Testing_the_DOM_API">DOM API のテスト</h3>
+<p>この文書は全てのインターフェースであなたの Web 開発において使えるにサンプルを提供しています。いくつかのケースでは、サンプルは完全な HTML ページで、これは DOM アクセスは &lt;script&gt; 要素の中に入っており、フォームのスクリプトを起動するのに必要なインターフェイス (例えば、ボタン) があり、DOM が操作する HTML 要素がリストされています。この場合は、例を新しい HTML ドキュメントにカット・アンド・ペーストし、保存し、ブラウザから例を走らせることができます。</p>
+<p>しかし、いくつかのケースでは例はより簡潔です。HTML 要素のインターフェイスの基本的な関係を示すだけの例を走らせるために、インターフェイスがスクリプトから簡単にアクセスできるようなテストページを準備したいと思うかもしれません。以下の非常に簡単な Web ページはインターフェイスをテストする関数をおけるようにするヘッダー中の &lt;script&gt; 要素と、習得・設定・操作できる属性を持ったいくつかの HTML 要素と、ブラウザからこれらの関数を呼ぶのに必要なウェブのユーザーインターフェイスを提供しています。</p>
+<p>あなたが興味のある DOM インターフェイスをテストするために、このテストページや似たようなものを作ることができますし、ブラウザ上でどのように動くか見れます。必要であれば <code>test()</code> 関数の中身を更新したり、もっとボタンを作ったり、必要な要素を追加したりできます。</p>
+<pre> &lt;html&gt;
+ &lt;head&gt;
+ &lt;title&gt;DOM Tests&lt;/title&gt;
+ &lt;script type="application/x-javascript"&gt;
+ function setBodyAttr(attr,value){
+     if(document.body) eval('document.body.'+attr+'="'+value+'"');
+     else notSupported();
+ }
+
+ &lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;div style="margin: .5in; height="400""&gt;
+ &lt;p&gt;&lt;b&gt;&lt;tt&gt;text&lt;/tt&gt; color&lt;/p&gt;
+ &lt;form&gt;
+ &lt;select onChange="setBodyAttr('text',
+     this.options[this.selectedIndex].value);"&gt;
+ &lt;option value="black"&gt;black
+ &lt;option value="darkblue"&gt;darkblue
+ &lt;/select&gt;
+
+ &lt;p&gt;&lt;b&gt;&lt;tt&gt;bgColor&lt;/tt&gt;&lt;/p&gt;
+ &lt;select onChange="setBodyAttr('bgColor',
+     this.options[this.selectedIndex].value);"&gt;
+ &lt;option value="white"&gt;white
+ &lt;option value="lightgrey"&gt;gray
+ &lt;/select&gt;
+
+ &lt;p&gt;&lt;b&gt;&lt;tt&gt;link&lt;/tt&gt;&lt;/p&gt;
+ &lt;select onChange="setBodyAttr('link',
+      this.options[this.selectedIndex].value);"&gt;
+ &lt;option value="blue"&gt;blue
+ &lt;option value="green"&gt;green
+ &lt;/select&gt;  &lt;small&gt;
+      &lt;a href="http://www.brownhen.com/dom_api_top.html" id="sample"&gt;
+ (sample link)&lt;/a&gt;&lt;/small&gt;&lt;br&gt;
+
+ &lt;/form&gt;
+ &lt;form&gt;
+   &lt;input type="button" value="version" onclick="ver()" /&gt;
+ &lt;/form&gt;
+ &lt;/div&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;
+</pre>
+<p>例えば、Web ページの色に影響する一連の属性のように、たくさんのインターフェイスを一つのページでテストするために、ボタンやテキスト入力欄、その他の HTML 要素を全部集めた似たようなテストページを作ることができます。以下のスクリーンショットは、インターフェイスをテストのために一緒にまとめる方法のアイディアを示します。</p>
+<p><img alt="画像:DOM_Ref_Introduction_to_the_DOM.gif" class="internal" src="https://developer.mozilla.org/@api/deki/files/1720/=DOM_Ref_Introduction_to_the_DOM.gif"></p>
+<p>図 0.1 DOM テストページの例</p>
+<p>この例では、背景色 (<code>bgColor</code>) やハイパーリンクの色 (<code>aLink</code>) や文字色 (<code>text</code>) といった DOM からアクセス可能な Web ページの側面をドロップダウンメニューが動的に更新します。 しかし、あなたはあなたのテストページをデザインします。あなたが読んだことに関してインターフェイスをテストすることは、DOM の効果的な利用法を学ぶうえで大切なことです。</p>
+                                                </article>
+
+              
+                <!-- attachments list -->
+                                  <section id="page-attachments" class="wiki-block">
+
+  <h3><i aria-hidden="true" class="icon-paperclip"></i>添付ファイル <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/Contributing/Editor_guide/Editing#The_attachments_box"><i aria-hidden="true" title="Learn how to use Attachments" class="icon-question-sign editor-help-icon"></i></a></h3>
+
+  
+  <p id="page-attachments-no-message" class="hidden">
+    This document has no attachments. Images can be attached, and then embedded in the article.
+      </p>
+
+  <script>
+    mdn.wiki.attachments = [{"description": "", "creator": "Kaorine", "mime": "image/gif", "date": "2007-03-18 15:23:34", "id": 1503, "size": 11751, "title": "DOM_Ref_Introduction_to_the_DOM.gif", "url": "https://mdn.mozillademos.org/files/1503/DOM_Ref_Introduction_to_the_DOM.gif", "html": "<tr data-revision-id=\"1676\" data-attachment-id=\"1503\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/1503/DOM_Ref_Introduction_to_the_DOM.gif\" target=\"_blank\">DOM_Ref_Introduction_to_the_DOM.gif</a>\n      <div class=\"attachment-description\"></div>\n  </td>\n  <td>11751 \u30d0\u30a4\u30c8</td>\n  <td>2007-03-18 15:23:34</td>\n  <td><a href=\"/ja/profiles/Kaorine\">Kaorine</a></td>\n</tr>", "creator_url": "/ja/profiles/Kaorine", "revision": 1676}, {"description": "", "creator": "Yoshino", "mime": "image/png", "date": "2007-10-07 14:50:57", "id": 1720, "size": 341, "title": "venkintro-watch-string.png", "url": "https://mdn.mozillademos.org/files/1720/venkintro-watch-string.png", "html": "<tr data-revision-id=\"1898\" data-attachment-id=\"1720\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/1720/venkintro-watch-string.png\" target=\"_blank\">venkintro-watch-string.png</a>\n      <div class=\"attachment-description\"></div>\n  </td>\n  <td>341 \u30d0\u30a4\u30c8</td>\n  <td>2007-10-07 14:50:57</td>\n  <td><a href=\"/ja/profiles/Yoshino\">Yoshino</a></td>\n</tr>", "creator_url": "/ja/profiles/Yoshino", "revision": 1898}];
+  </script>
+
+
+    <table cellpadding="0" cellspacing="0" id="page-attachments-table" class="">
+      <thead>
+        <th>ファイル</th>
+        <th>サイズ</th>
+        <th>日時</th>
+        <th>添付者:</th>
+      </thead>
+      <tbody>
+                  <tr data-revision-id="1676" data-attachment-id="1503">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/1503/DOM_Ref_Introduction_to_the_DOM.gif" target="_blank">DOM_Ref_Introduction_to_the_DOM.gif</a>
+      <div class="attachment-description"></div>
+  </td>
+  <td>11751 バイト</td>
+  <td>2007-03-18 15:23:34</td>
+  <td><a href="https://developer.mozilla.org/ja/profiles/Kaorine">Kaorine</a></td>
+</tr>
+                  <tr data-revision-id="1898" data-attachment-id="1720">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/1720/venkintro-watch-string.png" target="_blank">venkintro-watch-string.png</a>
+      <div class="attachment-description"></div>
+  </td>
+  <td>341 バイト</td>
+  <td>2007-10-07 14:50:57</td>
+  <td><a href="../../../profiles/Yoshino.html">Yoshino</a></td>
+</tr>
+              </tbody>
+    </table>
+
+
+  </section>                
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/%E7%A7%BB%E8%A1%8C">移行</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../profiles/Taken.html">Taken</a>, <a href="../../../profiles/ethertank.html">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/Kaorine">Kaorine</a>, <a href="../../../profiles/Shimono.html">Shimono</a>, <a href="../../../profiles/Yukoba.html">Yukoba</a>, <a href="https://developer.mozilla.org/ja/profiles/Ktjpn">Ktjpn</a>, <a href="../../../profiles/Mgjbot.html">Mgjbot</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-04T15:44:23-07:00">2013/05/04 15:44:23</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="Introduction.html#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+  <ol> 
+     
+    <li><a href="../DOM_Reference.html">DOM リファレンス</a></li> 
+    <li><strong><a href="https://developer.mozilla.org/ja/docs/Web/API/Introduction" title="The documentation about this has not yet been written; please consider contributing!"><code>Introduction</code></a></strong></li> 
+     
+    <li data-default-state="open"><a href="Introduction.html#"><strong>Properties</strong></a> 
+    <ol> 
+     
+    </ol></li> 
+     
+    <li data-default-state="open"><a href="Introduction.html#"><strong>Methods</strong></a> 
+    <ol> 
+     
+    </ol></li> 
+  </ol> 
+
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/DOM/DOM_Reference/Introduction" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/API/Document_Object_Model/Introduction">
+            English (US)
+          </option>          <option value="/pt-PT/docs/Gecko_DOM_Reference/Introduction">
+            Português (Europeu)
+          </option>          <option value="/fr/docs/R%C3%A9f%C3%A9rence_du_DOM_Gecko/Introduction">
+            Français
+          </option>          <option value="/es/docs/Referencia_DOM_de_Gecko/Introducci%C3%B3n">
+            Español
+          </option>          <option value="/pl/docs/Dokumentacja_Gecko_DOM/Wprowadzenie">
+            Polski
+          </option>          <option value="/it/docs/Reference_del_DOM_di_Gecko/Introduzione">
+            Italiano
+          </option>          <option value="/zh-TW/docs/Gecko_DOM_Reference/Introduction">
+            正體中文 (繁體)
+          </option>          <option value="/cs/docs/Gecko_DOM_Reference/Introduction">
+            Čeština
+          </option>          <option value="/bn-BD/docs/DOM/DOM_Reference/Introduction">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/zh-CN/docs/Web/API/Document_Object_Model/Introduction">
+            中文 (简体)
+          </option>          <option value="/ru/docs/DOM/DOM_Reference/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5">
+            Русский
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="../../../jsi18n/build-1324c0a.js"></script>
+  
+      <!--[if lte IE 8]><script src="/media/redesign/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1324c0a"></script>
+
+          <script>
+        mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1324c0a"></script>
+      
+    <script type="text/javascript">
+      jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":544}</script></body>
+</html>

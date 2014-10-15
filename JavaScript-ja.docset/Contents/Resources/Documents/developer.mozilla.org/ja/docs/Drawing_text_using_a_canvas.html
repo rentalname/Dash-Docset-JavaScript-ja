@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Drawing text using a canvas | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../index.html">
+  <link rel="copyright" href="Drawing_text_using_a_canvas.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Drawing_text_using_a_canvas$json">
+  <link rel="canonical" href="Drawing_text_using_a_canvas.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Drawing_text_using_a_canvas" title="Drawing text using a canvas">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Dibujar_texto_usando_canvas" title="Dibujar texto usando canvas">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Dessin_de_texte_avec_canvas" title="Dessin de texte avec canvas">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/Rysowanie_tekstu_przy_u%C5%BCyciu_canvas" title="Rysowanie tekstu przy użyciu canvas">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Drawing_text_using_a_canvas" title="Drawing text using a canvas">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Drawing_text_using_a_canvas" title="使用canvas繪製文字">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Drawing text using a canvas">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Drawing_text_using_a_canvas">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Drawing_text_using_a_canvas">
+  <meta name="twitter:title" content="Drawing text using a canvas">
+    <meta property="og:description" content="canvas 要素は 標準である HTML 5 での機能 と いくつかの実験的な Mozilla のメソッドとプロパティの両方を用いたテキスト描画をサポートします。">
+  <meta name="description" content="canvas 要素は 標準である HTML 5 での機能 と いくつかの実験的な Mozilla のメソッドとプロパティの両方を用いたテキスト描画をサポートします。">
+  <meta name="twitter:description" content="canvas 要素は 標準である HTML 5 での機能 と いくつかの実験的な Mozilla のメソッドとプロパティの両方を用いたテキスト描画をサポートします。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Drawing_text_using_a_canvas" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Drawing_text_using_a_canvas.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Drawing_text_using_a_canvas.html#language">言語の選択</a></li>
+          <li><a href="Drawing_text_using_a_canvas.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Drawing_text_using_a_canvas" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Drawing_text_using_a_canvas" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="Web/HTML.html">HTML</a></li>
+              <li><a href="Web/CSS.html">CSS</a></li>
+              <li><a href="Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="Web/API.html">API / DOM</a></li>
+              <li><a href="Web/Apps.html">Apps</a></li>
+              <li><a href="Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="Web/Reference.html">レファレンス</a></li>
+              <li><a href="Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../demos/index.html">MDN デモ</a></li>
+              <li><a href="Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="Tools.html">ツール</a></li><li><a href="../demos/index.html">MDN デモ</a></li><li><a href="Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Drawing_text_using_a_canvas" title="Drawing text using a canvas">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Dibujar_texto_usando_canvas" title="Dibujar texto usando canvas">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Dessin_de_texte_avec_canvas" title="Dessin de texte avec canvas">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/Rysowanie_tekstu_przy_u%C5%BCyciu_canvas" title="Rysowanie tekstu przy użyciu canvas">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Drawing_text_using_a_canvas" title="Drawing text using a canvas">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Drawing_text_using_a_canvas" title="使用canvas繪製文字">正體中文 (繁體)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Drawing_text_using_a_canvas$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Drawing_text_using_a_canvas$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Drawing_text_using_a_canvas.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../index.html" rel="v:url" property="v:title">MDN</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Drawing text using a canvas</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Drawing_text_using_a_canvas.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Drawing text using a canvas</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Drawing_text_using_a_canvas.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Drawing_text_using_a_canvas.html#Method_overview" rel="internal">メソッドの概要</a><li><a href="Drawing_text_using_a_canvas.html#Attributes" rel="internal">属性</a><li><a href="Drawing_text_using_a_canvas.html#Methods" rel="internal">メソッド</a><ol><li><a href="Drawing_text_using_a_canvas.html#fillText()_2" rel="internal">fillText()</a><li><a href="Drawing_text_using_a_canvas.html#mozMeasureText.28.29" rel="internal">measureText()</a><li><a href="Drawing_text_using_a_canvas.html#mozDrawText.28.29" rel="internal">mozDrawText()</a><li><a href="Drawing_text_using_a_canvas.html#mozMeasureText.28.29" rel="internal">mozMeasureText()</a><li><a href="Drawing_text_using_a_canvas.html#mozPathText.28.29" rel="internal">mozPathText()</a><li><a href="Drawing_text_using_a_canvas.html#mozTextAlongPath.28.29" rel="internal">mozTextAlongPath()</a><li><a href="Drawing_text_using_a_canvas.html#strokeText()_2" rel="internal">strokeText()</a></ol></li><li><a href="Drawing_text_using_a_canvas.html#Remarks_2" rel="internal">注意点</a><li><a href="Drawing_text_using_a_canvas.html#Additional_examples" rel="internal">さらなる例</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>   <code><a href="https://developer.mozilla.org/en/HTML/Canvas" title="en/HTML/Canvas">canvas</a></code> 要素は <a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/#text" title="http://www.whatwg.org/specs/web-apps/current-work/#text">標準である HTML 5 での機能</a> と いくつかの実験的な Mozilla のメソッドとプロパティの両方を用いたテキスト描画をサポートします。</p>
+<div class="note">
+ <p>Firefox 3.5 以降では、任意の調整された <a href="https://developer.mozilla.org/en/Canvas_tutorial/Applying_styles_and_colors#Shadows">影付き効果</a> が描画時にテキストに適用されます</p>
+</div>
+<p><span id="Method_overview"></span></p>
+<h2 id="Method_overview" name="Method_overview">メソッドの概要</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <td><code>void <a class="internal" href="https://developer.mozilla.org/en/Drawing_text_using_a_canvas#fillText()" title="en/Drawing text using a canvas#fillText()">fillText</a>(in <a class="internal" href="https://developer.mozilla.org/en/DOMString" title="en/DOMString">DOMString</a> text, in float x, in float y, [optional] in float maxWidth);</code> </td>
+  </tr>
+  <tr>
+   <td><a class="internal" href="https://developer.mozilla.org/nsIDOMTextMetrics" title="nsIDOMTextMetrics"><span style="font-family: monospace;">nsIDOMTextMetrics</span></a><code> <a class="internal" href="https://developer.mozilla.org/en/Drawing_text_using_a_canvas#measureText()" title="en/Drawing text using a canvas#measureText()">measureText</a>(in DOMString textToMeasure);</code> </td>
+  </tr>
+  <tr>
+   <td><code>void <a href="Drawing_text_using_a_canvas.html#mozDrawText.28.29">mozDrawText</a>(in DOMString textToDraw); <span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span></code></td>
+  </tr>
+  <tr>
+   <td><code>float <a href="Drawing_text_using_a_canvas.html#mozMeasureText.28.29">mozMeasureText</a>(in DOMString textToMeasure);</code><code> <span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span></code></td>
+  </tr>
+  <tr>
+   <td><code>void <a href="Drawing_text_using_a_canvas.html#mozPathText.28.29">mozPathText</a>(in DOMString textToPath);</code></td>
+  </tr>
+  <tr>
+   <td><code>void <a href="Drawing_text_using_a_canvas.html#mozTextAlongPath.28.29">mozTextAlongPath</a>(in DOMString textToDraw, in boolean stroke);</code></td>
+  </tr>
+  <tr>
+   <td><code>void <a class="internal" href="https://developer.mozilla.org/en/Drawing_text_using_a_canvas#strokeText()" title="en/Drawing text using a canvas#strokeText()">strokeText</a>(in DOMString text, in float x, in float y, [optional] in float maxWidth);</code> </td>
+  </tr>
+ </tbody>
+</table>
+<p> <span id="Attributes"></span></p>
+<h2 id="Attributes" name="Attributes">属性</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <td class="header">属性</td>
+   <td class="header">型</td>
+   <td class="header">説明</td>
+  </tr>
+  <tr>
+   <td><code>font</code> </td>
+   <td><code><a href="https://developer.mozilla.org/en/DOMString" title="en/DOMString">DOMString</a></code></td>
+   <td>
+    <p>テキストを描画するときに用いられる現在のテキストスタイル。この文字列は <a href="https://developer.mozilla.org/ja/CSS/font" title="ja/CSS/font">CSS font</a> 記述子 (<span style="color: green;">specifier</span>) と同じ構文を用います。描画時のテキストスタイルを変更するためには、以下で例示されているように、単純にこの属性の値を変更するだけです。デフォルトフォントは 12-point のサンセリフ (<span style="color: green;">sans-serif</span>) です。</p>
+    <p>例:</p>
+    <pre class="eval">
+ctx.font = "20pt Arial";</pre>
+   </td>
+  </tr>
+  <tr>
+   <td><code>mozTextStyle</code> <span title="これは非推奨 API です。未だ動作しているかも知れませんが、将来的に削除される可能性があります。"><i class="icon-thumbs-down-alt"> </i></span></td>
+   <td><code><a href="https://developer.mozilla.org/en/DOMString" title="en/DOMString">DOMString</a></code></td>
+   <td>
+    <p>上記の HTML 5 <code>font</code> 属性に置き換えられます。</p>
+   </td>
+  </tr>
+  <tr>
+   <td><code>textAlign</code> </td>
+   <td><code><a href="https://developer.mozilla.org/en/DOMString" title="en/DOMString">DOMString</a></code></td>
+   <td>
+    <p>テキストを描画するときに用いられる現在のテキスト配置。 指定可能な値:</p>
+    <dl>
+     <dt>
+      left</dt>
+     <dd>
+      テキストを左揃えにします。</dd>
+     <dt>
+      right</dt>
+     <dd>
+      テキストを右揃えにします。</dd>
+     <dt>
+      center</dt>
+     <dd>
+      テキストを中央揃えにします。</dd>
+     <dt>
+      start</dt>
+     <dd>
+      テキストを行の標準な開始位置から配置します (左から右へのロケールは左揃え、右から左へのロケールは右揃え).</dd>
+     <dt>
+      end</dt>
+     <dd>
+      テキストを行の標準な最終位置から配置します(左から右へのロケールは、右揃え、右から左へのロケールは左揃え)。</dd>
+    </dl>
+    <p>デフォルト値は <code>start</code> です。</p>
+   </td>
+  </tr>
+  <tr>
+   <td><code>textBaseline</code> </td>
+   <td><code><a href="https://developer.mozilla.org/en/DOMString" title="en/DOMString">DOMString</a></code></td>
+   <td>
+    <p>テキストを描画するときに用いられる現在のテキストのベースライン（基準線）。指定可能な値:</p>
+    <dl>
+     <dt>
+      top</dt>
+     <dd>
+      テキストベースラインは em square<span style="color: darkgreen; background: #ef9;">【訳注: 一辺が 1 em の正方形】</span> の上になります。</dd>
+     <dt>
+      hanging</dt>
+     <dd>
+      テキストベースラインは hanging ベースラインになります。<em>現在はサポートされておらず、</em>これは <strong>alphabetic </strong>のように振舞います。</dd>
+     <dt>
+      middle</dt>
+     <dd>
+      テキストベースラインは em square の真ん中になります。</dd>
+     <dt>
+      alphabetic</dt>
+     <dd>
+      テキストベースラインは標準的な alphabetic ベースラインになります。</dd>
+     <dt>
+      ideographic</dt>
+     <dd>
+      テキストベースラインは ideographic ベースラインになります。つまり、これは文字の主要な本体が alphabetic ベースラインの下からはみ出る場合、文字の本体の下になります。<em>現在はサポートされておらず、</em>これは <strong>alphabetic </strong>のように振舞います。</dd>
+     <dt>
+      bottom</dt>
+     <dd>
+      テキストベースラインは bounding box の下になります。これはディセンダー (<span style="color: green;">descenders</span>) <span style="color: darkgreen; background: #ef9;">【訳注: グリフのうちベースラインより下の部分。】</span>を考慮しないideographic ベースラインとは異なります。</dd>
+    </dl>
+    <p>デフォルト値は <code>alphabetic</code> です。</p>
+   </td>
+  </tr>
+  <tr>
+   <td> </td>
+   <td> </td>
+   <td> </td>
+  </tr>
+ </tbody>
+</table>
+<p>以下は <a class="external" href="http://www.whatwg.org/" title="http://www.whatwg.org/">WHATWG</a> 提供の、 textBaseline 属性によってサポートされている様々なベースラインを示した図です。</p>
+<p><img alt="The top of the em square is
+roughly at the top of the glyphs in a font, the hanging baseline is
+where some glyphs like आ are anchored, the middle is half-way
+between the top of the em square and the bottom of the em square,
+the alphabetic baseline is where characters like Á, ÿ,
+f, and Ω are anchored, the ideographic baseline is
+where glyphs like 私 and 達 are anchored, and the bottom
+of the em square is roughly at the bottom of the glyphs in a
+font. The top and bottom of the bounding box can be far from these
+baselines, due to glyphs extending far outside the em square." src="http://www.whatwg.org/specs/web-apps/current-work/images/baselines.png"></p>
+<p><span id="Methods"></span></p>
+<h2 id="Methods" name="Methods">メソッド</h2>
+<p><span id="fillText()"></span></p>
+<h3 id="fillText()_2">fillText()</h3>
+<p><code>font 属性によって指定されてテキストスタイル、および、</code><code>textAlign 属性によって指定された配置、</code><code>textBaseline 属性で指定されたベースラインを用いて</code>指定されたテキストを描画します。テキストは現在の <code>fillStyle</code> を用いて塗りつぶされ、<code>strokeStyle</code> は無視されます。</p>
+<div class="note">
+ <strong>註:</strong> このメソッドはGecko 1.9.1 (Firefox 3.5) で導入されました。また、HTML 5 標準の一部です。</div>
+<pre>void fillText(
+   in DOMString textToDraw,
+   in float x,
+   in float y,
+   [optional] in float maxWidth
+);
+</pre>
+<h5 id=".E5.BC.95.E6.95.B0">引数</h5>
+<dl>
+ <dt>
+  <code>textToDraw</code></dt>
+ <dd>
+  コンテキストに描画されるテキスト。</dd>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  描画を始める X 座標。</dd>
+ <dt>
+  <code>y</code></dt>
+ <dd>
+  描画を始める Y 座標。</dd>
+ <dt>
+  <code>maxWidth</code></dt>
+ <dd>
+  オプション。描画する最大幅。この引数が指定され、指定文字列の幅がこの幅より広く算出された場合、フォントはより水平方向に凝縮されたフォント（そのようなフォントが利用可能、もし くは、現在のフォントを水平方向に縮小することによって適度に読みやすいフォントに合成できる場合）か、より小さなフォントを用いるように調整されます。</dd>
+</dl>
+<h5 id=".E4.BE.8B">例</h5>
+<pre class="brush: js">ctx.fillText("Sample String", 10, 50);
+</pre>
+<p><span id="measureText()"></span></p>
+<h3 id="mozMeasureText.28.29" name="mozMeasureText.28.29">measureText()</h3>
+<p>指定されたテキストが現在のテキストスタイルで描画されるときの幅をピクセル単位で返します。</p>
+<div class="note">
+ <strong>註:</strong> このメソッドはGecko 1.9.1 (Firefox 3.5) で導入されました。また、HTML 5 標準の一部です。</div>
+<pre class="eval">nsIDOMTextMetrics measureText(
+  in DOMString textToMeasure
+);
+</pre>
+<h6 id="Parameters_2" name="Parameters_2">引数</h6>
+<dl>
+ <dt>
+  <code>textToMeasure</code></dt>
+ <dd>
+  ピクセル単位の幅で測定される対象となる文字列。</dd>
+</dl>
+<h6 id="Return_value" name="Return_value">戻り値</h6>
+<p>文字列が描画されたときの CSS ピクセルでの幅の数値を設定した <code>width </code>属性を持つ <a class="internal" href="https://developer.mozilla.org/nsIDOMTextMetrics" title="nsIDOMTextMetrics"><code>nsIDOMTextMetrics</code></a> オブジェクト。</p>
+<p><span id="mozDrawText()"></span></p>
+<h3 id="mozDrawText.28.29" name="mozDrawText.28.29">mozDrawText()</h3>
+<p></p><div class="overheadIndicator deprecated deprecatedHeader"> 
+			<p><strong>非推奨</strong><br></p> 
+		</div><p></p>
+<p><code>mozTextStyle </code>属性で指定されたテキストスタイルを用いて、指定されたテキストを描画します。コンテキストの現在の fill (<span style="color: green;">塗りつぶし</span>) の色がテキストの色として用いられます。</p>
+<div class="note">
+ <strong>註:</strong> このメソッドは公式の HTML 5 のメソッドである  <code>fillText()</code> および <code>strokeText()</code> に置き換えられます。</div>
+<pre class="eval">void mozDrawText(
+   in DOMString textToDraw
+);
+</pre>
+<h6 id="Parameters" name="Parameters">引数</h6>
+<dl>
+ <dt>
+  <code>textToDraw</code></dt>
+ <dd>
+  コンテキストに描画されるテキスト。</dd>
+</dl>
+<h6 id="Example" name="Example">例</h6>
+<pre class="brush: js">ctx.translate(10, 50);
+ctx.fillStyle = "Red";
+ctx.mozDrawText("Sample String");
+</pre>
+<p>この例は canvas の 座標 (10,50) に 赤で "Sample String" というテキストを描画します。</p>
+<p><span id="mozMeasureText()"></span></p>
+<h3 id="mozMeasureText.28.29" name="mozMeasureText.28.29">mozMeasureText()</h3>
+<p></p><div class="overheadIndicator deprecated deprecatedHeader"> 
+			<p><strong>非推奨</strong><br></p> 
+		</div><p></p>
+<p>指定されたテキストが現在のテキストスタイルで描画されるときの幅をピクセル単位で返します。</p>
+<div class="note">
+ <strong>註:</strong> このメソッドは HTML 5 のメソッドである <code>measureText()</code> に置き換えられます。</div>
+<pre class="eval">float mozMeasureText(
+  in DOMString textToMeasure
+);
+</pre>
+<h6 id="Parameters_2" name="Parameters_2">引数</h6>
+<dl>
+ <dt>
+  <code>textToMeasure</code></dt>
+ <dd>
+  ピクセル単位の幅で測定される対象となる文字列。</dd>
+</dl>
+<h6 id="Return_value" name="Return_value">戻り値</h6>
+<p>ピクセル単位でのテキストの幅。</p>
+<h6 id="Example_2" name="Example_2">例</h6>
+<pre class="brush: js">var text = "Sample String";
+var width = ctx.canvas.width;
+var len = ctx.mozMeasureText(text);
+ctx.translate((width - len)/2, 0);
+ctx.mozDrawText(text);
+</pre>
+<p>この例は文字列の幅を測定し、その情報を用いて canvas 要素内で水平方向に中心に寄せて文字列を描画します。</p>
+<p><span id="mozPathText()"></span></p>
+<h3 id="mozPathText.28.29" name="mozPathText.28.29">mozPathText()</h3>
+<p>指定されたテキストの輪郭を現在のパスに追加します。これは、望むならば、テキストを塗りつぶして描画するのではなく、テキストの輪郭線を描画することを可能にします。</p>
+<pre class="eval">void mozPathText(
+  in DOMString textToPath
+);
+</pre>
+<h6 id="Parameters_3" name="Parameters_3">引数</h6>
+<dl>
+ <dt>
+  <code>textToPath</code></dt>
+ <dd>
+  その輪郭線が現在のパスに追加される対象となるテキスト。</dd>
+</dl>
+<h6 id="Example_3" name="Example_3">例</h6>
+<pre class="brush: js">ctx.fillStyle = "green";
+ctx.strokeStyle = "black";
+ctx.mozPathText("Sample String");
+ctx.fill()
+ctx.stroke()
+</pre>
+<p>この例は現在のパスにテキストの輪郭を加え、パスを塗りつぶし、その輪郭線を描画することで黒で縁取られた緑の "Sample String" というテキストを描画します。</p>
+<p><span id="mozTextAlongPath()"></span></p>
+<h3 id="mozTextAlongPath.28.29" name="mozTextAlongPath.28.29">mozTextAlongPath()</h3>
+<p>現在のパスに沿って指定されたテキストを追加（あるいは 描画）します。</p>
+<pre class="eval">void mozTextAlongPath(
+  in DOMString textToDraw,
+  in boolean stroke
+);
+</pre>
+<h6 id="Parameters_4" name="Parameters_4">引数</h6>
+<dl>
+ <dt>
+  <code>textToDraw</code></dt>
+ <dd>
+  指定されたパスに沿って描画されるテキスト。</dd>
+ <dt>
+  <code>stroke</code></dt>
+ <dd>
+  この引数が <code>true</code> の場合、テキストは指定されたパスに沿って描画されます。<code>false</code> の場合、現在のパスに沿って描画されずに、そのパスに追加されます。</dd>
+</dl>
+<h6 id="Remarks" name="Remarks">注意点</h6>
+<p>グリフはパスの曲がり具合に応じた拡大縮小や変形を受けることはありません。その代わり、各グリフはパスの曲がり具合を補間した直線に沿って配置されます。これはユニークな効果を作るのに使うことができます。</p>
+<p><span id="strokeText()"></span></p>
+<h3 id="strokeText()_2">strokeText()</h3>
+<p><code>font 属性によって指定されてテキストスタイル、および、</code><code>textAlign 属性によって指定された配置、</code><code>textBaseline 属性で指定されたベースラインを用いて</code>指定されたテキストの輪郭線を描画します。  現在の <code>strokeStyle</code> はテキストの輪郭線を描画するときに用いられます。</p>
+<div class="note">
+ <strong>註:</strong> このメソッドはGecko 1.9.1 (Firefox 3.5) で導入されました。また、HTML 5 標準の一部です。</div>
+<pre>void strokeText(
+   in DOMString textToDraw,
+   in float x,
+   in float y,
+   [optional] in float maxWidth
+);
+</pre>
+<h5 id=".E5.BC.95.E6.95.B0_2">引数</h5>
+<dl>
+ <dt>
+  <code>textToDraw</code></dt>
+ <dd>
+  コンテキストに描画されるテキスト。</dd>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  描画を始める X 座標。</dd>
+ <dt>
+  <code>y</code></dt>
+ <dd>
+  描画を始める Y 座標。</dd>
+ <dt>
+  <code>maxWidth</code></dt>
+ <dd>
+  オプション。描画する最大幅。この引数が指定され、指定文字列の幅がこの幅より広く算出された場合、フォントはより水平方向に凝縮されたフォント（そのよ うなフォントが利用可能、もしくは、現在のフォントを水平方向に縮小することによって適度に読みやすいフォントに合成できる場合）か、より小さなフォント を用いるように調整されます。 </dd>
+</dl>
+<h5 id=".E4.BE.8B_2">例</h5>
+<pre class="brush: js">ctx.strokeText("Sample String", 10, 50);
+</pre>
+<p><span id="Remarks"></span></p>
+<h2 id="Remarks_2" name="Remarks_2">注意点</h2>
+<ul>
+ <li>HTML 5 の Canvas text の <a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/#text" title="http://www.whatwg.org/specs/web-apps/current-work/#text">WHATWG 仕様</a> を参照してください。</li>
+ <li>これらを使うのに特別なコンテクストは必要ありません。2D コンテクストで動作します。</li>
+ <li>現在の変形の影響を受けて全ての描画が行われます。</li>
+</ul>
+<p><span id="Additional_examples"></span></p>
+<h2 id="Additional_examples" name="Additional_examples">さらなる例</h2>
+<ul>
+ <li><a class="external link-https" href="https://bugzilla.mozilla.org/attachment.cgi?id=273497">パスの周りにテキストの輪郭線を描画する</a></li>
+ <li><a class="external link-https" href="https://bugzilla.mozilla.org/attachment.cgi?id=273498">パスに沿って描画する</a></li>
+ <li><a class="external link-https" href="https://bugzilla.mozilla.org/attachment.cgi?id=273499">円の周りを移動するテキストアニメーション</a></li>
+</ul>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="tag/NeedsContent.html">NeedsContent</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/HTML:Canvas">HTML:Canvas</a></li><li><a href="tag/MDC Project.html">MDC Project</a></li><li><a href="tag/HTML.html">HTML</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/NeedsHelp">NeedsHelp</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../profiles/Kohei.html">Kohei</a>, <a href="../profiles/Potappo.html">Potappo</a>, <a href="../profiles/teoli.html">teoli</a>, <a href="../profiles/Taken.html">Taken</a>, <a href="../profiles/Mgjbot.html">Mgjbot</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../profiles/teoli.html">teoli</a>,
+                      <time datetime="2014-05-21T02:05:29-07:00">2014/05/21 2:05:29</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Drawing_text_using_a_canvas" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Drawing_text_using_a_canvas">
+            English (US)
+          </option>          <option value="/es/docs/Dibujar_texto_usando_canvas">
+            Español
+          </option>          <option value="/fr/docs/Dessin_de_texte_avec_canvas">
+            Français
+          </option>          <option value="/pl/docs/Rysowanie_tekstu_przy_u%C5%BCyciu_canvas">
+            Polski
+          </option>          <option value="/ko/docs/Drawing_text_using_a_canvas">
+            한국어
+          </option>          <option value="/zh-TW/docs/Drawing_text_using_a_canvas">
+            正體中文 (繁體)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":0,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":732}</script></body>
+</html>

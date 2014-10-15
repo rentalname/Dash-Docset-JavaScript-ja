@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/Apps/Tools_and_frameworks/Web_components by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:43:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Web components and Mozilla Brick - アプリセンター | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+                  <link rel="stylesheet" type="text/css" href="../../Apps%24styles.html">
+          
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="Web_components%24json.html">
+  <link rel="canonical" href="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks/Web_components" >
+
+            <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/Apps/Tools_and_frameworks/Web_components" title="Les composants Web et Mozilla Brick">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/Apps/Tools_and_frameworks/Web_components" title="Web components and Mozilla Brick">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Web components and Mozilla Brick">
+  <meta property="og:url" content="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks/Web_components">
+  <meta name="twitter:url" content="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks/Web_components">
+  <meta name="twitter:title" content="Web components and Mozilla Brick">
+    <meta property="og:description" content="There is a problem with the Web as a platform for applications: HTML, the language that makes it easy to mark up documents and give them meaning doesn&#39;t have enough elements to build applications. There are quite a few new elements in the HTML5 spec, but their support is sketchy across browsers and there are still a lot of widgets missing that other platforms like Flex or iOS give developers out-of-the-box. As a result, developers build their own &#34;widgets&#34; like menu bars, slider controls and calendars using non-semantic HTML (mostly div elements) and make them interactive using JavaScript and theme-able using CSS.">
+  <meta name="description" content="There is a problem with the Web as a platform for applications: HTML, the language that makes it easy to mark up documents and give them meaning doesn&#39;t have enough elements to build applications. There are quite a few new elements in the HTML5 spec, but their support is sketchy across browsers and there are still a lot of widgets missing that other platforms like Flex or iOS give developers out-of-the-box. As a result, developers build their own &#34;widgets&#34; like menu bars, slider controls and calendars using non-semantic HTML (mostly div elements) and make them interactive using JavaScript and theme-able using CSS.">
+  <meta name="twitter:description" content="There is a problem with the Web as a platform for applications: HTML, the language that makes it easy to mark up documents and give them meaning doesn&#39;t have enough elements to build applications. There are quite a few new elements in the HTML5 spec, but their support is sketchy across browsers and there are still a lot of widgets missing that other platforms like Flex or iOS give developers out-of-the-box. As a result, developers build their own &#34;widgets&#34; like menu bars, slider controls and calendars using non-semantic HTML (mostly div elements) and make them interactive using JavaScript and theme-able using CSS.">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/Apps/Tools_and_frameworks/Web_components" contextmenu="edit-history-menu" class="document zone ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/Apps/Tools_and_frameworks/Web_components" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/Apps/Tools_and_frameworks/Web_components" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+                <div class="zone-article-header" id="document-main"><div class="center">
+          <!-- zone title -->
+          <div class="zone-title"><a href="https://developer.mozilla.org/en-US/Apps">App Center</a></div>
+          <!-- zone image -->
+          <div class="zone-image"></div>
+        </div></div>
+      
+     <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" ><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+  
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/Apps/Tools_and_frameworks/Web_components" title="Les composants Web et Mozilla Brick">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/Apps/Tools_and_frameworks/Web_components" title="Web components and Mozilla Brick">Português (do Brasil)</a></bdi></li>
+                              
+                              <li><a href="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks/Web_components$locales">Add a translation</a></li>
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks/Web_components$translate?tolocale=ja" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="Web_components%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">Web technology for developers</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Apps.html" rel="v:url" property="v:title">App Center</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Tools_and_frameworks.html" rel="v:url" property="v:title">Tools and frameworks</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Web components and Mozilla Brick</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Web components and Mozilla Brick</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#The_web_components_problem" rel="internal">The web components problem</a><li><a href="#The_Technology" rel="internal">The Technology</a><ol><li><a href="#Brick.3A_Curated_Web_Components" rel="internal">Brick: Curated Web Components</a><li><a href="#What_is_X-Tag.3F" rel="internal">What is X-Tag?</a></ol></li><li><a href="#Working_demos" rel="internal">Working demos</a><li><a href="#Using_Bricks_in_an_app" rel="internal">Using Bricks in an app</a><li><a href="#Your_own_bricks.3A_Creating_custom_elements_using_X-Tag" rel="internal">Your own bricks: Creating custom elements using X-Tag</a><ol><li><a href="#Registering_Your_Custom_Element" rel="internal">Registering Your Custom Element</a><li><a href="#The_Element_Lifecycle" rel="internal">The Element Lifecycle</a><li><a href="#Adding_Custom_Methods" rel="internal">Adding Custom Methods</a><li><a href="#Adding_Custom_Accessors" rel="internal">Adding Custom Accessors</a><li><a href="#The_Finished_Component" rel="internal">The Finished Component</a><ol><li><a href="#Improvement_ideas" rel="internal">Improvement ideas</a></ol></li></ol></li><li><a href="#See_also" rel="internal">See also</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                                          <div id="doc-pending-fallback" class="warning">
+                  この記事はまだ日本語に翻訳されていません。MDN の翻訳はボランティアによって行われています。<a href="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks/Web_components$translate?tolocale=ja">是非 MDN に登録し、私たちの力になって下さい。</a>                </div>
+              
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                  <div class="summary">
+ <p>In this article we explore the exciting new possibilities of web components for web app developers and how Mozilla's Brick and X-Tag libraries can facilitate their use. First we'll use Brick to rapidly prototype a simple application. Then, we'll build a custom web component using X-Tag.</p>
+</div>
+<p style="text-align: center;"><iframe frameborder="0" height="270" src="https://www.youtube.com/embed/eS1O46O5saA/?feature=player_detailpage" width="480"></iframe></p>
+<h2 id="The_web_components_problem">The web components problem</h2>
+<p>There is a problem with the Web as a platform for applications: HTML, the language that makes it easy to mark up documents and give them meaning doesn't have enough elements to build applications. There are quite a few new elements in the HTML5 spec, but their support is sketchy across browsers and there are still a lot of widgets missing that other platforms like Flex or iOS give developers out-of-the-box. As a result, developers build their own "widgets" like menu bars, slider controls and calendars using non-semantic HTML (mostly <code>&lt;div&gt;</code> elements) and make them interactive using JavaScript and theme-able using CSS.</p>
+<p>This is a great workaround but the issue is that we add on top of the functionality of browsers instead of extending the way they already function. In other words, a browser needs to display HTML and does a great job doing that at least 60 frames per second. We then add our own widget functionality on top of that and animate and change the display without notifying the browser. We constantly juggle the performance of the browser and our own code on top of it. This leads to laggy interfaces, battery drain and flickering.</p>
+<h2 id="The_Technology">The Technology</h2>
+<p>First we'll provide an overview of the technologies involved.</p>
+<h3 id="Brick.3A_Curated_Web_Components">Brick: Curated Web Components</h3>
+<p><a class="external" href="https://mozbrick.github.io/">Mozilla Brick</a> is a set of modular, reusable UI components. The components are designed for adaptive, responsive applications and are a great choice for going <a href="https://developer.mozilla.org/en-US/Apps/app_layout/Mobile_first">mobile first</a>, which is by and large how web-based applications should be developed. This philosophy and its design patterns accomodate a wide range of devices.  Brick components aren't just for <em>mobile apps</em>, they are for <em>modern apps</em>.</p>
+<p><strong>Brick is kind of like a library, but really you should think of it as a curated collection of web components.</strong><br>
+ <br>
+ Brick's collection of components are used declaratively in your HTML <code>&lt;like-this&gt;</code> and can be styled with CSS like regular non-custom elements. Brick components have their own micro-APIs for interacting with them. These components are building blocks. Do you like Lego? Good. You will like Brick.</p>
+<p>Brick web components are made using the X-Tag custom elements polyfill.</p>
+<h3 id="What_is_X-Tag.3F">What is X-Tag?</h3>
+<p><a class="external" href="http://x-tags.org/">X-Tag</a> is a library that polyfills several (and soon all) features that enable <a class="external" href="http://www.w3.org/TR/components-intro/">web components</a> in the browser. In particular, X-Tag is focused on <a class="external" href="http://stackoverflow.com/questions/6599815/what-is-the-difference-between-a-shim-and-a-polyfill">polyfilling</a> the creation of Custom Elements so that you can extend the DOM using your own declarative syntax and element-specific API.</p>
+<p>When you are using components from Brick, you are using web components made using the X-Tag library. Brick includes X-Tag core, so if you include Brick and then decide to make your own custom elements you do not need to include X-Tag to do so — all the features of X-Tag are already available for you.</p>
+<h2 id="Working_demos">Working demos</h2>
+<p><a class="external" href="https://github.com/afabbro/brick-and-x-tags-tutorial">Download the demo project files</a>. First we'll use the material in the <a class="external" href="https://github.com/afabbro/brick-and-x-tags-tutorial/tree/master/simple-app-with-bricks">simple-app-with-bricks</a> folder.</p>
+<h2 id="Using_Bricks_in_an_app">Using Bricks in an app</h2>
+<p>Here we will build a simple skeleton app using <code>&lt;x-appbar&gt;</code>, <code>&lt;x-deck&gt;</code>, and <code>&lt;x-card&gt;</code>. <a class="external" href="http://mozilla.github.io/brick/docs.html#x-tag-appbar">x-appbar</a> provides a tidy header bar for our application, and x-cards placed as children of an <a class="external" href="http://mozilla.github.io/brick/docs.html#x-tag-deck">x-deck</a> give us multiple views with transitions.</p>
+<p>First, we start with a barebones HTML document and then include Brick's CSS and JS, along with our own application-specific code (<code>app.css</code> and <code>app.js</code> respectively in the examples that follow).</p>
+<pre class="brush: html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;link rel="stylesheet" type="text/css" href="css/brick.min.css"&gt;
+    &lt;link rel="stylesheet" type="text/css" href="css/app.css"&gt;
+    &lt;title&gt;Simple - Brick Demo&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!--- Some Brick components will go here --&gt;
+    &lt;script type="text/javascript" src="js/brick.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="js/app.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;</pre>
+<p>Now we'll add some Brick elements:</p>
+<pre class="brush: html">&lt;x-appbar id="bar"&gt;
+  &lt;header&gt;Simple Brick App&lt;/header&gt;
+  &lt;button id="view-prev"&gt;Previous View&lt;/button&gt;
+  &lt;button id="view-next"&gt;Next View&lt;/button&gt;
+&lt;/x-appbar&gt;</pre>
+<p>Finally, below the <code>x-appbar</code> we'll create an <code>x-deck</code> with some <code>x-card</code>s as children. You can give the <code>x-card</code>s any content you like.</p>
+<pre class="brush: html">&lt;!-- Place your x-deck directly after your x-appbar --&gt;
+&lt;x-deck id="views"&gt;
+  &lt;x-card&gt;
+    &lt;h1&gt;View 1&lt;/h1&gt;
+    &lt;p&gt;Hello, world!&lt;/p&gt;
+  &lt;/x-card&gt;
+  &lt;x-card&gt;
+    &lt;h1&gt;Pick a Date&lt;/h1&gt;
+    &lt;p&gt;&amp;lt;x-datepicker&amp;gt;s are a polyfill for &amp;lt;input type="date"&amp;gt;&lt;/p&gt;
+    &lt;x-datepicker&gt;&lt;/x-datepicker&gt;
+    &lt;p&gt;Just here to show you another tag in action!&lt;/p&gt;
+  &lt;/x-card&gt;
+  &lt;x-card&gt;
+    &lt;h1&gt;A Random Cat To Spice Things Up&lt;/h1&gt;
+    &lt;!-- Fetches from the Lorem Pixel placeholder content service --&gt;
+    &lt;img src="http://lorempixel.com/300/300/cats"&gt;
+  &lt;/x-card&gt;
+&lt;/x-deck&gt;</pre>
+<p>We have already almost completed the structure for a simple application. All we need now is a little bit of CSS and JavaScript to tie it together. First, some simple JavaScript:</p>
+<pre class="brush: js">document.addEventListener('DOMComponentsLoaded', function() {
+  // Run any code here that depends on Brick components being loaded first
+  // Very similar to jQuery's document.ready()
+
+  // Grab the x-deck and the two buttons found in our x-appbar and assign to local vars
+  var deck = document.getElementById("views"),
+  nextButton = document.getElementById("view-next"),
+  prevButton = document.getElementById("view-prev");
+
+  // Add event listeners so that when we click the buttons, our views transition between one another
+  prevButton.addEventListener("click", function(){ deck.previousCard(); });
+  nextButton.addEventListener("click", function(){ deck.nextCard(); });
+});</pre>
+<p><img alt="A mobile app showing a simple calendar." src="https://mdn.mozillademos.org/files/7323/x-calendar.png" style="width: 361px; height: 555px; margin: 0px auto; display: block;"></p>
+<p>Some simple CSS to style our fledgling application:</p>
+<pre class="brush: css">html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100%;
+}
+
+h1 {
+  font-size: 100%;
+}
+
+x-deck &gt; x-card {
+  background: #eee;
+  padding: 0.6em
+}</pre>
+<p>Ka-bam! With a little bit of declarative markup and a few tweaks, we have a skeleton that anyone can use to make a multi-view app within a single HTML document. If you check out the markup in the developer tools, you'll see the Brick custom elements living happily alongside vanilla HTML elements - you can use the developer tools to inspect and manipulate them in the same way as regular old HTML.</p>
+<p><img alt="a screenshot of x-tags living alongside one another in the firefox dev tools" src="https://mdn.mozillademos.org/files/7325/dev-tools.png" style="width: 620px; height: 541px; display: block; margin: 0px auto;"></p>
+<p>Now let's learn how to make our own custom element using X-Tag.</p>
+<h2 id="Your_own_bricks.3A_Creating_custom_elements_using_X-Tag">Your own bricks: Creating custom elements using X-Tag</h2>
+<p>Let's say we have a mobile application in which the user takes an action that results in a blocking task. Maybe the application is waiting for an external service. The program's next instruction to complete the user-initiated task depends on the data from the server, so unfortunately we have to wait. For the sake of our purposes here, let's pretend we can't modify our program too much and assume an entrenched architecture — maybe we can't do much else other than communicate to the user until we find a way to deal with the blocking better. We have to do the best with what we have.<br>
+ <br>
+ We will create a custom modal spinner that will tell the user they need to wait for a little while. It's important to give your users feedback on what's happening in your app when they don't get to complete their task in a timely manner: a frustrated or confused user might give up on using your app.</p>
+<p>If you are following along with the example, you will want to switch to the <a class="external" href="https://github.com/afabbro/brick-and-x-tags-tutorial/tree/master/x-status-hud">x-status-hud</a> folder inside of the demo materials now.</p>
+<h3 id="Registering_Your_Custom_Element">Registering Your Custom Element</h3>
+<p>X-Tag relies on several different events to detect and upgrade elements to custom elements. X-Tag will work whether the element was present in the original source document, added by setting the <code>innerHTML</code> property, or created dynamically via <code>document.createElement</code>. You should take a look at the <a class="external" href="http://x-tags.org/docs#helpers">Helpers section</a> of the X-Tag documentation as it covers various functions that will allow you to work with your custom elements just like vanilla ones.</p>
+<p>The first thing that we need to do is <em>register</em> our custom element with X-Tag so that X-Tag knows what to do if and when it encounters our custom element. We do that by calling <code>xtag.register</code>:</p>
+<pre class="brush: js">xtag.register('x-status-hud', {
+  // We will give our tag custom behavior here for our status indicating spinner
+});</pre>
+<p>Important: All custom element names <em>must contain a hyphen</em>. Why is this? The idea here is that there are no standard HTML elements with a hyphen in them, so by keeping to this rule we can ensure that we don't trample existing namespaces and cause collisions. <strong>You do not have to prefix with <code>x-</code></strong>: this is just a convention used for components created with X-Tag in the Brick ecosystem. Once upon a time in the early days of the W3C specification for custom elements, it was speculated that all custom elements would have an <code>x-</code> prefix; this restriction was relaxed in later versions of the specification, meaning that <code>&lt;bacon-eggs&gt;</code> and <code>&lt;adorable-kitten&gt;</code> are both perfectly valid names. Choose a name that describes what your element <em>is</em> or <em>does</em>.</p>
+<p>If we wanted to, we could choose to set what HTML element is being used as our base element before upgrading. We can also set a specific prototype for our element if we want to involve functionality from a different element. You can declare these as follows:</p>
+<pre class="brush: js">xtag.register('x-superinput', {
+  extends: 'input',
+  prototype: Object.create(HTMLInputElement.prototype)
+});</pre>
+<p>The element we are building doesn't require these properties to be set explicitly, but they are worth mentioning because they will be useful to you when you write more advanced components and want a specific level of control over them.</p>
+<h3 id="The_Element_Lifecycle">The Element Lifecycle</h3>
+<p>Custom elements have events that fire at certain times during their lifetime. Events are fired when an element is created, inserted into the DOM, removed from the DOM, and when attributes are set. You can take advantage of none or all of these events.</p>
+<pre class="brush: js">lifecycle:{
+  created: function(){
+    // fired once at the time a component
+    // is initially created or parsed
+  },
+  inserted: function(){
+    // fired each time a component
+    // is inserted into the DOM
+  },
+  removed: function(){
+    // fired each time an element
+    // is removed from DOM
+  },
+  attributeChanged: function(){
+    // fired when attributes are set
+  }</pre>
+<p>Our element is going to use the <code>created</code> event. When this event fires, our code will add some child elements.</p>
+<pre class="brush: js">xtag.register('x-status-hud', {
+  lifecycle: {
+    created: function(){
+        this.xtag.textEl = document.createElement('strong');
+
+        this.xtag.spinnerContainer = document.createElement('div');
+        this.xtag.spinner = document.createElement('div');
+
+        this.xtag.spinnerContainer.className = 'spinner';
+
+        this.xtag.spinnerContainer.appendChild(this.xtag.spinner);
+        this.appendChild(this.xtag.spinnerContainer);
+        this.appendChild(this.xtag.textEl);
+    }
+  }
+  // More configuration of our element will follow here
+});</pre>
+<h3 id="Adding_Custom_Methods">Adding Custom Methods</h3>
+<p>We need to have control over when we show or hide our status HUD. To do that, we need to add some methods to our component. A simple <code>toggle()</code> may suffice for some use cases, but let's throw in individual <code>hide()</code> and <code>show()</code> functions too:</p>
+<pre class="brush: js">xtag.register('x-status-hud', {
+  lifecycle: {
+    created: function(){
+      this.xtag.textEl = document.createElement('strong');
+
+      this.xtag.spinnerContainer = document.createElement('div');
+      this.xtag.spinner = document.createElement('div');
+
+      this.xtag.spinnerContainer.className = 'spinner';
+
+      this.xtag.spinnerContainer.appendChild(this.xtag.spinner);
+      this.appendChild(this.xtag.spinnerContainer);
+      this.appendChild(this.xtag.textEl);
+    }
+  },
+
+  methods: {
+    toggle: function(){
+      this.visible = this.visible ? false : true;
+    },
+
+    show: function (){
+      this.visible = true;
+    },
+
+    hide: function (){
+      this.visible = false;
+    }
+  }</pre>
+<h3 id="Adding_Custom_Accessors">Adding Custom Accessors</h3>
+<p>Properties on custom elements don't have to map to an attribute. This is by design because some setters could be very complex and not have a sensible attribute equivalent. If you would like an attribute and property to be linked, you have to pass in an empty object literal to the <code>attribute</code>. In the example below, this has been done for the <code>label</code> attribute:</p>
+<pre class="brush: js">xtag.register('x-status-hud', {
+  lifecycle: {
+    created: function(){
+      this.xtag.textEl = document.createElement('strong');
+
+      this.xtag.spinnerContainer = document.createElement('div');
+      this.xtag.spinner = document.createElement('div');
+
+      this.xtag.spinnerContainer.className = 'spinner';
+
+      this.xtag.spinnerContainer.appendChild(this.xtag.spinner);
+      this.appendChild(this.xtag.spinnerContainer);
+      this.appendChild(this.xtag.textEl);
+    }
+  },
+
+  methods: {
+    toggle: function(){
+      this.visible = this.visible ? false : true;
+    },
+
+    show: function (){
+      this.visible = true;
+    },
+
+    hide: function (){
+      this.visible = false;
+    }
+  },
+
+  accessors: {
+    visible: {
+      attribute: { boolean: true }
+    },
+
+    label: {
+      attribute: {},
+
+      set: function(text) {
+        this.xtag.textEl.innerHTML = text;
+      }
+    }
+  }
+}); // End tag declaration</pre>
+<p>If <a class="external" href="http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html">the difference between attributes and properties</a> is unclear to you, Stack Overflow provides a good answer. Although the question being asked is about something else entirely (jQuery), the top answer has a great explanation that will help you understand the relationship between attributes and properties.</p>
+<h3 id="The_Finished_Component">The Finished Component</h3>
+<p>When we write code that depends on custom elements having been loaded already, we add an event listener that fires when the components have finished loading. This is sort of like jQuery's <code>document.ready</code>.</p>
+<pre class="brush: html">&lt;script type="text/javascript"&gt;
+document.addEventListener('DOMComponentsLoaded', function(){
+  // Any HUD customizations should be done here.
+  // We just pop up the HUD here to show you it works!
+  var testHUD = document.getElementById("test");
+  testHUD.label = "Please Wait...";
+  testHUD.show();
+}, false);
+&lt;/script&gt;</pre>
+<p><img alt="A custom HTML component showing a spinner widget with the message please wait" src="https://mdn.mozillademos.org/files/7327/custom-component.png" style="width: 375px; height: 538px; margin: 0px auto; display: block;"></p>
+<p>And there you have it. We've created a simple modular, reusable widget for our client-side code.</p>
+<h4 id="Improvement_ideas">Improvement ideas</h4>
+<p>Our widget is a good starting point, but is it really finished? There are a number of ways in which we can improve this element:</p>
+<ol>
+ <li>Have the element recalculate its size when the <code>attributeChanged</code> event is fired and have the component resize to fit the label as it is updated rather than truncate the label with an ellipsis.</li>
+ <li>Let the developer set an image, such as an animated GIF, in place of the CSS spinner to customize the user experience further.</li>
+ <li>Have a progress bar instead of a spinner to give the user some additional information about task progress.</li>
+</ol>
+<p>Use your creativity to come up with a small set of practical features and improvements beyond these as an exercise on your own.</p>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a class="external" href="https://github.com/mozilla/brick/">Mozilla Brick homepage</a></li>
+ <li><a class="external" href="http://mozbrick.github.io/">Mozilla Brick documentation</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks/Custom_elements">Custom elements</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks/x-tags">X-tags and the web components family</a></li>
+</ul>
+                              </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/building blocks">building blocks</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Web Components">Web Components</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/x-tag">x-tag</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/brick">brick</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/SteveLee">SteveLee</a>, <a href="https://developer.mozilla.org/ja/profiles/vtsatskin">vtsatskin</a>, <a href="https://developer.mozilla.org/ja/profiles/DavidWalsh">DavidWalsh</a>, <a href="https://developer.mozilla.org/ja/profiles/MarkGiffin">MarkGiffin</a>, <a href="https://developer.mozilla.org/ja/profiles/chrisdavidmills">chrisdavidmills</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/MarkGiffin">MarkGiffin</a>,
+                      <time datetime="2014-09-30T23:18:48-07:00">2014/09/30 23:18:48</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                                  <!-- zone subnav -->
+                    <nav class="zone-subnav-container" role="navigation">
+    <div class="subnav" id="Subnav">
+      
+<ol>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Quickstart">Quickstart</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Design" title="Information regarding app and interface design practices.">Design</a>
+  <ol>
+   <li><strong><a href="https://developer.mozilla.org/en-US/Apps/Design">Design overview</a></strong></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Planning_your_app">Planning</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Design_Principles">Design principles</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Installed_app_considerations">Installed app considerations</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Graphics_for_responsive_sites">Graphics for responsive sites</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Content">Content styleguide</a></li>
+   <li><a href="http://www.mozilla.org/en-US/styleguide/products/firefox-os/">Firefox OS styleguide</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Patterns">Small screen design patterns</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Responsive_Navigation_Patterns">Responsive navigation patterns</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Design_asset_library">Design asset library</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/app_layout/responsive_design_building_blocks">Building blocks of responsive design</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/app_layout/Responsive_design_versus_adaptive_design">Responsive design versus adaptive design</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/app_layout/Mobile_first">Mobile first</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Flexible boxes</a></li>
+  </ol>
+ </li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Build" title="This section contains documentation about building app functionality, with HTML5 and device APIs (WebAPIs).">Build</a>
+  <ol>
+   <li><strong><a href="https://developer.mozilla.org/en-US/Apps/Build">Build overview</a></strong></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/installable_apps_for_Firefox_OS">Installable apps for Firefox OS</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Basic_data_flow">Basic data flow</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/gather_and_modify_data">Gather and modify data</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/User_notifications">User notifications</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/User_input_methods">User input and controls</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Offline">Offline apps</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Audio_and_video_delivery">Audio and video delivery</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Audio_and_video_manipulation">Audio and video manipulation</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Advanced_network_communication">Advanced network communication</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Games">Develop games</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Localization">Localization</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Porting">Porting </a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Performance">App performance</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/App_development_FAQ">App development FAQ</a></li>
+  </ol>
+ </li>
+ <li><a href="https://developer.mozilla.org/en-US/Marketplace">Publish</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks">Tools and frameworks</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps">Reference apps</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Chrono">Chrono</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Face_value">Face Value</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Podcasts">Podcasts</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Roller">Roller</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Webfighter">Webfighter</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/General_notes">General notes</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/rtcamera">rtcamera</a></li>
+  </ol>
+ </li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Reference">Reference</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Layout_and_structure">Layout and structure</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Drawing_and_animation">Drawing and animation</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Firefox_OS_device_APIs">Firefox OS device APIs</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/General_Web_APIs">General web APIs</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Firefox_Marketplace_services">Firefox Marketplace services</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Firefox_OS_app_tools">Firefox OS app tools</a></li>
+  </ol>
+ </li>
+</ol>
+    </div>
+  </nav>&nbsp;
+                
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/en-US/Apps/Tools_and_frameworks/Web_components" selected>
+          English (US)
+        </option>
+                  <option value="/fr/Apps/Tools_and_frameworks/Web_components">
+            Français
+          </option>          <option value="/pt-BR/Apps/Tools_and_frameworks/Web_components">
+            Português (do Brasil)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":398}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/Apps/Tools_and_frameworks/Web_components by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:43:01 GMT -->
+</html>

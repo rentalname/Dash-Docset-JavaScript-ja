@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/Apps/Tutorials/General/App_code by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2014 00:20:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>アプリのコード - アプリセンター | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="App_code%24json.json">
+  <link rel="canonical" href="App_code.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/Apps/Tutorials/General/App_code" title="App code">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/Apps/Tutorials/General/App_code" title="Código de aplicativo">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="アプリのコード">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/Apps/Tutorials/General/App_code">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/Apps/Tutorials/General/App_code">
+  <meta name="twitter:title" content="アプリのコード">
+    <meta property="og:description" content="アプリが使う色や画像を別にすれば、アプリの設計は必ずしも動的ではありません。柔軟性の高いアプリの設計指針もほぼ同じです。しかし、アプリのコーディングに開発者が使うスタイルやツールについてはまったく別の話です。モバイルアプリのコーディングには様々なライブラリやフレームワークを利用できます。">
+  <meta name="description" content="アプリが使う色や画像を別にすれば、アプリの設計は必ずしも動的ではありません。柔軟性の高いアプリの設計指針もほぼ同じです。しかし、アプリのコーディングに開発者が使うスタイルやツールについてはまったく別の話です。モバイルアプリのコーディングには様々なライブラリやフレームワークを利用できます。">
+  <meta name="twitter:description" content="アプリが使う色や画像を別にすれば、アプリの設計は必ずしも動的ではありません。柔軟性の高いアプリの設計指針もほぼ同じです。しかし、アプリのコーディングに開発者が使うスタイルやツールについてはまったく別の話です。モバイルアプリのコーディングには様々なライブラリやフレームワークを利用できます。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/Apps/Tutorials/General/App_code" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': true,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+                
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/Apps/Tutorials/General/App_code" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                          <span class="oauth-icon oauth-github" data-service="GitHub" data-href="/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FApps%2FTutorials%2FGeneral%2FApp_code" title="GitHub"><i class="icon-github" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/Apps/Tutorials/General/App_code" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                                  <li><a href="https://developer.mozilla.org/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FApps%2FTutorials%2FGeneral%2FApp_code" class="login-link" data-service="GitHub"><i class="icon-github" aria-hidden="true"></i>GitHub</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../HTML.html">HTML</a></li>
+              <li><a href="../../../CSS.html">CSS</a></li>
+              <li><a href="../../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../API.html">API / DOM</a></li>
+              <li><a href="../../../Apps.html">Apps</a></li>
+              <li><a href="../../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Reference.html">レファレンス</a></li>
+              <li><a href="../../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/Apps/Tutorials/General/App_code" title="App code">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/Apps/Tutorials/General/App_code" title="Código de aplicativo">Português (do Brasil)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/Apps/Tutorials/General/App_code%24edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="App_code%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Apps.html" rel="v:url" property="v:title">アプリセンター</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Tutorials.html" rel="v:url" property="v:title">アプリ開発者向けチュートリアル</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../General.html" rel="v:url" property="v:title">一般的なアプリ開発チュートリアル</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">アプリのコード</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>アプリのコード</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#JavaScript_libraries" rel="internal">JavaScript ライブラリ</a><ol><li><a href="#jQuery_Mobile" rel="internal">jQuery Mobile</a><li><a href="#Dojo_Mobile" rel="internal">Dojo Mobile</a><li><a href="#MooTools_Moobile" rel="internal">MooTools Moobile</a></ol></li><li><a href="#CSS_libraries.2C_helpers.2C_and_techniques" rel="internal">CSS ライブラリ、ヘルパー、テクニック</a><ol><li><a href="#CSS_preprocessors" rel="internal">CSS プリプロセッサ</a><li><a href="#CSS3_techniques" rel="internal">CSS3 のテクニック</a><ol><li><a href="#Gradients" rel="internal">グラデーション</a><li><a href="#Box_and_text_shadows" rel="internal">ボックスとテキストのドロップシャドウ</a><li><a href="#Shapes_with_CSS" rel="internal">CSS によるシェープ</a></ol></li><li><a href="#Creating_responsive_layouts" rel="internal">レスポンシブレイアウトの設計</a><ol><li><a href="#Our_desktop_layout" rel="internal">デスクトップ向けレイアウト</a><li><a href="#Our_mobile_device_.26_phone_layouts" rel="internal">モバイル向けレイアウト</a><li><a href="#Percentage_widths" rel="internal">パーセント幅</a><li><a href="#Viewport_size-dependent_element_display" rel="internal">表示領域による可変サイズ要素</a><li><a href="#Viewport_size-dependent_imagery" rel="internal">表示領域による可変サイズ画像</a><li><a href="#Media_queries" rel="internal">メディアクエリ</a><li><a href="#orientationchange_and_resize_events" rel="internal"><code>orientationchange</code> と <code>resize</code> イベント</a><code></code><code></code></ol></li></ol></li><li><a href="#Web_app_bootstraps" rel="internal">Web アプリのブートストラップ</a><li><a href="#App_manifests" rel="internal">アプリマニフェスト</a><code></code><code></code><code></code><li><a href="#Application_cache" rel="internal">アプリケーションキャッシュ</a><li><a href="#Navigation" rel="internal">ナビゲーション</a><code></code><code></code><code></code>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>アプリが使う色や画像を別にすれば、アプリの設計は必ずしも動的ではありません。柔軟性の高いアプリの設計指針もほぼ同じです。しかし、アプリのコーディングに開発者が使うスタイルやツールについてはまったく別の話です。モバイルアプリのコーディングには様々なライブラリやフレームワークを利用できます。</p>
+<h2 id="JavaScript_libraries" name="JavaScript_libraries">JavaScript ライブラリ</h2>
+<h3 id="jQuery_Mobile" name="jQuery_Mobile">jQuery Mobile</h3>
+<p><a class="external" href="http://jquery.com/">jQuery</a> の公式モバイルフレームワークが <a class="external" href="http://jquerymobile.com/">jQuery Mobile</a> です。jQuery Mobile は、すべての一般的なモバイル端末プラットフォーム向けに、統合された HTML5 ベースのユーザインタフェースシステムを提供します。アプリケーションの設計やデザインのための <a class="external" href="http://jquerymobile.com/themeroller/">テーマビルダー</a> も公開されています。</p>
+<div class="infoBlock">
+  <ul>
+    <li><a class="external" href="http://jquerymobile.com/blog/">jQuery Mobile Blog</a></li>
+    <li><a class="external" href="http://jquerymobile.com/demos/1.1.0/">jQuery Mobile API</a></li>
+    <li><a class="external" href="http://api.jquery.com/">jQuery API</a></li>
+  </ul>
+</div>
+<h3 id="Dojo_Mobile" name="Dojo_Mobile">Dojo Mobile</h3>
+<p><a class="external" href="http://dojotoolkit.org/features/mobile">Dojo Mobile</a> は <a class="external" href="http://dojotoolkit.org/">Dojo Toolkit</a> のモバイルフレームワークで、柔軟なビューやウィジェット、自動端末判別、テーマなどを備えています。<a class="external" href="http://demos.dojotoolkit.org/demos/demos.php?cat=mobile">Dojo Mobile Showcase</a> では Dojo Mobile の先進的な活用事例が紹介されています。</p>
+<div class="infoBlock">
+  <ul>
+    <li><a class="external" href="http://dojotoolkit.org/documentation/tutorials/1.7/mobile/tweetview/getting_started/">Getting Started with dojox/mobile</a></li>
+    <li><a class="external" href="http://livedocs.dojotoolkit.org/dojox/mobile">Dojo Mobile Documentation</a></li>
+    <li><a class="external link-https" href="https://www.ibm.com/developerworks/mydeveloperworks/blogs/ykami/entry/dojox_mobile_pane_dojox_mobile_container_and_dojox_mobile_contentpane9">Dojo Mobile 1.8 Work-In-Progress</a></li>
+    <li><a class="external" href="http://dojotoolkit.org/api/">Dojo Toolkit API</a></li>
+  </ul>
+</div>
+<h3 id="MooTools_Moobile" name="MooTools_Moobile">MooTools Moobile</h3>
+<p><a class="external" href="http://mootools.net/">MooTools</a> の非公式モバイルフレームワークは <a class="external" href="http://moobilejs.com/">Moobile</a> と呼ばれています。Moobile は、モバイルアプリケーションのテンプレートと、多数のシンプルなモバイルウィジェットを提供します。</p>
+<div class="infoBlock">
+  <ul>
+    <li><a class="external link-https" href="https://github.com/cpojer/mootools-mobile">MooTools Mobile</a></li>
+    <li><a class="external" href="http://mootools.net/docs/core">MooTools Documentation</a></li>
+    <li><a class="external" href="http://mootools.net/forge/">MooTools Forge</a></li>
+  </ul>
+</div>
+<p>これらの他にもモバイル Web アプリの開発に役立つ JavaScript フレームワークは多数公開されています。優れたモバイル Web アプリ JavaScript フレームワークを探すときは、マルチデバイス対応やタッチ・ジェスチャーイベント対応、ホストフレームワークとの統合 API といった点について確認しましょう。</p>
+<p class="tutBlock">このチュートリアルで開発する Web アプリには jQuery Mobile を使用します。あなたのアプリの目標に応じて、モバイルフレームワークを選ぶ前に (あるいはそもそもフレームワークを使うかどうか決める前に) いくつか試して評価してみましょう。多くの場合、フレームワークを使ったアプリの開発は時間の節約になりますが、逆にフレームワークを使うまでもないこともあります。</p>
+<h2 id="CSS_libraries.2C_helpers.2C_and_techniques" name="CSS_libraries.2C_helpers.2C_and_techniques">CSS ライブラリ、ヘルパー、テクニック</h2>
+<p>CSS は Web ベースの技術において重要な役割を果たします。CSS の作成、保守、整理に役立つと思われる様々な CSS ライブラリがあります。</p>
+<h3 id="CSS_preprocessors" name="CSS_preprocessors">CSS プリプロセッサ</h3>
+<p>CSS はシンプルな言語ですが、変数が使えないこと、ベンダー接頭辞付きのスタイル代入を繰り返す必要があることが、その保守を難しくしています。それはモバイルアプリ開発者が本来抱える必要のない悩みの種です。CSS プリプロセッサはアプリの開発を容易にし、より良いコードの整理とより高速な開発を可能にします。</p>
+<p>そうした CSS プリプロセッサのひとつである <a class="external" href="http://lesscss.org/">LESS</a> を使うと、CSS はこのように書くことができます。</p>
+<pre class="brush: css">@someColor: #000; /* 色指定変数 */
+
+.rounded-corners (@radius: 5px) { /* 関数 */
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+p {
+  color: @someColor;
+  a {
+    color: #fff;
+    background: @someColor;
+    
+    .rounded-corners;
+  }
+}
+	</pre>
+<p>これは LESS プリプロセッサによって以下のように変換されます。</p>
+<pre class="brush: css">p { 
+  color: #000;
+}
+
+p a {
+  color: #fff;
+  background: #000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+	</pre>
+<p>LESS は最も人気のある CSS プリプロセッサですが、<a class="external" href="http://sass-lang.com/">SASS</a> や <a class="external" href="http://learnboost.github.com/stylus/">Stylus</a> といったものも公開されており便利です。</p>
+<h3 id="CSS3_techniques" name="CSS3_techniques">CSS3 のテクニック</h3>
+<p>Web アプリは、優れたデザインや画像の削減を可能にする様々な CSS のテクニックを活用するでしょう。</p>
+<h4 id="Gradients" name="Gradients">グラデーション</h4>
+<p>CSS3 は簡単な CSS コードで <a href="../../../Guide/CSS/Using_CSS_gradients.html">直線状や放射状のグラデーション</a> を作成する機能を提供します。</p>
+<pre class="brush: css">h1 { 
+  background-image: linear-gradient(#6facd5, #497bae);
+}
+</pre>
+<h4 id="Box_and_text_shadows" name="Box_and_text_shadows">ボックスとテキストのドロップシャドウ</h4>
+<p><a href="../../../CSS/box-shadow.html">ボックスシャドウ</a> と <a href="../../../CSS/text-shadow.html">テキストシャドウ</a> は、ブロック要素とテキストに微妙な深さの表現を提供します。</p>
+<pre class="brush: css">.shadower {
+  box-shadow: 10px 5px 5px #000;
+  text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
+  color: white;
+  font: 1.5em Georgia, "Bitstream Charter", "URW Bookman L", "Century Schoolbook L", serif;
+}
+</pre>
+<h4 id="Shapes_with_CSS" name="Shapes_with_CSS">CSS によるシェープ</h4>
+<p>CSS を使えば、三角形や円形といったシャープを巧妙に作り出すこともできます。</p>
+<pre class="brush: css">.arrowRight {
+  width: 0; 
+  height: 0; 
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  border-left: 5px solid #2f2f2f;
+  font-size: 0;
+  line-height: 0;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+</pre>
+<h3 id="Creating_responsive_layouts" name="Creating_responsive_layouts">レスポンシブレイアウトの設計</h3>
+<p>レスポンシブレイアウトは、端末やその向きを問わず動作する柔軟なアプリの作成において最も重要です。そうしたデザインを実現するためのテクニックをいくつか挙げます。</p>
+<div class="tutBlock">
+  <h4 id="Our_desktop_layout" name="Our_desktop_layout">デスクトップ向けレイアウト</h4>
+  <p><img alt="desktop-screenshot1.png" class="internal default" src="https://developer.mozilla.org/files/3732/desktop-screenshot1.png"></p>
+  <h4 id="Our_mobile_device_.26_phone_layouts" name="Our_mobile_device_.26_phone_layouts">モバイル向けレイアウト</h4>
+  <p><img alt="iphone-screenshot1.png" class="internal default" src="https://developer.mozilla.org/@api/deki/files/6278/=iphone-screenshot1.png"><img alt="iphone-screenshot2.png" class="internal default" src="https://developer.mozilla.org/@api/deki/files/6279/=iphone-screenshot2.png"></p>
+</div>
+<h4 id="Percentage_widths" name="Percentage_widths">パーセント幅</h4>
+<p>固定ピクセル幅は滅多に使われるべきではありません。パーセント幅の方が要素を端末の表示領域に適応させられるため望ましいでしょう。固定幅 (高さも同様に) は一般的に、小さく本当に固定されたサイズのアイテムにのみ使われるべきです。</p>
+<h4 id="Viewport_size-dependent_element_display" name="Viewport_size-dependent_element_display">表示領域による可変サイズ要素</h4>
+<p>表示領域によって要素の表示・非表示を切り替えるのは一般的な手法です。多くのコンテンツを小さな領域に詰め込んだり、アプリのデザインを完全に変更したりする代わりに、単純にそうした「補助的」要素を隠すことは最適な選択肢となり得るでしょう。</p>
+<h4 id="Viewport_size-dependent_imagery" name="Viewport_size-dependent_imagery">表示領域による可変サイズ画像</h4>
+<p>画像サイズを端末の表示領域に適応させることも一般的な手法で、ベクター画像 (<a href="https://developer.mozilla.org/ja/docs/SVG">SVG</a> など) の活用はアプリのベストプラクティスと言えます。</p>
+<h4 id="Media_queries" name="Media_queries">メディアクエリ</h4>
+<p><a href="../../../Guide/CSS/Media_queries.html">CSS メディアクエリ</a> を使えば、表示領域サイズ、端末の向き、アスペクト比などに合わせて、レイアウトや要素のスタイルを適応させることが可能です。</p>
+<pre class="brush: css">/* 画面サイズに応じたメディアクエリ */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+}
+
+/* 端末の向きに応じたメディアクエリ */
+@media (orientation:portrait) {
+
+}
+@media (orientation:landscape) {
+
+}
+
+/* 高度なメディアクエリの使用例 */
+@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+
+}
+
+/* アスペクト比 */
+@media screen and (device-aspect-ratio: 16/9) {
+
+}
+</pre>
+<h4 id="orientationchange_and_resize_events" name="orientationchange_and_resize_events"><code>orientationchange</code> と <code>resize</code> イベント</h4>
+<p>端末の向きが変わったことは JavaScript でも判別できます。多くのブラウザが <code>orientationchange</code> イベントを呼び出し、またすべてのブラウザが <code>resize</code> イベントを呼び出すことが知られています。</p>
+<pre class="brush: js">window.addEventListener("resize", function() { 
+  // 幅によって端末の向きを判別
+  var orientation = window.innerWidth &gt; window.innerHeight ? "landscape" : "portrait";
+  
+  // その結果によって何らかの処理を実行
+}, false);
+
+</pre>
+<h2 id="Web_app_bootstraps" name="Web_app_bootstraps">Web アプリのブートストラップ</h2>
+<p>情報のサーバサイド処理は、任意のサーバサイド技術によって行われます。人気のあるサーバサイド言語には、PHP、Python、<a class="external" href="http://nodejs.org/">NodeJS</a> + <a class="external" href="http://expressjs.com/">Express</a> などがあります。また、アプリのログインを実現するため <a href="https://developer.mozilla.org/ja/docs/Mozilla/Persona">Mozilla Persona</a> を実装することも可能です。</p>
+<h2 id="App_manifests" name="App_manifests">アプリマニフェスト</h2>
+<p>Firefox Marketplace へ登録するアプリには <a href="../../Manifest.html">アプリケーションマニフェスト</a> が必要です。マニフェストには、Web ブラウザがアプリとやりとりするのに必要な基本情報が含まれます。マニフェストは <a href="https://developer.mozilla.org/ja/docs/JSON">JSON</a> で記述されます。シンプルな. マニフェストは以下のようになります。</p>
+<pre class="brush: js">{
+  "version": "0.1",
+  "name": "Area Tweet",
+  "description": "Find tweets by for any location",
+  "icons": {
+    "16": "http://areatweet.com/images/icon-16.png",
+    "48": "http://areatweet.com/images/icon-48.png",
+    "128": "http://areatweet.com/images/icon-128.png"
+  },
+  "developer": {
+    "name": "David Walsh",
+    "url": "http://areatweet.com"
+  },
+  "installs_allowed_from": [
+    "https://marketplace.firefox.com",
+    "http://areatweet.com"
+  ],
+  "default_locale": "en"
+}
+</pre>
+<p>アプリケーションマニフェストは <strong>Firefox Marketplace ではなく</strong>ホストサーバに置かれます。また、<code>.webapp</code> という拡張子を付けて公開することが推奨されています。マニフェストは <code>application/x-web-app-manifest+json</code> の <a href="https://developer.mozilla.org/ja/docs/HTTP">HTTP</a> <code>Content-Type</code> ヘッダで公開しなければなりません。HTTPS の使用も推奨されます。</p>
+<p>マニフェストのプロパティ一覧は <a href="../../Manifest.html">ここにあります</a>。マニフェスト作成時のヒントを提供し、マニフェストの公開プロセスがなぜそのようになっているのかを解説した <a href="../../FAQs/About_app_manifests.html">よくある質問</a> の記事もあります。</p>
+<p>マニフェスト内では、画像も含めて絶対パスを使います。Firefox Marketplace は今のところ、相対パスを含むマニフェストを受け付けません。</p>
+<h2 id="Application_cache" name="Application_cache">アプリケーションキャッシュ</h2>
+<p>詳しくは <a href="https://developer.mozilla.org/ja/docs/HTML/Using_the_application_cache">アプリケーションキャッシュの使用</a> をご覧ください。</p>
+<h2 id="Navigation" name="Navigation">ナビゲーション</h2>
+<p>Open Web Apps が Web ランタイム上で実行される場合、ナビゲーションコントロールは表示されません。<code>window.locationbar.visible</code> プロパティを確認することでその状態を判別できます。<code>window.locationbar.visible</code> が <code>false</code> の場合、ナビゲーションは表示されていません。その値をチェックし、必要ならアプリのユーザにナビゲーションコントロールを提供しましょう。これは、アプリがインストールされているかどうか、あるいはアプリが Web ランタイム上で実行されているかどうかを確認するひとつの方法でもあります。</p>
+<p>アプリ内でコードが実行されていることを確認する別の方法は、<a href="../../FAQs/About_apps.html#How_can_my_app_detect_that_it_is_in_the_Web_runtime.3F">Web ランタイム上にあるかどうかをアプリから判別するには？</a> を参照してください。</p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Apps">Apps</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/Yoshino">Yoshino</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/Yoshino">Yoshino</a>,
+                      <time datetime="2013-07-14T09:12:40-07:00">2013/07/14 9:12:40</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/Apps/Tutorials/General/App_code" selected>
+          日本語
+        </option>
+                  <option value="/en-US/Apps/Tutorials/General/App_code">
+            English (US)
+          </option>          <option value="/pt-BR/Apps/Tutorials/General/App_code">
+            Português (do Brasil)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":0,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":746}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/Apps/Tutorials/General/App_code by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Oct 2014 00:20:28 GMT -->
+</html>

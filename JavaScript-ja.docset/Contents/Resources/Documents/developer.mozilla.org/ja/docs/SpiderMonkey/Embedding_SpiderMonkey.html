@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Embedding SpiderMonkey - SpiderMonkey | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../index.html">
+  <link rel="copyright" href="Embedding_SpiderMonkey.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Embedding_SpiderMonkey$json">
+  <link rel="canonical" href="Embedding_SpiderMonkey.html" >
+
+  
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Embedding SpiderMonkey">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/Embedding_SpiderMonkey">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/Embedding_SpiderMonkey">
+  <meta name="twitter:title" content="Embedding SpiderMonkey">
+    <meta property="og:description" content="JSエンジンはJS 1.0から1.4をサポートします。JS 1.3以上はECMAScript-262規格に従います。より基本的には、JSエンジンはJS構文と関数をふくむスクリプトを、パースし、コンパイルして実行します。エンジンはスクリプトの実行に必要な、データやオブジェクトのために、メモリを取得し、クリーンナップ（ガベレージコレクション＝必要でなくなったデータやオブジェクトをメモリを解放）します。 The JS engine supports JS 1.0 through JS 1.4. JS 1.3 and greater conform to the ECMAScript-262 specification. At its simplest, the JS engine parses, compiles, and executes scripts containing JS statements and functions. The engine handles memory allocation for the JS data types and objects needed to execute scripts, and it cleans up -- garbage collects -- the data types and objects in memory that it no longer needs.">
+  <meta name="description" content="JSエンジンはJS 1.0から1.4をサポートします。JS 1.3以上はECMAScript-262規格に従います。より基本的には、JSエンジンはJS構文と関数をふくむスクリプトを、パースし、コンパイルして実行します。エンジンはスクリプトの実行に必要な、データやオブジェクトのために、メモリを取得し、クリーンナップ（ガベレージコレクション＝必要でなくなったデータやオブジェクトをメモリを解放）します。 The JS engine supports JS 1.0 through JS 1.4. JS 1.3 and greater conform to the ECMAScript-262 specification. At its simplest, the JS engine parses, compiles, and executes scripts containing JS statements and functions. The engine handles memory allocation for the JS data types and objects needed to execute scripts, and it cleans up -- garbage collects -- the data types and objects in memory that it no longer needs.">
+  <meta name="twitter:description" content="JSエンジンはJS 1.0から1.4をサポートします。JS 1.3以上はECMAScript-262規格に従います。より基本的には、JSエンジンはJS構文と関数をふくむスクリプトを、パースし、コンパイルして実行します。エンジンはスクリプトの実行に必要な、データやオブジェクトのために、メモリを取得し、クリーンナップ（ガベレージコレクション＝必要でなくなったデータやオブジェクトをメモリを解放）します。 The JS engine supports JS 1.0 through JS 1.4. JS 1.3 and greater conform to the ECMAScript-262 specification. At its simplest, the JS engine parses, compiles, and executes scripts containing JS statements and functions. The engine handles memory allocation for the JS data types and objects needed to execute scripts, and it cleans up -- garbage collects -- the data types and objects in memory that it no longer needs.">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="SpiderMonkey/Embedding_SpiderMonkey" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Embedding_SpiderMonkey.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Embedding_SpiderMonkey.html#language">言語の選択</a></li>
+          <li><a href="Embedding_SpiderMonkey.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/SpiderMonkey/Embedding_SpiderMonkey" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/SpiderMonkey/Embedding_SpiderMonkey" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../Web/HTML.html">HTML</a></li>
+              <li><a href="../Web/CSS.html">CSS</a></li>
+              <li><a href="../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../Web/API.html">API / DOM</a></li>
+              <li><a href="../Web/Apps.html">Apps</a></li>
+              <li><a href="../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Tools.html">ツール</a></li><li><a href="../../demos/index.html">MDN デモ</a></li><li><a href="../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                              <li class="smaller">No translations exist for this document.</li>
+              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Embedding_SpiderMonkey$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Embedding_SpiderMonkey$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Embedding_SpiderMonkey.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Mozilla/Projects.html" rel="v:url" property="v:title">Projects</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../SpiderMonkey.html" rel="v:url" property="v:title">SpiderMonkey</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Embedding SpiderMonkey</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Embedding_SpiderMonkey.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Embedding SpiderMonkey</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Embedding_SpiderMonkey.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><ol><li><a href="Embedding_SpiderMonkey.html#.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.99.E3.82.8BJavaScript.E3.81.AE.E3.83.90.E3.83.BC.E3.82.B8.E3.83.A7.E3.83.B3" rel="internal">サポートするJavaScriptのバージョン</a><li><a href="Embedding_SpiderMonkey.html#How_Do_You_Use_the_Engine.3F" rel="internal">How Do You Use the Engine?</a><code></code><li><a href="Embedding_SpiderMonkey.html#How_Does_the_Engine_Relate_to_Applications.3F" rel="internal">How Does the Engine Relate to Applications?</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#.E3.82.A8.E3.83.B3.E3.82.B8.E3.83.B3.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B" rel="internal">エンジンをビルドする</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#What_Are_the_Requirements_for_Engine_Embedding.3F" rel="internal">What Are the Requirements for Engine Embedding?</a><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Understanding_Key_Embedding_Concepts" rel="internal">Understanding Key Embedding Concepts</a><li><a href="Embedding_SpiderMonkey.html#.E3.83.A9.E3.83.B3.E3.82.BF.E3.82.A4.E3.83.A0.E3.81.AE.E7.AE.A1.E7.90.86" rel="internal">ランタイムの管理</a><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#.E3.82.B3.E3.83.B3.E3.83.86.E3.82.AF.E3.82.B9.E3.83.88.E3.81.AE.E7.AE.A1.E7.90.86" rel="internal">コンテクストの管理</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#JS.E3.81.AE.E3.82.B0.E3.83.AD.E3.83.BC.E3.83.90.E3.83.AB.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E5.88.9D.E6.9C.9F.E5.8C.96" rel="internal">JSのグローバルオブジェクトの初期化</a><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Creating_and_Initializing_Custom_Objects" rel="internal">Creating and Initializing Custom Objects</a><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#.E3.82.B9.E3.82.AF.E3.83.AA.E3.83.97.E3.83.88.E3.81.8B.E3.82.89.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E4.BD.9C.E3.82.8B" rel="internal">スクリプトからオブジェクトを作る</a><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#.E3.82.A2.E3.83.97.E3.83.AA.E3.82.B1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.81.AB.E3.82.AB.E3.82.B9.E3.82.BF.E3.83.A0.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E7.B5.84.E3.81.BF.E8.BE.BC.E3.82.80" rel="internal">アプリケーションにカスタムオブジェクトを組み込む</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Providing_Private_Data_for_Objects" rel="internal">Providing Private Data for Objects</a><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Handling_Unicode" rel="internal">Handling Unicode</a><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Working_with_JS_Data_Types" rel="internal">Working with JS Data Types</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Working_with_JS_Values" rel="internal">Working with JS Values</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Unicode_String_Support" rel="internal">Unicode String Support</a><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Interned_String_Support" rel="internal">Interned String Support</a><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Embedding_SpiderMonkey.html#Managing_Security" rel="internal">Managing Security</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p></p><div class="overheadIndicator translationInProgress translationInProgressHeader"> 
+    <p>このページは翻訳中です。<br>翻訳作業に参加する場合は、履歴にある翻訳者と連絡·調整してください。</p>  
+</div> ここでは<a href="../Web/JavaScript.html" title="ja/JavaScript">JavaScript</a>エンジンのC言語実装(<a href="https://developer.mozilla.org/ja/SpiderMonkey" title="ja/SpiderMonkey">SpiderMonkey</a>)の概要を説明し、JSエンジンをあなたのアプリケーションにどのように埋め込むかを説明します。JSエンジンをアプリケーションに埋め込むとは、2つの大きなメリットがあります。 まず、スクリプトを使用しアプリケーションの自動化が実現できます。また、クロスプラットフォーム機能を提供するJSエンジンとJavaScriptを利用することで、プラットホーム依存性を排除できます。<span class="comment">This document provides an overview of the C language implementation of the <a href="../Web/JavaScript.html">JavaScript</a> engine (<a href="https://developer.mozilla.org/ja/SpiderMonkey">SpiderMonkey</a>), and it describes how you can embed engine calls in your applications to make them JS-aware. There are two main reasons for embedding the JS engine in your applications: to automate your applications using scripts; and to use the JS engine and scripts whenever possible to provide cross-platform functionality and eliminate platform-dependent application solutions.</span><p></p>
+<h3 id=".E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.99.E3.82.8BJavaScript.E3.81.AE.E3.83.90.E3.83.BC.E3.82.B8.E3.83.A7.E3.83.B3" name=".E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.99.E3.82.8BJavaScript.E3.81.AE.E3.83.90.E3.83.BC.E3.82.B8.E3.83.A7.E3.83.B3">サポートするJavaScriptのバージョン</h3>
+<p>JSエンジンはJS 1.0から1.4をサポートします。JS 1.3以上はECMAScript-262規格に従います。より基本的には、JSエンジンはJS構文と関数をふくむスクリプトを、パースし、コンパイルして実行します。エンジンはスクリプトの実行に必要な、データやオブジェクトのために、メモリを取得し、クリーンナップ（ガベレージコレクション＝必要でなくなったデータやオブジェクトをメモリを解放）します。<span class="comment">The JS engine supports JS 1.0 through JS 1.4. JS 1.3 and greater conform to the ECMAScript-262 specification. At its simplest, the JS engine parses, compiles, and executes scripts containing JS statements and functions. The engine handles memory allocation for the JS data types and objects needed to execute scripts, and it cleans up -- garbage collects -- the data types and objects in memory that it no longer needs.</span></p>
+<h3 id="How_Do_You_Use_the_Engine.3F" name="How_Do_You_Use_the_Engine.3F">How Do You Use the Engine?</h3>
+<p>一般に、JSエンジンは共用ライブラリとしてビルドされます。 例えば、WindowsとWindows NTではDLL、Unixでは共有ライブラリとして。 あなたは、アプリケーションにそれにリンクして、JSエンジンアプリケーションプログラミングインタフェース(API)呼び出します。 JSエンジンのAPIは以下の広いカテゴリにわたる機能を提供します:<span class="comment">Generally, you build the JS engine as a shared resource. For example, the engine is a DLL on Windows and Windows NT, and a shared library on Unix. Then you link your application to it, and embed JS engine application programming interface (API) calls in your application. The JS engine's API provides functions that fall into the following broad categories:</span></p>
+<ul>
+  <li>データ型操作<span class="comment">Data Type Manipulation</span></li>
+  <li>ランタイム・コントロール<span class="comment">Run Time Control</span></li>
+  <li>クラスとオブジェクトの作成と管理<span class="comment">Class and Object Creation and Maintenance</span></li>
+  <li>関数とスクリプトの実行<span class="comment">Function and Script Execution</span></li>
+  <li>文字列の操作<span class="comment">String Handling</span></li>
+  <li>エラー・ハンドリング<span class="comment">Error Handling</span></li>
+  <li>セキュリティーコントロール<span class="comment">Security Control</span></li>
+  <li>デバッグ機能<span class="comment">Debugging Support</span></li>
+</ul>
+<p>これらのカテゴリの内、ランタイム・コントロールやデータ型操作はあらゆるアプリケーションで必要です。例えば、すべてのJS関数を呼び出す前に、<code>JS_NewRuntime</code>を実行して、JSエンジンを作成・初期化しなければなりません。対して、セキュリティコントロールなどは必要であれば使用することができる機能です。<span class="comment">You will use some of these functional categories, such as run time control and data type manipulation, in every application where you embed JS calls. For example, before you can make any other JS calls, you must create and initialize the JS engine with a call to the &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewRuntime">JS_NewRuntime</a>&lt;/code&gt; function. Other functional catergories, such as security control, provide optional features that you can use as you need them in your applications.</span></p>
+<h3 id="How_Does_the_Engine_Relate_to_Applications.3F" name="How_Does_the_Engine_Relate_to_Applications.3F">How Does the Engine Relate to Applications?</h3>
+<p>JSエンジンはシステムの共用リソースです。 アプリケーションは、APIを呼び出すことで、JSエンジンに要求を伝えることができます。 エンジンは、順番に要求を処理し、値か状態情報を返します。<span class="comment">Conceptually, the JS engine is a shared resource on your system. By embedding engine API calls in your applications you can pass requests to the JS engine for processing. The engine, in turn, processes your requests, and returns values or status information back to your application. Figure 1.1 illustrates this general relationship:</span></p>
+<p><strong><small>図 1.1</small></strong></p>
+<p><img alt="Image:Over1.gif" class="internal" src="https://developer.mozilla.org/@api/deki/files/1764/=Over1.gif"></p>
+<p>例えば、JavaScriptを利用して、ユーザを認証し、ユーザのアクセス権を設定するアプリケーションがあるとします。まず最初に、アプリケーションは、ユーザの名前、ID、アクセス権、など含んでいるカスタムJSオブジェクトを作成することでしょう。<span class="comment">For example, suppose you are using the JS engine to automate your application using JS scripts, and suppose that one script your application runs authenticates a user and sets a user's access rights to the application. First, your application might create a custom JS object that represents a user, including slots for the user's name, ID, access rights, and a potential list of functions that the user has permission to use in the application.</span></p>
+<p>この場合、アプリケーションはカスタム・オブジェクトを作成するために、<code><a href="https://developer.mozilla.org/ja/JS_NewObject" title="ja/JS_NewObject">JS_NewObject</a></code>を呼び出します。&lt;!-In this case, your application's first request to the JS engine might be a call to <code><a href="https://developer.mozilla.org/ja/JS_NewObject" title="ja/JS_NewObject">JS_NewObject</a></code> to create the custom object.--&gt;JSエンジンは、オブジェクトを作成したら、そのポインタをアプリケーションに返します。<span class="comment">When the JS engine creates the object, it returns a pointer to your application.</span> 次に、アプリケーションは「オブジェクトを使用するスクリプト」を実行するために、JSエンジンを呼び出します。<span class="comment">Your application can then call the JS engine again to execute scripts that use the object.</span>例えばあなたのアプリケーションは、ユーザ・オブジェクトを作成した後、スクリプトをコンパイルして実行するために、スクリプト・コードを<code><a href="https://developer.mozilla.org/ja/JS_EvaluateScript" title="ja/JS_EvaluateScript">JS_EvaluateScript</a></code>に渡すでしょう。<span class="comment">For example, after creating the user object, your application might immediately pass a script to &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_EvaluateScript">JS_EvaluateScript</a>&lt;/code&gt; for immediate compiling and executing.</span> そのスクリプトは、ユーザの情報を確認し、他の機能を有効にするための設定をするものです。<span class="comment">That script might get and validate a user's information, and then establish the user's access rights to other application features.</span></p>
+<p>実際には、アプリケーションとJSエンジンとの実際の図1.1で示されるよりいくらか複雑です。まずプラットホーム用のJSエンジンがビルドしないといけません。そして、JSエンジンを利用するコードでは<code>jsapi.h</code>をincludeします。そして、アプリケーションは最初にJSランタイムを初期化します。<span class="comment">In truth, the actual relationship between your application and the JS engine is somewhat more complex than shown in Figure 1.1. For example, it assumes that you have already built the JS engine for your platform. It assumes that your application code includes &lt;code&gt;jsapi.h&lt;/code&gt;, and it assumes that the first call your application makes to the engine initializes the JS run time.</span></p>
+<p>JSエンジンは初期化要求を受け取ると、JSランタイムのためにメモリを割り当てます。<span class="comment">When the JS engine receives an initialization request, it allocates memory for the JS run time. Figure 1.2 illustrates this process:</span></p>
+<p><strong><small>図1.2</small></strong></p>
+<p><img alt="Image:Over2.gif" class="internal" src="https://developer.mozilla.org/@api/deki/files/1765/=Over2.gif"></p>
+<p>ランタイムは、あなたのアプリケーションで使用される変数、オブジェクト、およびコンテキストが維持されるスペースです。 コンテキストはJSエンジンによって使用されるスレッドのためのスクリプト実行状態です。 それぞれのスクリプトかスレッドには、それ自身のコンテキストがなければなりません。 一つのJSランタイムは、多くのコンテキスト、オブジェクト、および変数を含むことができます。<span class="comment">The run time is the space in which the variables, objects, and contexts used by your application are maintained. A context is the script execution state for a thread used by the JS engine. Each simultaneously existent script or thread must have its own context. A single JS run time may contain many contexts, objects, and variables.</span></p>
+<p>JSエンジンを呼び出すほぼすべての場合で、コンテキストを引数として必要とします。そのため、アプリケーションでランタイムを作った後、最初に実行しなければいけないことの１つが<code><a href="https://developer.mozilla.org/ja/JS_NewContext" title="ja/JS_NewContext">JS_NewContext</a></code>によりコンテキストを少なくとも1つ作ることになります。実際にコンテキストをいくつ必要とするかは、アプリケーション内でスクリプトをいくつ使おうとしているかに決まります。アプリケーション内で同時に実行するスクリプト1つごとに、1つのコンテキストが必要になります。その一方、アプリケーションが実行中の任意の時点で実行されるスクリプトが1つだけであれば、コンテキストを1つ作り、そのコンテキストをスクリプトごとに再利用することもできます。 <span class="comment">Almost all JS engine calls require a context argument, so one of the first things your application must do after creating the run time is call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewContext">JS_NewContext</a>&lt;/code&gt; at least once to create a context. The actual number of contexts you need depends on the number of scripts you expect to use at the same time in your application. You need one context for each simultaneously existing script in your application. On the other hand, if only one script at a time is compiled and executed by your application, then you need only create a single context that you can then reuse for each script.</span></p>
+<p>通常の場合、コンテキストを作ったあと、JSエンジンに最初から組みこまれているオブジェクトを<code><a href="https://developer.mozilla.org/ja/JS_InitStandardClasses" title="ja/JS_InitStandardClasses">JS_InitStandardClasses</a></code>により初期化することになります。 ほとんどのスクリプトで使われる<code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Math</code>, <code>Number</code>, <code>String</code>が最初から組み込まれています。 <span class="comment">After you create contexts, you will usually want to initialize the built-in JS objects in the engine by calling &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_InitStandardClasses">JS_InitStandardClasses</a>&lt;/code&gt;. The built-in objects include the &lt;code&gt;Array&lt;/code&gt;, &lt;code&gt;Boolean&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, &lt;code&gt;Math&lt;/code&gt;, &lt;code&gt;Number&lt;/code&gt;, and &lt;code&gt;String&lt;/code&gt; objects used in most scripts.</span></p>
+<p>アプリケーションは通常カスタムJSオブジェクトを使用します。カスタムJSオブジェクトは、アプリケーションの必要性に応じて作られるオブジェクトです。 カスタムオブジェクトには、アプリケーションを実行するために使われるデータ構造やメソッドに対応します。 カスタムJSオブジェクトを作るためには、オブジェクトに対応するJSクラスを実装し、<code><a href="https://developer.mozilla.org/ja/JS_InitClass" title="ja/JS_InitClass">JS_InitClass</a></code>を呼び出すことによりランタイムに作成したクラスを登録し、 そのあと、<code><a href="https://developer.mozilla.org/ja/JS_NewObject" title="ja/JS_NewObject">JS_NewObject</a></code>を呼び出すことにより作成したカスタムオブジェクトのインスタンスを作る必要があります。 最後に、作成したオブジェクトがプロパティーを持つ場合には、<code><a href="https://developer.mozilla.org/ja/JS_SetProperty" title="ja/JS_SetProperty">JS_SetProperty</a></code>を呼び出すことにより、プロパティーのデフォルト値を設定する必要があるかも知れません。 <span class="comment">Most applications will also use custom JS objects. These objects are specific to the needs of your applications. They usually represent data structures and methods used to automate parts of your application. To create a custom object, you populate a JS class for the object, call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_InitClass">JS_InitClass</a>&lt;/code&gt; to set up the class in the run time, and then call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewObject">JS_NewObject</a>&lt;/code&gt; to create an instance of your custom object in the engine. Finally, if your object has properties, you may need to set the default values for them by calling &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetProperty">JS_SetProperty</a>&lt;/code&gt; for each property.</span> オブジェクトを作る際には、JSエンジンに対して特定のコンテキストを渡すことになりますが、オブジェクトは、コンテキストとは独立にランタイムの中に存在します。 オブジェクトをアクセスするためには、任意のスクリプトと、任意のコンテキストを対応させることができます。図 1.3 は、スクリプトに対する、ランタイムと、コンテキストと、オブジェクトの関係を示しています。 <span class="comment">Even though you pass a specific context to the JS engine when you create an object, an object then exists in the run time independent of the context. Any script can be associated with any context to access any object. Figure 1.3 illustrates the relationship of scripts to the run time, contexts, and objects.</span></p>
+<p><strong><small>Figure 1.3</small></strong></p>
+<p><img alt="Image:Over3.gif" class="internal" src="https://developer.mozilla.org/@api/deki/files/1766/=Over3.gif"></p>
+<p>図1.3 が示しているように、同一のオブジェクトをアクセスする場合でも、スクリプトとコンテキストは全く独立して存在できます。 アプリケーションは、オブジェクトにアクセスするとき、同一のランタイムに属しているのであれば、 オブジェクトに割り当てられていないコンテキストを使うことができます。あるコンテキストとオブジェクトを、特定の目的だけに予約しておきたいような場合には、 アプリケーション内で別々のランタイムを作って下さい。 1つは、共有のコンテキストとオブジェクトのためのランタイムであり、 もう1つは(必要に応じて複数も可能)、特定の目的のコンテキストとオブジェクト用のランタイムになります。 <span class="comment">As Figure 1.3 also illustrates, scripts and contexts exist completely independent from one another even though they can access the same objects. Within a given run time, an application can always use any use any unassigned context to access any object. There may be times when you want to ensure that certain contexts and objects are reserved for exclusive use. In these cases, create separate run times for your application: one for shared contexts and objects, and one (or more, depending on your application's needs) for private contexts and objects.</span></p>
+<p><strong>NOTE</strong>:あるコンテキストに、ある瞬間にアクセスできるスレッドはただ1つだけであることに注意。 <span class="comment">'''NOTE''': Only one thread at a time should be given access to a specific context.</span></p>
+<h3 id=".E3.82.A8.E3.83.B3.E3.82.B8.E3.83.B3.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B" name=".E3.82.A8.E3.83.B3.E3.82.B8.E3.83.B3.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B">エンジンをビルドする</h3>
+<p><span class="comment">== Building the Engine ==</span></p>
+<p>アプリケーションでJSを使うには、JSエンジンを共有ライブラリとしてビルドしなければなりません。ほとんどの場合、自動的にエンジンがビルドできる ようにメイクファイルが作られています。 <span class="comment">Before you can use JS in your applications, you must build the JS engine as a shareable library. In most cases, the engine code ships with make files to automate the build process.</span></p>
+<p>例えば、Unixの場合、JSのソースディレクトリには、<code>Makefile.ref</code>というGNU make用のメイクファイルと、<code>config</code>ディレクトリがあります。 <code>config</code> ディレクトリには、<code>Makefile.ref</code>とともに使われる、 いろいろなプラットフォーム用の<code>.mk</code>ファイルが用意されています。Windows NTの場合には、<code>js.mak</code>というnmake ファイルが用意されています。 <span class="comment">For example, under Unix, the js source directory contains a base gnu make file called &lt;code&gt;Makefile.ref&lt;/code&gt;, and a &lt;code&gt;config&lt;/code&gt; directory. The &lt;code&gt;config&lt;/code&gt; directory contains platform-specific &lt;code&gt;.mk&lt;/code&gt; files to use with &lt;code&gt;Makefile.ref&lt;/code&gt; for your environment. Under Windows NT the nmake file is &lt;code&gt;js.mak&lt;/code&gt;.</span></p>
+<p>ソースディレクトリにある<code>readme</code>ファイルをチェックしてください。 <span class="comment">Always check the source directory for any &lt;code&gt;readme&lt;/code&gt; files that may contain late-breaking or updated compilation instructions or information.</span></p>
+<h3 id="What_Are_the_Requirements_for_Engine_Embedding.3F" name="What_Are_the_Requirements_for_Engine_Embedding.3F">What Are the Requirements for Engine Embedding?</h3>
+<p>アプリケーションでJavaScriptを使えるようにするためには、アプリケーションでエンジンを適切に呼び出す必要があります。 少なくとも次の5つの呼び出しを行う必要があります。</p>
+<ol>
+  <li><code>#include "jsapi.h"</code>をCのモジュールに追加し、コンパイラがエンジンの呼び出しを行えるようにします。JSエンジンを特別な方法で使うような場合に、他のJSのソースコードを呼び出す必要がある場合があります。 例えば、アプリケーションでデバッガを呼び出すような場合には、<code>jsdbgapi.h</code>をアプリケーションのモジュールでインクルードする 必要があります。 <span class="comment">To make your application JS-aware, embed the appropriate engine calls in your application code. There are at least five steps to embedding: &lt;ol&gt; &lt;li&gt;Add &lt;code&gt;#include "jsapi.h"&lt;/code&gt; to your C modules to ensure that the compiler knows about possible engine calls. Specialized JS engine work may rarely require you to include additional header files from the JS source code. For example, to include JS debugger calls in your application, code you will need to include &lt;code&gt;jsdbgapi.h&lt;/code&gt; in the appropriate modules.</span> JSのソースコードの他のほとんどのヘッダファイルは、インクルードするべきでは<em>ありません</em>。他のヘッダファイルをインクルードすると リリースごとに変更する可能性があるエンジンの内部の実装に依存することになってしまいます。</li>
+  <li>アプリケーションで利用する構造体と変数を定義して下さい。例えば、JSエンジンにスクリプトを渡そうと考えているのであれば、アプリケーションでスクリプトの テキストデータを格納する文字列を用意して下さい。構造体と変数は、<code>jsapi.h</code>で定義されているJSのデータ型を使って定義して下さい。</li>
+  <li>JavaScriptで、アプリケーション特有のオブジェクトを作ってください。特に、アプリケーションでJS園児を使って処理の自動化を行うような場合には、 スクリプトで利用するアプリケーション特有のオブジェクトは、Cプログラムで使う構造体とメソッドに対応します。</li>
+  <li>組み込み済みのJSオブジェクトを初期化するコードやアプリケーションで利用するオブジェクトが利用できるように、JSエンジンのAPIと変数を適切に組み込んで下さい。</li>
+  <li>ほとんどのJSエンジンのAPIは、戻り値を返します。戻り値が、0か<code>NULL</code>である場合には、エラーの種別を表します。このような戻り値が 0でない場合には、APIの呼び出しが成功したことを意味します。APIの呼び出しが成功した場合、戻り値は、アプリケーションが後で利用するために保存しておくべきオブジェクトへのポインタである場合が多いです。最低でも、アプリケーションでAPIの呼び出し後、どんな場合でも戻り値のチェックを行うべきです。</li>
+</ol>
+<p><span class="comment">Most other header files in the JS source code should ''not'' be included. To do so might introduce dependencies based on internal engine implementations that might change from release to release.&lt;/li&gt; &lt;li&gt;Provide support structures and variable declarations in your application. For example, if you plan on passing a script to the JS engine, provide a string variable to hold the text version of the script in your application.Declare structures and variables using the JS data types defined in &lt;code&gt;jsapi.h&lt;/code&gt;.&lt;/li&gt; &lt;li&gt;Script application-specific objects using JavaScript. Often these objects will correspond to structures and methods that operate on those structures in your C programs, particularly if you are using the JS engine to automate your application.&lt;/li&gt; &lt;li&gt;Embed the appropriate JS engine API calls and variable references in your application code, including calls to initialize the built-in JS objects, and to create and populate any custom objects your application uses.&lt;/li&gt; &lt;li&gt;Most JS engine calls return a value. If this value is zero or &lt;code&gt;NULL&lt;/code&gt;, it usually indicates an error condition. If the value is nonzero, it usually indicates success; in these cases, the return value is often a pointer that your application needs to use or store for future reference. At the very least, your applications should always check the return values from JS engine calls.&lt;/li&gt; &lt;/ol&gt;&lt;</span></p>
+<p>次に示すコードで、JSスクリプトを作る以外の、組み込みステップのほとんどを示しています。スクリプトを作り、JavaScript言語そのもののオブジェクトに関する 情報は、<em>Client-Side JavaScript Guide</em>を読んで下さい。サーバ側のオブジェクトに関しては、<em>Server-Side JavaScript Guide</em>を読んで下さい。</p>
+<p><span class="comment">The following code fragment illustrates most of these embedding steps, except for the creation of JS scripts, which lies outside the scope of the introductory text. For more information about creating scripts and objects using the JavaScript language itself, see the ''Client-Side JavaScript Guide''. For further information about scripting server-side objects, see the ''Server-Side JavaScript Guide''.</span></p>
+<pre>.
+.
+.
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+/* include the JS engine API header */
+#include "jsapi.h"
+.
+.
+.
+
+/* main function sets up global JS variables, including run time,
+ * a context, and a global object, then initializes the JS run time,
+ * and creates a context. */
+
+int main(int argc, char **argv)
+{
+  int c, i;
+  /*set up global JS variables, including global and custom objects */
+
+  JSVersion version;
+  JSRuntime *rt;
+  JSContext *cx;
+  JSObject  *glob, *it;
+  JSBool builtins;
+
+  /* initialize the JS run time, and return result in rt */
+  rt = JS_NewRuntime(8L * 1024L * 1024L);
+
+  /* if rt does not have a value, end the program here */
+  if (!rt)
+    return 1;
+
+  /* create a context and associate it with the JS run time */
+  cx = JS_NewContext(rt, 8192);
+
+  /* if cx does not have a value, end the program here */
+  if (cx == NULL)
+    return 1;
+
+  /* create the global object here */
+  glob = JS_NewObject(cx, clasp, NULL, NULL);
+
+  /* initialize the built-in JS objects and the global object */
+  builtins = JS_InitStandardClasses(cx, glob);
+
+  .
+  . 
+  .
+
+  return 0;
+
+}
+</pre>
+<p>この例は、JSエンジンをアプリで使うために必要な、主要な部分を単純化したものです。より完全な例は、<code>js.c</code>を見て下さい。これは、JSエンジンのソースに ある、サンプルアプリケーションです。 <span class="comment">This example code is simplified to illustrate the key elements necessary to embed JS engine calls in your applications. For a more complete example -- from which these snippets were adapted -- see &lt;code&gt;js.c&lt;/code&gt;, the sample application source code that is included with the JS engine source code.</span></p>
+<h3 id="Understanding_Key_Embedding_Concepts" name="Understanding_Key_Embedding_Concepts">Understanding Key Embedding Concepts</h3>
+<p>アプリケーションでJavaScriptを使う用にする場合、ほとんどの場合で、JS APIをつかう標準的な使い方に従うことになるでしょう。 本セクションは、アプリケーションに組み込む必要のあるAPIの呼び出し方について記述しています。 <span class="comment">For most of the JavaScript aware applications you create, you will want to follow some standard JS API embedding practices. The following sections describe the types of API calls you need to embed in all your applications.</span></p>
+<p>多くの場合、正しく組みオムためには、ある種のAPIを正しい順序で呼び出すことが重要です。例えば、JSランタイムを初期化した後に、他のAPIを呼びださなければ なりません。同様に、アプリケーションが終了する前に、JSランタイムを開放すべきです。従って、アプリケーションの<em>main</em>関数は、JSランタイムの初期化で始まったあと アプリケーション固有の処理を行ったあと、JSランタイムの開放処理で終わるように作られるべきです。 <span class="comment">In many cases, the order in which you embed certain API calls is important to successful embedding. For example, you must initialize a JS run time before you can make other JS calls. Similarly, you should free the JS run time before you close your application. Therefore, your application's '''main''' function typically sandwiches API calls for initializing and freeing the JS run time around whatever other functionality you provide:</span></p>
+<pre>int main(int argc, char **argv)
+{
+  int c, i;
+
+  /*set up global JS variables, including global and custom objects */
+  JSVersion version;
+  JSRuntime *rt;
+  JSContext *cx;
+  JSObject  *glob, *it;
+
+  .
+  .
+  .
+
+  /* initialize the JS run time, and return result in rt */
+  rt = JS_NewRuntime(8L * 1024L * 1024L);
+
+  /* if rt does not have a value, end the program here */
+  if (!rt)
+    return 1;
+
+  .
+  .
+  .
+
+  /* establish a context */
+  cx = JS_NewContext(rt, 8192);
+
+  /* if cx does not have a value, end the program here */
+  if (cx == NULL)
+    return 1;
+
+  /* initialize the built-in JS objects and the global object */
+  builtins = JS_InitStandardClasses(cx, glob);
+
+  .
+  .
+  .
+
+  /* include your application code here, including JS API calls
+   * that may include creating your own custom JS objects. The JS
+   * object model starts here. */
+
+  .
+  .
+  .
+
+  /* Before exiting the application, free the JS run time */
+  JS_DestroyRuntime(rt);
+</pre>
+<p>この例で示したように、JSエンジンを組み込むアプリケーションは、JSランタイムをまずセットアップし、終了前に開放する責任があります。 一般的には、JSランタイムを初期化して開放するのは、アプリケーション内でJavaScriptを起動する主要なモジュールで実行するのが最も良い実装になるでしょう。 <span class="comment">As this example illustrates, applications that embed calls to the JS engine are responsible for setting up the JS run time as one of its first acts, and they are responsible for freeing the run time before they exit. In general, the best place to ensure that the run time is initialized and freed is by embedding the necessary calls in whatever module you use as the central JS dispatcher in your application.</span></p>
+<p>ランタイムを初期化した後、アプリケーションで利用するJSオブジェクトモデルを構築することになります。オブジェクトモデルとは、JSオブジェクト同士の関係を決めるものです。 JSオブジェクトは、もともと階層的に作られています。そのため、全てのJSオブジェクトは、デフォルトでは、グローバルオブジェクトに関係づけられています。 オブジェクトは、デフォルトで、グローバルオブジェクトから派生したものになります。標準的なJSクラスを初期化すると、グローバルオブジェクトが自動的に作られます。 <span class="comment">After you initialize the run time, you can establish your application's JS object model. The object model determines how your JS objects relate to one another. JS objects are hierarchical in nature. All JS objects are related to the global object by default. They are descendants of the global object. You automatically get a global object when you initialize the standard JS classes:</span></p>
+<pre class="eval">builtins = JS_InitStandardClasses(cx, glob);
+</pre>
+<p>グローバルオブジェクトは、他のオブジェクトが継承する基本的なプロパティとメソッドを利用できるようにします。カスタムオブジェクトを作る際には、カスタムオブジェクトは、 グローバルオブジェクトで定義されているプロパティとメソッドを使うことができます。グローバルオブジェクトで定義されているデフォルトのプロパティとメソッドは、 デフォルトのママで使うことも、カスタムオブジェクトで再定義することもできます。 <span class="comment">The global object sets up some basic properties and methods that are inherited by all other objects. When you create your own custom objects, they automatically use the properties and methods defined on the global object. You can override these default properties and methods by defining them again on your custom object, or you can accept the default assignments.</span></p>
+<p>カスタムオブジェクトは、他の組み込み済みのJSオブジェクトを基にして実装することもできますし、他のカスタムオブジェクトを基に実装することができます。 いずれの場合でも、カスタムオブジェクトは、グローバルオブジェクトから始まる階層構造の中の親オブジェクトのプロパティとメソッドを継承します。 グローバルオブジェクトとカスタムオブジェクトに関する情報は、<a href="Embedding_SpiderMonkey.html#Initializing_Built-in_and_Global_JS_Objects">Initializing Built-in Global JS Objects</a> と<a href="Embedding_SpiderMonkey.html#Creating_and_Initializing_Custom_Objects">Creating and Initializng Custom Objects</a>.を参照して下さい。 <span class="comment">You can also create custom objects that are based on other built-in JS objects, or that are based on other custom objects. In each case, the object you create inherits all of the properties and methods of its predecessors in the hierarchical chain, all the way up to the global object. For more information about global and custom objects, see <a href="https://developer.mozilla.org/ja/Embedding_SpiderMonkey#Initializing_Built-in_and_Global_JS_Objects">Initializing Built-in and Global JS Objects</a> and <a href="https://developer.mozilla.org/ja/Embedding_SpiderMonkey#Creating_and_Initializing_Custom_Objects">Creating and Initializing Custom Objects</a>.</span></p>
+<h3 id=".E3.83.A9.E3.83.B3.E3.82.BF.E3.82.A4.E3.83.A0.E3.81.AE.E7.AE.A1.E7.90.86" name=".E3.83.A9.E3.83.B3.E3.82.BF.E3.82.A4.E3.83.A0.E3.81.AE.E7.AE.A1.E7.90.86">ランタイムの管理</h3>
+<p><span class="comment">== Managing a Run Time ==</span> JSランタイムは、JSエンジンが使うコンテキスト、オブジェクト、JS関数とスクリプトに付随する変数のメモリ空間です。 JS関数やスクリプトを使馬えに、ランタイムの初期化を行う必要があります。ランタイムの初期化を行う、APIは、<code><a href="https://developer.mozilla.org/ja/JS_NewRuntime" title="ja/JS_NewRuntime">JS_NewRuntime</a></code>です。 <code><a href="https://developer.mozilla.org/ja/JS_NewRuntime" title="ja/JS_NewRuntime">JS_NewRuntime</a></code>の引数は１つであり、ガーベージコレクションが発生する前にランタイムに割り当てる最大のバイト数を符号なし整数で指定します。 例えば、 <span class="comment">The JS run time is the memory space the JS engine uses to manage the contexts, objects, and variables associated with JS functions and scripts. Before you can execute any JS functions or scripts you must first initialize a run time. The API call that initializes the run time is &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewRuntime">JS_NewRuntime</a>}&lt;/code&gt;. &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewRuntime">JS_NewRuntime</a>&lt;/code&gt; takes a single argument, an unsigned integer that specifies the maximum number of bytes of memory to allocate to the run time before garbage collection occurs. For example:</span></p>
+<pre class="eval"> rt = JS_NewRuntime(8L * 1024L * 1024L);
+</pre>
+<p>この例が示すように、<code><a href="https://developer.mozilla.org/ja/JS_NewRuntime" title="ja/JS_NewRuntime">JS_NewRuntime</a></code>は、作られたランタイムへのポインタを返り値として返します。返り値が、NULLではない場合には、ランタイムの作成に成功したことを示します。 <span class="comment">As this example illustrates, &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewRuntime">JS_NewRuntime</a>&lt;/code&gt; also returns a single value, a pointer to the run time it creates. A non-NULL return value indicates successful creation of the run time.</span></p>
+<p>通常の場合、1つのアプリケーションに、1つだけランタイムを必要とします。しかし、必要に応じて<code><a href="https://developer.mozilla.org/ja/JS_NewRuntime" title="ja/JS_NewRuntime">JS_NewRuntime</a></code> を呼び出し、戻り値を別のポインタに格納することにより、複数のランタイムを作ることもできます。 <span class="comment">Normally, you only need one run time for an application. It is possible, however, to create multiple run times by calling &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewRuntime">JS_NewRuntime</a>&lt;/code&gt; as necessary and storing the return value in a different pointer.</span></p>
+<p>JSランタイムが必要ではなくなったときには、ランタイムを破棄して、ランタイムが使っていたメモリ資源を他のアプリケーションが使えるようにするべきです。 アプリケーション内でJSをどのように使うかによって、使い終わったらすぐにランタイムを破棄することもできますし、ランタイムをアプリケーションの終了時まで破棄せずに とっておくこともできます。何れの場合でも、不要になったランタイムを開放するには、<code><a href="https://developer.mozilla.org/ja/JS_DestroyRuntime" title="ja/JS_DestroyRuntime">JS_DestroyRuntime</a></code>を使います。 この関数は、破棄するランタイムへのポインタを引数としてとります。 <span class="comment">When the JS run time is no longer needed, it should be destroyed to free its memory resources for other application uses. Depending on the scope of JS use in your application, you may choose to destroy the run time immediately after its use, or, more likely, you may choose to keep the run time available until your application is ready to terminate. In either case, use the &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_DestroyRuntime">JS_DestroyRuntime</a>&lt;/code&gt; to free the run time when it is no longer needed. This function takes a single argument, the pointer to the run time to destroy:</span></p>
+<pre class="eval"> JS_DestroyRuntime(rt);
+</pre>
+<p>複数のランタイムを使う場合には、それぞれのランタイムをアプリケーションの終了前に開放して下さい。 <span class="comment">If you use multiple run times, be sure to free each of them before ending your application.</span></p>
+<h3 id=".E3.82.B3.E3.83.B3.E3.83.86.E3.82.AF.E3.82.B9.E3.83.88.E3.81.AE.E7.AE.A1.E7.90.86" name=".E3.82.B3.E3.83.B3.E3.83.86.E3.82.AF.E3.82.B9.E3.83.88.E3.81.AE.E7.AE.A1.E7.90.86">コンテクストの管理</h3>
+<p><span class="comment">== Managing Contexts ==</span> ほとんどのJS APIは、引数としてに、コンテキストを渡す必要があります。コンテキストは、JavaScriptエンジン内で、スクリプトに対応します。 エンジンは、スクリプトを実行するスレッドに、コンテキスト情報を渡します。同時に実行されるスクリプトには、スクリプトごとにコンテキストが割り当てられなければ なりません。スクリプトが実行を完了したときには、コンテキストは不要になり、コンテキストは新しいスクリプトに割り当てたり、開放したりすることができます。 <span class="comment">Almost all JS API calls require you to pass a context as an argument. A context identifies a script in the JavaScript engine. The engine passes context information to the thread that runs the script. Each simultaneously-executing script must be assigned a unique context. When a script completes execution, its context is no longer in use, so the context can be reassigned to a new script, or it can be freed.</span></p>
+<p>スクリプトを実行するために新しいコンテキストを作るときには、<code><a href="https://developer.mozilla.org/ja/JS_NewContext" title="ja/JS_NewContext">JS_NewContext</a></code>を使います。この関数は、2つの引数をとります。 1つは、コンテキストと関連づけるランタイムへのポインタであり、もう1つは、コンテキストのスタックに割り当てるバイト数である。 コンテキストの作成に成功した場合には、新しくできあがったコンテキストへのポインタを返します。例： <span class="comment">To create a new context for a script, use &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewContext">JS_NewContext</a>&lt;/code&gt;. This function takes two arguments: a pointer to the run time with which to associate this context, and the number of bytes of stack space to allocate for the context. If successful, the function returns a pointer to the newly established context. For example:</span></p>
+<pre class="eval"> JSContext *cx;
+ .
+ .
+ .
+ cx = JS_NewContext(rt, 8192);
+</pre>
+<p>ランタイムは、呼び出し前に作っておかなければなりません。コンテキストを作る際に指定するスタックの大きさは、コンテキストを使って実行するスクリプトによって作られる変数やオブジェクトに合うだけの大きさがなければなりません。コンテキストを割り当てたり管理したりする際には、オーバヘッドがあるため、次のような事柄に注意を必要とします。 <span class="comment">The run time must already exist. The stack size you specify for the context should be large enough to accommodate any variables or objects created by the script that uses the context. Note that because there is a certain amount of overhead associated with allocating and maintaining contexts you will want to:</span></p>
+<ol>
+  <li>アプリケーション内で、ある時点で必要とする数だけ、コンテキストを作成する</li>
+  <li>アプリケーションで使うかも知れないのであれば、コンテキストをとっておき、必要に応じてコンテキストを破棄したり、再作成したりしないこと</li>
+</ol>
+<p><span class="comment"># Create only as many contexts as you need at one time in your application. # Keep contexts for as long as they may be needed in your application rather than destroying and recreating them as needed.</span></p>
+<p>コンテキストが不要になったとき、割り当てられていたメモリ資源を開放し他のアプリケーションが使えるように、コンテキストを破棄すべきです。 アプリケーションでのコンテキストの使い方により、コンテキストが不要になったらすぐに破棄することもできますし、また、アプリケーションが終了するときまでコンテキストを破棄せずにとっておくこともできます。どちらの場合でも、<code><a href="https://developer.mozilla.org/ja/JS_DestroyContext" title="ja/JS_DestroyContext">JS_DestroyContext</a></code>を使って、不要になったときには、コンテキストを破棄します。 この関数には、破棄するコンテキストへのポインタを引数として渡します。 <span class="comment">When a context is no longer needed, it should be destroyed to free its memory resources for other application uses. Depending on the scope of JS use in your application, you may choose to destroy the context immediately after its use, or, more likely, you may choose to keep the context available for reuse until your application is ready to terminate. In either case, use the &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_DestroyContext">JS_DestroyContext</a>&lt;/code&gt; to free the context when it is no longer needed. This function takes a single argument, the pointer to the context to destroy:</span></p>
+<pre class="eval"> JS_DestroyContext(cx);
+</pre>
+<p>アプリケーションが複数のランタイムを作るときには、アプリケーションの使っているコンテキストが、どのランタイムで使われているかを知る必要がでてくる場合がある。 このような場合には、引数としてコンテキストを渡して<code><a href="https://developer.mozilla.org/ja/JS_GetRuntime" title="ja/JS_GetRuntime">JS_GetRuntime</a></code>を呼び出してください。<code><a href="https://developer.mozilla.org/ja/JS_GetRuntime" title="ja/JS_GetRuntime">JS_GetRuntime</a></code>は、対応するランタイムへのポインタを返します。 <span class="comment">If your application creates multiple run times, the application may need to know which run time a context is associated with. In this case, call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_GetRuntime">JS_GetRuntime</a>&lt;/code&gt;, and pass the context as an argument. &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_GetRuntime">JS_GetRuntime</a>&lt;/code&gt; returns a pointer to the appropriate run time if there is one:</span></p>
+<pre class="eval"> rt = JS_GetRuntime(cx);
+</pre>
+<p>コンテキストを作るときには、コンテキストを使うスクリプトによって作られる変数やオブジェクトを格納するためのスタック領域を割り当てます。 スタック領域の使用量を最小にしながら、コンテキストに大容量のデータを格納することもできます。<code><a href="https://developer.mozilla.org/ja/JS_SetContextPrivate" title="ja/JS_SetContextPrivate">JS_SetContextPrivate</a></code>を呼ぶことで、コンテキストに プライベートデータへのポインタを格納できます。データにアクセスするためにプライベートポインタを取得するときには、<code><a href="https://developer.mozilla.org/ja/JS_GetContextPrivate" title="ja/JS_GetContextPrivate">JS_GetContextPrivate</a></code>を呼んでください。プライベートデータの構築や管理は、アプリケーションで行う必要があります。 <span class="comment">When you create a context, you assign it stack space for the variables and objects that get created by scripts that use the context. You can also store large amounts of data for use with a given context, yet minimize the amount of stack space you need. Call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetContextPrivate">JS_SetContextPrivate</a>&lt;/code&gt; to establish a pointer to private data for use with the context, and call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_GetContextPrivate">JS_GetContextPrivate</a>&lt;/code&gt; to retrieve the pointer so that you can access the data. Your application is responsible for creating and managing this optional private data.</span></p>
+<p>プライベートデータを作りコンテキストに関連付けるためには、次のことを行ってください。 <span class="comment">To create private data and associate it with a context:</span></p>
+<ol>
+  <li>C 言語の void　ポインタ変数としてプライベートデータをつくる</li>
+  <li>プライベートデータを格納するコンテキストと、プライベートデータを引数として<code>[[JS_SetContextPrivate[[</code>を呼ぶ</li>
+</ol>
+<p><span class="comment"># Establish the private data as you would a normal C void pointer variable. # Call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetContextPrivate">JS_SetContextPrivate</a>&lt;/code&gt;, and specify the context for which to establish private data, and specify the pointer to the data.</span></p>
+<p>例： <span class="comment">For example:</span></p>
+<pre class="eval"> JS_SetContextPrivate(cx, pdata);
+</pre>
+<p>後でプライベートデータを取得する場合には、コンテキストを引数として<code><a href="https://developer.mozilla.org/ja/JS_GetContextPrivate" title="ja/JS_GetContextPrivate">JS_GetContextPrivate</a></code>を呼び出してください。 この関数は、プライベートデータへのポインタを返します。 <span class="comment">To retrieve the data at a later time, call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_GetContextPrivate">JS_GetContextPrivate</a>&lt;/code&gt;, and pass the context as an argument. This function returns the pointer to the private data:</span></p>
+<pre class="eval"> pdata = JS_GetContextPrivate(cx);
+</pre>
+<h3 id="JS.E3.81.AE.E3.82.B0.E3.83.AD.E3.83.BC.E3.83.90.E3.83.AB.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E5.88.9D.E6.9C.9F.E5.8C.96" name="JS.E3.81.AE.E3.82.B0.E3.83.AD.E3.83.BC.E3.83.90.E3.83.AB.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E5.88.9D.E6.9C.9F.E5.8C.96">JSのグローバルオブジェクトの初期化</h3>
+<p><span class="comment">== Initializing Built-in and Global JS Objects ==</span></p>
+<p>JavaScriptエンジンには、開発が簡単にできるようにするため、組み込み済みのオブジェクトが実装されています。 例えば、<code>Array</code>オブジェクトを使うことで、配列を簡単に作って使うことができるようになっています。 また、Dateオブジェクにより、日付を統一的に扱えるようになっています。エンジンに実装されている組み込み済みのオブジェクトのリストは、 <code><a href="https://developer.mozilla.org/ja/JS_InitStandardClass" title="ja/JS_InitStandardClass">JS_InitStandardClass</a></code>のエントリーを参照すると見つかります。 <span class="comment">The JavaScript engine provides several built-in objects that simplify some of your development tasks. For example, the built-in &lt;code&gt;Array&lt;/code&gt; object makes it easy for you to create and manipulate array structures in the JS engine. Similarly, the Date object provides a uniform mechanism for working with and handling dates. For a complete list of built-in objects supported in the engine, see the reference entry for &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_InitStandardClasses">JS_InitStandardClasses</a>&lt;/code&gt;.</span></p>
+<p>JSエンジンは、関数オブジェクトとグローバルオブジェクトを使います。一般的には、グローバルオブジェクトは、アプリケーションの中で グローバルオブジェクト以外のすべてのオブジェクトとグローバル変数のためのデフォルトのスコープの役割を果たします。 アプリケーション用のオブジェクトを作る前に、グローバルオブジェクトの初期化を行うことになるでしょう。関数オブジェクトは、オブジェクトの コンストラクタに利用されます。 <span class="comment">The JS engine always uses function and global objects. In general, the global object resides behind the scenes, providing a default scope for all other JS objects and global variables you create and use in your applications. Before you can create your own objects, you will want to initialize the global object. The function object enables objects to have and call constructors.</span></p>
+<p><code><a href="https://developer.mozilla.org/ja/JS_InitStandardClassess" title="ja/JS_InitStandardClassess">JS_InitStandardClassess</a></code>を呼ぶことで、グローバルオブジェクト、関数オブジェクトと組み込み済みのエンジン用の オブジェクトが初期化され、アプリケーションでこれらのオブジェクトを使うことができるようになります。 <span class="comment">A single API call, &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_InitStandardClasses">JS_InitStandardClasses</a>&lt;/code&gt;, initializes the global and function objects and the built-in engine objects so that your application can use them:</span></p>
+<pre class="eval"> JSBool builtins;
+ .
+ .
+ .
+ builtins = JS_InitStandardClasses(cx, glob);
+</pre>
+<p><code><a href="https://developer.mozilla.org/ja/JS_InitStandardClasses" title="ja/JS_InitStandardClasses">JS_InitStandardClasses</a></code> を呼び出すと、初期化が成功したかどうかをJSのブール型で返します。 <span class="comment">&lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_InitStandardClasses">JS_InitStandardClasses</a>&lt;/code&gt; returns a JS boolean value that indicates the success or failure of the initialization.</span></p>
+<p>アプリケーションは、別のグローバルオブジェクトを使うこともできます。例えば、Netscape Navigatorは、Netscape Navigator専用のグローバルオブジェクトである、windowオブジェクトを使っています。アプリケーションでグローバルオブジェクトを変更するときには、 <code><a href="https://developer.mozilla.org/ja/JS_SetGlobalObject" title="ja/JS_SetGlobalObject">JS_SetGlobalObject</a></code>を使ってください。より詳しい情報は、<code><a href="https://developer.mozilla.org/ja/JS_GetGlobalObject" title="ja/JS_GetGlobalObject">JS_GetGlobalObject</a></code>の項を参照してください。 <span class="comment">You can specify a different global object for your application. For example, the Netscape Navigator uses its own global object, window. To change the global object for you application, call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetGlobalObject">JS_SetGlobalObject</a>&lt;/code&gt;. For more information, see the reference entry for &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetGlobalObject">JS_SetGlobalObject</a>&lt;/code&gt;.</span></p>
+<h3 id="Creating_and_Initializing_Custom_Objects" name="Creating_and_Initializing_Custom_Objects">Creating and Initializing Custom Objects</h3>
+<p>内蔵されているオブジェクトと共に、カスタムJSオブジェクトを作成して、初期化して、使用することができます。 あなたがあなたのアプリケーションを自動化するために、JSエンジンを使用しているなら、特に必要でしょう。 カスタムJSオブジェクトは、ダイレクトに、またはそれらはインタフェースとして、プログラム・サービスを提供することができます。例えば、ネットワークアクセスを扱ったり、データベース・サービス扱ったりするかもしれません。 また、データを反映するJSオブジェクトは、オブジェクト指向インタフェースを、厳密に言うとオブジェクト指向でないCコードに提供するかもしれません。 そのようなカスタムオブジェクトはインタフェースとしてアプリケーション自体に作用します、アプリケーションからユーザと、それを返す前の受信と処理ユーザ入力からアプリケーションまで値を通過して。 また、そのようなオブジェクトは、アクセスコントロールをアプリケーションの基本的な機能に提供するのに使用されるかもしれません。<span class="comment">In addition to using the engine's built-in objects, you will create, initialize, and use your own JS objects. This is especially true if you are using the JS engine with scripts to automate your application. Custom JS objects can provide direct program services, or they can serve as interfaces to your program's services. For example, a custom JS object that provides direct service might be one that handles all of an application's network access, or might serve as an intermediary broker of database services. Or a JS object that mirrors data and functions that already exist in the application may provide an object-oriented interface to C code that is not otherwise, strictly-speaking, object-oriented itself. Such a custom object acts as an interface to the application itself, passing values from the application to the user, and receiving and processing user input before returning it to the application. Such an object might also be used to provide access control to the underlying functions of the application.</span></p>
+<p>カスタムJSオブジェクトを作成するには、2つの方法があります:<span class="comment">There are two ways to create custom objects that the JS engine can use:</span></p>
+<ul>
+  <li>オブジェクト（のプロパティーやメソッドやコンストラクタ）を作成するJSスクリプトを書き、アプリケーションの実行時にそのスクリプトを実行します。<span class="comment">Write a JS script that creates an object, its properties, methods, and constructor, and then pass the script to the JS engine at run time.</span></li>
+  <li>アプリケーションに、オブジェクトのメソッドとプロパティーを定義するコードを埋め込みます。そしてエンジンをコールし、新しいオブジェクトを初期化します。さらにコールして、オブジェクトのプロパティーを設定します。 この方法の利点は、あなたのアプリケーションが直接オブジェクトの埋め込みを操るネイティブのメソッドを含むことができるということです。<span class="comment">Embed code in your application that defines the object's properties and methods, call the engine to initialize a new object, and then set the object's properties through additional engine calls. An advantage of this method is that your application can contain native methods that directly manipulate the object embedding.</span></li>
+</ul>
+<p>どちらの場合でも、ガベレージコレクションでオブジェクトが消えないようにしたいならば、<code><a href="https://developer.mozilla.org/ja/JS_AddRoot" title="ja/JS_AddRoot">JS_AddRoot</a></code> か <code><a href="https://developer.mozilla.org/ja/JS_AddNamedRoot" title="ja/JS_AddNamedRoot">JS_AddNamedRoot</a></code>を呼ぶことによって、オブジェクトを根づかせなければなりません。<span class="comment">In either case, if you create an object and then want it to persist in the run time where it can be used by other scripts, you must root the object by calling &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_AddRoot">JS_AddRoot</a>&lt;/code&gt; or &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_AddNamedRoot">JS_AddNamedRoot</a>&lt;/code&gt;. Using these functions ensures that the JS engine will keep track of the objects and clean them up during garbage collection, if appropriate.</span></p>
+<p><span class="comment">== Creating an Object From a Script ==</span></p>
+<h3 id=".E3.82.B9.E3.82.AF.E3.83.AA.E3.83.97.E3.83.88.E3.81.8B.E3.82.89.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E4.BD.9C.E3.82.8B" name=".E3.82.B9.E3.82.AF.E3.83.AA.E3.83.97.E3.83.88.E3.81.8B.E3.82.89.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E4.BD.9C.E3.82.8B">スクリプトからオブジェクトを作る</h3>
+<p><span class="comment">スクリプトが実行中にだけ存在するようなオブジェクトを必要とするときには、スクリプトからカスタムJSオブジェクトを作るとよいです。 スクリプトを何度か呼び出す間存在し続けるオブジェクトを作るために、スクリプトを使う代わりにアプリケーションにオブジェクトを埋め込むことができます。</span> One reason to create a custom JS object from a script is when you only need an object to exist as long as the script that uses it is executing. To create objects that persist across script calls, you can embed the object code in your application instead of using a script.</p>
+<p><strong>NOTE</strong>: 永続的なオブジェクトを作るときにもスクリプトを使うことができます。 <span class="comment">'''NOTE''': You can also use scripts to create persistent objects, too.</span></p>
+<p>スクリプトを使ってカスタムオブジェクトを作るには：</p>
+<p>例：</p>
+<p><span class="comment">To create a custom object using a script: &lt;ol&gt; &lt;li&gt;Define and spec the object. What is it intended to do? What are its data members (properties)? What are its methods (functions)? Does it require a run time constructor function?&lt;/li&gt; &lt;li&gt;Code the JS script that defines and creates the object.&lt;/li&gt; For example:</span></p>
+<pre class="eval">     function myfun(){
+       var x = newObject();
+       .
+       .
+       .
+     }
+</pre>
+<p><strong>NOTE</strong>: JavaScriptを使ったobject scriptingは、アプリケーションにJSエンジンを組み込むという話とは別の話題となります。 そのためobject scriptingの情報については、<em>Client-Side JavaScript Guide</em> と<em>Server-side JavaScript Guide</em>をご覧ください。 <span class="comment">'''NOTE''': Object scripting using JavaScript occurs outside the context of embedding the JS engine in your applications. For more information about object scripting, see the ''Client-Side JavaScript Guide'' and the ''Server-Side JavaScript Guide''.</span></p>
+<p>アプリケーションの中で、スクリプトをコンパイルし実行するために適切にJSエンジンを呼び出すようにしてください。呼び出し方には、2種類の方法があります。1.) <code><a href="https://developer.mozilla.org/ja/JS_EvaluateScript" title="ja/JS_EvaluateScript">JS_EvaluateScript</a></code>と<code><a href="https://developer.mozilla.org/ja/JS_EvaluateUCSScript" title="ja/JS_EvaluateUCSScript">JS_EvaluateUCSScript</a></code>を使ってコンパイルし実行する方法.</p>
+<ol>
+  <li>オブジェクトを定義し、specしてください。つまり、オブジェクトが何をしようとしているか？オブジェクトのメンバ(プロパティ)は何か？オブジェクトのメソッド(関数)は何か？ オブジェクトは実行時にコンストラクタを必要とするか？を指定します。</li>
+  <li>そのようなオブジェクトを定義して、オブジェクトを作成するようなコードを作ってください。</li>
+  <li>2.) <code><a href="https://developer.mozilla.org/ja/JS_CompileScript" title="ja/JS_CompileScript">JS_CompileScript</a></code>か<code><a href="https://developer.mozilla.org/ja/JS_CompileUCSScript" title="ja/JS_CompileUCSScript">JS_CompileUCSScript</a></code>を使って、一度スクリプトをコンパイルし、<code><a href="https://developer.mozilla.org/ja/JS_ExecuteScript" title="ja/JS_ExecuteScript">JS_ExecuteScript</a></code>を使って繰り返し実行する方法。"UC"がついている方は、UNICODEでエンコードされているスクリプトのために用意されています。</li>
+</ol>
+<p><span class="comment">Embed the appropriate JS engine call(s) in your application to compile and execute the script. You have two choices: 1.) compile and execute a script with a single call to &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_EvaluateScript">JS_EvaluateScript</a>&lt;/code&gt;, &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_EvaluateUCScript">JS_EvaluateUCScript</a>&lt;/code&gt; or 2.) compile the script once with a call to &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_CompileScript">JS_CompileScript</a>&lt;/code&gt; or &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_CompileUCScript">JS_CompileUCScript</a>&lt;/code&gt;, and then execute it repeatedly with individual calls to &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_ExecuteScript">JS_ExecuteScript</a>&lt;/code&gt;. The "UC" versions of these calls provide support for Unicode-encoded scripts.&lt;/li&gt; &lt;/ol&gt;</span></p>
+<p>スクリプトを使って作ったオブジェクトは、スクリプトが実行されている間だけ利用できるようにもできますし、スクリプトの実行が終わったあとも利用できるようにもできます。 普通は、スクリプトの実行が終わると、オブジェクトは破棄されます。多くの場合、この動作がアプリケーションで必要となる動作です。その一方、複数のスクリプトを動かしている 間や、あるいは、 アプリケーションが動き続けている間にも、オブジェクトが破棄されずに残っていてほしいこともあるでしょう。そのような場合には、アプリケーションにオブジェクトを作る コードを直接組み込むか、グローバルオブジェクトが存在している間、オブジェクトが破棄されないように、オブジェクトをグローバルオブジェクトにしておく必要があります。 <span class="comment">An object you create using a script only can be made available only during the lifetime of the script, or can be created to persist after the script completes execution. Ordinarily, once script execution is complete, its objects are destroyed. In many cases, this behavior is just what your application needs. In other cases, however, you will want object persistence across scripts, or for the lifetime of your application. In these cases you need to embed object creation code directly in your application, or you need to tie the object directly to the global object so that it persists as long as the global object itself persists.</span></p>
+<h3 id=".E3.82.A2.E3.83.97.E3.83.AA.E3.82.B1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.81.AB.E3.82.AB.E3.82.B9.E3.82.BF.E3.83.A0.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E7.B5.84.E3.81.BF.E8.BE.BC.E3.82.80" name=".E3.82.A2.E3.83.97.E3.83.AA.E3.82.B1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.81.AB.E3.82.AB.E3.82.B9.E3.82.BF.E3.83.A0.E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.82.92.E7.B5.84.E3.81.BF.E8.BE.BC.E3.82.80">アプリケーションにカスタムオブジェクトを組み込む</h3>
+<p><span class="comment">== Embedding a Custom Object in an Application ==</span></p>
+<p>オブジェクトが永続的に存在していることが求められる場合や、オブジェクトが複数のスクリプトの実行中にも利用できるようになっている方が望ましいときには、アプリケーションにカスタムJSオブジェクトを組み込むと、便利です。例えば、ユーザIDとアクセス権をあらわすようなオブジェクトがアプリケーションのライフタイム中に必要となる場合です。 スクリプト内でユーザIDとアクセス権をチェックする必要ができるたびに、オブジェクトを 作るのと比較して、カスタムオブジェクトを作ってアプリケーションに組み込んで、1度利用できるようにしておくと、実行時のオーバヘッドと実行時間を減らすことができます。 <span class="comment">Embedding a custom JS object in an application is useful when object persistence is required or when you know that you want an object to be available to several scripts. For example, a custom object that represents a user's ID and access rights may be needed during the entire lifetime of the application. It saves overhead and time to create and populate this object once, instead of recreating it over and over again with a script each time the user's ID or permissions need to be checked.</span></p>
+<p>アプリケーションにカスタムオブジェクトを組み込む1つの方法は次の通りです: <span class="comment">One way to embed a custom object in an application is to:</span></p>
+<ol>
+  <li><code><a href="https://developer.mozilla.org/ja/JSPropertySpec" title="ja/JSPropertySpec">JSPropertySpec</a></code>データ型を作りオブジェクトのプロパティ情報にします。プロパティ情報には、プロパティーの名前と、get/set メソッドが入ります。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/JSFunctionSpec" title="ja/JSFunctionSpec">JSFunctionSpec</a></code>データ型を作り、オブジェクトのメソッドとして使えるようにします。</li>
+  <li>オブジェクトのメソッドを呼び出したときに実際に実行されるC言語の関数を作ります。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/JS_NewObject" title="ja/JS_NewObject">JS_NewObject</a></code>か<code><a href="https://developer.mozilla.org/ja/JS_ConstructObject" title="ja/JS_ConstructObject">JS_ConstructObject</a></code>を呼び、オブジェクトのインスタンスを作ります。</li>
+  <li>　<code><a href="https://developer.mozilla.org/ja/JS%3fDefineFunctions" title="ja/JS?DefineFunctions">JS?DefineFunctions</a></code>を呼び、オブジェクトのメソッドを作ります。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/JS_DefineProperties" title="ja/JS_DefineProperties">JS_DefineProperties</a></code>を呼び、オブジェクトのプロパティを作ります。</li>
+</ol>
+<p><span class="comment"># Create a &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSPropertySpec">JSPropertySpec</a>&lt;/code&gt; data type, and populate it with the property information for your object, including the name of the property's get and set methods. # Create a &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSFunctionSpec">JSFunctionSpec</a>&lt;/code&gt; data type, and populate it with information about the methods used by your object. # Create the actual C functions that are executed in response to your object's method calls. # Call to &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewObject">JS_NewObject</a>&lt;/code&gt; or &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_ConstructObject">JS_ConstructObject</a>&lt;/code&gt; to instantiate the object. # Call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_DefineFunctions">JS_DefineFunctions</a>&lt;/code&gt; to create the object's methods. # Call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_DefineProperties">JS_DefineProperties</a>&lt;/code&gt; to create the object's properties.</span></p>
+<p>永続的に存在するカスタムJSオブジェクトは、このオブジェクトの存在を必要とする他のコードが実行できるようにするため、アプリケーションの先頭付近におくべきです。 カスタムオブジェクトのインスタンスを作り、使えるようにするための組み込みエンジンの呼び出しを行う部分も、オブジェクトの存在を必要とする他のコードより前に 実行するべきです。 <span class="comment">The code that describes persistent, custom JS objects should be placed near the start of application execution, before any code that relies upon the prior existence of the object. Embedded engine calls that instantiate and populate the custom object should also appear before any code that relies on the prior existence of the object.</span></p>
+<p><strong>NOTE</strong>: 多くの場合により簡単にカスタムオブジェクトを作る方法として、<code><a href="https://developer.mozilla.org/ja/JS_DefineObject" title="ja/JS_DefineObject">JS_DefineObject</a></code>を使ってオブジェクトを作る方法もあります。オブジェクトを 作った後、繰り返し<code><a href="https://developer.mozilla.org/ja/JS_SetProperty" title="ja/JS_SetProperty">JS_SetProperty</a></code>を呼び、オブジェクトにプロパティを追加します。オブジェクトを定義するより詳しい方法については、<code><a href="https://developer.mozilla.org/ja/JS_DefineObject" title="ja/JS_DefineObject">JS_DefineObject</a></code>を参照ください。オブジェクトにプロパティーを追加する方法については、<code><a href="https://developer.mozilla.org/ja/JS_SetProperty" title="ja/JS_SetProperty">JS_SetProperty</a></code>をご覧ください。 <span class="comment">'''NOTE''': An alternate, and in many cases, easier way to create a custom object in application code is to call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_DefineObject">JS_DefineObject</a>&lt;/code&gt; to create the object, and then make repeated calls to &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetProperty">JS_SetProperty</a>&lt;/code&gt; to set the object's properties. For more information about defining an object, see &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_DefineObject">JS_DefineObject</a>&lt;/code&gt; . For more information about setting an object's properties, see &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetProperty">JS_SetProperty</a>&lt;/code&gt;.</span></p>
+<h3 id="Providing_Private_Data_for_Objects" name="Providing_Private_Data_for_Objects">Providing Private Data for Objects</h3>
+<p>コンテキストでできたのと同様に、オブジェクトのデータ構造自体にデータを保存せずに、オブジェクトに大きなデータを関連づけることができます。 <code><a href="https://developer.mozilla.org/ja/JS_SetPrivate" title="ja/JS_SetPrivate">JS_SetPrivate</a></code>を使うことでオブジェクトのプライベートデータに、ポインタを格納できます。また、プライベートデータに格納してあるデータに アクセスするためにポインタを取得するには、<code><a href="https://developer.mozilla.org/ja/JS_GetPrivate" title="ja/JS_GetPrivate">JS_GetPrivate</a></code>を呼び出して下さい。アプリケーションは、オプションで利用できるプライベートデータを 作成し、管理する責務を持ちます。 <span class="comment">Like contexts, you can associate large quantities of data with an object without having to store the data in the object itself. Call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetPrivate">JS_SetPrivate</a>&lt;/code&gt; to establish a pointer to private data for the object, and call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_GetPrivate">JS_GetPrivate</a>&lt;/code&gt; to retrieve the pointer so that you can access the data. Your application is responsible for creating and managing this optional private data.</span></p>
+<p>プライベートデータを作成し、オブジェクトに関連づけるには: <span class="comment">To create private data and associate it with an object:</span></p>
+<ol>
+  <li>プライベートデータを通常のC言語のvoid ポインタ変数として作成します。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/JS_SetPrivate" title="ja/JS_SetPrivate">JS_SetPrivate</a></code>関数を呼び、プライベートデータと関連づけるオブジェクトと、プライベートデータ自身のポインタを指定して、<code><a href="https://developer.mozilla.org/ja/JS_SetPrivate" title="ja/JS_SetPrivate">JS_SetPrivate</a></code>関数を呼びます。</li>
+</ol>
+<p><span class="comment"># Establish the private data as you would a normal C void pointer variable. # Call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_SetPrivate">JS_SetPrivate</a>&lt;/code&gt;, specify the object for which to establish private data, and specify the pointer to the data.</span></p>
+<p>例： <span class="comment">For example:</span></p>
+<pre class="eval"> JS_SetPrivate(cx, obj, pdata);
+</pre>
+<p>データを後で使うためには、オブジェクトを引数として<code><a href="https://developer.mozilla.org/ja/JS_GetPrivate" title="ja/JS_GetPrivate">JS_GetPrivate</a></code>を呼びます。この関数は、オブジェクトの婦リベートデータへのポインタを返します。 <span class="comment">To retrieve the data at a later time, call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_GetPrivate">JS_GetPrivate</a>&lt;/code&gt;, and pass the object as an argument. This function returns the pointer to an object's private data:</span></p>
+<pre class="eval"> pdata = JS_GetPrivate(cx, obj);
+</pre>
+<h3 id="Handling_Unicode" name="Handling_Unicode">Handling Unicode</h3>
+<p>現在のJSエンジンは、JS関数を含むスクリプトを処理する多くのAPIで、UNICODEを扱うことができます。 これらの関数は、UNICODEでエンコードされたスクリプトを直接エンジンに渡し、コンパイルして実行することができます。 次の表は、従来からある関数とそのUNICODE版の一覧です。 <span class="comment">The JS engine now provides Unicode-enabled versions of many API functions that handle scripts, including JS functions. These functions permit you to pass Unicode-encoded scripts directly to the engine for compilation and execution. The following table lists standard engine functions and their Unicode equivalents:</span></p>
+<table class="fullwidth-table">
+  <tbody>
+    <tr>
+      <th>Standard Function</th>
+      <th>Unicode-enabled Function</th>
+    </tr>
+    <tr>
+      <td>JS_DefineProperty</td>
+      <td>JS_DefineUCProperty</td>
+    </tr>
+    <tr>
+      <td>JS_DefinePropertyWithTinyId</td>
+      <td>JS_DefineUCPropertyWithTinyId</td>
+    </tr>
+    <tr>
+      <td>JS_LookupProperty</td>
+      <td>JS_LookupUCProperty</td>
+    </tr>
+    <tr>
+      <td>JS_GetProperty</td>
+      <td>JS_GetUCProperty</td>
+    </tr>
+    <tr>
+      <td>JS_SetProperty</td>
+      <td>JS_SetUCProperty</td>
+    </tr>
+    <tr>
+      <td>JS_DeleteProperty2</td>
+      <td>JS_DeleteUCProperty2</td>
+    </tr>
+    <tr>
+      <td>JS_CompileScript</td>
+      <td>JS_CompileUCScript</td>
+    </tr>
+    <tr>
+      <td>JS_CompileScriptForPrincipals</td>
+      <td>JS_CompileUCScriptForPrincipals</td>
+    </tr>
+    <tr>
+      <td>JS_CompileFunction</td>
+      <td>JS_CompileUCFunction</td>
+    </tr>
+    <tr>
+      <td>JS_CompileFunctionForPrincipals</td>
+      <td>JS_CompileUCFunctionForPrincipals</td>
+    </tr>
+    <tr>
+      <td>JS_EvaluateScript</td>
+      <td>JS_EvaluateUCScript</td>
+    </tr>
+    <tr>
+      <td>JS_EvaluateScriptForPrincipals</td>
+      <td>JS_EvaluateUCScriptForPrincipals</td>
+    </tr>
+    <tr>
+      <td>JS_NewString</td>
+      <td>JS_NewUCString</td>
+    </tr>
+    <tr>
+      <td>JS_NewStringCopyN</td>
+      <td>JS_NewUCStringCopyN</td>
+    </tr>
+    <tr>
+      <td>JS_NewStringCopyZ</td>
+      <td>JS_NewUCStringCopyZ</td>
+    </tr>
+    <tr>
+      <td>JS_InternString</td>
+      <td>JS_InternUCString</td>
+    </tr>
+    <tr>
+      <td>--</td>
+      <td>JS_InternUCStringN</td>
+    </tr>
+  </tbody>
+</table>
+<p>UNICODE版の関数は、同じ名前のUNICODE版ではない関数とまったく同じように動作します。ただし、UNICODE版ではない関数は、<code>char *</code>を引数としてとりますが、UNICODE版は、<code>jschar *</code>を引数として使います。 <span class="comment">Unicode-enabled functions work exactly like their traditional namesakes, except that where traditional functions take a &lt;code&gt;char *&lt;/code&gt; argument, the Unicode versions take a &lt;code&gt;jschar *&lt;/code&gt; argument.</span></p>
+<h3 id="Working_with_JS_Data_Types" name="Working_with_JS_Data_Types">Working with JS Data Types</h3>
+<p>JavaScriptでは、独自の型を定義しています。JavaScriptの型の中には、直接C言語の型に対応しているものもあります。 直接C言語の型に対応していないような、<code><a href="https://developer.mozilla.org/ja/JSObject" title="ja/JSObject">JSObject</a></code>や<code><a href="https://developer.mozilla.org/ja/Jsdouble" title="ja/Jsdouble">jsdouble</a></code>や、<code><a href="https://developer.mozilla.org/ja/JSString" title="ja/JSString">JSString</a></code>などの 型は、JavaScriptに特有のものです。 <span class="comment">JavaScript defines its own data types. Some of these data types correspond directly to their C counterparts. Others, such as &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSObject">JSObject</a>&lt;/code&gt;, &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsdouble">jsdouble</a>&lt;/code&gt;, and &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSString">JSString</a>&lt;/code&gt;, are specific to JavaScript.</span></p>
+<p>一般的には、アプリケーションで使う型は、C言語でもそうするように、宣言する必要があります。しかし、JSエンジンは、格納するのに1ワード 以上の領域を必要とする<code><a href="https://developer.mozilla.org/ja/JSObject" title="ja/JSObject">JSObject</a></code>や,<code><a href="https://developer.mozilla.org/ja/Jsdouble" title="ja/Jsdouble">jsdouble</a></code>や<code><a href="https://developer.mozilla.org/ja/JSString" title="ja/JSString">JSString</a></code>などは、別々に 管理します。エンジンは定期的にこれらの変数が、使われているかどうかを確認し、使われていない場合には、ガーベージコレクトし、再利用します。 <span class="comment">Generally, you declare and use JS data types in your application just as you do standard C data types. The JS engine, however, keeps separate track of JS data type variables that require more than a word of storage: &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSObject">JSObject</a>&lt;/code&gt;, &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsdouble">jsdouble</a>&lt;/code&gt;, and &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSString">JSString</a>&lt;/code&gt;. Periodically, the engine examines these variables to see if they are still in use, and if they are not, it garbage collects them, freeing the storage space for reuse.</span></p>
+<p>ガーベージコレクションを行うことで、ヒープを効率的に再利用できるようになります。しかし、過度にフラグメントしていると、性能面での 問題を発生させます。アプリケーションで使うJSの変数とオブジェクトの数に基づいてアプリケーションで確保したJSランタイムの大きさを元に、 ガーベージコレクションを行う大体の頻度を制御することができます。アプリケーションでたくさんのJSオブジェクトと変数を使う場合には、 頻繁にガーベージコレクションが頻繁に実行されないように十分に大きなランタイムを割り当て方がよいでしょう。 <span class="comment">Garbage collection makes effective reuse of the heap, but overly frequent garbage collection may be a performance issue. You can control the approximate frequency of garbage collection based on the size of the JS run time you allocate for your application in relation to the number of JS variables and objects your application uses. If your application creates and uses many JS objects and variables, you may want to allocate a sufficiently large run time to reduce the likelihood of frequent garbage collection.</span></p>
+<p><strong>NOTE</strong>+ アプリケーションは、<code><a href="https://developer.mozilla.org/ja/JS_GC" title="ja/JS_GC">JS_GC</a></code>か、<code><a href="https://developer.mozilla.org/ja/JS_MaybeGC" title="ja/JS_MaybeGC">JS_MaybeGC</a></code>を呼ぶことで、いつでも強制的にガーベージコレクションを実行することができます。<code><a href="https://developer.mozilla.org/ja/JS_GC" title="ja/JS_GC">JS_GC</a></code>は、強制的にガーベージコレクションを実行します。<code><a href="https://developer.mozilla.org/ja/JS_MaybeGC" title="ja/JS_MaybeGC">JS_MaybeGC</a></code>は、呼び出したときに、最初にランタイムに割り当てた領域のうち一定の割合の領域が使用中であった場合に実際にガーベージコレクションを行います。 <span class="comment">'''NOTE''': Your application can also call &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_GC">JS_GC</a>&lt;/code&gt; or &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_MaybeGC">JS_MaybeGC</a>&lt;/code&gt; to force garbage collection at any time. &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_GC">JS_GC</a>&lt;/code&gt; forces garbage collection. &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_MaybeGC">JS_MaybeGC</a>&lt;/code&gt; performs conditional garbage collection only if a certain percentage of space initially allocated to the run time is in use at the time you invoke the function.</span></p>
+<h3 id="Working_with_JS_Values" name="Working_with_JS_Values">Working with JS Values</h3>
+<p>JSのデータ型の他に、JSエンジンは、<code><a href="https://developer.mozilla.org/ja/Jsval" title="ja/Jsval">jsval</a></code>というJSの値も使用します。<code><a href="https://developer.mozilla.org/ja/Jsval" title="ja/Jsval">jsval</a></code>は、本質的には 整数以外の値として使われるときは、JSデータ型へのポインタです。整数として使われるときには、<code><a href="https://developer.mozilla.org/ja/Jsval" title="ja/Jsval">jsval</a></code>は、その整数の 値そのものを格納しています。整数以外の値を格納しているときには、その値へのポインタに型の情報が付け加えられたものを保持します。これは、 エンジンの効率をよくするためと、多くのAPIで、いろいろなデータ型を扱えるようにするためです。 <span class="comment">In addition to JS data types, the JS engine also uses JS values, called &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt;s. A &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt; is essentially a pointer to any JS data type except integers. For integers, a &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt; contains the integer value itself. In other cases, the pointer is encoded to contain additional information about the type of data to which it points. Using &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt;s improves engine efficiency, and permits many API functions to handle a variety of underlying data types.</span></p>
+<p>エンジンのAPIには、次に示すような、<code><a href="https://developer.mozilla.org/ja/Jsval" title="ja/Jsval">jsval</a></code>のデータ型をテストするための一連のマクロを提供しています。 <span class="comment">The engine API contains a group of macros that test the JS data type of a &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt;. These are:</span></p>
+<ul>
+  <li><code><a href="https://developer.mozilla.org/ja/JSVAL_IS_OBJECT" title="ja/JSVAL_IS_OBJECT">JSVAL_IS_OBJECT</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/JSVAL_IS_NUMBER" title="ja/JSVAL_IS_NUMBER">JSVAL_IS_NUMBER</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/JSVAL_IS_INT" title="ja/JSVAL_IS_INT">JSVAL_IS_INT</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/JSVAL_IS_DOUBLE" title="ja/JSVAL_IS_DOUBLE">JSVAL_IS_DOUBLE</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/JSVAL_IS_STRING" title="ja/JSVAL_IS_STRING">JSVAL_IS_STRING</a></code></li>
+  <li><code><a href="https://developer.mozilla.org/ja/JSVAL_IS_BOOLEAN" title="ja/JSVAL_IS_BOOLEAN">JSVAL_IS_BOOLEAN</a></code></li>
+</ul>
+<p>上記マクロを使って <code><a href="https://developer.mozilla.org/ja/Jsval" title="ja/Jsval">jsval</a></code>が格納している実際のデータ型をテストすることに加え、<code><a href="https://developer.mozilla.org/ja/JSVAL_IS_PRIMITIVE" title="ja/JSVAL_IS_PRIMITIVE">JSVAL_IS_PRIMITIVE</a></code>を 使うことで、JSのプリミティブデータ型であるかどうかのテストを行うこともできます。プリミティブとは、undefinedか、 null か、ブール型か 数値型か、文字列型のことを言います。 <span class="comment">Besides testing a &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt; for its underlying data type, you can test it to determine if it is a primitive JS data type (&lt;code&gt;<a href="https://developer.mozilla.org/ja/JSVAL_IS_PRIMITIVE">JSVAL_IS_PRIMITIVE</a>&lt;/code&gt;). Primitives are values that are undefined, null, boolean, numeric, or string types.</span></p>
+<p><code><a href="https://developer.mozilla.org/ja/Jsval" title="ja/Jsval">jsval</a></code>が指している値が、<code>NULL</code>)<code><a href="https://developer.mozilla.org/ja/JSVAL_IS_NULL" title="ja/JSVAL_IS_NULL">JSVAL_IS_NULL</a></code>)であるかどうかと、 void )<code><a href="https://developer.mozilla.org/ja/JSVAL_IS_VOID" title="ja/JSVAL_IS_VOID">JSVAL_IS_VOID</a></code>)であるかを調べる事もできます。 <span class="comment">You can also test the value pointed to by a &lt;code&gt;<a href="https://developer.mozilla.org/ja/Jsval" title="ja/Jsval">jsval</a>&lt;/code&gt; to see if it is &lt;code&gt;NULL&lt;/code&gt; (&lt;code&gt;<a href="https://developer.mozilla.org/ja/JSVAL_IS_NULL">JSVAL_IS_NULL</a>&lt;/code&gt;) or void (&lt;code&gt;<a href="https://developer.mozilla.org/ja/JSVAL_IS_VOID">JSVAL_IS_VOID</a>&lt;/code&gt;).</span></p>
+<p>jsvalがさしているJSデータ型が、<code><a href="https://developer.mozilla.org/ja/JSObject" title="ja/JSObject">JSObject</a></code>か、<code><a href="https://developer.mozilla.org/ja/Jsdouble" title="ja/Jsdouble">jsdouble</a></code>か、<code><a href="https://developer.mozilla.org/ja/Jsstr" title="ja/Jsstr">jsstr</a></code>である場合には、<code><a href="https://developer.mozilla.org/ja/Jsval" title="ja/Jsval">jsval</a></code>を、それぞれ、<code><a href="https://developer.mozilla.org/ja/JSVAL_TO_OBJECT" title="ja/JSVAL_TO_OBJECT">JSVAL_TO_OBJECT</a></code>, <code><a href="https://developer.mozilla.org/ja/JSVAL_TO_DOUBLE" title="ja/JSVAL_TO_DOUBLE">JSVAL_TO_DOUBLE</a></code><code><a href="https://developer.mozilla.org/ja/JSVAL_TO_STRING" title="ja/JSVAL_TO_STRING">JSVAL_TO_STRING</a></code>を使って実際に格納しているデータへのポインタにキャストすることができます。この機能は、アプリケーションやJSエンジンが特定のデータ型の変数や引数を必要とする場合に使われます。 同様のことが<code><a href="https://developer.mozilla.org/ja/JSObject" title="ja/JSObject">JSObject</a></code>を<code><a href="https://developer.mozilla.org/ja/OBJECT_TO_JSVAL" title="ja/OBJECT_TO_JSVAL">OBJECT_TO_JSVAL</a></code>, <code><a href="https://developer.mozilla.org/ja/DOUBLE_TO_JSVAL" title="ja/DOUBLE_TO_JSVAL">DOUBLE_TO_JSVAL</a></code>, &lt;ode&gt;<a href="https://developer.mozilla.org/ja/STRING_TO_JSVAL" title="ja/STRING_TO_JSVAL">STRING_TO_JSVAL</a>&lt;/code&gt;を使って変換できます。</p>
+<p><span class="comment">If a jsval points to a JS data type of &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSObject">JSObject</a>&lt;/code&gt;, &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsdouble">jsdouble</a>&lt;/code&gt;, or &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsstr">jsstr</a>&lt;/code&gt;, you can cast the &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt; to its underlying data type using &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSVAL_TO_OBJECT">JSVAL_TO_OBJECT</a>&lt;/code&gt;, &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSVAL_TO_DOUBLE">JSVAL_TO_DOUBLE</a>&lt;/code&gt;, and &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSVAL_TO_STRING">JSVAL_TO_STRING</a>&lt;/code&gt;, respectively. This is useful in some cases where your application or a JS engine call requires a variable or argument of a specific data type, rather than a &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt;. Similarly, you can convert a &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSObject">JSObject</a>&lt;/code&gt;, &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsdouble">jsdouble</a>&lt;/code&gt;, and &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsstr">jsstr</a>&lt;/code&gt; to a &lt;code&gt;<a href="https://developer.mozilla.org/ja/jsval">jsval</a>&lt;/code&gt; using &lt;code&gt;<a href="https://developer.mozilla.org/ja/OBJECT_TO_JSVAL">OBJECT_TO_JSVAL</a>&lt;/code&gt;, &lt;code&gt;<a href="https://developer.mozilla.org/ja/DOUBLE_TO_JSVAL">DOUBLE_TO_JSVAL</a>&lt;/code&gt;, and &lt;code&gt;<a href="https://developer.mozilla.org/ja/STRING_TO_JSVAL">STRING_TO_JSVAL</a>&lt;/code&gt;, respectively.</span></p>
+<h3 id="Unicode_String_Support" name="Unicode_String_Support">Unicode String Support</h3>
+<p>他のAPIの場合と同じように、UNICODE版の文字列関数の名前は、標準的な文字列関数の名前と1対1に対応します。 標準的な関数名が、<code><a href="https://developer.mozilla.org/ja/JS_NewStringCopyN" title="ja/JS_NewStringCopyN">JS_NewStringCopyN</a></code>である場合には、対応するUNICODE版の関数名は、 <code><a href="https://developer.mozilla.org/ja/JS_NewUCStringCopyN" title="ja/JS_NewUCStringCopyN">JS_NewUCStringCopyN</a></code>です。UNICODE版の文字列関数は、interned文字列用のものも提供されています。 <span class="comment">As with other API calls, the names of Unicode-enabled API string functions correspond one-for-one with the standard engine API string function names as follows: if a standard function name is &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewStringCopyN">JS_NewStringCopyN</a>&lt;/code&gt;, the corresponding Unicode version of the function is &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewUCStringCopyN">JS_NewUCStringCopyN</a>&lt;/code&gt;. Unicode-enabled API string functions are also available for interned string.</span></p>
+<h3 id="Interned_String_Support" name="Interned_String_Support">Interned String Support</h3>
+<p>文字列格納用の領域を減らすために、JSエンジンは、違うときに使われる文字列を共有する仕組みがあります。 このような共有文字列のことを、"interned文字列"と呼びます。アプリケーション内で、1回以上特定の文字列が作られて、使われる場合には、 interned文字列を使ってください。 <span class="comment">To save storage space, the JS engine provides support for sharing a single instance of a string among separate invocations. Such shared strings are called "interned strings". Use interned strings when you know that a particular, string of text will be created and used more than once in an application.</span></p>
+<p>次のAPIにより、interned文字列を複数回にわたって使うことができます。 <span class="comment">The engine API offers several calls for working with interned strings:</span></p>
+<ul>
+  <li><code><a href="https://developer.mozilla.org/ja/JS_InternString" title="ja/JS_InternString">JS_InternString</a></code>, for creating or reusing a <code><a href="https://developer.mozilla.org/ja/JSString" title="ja/JSString">JSString</a></code>.</li>
+  <li><code><a href="https://developer.mozilla.org/ja/JS_InternUCString" title="ja/JS_InternUCString">JS_InternUCString</a></code>, for creating or reusing a Unicode <code><a href="https://developer.mozilla.org/ja/JSString" title="ja/JSString">JSString</a></code>.</li>
+  <li><code><a href="https://developer.mozilla.org/ja/JS_InternUCStringN" title="ja/JS_InternUCStringN">JS_InternUCStringN</a></code>, for creating or reusing Unicode <code><a href="https://developer.mozilla.org/ja/JSString" title="ja/JSString">JSString</a></code> of fixed length.</li>
+</ul>
+<h3 id="Managing_Security" name="Managing_Security">Managing Security</h3>
+<p>JavaScript 1.3で、スクリプトをコンパイルする関数と、エンジンに渡されるスクリプトと関数を評価するための関数のセキュリティが強化されました。 JSのセキュリティモデルは、Javaの<span class="comment">principals</span> セキュリティモデルを基にしています。このモデルは、共通のセキュリティインターフェースを提供しますが、 実際の実装は、実装する人の責任です。 <span class="comment">With JavaScript 1.3, the JS engine added security-enhanced API functions for compiling and evaluating scripts and functions passed to the engine. The JS security model is based on the Java principals security model. This model provides a common security interface, but the actual security implementation is up to you.</span></p>
+<p>JavaScriptを実行できるアプリケーションで使われるセキュリティの方法の1つに、スクリプトの作成元を比較し、スクリプトの相互作用を場合によっては制限することが あります。例えば、アプリケーションで使う2つ以上のスクリプトの作成元を比較して、同じ作成元のスクリプトだけにスクリプトのプロパティの変更が 行えないようにすることができます。 <span class="comment">One common way that security is used in a JavaScript-enabled application is to compare script origins and perhaps limit script interactions. For example, you might compare the codebase of two or more scripts in an application and only allow scripts from the same codebase to modify properties of scripts that share codebases.</span></p>
+<p>セキュアなJSを実装するために、次のことを守って下さい。</p>
+<p><span class="comment">To implement secure JS, follow these steps: &lt;ol&gt; &lt;li&gt;Declare one or more structs of type &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSPrincipals">JSPrincipals</a>&lt;/code&gt; in your application code.&lt;/li&gt; &lt;li&gt;Implement the functions that will provide security information to the array. These include functions that provide an array of principals for your application, and mechanisms for incrementing and decrementing a reference count on the number of JS objects using a given set of principles.&lt;/li&gt; &lt;li&gt;Populate the &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSPrincipals">JSPrincipals</a>&lt;/code&gt; struct with your security information. This information can include common codebase information.&lt;/li&gt; &lt;li&gt;At run time, compile and evaluate all scripts and functions for which you intend to apply security using the JS API calls that require you to pass in a &lt;code&gt;<a href="https://developer.mozilla.org/ja/JSPrincipals">JSPrincipals</a>&lt;/code&gt; struct. The following table lists these API functions and their purposes:&lt;/li&gt; &lt;/ol&gt;</span></p>
+<table class="fullwidth-table">
+  <tbody>
+    <tr>
+      <th>Function</th>
+      <th>Purpose</th>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/JS_CompileScriptForPrincipals" title="ja/JS_CompileScriptForPrincipals">JS_CompileScriptForPrincipals</a></code></td>
+      <td>Compiles, but does not execute, a security-enabled script.</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/JS_CompileUCScriptForPrincipals" title="ja/JS_CompileUCScriptForPrincipals">JS_CompileUCScriptForPrincipals</a></code></td>
+      <td>Compiles, but does not execute, a security-enabled, Unicode-encoded script.</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/JS_CompileFunctionForPrincipals" title="ja/JS_CompileFunctionForPrincipals">JS_CompileFunctionForPrincipals</a></code></td>
+      <td>Creates a security-enabled JS function from a text string.</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/JS_CompileUCFunctionForPrincipals" title="ja/JS_CompileUCFunctionForPrincipals">JS_CompileUCFunctionForPrincipals</a></code></td>
+      <td>Creates a JS function with security information from a Unicode-encoded character string.</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/JS_EvaluateScriptForPrincipals" title="ja/JS_EvaluateScriptForPrincipals">JS_EvaluateScriptForPrincipals</a></code></td>
+      <td>Compiles and executes a security-enabled script.</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/JS_EvaluateUCScriptForPrincipals" title="ja/JS_EvaluateUCScriptForPrincipals">JS_EvaluateUCScriptForPrincipals</a></code></td>
+      <td>Compiles and executes a security-enabled, Unicode-encoded character script.</td>
+    </tr>
+  </tbody>
+</table>
+<p> </p>
+<ol>
+  <li>アプリケーション内で、<code><a href="https://developer.mozilla.org/ja/JSPrincipals" title="ja/JSPrincipals">JSPrincipals</a></code>型の構造体を定義します。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/JSPrincipals" title="ja/JSPrincipals">JSPrincipals</a></code>構造体の構造体にセキュリティに関する情報を提供する関数を実装します。</li>
+  <li>背キュウリ邸に関する情報を持つ<code><a href="https://developer.mozilla.org/ja/JSPrincipals" title="ja/JSPrincipals">JSPrincipals</a></code>構造体が利用できるようにします。この情報には、作成元に関する共通の情報を 格納できます。また、与えられたprincipalesのを使うオブジェクトの参照回数を増やしたり減らしたりするメカニズムを提供します。</li>
+  <li>実行時に、<code><a href="https://developer.mozilla.org/ja/JSPrincipals" title="ja/JSPrincipals">JSPrincipals</a></code>構造体を渡して実行する必要のあるAPIを呼ぶことで、セキュリティを適用するスクリプトや関数をコンパイルし実行して下さい。 次の表にこういったAPI関数をリストアップしました。</li>
+</ol>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../tag/JavaScript.html">JavaScript</a></li><li><a href="../tag/SpiderMonkey.html">SpiderMonkey</a></li><li><a href="../tag/翻訳中.html">翻訳中</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/Nazoking">Nazoking</a>, <a href="../../profiles/fscholz.html">fscholz</a>, <a href="https://developer.mozilla.org/ja/profiles/Ywata">Ywata</a>, <a href="../../profiles/ethertank.html">ethertank</a>, <a href="../../profiles/Marsf.html">Marsf</a>, <a href="../../profiles/Mgjbot.html">Mgjbot</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2012-10-23T01:46:50-07:00">2012/10/23 1:46:50</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                  </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":310}</script></body>
+</html>

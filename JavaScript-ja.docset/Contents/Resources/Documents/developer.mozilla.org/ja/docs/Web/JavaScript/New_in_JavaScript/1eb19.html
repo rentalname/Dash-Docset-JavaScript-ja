@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/JavaScript/New_in_JavaScript/1.7$compare?to=288440&from=103442 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 23:04:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>リビジョンの比較 | JavaScript 1.7 の新機能 | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+          <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body  class="">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': true,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#content" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+                
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/New_in_JavaScript/1.7$compare?to=288440&amp;from=103442" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                          <span class="oauth-icon oauth-github" data-service="GitHub" data-href="/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FJavaScript%2FNew_in_JavaScript%2F1.7%24compare%3Fto%3D288440%26from%3D103442" title="GitHub"><i class="icon-github" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/New_in_JavaScript/1.7$compare?to=288440&amp;from=103442" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                                  <li><a href="https://developer.mozilla.org/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FJavaScript%2FNew_in_JavaScript%2F1.7%24compare%3Fto%3D288440%26from%3D103442" class="login-link" data-service="GitHub"><i class="icon-github" aria-hidden="true"></i>GitHub</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+  <article id="compare-revisions">
+
+    <h1>リビジョンの比較</h1>
+    <h2><a href="1-6.html">JavaScript 1.7 の新機能</a></h2>
+
+      <section class="revision-diff">
+    <header>
+      <div class="rev-from">
+        <h3>
+                      <a href="1.7%24revision/103442.html">
+              リビジョン 103442:
+            </a>
+                  </h3>
+        <p>リビジョン 103442 （編集者: Mgjbot / 編集日時: <time datetime="2008-08-08T01:31:52-07:00">2008年8月8日 01:31:52-0700</time>）</p>
+      </div>
+      <div class="rev-to">
+        <h3>
+                      <a href="1.7%24revision/288440.html">
+              リビジョン 288440:
+            </a>
+                  </h3>
+        <p>リビジョン 288440 （編集者: Potappo / 編集日時: <time datetime="2010-11-09T15:31:36-08:00">2010年11月9日 15:31:36-0800</time>）</p>
+      </div>
+    </header>
+
+    <dl>
+      <dt>タイトル:</dt>
+      <dd class="rev-from">JavaScript 1.7 の新機能</dd>
+      <dd class="rev-to">JavaScript 1.7 の新機能</dd>
+
+      <dt>URL スラッグ:</dt>
+      <dd class="rev-from">JavaScript/New_in_JavaScript/1.7</dd>
+      <dd class="rev-to">JavaScript/New_in_JavaScript/1.7</dd>
+
+            <dt>タグ:</dt>
+      <dd class="rev-from"> JavaScript,  JavaScript_version_overviews</dd>
+      <dd class="rev-to"> JavaScript,  JavaScript_version_overviews</dd>
+      
+      <dt>内容:</dt>
+      <dd>
+    <table class="diff" id="difflib_chg_to106__top"
+           cellspacing="0" cellpadding="0" rules="groups" >
+        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
+        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
+        <thead><tr><th class="diff_next"><br /></th><th colspan="2" class="diff_header">リビジョン 103442</th><th class="diff_next"><br /></th><th colspan="2" class="diff_header">リビジョン 288440</th></tr></thead>
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__0"><a href="#difflib_chg_to106__1">n</a></td><td class="diff_header" id="from106_8">8</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{&nbsp;Fx_minversion_header(<span class="diff_sub">"</span>2<span class="diff_chg">")&nbsp;}}</span>&nbsp;JavaScript&nbsp;1.7&nbsp;はいくつかの新機能、特に</td><td class="diff_next"><a href="#difflib_chg_to106__1">n</a></td><td class="diff_header" id="to106_8">8</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{&nbsp;Fx_minversion_header(2<span class="diff_chg">)&nbsp;}}</span>&nbsp;JavaScript&nbsp;1.7&nbsp;はいくつかの新機能、特に{{</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">{{&nbsp;原語併記("ジェネレータ",&nbsp;"generators")&nbsp;}}、{{&nbsp;原語併記("イテレータ",&nbsp;"iterators")&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&nbsp;原語併記("ジェネレータ",&nbsp;"generators")&nbsp;}}、{{&nbsp;原語併記("イテレータ",&nbsp;"iterators")&nbsp;}}</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">}}、{{&nbsp;原語併記("配列内包",&nbsp;"array&nbsp;comprehensions")&nbsp;}}、{{&nbsp;原語併記("&lt;code&gt;let&lt;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">、{{&nbsp;原語併記("配列内包",&nbsp;"array&nbsp;comprehensions")&nbsp;}}、{{&nbsp;原語併記("&lt;code&gt;let&lt;/c</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">/code&gt;&nbsp;式",&nbsp;"&lt;code&gt;let&lt;/code&gt;&nbsp;expressions")&nbsp;}}、および{{&nbsp;原語併記("分割代入",&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ode&gt;&nbsp;式",&nbsp;"&lt;code&gt;let&lt;/code&gt;&nbsp;expressions")&nbsp;}}、および{{&nbsp;原語併記("分割代入",&nbsp;"d</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">"destructuring&nbsp;assignment")&nbsp;}}&nbsp;を取り入れた言語アップデートです。&lt;a&nbsp;href="ja/New_i</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">estructuring&nbsp;assignment")&nbsp;}}&nbsp;を取り入れた言語アップデートです。&lt;a&nbsp;href="<span class="diff_add">/</span>ja/New_in</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">n_JavaScript_1.6"<span class="diff_chg">&gt;</span>JavaScript<span class="diff_chg">&nbsp;</span>1.6<span class="diff_chg">&lt;/a&gt;</span>&nbsp;のすべての機能も含まれています。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">_JavaScript_1.6"<span class="diff_chg">&nbsp;title="ja/New_in_</span>JavaScript<span class="diff_chg">_</span>1.6<span class="diff_chg">"&gt;JavaScript&nbsp;1.6&lt;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_chg">/a&gt;</span>&nbsp;のすべての機能も含まれています。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__1"><a href="#difflib_chg_to106__2">n</a></td><td class="diff_header" id="from106_14">14</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;この記事に含まれるコードの例は&nbsp;JavaScript&nbsp;シェルから実験できます。&lt;a&nbsp;href="ja/Introduc</td><td class="diff_next"><a href="#difflib_chg_to106__2">n</a></td><td class="diff_header" id="to106_14">14</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;この記事に含まれるコードの例は&nbsp;JavaScript&nbsp;シェルから実験できます。&lt;a&nbsp;href="<span class="diff_add">/</span>ja/Introdu</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">tion_to_the_JavaScript_shell"&gt;Introduction&nbsp;to&nbsp;the&nbsp;JavaScript&nbsp;shel</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ction_to_the_JavaScript_shell"<span class="diff_add">&nbsp;title="ja/Introduction_to_the_Java</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">l&lt;/a&gt;&nbsp;を読み、シェルのビルド方法と使い方を学んでください。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">Script_shell"</span>&gt;Introduction&nbsp;to&nbsp;the&nbsp;JavaScript&nbsp;shell&lt;/a&gt;&nbsp;を読み、シェルのビル</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ド方法と使い方を学んでください。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__2"><a href="#difflib_chg_to106__3">n</a></td><td class="diff_header" id="from106_19">19</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;name="JavaScript_1.7_.E3.82.92.E4.BD.BF.E3.81.86"&gt;</span></td><td class="diff_next"><a href="#difflib_chg_to106__3">n</a></td><td class="diff_header" id="to106_19">19</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;id="JavaScript_1.7_.E3.82.92.E4.BD.BF.E3.81.86"&nbsp;name="Jav</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">aScript_1.7_.E3.82.92.E4.BD.BF.E3.81.86"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__3"><a href="#difflib_chg_to106__4">n</a></td><td class="diff_header" id="from106_29">29</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href="ja/Introduction_to_the_JavaScript_shell"<span class="diff_chg">&gt;</span>JavaScrip</td><td class="diff_next"><a href="#difflib_chg_to106__4">n</a></td><td class="diff_header" id="to106_29">29</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href="<span class="diff_add">/</span>ja/Introduction_to_the_JavaScript_shell"<span class="diff_chg">&nbsp;title="j</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">t&nbsp;シェル&lt;/a&gt;を使うときは、コマンドラインで&nbsp;&lt;code&gt;-version&nbsp;170&lt;/code&gt;&nbsp;スイッチを使うか、&lt;code</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_chg">a/Introduction_to_the_</span>JavaScript<span class="diff_add">_shell"&gt;JavaScript</span>&nbsp;シェル&lt;/a&gt;を使うときは、</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&gt;version()&lt;/code&gt;&nbsp;関数を使って使いたいバージョンを設定する必要があります。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">コマンドラインで&nbsp;&lt;code&gt;-version&nbsp;170&lt;/code&gt;&nbsp;スイッチを使うか、&lt;code&gt;version()&lt;/code</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&gt;&nbsp;関数を使って使いたいバージョンを設定する必要があります。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__4"><a href="#difflib_chg_to106__5">n</a></td><td class="diff_header" id="from106_40">40</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82</span></td><td class="diff_next"><a href="#difflib_chg_to106__5">n</a></td><td class="diff_header" id="to106_40">40</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.B</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.BF.E3.81.A8.E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E3.81.A8.E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF"&nbsp;name=".E</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.A8.E3.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__5"><a href="#difflib_chg_to106__6">n</a></td><td class="diff_header" id="from106_49">49</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82</span></td><td class="diff_next"><a href="#difflib_chg_to106__6">n</a></td><td class="diff_header" id="to106_49">49</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.B</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.BF"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F"&nbsp;name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__6"><a href="#difflib_chg_to106__7">n</a></td><td class="diff_header" id="from106_104">104</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82</span></td><td class="diff_next"><a href="#difflib_chg_to106__7">n</a></td><td class="diff_header" id="to106_104">104</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.B</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.BF.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.AE.E6.99.82.E7.82.B9.E3.81.8</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.AE.E6.99.82.E7.82.B9.E3.81.8B.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">B.E3.82.89.E5.86.8D.E9.96.8B.E3.81.99.E3.82.8B"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">E3.82.89.E5.86.8D.E9.96.8B.E3.81.99.E3.82.8B"&nbsp;name=".E3.82.B8.E3.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E6.8C.87.E5.AE</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.9A.E3.81.AE.E6.99.82.E7.82.B9.E3.81.8B.E3.82.89.E5.86.8D.E9.96.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">B.E3.81.99.E3.82.8B"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__7"><a href="#difflib_chg_to106__8">n</a></td><td class="diff_header" id="from106_114">114</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">b</span>&gt;注:&lt;/<span class="diff_chg">b&gt;</span>&nbsp;興味深い点として、&lt;code&gt;send(undefined)&lt;/code&gt;&nbsp;を呼び出すことは&nbsp;&lt;c</td><td class="diff_next"><a href="#difflib_chg_to106__8">n</a></td><td class="diff_header" id="to106_114">114</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">strong</span>&gt;注:&lt;/<span class="diff_chg">strong&gt;</span>&nbsp;興味深い点として、&lt;code&gt;send(undefined)&lt;/code&gt;&nbsp;を</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ode&gt;next()&lt;/code&gt;&nbsp;を呼び出すことと等価です。しかし&nbsp;&lt;code&gt;send()&lt;/code&gt;&nbsp;を呼び出す際、生まれ</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">呼び出すことは&nbsp;&lt;code&gt;next()&lt;/code&gt;&nbsp;を呼び出すことと等価です。しかし&nbsp;&lt;code&gt;send()&lt;/code&gt;&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">たてのジェネレータを&nbsp;undefined&nbsp;以外の値からスタートさせようとすると&nbsp;&lt;code&gt;TypeError&lt;/code&gt;&nbsp;例外</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">を呼び出す際、生まれたてのジェネレータを&nbsp;undefined&nbsp;以外の値からスタートさせようとすると&nbsp;&lt;code&gt;TypeError</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">を引き起こします。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&lt;/code&gt;&nbsp;例外を引き起こします。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__8"><a href="#difflib_chg_to106__9">n</a></td><td class="diff_header" id="from106_119">119</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82</span></td><td class="diff_next"><a href="#difflib_chg_to106__9">n</a></td><td class="diff_header" id="to106_119">119</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.B</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.BF.E4.B8.AD.E3.81.A7.E3.81.AE.E4.BE.8B.E5.A4.96"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E4.B8.AD.E3.81.A7.E3.81.AE.E4.BE.8B.E5.A4.96"&nbsp;name=".E3.82.B8.E</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E4.B8.AD.E3.81.A7.E3.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">81.AE.E4.BE.8B.E5.A4.96"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__9"><a href="#difflib_chg_to106__10">n</a></td><td class="diff_header" id="from106_123">123</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;投げさせたい例外の値を渡して&nbsp;&lt;code&gt;throw()&lt;/code&gt;&nbsp;メソッドを呼び出すことで、ジェネレータに強制的</td><td class="diff_next"><a href="#difflib_chg_to106__10">n</a></td><td class="diff_header" id="to106_123">123</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;投げさせたい例外の値を渡して&nbsp;&lt;code&gt;throw()&lt;/code&gt;&nbsp;メソッドを呼び出すことで、ジェネレータに強制的</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">に例外を投げさせることができます。この例外はその時点の中断されたジェネレータの文脈から、つまりあたかもその時点で一時停止されている</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">に例外を投げさせることができます。この例外はその時点の中断されたジェネレータの文脈から、つまりあたかもその時点で一時停止されている</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&nbsp;&lt;code&gt;yield&lt;/code&gt;&nbsp;が&nbsp;&lt;code&gt;throw&nbsp;&lt;<span class="diff_chg">i</span>&gt;value&lt;/<span class="diff_chg">i&gt;&lt;/code&gt;</span>&nbsp;に置き換わったかのよう</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&nbsp;&lt;code&gt;yield&lt;/code&gt;&nbsp;が&nbsp;&lt;code&gt;throw&nbsp;&lt;<span class="diff_chg">em</span>&gt;value&lt;/<span class="diff_chg">em&gt;&lt;/code&gt;</span>&nbsp;に置き換わったかの</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">に投げられます。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ように投げられます。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__10"><a href="#difflib_chg_to106__11">n</a></td><td class="diff_header" id="from106_131">131</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82</span></td><td class="diff_next"><a href="#difflib_chg_to106__11">n</a></td><td class="diff_header" id="to106_131">131</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.B</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.BF.E3.82.92.E9.96.89.E3.81.98.E3.82.8B"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E3.82.92.E9.96.89.E3.81.98.E3.82.8B"&nbsp;name=".E3.82.B8.E3.82.A7.E</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">3.83.8D.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E9.96.89.E3.81.98.E3.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">82.8B"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__11"><a href="#difflib_chg_to106__12">n</a></td><td class="diff_header" id="from106_148">148</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82</span></td><td class="diff_next"><a href="#difflib_chg_to106__12">n</a></td><td class="diff_header" id="to106_148">148</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E3.83.BC.E3.82.B</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.BF.E3.81.AE.E4.BE.8B"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E3.81.AE.E4.BE.8B"&nbsp;name=".E3.82.B8.E3.82.A7.E3.83.8D.E3.83.AC.E</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">3.83.BC.E3.82.BF.E3.81.AE.E4.BE.8B"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__12"><a href="#difflib_chg_to106__13">n</a></td><td class="diff_header" id="from106_182">182</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;name=".E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF"&gt;</span></td><td class="diff_next"><a href="#difflib_chg_to106__13">n</a></td><td class="diff_header" id="to106_182">182</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;id=".E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF"&nbsp;name="</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.E3.82.A4.E3.83.86.E3.83.AC.E3.83.BC.E3.82.BF"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__13"><a href="#difflib_chg_to106__14">n</a></td><td class="diff_header" id="from106_189">189</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;普通の使い方では、イテレータオブジェクトは「目に見えません」。つまりあなたはイテレータオブジェクトを明示的に操作する必</td><td class="diff_next"><a href="#difflib_chg_to106__14">n</a></td><td class="diff_header" id="to106_189">189</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;普通の使い方では、イテレータオブジェクトは「目に見えません」。つまりあなたはイテレータオブジェクトを明示的に操作する必</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">要はなく、代わりに&nbsp;JavaScript&nbsp;の&nbsp;&lt;a&nbsp;href="ja/Core_JavaScript_1.5_Guide/Obje</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">要はなく、代わりに&nbsp;JavaScript&nbsp;の&nbsp;&lt;a&nbsp;href="<span class="diff_add">/</span>ja/Core_JavaScript_1.5_Guide/Obj</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ct_Manipulation_Statements"&gt;&lt;code&gt;for...in&lt;/code&gt;&nbsp;や&nbsp;&lt;code&gt;for&nbsp;eac</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ect_Manipulation_Statements"<span class="diff_add">&nbsp;title="ja/Core_JavaScript_1.5_Guide/</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">h...in&lt;/code&gt;&nbsp;文&lt;/a&gt;を使うことで、オブジェクトのキーや値への繰り返し処理を自然と行うことができます。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">Object_Manipulation_Statements"</span>&gt;&lt;code&gt;for...in&lt;/code&gt;&nbsp;や&nbsp;&lt;code&gt;for</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&nbsp;each...in&lt;/code&gt;&nbsp;文&lt;/a&gt;を使うことで、オブジェクトのキーや値への繰り返し処理を自然と行うことができます。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__14"><a href="#difflib_chg_to106__15">n</a></td><td class="diff_header" id="from106_203">203</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;あなたは&nbsp;&lt;code&gt;Iterator(&lt;<span class="diff_chg">i</span>&gt;objectname&lt;/<span class="diff_chg">i</span>&gt;)&lt;/code&gt;&nbsp;を呼び出すことで、あるオブ</td><td class="diff_next"><a href="#difflib_chg_to106__15">n</a></td><td class="diff_header" id="to106_203">203</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;あなたは&nbsp;&lt;code&gt;Iterator(&lt;<span class="diff_chg">em</span>&gt;objectname&lt;/<span class="diff_chg">em</span>&gt;)&lt;/code&gt;&nbsp;を呼び出すことで、ある</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ジェクトのイテレータを生成することができますが、そのようなあるオブジェクトのイテレータは、そのオブジェクトの&nbsp;&lt;code&gt;__it</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">オブジェクトのイテレータを生成することができますが、そのようなあるオブジェクトのイテレータは、そのオブジェクトの&nbsp;&lt;code&gt;__</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">erator__&lt;/code&gt;&nbsp;メソッドを呼び出すことで見つけられます。もし&nbsp;&lt;code&gt;__iterator__&lt;/code&gt;&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">iterator__&lt;/code&gt;&nbsp;メソッドを呼び出すことで見つけられます。もし&nbsp;&lt;code&gt;__iterator__&lt;/code</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">が存在しなければ、デフォルトのイテレータが生成されます。デフォルトのイテレータは、普通の&nbsp;&lt;code&gt;for...in&lt;/code</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&gt;&nbsp;が存在しなければ、デフォルトのイテレータが生成されます。デフォルトのイテレータは、普通の&nbsp;&lt;code&gt;for...in&lt;/co</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&gt;&nbsp;や&nbsp;&lt;code&gt;for&nbsp;each...in&lt;/code&gt;&nbsp;のモデルに基づいて、オブジェクトのプロパティを&nbsp;yield&nbsp;します。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">de&gt;&nbsp;や&nbsp;&lt;code&gt;for&nbsp;each...in&lt;/code&gt;&nbsp;のモデルに基づいて、オブジェクトのプロパティを&nbsp;yield&nbsp;しま</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">もしあなたがカスタマイズしたイテレータを提供したいならば、&lt;code&gt;__iterator__&lt;/code&gt;&nbsp;メソッドをあなたのカ</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">す。もしあなたがカスタマイズしたイテレータを提供したいならば、&lt;code&gt;__iterator__&lt;/code&gt;&nbsp;メソッドをあなた</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">スタマイズしたイテレータのインスタンスを返すように上書きしてください。スクリプトからオブジェクトのイテレータを得るには、直接&nbsp;&lt;c</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">のカスタマイズしたイテレータのインスタンスを返すように上書きしてください。スクリプトからオブジェクトのイテレータを得るには、直接&nbsp;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ode&gt;__iterator__&lt;/code&gt;&nbsp;プロパティにアクセスせず&nbsp;&lt;code&gt;Iterator(&lt;<span class="diff_chg">i</span>&gt;obj&lt;/<span class="diff_chg">i</span>&gt;)&lt;/</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">&lt;code&gt;__iterator__&lt;/code&gt;&nbsp;プロパティにアクセスせず&nbsp;&lt;code&gt;Iterator(&lt;<span class="diff_chg">em</span>&gt;obj&lt;/<span class="diff_chg">em</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">code&gt;&nbsp;を使ってください。後者は配列&nbsp;(Array)&nbsp;に対しても使えますが、前者は使えません。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_chg"></span>&gt;)&lt;/code&gt;&nbsp;を使ってください。後者は配列&nbsp;(Array)&nbsp;に対しても使えますが、前者は使えません。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__15"><a href="#difflib_chg_to106__16">n</a></td><td class="diff_header" id="from106_257">257</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;name=".E9.85.8D.E5.88.97.E5.86.85.E5.8C.85"&gt;</span></td><td class="diff_next"><a href="#difflib_chg_to106__16">n</a></td><td class="diff_header" id="to106_257">257</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;id=".E9.85.8D.E5.88.97.E5.86.85.E5.8C.85"&nbsp;name=".E9.85.8D</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.E5.88.97.E5.86.85.E5.8C.85"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__16"><a href="#difflib_chg_to106__17">n</a></td><td class="diff_header" id="from106_301">301</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6</span></td><td class="diff_next"><a href="#difflib_chg_to106__17">n</a></td><td class="diff_header" id="to106_301">301</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.8F.E5.89.87"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E5.89.87"&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">8.A6.8F.E5.89.87"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__17"><a href="#difflib_chg_to106__18">n</a></td><td class="diff_header" id="from106_308">308</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">i</span>&gt;Add&nbsp;details.&lt;/<span class="diff_chg">i</span>&gt;</td><td class="diff_next"><a href="#difflib_chg_to106__18">n</a></td><td class="diff_header" id="to106_308">308</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">em</span>&gt;Add&nbsp;details.&lt;/<span class="diff_chg">em</span>&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__18"><a href="#difflib_chg_to106__19">n</a></td><td class="diff_header" id="from106_313">313</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;name="let_.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.9F.E3.83.96.E</span></td><td class="diff_next"><a href="#difflib_chg_to106__19">n</a></td><td class="diff_header" id="to106_313">313</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;id="let_.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.9F.E3.83.96.E3.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">3.83.AD.E3.83.83.E3.82.AF.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">83.AD.E3.83.83.E3.82.AF.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97"&nbsp;name</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">="let_.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.9F.E3.83.96.E3.83.AD.E3.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">3.83.E3.82.AF.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__19"><a href="#difflib_chg_to106__20">n</a></td><td class="diff_header" id="from106_321">321</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">b</span>&gt;&lt;code&gt;let&lt;/code&gt;&nbsp;文&lt;/<span class="diff_chg">b</span>&gt;&nbsp;は、あるブロックのスコープ内で、ブロックの外にある同じ名前の変</td><td class="diff_next"><a href="#difflib_chg_to106__20">n</a></td><td class="diff_header" id="to106_321">321</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">strong</span>&gt;&lt;code&gt;let&lt;/code&gt;&nbsp;文&lt;/<span class="diff_chg">strong</span>&gt;&nbsp;は、あるブロックのスコープ内で、ブロックの</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">数の値に影響を与えることなく、変数と値を関連付ける手段を提供します。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">外にある同じ名前の変数の値に影響を与えることなく、変数と値を関連付ける手段を提供します。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__20"><a href="#difflib_chg_to106__21">n</a></td><td class="diff_header" id="from106_324">324</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">b</span>&gt;&lt;code&gt;let&lt;/code&gt;&nbsp;式&lt;/<span class="diff_chg">b</span>&gt;&nbsp;は、1&nbsp;つの式だけに対して変数スコープを確立することができます</td><td class="diff_next"><a href="#difflib_chg_to106__21">n</a></td><td class="diff_header" id="to106_324">324</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">strong</span>&gt;&lt;code&gt;let&lt;/code&gt;&nbsp;式&lt;/<span class="diff_chg">strong</span>&gt;&nbsp;は、1&nbsp;つの式だけに対して変数スコープを確</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">立することができます。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__21"><a href="#difflib_chg_to106__22">n</a></td><td class="diff_header" id="from106_327">327</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">b</span>&gt;&lt;code&gt;let&lt;/code&gt;&nbsp;定義&lt;/<span class="diff_chg">b</span>&gt;&nbsp;は、その定義が行われたブロックにスコープが拘束された変数を定</td><td class="diff_next"><a href="#difflib_chg_to106__22">n</a></td><td class="diff_header" id="to106_327">327</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">strong</span>&gt;&lt;code&gt;let&lt;/code&gt;&nbsp;定義&lt;/<span class="diff_chg">strong</span>&gt;&nbsp;は、その定義が行われたブロックにスコープ</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">義します。この構文は&nbsp;&lt;code&gt;var&lt;/code&gt;&nbsp;に対し使われる構文に非常によく似ています。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">が拘束された変数を定義します。この構文は&nbsp;&lt;code&gt;var&lt;/code&gt;&nbsp;に対し使われる構文に非常によく似ています。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__22"><a href="#difflib_chg_to106__23">n</a></td><td class="diff_header" id="from106_335">335</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;name="let_.E6.96.87"&gt;</td><td class="diff_next"><a href="#difflib_chg_to106__23">n</a></td><td class="diff_header" id="to106_335">335</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4<span class="diff_add">&nbsp;id="let_.E6.96.87"</span>&nbsp;name="let_.E6.96.87"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__23"><a href="#difflib_chg_to106__24">n</a></td><td class="diff_header" id="from106_339">339</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;code&gt;let&lt;/code&gt;&nbsp;文は変数に対するローカルスコープを提供します。&lt;code&gt;let&lt;/code&gt;&nbsp;文は</td><td class="diff_next"><a href="#difflib_chg_to106__24">n</a></td><td class="diff_header" id="to106_339">339</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;code&gt;let&lt;/code&gt;&nbsp;文は変数に対するローカルスコープを提供します。&lt;code&gt;let&lt;/code&gt;&nbsp;文は</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">コードのある&nbsp;1&nbsp;つのブロックのレキシカルスコープに&nbsp;0&nbsp;以上の変数を結びつけることによって働き、それ以外は&lt;a&nbsp;href="ja</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">コードのある&nbsp;1&nbsp;つのブロックのレキシカルスコープに&nbsp;0&nbsp;以上の変数を結びつけることによって働き、それ以外は&lt;a&nbsp;href="<span class="diff_add">/</span>j</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">/<span class="diff_sub">Core_</span>JavaScript<span class="diff_chg">_1.5_</span>Reference/Statements/block"&gt;ブロック文&lt;/a&gt;と全く同じです</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">a/JavaScript<span class="diff_chg">/Reference/Statements/block"&nbsp;title="ja/JavaScript/</span>Ref</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">。特に、&lt;code&gt;let&lt;/code&gt;&nbsp;文の内側で&nbsp;&lt;code&gt;var&lt;/code&gt;&nbsp;を使って定義された変数のスコープは、&lt;co</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">erence/Statements/block"&gt;ブロック文&lt;/a&gt;と全く同じです。特に、&lt;code&gt;let&lt;/code&gt;&nbsp;文の内</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">de&gt;let&lt;/code&gt;&nbsp;文の外側でそれが定義された場合と同じであり、そのような変数は従来通り関数スコープを持つことに注意してく</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">側で&nbsp;&lt;code&gt;var&lt;/code&gt;&nbsp;を使って定義された変数のスコープは、&lt;code&gt;let&lt;/code&gt;&nbsp;文の外側でそれが定義</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ださい。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">された場合と同じであり、そのような変数は従来通り関数スコープを持つことに注意してください。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__24"><a href="#difflib_chg_to106__25">n</a></td><td class="diff_header" id="from106_365">365</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">b</span>&gt;注:&lt;/<span class="diff_chg">b</span>&gt;&nbsp;&lt;code&gt;let&lt;/code&gt;&nbsp;文の構文を使う時、&lt;code&gt;let&lt;/code&gt;&nbsp;の後の丸カッ</td><td class="diff_next"><a href="#difflib_chg_to106__25">n</a></td><td class="diff_header" id="to106_365">365</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">strong</span>&gt;注:&lt;/<span class="diff_chg">strong</span>&gt;&nbsp;&lt;code&gt;let&lt;/code&gt;&nbsp;文の構文を使う時、&lt;code&gt;let&lt;/co</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">コは必須です。これを入れないと構文エラーとなります。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">de&gt;&nbsp;の後の丸カッコは必須です。これを入れないと構文エラーとなります。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__25"><a href="#difflib_chg_to106__26">n</a></td><td class="diff_header" id="from106_370">370</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6</span></td><td class="diff_next"><a href="#difflib_chg_to106__26">n</a></td><td class="diff_header" id="to106_370">370</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.8F.E5.89.87_2"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E5.89.87_2"&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.E8.A6.8F.E5.89.87_2"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__26"><a href="#difflib_chg_to106__27">n</a></td><td class="diff_header" id="from106_379">379</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;name="let_.E5.BC.8F"&gt;</td><td class="diff_next"><a href="#difflib_chg_to106__27">n</a></td><td class="diff_header" id="to106_379">379</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4<span class="diff_add">&nbsp;id="let_.E5.BC.8F"</span>&nbsp;name="let_.E5.BC.8F"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__27"><a href="#difflib_chg_to106__28">n</a></td><td class="diff_header" id="from106_404">404</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6</span></td><td class="diff_next"><a href="#difflib_chg_to106__28">n</a></td><td class="diff_header" id="to106_404">404</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.8F.E5.89.87_3"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E5.89.87_3"&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.E8.A6.8F.E5.89.87_3"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__28"><a href="#difflib_chg_to106__29">n</a></td><td class="diff_header" id="from106_419">419</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;name="let_.E5.AE.9A.E7.BE.A9"&gt;</span></td><td class="diff_next"><a href="#difflib_chg_to106__29">n</a></td><td class="diff_header" id="to106_419">419</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;id="let_.E5.AE.9A.E7.BE.A9"&nbsp;name="let_.E5.AE.9A.E7.BE.A9"</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__29"><a href="#difflib_chg_to106__30">n</a></td><td class="diff_header" id="from106_426">426</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">b</span>&gt;注:&lt;/<span class="diff_chg">b</span>&gt;&nbsp;もしあなたがより興味深い&nbsp;&lt;code&gt;let&lt;/code&gt;&nbsp;定義の使用例を知っているならば、どうぞ</td><td class="diff_next"><a href="#difflib_chg_to106__30">n</a></td><td class="diff_header" id="to106_426">426</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_chg">strong</span>&gt;注:&lt;/<span class="diff_chg">strong</span>&gt;&nbsp;もしあなたがより興味深い&nbsp;&lt;code&gt;let&lt;/code&gt;&nbsp;定義の使用例を知っ</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ここに追加することを検討してみてください。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ているならば、どうぞここに追加することを検討してみてください。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__30"><a href="#difflib_chg_to106__31">n</a></td><td class="diff_header" id="from106_457">457</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6</span></td><td class="diff_next"><a href="#difflib_chg_to106__31">n</a></td><td class="diff_header" id="to106_457">457</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.8F.E5.89.87_4"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E5.89.87_4"&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.E8.A6.8F.E5.89.87_4"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__31"><a href="#difflib_chg_to106__32">n</a></td><td class="diff_header" id="from106_528">528</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;name="for_.E3.83.AB.E3.83.BC.E3.83.97.E4.B8.AD.E3.81.A7.E</span></td><td class="diff_next"><a href="#difflib_chg_to106__32">n</a></td><td class="diff_header" id="to106_528">528</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;id="for_.E3.83.AB.E3.83.BC.E3.83.97.E4.B8.AD.E3.81.A7.E3.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">3.81.AE_let_.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E5.A4.89.E6.95.B</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">81.AE_let_.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E5.A4.89.E6.95.B0"</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">0"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">&nbsp;name="for_.E3.83.AB.E3.83.BC.E3.83.97.E4.B8.AD.E3.81.A7.E3.81.AE</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">_let_.E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E5.A4.89.E6.95.B0"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__32"><a href="#difflib_chg_to106__33">n</a></td><td class="diff_header" id="from106_546">546</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6</span></td><td class="diff_next"><a href="#difflib_chg_to106__33">n</a></td><td class="diff_header" id="to106_546">546</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE.E8.A6.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.8F.E5.89.87_5"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E5.89.87_5"&nbsp;name=".E3.82.B9.E3.82.B3.E3.83.BC.E3.83.97.E3.81.AE</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.E8.A6.8F.E5.89.87_5"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__33"><a href="#difflib_chg_to106__34">n</a></td><td class="diff_header" id="from106_565">565</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;name=".E5.88.86.E5.89.B2.E4.BB.A3.E5.85.A5"&gt;</span></td><td class="diff_next"><a href="#difflib_chg_to106__34">n</a></td><td class="diff_header" id="to106_565">565</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&nbsp;id=".E5.88.86.E5.89.B2.E4.BB.A3.E5.85.A5"&nbsp;name=".E5.88.86</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.E5.89.B2.E4.BB.A3.E5.85.A5"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__34"><a href="#difflib_chg_to106__35">n</a></td><td class="diff_header" id="from106_583">583</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&nbsp;name=".E4.BE.8B"&gt;</td><td class="diff_next"><a href="#difflib_chg_to106__35">n</a></td><td class="diff_header" id="to106_583">583</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4<span class="diff_add">&nbsp;id=".E4.BE.8B"</span>&nbsp;name=".E4.BE.8B"&gt;</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__35"><a href="#difflib_chg_to106__36">n</a></td><td class="diff_header" id="from106_592">592</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E4.B8.80.E6.99.82.E5.A4.89.E6.95.B0.E3.81.AE.E4.BD</span></td><td class="diff_next"><a href="#difflib_chg_to106__36">n</a></td><td class="diff_header" id="to106_592">592</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E4.B8.80.E6.99.82.E5.A4.89.E6.95.B0.E3.81.AE.E4.BD.B</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.BF.E7.94.A8.E3.82.92.E9.81.BF.E3.81.91.E3.82.8B"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">F.E7.94.A8.E3.82.92.E9.81.BF.E3.81.91.E3.82.8B"&nbsp;name=".E4.B8.80.E</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">6.99.82.E5.A4.89.E6.95.B0.E3.81.AE.E4.BD.BF.E7.94.A8.E3.82.92.E9.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">81.BF.E3.81.91.E3.82.8B"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__36"><a href="#difflib_chg_to106__37">n</a></td><td class="diff_header" id="from106_646">646</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E8.A4.87.E6.95.B0.E3.81.AE.E5.80.A4.E3.82.92.E8.BF</span></td><td class="diff_next"><a href="#difflib_chg_to106__37">n</a></td><td class="diff_header" id="to106_646">646</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E8.A4.87.E6.95.B0.E3.81.AE.E5.80.A4.E3.82.92.E8.BF.9</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.94.E3.81.99"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">4.E3.81.99"&nbsp;name=".E8.A4.87.E6.95.B0.E3.81.AE.E5.80.A4.E3.82.92.E</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">8.BF.94.E3.81.99"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__37"><a href="#difflib_chg_to106__38">n</a></td><td class="diff_header" id="from106_681">681</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83</span></td><td class="diff_next"><a href="#difflib_chg_to106__38">n</a></td><td class="diff_header" id="to106_681">681</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.88.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.AB.E3.83.B</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">8.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.AB.E3.83.BC.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">C.E3.83.97.E3.81.99.E3.82.8B"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">E3.83.97.E3.81.99.E3.82.8B"&nbsp;name=".E3.82.AA.E3.83.96.E3.82.B8.E3.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">82.A7.E3.82.AF.E3.83.88.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__38"><a href="#difflib_chg_to106__39">n</a></td><td class="diff_header" id="from106_703">703</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;code&gt;obj&lt;/code&gt;&nbsp;を囲む&nbsp;&lt;code&gt;Iterator()&lt;/code&gt;&nbsp;は、JavaScript&nbsp;1</td><td class="diff_next"><a href="#difflib_chg_to106__39">n</a></td><td class="diff_header" id="to106_703">703</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;code&gt;obj&lt;/code&gt;&nbsp;を囲む&nbsp;&lt;code&gt;Iterator()&lt;/code&gt;&nbsp;は、JavaScript&nbsp;1</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">.7&nbsp;では必須ではありません。しかし、&lt;a&nbsp;href="ja/New_in_JavaScript_1.8"<span class="diff_chg">&gt;JavaScript&nbsp;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">.7&nbsp;では必須ではありません。しかし、&lt;a&nbsp;href="<span class="diff_add">/</span>ja/New_in_JavaScript_1.8"<span class="diff_chg">&nbsp;title="ja/</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_chg"></span>1.8<span class="diff_chg">&lt;/a&gt;</span>&nbsp;では必須になるでしょう。これは配列での分割代入を可能にするためです（{{&nbsp;Bug(<span class="diff_sub">"</span>366941<span class="diff_sub">"</span>)&nbsp;}}&nbsp;を参照</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_chg">New_in_JavaScript_</span>1.8<span class="diff_chg">"&gt;JavaScript&nbsp;1.8&lt;/a&gt;</span>&nbsp;では必須になるでしょう。これは配列での分割代入</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">）。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">を可能にするためです（{{&nbsp;Bug(366941)&nbsp;}}&nbsp;を参照）。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__39"><a href="#difflib_chg_to106__40">n</a></td><td class="diff_header" id="from106_708">708</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83</span></td><td class="diff_next"><a href="#difflib_chg_to106__40">n</a></td><td class="diff_header" id="to106_708">708</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E3.82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.8</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.88.E3.81.AE.E9.85.8D.E5.88.97.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.9</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">8.E3.81.AE.E9.85.8D.E5.88.97.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">7.E3.81.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">E3.81.A6.E3.83.AB.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B"&nbsp;name=".E3.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">82.AA.E3.83.96.E3.82.B8.E3.82.A7.E3.82.AF.E3.83.88.E3.81.AE.E9.85</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.8D.E5.88.97.E3.82.92.E6.A8.AA.E6.96.AD.E3.81.97.E3.81.A6.E3.83.A</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">B.E3.83.BC.E3.83.97.E3.81.99.E3.82.8B"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__40"><a href="#difflib_chg_to106__41">n</a></td><td class="diff_header" id="from106_750">750</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E4.B8.80.E9.83.A8.E3.81.AE.E8.BF.94.E3.82.8A.E5.80</span></td><td class="diff_next"><a href="#difflib_chg_to106__41">n</a></td><td class="diff_header" id="to106_750">750</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E4.B8.80.E9.83.A8.E3.81.AE.E8.BF.94.E3.82.8A.E5.80.A</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.A4.E3.82.92.E7.84.A1.E8.A6.96.E3.81.99.E3.82.8B"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">4.E3.82.92.E7.84.A1.E8.A6.96.E3.81.99.E3.82.8B"&nbsp;name=".E4.B8.80.E</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">9.83.A8.E3.81.AE.E8.BF.94.E3.82.8A.E5.80.A4.E3.82.92.E7.84.A1.E8.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">A6.96.E3.81.99.E3.82.8B"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__41"><a href="#difflib_chg_to106__42">n</a></td><td class="diff_header" id="from106_773">773</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;name=".E6.AD.A3.E8.A6.8F.E8.A1.A8.E7.8F.BE.E3.81.AE.E3.83</span></td><td class="diff_next"><a href="#difflib_chg_to106__42">n</a></td><td class="diff_header" id="to106_773">773</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5&nbsp;id=".E6.AD.A3.E8.A6.8F.E8.A1.A8.E7.8F.BE.E3.81.AE.E3.83.9</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">.9E.E3.83.83.E3.83.81.E3.81.8B.E3.82.89.E5.80.A4.E3.82.92.E5.8F.9</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">E.E3.83.83.E3.83.81.E3.81.8B.E3.82.89.E5.80.A4.E3.82.92.E5.8F.96.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_sub">6.E3.82.8A.E5.87.BA.E3.81.99"&gt;</span></td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">E3.82.8A.E5.87.BA.E3.81.99"&nbsp;name=".E6.AD.A3.E8.A6.8F.E8.A1.A8.E7.</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">8F.BE.E3.81.AE.E3.83.9E.E3.83.83.E3.83.81.E3.81.8B.E3.82.89.E5.80</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap">&nbsp;</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">.A4.E3.82.92.E5.8F.96.E3.82.8A.E5.87.BA.E3.81.99"&gt;</span></td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__42"><a href="#difflib_chg_to106__43">n</a></td><td class="diff_header" id="from106_777">777</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正規表現の&nbsp;&lt;code&gt;&lt;a&nbsp;href="ja/<span class="diff_sub">Core_</span>JavaScript<span class="diff_chg">_1.5_</span>Reference/Globa</td><td class="diff_next"><a href="#difflib_chg_to106__43">n</a></td><td class="diff_header" id="to106_777">777</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正規表現の&nbsp;&lt;code&gt;&lt;a&nbsp;href="<span class="diff_add">/</span>ja/JavaScript<span class="diff_chg">/</span>Reference/Global_Object</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">l_Objects/RegExp/exec"&gt;exec()&lt;/a&gt;&lt;/code&gt;&nbsp;メソッドがマッチを見つけると、正規表現の全体にマ</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">s/RegExp/exec"<span class="diff_add">&nbsp;title="ja/JavaScript/Reference/Global_Objects/RegE</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">ッチした部分文字列を&nbsp;1&nbsp;つ目の要素に格納し、続いて正規表現内で括弧に囲まれたグループにマッチした部分文字列を順に格納した配列を返</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap"><span class="diff_add">xp/exec"</span>&gt;exec()&lt;/a&gt;&lt;/code&gt;&nbsp;メソッドがマッチを見つけると、正規表現の全体にマッチした部分文字列を&nbsp;1&nbsp;つ</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">します。分割代入を使うと、全体のマッチを使う必要が無ければそれを無視して、配列の一部分のみを取り出すことが簡単にできるようになりま</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">目の要素に格納し、続いて正規表現内で括弧に囲まれたグループにマッチした部分文字列を順に格納した配列を返します。分割代入を使うと、全</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">す。</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">体のマッチを使う必要が無ければそれを無視して、配列の一部分のみを取り出すことが簡単にできるようになります。</td></tr>
+        </tbody>        
+        <tbody>
+            <tr><td class="diff_next" id="difflib_chg_to106__43"><a href="#difflib_chg_to106__top">t</a></td><td class="diff_header" id="from106_787">787</td><td nowrap="nowrap"><span class="diff_sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;</span></td><td class="diff_next"><a href="#difflib_chg_to106__top">t</a></td><td class="diff_header" id="to106_787">787</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;nbsp;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap"></td><td class="diff_next"></td><td class="diff_header" id="to106_788">788</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;</span></td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from106_788">788</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="diff_sub">/</span>p&gt;</td><td class="diff_next"></td><td class="diff_header" id="to106_789">789</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from106_789">789</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;<span class="diff_chg">&lt;div&nbsp;class="noinclude"&gt;&lt;/div&gt;</span>{{&nbsp;languages(&nbsp;{&nbsp;"en":&nbsp;"en/New_in</td><td class="diff_next"></td><td class="diff_header" id="to106_790">790</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;<span class="diff_chg">&nbsp;&nbsp;</span>{{&nbsp;languages(&nbsp;{&nbsp;"en":&nbsp;"en/New_in_JavaScript_1.7",&nbsp;"es":&nbsp;"es</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">_JavaScript_1.7",&nbsp;"es":&nbsp;"es/Novedades_en_JavaScript_1.7",&nbsp;"fr":&nbsp;"</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">/Novedades_en_JavaScript_1.7",&nbsp;"fr":&nbsp;"fr/Nouveaut\u00e9s_dans_Jav</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">fr/Nouveaut\u00e9s_dans_JavaScript_1.7",&nbsp;"it":&nbsp;"it/Novit\u00e0_in</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">aScript_1.7",&nbsp;"it":&nbsp;"it/Novit\u00e0_in_JavaScript_1.7",&nbsp;"pl":&nbsp;"pl</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">_JavaScript_1.7",&nbsp;"pl":&nbsp;"pl/Nowo\u015bci_w_JavaScript_1.7",&nbsp;"zh-t</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">/Nowo\u015bci_w_JavaScript_1.7",&nbsp;"zh-tw":&nbsp;"zh_tw/JavaScript_1.7_\</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">w":&nbsp;"zh_tw/JavaScript_1.7_\u65b0\u9bae\u4e8b"&nbsp;}&nbsp;)&nbsp;}}</td><td class="diff_next"></td><td class="diff_header">></td><td nowrap="nowrap">u65b0\u9bae\u4e8b"&nbsp;}&nbsp;)&nbsp;}}</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header"></td><td nowrap="nowrap"></td><td class="diff_next"></td><td class="diff_header" id="to106_791">791</td><td nowrap="nowrap"><span class="diff_add">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;</span></td></tr>
+        </tbody>
+    </table></dd>
+    </dl>
+  </section>
+    <p><a href="1-13.html">前に戻る</a></p>
+
+  </article>
+
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                <form class="languages go" method="get" action="#">
+  <label for="language">他の言語:</label>
+          <input type="hidden" name="to" value="288440">
+              <input type="hidden" name="from" value="103442">
+        <select id="language" class="autosubmit" name="lang">
+    <option value="ar" >
+        عربي
+      </option><option value="bn-BD" >
+        বাংলা (বাংলাদেশ)
+      </option><option value="ca" >
+        català
+      </option><option value="cs" >
+        Čeština
+      </option><option value="de" >
+        Deutsch
+      </option><option value="el" >
+        Ελληνικά
+      </option><option value="en-US" >
+        English
+      </option><option value="es" >
+        Español
+      </option><option value="fa" >
+        فارسی
+      </option><option value="fi" >
+        suomi
+      </option><option value="fr" >
+        Français
+      </option><option value="fy-NL" >
+        Frysk
+      </option><option value="ga-IE" >
+        Gaeilge (Éire)
+      </option><option value="he" >
+        עברית
+      </option><option value="hi-IN" >
+        हिन्दी (भारत)
+      </option><option value="hr" >
+        Hrvatski
+      </option><option value="hu" >
+        Magyar
+      </option><option value="id" >
+        Bahasa Indonesia
+      </option><option value="it" >
+        Italiano
+      </option><option value="ja" selected>
+        日本語
+      </option><option value="ka" >
+        ქართული
+      </option><option value="ko" >
+        한국어
+      </option><option value="ml" >
+        മലയാളം
+      </option><option value="ms" >
+        ﺐﻫﺎﺳ ﻡﻼﻳﻭ
+      </option><option value="nl" >
+        Nederlands
+      </option><option value="pl" >
+        Polski
+      </option><option value="pt-BR" >
+        Português (do Brasil)
+      </option><option value="pt-PT" >
+        Português (Europeu)
+      </option><option value="ro" >
+        română
+      </option><option value="ru" >
+        Русский
+      </option><option value="sq" >
+        Shqip
+      </option><option value="ta" >
+        தமிழ்
+      </option><option value="th" >
+        ไทย
+      </option><option value="tr" >
+        Türkçe
+      </option><option value="vi" >
+        Tiếng Việt
+      </option><option value="zh-CN" >
+        中文 (简体)
+      </option><option value="zh-TW" >
+        正體中文 (繁體)
+      </option>  </select>
+  <noscript><button type="submit">移動</button></noscript>
+</form>                        </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+  <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlIKCElVEQFsSlcVW0tYCgtK","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":472}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/JavaScript/New_in_JavaScript/1.7$compare?to=288440&from=103442 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 23:04:01 GMT -->
+</html>

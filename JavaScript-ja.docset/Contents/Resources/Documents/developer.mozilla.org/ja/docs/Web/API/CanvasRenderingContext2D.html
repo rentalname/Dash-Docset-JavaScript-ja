@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:24:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>CanvasRenderingContext2D - Web API インターフェイス | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="CanvasRenderingContext2D%24json.html">
+  <link rel="canonical" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" >
+
+            <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D" title="CanvasRenderingContext2D">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D" title="CanvasRenderingContext2D">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="CanvasRenderingContext2D">
+  <meta property="og:url" content="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">
+  <meta name="twitter:url" content="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">
+  <meta name="twitter:title" content="CanvasRenderingContext2D">
+    <meta property="og:description" content="To get an object of this interface, call getContext() on a canvas, supplying &#34;2d&#34; as the argument:">
+  <meta name="description" content="To get an object of this interface, call getContext() on a canvas, supplying &#34;2d&#34; as the argument:">
+  <meta name="twitter:description" content="To get an object of this interface, call getContext() on a canvas, supplying &#34;2d&#34; as the argument:">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/API/CanvasRenderingContext2D" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/API/CanvasRenderingContext2D" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/API/CanvasRenderingContext2D" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+  
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D" title="CanvasRenderingContext2D">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D" title="CanvasRenderingContext2D">中文 (简体)</a></bdi></li>
+                              
+                              <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D$locales">Add a translation</a></li>
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D$translate?tolocale=ja" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="CanvasRenderingContext2D%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">Web technology for developers</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../API.html" rel="v:url" property="v:title">Web API Interfaces</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">CanvasRenderingContext2D</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>CanvasRenderingContext2D</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#Properties" rel="internal">Properties</a><li><a href="#Methods" rel="internal">Methods</a><li><a href="#Specifications" rel="internal">Specifications</a><li><a href="#Browser_compatibility" rel="internal">Browser compatibility</a><li><a href="#See_also" rel="internal">See also</a><li><a href="#WIP" rel="internal">WIP</a><ol><li><a href="#createImageData()" rel="internal">createImageData()</a><li><a href="#drawImage()" rel="internal">drawImage()</a><li><a href="#getImageData()" rel="internal">getImageData()</a><li><a href="#isPointInPath()" rel="internal">isPointInPath()</a><li><a href="#isPointInStroke()" rel="internal">isPointInStroke()</a><li><a href="#putImageData()" rel="internal">putImageData()</a><li><a href="#translate()" rel="internal">translate()</a></ol></li><li><a href="#Gecko-specific_methods" rel="internal">Gecko-specific methods</a><ol><li><a href="#asyncDrawXULElement()" rel="internal">asyncDrawXULElement()</a><li><a href="#drawWindow()" rel="internal">drawWindow()</a><li><a href="#getFillStyle_multi" rel="internal">getFillStyle_multi</a><li><a href="#getImageData_explicit" rel="internal">getImageData_explicit</a><li><a href="#getStrokeStyle_multi" rel="internal">getStrokeStyle_multi</a><li><a href="#mozDrawText()" rel="internal">mozDrawText()</a><li><a href="#mozMeasureText()" rel="internal">mozMeasureText()</a><li><a href="#mozPathText()" rel="internal">mozPathText()</a><li><a href="#mozTextAlongPath()" rel="internal">mozTextAlongPath()</a><li><a href="#setFillStyle_multi" rel="internal">setFillStyle_multi</a><li><a href="#setStrokeStyle_multi" rel="internal">setStrokeStyle_multi</a></ol></li><li><a href="#WebKit-specific_methods" rel="internal">WebKit-specific methods</a><ol><li><a href="#clearShadow()" rel="internal">clearShadow()</a><li><a href="#drawImageFromRect()" rel="internal">drawImageFromRect()</a><li><a href="#setAlpha()" rel="internal">setAlpha()</a><li><a href="#setCompositeOperation()" rel="internal">setCompositeOperation()</a><li><a href="#setLineWidth()" rel="internal">setLineWidth()</a><li><a href="#setLineCap()" rel="internal">setLineCap()</a><li><a href="#setLineJoin()" rel="internal">setLineJoin()</a><li><a href="#setMiterLimit()" rel="internal">setMiterLimit()</a><li><a href="#setStrokeColor()" rel="internal">setStrokeColor()</a><li><a href="#setFillColor()" rel="internal">setFillColor()</a><li><a href="#setShadow()" rel="internal">setShadow()</a><li><a href="#Gecko-specific_attributes" rel="internal">Gecko-specific attributes</a><li><a href="#WebKit-specific_attributes" rel="internal">WebKit-specific attributes</a></ol></li><li><a href="#Constants" rel="internal">Constants</a><ol><li><a href="#Gecko-specific_constants.2Fflags" rel="internal">Gecko-specific constants/flags</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                                          <div id="doc-pending-fallback" class="warning">
+                  この記事はまだ日本語に翻訳されていません。MDN の翻訳はボランティアによって行われています。<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D$translate?tolocale=ja">是非 MDN に登録し、私たちの力になって下さい。</a>                </div>
+              
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                  <div>
+ <section class="Quick_links" id="Quick_Links"><!-- --></section></div>
+<div class="summary">
+ The <code><strong>CanvasRenderingContext2D</strong></code> interface provides the 2D rendering context for the drawing surface of a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas" title="The HTML &lt;canvas> Element can be used to draw graphics via scripting (usually JavaScript). For example, it can be used to draw graphs, make photo compositions or even perform animations. You may (and should) provide alternate content inside the &lt;canvas> block. That content will be rendered both on older browsers that don't support canvas and in browsers with JavaScript disabled."><code>&lt;canvas&gt;</code></a> element.</div>
+<p>To get an object of this interface, call <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement.getContext" title="The HTMLCanvasElement.getContext() method returns a drawing context on the canvas, or null if the context identifier is not supported."><code>getContext()</code></a> on a <code>&lt;canvas&gt;</code>, supplying "2d" as the argument:</p>
+<pre class="brush: js">var canvas = document.getElementById('mycanvas');
+var ctx = canvas.getContext('2d');
+</pre>
+<p>Once you have the 2D rendering context for a canvas, you can draw within it. For example:</p>
+<pre class="brush: js">ctx.fillStyle = "rgb(200,0,0)";  
+ctx.fillRect(10, 10, 55, 50);  
+</pre>
+<p>See the properties and methods below and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial" title="Canvas tutorial">canvas tutorial</a> for more information, examples, and resources.</p>
+<h2 id="Properties">Properties</h2>
+<p><em>Inherits no properties</em><em>.</em></p>
+<dl>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.canvas" title="The CanvasRenderingContext2D.canvas property is a read-only back-reference to the HTMLCanvasElement. Might be null if it is not associated with a &lt;canvas> element."><code>CanvasRenderingContext2D.canvas</code></a></dt>
+ <dd>
+  A read-only back-reference to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement" title="The HTMLCanvasElement interface provides properties and methods for manipulating the layout and presentation of canvas elements. The HTMLCanvasElement interface also inherits the properties and methods of the HTMLElement interface."><code>HTMLCanvasElement</code></a>. Might be <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript's primitive values."><code>null</code></a> if it is not associated with a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas" title="The HTML &lt;canvas> Element can be used to draw graphics via scripting (usually JavaScript). For example, it can be used to draw graphs, make photo compositions or even perform animations. You may (and should) provide alternate content inside the &lt;canvas> block. That content will be rendered both on older browsers that don't support canvas and in browsers with JavaScript disabled."><code>&lt;canvas&gt;</code></a> element.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.fillStyle" title="The CanvasRenderingContext2D.fillStyle property specifies the color or style to use inside shapes. The default is #000 (black)."><code>CanvasRenderingContext2D.fillStyle</code></a></dt>
+ <dd>
+  Color or style to use inside shapes. Default <code>#000</code> (black).</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.font" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.font</code></a></dt>
+ <dd>
+  Default value <code>10px sans-serif</code>.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.globalAlpha" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.globalAlpha</code></a></dt>
+ <dd>
+  Alpha value that is applied to shapes and images before they are composited onto the canvas. Default <code>1.0</code> (opaque).</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.globalCompositeOperation" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.globalCompositeOperation</code></a></dt>
+ <dd>
+  With <code>globalAlpha</code> applied this sets how shapes and images are drawn onto the existing bitmap.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.imageSmoothingEnabled" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.imageSmoothingEnabled</code></a></dt>
+ <dd>
+  Image smoothing mode; if disabled, images will not be smoothed if scaled.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.lineCap" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.lineCap</code></a></dt>
+ <dd>
+  Type of endings on the end of lines. Possible values: <code>butt</code> (default), <code>round</code>, <code>square</code>.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.lineDashOffset" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.lineDashOffset</code></a></dt>
+ <dd>
+  Specifies where to start a dasharray on a line.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.lineJoin" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.lineJoin</code></a></dt>
+ <dd>
+  Defines the type of corners where two lines meet. Possible values: <code>round</code>, <code>bevel</code>, <code>miter</code> (default).</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.lineWidth" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.lineWidth</code></a></dt>
+ <dd>
+  Width of lines. Default <code>1.0</code></dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.miterLimit" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.miterLimit</code></a></dt>
+ <dd>
+  Default <code>10</code>.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.shadowBlur" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.shadowBlur</code></a></dt>
+ <dd>
+  Specifies the blurring effect. Default <code>0</code></dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.shadowColor" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.shadowColor</code></a></dt>
+ <dd>
+  Color of the shadow. Default fully-transparent black.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.shadowOffsetX" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.shadowOffsetX</code></a></dt>
+ <dd>
+  Horizontal distance the shadow will be offset. Default 0.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.shadowOffsetY" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.shadowOffsetY</code></a></dt>
+ <dd>
+  Vertical distance the shadow will be offset. Default 0.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.strokeStyle" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.strokeStyle</code></a></dt>
+ <dd>
+  Color or style to use for the lines around shapes. Default <code>#000</code> (black).</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.textAlign" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.textAlign</code></a></dt>
+ <dd>
+  Possible values: <code>start</code> (default), <code>end</code>, <code>left</code>, <code>right</code> or <code>center</code>.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.textBaseLine" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.textBaseLine</code></a></dt>
+ <dd>
+  Possible values: <code>top</code>, <code>hanging</code>, <code>middle</code>, <code>alphabetic</code> (default), <code>ideographic</code>, <code>bottom</code></dd>
+</dl>
+<h2 id="Methods">Methods</h2>
+<p><em>Inherits no methods.</em></p>
+<dl>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.addHitRegion" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.addHitRegion()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.arc" title="The CanvasRenderingContext2D.arc() method adds an arc to the path which is centered at (x, y) position with radius r starting at startAngle and ending at endAngle going in the given direction by anticlockwise (defaulting to clockwise)."><code>CanvasRenderingContext2D.arc()</code></a></dt>
+ <dd>
+  Adds an arc to the path which is centered at <em>(x, y)</em> position with radius<em> r</em> starting at <em>startAngle</em> and ending at <em>endAngle</em> going in the given direction by <em>anticlockwise</em> (defaulting to clockwise).</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.arcTo" title="The CanvasRenderingContext2D.arcTo() method adds an arc to the path with the given control points and radius, connected to the previous point by a straight line."><code>CanvasRenderingContext2D.arcTo()</code></a></dt>
+ <dd>
+  Adds an arc to the path with the given control points and radius, connected to the previous point by a straight line.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.beginPath" title="The CanvasRenderingContext2D.beginPath() method starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path."><code>CanvasRenderingContext2D.beginPath()</code></a></dt>
+ <dd>
+  Starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.bezierCurveTo" title="The CanvasRenderingContext2D.bezierCurveTo() method adds a cubic Bézier curve to the path. It requires three points. The first two points are control points and the third one is the end point. The starting point is the last point in the current path, which can be changed using moveTo() before creating the Bézier curve."><code>CanvasRenderingContext2D.bezierCurveTo()</code></a></dt>
+ <dd>
+  Adds a cubic Bézier curve to the path. It requires three points. The first two points are control points and the third one is the end point. The starting point is the last point in the current path, which can be changed using <code>moveTo()</code> before creating the Bézier curve.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.clearHitRegions" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.clearHitRegions()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.clearRect" title="The CanvasRenderingContext2D.clearRect() method sets all pixels in the rectangle defined by starting point (x, y) and size (width, height) to transparent black, erasing any previously drawn content."><code>CanvasRenderingContext2D.clearRect()</code></a></dt>
+ <dd>
+  Sets all pixels in the rectangle defined by starting point <em>(x, y)</em> and size <em>(width, height)</em> to transparent black, erasing any previously drawn content.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.clip" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.clip()</code></a></dt>
+ <dd>
+  Creates a clipping path from the current sub-paths. Everything drawn after <code>clip()</code> is called appears inside the clipping path only. For an example, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing" title="Clipping paths">Clipping paths</a> in the Canvas tutorial.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.closePath" title="The CanvasRenderingContext2D.closePath() method causes the point of the pen to move back to the start of the current subpath. It tries to draw a straight line from the current point to the start. If the shape has already been closed or has only one point, this function does nothing."><code>CanvasRenderingContext2D.closePath()</code></a></dt>
+ <dd>
+  Causes the point of the pen to move back to the start of the current subpath. It tries to draw a straight line from the current point to the start. If the shape has already been closed or has only one point, this function does nothing.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.createImageData" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.createImageData()</code></a></dt>
+ <dd>
+  Creates a new, blank <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a &lt;canvas> element. It is created using ImageData() or creator methods on the CanvasRenderingContext2D object associated with the canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas, like with putImageData()."><code>ImageData</code></a> object with the specified dimensions. All of the pixels in the new object are transparent black.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.createLinearGradient" title="The CanvasRenderingContext2D.createLinearGradient() method creates a gradient along the line given by the coordinates represented by the parameters. This method returns a linear CanvasGradient."><code>CanvasRenderingContext2D.createLinearGradient()</code></a></dt>
+ <dd>
+  Creates a linear gradient along the line given by the coordinates represented by the parameters.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.createPattern" title="The CanvasRenderingContext2D.createPattern() method creates a pattern using the specifed image (a CanvasImageSource). It repeats the source in the directions specified by the repetition argument. This method returns a CanvasPattern."><code>CanvasRenderingContext2D.createPattern()</code></a></dt>
+ <dd>
+  Creates a pattern using the specified image (a <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasImageSource" title="CanvasImageSource is a helper type representing any objects of one of the following types: HTMLImageElement, HTMLVideoElement, HTMLCanvasElement, CanvasRenderingContext2D, or ImageBitmap."><code>CanvasImageSource</code></a>). It repeats the source in the directions specified by the repetition argument. This method returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasPattern" title="The CanvasPattern interface represents an opaque object describing a pattern, based on a image, a canvas or a video, created by the CanvasRenderingContext2D.createPattern() method."><code>CanvasPattern</code></a>.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.createRadialGradient" title="The CanvasRenderingContext2D.createRadialGradient() method creates a radial gradient given by the coordinates of the two circles represented by the parameters. This method returns a CanvasGradient."><code>CanvasRenderingContext2D.createRadialGradient()</code></a></dt>
+ <dd>
+  Creates a radial gradient along the line given by the coordinates represented by the parameters.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawCustomFocusRing" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.drawCustomFocusRing()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawImage" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.drawImage()</code></a></dt>
+ <dd>
+  Draws the specified image. This method is available in multiple formats, providing a great deal of flexibility in its use.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawSystemFocusRing" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.drawSystemFocusRing()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.ellipse" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.ellipse()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.fill" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.fill()</code></a></dt>
+ <dd>
+  Fills the subpaths with the current fill style.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.fillRect" title="The CanvasRenderingContext2D.fillRect() method draws a filled rectangle at (x, y) position whose size is determined by width and height and whose style is determined by the fillStyle attribute."><code>CanvasRenderingContext2D.fillRect()</code></a></dt>
+ <dd>
+  Draws a filled rectangle at <em>(x, y) </em>position whose size is determined by <em>width</em> and <em>height</em>.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.fillText" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.fillText()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.getImageData" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.getImageData()</code></a></dt>
+ <dd>
+  Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a &lt;canvas> element. It is created using ImageData() or creator methods on the CanvasRenderingContext2D object associated with the canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas, like with putImageData()."><code>ImageData</code></a> object representing the underlying pixel data for the area of the canvas denoted by the rectangle which starts at <em>(sx, sy)</em> and has an <em>sw</em> width and <em>sh</em> height.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.getLineDash" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.getLineDash()</code></a></dt>
+ <dd>
+  Returns a dash list array containing an even number of non-negative numbers.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.isPointInPath" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.isPointInPath()</code></a></dt>
+ <dd>
+  Reports whether or not the specified point is contained in the current path.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.isPointInPath" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.isPointInPath()</code></a></dt>
+ <dd>
+  Reports whether or not the specified point is inside the area contained by the stroking of a path.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.lineTo" title="The CanvasRenderingContext2D.lineTo() method connects the last point in the subpath to the x, y coordinates with a straight line (but does not acutally draw it)."><code>CanvasRenderingContext2D.lineTo()</code></a></dt>
+ <dd>
+  Connects the last point in the subpath to the <code>x, y</code> coordinates with a straight line.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.measureText" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.measureText()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.moveTo" title="The CanvasRenderingContext2D.moveTo() method moves the starting point of a new subpath to the (x, y) coordinates."><code>CanvasRenderingContext2D.moveTo()</code></a></dt>
+ <dd>
+  Moves the starting point of a new subpath to the <strong>(x, y)</strong> coordinates.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.putImageData" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.putImageData()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.quadraticCurveTo" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.quadraticCurveTo()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.rect" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.rect()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.removeHitRegion" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.removeHitRegion()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.restore" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.restore()</code></a></dt>
+ <dd>
+  Restores the drawing style state to the last element on the 'state stack' saved by <code>save()</code>.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.rotate" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.rotate()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.save" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.save()</code></a></dt>
+ <dd>
+  Saves the current drawing style state using a stack so you can revert any change you make to it using <code>restore()</code>.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.scale" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.scale()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.scrollPathIntoView" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.scrollPathIntoView()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.setLineDash" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.setLineDash()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.setTransform" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.setTransform()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.stroke" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.stroke()</code></a></dt>
+ <dd>
+  Strokes the subpaths with the current stroke style.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.strokeRect" title="The CanvasRenderingContext2D.strokeRect() method paints a rectangle which has a starting point at (x, y) and has a w width and an h height onto the canvas, using the current stroke style."><code>CanvasRenderingContext2D.strokeRect()</code></a></dt>
+ <dd>
+  Paints a rectangle which has a starting point at <em>(x, y)</em> and has a<em> w</em> width and an <em>h</em> height onto the canvas, using the current stroke style.</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.strokeText" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.strokeText()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.transform" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.transform()</code></a></dt>
+ <dd>
+  tbd</dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.translate" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.translate()</code></a></dt>
+ <dd>
+  Moves the origin point of the context to (x, y).</dd>
+</dl>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting.html#2dcontext:canvasrenderingcontext2d" hreflang="en" lang="en">WHATWG HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D' in that specification.</small></a></td>
+   <td><span class="spec-Living">Living Standard</span></td>
+   <td> </td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas_CR/#2dcontext:canvasrenderingcontext2d" hreflang="en" lang="en">HTML Canvas 2D Context (W3C)<br><small>The definition of 'CanvasRenderingContext2D' in that specification.</small></a></td>
+   <td><span class="spec-PR">Proposed Recommendation</span></td>
+   <td> </td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Browser_compatibility">Browser compatibility</h2>
+<p></p><div style="margin-bottom: 20px;">Help improve compatibility tables by filling out <a class="external" href="http://www.surveygizmo.com/s3/1780174/e8a1839160ab"> this 11 question survey</a>.</div> 
+ 
+<div class="htab"> 
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a> 
+    <ul> 
+        <li class="selected"><a>Desktop</a></li> 
+        <li><a>Mobile</a></li> 
+    </ul> 
+</div><p></p>
+<div id="compat-desktop">
+ <table class="compat-table">
+  <tbody>
+   <tr>
+    <th>Feature</th>
+    <th>Chrome</th>
+    <th>Firefox (Gecko)</th>
+    <th>Internet Explorer</th>
+    <th>Opera</th>
+    <th>Safari (WebKit)</th>
+   </tr>
+   <tr>
+    <td colspan="6" style="text-align: center; background: #eee;">Methods</td>
+   </tr>
+   <tr>
+    <td><code>arc()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>arcTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>beginPath()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>bezierCurveTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>clearRect()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>clip()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>closePath()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>createImageData()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>3.5 (1.9.1)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>createLinearGradient()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>createPattern()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>createRadialGradient()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>drawImage()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>drawCustomFocusRing()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span class="inlineIndicator unimplemented unimplementedInline">Unimplemented (see <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=540456" title="FIXED: Support HTML5 canvas draw{Custom,System}FocusRing()">bug 540456</a>)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>drawSystemFocusRing()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span class="inlineIndicator unimplemented unimplementedInline">Unimplemented (see <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=540456" title="FIXED: Support HTML5 canvas draw{Custom,System}FocusRing()">bug 540456</a>)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>fill()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>fillRect()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>fillText()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>3.5 (1.9.1)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>getImageData()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>isPointInPath()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>isPointInStroke()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>19.0 (19.0)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>lineTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>measureText()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>3.5 (1.9.1)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>moveTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>putImageData()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>quadraticCurveTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>rect()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>restore()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>rotate()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>save()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>scale()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>scrollPathIntoView()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>setTransform()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>3.0 (1.9.0)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>stroke()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>strokeRect()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>strokeText()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>3.5 (1.9.1)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>transform()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>3.0 (1.9.0)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>translate()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td colspan="6" style="text-align: center; background: #eee;">Properties</td>
+   </tr>
+   <tr>
+    <td><code>canvas</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>fillstyle</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>font</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>globalAlpha</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>globalCompositeOperation</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>lineCap</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>lineJoin</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>lineWidth</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>miterLimit</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>shadowBlur</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>shadowColor</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>shadowOffsetX</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>shadowOffsetY</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>strokeStyle</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>textAlign</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+   <tr>
+    <td><code>textBaseline</code></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+    <td><span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<div id="compat-mobile">
+ <table class="compat-table">
+  <tbody>
+   <tr>
+    <th>Feature</th>
+    <th>Android</th>
+    <th>Firefox Mobile (Gecko)</th>
+    <th>IE Phone</th>
+    <th>Opera Mobile</th>
+    <th>Safari Mobile</th>
+   </tr>
+   <tr>
+    <td colspan="6" style="text-align: center; background: #eee;">Methods</td>
+   </tr>
+   <tr>
+    <td><code>arc()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>arcTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>beginPath()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>bezierCurveTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>clearRect()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>clip()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>closePath()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>createImageData()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>createLinearGradient()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>createPattern()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>createRadialGradient()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>drawImage()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>drawCustomFocusRing()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>drawSystemFocusRing()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>fill()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>fillRect()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>fillText()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>getImageData()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>isPointInPath()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>isPointInStroke()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>lineTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>measureText()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>moveTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>putImageData()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>quadraticCurveTo()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>rect()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>restore()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>rotate()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>save()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>scale()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>scrollPathIntoView()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>setTransform()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>stroke()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>strokeRect()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>strokeText()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>transform()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>translate()</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td colspan="6" style="text-align: center; background: #eee;">Properties</td>
+   </tr>
+   <tr>
+    <td><code>canvas</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>fillstyle</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>font</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>globalAlpha</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>globalCompositeOperation</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>lineCap</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>lineJoin</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>lineWidth</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>miterLimit</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>shadowBlur</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>shadowColor</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>shadowOffsetX</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>shadowOffsetY</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>strokeStyle</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>textAlign</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>textBaseline</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement" title="The HTMLCanvasElement interface provides properties and methods for manipulating the layout and presentation of canvas elements. The HTMLCanvasElement interface also inherits the properties and methods of the HTMLElement interface."><code>HTMLCanvasElement</code></a></li>
+</ul>
+<p> </p>
+<p> </p>
+<h2 id="WIP">WIP</h2>
+<p>------------------------------------------------------------------------------------------------------------------------------------------</p>
+<p>Migrate the following into new subpages:</p>
+<p>------------------------------------------------------------------------------------------------------------------------------------------</p>
+<div class="note">
+ <p><strong>Note:</strong> Starting in <span title="(Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1)">Gecko 2.0</span>, the following corrections were made to various behaviors in order to improve compliance with the HTML5 specification:</p>
+ <ul>
+  <li>Specifying a negative radius when calling <code>arc()</code> now correctly throws an <code>INDEX_SIZE_ERR</code> exception.</li>
+  <li>Specifying non-finite values when calling <code>createLinearGradient()</code> and <code>createRadialGradient()</code> now throws <code>NOT_SUPPORTED_ERR</code> instead of <code>SYNTAX_ERR</code>.</li>
+  <li>Setting <code>miterLimit</code> to a negative value no longer throws an exception; instead, it properly ignores non-positive values.</li>
+  <li>Setting <code>lineWidth</code> to a negative value no longer throws an exception; instead, it properly ignores non-positive values.</li>
+ </ul>
+</div>
+<div class="note">
+ <p><strong>Note:</strong> Starting in <span title="(Firefox 5.0 / Thunderbird 5.0 / SeaMonkey 2.2)">Gecko 5.0</span>, the following corrections were made to various behaviors in order to improve compliance with the HTML5 specification:</p>
+ <ul>
+  <li><code>getImageData()</code> now correctly accepts rectangles that extend beyond the bounds of the canvas; pixels outside the canvas are returned as transparent black.</li>
+  <li><code>drawImage()</code> and <code>createImageData()</code> now handle negative arguments in accordance with the specification, by flipping the rectangle around the appropriate axis.</li>
+  <li>Specifying non-finite values when calling <code>createImageData()</code> now properly throws a <code>NOT_SUPPORTED_ERR</code> exception.</li>
+  <li><code>createImageData()</code> and <code>getImageData()</code> now correctly return at least one pixel's worth of image data if a rectangle smaller than one pixel is specified.</li>
+  <li>Specifying a negative radius when calling <code>createRadialGradient()</code> now correctly throws <code>INDEX_SIZE_ERR</code>.</li>
+  <li>Specifying a <code>null</code> or <code>undefined</code> image when calling <code>createPattern()</code> or <code>drawImage()</code> now correctly throws a <code>TYPE_MISMATCH_ERR</code> exception.</li>
+  <li>Specifying invalid values for <code>globalAlpha</code> no longer throws a <code>SYNTAX_ERR</code> exception; these are now correctly silently ignored.</li>
+  <li>Specifying invalid values when calling <code>translate()</code>, <code>transform()</code>, <code>rect()</code>, <code>clearRect()</code>, <code>fillRect()</code>, <code>strokeRect()</code>, <code>lineTo()</code>, <code>moveTo()</code>, <code>quadraticCurveTo()</code>, or <code>arc()</code> no longer throws an exception; these calls are now correctly silently ignored.</li>
+  <li>Setting the value of <code>shadowOffsetX</code>, <code>shadowOffsetY</code>, or <code>shadowBlur</code> to an invalid value is now silently ignored.</li>
+  <li>Setting the value of <code>rotate</code> or <code>scale</code> to an invalid value is now silently ignored.</li>
+ </ul>
+</div>
+<h3 id="createImageData()">createImageData()</h3>
+<p>Creates a new, blank <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a &lt;canvas> element. It is created using ImageData() or creator methods on the CanvasRenderingContext2D object associated with the canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas, like with putImageData()."><code>ImageData</code></a> object with the specified dimensions. All of the pixels in the new object are transparent black.</p>
+<pre class="eval">ImageData createImageData(
+  in float width,
+  in float height
+);
+ImageData createImageData(
+  ImageData imagedata
+);
+</pre>
+<h6 id="Parameters">Parameters</h6>
+<dl>
+ <dt>
+  <code>width</code></dt>
+ <dd>
+  The width to give the new <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a &lt;canvas> element. It is created using ImageData() or creator methods on the CanvasRenderingContext2D object associated with the canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas, like with putImageData()."><code>ImageData</code></a> object.</dd>
+ <dt>
+  <code>height</code></dt>
+ <dd>
+  The height to give the new <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a &lt;canvas> element. It is created using ImageData() or creator methods on the CanvasRenderingContext2D object associated with the canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas, like with putImageData()."><code>ImageData</code></a> object.</dd>
+ <dt>
+  <code>imagedata</code></dt>
+ <dd>
+  An existing <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a &lt;canvas> element. It is created using ImageData() or creator methods on the CanvasRenderingContext2D object associated with the canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas, like with putImageData()."><code>ImageData</code></a> object from which to copy the width and height. The image itself is <strong>not</strong> copied.</dd>
+</dl>
+<h6 id="Return_value">Return value</h6>
+<p>A new <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData" title="The ImageData interface represents the underlying pixel data of an area of a &lt;canvas> element. It is created using ImageData() or creator methods on the CanvasRenderingContext2D object associated with the canvas: createImageData() and getImageData(). It can also be used to set a part of the canvas, like with putImageData()."><code>ImageData</code></a> object with the specified width and height. The new object is filled with transparent black pixels.</p>
+<h3 id="drawImage()">drawImage()</h3>
+<p>Draws the specified image. This method is available in multiple formats, providing a great deal of flexibility in its use.</p>
+<pre class="eval">void drawImage(
+  in nsIDOMElement image,
+  in float dx,
+  in float dy
+);
+
+void drawImage(
+  in nsIDOMElement image,
+  in float dx,
+  in float dy,
+  in float dw,
+  in float dh
+);
+
+void drawImage(
+  in nsIDOMElement image,
+  in float sx,
+  in float sy,
+  in float sw,
+  in float sh,
+  in float dx, 
+  in float dy,
+  in float dw,
+  in float dh
+);
+</pre>
+<h6 id="Parameters_2">Parameters</h6>
+<dl>
+ <dt>
+  <code>image</code></dt>
+ <dd>
+  An element to draw into the context; the specification permits any image element (that is, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img" title="The HTML &lt;img> Element (or HTML Image Element) represents an image of the document."><code>&lt;img&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas" title="The HTML &lt;canvas> Element can be used to draw graphics via scripting (usually JavaScript). For example, it can be used to draw graphs, make photo compositions or even perform animations. You may (and should) provide alternate content inside the &lt;canvas> block. That content will be rendered both on older browsers that don't support canvas and in browsers with JavaScript disabled."><code>&lt;canvas&gt;</code></a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video" title="The HTML &lt;video> element is used to embed video content. It may contain several video sources, represented using the src attribute or the &lt;source> element; the browser will choose the most suitable one."><code>&lt;video&gt;</code></a>). Some browsers let you use any arbitrary element; Firefox doesn’t.</dd>
+ <dt>
+  <code>dx</code></dt>
+ <dd>
+  The X coordinate in the destination canvas at which to place the top-left corner of the source <code>image</code>.</dd>
+ <dt>
+  <code>dy</code></dt>
+ <dd>
+  The Y coordinate in the destination canvas at which to place the top-left corner of the source <code>image</code>.</dd>
+ <dt>
+  <code>dw</code></dt>
+ <dd>
+  The width to draw the <code>image</code> in the destination canvas. This allows scaling of the drawn image. If not specified, the image is not scaled in width when drawn.</dd>
+ <dt>
+  <code>dh</code></dt>
+ <dd>
+  The height to draw the <code>image</code> in the destination canvas. This allows scaling of the drawn image. If not specified, the image is not scaled in height when drawn.</dd>
+ <dt>
+  <code>sx</code></dt>
+ <dd>
+  The X coordinate of the top left corner of the sub-rectangle of the source image to draw into the destination context.</dd>
+ <dt>
+  <code>sy</code></dt>
+ <dd>
+  The Y coordinate of the top left corner of the sub-rectangle of the source image to draw into the destination context.</dd>
+ <dt>
+  <code>sw</code></dt>
+ <dd>
+  The width of the sub-rectangle of the source image to draw into the destination context. If not specified, the entire rectangle from the coordinates specified by <code>sx</code> and <code>sy</code> to the bottom-right corner of the image is used. If you specify a negative value, the image is flipped horizontally when drawn.</dd>
+ <dt>
+  <code>sh</code></dt>
+ <dd>
+  The height of the sub-rectangle of the source image to draw into the destination context. If you specify a negative value, the image is flipped vertically when drawn.</dd>
+</dl>
+<h6 id="Exceptions_thrown">Exceptions thrown</h6>
+<dl>
+ <dt>
+  <code>INDEX_SIZE_ERR</code></dt>
+ <dd>
+  If the canvas or source rectangle width or height is zero.</dd>
+ <dt>
+  <code>INVALID_STATE_ERR</code></dt>
+ <dd>
+  The image has no image data.</dd>
+ <dt>
+  <code>TYPE_MISMATCH_ERR</code></dt>
+ <dd>
+  The specified source element isn't supported. This is not thrown by Firefox, since any element may be used as a source image.</dd>
+</dl>
+<h6 id="Compatibility_notes">Compatibility notes</h6>
+<ul>
+ <li>Prior to Gecko 7.0 (Firefox 7.0 / Thunderbird 7.0 / SeaMonkey 2.4), Firefox threw an exception if any of the coordinate values was non-finite or zero. As per the specification, this no longer happens.</li>
+ <li>Support for flipping the image by using negative values for <code>sw</code> and <code>sh</code> was added in Gecko 5.0 (Firefox 5.0 / Thunderbird 5.0 / SeaMonkey 2.2).</li>
+ <li>Gecko 9.0 (Firefox 9.0 / Thunderbird 9.0 / SeaMonkey 2.6) now correctly supports CORS for drawing images across domains without <a href="https://developer.mozilla.org/en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F" title="en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F">tainting the canvas</a>.</li>
+ <li>Gecko 11.0 (Firefox 11.0 / Thunderbird 11.0 / SeaMonkey 2.8) now allows SVG-as-an-image to be drawn into a canvas without <a href="https://developer.mozilla.org/en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F" title="en/CORS_Enabled_Image#What_is_a_.22tainted.22_canvas.3F">tainting the canvas</a>.</li>
+</ul>
+<h3 id="getImageData()">getImageData()</h3>
+<p>Returns an <code><a class="external" href="http://dev.w3.org/html5/2dcontext/Overview.html#imagedata">ImageData</a></code> object representing the underlying pixel data for the area of the canvas denoted by the rectangle which starts at <em>(sx, sy)</em> and has an <em>sw</em> width and <em>sh</em> height.</p>
+<pre class="eval">ImageData getImageData(   
+  in double sx, 
+  in double sy, 
+  in double sw, 
+  in double sh
+);
+</pre>
+<h6 id="Parameters_3">Parameters</h6>
+<dl>
+ <dt>
+  <code>sx</code></dt>
+ <dd>
+  The x axis of the coordinate for the rectangle startpoint from which the ImageData will be extracted.</dd>
+ <dt>
+  <code>sy</code></dt>
+ <dd>
+  The y axis of the coordinate for the rectangle endpoint from which the ImageData will be extracted.</dd>
+ <dt>
+  <code>sw</code></dt>
+ <dd>
+  The width of the rectangle from which the ImageData will be extracted.</dd>
+ <dt>
+  <code>sh</code></dt>
+ <dd>
+  The height of the rectangle from which the ImageData will be extracted.</dd>
+</dl>
+<h6 id="Return_value_2">Return value</h6>
+<p>Returns an <code><a class="external" href="http://www.w3.org/TR/2011/WD-2dcontext-20110405/#imagedata">ImageData</a></code> object containing the image data for the given rectangle of the canvas.</p>
+<h3 id="isPointInPath()">isPointInPath()</h3>
+<p>Reports whether or not the specified point is contained in the current path.</p>
+<pre class="eval">boolean isPointInPath(
+  in float x,
+  in float y
+);
+</pre>
+<h6 id="Parameters_4">Parameters</h6>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  The X coordinate of the point to check.</dd>
+ <dt>
+  <code>y</code></dt>
+ <dd>
+  The Y coordinate of the point to check.</dd>
+</dl>
+<h6 id="Return_value_3">Return value</h6>
+<p><code>true</code> if the specified point is contained in the current path, otherwise <code>false</code>.</p>
+<h6 id="Compatibility_notes_2">Compatibility notes</h6>
+<ul>
+ <li>Prior to Gecko 7.0 (Firefox 7.0 / Thunderbird 7.0 / SeaMonkey 2.4), this method incorrectly failed to multiply the specified point's coordinates by the current transformation matrix before comparing it to the path. Now this method works correctly even if the context is rotated, scaled, or otherwise transformed.</li>
+</ul>
+<h3 id="isPointInStroke()">isPointInStroke()</h3>
+<p>Reports whether or not the specified point is inside the area contained by the stroking of a path.</p>
+<pre class="eval">boolean isPointInStroke(
+  in float x,
+  in float y
+);
+</pre>
+<h6 id="Parameters_5">Parameters</h6>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  The X coordinate of the point to check.</dd>
+ <dt>
+  <code>y</code></dt>
+ <dd>
+  The Y coordinate of the point to check.</dd>
+</dl>
+<h6 id="Return_value_4">Return value</h6>
+<p><code>true</code> if the point is inside the area contained by the stroking of a path, otherwise <code>false</code>.</p>
+<h3 id="putImageData()">putImageData()</h3>
+<pre class="eval">void putImageData(
+  in ImageData imagedata,
+  in long dx,
+  in long dy,
+  in long dirtyX, [optional]
+  in long dirtyY, [optional]
+  in long dirtyWidth, [optional]
+  in long dirtyHeight [optional]
+);
+</pre>
+<h6 id="Parameters_6">Parameters</h6>
+<p><strong>imageData</strong></p>
+<p>     An imageData object containing the array of pixel values.</p>
+<dl>
+ <dt>
+  <code>dx</code></dt>
+ <dd>
+  Position offset in the target canvas context of the rectangle to be painted, relative to the rectangle in the origin image data.</dd>
+ <dt>
+  <code>dy</code></dt>
+ <dd>
+  Position offset in the target canvas context of the rectangle to be painted, relative to the rectangle in the origin image data.</dd>
+ <dt>
+  <code>dirtyX</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>
+  Position of the top left point of the rectangle to be painted, in the origin image data. Defaults to the top left of the whole image data.</dd>
+ <dt>
+  <code>dirtyY</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>
+  Position of the top left point of the rectangle to be painted, in the origin image data. Defaults to the top left of the whole image data.</dd>
+ <dt>
+  <code>dirtyWidth</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>
+  Width of the rectangle to be painted, in the origin image data. Defaults to the width of the image data.</dd>
+ <dt>
+  <code>dirtyHeight</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>
+  Height of the rectangle to be painted, in the origin image data. Defaults to the height of the image data.</dd>
+</dl>
+<p>To understand what this algorithm performs, here is an implementation on top of fillRect().</p>
+<pre class="brush: js">function putImageData(ctx, imageData, dx, dy,
+    dirtyX, dirtyY, dirtyWidth, dirtyHeight) {
+  var data = imageData.data;
+  var height = imageData.height;
+  var width = imageData.width;
+  dirtyX = dirtyX || 0;
+  dirtyY = dirtyY || 0;
+  dirtyWidth = dirtyWidth !== undefined? dirtyWidth: width;
+  dirtyHeight = dirtyHeight !== undefined? dirtyHeight: height;
+  var limitBottom = dirtyY + dirtyHeight;
+  var limitRight = dirtyX + dirtyWidth;
+  for (var y = dirtyY; y &lt; limitBottom; y++) {
+    for (var x = dirtyX; x &lt; limitRight; x++) {
+      var pos = y * width + x;
+      ctx.fillStyle = 'rgba(' + data[pos*4+0]
+                        + ',' + data[pos*4+1]
+                        + ',' + data[pos*4+2]
+                        + ',' + (data[pos*4+3]/255) + ')';
+      ctx.fillRect(x + dx, y + dy, 1, 1);
+    }
+  }
+}</pre>
+<h6 id="Compatibility_notes_3">Compatibility notes</h6>
+<ul>
+ <li>Starting in Gecko 10.0 (Firefox 10.0 / Thunderbird 10.0 / SeaMonkey 2.7), non-finite values to any of these parameters cause the call to putImageData() to be silently ignored, rather than throwing an exception.</li>
+</ul>
+<h3 id="translate()">translate()</h3>
+<p>Moves the origin point of the context to (x, y).</p>
+<pre class="eval">void translate(
+  in float x,
+  in float y
+);
+</pre>
+<h6 id="Parameters_7">Parameters</h6>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  The x axis for the point to be considered as the origin.</dd>
+ <dt>
+  <code>y</code></dt>
+ <dd>
+  The y axis for the point to be considered as the origin.</dd>
+</dl>
+<h2 id="Gecko-specific_methods">Gecko-specific methods</h2>
+<p></p><div> 
+    <span class="indicatorInHeadline standardNote standardNoteMethod">Requires Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1)</span> 
+    <h3 id="asyncDrawXULElement()" name="asyncDrawXULElement()">asyncDrawXULElement()</h3> 
+</div><p></p>
+<pre class="eval">void asyncDrawXULElement(
+  in nsIDOMXULElement elem,
+  in float x,
+  in float y,
+  in float w,
+  in float h,
+  in DOMString bgColor,
+  in unsigned long flags [optional]
+);
+</pre>
+<h6 id="Parameters_8">Parameters</h6>
+<dl>
+ <dt>
+  <code>elem</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>y</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>w</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>h</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>bgColor</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>flags</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>
+   </dd>
+</dl>
+<h3 id="drawWindow()">drawWindow()</h3>
+<p>This API cannot currently be used by Web content. It is chrome only.</p>
+<p>Renders a region of a window into the <code>canvas</code>. The contents of the window's viewport are rendered, ignoring viewport clipping and scrolling.</p>
+<p>Of course, the rendering obeys the current <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D#scale()">scale()</a></code>, <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D#transform()">transform()</a></code>, and <code>globalAlpha</code> values.</p>
+<p>Hints: If 'rgba(0,0,0,0)' is used for the background color, the drawing will be transparent wherever the window is transparent. Top-level browsed documents are usually not transparent because the user's background-color preference is applied, but IFRAMEs are transparent if the page doesn't set a background. If an opaque color is used for the background color, rendering will be faster because we won't have to compute the window's transparency.</p>
+<pre class="eval">void drawWindow(
+  in nsIDOMWindow window,
+  in float x,
+  in float y,
+  in float w,
+  in float h,
+  in DOMString bgColor,
+  in unsigned long flags [optional]
+);
+</pre>
+<h6 id="Parameters_9">Parameters</h6>
+<dl>
+ <dt>
+  <code>window</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>y</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>w</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>h</code></dt>
+ <dd>
+  Specify the area of the window to render, in CSS pixels.</dd>
+ <dt>
+  <code>bgColor</code></dt>
+ <dd>
+  The canvas is filled with this color before we render the window into it. This color may be transparent/translucent. It is given as a CSS color string (for example, rgb() or rgba()).</dd>
+ <dt>
+  <code>flags</code> <span class="inlineIndicator optional optionalInline">Optional</span> </dt>
+ <dd>
+  Used to better control the <code>drawWindow</code> call. Flags can be ORed together. See the <a href="#gecko-specific-constants-flags">section on Gecko-specific constants</a> above.</dd>
+</dl>
+<p></p><div><span class="indicatorInHeadline noscript noscriptMethod" title="This method may only be called from C++; don't use it from JavaScript.">Native code only!</span><h3 id="getFillStyle_multi">getFillStyle_multi</h3></div><p></p>
+<p>Introduced in Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1).</p>
+<pre class="eval">void getFillStyle_multi(
+  out DOMString str,
+  out nsISupports iface,
+  out long type
+);
+</pre>
+<h6 id="Parameters_10">Parameters</h6>
+<dl>
+ <dt>
+  <code>str</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>iface</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>type</code></dt>
+ <dd>
+   </dd>
+</dl>
+<p></p><div><span class="indicatorInHeadline noscript noscriptMethod" title="This method may only be called from C++; don't use it from JavaScript.">Native code only!</span><h3 id="getImageData_explicit">getImageData_explicit</h3></div><p></p>
+<p>Introduced in Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1).</p>
+<pre class="eval">void getImageData_explicit(
+  in long x,
+  in long y,
+  in unsigned long width,
+  in unsigned long height,
+  [array, size_is(dataLen)] in octet dataPtr,
+  in unsigned long dataLen
+);
+</pre>
+<h6 id="Parameters_11">Parameters</h6>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>y</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>width</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>height</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>dataPtr</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>dataLen</code></dt>
+ <dd>
+   </dd>
+</dl>
+<p></p><div><span class="indicatorInHeadline noscript noscriptMethod" title="This method may only be called from C++; don't use it from JavaScript.">Native code only!</span><h3 id="getStrokeStyle_multi">getStrokeStyle_multi</h3></div><p></p>
+<p>Introduced in Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1).</p>
+<pre class="eval">void getStrokeStyle_multi(
+  out DOMString str,
+  out nsISupports iface,
+  out long type
+);
+</pre>
+<h6 id="Parameters_12">Parameters</h6>
+<dl>
+ <dt>
+  <code>str</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>iface</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>type</code></dt>
+ <dd>
+   </dd>
+</dl>
+<p></p><div> 
+      <span class="indicatorInHeadline unimplemented unimplementedMethod">Unimplemented</span> 
+      <h3 id="mozDrawText()">mozDrawText()</h3> 
+      </div><p></p>
+<p>This method was introduced in Gecko 1.9 and is unimplemented starting with Gecko 7.0.</p>
+<pre class="eval">void mozDrawText(
+  in DOMString textToDraw
+);
+</pre>
+<h6 id="Parameters_13">Parameters</h6>
+<dl>
+ <dt>
+  <code>textToDraw</code></dt>
+ <dd>
+   </dd>
+</dl>
+<p></p><div> 
+      <span class="indicatorInHeadline unimplemented unimplementedMethod">Unimplemented</span> 
+      <h3 id="mozMeasureText()">mozMeasureText()</h3> 
+      </div><p></p>
+<p>This method was introduced in Gecko 1.9 and is unimplemented starting with Gecko 7.0.</p>
+<pre class="eval">float mozMeasureText(
+  in DOMString textToMeasure
+);
+</pre>
+<h6 id="Parameters_14">Parameters</h6>
+<dl>
+ <dt>
+  <code>textToMeasure</code></dt>
+ <dd>
+   </dd>
+</dl>
+<h6 id="Return_value_5">Return value</h6>
+<p> </p>
+<p></p><div> 
+      <span class="indicatorInHeadline unimplemented unimplementedMethod">Unimplemented</span> 
+      <h3 id="mozPathText()">mozPathText()</h3> 
+      </div><p></p>
+<p>This method was introduced in Gecko 1.9 and is unimplemented starting with Gecko 7.0.</p>
+<pre class="eval">void mozPathText(
+  in DOMString textToPath
+);
+</pre>
+<h6 id="Parameters_15">Parameters</h6>
+<dl>
+ <dt>
+  <code>textToPath</code></dt>
+ <dd>
+   </dd>
+</dl>
+<p></p><div> 
+      <span class="indicatorInHeadline unimplemented unimplementedMethod">Unimplemented</span> 
+      <h3 id="mozTextAlongPath()">mozTextAlongPath()</h3> 
+      </div><p></p>
+<p>This method was introduced in Gecko 1.9 and is unimplemented starting with Gecko 7.0.</p>
+<pre class="eval">void mozTextAlongPath(
+  in DOMString textToDraw,
+  in boolean stroke
+);
+</pre>
+<h6 id="Parameters_16">Parameters</h6>
+<dl>
+ <dt>
+  <code>textToDraw</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>stroke</code></dt>
+ <dd>
+   </dd>
+</dl>
+<p></p><div><span class="indicatorInHeadline noscript noscriptMethod" title="This method may only be called from C++; don't use it from JavaScript.">Native code only!</span><h3 id="setFillStyle_multi">setFillStyle_multi</h3></div><p></p>
+<p>Introduced in Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1).</p>
+<pre class="eval">void setFillStyle_multi(
+  in DOMString str,
+  in nsISupports iface
+);
+</pre>
+<h6 id="Parameters_17">Parameters</h6>
+<dl>
+ <dt>
+  <code>str</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>iface</code></dt>
+ <dd>
+   </dd>
+</dl>
+<p></p><div><span class="indicatorInHeadline noscript noscriptMethod" title="This method may only be called from C++; don't use it from JavaScript.">Native code only!</span><h3 id="setStrokeStyle_multi">setStrokeStyle_multi</h3></div><p></p>
+<p>Introduced in Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1).</p>
+<pre class="eval">void setStrokeStyle_multi(
+  in DOMString str,
+  in nsISupports iface
+);
+</pre>
+<h6 id="Parameters_18">Parameters</h6>
+<dl>
+ <dt>
+  <code>str</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <code>iface</code></dt>
+ <dd>
+   </dd>
+ <dt>
+  <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawFocusIfNeeded" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D.drawFocusIfNeeded()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  tbd</dd>
+</dl>
+<h2 id="WebKit-specific_methods">WebKit-specific methods</h2>
+<h3 id="clearShadow()">clearShadow()</h3>
+<pre class="eval">void clearShadow();
+</pre>
+<h6 id="Parameters_19">Parameters</h6>
+<p>None.</p>
+<h3 id="drawImageFromRect()">drawImageFromRect()</h3>
+<pre class="eval">void drawImageFromRect(
+  in HTMLImageElement image,
+  in [Optional] float sx,
+  in [Optional] float sy,
+  in [Optional] float sw,
+  in [Optional] float sh,
+  in [Optional] float dx, 
+  in [Optional] float dy,
+  in [Optional] float dw,
+  in [Optional] float dh,
+  in [Optional] DOMString compositeOperation
+);
+</pre>
+<h3 id="setAlpha()">setAlpha()</h3>
+<pre class="eval">void setAlpha(
+  in float alpha
+);
+</pre>
+<h3 id="setCompositeOperation()">setCompositeOperation()</h3>
+<pre class="eval">void setCompositeOperation(
+  in DOMString compositeOperation
+);
+</pre>
+<h3 id="setLineWidth()">setLineWidth()</h3>
+<pre class="eval">void setLineWidth(
+  in float width
+);
+</pre>
+<h3 id="setLineCap()">setLineCap()</h3>
+<pre class="eval">void setLineCap(
+  in DOMString cap
+);
+</pre>
+<h3 id="setLineJoin()">setLineJoin()</h3>
+<pre class="eval">void setLineJoin(
+  in DOMString join
+);
+</pre>
+<h3 id="setMiterLimit()">setMiterLimit()</h3>
+<pre class="eval">void setMiterLimit(
+  in float limit
+);
+</pre>
+<h3 id="setStrokeColor()">setStrokeColor()</h3>
+<pre class="eval">void setStrokeColor(in DOMString color, in [Optional] float alpha);
+void setStrokeColor(in float grayLevel, in [Optional] float alpha);
+void setStrokeColor(in float r, in float g, in float b, in float a);
+void setStrokeColor(in float c, in float m, in float y, in float k, in float a);
+</pre>
+<h3 id="setFillColor()">setFillColor()</h3>
+<pre class="eval">void setFillColor(in DOMString color, in [Optional] float alpha);
+void setFillColor(in float grayLevel, in [Optional] float alpha);
+void setFillColor(in float r, in float g, in float b, in float a);
+void setFillColor(in float c, in float m, in float y, in float k, in float a);
+</pre>
+<h3 id="setShadow()">setShadow()</h3>
+<pre class="eval">void setShadow(in float width, in float height, in float blur, in [Optional] DOMString color, in [Optional] float alpha);
+void setShadow(in float width, in float height, in float blur, in float grayLevel, in [Optional] float alpha);
+void setShadow(in float width, in float height, in float blur, in float r, in float g, in float b, in float a);
+void setShadow(in float width, in float height, in float blur, in float c, in float m, in float y, in float k, in float a);
+</pre>
+<h3 id="Gecko-specific_attributes">Gecko-specific attributes</h3>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <td class="header">Attribute</td>
+   <td class="header">Type</td>
+   <td class="header">Description</td>
+  </tr>
+  <tr>
+   <td><code>mozCurrentTransform</code></td>
+   <td><code>jsval</code></td>
+   <td>Sets or gets the current transformation matrix. </td>
+  </tr>
+  <tr>
+   <td><code>mozCurrentTransformInverse</code></td>
+   <td><code>jsval</code></td>
+   <td>Sets or gets the current inversed transformation matrix. </td>
+  </tr>
+  <tr>
+   <td><code>mozDash</code></td>
+   <td><code>array of float</code></td>
+   <td>An array which specifies the lengths of alternating dashes and gaps.  (see <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=740284" title="Update dashed stroking to spec / unprefix">bug 740284</a> for implementing the HTML5 spec version / unprefixing)</td>
+  </tr>
+  <tr>
+   <td><code>mozDashOffset</code></td>
+   <td><code><a href="https://developer.mozilla.org/en/float" title="en/float">float</a></code></td>
+   <td>Specifies where to start a dasharray on a line.  (see <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=740284" title="Update dashed stroking to spec / unprefix">bug 740284</a> for implementing the HTML5 spec version / unprefixing)</td>
+  </tr>
+  <tr>
+   <td><code>mozFillRule</code></td>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMString" title="A UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String."><code>DOMString</code></a></code></td>
+   <td>The <a class="external" href="http://cairographics.org/manual/cairo-cairo-t.html#cairo-fill-rule-t" title="http://cairographics.org/manual/cairo-cairo-t.html#cairo-fill-rule-t">fill rule</a> to use. This must be one of <code>evenodd</code> or <code>nonzero</code> (default).</td>
+  </tr>
+  <tr>
+   <td><code>mozImageSmoothingEnabled</code></td>
+   <td><code><a href="https://developer.mozilla.org/en/boolean" title="en/boolean">boolean</a></code></td>
+   <td>Image smoothing mode; if disabled, images will not be smoothed if scaled. </td>
+  </tr>
+  <tr>
+   <td><code>mozTextStyle</code></td>
+   <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMString" title="A UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String."><code>DOMString</code></a></code></td>
+   <td> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span> Deprecated in favor of the HTML5 <code>font</code> attribute described above.</td>
+  </tr>
+ </tbody>
+</table>
+<h3 id="WebKit-specific_attributes">WebKit-specific attributes</h3>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <td class="header">Attribute</td>
+   <td class="header">Type</td>
+   <td class="header">Description</td>
+  </tr>
+  <tr>
+   <td><code>webkitLineDash</code></td>
+   <td><code>array of float</code></td>
+   <td>An array which specifies the lengths of alternating dashes and gaps. (expected to be unprefixed / updated to HTML5 spec as per <a class="external" href="https://bugs.webkit.org/show_bug.cgi?id=80674" rel="external" title="">WebKit bug 80674</a>)</td>
+  </tr>
+  <tr>
+   <td><code>webkitLineDashOffset</code></td>
+   <td><code><a href="https://developer.mozilla.org/en/float" title="en/float">float</a></code></td>
+   <td>Specifies where to start a dasharray on a line. (expected to be unprefixed / updated to HTML5 spec as per <a class="external" href="https://bugs.webkit.org/show_bug.cgi?id=80674" rel="external" title="">WebKit bug 80674</a>)</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Constants">Constants</h2>
+<h3 id="Gecko-specific_constants.2Fflags"><a name="gecko-specific-constants-flags"></a>Gecko-specific constants/flags</h3>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <td class="header">Constant</td>
+   <td class="header">Value</td>
+   <td class="header">Description</td>
+  </tr>
+  <tr>
+   <td><code>DRAWWINDOW_DRAW_CARET</code></td>
+   <td><code>0x01</code></td>
+   <td>Show the caret if appropriate when drawing. </td>
+  </tr>
+  <tr>
+   <td><code>DRAWWINDOW_DO_NOT_FLUSH</code></td>
+   <td><code>0x02</code></td>
+   <td>Do not flush pending layout notifications that could otherwise be batched up. </td>
+  </tr>
+  <tr>
+   <td><code>DRAWWINDOW_DRAW_VIEW</code></td>
+   <td><code>0x04</code></td>
+   <td>Draw scrollbars and scroll the viewport if they are present. </td>
+  </tr>
+  <tr>
+   <td><code>DRAWWINDOW_USE_WIDGET_LAYERS</code></td>
+   <td><code>0x08</code></td>
+   <td>Use the widget layer manager if available. This means hardware acceleration may be used, but it might actually be slower or lower quality than normal. It will, however, more accurately reflect the pixels rendered to the screen. </td>
+  </tr>
+  <tr>
+   <td><code>DRAWWINDOW_ASYNC_DECODE_IMAGES</code></td>
+   <td><code>0x10</code></td>
+   <td>Do not synchronously decode images - draw what we have. </td>
+  </tr>
+ </tbody>
+</table>
+<p> </p>
+                              </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Canvas">Canvas</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/API">API</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Reference">Reference</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Référence">Référence</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Graphics">Graphics</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/CanvasRenderingContext2D">CanvasRenderingContext2D</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Games">Games</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/GijsKruitbosch">GijsKruitbosch</a>, <a href="https://developer.mozilla.org/ja/profiles/shanebdavis">shanebdavis</a>, <a href="https://developer.mozilla.org/ja/profiles/Jeremie">Jeremie</a>, <a href="https://developer.mozilla.org/ja/profiles/Manuel_Strehl">Manuel_Strehl</a>, <a href="https://developer.mozilla.org/ja/profiles/strawn_04">strawn_04</a>, <a href="https://developer.mozilla.org/ja/profiles/kscarfone">kscarfone</a>, <a href="https://developer.mozilla.org/ja/profiles/Dimanjy">Dimanjy</a>, <a href="https://developer.mozilla.org/ja/profiles/thaddee.tyl@gmail.com">thaddee.tyl@gmail.com</a>, <a href="https://developer.mozilla.org/ja/profiles/kathyw">kathyw</a>, <a href="https://developer.mozilla.org/ja/profiles/cpmsmith">cpmsmith</a>, <a href="https://developer.mozilla.org/ja/profiles/drezabek94">drezabek94</a>, <a href="https://developer.mozilla.org/ja/profiles/Brettz9">Brettz9</a>, <a href="https://developer.mozilla.org/ja/profiles/Noitidart">Noitidart</a>, <a href="https://developer.mozilla.org/ja/profiles/Mahdi">Mahdi</a>, <a href="https://developer.mozilla.org/ja/profiles/Jonathan_Watt">Jonathan_Watt</a>, <a href="https://developer.mozilla.org/ja/profiles/rvighne">rvighne</a>, <a href="https://developer.mozilla.org/ja/profiles/chapko">chapko</a>, <a href="https://developer.mozilla.org/ja/profiles/Sheppy">Sheppy</a>, <a href="https://developer.mozilla.org/ja/profiles/fscholz">fscholz</a>, <a href="https://developer.mozilla.org/ja/profiles/therold">therold</a>, <a href="https://developer.mozilla.org/ja/profiles/trevorh">trevorh</a>, <a href="https://developer.mozilla.org/ja/profiles/cactus1">cactus1</a>, <a href="https://developer.mozilla.org/ja/profiles/tehsis">tehsis</a>, <a href="https://developer.mozilla.org/ja/profiles/2is10">2is10</a>, <a href="https://developer.mozilla.org/ja/profiles/deepakyadav">deepakyadav</a>, <a href="https://developer.mozilla.org/ja/profiles/JaredWein">JaredWein</a>, <a href="https://developer.mozilla.org/ja/profiles/Ms2ger">Ms2ger</a>, <a href="https://developer.mozilla.org/ja/profiles/adion">adion</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/fscholz">fscholz</a>,
+                      <time datetime="2014-10-14T06:25:41-07:00">2014/10/14 6:25:41</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+  <ol> 
+     
+    <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"><code>CanvasRenderingContext2D</code></a></strong></li> 
+    <li data-default-state="open"><a href="#"><strong>Properties</strong></a><ol><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.canvas" title="The CanvasRenderingContext2D.canvas property is a read-only back-reference to the HTMLCanvasElement. Might be null if it is not associated with a &lt;canvas> element."><code>CanvasRenderingContext2D.canvas</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.fillStyle" title="The CanvasRenderingContext2D.fillStyle property specifies the color or style to use inside shapes. The default is #000 (black)."><code>CanvasRenderingContext2D.fillStyle</code></a></li></ol></li><li data-default-state="open"><a href="#"><strong>Methods</strong></a><ol><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.arc" title="The CanvasRenderingContext2D.arc() method adds an arc to the path which is centered at (x, y) position with radius r starting at startAngle and ending at endAngle going in the given direction by anticlockwise (defaulting to clockwise)."><code>CanvasRenderingContext2D.arc()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.arcTo" title="The CanvasRenderingContext2D.arcTo() method adds an arc to the path with the given control points and radius, connected to the previous point by a straight line."><code>CanvasRenderingContext2D.arcTo()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.beginPath" title="The CanvasRenderingContext2D.beginPath() method starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path."><code>CanvasRenderingContext2D.beginPath()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.bezierCurveTo" title="The CanvasRenderingContext2D.bezierCurveTo() method adds a cubic Bézier curve to the path. It requires three points. The first two points are control points and the third one is the end point. The starting point is the last point in the current path, which can be changed using moveTo() before creating the Bézier curve."><code>CanvasRenderingContext2D.bezierCurveTo()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.clearRect" title="The CanvasRenderingContext2D.clearRect() method sets all pixels in the rectangle defined by starting point (x, y) and size (width, height) to transparent black, erasing any previously drawn content."><code>CanvasRenderingContext2D.clearRect()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.closePath" title="The CanvasRenderingContext2D.closePath() method causes the point of the pen to move back to the start of the current subpath. It tries to draw a straight line from the current point to the start. If the shape has already been closed or has only one point, this function does nothing."><code>CanvasRenderingContext2D.closePath()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.createLinearGradient" title="The CanvasRenderingContext2D.createLinearGradient() method creates a gradient along the line given by the coordinates represented by the parameters. This method returns a linear CanvasGradient."><code>CanvasRenderingContext2D.createLinearGradient()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.createPattern" title="The CanvasRenderingContext2D.createPattern() method creates a pattern using the specifed image (a CanvasImageSource). It repeats the source in the directions specified by the repetition argument. This method returns a CanvasPattern."><code>CanvasRenderingContext2D.createPattern()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.createRadialGradient" title="The CanvasRenderingContext2D.createRadialGradient() method creates a radial gradient given by the coordinates of the two circles represented by the parameters. This method returns a CanvasGradient."><code>CanvasRenderingContext2D.createRadialGradient()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.fillRect" title="The CanvasRenderingContext2D.fillRect() method draws a filled rectangle at (x, y) position whose size is determined by width and height and whose style is determined by the fillStyle attribute."><code>CanvasRenderingContext2D.fillRect()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.lineTo" title="The CanvasRenderingContext2D.lineTo() method connects the last point in the subpath to the x, y coordinates with a straight line (but does not acutally draw it)."><code>CanvasRenderingContext2D.lineTo()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.moveTo" title="The CanvasRenderingContext2D.moveTo() method moves the starting point of a new subpath to the (x, y) coordinates."><code>CanvasRenderingContext2D.moveTo()</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.strokeRect" title="The CanvasRenderingContext2D.strokeRect() method paints a rectangle which has a starting point at (x, y) and has a w width and an h height onto the canvas, using the current stroke style."><code>CanvasRenderingContext2D.strokeRect()</code></a></li></ol></li> 
+  </ol> 
+
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/en-US/docs/Web/API/CanvasRenderingContext2D" selected>
+          English (US)
+        </option>
+                  <option value="/fr/docs/Web/API/CanvasRenderingContext2D">
+            Français
+          </option>          <option value="/zh-CN/docs/Web/API/CanvasRenderingContext2D">
+            中文 (简体)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":401}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:24:21 GMT -->
+</html>

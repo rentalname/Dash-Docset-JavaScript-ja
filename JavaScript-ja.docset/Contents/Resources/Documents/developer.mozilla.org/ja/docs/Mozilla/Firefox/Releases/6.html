@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Firefox 6 for developers - Mozilla | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../index.html">
+  <link rel="copyright" href="6.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/6$json">
+  <link rel="canonical" href="6.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/Firefox/Releases/6" title="Firefox 6 for developers">
+          <link rel="alternate" hreflang="pt-PT" href="https://developer.mozilla.org/pt-PT/docs/Firefox_6_para_desenvolvedores" title="Firefox 6 para desenvolvedores">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Mozilla/Firefox/Versions/6" title="Firefox 6 pour les développeurs">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Firefox 6 for developers">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/6">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/6">
+  <meta name="twitter:title" content="Firefox 6 for developers">
+    <meta property="og:description" content="Firefox 6 は Gecko 6.0 ベースのブラウザで、2011 年 8 月 16 日にリリースされました。このページは Firefox 6 のリリースにあたり、開発者に関係する変更についてまとめたものです。">
+  <meta name="description" content="Firefox 6 は Gecko 6.0 ベースのブラウザで、2011 年 8 月 16 日にリリースされました。このページは Firefox 6 のリリースにあたり、開発者に関係する変更についてまとめたものです。">
+  <meta name="twitter:description" content="Firefox 6 は Gecko 6.0 ベースのブラウザで、2011 年 8 月 16 日にリリースされました。このページは Firefox 6 のリリースにあたり、開発者に関係する変更についてまとめたものです。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Mozilla/Firefox/Releases/6" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="6.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="6.html#language">言語の選択</a></li>
+          <li><a href="6.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Mozilla/Firefox/Releases/6" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Mozilla/Firefox/Releases/6" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Tools.html">ツール</a></li><li><a href="../../../../demos/index.html">MDN デモ</a></li><li><a href="../../Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/Firefox/Releases/6" title="Firefox 6 for developers">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-PT/docs/Firefox_6_para_desenvolvedores" title="Firefox 6 para desenvolvedores">Português (Europeu)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Mozilla/Firefox/Versions/6" title="Firefox 6 pour les développeurs">Français</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/6$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/6$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="6.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Firefox.html" rel="v:url" property="v:title">Firefox</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Releases.html" rel="v:url" property="v:title">Firefox 開発者向けリリースノート</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Firefox 6 for developers</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="6.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Firefox 6 for developers</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="6.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="6.html#Changes_for_web_developers" rel="internal">Web 開発者向けの変更点一覧</a><ol><li><a href="6.html#HTML" rel="internal">HTML</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="6.html#CSS" rel="internal">CSS</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="6.html#Other_changes" rel="internal">その他の変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="6.html#DOM" rel="internal">DOM</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="6.html#JavaScript" rel="internal">JavaScript</a><code></code><code></code><code></code><code></code><code></code><li><a href="6.html#SVG" rel="internal">SVG</a><code></code><code></code><li><a href="6.html#MathML" rel="internal">MathML</a><code></code><li><a href="6.html#Accessibility_(ARIA)" rel="internal">アクセシビリティ (ARIA)</a><code></code><code></code><li><a href="6.html#Networking" rel="internal">ネットワーク</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="6.html#Other_changes" rel="internal">その他の変更</a><code></code></ol></li><li><a href="6.html#Mozilla_.E9.96.8B.E7.99.BA.E8.80.85.E3.81.A8.E3.82.A2.E3.83.89.E3.82.AA.E3.83.B3.E9.96.8B.E7.99.BA.E8.80.85.E5.90.91.E3.81.91.E3.81.AE.E5.A4.89.E6.9B.B4.E7.82.B9" rel="internal">Mozilla 開発者とアドオン開発者向けの変更点</a><ol><li><a href="6.html#JavaScript_.E3.82.B3.E3.83.BC.E3.83.89.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB" rel="internal">JavaScript コードモジュール</a><ol><li><a href="6.html#FileUtils.jsm" rel="internal">FileUtils.jsm</a><code></code><code></code><li><a href="6.html#XPCOMUtils.jsm" rel="internal">XPCOMUtils.jsm</a><code></code></ol></li><li><a href="6.html#XPCOM" rel="internal">XPCOM</a><code></code><code></code><li><a href="6.html#.E3.82.AF.E3.83.AD.E3.83.BC.E3.83.A0.E3.81.8B.E3.82.89.E3.81.AE_DOM_.E3.81.AE.E4.BD.BF.E7.94.A8" rel="internal">クロームからの DOM の使用</a><code></code><code></code><li><a href="6.html#.E3.82.A4.E3.83.B3.E3.82.BF.E3.83.95.E3.82.A7.E3.83.BC.E3.82.B9.E3.81.AE.E5.A4.89.E6.9B.B4" rel="internal">インタフェースの変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="6.html#.E6.96.B0.E3.81.97.E3.81.84.E3.82.A4.E3.83.B3.E3.82.BF.E3.83.95.E3.82.A7.E3.83.BC.E3.82.B9" rel="internal">新しいインタフェース</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="6.html#.E5.89.8A.E9.99.A4.E3.81.95.E3.82.8C.E3.81.9F.E3.82.A4.E3.83.B3.E3.82.BF.E3.83.95.E3.82.A7.E3.83.BC.E3.82.B9" rel="internal">削除されたインタフェース</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="6.html#.E3.81.9D.E3.81.AE.E4.BB.96.E3.81.AE.E5.A4.89.E6.9B.B4" rel="internal">その他の変更</a></ol></li><li><a href="6.html#See_also" rel="internal">参考</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>Firefox 6 は Gecko 6.0 ベースのブラウザで、2011 年 8 月 16 日にリリースされました。このページは Firefox 6 のリリースにあたり、開発者に関係する変更についてまとめたものです。</p>
+<h2 id="Changes_for_web_developers" name="Changes_for_web_developers">Web 開発者向けの変更点一覧</h2>
+<h3 id="HTML">HTML</h3>
+<ul>
+  <li>プログレスバーを表す HTML5 の <a href="../../../Web/HTML/Element/progress.html" title="HTML の progress (&lt;progress>) 要素は、タスクの進捗状況の表示に使われます。表示の実装方法はブラウザベンダーに委ねられていますが、通常はプログレスバーとして表示されます。。JavaScript を使用して、プログレスバーの値を操作することが可能です。"><code>&lt;progress&gt;</code></a> 要素がサポートされました。</li>
+  <li>メディア要素にテキストトラックを追加する HTML5 の <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/track" title="track 要素はメディア要素 (&lt;audio> および &lt;video>) の子として使用するもので、それ自身は何も表しません。この要素は、時間指定されたテキストトラック (または時系列データ) を指定できます。"><code>&lt;track&gt;</code></a> 要素について、そのパース処理部分が実装されました。要素そのものは実装されていませんが、DOM に現れるようにはなります。</li>
+  <li><a href="../../../Web/CSS/border-radius.html" title=""><code>border-radius</code></a> プロパティによって角が丸められたコンテナ内の <a href="../../../Web/HTML/Element/iframe.html" title="HTML の &lt;iframe> 要素 (またはHTML インラインフレーム要素) は、ブラウジングコンテキスト (browsing context) の入れ子を表現し、事実上現在のページに他の HTML ページを埋め込むことができます。HTML 4.01 では、文書は head および body、または head および frame-set を持つことができ、body と frame-set の両方は持ちません。しかし、&lt;iframe> は通常の文書 body 内で使用できます。ブラウジングコンテキストはそれぞれ、セッション履歴とアクティブな文書を持ちます。埋め込みコンテンツを含む側のブラウジングコンテキストを、親ブラウジングコンテキストと呼びます。トップレベルのブラウジングコンテキスト（親を持ちません）は通常ブラウザウィンドウです。"><code>&lt;iframe&gt;</code></a> についても、適切に角が丸められるようになりました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/form" title="HTML の form要素 (&lt;form>) は、ユーザが Web サーバーに情報を送信できるようにするインタラクティブなコントロールを含むドキュメントセクションを表します。"><code>&lt;form&gt;</code></a> 要素の <a href="../../../Web/HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> テキストフィールドが XUL の <code><span><a href="https://developer.mozilla.org/ja/docs/XUL/Property/maxwidth">maxwidth</a></span></code> プロパティをサポートしなくなりました。これは意図的なものではなく、また HTML 仕様違反でもあります。要素の最大幅を設定するには、<code><a href="../../../Web/HTML/Element/input.html#attr-size">size</a></code> 属性を利用します。</li>
+  <li><a href="../../../Web/HTML/Element/canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> の <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2d" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2d</code></a> プロパティ <code>fillStyle</code> と <code>strokeStyle</code> はこれまで、妥当な色の指定の後に続く余計なものを無視する処理をしていましたが、適切にエラーとして処理されるように修正されました。たとえば、"red blue" を指定したとき、これまでは "red" と扱われていましたが、これからは指定そのものが無視されます。</li>
+  <li><a href="../../../Web/HTML/Element/canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> 要素の width と height を適切に 0px と指定できるようになりました。これまではそう指定しても 300px にされていました。</li>
+  <li>HTML <a href="https://developer.mozilla.org/ja/docs/HTML/Global_attributes#attr-data-*" title="HTML/Global_attributes#attr-data-*">カスタムデータ属性</a> (data-*) がサポートされました。DOM プロパティ <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/element.dataset" title="The documentation about this has not yet been written; please consider contributing!"><code>element.dataset</code></a> からデータにアクセスできます。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea" title="HTML &lt;textarea> 要素は、複数行のプレーンテキスト編集コントロールを表します。"><code>&lt;textarea&gt;</code></a> 要素がフォーカスされたとき、テキスト挿入箇所が最後ではなく先頭になりました。これにより、他のブラウザの挙動と一致します。</li>
+</ul>
+<h3 id="CSS">CSS</h3>
+<dl>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/text-decoration-color" title=""><code>-moz-text-decoration-color</code></a></dt>
+  <dd>
+    このプロパティは <code>text-decoration</code> で指定する <code>underline</code>, <code>overline</code>, <code>strikethrough</code> などの色を指定します。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/text-decoration-line" title=""><code>-moz-text-decoration-line</code></a></dt>
+  <dd>
+    このプロパティは <code>text-decoration</code> の種類を指定します。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Web/CSS/text-decoration-style" title=""><code>-moz-text-decoration-style</code></a></dt>
+  <dd>
+    このプロパティは <code>text-decoration</code> で指定する <code>underline</code>, <code>overline</code>, <code>strikethrough</code> などのスタイルを指定します。スタイルには <code>solid</code>, <code>double</code>, <code>dotted</code>, <code>dashed</code>, <code>wavy</code> などがあります。</dd>
+  <dt>
+    <a href="../../../Web/CSS/hyphens.html" title=""><code>-moz-hyphens</code></a></dt>
+  <dd>
+    このプロパティは行送りが発生する際、単語のハイフネーションを制御するプロパティです。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/orient" title=""><code>-moz-orient</code></a></dt>
+  <dd>
+    現在は Mozilla 固有のプロパティで、いくつかの要素 (<a href="../../../Web/HTML/Element/progress.html" title="HTML の progress (&lt;progress>) 要素は、タスクの進捗状況の表示に使われます。表示の実装方法はブラウザベンダーに委ねられていますが、通常はプログレスバーとして表示されます。。JavaScript を使用して、プログレスバーの値を操作することが可能です。"><code>&lt;progress&gt;</code></a> 要素など) の縦横の向きを制御します。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/::-moz-progress-bar" title=""><code>::-moz-progress-bar</code></a></dt>
+  <dd>
+    Mozilla 固有の擬似要素で、<a href="../../../Web/HTML/Element/progress.html" title="HTML の progress (&lt;progress>) 要素は、タスクの進捗状況の表示に使われます。表示の実装方法はブラウザベンダーに委ねられていますが、通常はプログレスバーとして表示されます。。JavaScript を使用して、プログレスバーの値を操作することが可能です。"><code>&lt;progress&gt;</code></a> 要素において、完了した部分のスタイルづけを行うためのものです。</dd>
+</dl>
+<h4 id="Other_changes" name="Other_changes">その他の変更</h4>
+<ul>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/@-moz-document" title=""><code>@-moz-document</code></a> に新しく <code>regexp()</code> 関数記法が追加されました。これにより、スタイルシートを適用する文書の URL を <a href="../../../Web/JavaScript/Guide/Regular_Expressions.html" title="JavaScript/Guide/Regular_Expressions">正規表現</a>でマッチさせられます。</li>
+  <li><code>aural</code> 媒体グループのために持っていたコードを削除したため、<a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/azimuth" title=""><code>azimuth</code></a> CSS プロパティのサポートが廃止されました。このプロパティはちゃんと実装されていなかったため、パッチを当て続けるのではなく未完成の実装を省くほうが理にかなっていると考えました。</li>
+  <li>これまで、<a href="../../../Web/CSS/-hover.html" title=""><code>:hover</code></a> 擬似クラスは Quirks モードにおいてクラスセレクタに適用されませんでした。このため <code>.someclass:hover</code> といったコードは動きませんでしたが、この例外が取り払われました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/:indeterminate" title=""><code>:indeterminate</code></a> 擬似クラスは <a href="../../../Web/HTML/Element/progress.html" title="HTML の progress (&lt;progress>) 要素は、タスクの進捗状況の表示に使われます。表示の実装方法はブラウザベンダーに委ねられていますが、通常はプログレスバーとして表示されます。。JavaScript を使用して、プログレスバーの値を操作することが可能です。"><code>&lt;progress&gt;</code></a> 要素にも適用できます。これは非標準ですが、便利ですので他のブラウザにも取り入れられて欲しいと考えています。</li>
+</ul>
+<h3 id="DOM">DOM</h3>
+<dl>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/CSS/Using_media_queries_from_code" title="CSS/Using_media_queries_from_code">コード内でのメディアクエリの使用</a></dt>
+  <dd>
+    <a href="https://developer.mozilla.org/ja/docs/Web/API/window.matchMedia" title="指定された メディアクエリ文字列のパース結果を表す、新しい MediaQueryList オブジェクトを返します。"><code>window.matchMedia()</code></a> メソッドと <a href="../../../Web/API/MediaQueryList.html" title="MediaQueryList は、document の メディアクエリ のリストを保持する DOM オブジェクトです。Document 上のメディアクエリを変更すると、リスナーに通知を送信する処理を行います。"><code>MediaQueryList</code></a> インターフェースによって、メディアクエリーの結果をプログラムから検証できます。</dd>
+  <dt>
+    <a href="../../../Web/Guide/DOM/Events/Touch_events.html" title="DOM/Touch_events">Touch events</a></dt>
+  <dd>
+    Firefox 6 は W3C の標準タッチイベント仕様をサポートします。これにより、タッチスクリーンやトラックパッドなどタッチセンサー式のデバイスでのタッチの解釈が容易になります。</dd>
+  <dt>
+    <a href="https://developer.mozilla.org/ja/docs/Server-sent_events" title="Server-sent_events">Server-sent events</a></dt>
+  <dd>
+    Server-sent events はサーバが手元で生成された DOM イベントと同じようにイベントを送出するよう、Web アプリケーションが尋ねるための機能です。</dd>
+</dl>
+<ul>
+  <li>これまでずっと、空文字列を返すだけだった <code>navigator.securityPolicy</code> プロパティが完全に削除されました。</li>
+  <li><a class="new" href="../../../Web/API/BlobBuilder.html" title="The documentation about this has not yet been written; please consider contributing!"><code>BlobBuilder</code></a> がサポートされました。現時点では接頭辞付きの実装 (<code>MozBlobBuilder</code>) となっています。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/document.height" title="現在の文書の &lt;body> 要素の現在の高さのピクセル値を返します。"><code>document.height</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/API/document.width" title="現在の文書の &lt;body> 要素の現在の幅のピクセル値を返します。"><code>document.width</code></a> が削除されました。 <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=585877" title="FIXED: remove document.height / document.width">バグ 585877</a></li>
+  <li><a class="new" href="../../../Web/API/DocumentType.html" title="The documentation about this has not yet been written; please consider contributing!"><code>DocumentType</code></a> オブジェクトの <code>entities</code>, <code>notations</code> プロパティが削除されました。これは実装されておらず常に <code>null</code> を返しており、また仕様からも削除されていました。</li>
+  <li><code>DOMConfiguration</code> インターフェースと、それを使用していた <code>document.domConfig</code> プロパティが削除されました。これらはサポートされておらず、また DOM 仕様からも削除されていました。</li>
+  <li><code>hashchange</code> イベントが適切に <a href="https://developer.mozilla.org/ja/docs/DOM/window.onhashchange#The_hashchange_event" title="DOM/window.onhashchange#The_hashchange_event"><code>newURL</code>, <code>oldURL</code> フィールド</a> を含むようになりました。</li>
+  <li><a class="new" href="../../../Web/API/FileReader.html" title="The documentation about this has not yet been written; please consider contributing!"><code>FileReader</code></a> インターフェースの <code>abort()</code> メソッドが、ファイルの読み込み中に利用された際に例外を投げるようになりました。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.postMessage" title="The documentation about this has not yet been written; please consider contributing!"><code>window.postMessage()</code></a> メソッドが <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/The_structured_clone_algorithm" title="DOM/The_structured_clone_algorithm">structured clone algorithm</a> を使用するようになり、あるウィンドウから他のウィンドウに文字列ではなく JavaScript オブジェクトを渡せるようになりました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/window.history" title="ブラウザの履歴を扱うためのインタフェースを提供する history オブジェクトへの参照を返します。"><code>window.history</code></a> API が <code>pushState()</code>, <code>replaceState()</code> メソッドに渡されたオブジェクトのシリアライズに <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/The_structured_clone_algorithm" title="DOM/The_structured_clone_algorithm">structured clone algorithm</a> を使用するようになりました。これによって循環参照などを含むより複雑なオブジェクトも使用可能となりました。</li>
+  <li>新しく追加された <code>beforeprint</code>, <code>afterprint</code> イベントによって、<a class="new" href="https://developer.mozilla.org/ja/docs/Printing#Detecting_print_requests" title="Printing#Detecting_print_requests">印刷が行われたときと完了したときを検出する</a> ことができるようになりました。</li>
+  <li><code>document.strictErrorChecking</code> プロパティが削除されました。実装されておらず、また DOM 仕様からも削除されていました。</li>
+  <li>標準である <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/event.defaultPrevented" title="The documentation about this has not yet been written; please consider contributing!"><code>event.defaultPrevented</code></a> プロパティがサポートされました。<a href="https://developer.mozilla.org/ja/docs/Web/API/event.preventDefault" title="イベントがキャンセル可能である場合、上位ノードへのイベントの 伝播 (propagation) を止めずに、そのイベントをキャンセルします。"><code>event.preventDefault()</code></a> がイベントから呼び出されたかを知る際には、非標準の <code>getPreventdefault()</code> ではなくこちらを使うようにしましょう。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/window.top" title="ウィンドウ階層における最上位のウィンドウへの参照を返します。"><code>window.top</code></a> プロパティが、適切に readonly となりました。</li>
+  <li>これまでドキュメントのなかった DOM views が削除されました。これらには実装の詳細が多く、また不必要に様々なものを複雑にしていたため削除されました。もしこの変化に気づいた場合は、何か誤ったことをしている可能性があります。</li>
+  <li><code>EventTarget</code> の関数 <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIDOMEventTarget" title="XPCOM_Interface_Reference/nsIDOMEventTarget"><code>addEventListener()</code></a> に指定する引数 <code>useCapture</code> が optional となりました。これは WebKit の動作とも共通し、また新しい仕様でもそう定義されています。</li>
+  <li><a href="../../../Web/API/XMLHttpRequest.html" title="DOM/XMLHttpRequest"><code>XMLHttpRequest</code></a> オブジェクトの <code>mozResponseArrayBuffer</code> プロパティが <code>responseType</code>, <code>response</code> プロパティに置き換えられました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/DOM/HTMLElement" title="DOM/HTMLElement"><code>HTMLElement</code></a> インターフェースに <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/element.dataset" title="The documentation about this has not yet been written; please consider contributing!"><code>element.dataset</code></a> プロパティが追加されました。このプロパティにより <a href="https://developer.mozilla.org/ja/docs/HTML/Global_attributes#attr-data-*" title="HTML/Global_attributes#attr-data-*">要素の <code>data-*</code> グローバル属性</a> にアクセスできます。</li>
+  <li><a class="new" href="../../../Web/API/CustomEvent.html" title="The documentation about this has not yet been written; please consider contributing!"><code>CustomEvent</code></a> インターフェースが実装されました (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=427537" title="FIXED: Implement CustomEvent DOM3 specification">バグ 427537</a>)</li>
+  <li>セキュリティの観点から、ユーザーがロケーションバーに <code>data:</code> URI と <code>javascript:</code> URI を入力した時、現在のページのセキュリティコンテキストを受け継がなくなりました。代わりに、新しい空のセキュリティコンテキストが生成されます。これにより、ロケーションバーに入力した <code>javascript:</code> URI から読み込まれたスクリプトは、DOM メソッドなどへのアクセスを持たなくなります。しかし、これらの URI がスクリプトから使用された場合は、これまでと同じように動作します。</li>
+</ul>
+<h3 id="JavaScript">JavaScript</h3>
+<ul>
+  <li>これまで、いくつかの組み込み関数 (<code>eval</code>, <code>parseInt</code>, <code>Date.parse</code> など) に対し <code>new</code> オペレータを使うことができましたが、仕様においてこれは許されるべきではないとされていました。Firefox 6 では、このサポートが廃止されました。<code>new</code> オペレータのこういった利用は公式にはサポートされておらず、また広く利用されてもいません。この変更が何かに影響することはないでしょう。</li>
+  <li>ECMAScript Harmony の <a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/WeakMap" title="JavaScript/Reference/Global_Objects/WeakMap">WeakMaps</a> がプロトタイプ実装として追加されました。</li>
+</ul>
+<h3 id="SVG">SVG</h3>
+<ul>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/Web/SVG/Attribute/pathLength">pathLength</a></code> 属性がサポートされました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/data_URIs" title="data_URIs"><code>data:</code> URL</a> から読み込まれたパターン、グラデーション、フィルタが適切に動作するようになりました。</li>
+</ul>
+<h3 id="MathML">MathML</h3>
+<ul>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/Web/MathML/Element/mstyle" title="&lt;mstyle>">&lt;mstyle&gt;</a></code> の実装が修正されました。</li>
+</ul>
+<h3 id="Accessibility_(ARIA)" name="Accessibility_(ARIA)">アクセシビリティ (ARIA)</h3>
+<ul>
+  <li>状態変化イベントが <code>aria-busy</code> の値の変化でも発生するようになりました。</li>
+  <li><code>aria-sort</code> が発生した際に属性変化イベントが発生するようになりました。</li>
+</ul>
+<h3 id="Networking" name="Networking">ネットワーク</h3>
+<dl>
+  <dt>
+    <a href="../../../WebSockets.html" title="WebSockets">WebSocket</a></dt>
+  <dd>
+    WebSocket プロトコルのサポートがバージョン 07 に更新されました。また、グローバルオブジェクトの<code>WebSocket</code>オブジェクトが<code>MozWebSocket</code>に改称されました。接頭辞のないオブジェクトの検出を目的としたときに問題となるため、それを防ぐ目的です。</dd>
+</dl>
+<ul>
+  <li><code>Content-Disposition</code> ヘッダの構文解析が修正され、バックスラッシュでエスケープされた ASCII 文字が適切に文字そのものとして処理されるようになりました。これまではその文字をアンダースコア ("<code>_</code>")に置き換えるという誤った処理がなされていました。</li>
+  <li><code>Set-Cookie</code> ヘッダのパスの値において、クォートが適切に処理されるようになりました。これまでクォートを使った場合はそれがデリミタではなく、パスの文字列として認識されていました。<strong>この変更により、いくつかのサイトで互換性の問題が発生する可能性があります。</strong>製作者はコードをチェックすることが望まれます。</li>
+  <li><a class="external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.42"><code>Upgrade</code></a> リクエストヘッダがサポートされました。<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIHttpChannelInternal#HTTPUpgrade()">nsIHttpChannelInternal.HTTPUpgrade()</a></code> を呼ぶことで、HTTP チャネルから他のプロトコルへのアップグレードをリクエストできます。</li>
+</ul>
+<h3 id="Other_changes" name="Other_changes">その他の変更</h3>
+<ul>
+  <li>Microsummary が削除されました。広く使われおらず、また見つけにくい機能でもあり、サポートの継続によって Places (ブックマークと履歴) のアーキテクチャを向上させることが難しくなっていたからです。</li>
+  <li>WebGL が <a class="external" href="http://www.khronos.org/registry/gles/extensions/OES/OES_texture_float.txt"><code>OES_texture_float</code></a> 拡張をサポートしました。</li>
+  <li>JavaScript コードをテストする簡易で便利なツール <a href="../../../Tools/Scratchpad.html" title="Tools/Scratchpad">Scratchpad</a> が追加されました。</li>
+</ul>
+<h2 id="Mozilla_.E9.96.8B.E7.99.BA.E8.80.85.E3.81.A8.E3.82.A2.E3.83.89.E3.82.AA.E3.83.B3.E9.96.8B.E7.99.BA.E8.80.85.E5.90.91.E3.81.91.E3.81.AE.E5.A4.89.E6.9B.B4.E7.82.B9">Mozilla 開発者とアドオン開発者向けの変更点</h2>
+<p>Firefox 6 へアドオンを対応させるために必要な作業の概要は <a class="new" href="https://developer.mozilla.org/ja/docs/Firefox/Updating_add-ons_for_Firefox_6">アドオンの Firefox 6 対応</a> をご覧ください。</p>
+<div class="note">
+  <strong>注:</strong> Firefox 6 では、従来のメジャーリリースと同様に、バイナリコンポーネントをコンパイルし直す必要があります。詳しくは <a class="new" href="https://developer.mozilla.org/ja/docs/Developer_Guide/Interface_Compatibility#Binary_Interfaces">バイナリインタフェース</a> をご覧ください。</div>
+<h3 id="JavaScript_.E3.82.B3.E3.83.BC.E3.83.89.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB">JavaScript コードモジュール</h3>
+<h4 id="FileUtils.jsm">FileUtils.jsm</h4>
+<ul>
+  <li><code>openSafeFileOutputStream()</code> メソッドは、ファイルを即座に開こうとする代わりに、<code>DEFER_OPEN</code> <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIFileOutputStream#Behavior_flag_constants">ビヘイビアフラグ</a> 付きで開くようになりました。</li>
+</ul>
+<h4 id="XPCOMUtils.jsm">XPCOMUtils.jsm</h4>
+<ul>
+  <li>新しい <a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/XPCOMUtils.jsm#importRelative()"><code>importRelative()</code></a> メソッドは、ある JavaScript コードモジュールを、他の JavaScript コードモジュールの相対パスから読み込むようになりました。これによって互いに依存するモジュールを開発しやすくなりました。</li>
+</ul>
+<h3 id="XPCOM">XPCOM</h3>
+<ul>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_array_guide#nsCOMArray.3CT.3E"><code>nsCOMArray&lt;T&gt;</code></a> に、配列から複数のオブジェクトを一度に削除できる <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_array_guide#Deleting_objects"><code>RemoveObjectsAt()</code></a> メソッドが追加されました。</li>
+</ul>
+<h3 id=".E3.82.AF.E3.83.AD.E3.83.BC.E3.83.A0.E3.81.8B.E3.82.89.E3.81.AE_DOM_.E3.81.AE.E4.BD.BF.E7.94.A8">クロームからの DOM の使用</h3>
+<dl>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Extensions/Using_the_DOM_File_API_in_chrome_code">クロームコードでの DOM File API の使用</a></dt>
+  <dd>
+    これまでもクロームコード内で DOM File API を使うことは可能でしたが、<a class="new" href="https://developer.mozilla.org/ja/docs/DOM/File"><code>File</code></a> コンストラクタをクロームで使用した場合に、ローカルパス名文字列を指定できるようになりました。また、<a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIFile"><code>nsIFile</code></a> オブジェクトを使用して、DOM File API を通じてアクセスするファイルを指定できるようになりました。</dd>
+</dl>
+<h3 id=".E3.82.A4.E3.83.B3.E3.82.BF.E3.83.95.E3.82.A7.E3.83.BC.E3.82.B9.E3.81.AE.E5.A4.89.E6.9B.B4">インタフェースの変更</h3>
+<ul>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsINavHistoryQueryOptions"><code>nsINavHistoryQueryOptions</code></a> で、新たな定数 <code>SORT_BY_FRECENCY_ASCENDING</code> と <code>SORT_BY_FRECENCY_DESCENDING</code> を使った訪問頻度順のソートが可能になりました。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIFilePicker"><code>nsIFilePicker</code></a> に <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIFilePicker#addToRecentDocs"><code>addToRecentDocs</code></a> 属性が追加されました。これは、もしユーザの「最近使用したドキュメント」リストがあれば、そのリストに選択したファイルを追加するよう指定できるものです。この属性はプライベートブラウジングモードでは無視されます。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsINavBookmarkObserver"><code>nsINavBookmarkObserver</code></a> メソッドにアイテム ID 引数を与える場合、GUID も必要となります。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrefBranch#clearUserPref%28%29"><code>nsIPrefBranch.clearUserPref()</code></a> が、指定された設定が存在しない場合やユーザ設定値がない場合も、例外を投げなくなりました。その代わり、単に何もしなくなりました。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIMemoryReporter"><code>nsIMemoryReporter</code></a> インタフェースで、調べたいメモリの種類 (マップ、ヒープ、その他) を指定できるようになりました。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsISHEntry"><code>nsISHEntry</code></a> の <code>stateData</code> 属性が <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIStructuredCloneContainer"><code>nsIStructuredCloneContainer</code></a> を返すようになりました。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIURI"><code>nsIURI</code></a> に <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIURI#ref"><code>ref</code></a> 属性が追加されました。これは、URI の一部の参照 (「#」以降の部分) を返すものです。また、参照メンバーなしに <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIURI"><code>nsIURI</code></a> を複製できる <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIURI#cloneIgnoringRef%28%29"><code>cloneIgnoringRef()</code></a> メソッドと、参照メンバーを無視して他の <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIURI"><code>nsIURI</code></a> と比較できる <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIURI#equalsExceptRef%28%29"><code>equalsExceptRef()</code></a> メソッドが追加されました。</li>
+</ul>
+<h4 id=".E6.96.B0.E3.81.97.E3.81.84.E3.82.A4.E3.83.B3.E3.82.BF.E3.83.95.E3.82.A7.E3.83.BC.E3.82.B9">新しいインタフェース</h4>
+<dl>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIAsyncFavicons" title="XPCOM_Interface_Reference/mozIAsyncFavicons"><code>mozIAsyncFavicons</code></a></dt>
+  <dd>
+    ブックマークアイコン (favicon) サービスへの非同期アクセスが可能な新サービスです。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIEventSource" title="XPCOM_Interface_Reference/nsIEventSource"><code>nsIEventSource</code></a></dt>
+  <dd>
+    <em>詳細は後日解説します。</em></dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIGSettingsCollection" title="XPCOM_Interface_Reference/nsIGSettingsCollection"><code>nsIGSettingsCollection</code></a></dt>
+  <dd>
+    <em>詳細は後日解説します。</em></dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIGSettingsService" title="XPCOM_Interface_Reference/nsIGSettingsService"><code>nsIGSettingsService</code></a></dt>
+  <dd>
+    <em>詳細は後日解説します。</em></dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIHttpUpgradeListener" title="XPCOM_Interface_Reference/nsIHttpUpgradeListener"><code>nsIHttpUpgradeListener</code></a></dt>
+  <dd>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIHttpChannelInternal#HTTPUpgrade%28%29" title="XPCOM_Interface_Reference/nsIHttpChannelInternal#HTTPUpgrade%28%29"><code>nsIHttpChannelInternal.HTTPUpgrade()</code></a> メソッドを通じた HTTP アップグレード要求を処理するためのコールバックインタフェースです。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIStructuredCloneContainer" title="XPCOM_Interface_Reference/nsIStructuredCloneContainer"><code>nsIStructuredCloneContainer</code></a></dt>
+  <dd>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/HTML/Structured_clones" title="HTML/Structured_clones">構造化された複製アルゴリズム</a> を使ってシリアライズされたオブジェクトのためのコンテナです。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsITelemetry" title="XPCOM_Interface_Reference/nsITelemetry"><code>nsITelemetry</code></a></dt>
+  <dd>
+    パフォーマンス測定を目的とした <a class="external" href="http://mozilla.jp/legal/privacy/firefox/#telemetry">使用統計情報 (Telemetry)</a> を記録とヒストグラムの生成に使用されます。<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=649502" title="FIXED: Expose histograms to JS">バグ 649502</a> と <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=585196" title="FIXED: telemetry infrastructure">バグ 585196</a> 参照。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsITimedChannel" title="XPCOM_Interface_Reference/nsITimedChannel"><code>nsITimedChannel</code></a></dt>
+  <dd>
+    <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=576006" title="FIXED: Implement timing interface for channels">バグ 576006</a> 参照。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIWebSocketListener" title="XPCOM_Interface_Reference/nsIWebSocketListener"><code>nsIWebSocketListener</code></a></dt>
+  <dd>
+    <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=640003" title="FIXED: WebSockets - upgrade to ietf-07">バグ 640003</a> 参照。</dd>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIWebSocketProtocol" title="XPCOM_Interface_Reference/nsIWebSocketProtocol"><code>nsIWebSocketProtocol</code></a></dt>
+  <dd>
+    <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=640003" title="FIXED: WebSockets - upgrade to ietf-07">バグ 640003</a> 参照。</dd>
+</dl>
+<h4 id=".E5.89.8A.E9.99.A4.E3.81.95.E3.82.8C.E3.81.9F.E3.82.A4.E3.83.B3.E3.82.BF.E3.83.95.E3.82.A7.E3.83.BC.E3.82.B9">削除されたインタフェース</h4>
+<p>以下のインタフェースは、不要となり削除された実装です。詳細はバグを参照してください。</p>
+<ul>
+  <li><code>nsIDOMDocumentEvent</code> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=655517" title="FIXED: Remove nsIDOMDocumentEvent">バグ 655517</a>)</li>
+  <li><code>nsIDOMDocumentTraversal</code> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=655514" title="FIXED: Remove nsIDOMDocumentTraversal">バグ 655514</a>)</li>
+  <li><code>nsIDOMDocumentRange</code> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=655513" title="FIXED: Remove nsIDOMDocumentRange">バグ 655513</a>)</li>
+  <li><code>IWeaveCrypto</code> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=651596" title="FIXED: Eliminate IWeaveCrypto">バグ 651596</a>)</li>
+  <li><code>nsIDOM3DocumentEvent</code> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=481863" title="FIXED: Remove nsIDOM3DocumentEvent">バグ 481863</a>)</li>
+  <li><code>nsIDOMAbstractView</code></li>
+  <li><code>nsILiveTitleNotificationSubject</code></li>
+  <li><code>nsIPlugin</code> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=637253" title="FIXED: decomtamination: remove nsIPlugin and nsIPluginInstance">バグ 637253</a>)</li>
+  <li><code>nsIPluginInstance</code> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=637253" title="FIXED: decomtamination: remove nsIPlugin and nsIPluginInstance">バグ 637253</a>)</li>
+  <li><code>nsIHTMLEditRules</code> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=633750" title="FIXED: deCOM nsIHTMLEditRules">バグ 633750</a>)</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIXSLTProcessorObsolete"><code>nsIXSLTProcessorObsolete</code></a> (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=649534" title="FIXED: Remove nsIXSLTProcessorObsolete">バグ 649534</a>)</li>
+</ul>
+<h3 id=".E3.81.9D.E3.81.AE.E4.BB.96.E3.81.AE.E5.A4.89.E6.9B.B4">その他の変更</h3>
+<dl>
+  <dt>
+    <a class="new" href="https://developer.mozilla.org/ja/docs/Preferences/Using_preferences_from_application_code">アプリケーションコードからの設定の使用</a></dt>
+  <dd>
+    設定へ簡単にアクセスできる、新しい静的な API が実装されました。これはアプリケーションコードからのみ使用可能であり、アドオンでは使用できません。</dd>
+</dl>
+<h2 id="See_also" name="See_also">参考</h2>
+<ul>
+  <li><a class="external link-https" href="https://dev.mozilla.jp/2011/06/firefox6-backward-compatibility/">Firefox 6 の後方互換性に関わる修正のまとめ</a></li>
+  <li><a class="external" href="http://mozilla.jp/firefox/preview/faq/">高速リリースサイクルに関するよくある質問</a></li>
+</ul>
+<div><div class="multiColumnList"> 
+<ul> 
+<li><a href="5.html">Firefox 5 for developers</a></li><li><a href="4.html">Firefox 4 for developers</a></li><li><a class="new" href="../../../Firefox_3.6_for_developers.html">Firefox 3.6 for developers</a></li><li><a href="3.5.html">Firefox 3.5 for developers</a></li><li><a href="3.html">Firefox 3 for developers</a></li><li><a href="2.html">Firefox 2 for developers</a></li><li><a href="1.5.html">Firefox 1.5 for developers</a></li></ul> 
+</div></div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Firefox%206">Firefox 6</a></li><li><a href="../../../tag/Firefox.html">Firefox</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Gecko%206.0">Gecko 6.0</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../profiles/Kohei.html">Kohei</a>, <a href="../../../../profiles/Potappo.html">Potappo</a>, <a href="https://developer.mozilla.org/ja/profiles/myakura">myakura</a>, <a href="../../../../profiles/ethertank.html">ethertank</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-04-19T04:11:26-07:00">2013/04/19 4:11:26</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Mozilla/Firefox/Releases/6" selected>
+          日本語
+        </option>
+                  <option value="/en-US/Firefox/Releases/6">
+            English (US)
+          </option>          <option value="/pt-PT/docs/Firefox_6_para_desenvolvedores">
+            Português (Europeu)
+          </option>          <option value="/fr/docs/Mozilla/Firefox/Versions/6">
+            Français
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":755}</script></body>
+</html>

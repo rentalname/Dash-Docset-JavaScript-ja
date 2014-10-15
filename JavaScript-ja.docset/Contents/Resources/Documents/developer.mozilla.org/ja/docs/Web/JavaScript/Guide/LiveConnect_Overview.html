@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>LiveConnect の概要 - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../index.html">
+  <link rel="copyright" href="LiveConnect_Overview.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/LiveConnect_Overview$json">
+  <link rel="canonical" href="LiveConnect_Overview.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Archive/Web/LiveConnect/LiveConnect_Overview" title="LiveConnect Overview">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide_ru/LiveConnect_Overview" title="LiveConnect Overview">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/LiveConnect_Overview" title="LiveConnect概述">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="LiveConnect の概要">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/LiveConnect_Overview">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/LiveConnect_Overview">
+  <meta name="twitter:title" content="LiveConnect の概要">
+    <meta property="og:description" content="この章では、Java のコードと JavaScript のコードが相互通信を可能にする技術である LiveConnect の使用方法を解説します。この章の読者は、Java プログラミングの経験があるものとします。">
+  <meta name="description" content="この章では、Java のコードと JavaScript のコードが相互通信を可能にする技術である LiveConnect の使用方法を解説します。この章の読者は、Java プログラミングの経験があるものとします。">
+  <meta name="twitter:description" content="この章では、Java のコードと JavaScript のコードが相互通信を可能にする技術である LiveConnect の使用方法を解説します。この章の読者は、Java プログラミングの経験があるものとします。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/JavaScript/Guide/LiveConnect_Overview" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="LiveConnect_Overview.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="LiveConnect_Overview.html#language">言語の選択</a></li>
+          <li><a href="LiveConnect_Overview.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/Guide/LiveConnect_Overview" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/Guide/LiveConnect_Overview" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Tools.html">ツール</a></li><li><a href="../../../../demos/index.html">MDN デモ</a></li><li><a href="../../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Archive/Web/LiveConnect/LiveConnect_Overview" title="LiveConnect Overview">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide_ru/LiveConnect_Overview" title="LiveConnect Overview">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/LiveConnect_Overview" title="LiveConnect概述">中文 (简体)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/LiveConnect_Overview$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/LiveConnect_Overview$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="LiveConnect_Overview.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../JavaScript.html" rel="v:url" property="v:title">JavaScript</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Guide.html" rel="v:url" property="v:title">JavaScript ガイド</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">LiveConnect の概要</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="LiveConnect_Overview.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>LiveConnect の概要</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="LiveConnect_Overview.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="LiveConnect_Overview.html#Working_with_Wrappers" rel="internal">ラッパの使用</a><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#JavaScript_to_Java_Communication" rel="internal">JavaScript から Java への通信</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="LiveConnect_Overview.html#The_Packages_Object" rel="internal">Packages オブジェクト</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Working_with_Java_Arrays" rel="internal">Java の配列の使用</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Package_and_Class_References" rel="internal">パッケージおよびクラスの参照</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Arguments_of_Type_char" rel="internal">char 型の引数</a><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Handling_Java_Exceptions_in_JavaScript" rel="internal">JavaScript での Java 例外の処理</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="LiveConnect_Overview.html#Java_to_JavaScript_Communication" rel="internal">Java から JavaScript への通信</a><code></code><code></code><code></code><ol><li><a href="LiveConnect_Overview.html#Locating_the_LiveConnect_classes" rel="internal">LiveConnect クラスの場所の特定</a><code></code><code></code><li><a href="LiveConnect_Overview.html#Using_the_LiveConnect_classes_with_the_JDK" rel="internal">JDK での LiveConnect クラスの使用</a><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Using_the_LiveConnect_Classes" rel="internal">LiveConnect クラスの使用</a><code></code><code></code><code></code><code></code><code></code><ol><li><a href="LiveConnect_Overview.html#Accessing_JavaScript_with_JSObject" rel="internal">JSObject を用いた JavaScript へのアクセス</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Handling_JavaScript_Exceptions_in_Java" rel="internal">Java での JavaScript の例外処理</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Backward_Compatibility" rel="internal">後方互換性</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li></ol></li><li><a href="LiveConnect_Overview.html#Data_Type_Conversions" rel="internal">データ型変換</a><ol><li><a href="LiveConnect_Overview.html#JavaScript_to_Java_Conversions" rel="internal">JavaScript から Java への変換</a><code></code><code></code><code></code><code></code><ol><li><a href="LiveConnect_Overview.html#Number_Values" rel="internal">数値</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Boolean_Values" rel="internal">真偽値</a><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#String_Values" rel="internal">文字列値</a><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Undefined_Values" rel="internal">undefined 値</a><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Null_Values" rel="internal">null 値</a><li><a href="LiveConnect_Overview.html#JavaArray_and_JavaObject_objects" rel="internal">JavaArray および JavaObject オブジェクト</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#JavaClass_objects" rel="internal">JavaClass オブジェクト</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="LiveConnect_Overview.html#Other_JavaScript_objects" rel="internal">その他の JavaScript のオブジェクト</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="LiveConnect_Overview.html#Java_to_JavaScript_Conversions" rel="internal">Java から JavaScript への変換</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>この章では、Java のコードと JavaScript のコードが相互通信を可能にする技術である <a href="https://developer.mozilla.org/ja/docs/LiveConnect" title="ja/docs/LiveConnect">LiveConnect</a> の使用方法を解説します。この章の読者は、Java プログラミングの経験があるものとします。</p>
+<h2 id="Working_with_Wrappers" name="Working_with_Wrappers">ラッパの使用</h2>
+<p>JavaScript において、<em>ラッパ</em>とは元の言語のオブジェクトをくるんだ、ターゲットとする言語のデータ型のオブジェクトです。JavaScript でプログラミングをするときは、ラッパオブジェクトを用いることで Java のメソッドやフィールドにアクセスすることができます。つまり、ラッパのメソッドを呼び出したりプロパティにアクセスすることで、Java のオブジェクトにおいて呼び出すことになります。Java 側では JavaScript のオブジェクトがクラス <code>netscape.javascript.JSObject</code> のインスタンスでラップされ、Java に渡されます。</p>
+<p>JavaScript のオブジェクトが Java に送られる際、ランタイムエンジンは <code>JSObject</code> 型の Java ラッパを生成します。一方 <code>JSObject</code> が Java から JavaScript に送られるときは、ランタイムエンジンはそのラップを解き、元の JavaScript オブジェクトの種類に戻します。<code>JSObject</code> クラスには、JavaScript のメソッドを呼び出したり JavaScript のプロパティを調べるためのインタフェースが備わっています。</p>
+<h2 id="JavaScript_to_Java_Communication" name="JavaScript_to_Java_Communication">JavaScript から Java への通信</h2>
+<p>Java のパッケージやクラスを参照したり、Java のオブジェクトや配列を扱ったりするときは、特別な LiveConnect オブジェクトを使用します。JavaScript から Java へのアクセスはすべて、これらのオブジェクトを用いて行います。それらのオブジェクトについて、以下の表で簡単にまとめます。</p>
+<table class="standard-table">
+  <caption>
+    表 9.1 LiveConnect オブジェクト</caption>
+  <thead>
+    <tr>
+      <th scope="col">オブジェクト</th>
+      <th scope="col">説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>JavaArray</code></td>
+      <td>ラップされた Java の配列です。JavaScript コード内からアクセスされます。</td>
+    </tr>
+    <tr>
+      <td><code>JavaClass</code></td>
+      <td>Java のクラスへの JavaScript からの参照です。</td>
+    </tr>
+    <tr>
+      <td><code>JavaObject</code></td>
+      <td>ラップされた Java のオブジェクトです。JavaScript コード内からアクセスされます。</td>
+    </tr>
+    <tr>
+      <td><code>JavaPackage</code></td>
+      <td>Java のパッケージへの JavaScript からの参照です。</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>注意:</strong> Java は強く型付けされた言語であり、JavaScript は弱く型付けされた言語であるため、LiveConnect を使用する際はもう一方の言語のために JavaScript ランタイムエンジンが引数の値を適当なデータ型に変換します。詳細は<a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Values,_Variables,_and_Literals#Data_type_conversion" title="ja/docs/JavaScript/Guide/Values, Variables, and Literals#Data Type Conversion">データ型の変換</a>をご覧ください。</p>
+<p>かなり直感的に Java とやりとりできることから、ある意味で LiveConnect オブジェクトの存在は透過的です。例えば、次のように Java の <code>String</code> オブジェクトを作成し、<code>new</code> 演算子を Java のコンストラクタとともに用いて、そのオブジェクトを JavaScript の変数 <code>myString</code> に代入することができます:</p>
+<pre class="brush: js">var myString = new java.lang.String("Hello world");
+</pre>
+<p>この例では、変数 <code>myString</code> は <code>JavaObject</code> になります。これは、Java の <code>String</code> オブジェクトのインスタンスを保持しているためです。<code>JavaObject</code> であるので、<code>myString</code> は <code>java.lang.String</code> およびそのスーパークラスである <code>java.lang.Object</code> のパブリックなインスタンスメソッドにアクセスできます。これらの Java のメソッドは JavaScript から、<code>JavaObject</code> のメソッドとして使用できます:</p>
+<pre class="brush: js">myString.length(); // 11 を返す
+</pre>
+<p>JavaClass オブジェクトの静的メンバは直接呼び出すことができます。</p>
+<pre class="brush: js">alert(java.lang.Integer.MAX_VALUE); // 2147483647 というアラート
+</pre>
+<h3 id="The_Packages_Object" name="The_Packages_Object">Packages オブジェクト</h3>
+<p>Java のクラスが <code>java</code>、<code>sun</code> あるいは <code>netscape</code> パッケージのいずれの一部でもない場合は、<code>Packages</code> オブジェクトを用いてそれにアクセスします。例えば Redwood 社が、実装したさまざまな Java のクラスを格納するための、<code>redwood</code> という名前の Java パッケージを使用することを想定します。<code>redwood</code> の <code>HelloWorld</code> クラスのインスタンスを作成するには、次のようにそのクラスのコンストラクタにアクセスします:</p>
+<pre class="brush: js">var red = new Packages.redwood.HelloWorld();
+</pre>
+<p>デフォルトパッケージのクラス (すなわち、明示的にはパッケージに名前をつけていないクラス) にアクセスすることもできます。例えば、HelloWorld クラスが直接 <code>CLASSPATH</code> に入っており、またパッケージには入っていない場合は、次のようにしてそれにアクセスできます:</p>
+<pre class="brush: js">var red = new Packages.HelloWorld();
+</pre>
+<p>LiveConnect の <code>java</code>、<code>sun</code> および <code>netscape</code> オブジェクトはよく使用される Java のパッケージであるために、短縮記法が備わっています。例えば、次のように使用できます:</p>
+<pre class="brush: js">var myString = new java.lang.String("Hello world");
+</pre>
+<p>これは次のものを省略したものです:</p>
+<pre class="brush: js">var myString = new Packages.java.lang.String("Hello world");
+</pre>
+<h3 id="Working_with_Java_Arrays" name="Working_with_Java_Arrays">Java の配列の使用</h3>
+<p>Java のメソッドが配列を作成し、JavaScript からその配列を参照するときは、<code>JavaArray</code> を使用します。例えば、次のコードは int 型の要素を 10 個持つ <code>JavaArray x</code> を作成します:</p>
+<pre class="brush: js">var x = java.lang.reflect.Array.newInstance(java.lang.Integer, 10);
+</pre>
+<p>JavaScript の <code>Array</code> オブジェクトのように、<code>JavaArray</code> にはその配列の要素数を返す <code>length</code> プロパティがあります。<code>Array.length</code> とは異なり、<code>JavaArray.length</code> は読み取り専用のプロパティです。これは、Java の配列は作成時に要素総数が固定されるためです。</p>
+<h3 id="Package_and_Class_References" name="Package_and_Class_References">パッケージおよびクラスの参照</h3>
+<p>JavaScript から Java のパッケージやクラスへの簡単な参照では、<code>JavaPackage</code> や <code>JavaClass</code> オブジェクトが作成されます。先の Redwood 社についての例では、例えば Packages.redwood という参照が JavaPackage オブジェクトです。同様に、<code>java.lang.String</code> のような参照は <code>JavaClass</code> オブジェクトです。</p>
+<p>ほとんどの場合は <code>JavaPackage</code> や <code>JavaClass</code> オブジェクトについて気にする必要はありません。ただ Java のパッケージを使うだけのことであり、LiveConnect がこれらのオブジェクトを透過的に生成するからです。LiveConnect がクラスの読み込みに失敗する場合があり、そのときは以下のようにして手動で読み込みを行う必要があります:</p>
+<pre class="brush: js">var Widgetry = java.lang.Thread.currentThread().getContextClassLoader().loadClass("org.mywidgets.Widgetry");
+</pre>
+<p>JavaScript 1.3 以前では <code>JavaClass</code> オブジェクトをパラメータとして Java のメソッドとして渡す際に、自動的には <code>java.lang.Class</code> のインスタンスに変換されません。そのため、<code>java.lang.Class</code> のインスタンスのラッパを作成しなければなりません。次の例では、<code>forName</code> メソッドがラッパオブジェクトである <code>theClass</code> を生成します。そしてそれを <code>newInstance</code> メソッドに渡し、配列を生成します。</p>
+<pre class="brush: js">// JavaScript 1.3
+var theClass = java.lang.Class.forName("java.lang.String");
+var theArray = java.lang.reflect.Array.newInstance(theClass, 5);
+</pre>
+<p>JavaScript 1.4 以降では次の例のように、<code>JavaClass</code> オブジェクトをメソッドに直接渡すことができます:</p>
+<pre class="brush: js">// JavaScript 1.4
+var theArray = java.lang.reflect.Array.newInstance(java.lang.String, 5);
+</pre>
+<h3 id="Arguments_of_Type_char" name="Arguments_of_Type_char">char 型の引数</h3>
+<p>JavaScript 1.4 以降では <code>char</code> 型の引数を必要とする Java のメソッドに、1 文字の文字列を渡すことができます。例えば、次のようにして文字列 "H" を <code>Character</code> コンストラクタに渡すことができます:</p>
+<pre class="brush: js">var c = new java.lang.Character("H");
+</pre>
+<p>JavaScript 1.3 以前では、このようなメソッドにはその文字の Unicode 値に対応する整数値を渡さなければなりません。例えば、次のコードも "H" という文字列を変数 <code>c</code> に代入するものです:</p>
+<pre class="brush: js">var c = new java.lang.Character(72);
+</pre>
+<h3 id="Handling_Java_Exceptions_in_JavaScript" name="Handling_Java_Exceptions_in_JavaScript">JavaScript での Java 例外の処理</h3>
+<p>Java のコードは実行時に失敗すると、例外を投げます。JavaScript のコードが Java のデータメンバまたはメソッドにアクセスし、失敗すると、Java の例外が JavaScript に渡されます。これは、例外を処理できるようにするためです。JavaScript 1.4 からは <code>try...catch</code> 文でこの例外を受け取ることができます。(Mozilla 固有の LiveConnect コードが Mozilla 内でメンテナンスされていなかったため、この機能は (他の一部機能もあわせて) Gecko 1.9 で壊れています (<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=391642" title="Try-catch sometimes does not catch Java LiveConnect exceptions but instead fails">バグ 391642</a> をご覧ください)。しかし Java 6 アップデート 11 および 12 での、Mozilla の汎用 (かつクロスブラウザの) <a href="../../../Plugins.html" title="ja/docs/Plugins">NPAPI</a> プラグインコードに依存する構築のサポートにより修復されました。)</p>
+<p>例えば、Java の <code>forName</code> メソッドを使用して Java のクラス名を <code>theClass</code> という変数に代入するとします。<code>forName</code> メソッドに渡す値が Java のクラス名に評価できなければ、そのメソッドは例外を投げます。次のようにして、例外を処理できるように <code>forName</code> 代入文を <code>try</code> ブロック内に置きます:</p>
+<pre class="brush: js">function getClass(javaClassName) {
+   try {
+      var theClass = java.lang.Class.forName(javaClassName);
+   } catch (e) {
+      return ("The Java exception is " + e);
+   }
+   return theClass;
+}
+</pre>
+<p>この例では、<code>javaClassName</code> が "java.lang.String" のような正当なクラス名に評価されると代入が成功します。<code>javaClassName</code> が "String" のような不正なクラス名に評価されると、<code>getClass</code> 関数が例外を受け取り、次のようなものを返します:</p>
+<pre>The Java exception is java.lang.ClassNotFoundException: String
+</pre>
+<p>例外の型に基づいて特別な処理をするには <code>instanceof</code> 演算子を使用します:</p>
+<pre class="brush: js">try {
+  // ...
+} catch (e) {
+  if (e instanceof java.io.FileNotFound) {
+     // FileNotFound についての処理
+  } else {
+    throw e;
+  }
+}
+</pre>
+<p>JavaScript の例外についての詳細情報は<a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Statements#Exception_Handling_Statements" title="ja/docs/JavaScript/Guide/Statements#Exception Handling Statements">例外処理文</a>を参照してください。</p>
+<h2 id="Java_to_JavaScript_Communication" name="Java_to_JavaScript_Communication">Java から JavaScript への通信</h2>
+<p>Java で JavaScript のオブジェクトを使用したい場合は、その Java ファイルに <code>netscape.javascript</code> パッケージをインポートしなければなりません。このパッケージは次のクラスを定義しています:</p>
+<ul>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/LiveConnect/JSObject" title="ja/docs/JavaScript/Reference/LiveConnect/JSObject">netscape.javascript.JSObject</a></code> : Java のコードから JavaScript のメソッドやプロパティにアクセスできるようにします。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/LiveConnect/JSException" title="ja/docs/JavaScript/Reference/LiveConnect/JSException">netscape.javascript.JSException</a></code> : Java のコードで JavaScript のエラーを処理できるようにします。</li>
+</ul>
+<p>これらのクラスの詳細は <a href="../Reference.html" title="ja/docs/JavaScript/Reference">JavaScript リファレンス</a>をご覧ください。</p>
+<h3 id="Locating_the_LiveConnect_classes" name="Locating_the_LiveConnect_classes">LiveConnect クラスの場所の特定</h3>
+<p>古いバージョンの Netscape ブラウザでは、これらのクラスがブラウザに同梱されていました。JavaScript 1.2 からは、これらのクラスは .jar ファイルに格納されています。それより古いバージョンの JavaScript では、これらのクラスは .zip ファイルに格納されています。例えば Windows NT 向けの Netscape Navigator 4 では、クラスは Navigator のディレクトリ直下の <code>Program\Java\Classes</code> ディレクトリ内の <code>java40.jar</code> ファイルに格納されています。</p>
+<p>より最近では、クラスは Sun の Java ランタイムに同梱されています。はじめはランタイムディストリビューションの "jre/lib" ディレクトリ内の "jaws.jar" ファイルに入っていましたが (JRE 1.3)、その後同じ場所の "plugin.jar" に移っています (JRE 1.4 以降)。</p>
+<h3 id="Using_the_LiveConnect_classes_with_the_JDK" name="Using_the_LiveConnect_classes_with_the_JDK">JDK での LiveConnect クラスの使用</h3>
+<p>LiveConnect クラスにアクセスするには、次のどちらかの方法で JDK コンパイラの <code>CLASSPATH</code> に .jar または .zip ファイルを配置します:</p>
+<ul>
+  <li><code>CLASSPATH</code> 環境変数を作成し、.jar または .zip ファイルのパスと名前を指定します。</li>
+  <li>コンパイル時に <code>-classpath</code> コマンドラインパラメータを用いて .jar または .zip ファイルの場所を指定する。</li>
+</ul>
+<p>Windows NT では、コントロールパネルのシステムアイコンをダブルクリックし、<code>CLASSPATH</code> という名前のユーザ環境変数を作成し、それに次のような値を設定することで環境変数を作成できます:</p>
+<pre class="eval">C:\Program Files\Java\jre1.4.1\lib\plugin.jar
+</pre>
+<p><code>CLASSPATH</code> についての詳細は Sun の JDK に関する資料をご覧ください。</p>
+<p><strong>注意:</strong> Java は強く型付けされた言語であり、JavaScript は弱く型付けされた言語であるため、LiveConnect を使用する際はもう一方の言語のために JavaScript ランタイムエンジンが引数の値を適当なデータ型に変換します。詳細は <a href="LiveConnect_Overview.html#Data_Type_Conversions">データ型の変換</a> をご覧ください。</p>
+<h3 id="Using_the_LiveConnect_Classes" name="Using_the_LiveConnect_Classes">LiveConnect クラスの使用</h3>
+<p>すべての JavaScript オブジェクトは、Java コード内では <code>netscape.javascript.JSObject</code> のインスタンスとして現れます。Java コード内でメソッドを呼び出すときに、その引数として JavaScriptのオブジェクトを渡すことができます。そうするためには、そのメソッドの対応する仮パラメータを <code>JSObject</code> 型で定義しなければなりません。</p>
+<p>さらに、Java コード内で JavaScript のオブジェクトを使用するたびに、<code>netscape.javascript.JSException</code> 型の例外を処理する <code>try...catch</code> 文の内側で、その JavaScript オブジェクトを呼び出すようにしてください。こうすることで <code>JSException</code> 型の例外として Java で現れる、JavaScript コードの実行におけるエラーを Java コードで処理できるようになります。</p>
+<h4 id="Accessing_JavaScript_with_JSObject" name="Accessing_JavaScript_with_JSObject">JSObject を用いた JavaScript へのアクセス</h4>
+<p>例えば、<code>JavaDog</code> という Java のクラスを使用するとします。次のコードで示すように、<code>JavaDog</code> コンストラクタは JavaScript のオブジェクトである <code>jsDog</code> を引数としてとります。このオブジェクトは <code>JSObject</code> 型として定義されています:</p>
+<pre class="brush: java">import netscape.javascript.*;
+
+public class JavaDog{
+    public String dogBreed;
+    public String dogColor;
+    public String dogSex;
+
+    // クラスコンストラクタの定義
+    public JavaDog(JSObject jsDog){
+        // ここで try...catch を使用して JSExceptions を処理できるようにする
+        this.dogBreed = (String)jsDog.getMember("breed");
+        this.dogColor = (String)jsDog.getMember("color");
+        this.dogSex = (String)jsDog.getMember("sex");
+    }
+}
+</pre>
+<p><code>JSObject</code> の <code>getMember</code> メソッドは、JavaScript のオブジェクトのプロパティにアクセスするために使用するものです。この例では JavaScript のプロパティである <code>jsDog.breed</code> の値を Java のデータメンバである <code>JavaDog.dogBreed</code> に代入するために、<code>getMember</code> を使用しています。</p>
+<p><strong>注意:</strong> より現実的な例では <code>try...catch</code> 文の内側で <code>getMember</code> を呼び出し、<code>JSException</code> 型のエラーを処理できるようにします。詳細は、<a href="LiveConnect_Overview.html#Handling_JavaScript_Exceptions_in_Java">Java での JavaScript の例外処理</a>を参照してください。</p>
+<p><code>getMember</code> の動作をさらに知るために、JavaScript の <code>Dog</code> オブジェクトを作成し、その定義を見てみます:</p>
+<pre class="brush: js">function Dog(breed,color,sex){
+   this.breed = breed;
+   this.color = color;
+   this.sex = sex;
+}
+</pre>
+<p><code>Dog</code> の JavaScript のインスタンスである <code>gabby</code> は、次のようにして作ることができます:</p>
+<pre class="brush: js">var gabby = new Dog("lab", "chocolate", "female");
+</pre>
+<p><code>gabby.color</code> を評価すると、それが "chocolate" という値を持っていることがわかります。ここで次のように <code>gabby</code> オブジェクトをコンストラクタに渡し、JavaScript コードで <code>JavaDog</code> のインスタンスを作成することにします:</p>
+<pre class="brush: js">var javaDog = new Packages.JavaDog(gabby);
+</pre>
+<p><code>javaDog.dogColor</code> を評価すると、それも "chocolate" という値を持っていることがわかります。これは Java のコンストラクタ内の <code>getMember</code> メソッドが、<code>gabby.color</code> の値を <code>dogColor</code> に代入するからです。</p>
+<h4 id="Handling_JavaScript_Exceptions_in_Java" name="Handling_JavaScript_Exceptions_in_Java">Java での JavaScript の例外処理</h4>
+<p>実行時に Java からの JavaScript コードの呼び出しに失敗すると、例外が投げられます。Java から JavaScript コードを呼び出すときに、<code>try...catch</code> 文でこの例外を受け取ることができます。JavaScript の例外は、<code>netscape.javascript.JSException</code> のインスタンスとして Java コードから扱えます。</p>
+<p><code>JSException</code> は JavaScript が投げるあらゆる種類の例外に対応する、Java のラッパです。<code>JSObject</code> のインスタンスが JavaScript のオブジェクトのラッパであるのと同じようなものです。Java で JavaScript コードを評価するときは <code>JSException</code> を使用してください。</p>
+<p>Java で JavaScript コードを評価する際、次の状況でランタイムエラーが発生します:</p>
+<ul>
+  <li>JavaScript コンパイルエラーまたは 実行時に生じた 他のエラーにより、JavaScript コードが評価されません。JavaScript インタプリタは、<code>JSException</code> のインスタンスに変換されるエラーメッセージを生成します。</li>
+  <li>Java は正常に JavaScript のコードを評価しましたが、処理方法が定かでない <code>throw</code> 文をJavaScript コードが実行します。JavaScript は、<code>JSException</code> のインスタンスとしてラップされる例外を投げます。Java でこの例外のラップを解くには、<code>JSException</code> の <code>getWrappedException</code> メソッドを使用します。</li>
+</ul>
+<p>例えば、Java のオブジェクトである <code>jsCode</code> が自身に渡される文字列 <code>eTest</code> を評価するとします。次のようなエラー処理を実行することで、評価が原因で発生するどちらの種類のランタイムエラーにも対応できます:</p>
+<pre class="brush: java">import netscape.javascript.JSObject;
+import netscape.javascript.JSException;
+
+public class eTest {
+    public static Object doit(JSObject obj, String jsCode) {
+        try {
+            obj.eval(jsCode);
+        } catch (JSException e) {
+            if (e.getWrappedException() == null)
+                return e;
+            return e.getWrappedException();
+        }
+        return null;
+    }
+}
+</pre>
+<p>この例では、渡された文字列 <code>jsCode</code> を <code>try</code> ブロック内のコードが評価しようとします。文字列 "<code>myFunction()</code>" を <code>jsCode</code> の値として渡すとします。<code>myFunction</code> が JavaScript の関数として定義されていない場合、JavaScript インタプリタは <code>jsCode</code> を評価できません。インタプリタはエラーメッセージを生成し、Java のハンドラがそのメッセージを受け取り、<code>doit</code> メソッドは <code>netscape.javascript.JSException</code> のインスタンスを返します。</p>
+<p>しかし、次のように <code>myFunction</code> が JavaScript で定義されているとします:</p>
+<pre class="brush: js">function myFunction() {
+   try {
+      if (theCondition == true) {
+         return "Everything's ok";
+      } else {
+         throw "JavaScript error occurred";
+      }
+   } catch (e) {
+      if (canHandle == true) {
+         handleIt();
+      } else {
+         throw e;
+      }
+   }
+}
+</pre>
+<p><code>theCondition</code> が false であれば、関数は例外を投げます。その例外は JavaScript コードで受け取られ、さらに <code>canHandle</code> が true の場合に JavaScript はそれを処理します。<code>canHandle</code> false がならばその例外が再び投げられ、Java のハンドラがそれを受け取り、 <code>doit</code> メソッドが次の Java の文字列を返します:</p>
+<pre>JavaScript error occurred
+</pre>
+<p>JavaScript の例外についての詳細情報は<a href="https://developer.mozilla.org/ja/docs/JavaScript/Guide/Statements#Exception_Handling_Statements" title="ja/docs/JavaScript/Guide/Statements#Exception Handling Statements">例外処理文</a>を参照してください。</p>
+<h4 id="Backward_Compatibility" name="Backward_Compatibility">後方互換性</h4>
+<p>JavaScript 1.3 以前のバージョンでは、<code>JSException</code> クラスには省略可能な文字列引数をとる 3 つの public タイプのコンストラクタがありました。この文字列引数は、詳細なメッセージやその例外に対する他の情報を指定するものです。<code>getWrappedException</code> メソッドは使用できませんでした。</p>
+<p>次のような <code>try...catch</code> 文を使用することで、JavaScript 1.3 以前のバージョンで LiveConnect の例外を処理できます:</p>
+<pre class="brush: js">try {
+   global.eval("foo.bar = 999;");
+} catch (Exception e) {
+   if (e instanceof JSException) {
+      jsCodeFailed();
+   } else {
+      otherCodeFailed();
+   }
+}
+</pre>
+<p>この例では <code>foo</code> が定義されていないと <code>eval</code> 文が失敗します。<code>try</code> ブロックの <code>eval</code> 文が <code>JSException</code> を投げると、<code>catch</code> ブロックが <code>jsCodeFailed</code> メソッドを実行します。<code>try</code> ブロックがそれ以外のエラーを投げると、<code>otherCodeFailed</code> メソッドが実行されます。</p>
+<h2 id="Data_Type_Conversions" name="Data_Type_Conversions">データ型変換</h2>
+<p>Java は強く型付けされた言語であり、JavaScript は弱く型付けされた言語であるため、LiveConnect を使用する際はもう一方の言語のために、JavaScript ランタイムエンジンが引数の値を適切なデータ型に変換します。この変換について以下のセクションで説明します:</p>
+<ul>
+  <li><a href="LiveConnect_Overview.html#JavaScript_to_Java_Conversions">JavaScript から Java への変換</a></li>
+  <li><a href="LiveConnect_Overview.html#Java_to_JavaScript_Conversions">Java からJavaScript への変換</a></li>
+</ul>
+<h3 id="JavaScript_to_Java_Conversions" name="JavaScript_to_Java_Conversions">JavaScript から Java への変換</h3>
+<p>JavaScript から Java のメソッドを呼び出してパラメータを渡す際、渡すパラメータのデータ型は以下のセクションで説明するルールによって変換されます:</p>
+<ul>
+  <li><a href="LiveConnect_Overview.html#Number_Values">数値</a></li>
+  <li><a href="LiveConnect_Overview.html#Boolean_Values">真偽値</a></li>
+  <li><a href="LiveConnect_Overview.html#String_Values">文字列値</a></li>
+  <li><a href="LiveConnect_Overview.html#Undefined_Values">undefined 値</a></li>
+  <li><a href="LiveConnect_Overview.html#Null_Values">null 値</a></li>
+  <li><a href="LiveConnect_Overview.html#JavaArray_and_JavaObject_objects">JavaArray および JavaObject オブジェクト</a></li>
+  <li><a href="LiveConnect_Overview.html#JavaClass_objects">JavaClass オブジェクト</a></li>
+  <li><a href="LiveConnect_Overview.html#Other_JavaScript_objects">その他の JavaScript オブジェクト</a></li>
+</ul>
+<p><code>netscape.javascript.JSObject</code> メソッドの戻り値は常に <code>java.lang.Object</code> のインスタンスに変換されます。このような戻り値の変換ルールもここで説明します。</p>
+<p>例えば <code>JSObject.eval</code> が JavaScript の数値を返すのであれば、この数値を <code>java.lang.Object</code> のインスタンスに変換するルールは<a href="LiveConnect_Overview.html#Number_Values">数値</a>に記載されています。</p>
+<h4 id="Number_Values" name="Number_Values">数値</h4>
+<p>Java のメソッドに JavaScript の数値型をパラメータとして渡すと、Java は次の表で示すルールに従ってその値を変換します:</p>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">Java のパラメータ型</th>
+      <th scope="col">変換ルール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>double</td>
+      <td>
+        <ul>
+          <li>そのままの値が、丸められたり絶対値や符号が損なわれることなく Java に渡されます。</li>
+          <li><code>NaN</code> は <code>NaN</code> に変換されます。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>java.lang.Double<br>
+        java.lang.Object</td>
+      <td><code>java.lang.Double</code> の新しいインスタンスが作成され、そのままの値が、丸められたり絶対値や符号が損なわれることなく Java に渡されます。</td>
+    </tr>
+    <tr>
+      <td>float</td>
+      <td>
+        <ul>
+          <li>値は float 精度に丸められます。</li>
+          <li>大きすぎまたは小さすぎて表現できない値は、正の無限大または負の無限大に丸められます。</li>
+          <li><code>NaN</code> は <code>NaN</code> に変換されます。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>byte<br>
+        char<br>
+        int<br>
+        long<br>
+        short</td>
+      <td>
+        <ul>
+          <li>値は負の無限大方向に丸められます。</li>
+          <li>大きすぎまたは小さすぎて表現できない値は、ランタイムエラーになります。</li>
+          <li><code>NaN</code> は変換されずにランタイムエラーになります。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code>java.lang.String</code></td>
+      <td>値は文字列に変換されます。例えば:
+        <ul>
+          <li>237 は "237" になります。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td>
+        <ul>
+          <li>0 および <code>NaN</code> は false に変換されます。</li>
+          <li>その他の値は true に変換されます。</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><code>java.lang.String</code> のインスタンスをパラメータに想定した Java のメソッドに JavaScript の数値をパラメータとして渡すと、その数値は文字列に変換されます。<code>equals()</code> メソッドを使用すると、この変換結果と他の文字列を比較できます。</p>
+<h4 id="Boolean_Values" name="Boolean_Values">真偽値</h4>
+<p>Java のメソッドに JavaScript の真偽値型をパラメータとして渡すと、Java は次の表で示すルールに従ってその値を変換します:</p>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">Java のパラメータ型</th>
+      <th scope="col">変換ルール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>boolean</td>
+      <td>すべての値は、Java で対応するものに直接変換されます。</td>
+    </tr>
+    <tr>
+      <td><code>java.lang.Boolean</code><br>
+        <code>java.lang.Object</code></td>
+      <td><code>java.lang.Boolean</code> の新しいインスタンスが作成されます。同一のプリミティブ値に対して 1 つのインスタンスではなく、各パラメータについて新しいインスタンスが作成されます。</td>
+    </tr>
+    <tr>
+      <td><code>java.lang.String</code></td>
+      <td>値は文字列に変換されます。例えば:
+        <ul>
+          <li>true は "true" になります。</li>
+          <li>false は "false" になります。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>byte<br>
+        char<br>
+        double<br>
+        float<br>
+        int<br>
+        long<br>
+        short</td>
+      <td>
+        <ul>
+          <li>true は 1 になります。</li>
+          <li>false は 0 になります。</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><code>java.lang.String</code> のインスタンスをパラメータに想定した Java のメソッドに JavaScript の真偽値をパラメータとして渡すと、その真偽値は文字列に変換されます。== 演算子を使用すると、この変換結果と他の文字列を比較できます。</p>
+<h4 id="String_Values" name="String_Values">文字列値</h4>
+<p>Java のメソッドに JavaScript の文字列型をパラメータとして渡すと、Java は次の表で示すルールに従ってその値を変換します:</p>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">Java のパラメータ型</th>
+      <th scope="col">変換ルール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>java.lang.String</code><br>
+        <code>java.lang.Object</code></td>
+      <td>JavaScript 1.4:
+        <ul>
+          <li>JavaScript の文字列は、Unicode 値で <code>java.lang.String</code> のインスタンスに変換されます。</li>
+        </ul>
+        <p>JavaScript 1.3 以前:</p>
+        <ul>
+          <li>JavaScript の文字列は、ASCII 値で <code>java.lang.String</code> のインスタンスに変換されます。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>byte<br>
+        double<br>
+        float<br>
+        int<br>
+        long<br>
+        short</td>
+      <td>すべての値は、ECMA-262 に記載に従って数値に変換されます。JavaScript の文字列値は ECMA-262 に記載されたルールに従って数値に変換されます。</td>
+    </tr>
+    <tr>
+      <td>char</td>
+      <td>JavaScript 1.4:
+        <ul>
+          <li>1 文字の文字列は、Unicode 文字に変換されます。</li>
+          <li>他のすべての値は数値に変換されます。</li>
+        </ul>
+        <p>JavaScript 1.3 以前:</p>
+        <ul>
+          <li>すべての値が数値に変換されます。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td>
+        <ul>
+          <li>空文字列は false になります。</li>
+          <li>他のすべての値は true になります。</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="Undefined_Values" name="Undefined_Values">undefined 値</h4>
+<p>Java のメソッドに JavaScript の undefined 値をパラメータとして渡すと、Java は次の表で示すルールに従ってその値を変換します:</p>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">Java のパラメータ型</th>
+      <th scope="col">変換ルール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>java.lang.String</code><br>
+        <code>java.lang.Object</code></td>
+      <td>値は java.lang.String のインスタンスに変換され、インスタンスの値は文字列 "undefined" になります。</td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td>値は false になります。</td>
+    </tr>
+    <tr>
+      <td>double<br>
+        float</td>
+      <td>値は <code>NaN</code> になります。</td>
+    </tr>
+    <tr>
+      <td>byte<br>
+        char<br>
+        int<br>
+        long<br>
+        short</td>
+      <td>値は 0 になります。</td>
+    </tr>
+  </tbody>
+</table>
+<p>undefined 値の変換は JavaScript 1.3 以降でのみ可能です。それより古いバージョンでは、undefined 値がサポートされていません。</p>
+<p><code>java.lang.String</code> のインスタンスをパラメータに想定した Java のメソッドに JavaScript の undefined 値をパラメータとして渡すと、その undefined 値は文字列に変換されます。== 演算子を使用すると、この変換結果と他の文字列を比較できます。</p>
+<h4 id="Null_Values" name="Null_Values">null 値</h4>
+<p>Java のメソッドに JavaScript の null 値をパラメータとして渡すと、Java は次の表で示すルールに従ってその値を変換します:</p>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">Java のパラメータ型</th>
+      <th scope="col">変換ルール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>あらゆるクラス<br>
+        あらゆるインタフェースの種類</td>
+      <td>値は null になります。</td>
+    </tr>
+    <tr>
+      <td>byte<br>
+        char<br>
+        double<br>
+        float<br>
+        int<br>
+        long<br>
+        short</td>
+      <td>値は 0 になります。</td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td>値は false になります。</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="JavaArray_and_JavaObject_objects" name="JavaArray_and_JavaObject_objects">JavaArray および JavaObject オブジェクト</h4>
+<p>ほとんどの場合、Java のメソッドに JavaScript の <code>JavaArray</code> または <code>JavaObject</code> オブジェクトをパラメータとして渡すと、Java は単にそのオブジェクトのラップを解きます。そうでない場合は、Java は次の表で示すルールに従ってそのオブジェクトを別のデータ型に変換します:</p>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">Java のパラメータ型</th>
+      <th scope="col">変換ルール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ラップが解かれたオブジェクトと代入互換性のある、あらゆるインタフェースまたはクラス</td>
+      <td>オブジェクトのラップが解かれます。</td>
+    </tr>
+    <tr>
+      <td><code>java.lang.String</code></td>
+      <td>オブジェクトのラップが解かれ、ラップが解かれた Java オブジェクトの <code>toString</code> メソッドが呼び出され、その結果が <code>java.lang.String</code> の新しいインスタンスとして返されます。</td>
+    </tr>
+    <tr>
+      <td>byte<br>
+        char<br>
+        double<br>
+        float<br>
+        int<br>
+        long<br>
+        short</td>
+      <td>オブジェクトのラップが解かれ、次の状況のどちらかが起こります:
+        <ul>
+          <li>ラップが解かれた Java のオブジェクトに <code>doubleValue</code> メソッドがあれば、<code>JavaArray</code> または <code>JavaObject</code> はこのメソッドが返す値に変換されます。</li>
+          <li>ラップが解かれた Java オブジェクトに <code>doubleValue</code> メソッドがなければ、エラーが発生します。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td>JavaScript 1.3 以降ではオブジェクトのラップが解かれ、次の状況のどちらかが起こります:
+        <ul>
+          <li>オブジェクトが null ならば、false に変換されます。</li>
+          <li>オブジェクトがそれ以外の値ならば、true に変換されます。</li>
+        </ul>
+        <p>JavaScript 1.2 以前ではオブジェクトのラップが解かれ、次の状況のどちらかが起こります:</p>
+        <ul>
+          <li>ラップが解かれたオブジェクトに <code>booleanValue</code> メソッドがあれば、ソースオブジェクトは戻り値のために変換されます。</li>
+          <li>オブジェクトに <code>booleanValue</code> がなければ、変換に失敗します。</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>ラップが解かれたオブジェクトが Java のパラメータ型のインスタンスであれば、インタフェースまたはクラスが、ラップが解かれたオブジェクトと代入互換性があるということです。つまり、次の文は必ず true を返します:</p>
+<pre class="brush: js">unwrappedObject instanceof parameterType;
+</pre>
+<h4 id="JavaClass_objects" name="JavaClass_objects">JavaClass オブジェクト</h4>
+<p>Java のメソッドに JavaScript の <code>JavaClass</code> オブジェクトをパラメータとして渡すと、Java は次の表で示すルールに従ってその値を変換します:</p>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">Java のパラメータ型</th>
+      <th scope="col">変換ルール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>java.lang.Class</code></td>
+      <td>オブジェクトのラップが解かれます。</td>
+    </tr>
+    <tr>
+      <td><code>netscape.javascript.JSObject</code><br>
+        <code>java.lang.Object</code></td>
+      <td><code>JavaClass</code> オブジェクトが <code>netscape.javascript.JSObject</code> の新しいインスタンス内にラップされます。</td>
+    </tr>
+    <tr>
+      <td><code>java.lang.String</code></td>
+      <td>オブジェクトのラップが解かれ、ラップが解かれた Java オブジェクトの <code>toString</code> メソッドが呼び出され、その結果が <code>java.lang.String</code> の新しいインスタンスとして返されます。</td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td>JavaScript 1.3 以降ではオブジェクトのラップが解かれ、次の状況のどちらかが起こります:
+        <ul>
+          <li>オブジェクトが null ならば、false に変換されます。</li>
+          <li>オブジェクトがそれ以外の値ならば、true に変換されます。</li>
+        </ul>
+        <p>JavaScript 1.2 以前ではオブジェクトのラップが解かれ、次の状況のどちらかが起こります:</p>
+        <ul>
+          <li>ラップが解かれたオブジェクトに <code>booleanValue</code> メソッドがあれば、ソースオブジェクトは戻り値のために変換されます。</li>
+          <li>オブジェクトに <code>booleanValue</code> がなければ、変換に失敗します。</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="Other_JavaScript_objects" name="Other_JavaScript_objects">その他の JavaScript のオブジェクト</h4>
+<p>Java のメソッドに JavaScript のその他のオブジェクトをパラメータとして渡すと、Java は次の表で示すルールに従ってその値を変換します:</p>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <th scope="col">Java のパラメータ型</th>
+      <th scope="col">変換ルール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>netscape.javascript.JSObject</code><br>
+        <code>java.lang.Object</code></td>
+      <td>オブジェクトは <code>netscape.javascript.JSObject</code> の新しいインスタンス内にラップされます。</td>
+    </tr>
+    <tr>
+      <td><code>java.lang.String</code></td>
+      <td>オブジェクトのラップが解かれ、ラップが解かれたオブジェクトの <code>toString</code> メソッドが呼び出され、その結果が <code>java.lang.String</code> の新しいインスタンスとして返されます。</td>
+    </tr>
+    <tr>
+      <td>byte<br>
+        char<br>
+        double<br>
+        float<br>
+        int<br>
+        long<br>
+        short</td>
+      <td>オブジェクトは、ECMA-262 に記載された <code>ToPrimitive</code> 演算子のロジックを使用して値に変換されます。この演算子で使用される <em>PreferredType</em> ヒントは Number です。</td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td>JavaScript 1.3 以降ではオブジェクトのラップが解かれ、次の状況のどちらかが起こります:
+        <ul>
+          <li>オブジェクトが null ならば、false に変換されます。</li>
+          <li>オブジェクトがそれ以外の値ならば、true に変換されます。</li>
+        </ul>
+        <p>JavaScript 1.2 以前ではオブジェクトのラップが解かれ、次の状況のどちらかが起こります:</p>
+        <ul>
+          <li>ラップが解かれたオブジェクトに <code>booleanValue</code> メソッドがあれば、ソースオブジェクトは戻り値のために変換されます。</li>
+          <li>オブジェクトに <code>booleanValue</code> がなければ、変換に失敗します。</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="Java_to_JavaScript_Conversions" name="Java_to_JavaScript_Conversions">Java から JavaScript への変換</h3>
+<p>Java から JavaScript に渡された値は、次のように変換されます:</p>
+<ul>
+  <li>Java の byte、char、short、int、long、float および double は、JavaScript の数値に変換されます。</li>
+  <li>Java の boolean は、JavaScript の真偽値に変換されます。</li>
+  <li>クラス <code>netscape.javascript.JSObject</code> のオブジェクトは、元の JavaScript のオブジェクトに変換されます。</li>
+  <li>Java の配列は JavaScript の擬似的な Array オブジェクトに変換されます。このオブジェクトは JavaScript の <code>Array</code> オブジェクトと全く同じような挙動をとります。つまり、<code>arrayName[index]</code> (<code>index</code> は整数) という構文でそれにアクセスでき、その長さを <code>arrayName.length</code> で判断できます。</li>
+  <li>Java のそれ以外オブジェクトは、JavaScript のラッパに変換されます。このラッパを通じて Java のオブジェクトのメソッドやフィールドにアクセスできます:
+    <ul>
+      <li>このラッパから文字列への変換では、元のオブジェクトで <code>toString</code> メソッドが呼び出されます。</li>
+      <li>数値への変換では、可能であれば <code>doubleValue</code> メソッドが呼び出され、そうでなければ失敗します。</li>
+      <li>JavaScript 1.3 以降の真偽値への変換では、そのオブジェクトが null であれば false が、そうでなければ true を返します。</li>
+      <li>JavaScript 1.2 以前の真偽値への変換では、可能であれば <code>booleanValue</code> メソッドが呼び出され、そうでなければ失敗します。</li>
+    </ul>
+  </li>
+</ul>
+<p>java.lang.Double および java.lang.Integer のインスタンスは、JavaScript の数値ではなく JavaScript のオブジェクトに変換されることに注意してください。同様に java.lang.String のインスタンスも、JavaScript の文字列ではなく JavaScript のオブジェクトに変換されます。</p>
+<p>Java の <code>String</code> オブジェクトも、JavaScript のラッパに相当します。JavaScript の文字列を必要とする JavaScript のメソッドを、このラッパを渡して呼び出すとエラーになります。そうではなく、次のようにラッパに空文字列を付加することで、ラッパを JavaScript の文字列に変換してください:</p>
+<pre class="brush: js">var JavaString = JavaObj.methodThatReturnsAString();
+var JavaScriptString = JavaString + "";</pre>
+<div>
+  </div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/LiveConnect">LiveConnect</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Java">Java</a></li><li><a href="../../../tag/JavaScript.html">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../profiles/ethertank.html">ethertank</a>, <a href="../../../../profiles/Mgjbot.html">Mgjbot</a>, <a href="../../../../profiles/happysadman.html">happysadman</a>, <a href="../../../../profiles/yyss.html">yyss</a>, <a href="../../../../profiles/Electrolysis.html">Electrolysis</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-28T13:01:34-07:00">2013/05/28 13:01:34</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/JavaScript/Guide/LiveConnect_Overview" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Archive/Web/LiveConnect/LiveConnect_Overview">
+            English (US)
+          </option>          <option value="/ru/docs/Web/JavaScript/Guide_ru/LiveConnect_Overview">
+            Русский
+          </option>          <option value="/zh-CN/docs/Web/JavaScript/Guide/LiveConnect_Overview">
+            中文 (简体)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":840}</script></body>
+</html>

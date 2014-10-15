@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Introduction to the JavaScript shell - SpiderMonkey | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../index.html">
+  <link rel="copyright" href="Introduction_to_the_JavaScript_shell.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell$json">
+  <link rel="canonical" href="Introduction_to_the_JavaScript_shell.html" >
+
+  
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Introduction to the JavaScript shell">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell">
+  <meta name="twitter:title" content="Introduction to the JavaScript shell">
+    <meta property="og:description" content="この記事は Mozilla の CVS サーバから JavaScript シェルの入手とビルドを紹介します。そしてテストと実験のためにプレリリース版を入手しビルドする事に特にフォーカスを当てています。">
+  <meta name="description" content="この記事は Mozilla の CVS サーバから JavaScript シェルの入手とビルドを紹介します。そしてテストと実験のためにプレリリース版を入手しビルドする事に特にフォーカスを当てています。">
+  <meta name="twitter:description" content="この記事は Mozilla の CVS サーバから JavaScript シェルの入手とビルドを紹介します。そしてテストと実験のためにプレリリース版を入手しビルドする事に特にフォーカスを当てています。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="SpiderMonkey/Introduction_to_the_JavaScript_shell" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Introduction_to_the_JavaScript_shell.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Introduction_to_the_JavaScript_shell.html#language">言語の選択</a></li>
+          <li><a href="Introduction_to_the_JavaScript_shell.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../Web/HTML.html">HTML</a></li>
+              <li><a href="../Web/CSS.html">CSS</a></li>
+              <li><a href="../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../Web/API.html">API / DOM</a></li>
+              <li><a href="../Web/Apps.html">Apps</a></li>
+              <li><a href="../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Tools.html">ツール</a></li><li><a href="../../demos/index.html">MDN デモ</a></li><li><a href="../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                              <li class="smaller">No translations exist for this document.</li>
+              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Introduction_to_the_JavaScript_shell$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Introduction_to_the_JavaScript_shell.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Mozilla/Projects.html" rel="v:url" property="v:title">Projects</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../SpiderMonkey.html" rel="v:url" property="v:title">SpiderMonkey</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Introduction to the JavaScript shell</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Introduction_to_the_JavaScript_shell.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Introduction to the JavaScript shell</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Introduction_to_the_JavaScript_shell.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Introduction_to_the_JavaScript_shell.html#JavaScript_.E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E5.85.A5.E6.89.8B.E3.81.97.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B" rel="internal">JavaScript シェルを入手しビルドする</a><ol><li><a href="Introduction_to_the_JavaScript_shell.html#CVS_.E3.82.B5.E3.83.BC.E3.83.90.E3.81.B8.E3.81.AE.E3.83.AD.E3.82.B0.E3.82.A4.E3.83.B3" rel="internal">CVS サーバへのログイン</a><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#Trunk_.E7.89.88.E3.81.AE_JavaScript_.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B" rel="internal">Trunk 版の JavaScript をビルドする</a><code></code><code></code><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#.E3.83.96.E3.83.A9.E3.83.B3.E3.83.81.E7.89.88.E3.81.AE_JavaScript_.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B" rel="internal">ブランチ版の JavaScript をビルドする</a><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="Introduction_to_the_JavaScript_shell.html#JavaScript_.E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E4.BD.BF.E3.81.86" rel="internal">JavaScript シェルを使う</a><ol><li><a href="Introduction_to_the_JavaScript_shell.html#.E3.82.B3.E3.83.9E.E3.83.B3.E3.83.89.E3.83.A9.E3.82.A4.E3.83.B3.E3.82.AA.E3.83.97.E3.82.B7.E3.83.A7.E3.83.B3" rel="internal">コマンドラインオプション</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#.E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E5.AE.9F.E8.A1.8C.E3.81.99.E3.82.8B" rel="internal">シェルを実行する</a><code></code><ol><li><a href="Introduction_to_the_JavaScript_shell.html#.E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E5.AF.BE.E8.A9.B1.E7.9A.84.E3.83.A2.E3.83.BC.E3.83.89.E3.81.A7.E4.BD.BF.E3.81.86" rel="internal">シェルを対話的モードで使う</a></ol></li><li><a href="Introduction_to_the_JavaScript_shell.html#.E7.B5.84.E3.81.BF.E8.BE.BC.E3.81.BF.E9.96.A2.E6.95.B0" rel="internal">組み込み関数</a><ol><li><a href="Introduction_to_the_JavaScript_shell.html#build()" rel="internal"><code>build()</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#clear(.5Bobject.5D)" rel="internal"><code>clear([object])</code></a><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#clone(function.2C_.5Bscope.5D)" rel="internal"><code>clone(function, [scope])</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#dis(.5Bfunction.5D)" rel="internal"><code>dis([function])</code></a><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#dissrc(.5Bfunction.5D)" rel="internal"><code>dissrc([function])</code></a><code></code><code></code><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#evalcx(string.5B.2C_object.5D)" rel="internal"><code>evalcx(string[, object])</code></a><code></code><code></code><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#gc()" rel="internal"><code>gc()</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#getpda(object)" rel="internal"><code>getpda(object)</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#getslx(object)" rel="internal"><code>getslx(object)</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#help(.5Bcommand_....5D)" rel="internal"><code>help([command ...])</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#intern(string)" rel="internal"><code>intern(string)</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#line2pc(.5Bfunction.2C_.5D_line)" rel="internal"><code>line2pc([function, ] line)</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#load(filename1_.5Bfilename.5D)" rel="internal"><code>load(filename1 [filename])</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#notes(.5Bfunction.5D)" rel="internal"><code>notes([function])</code></a><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#options(.5Boption_....5D)" rel="internal"><code>options([option ...])</code></a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#pc2line(function.2C_.5Bpc.5D)" rel="internal"><code>pc2line(function, [pc])</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#print(.5Bexpression_....5D)" rel="internal"><code>print([expression ...])</code></a><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#quit()" rel="internal"><code>quit()</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#readline()" rel="internal"><code>readline()</code></a><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#seal(object.5B.2C_deep.5D)" rel="internal"><code>seal(object[, deep])</code></a><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#stats(.5Bstring_....5D)" rel="internal"><code>stats([string ...])</code></a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#stringsAreUtf8()" rel="internal"><code>stringsAreUtf8()</code></a><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#testUtf8(mode)" rel="internal"><code>testUtf8(mode)</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#throwError()" rel="internal"><code>throwError()</code></a><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#tracing(.5Btoggle.5D)" rel="internal"><code>tracing([toggle])</code></a><code></code><code></code><code></code><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#trap(.5Bfunction.2C_.5Bpc.2C.5D.5D_expression)" rel="internal"><code>trap([function, [pc,]] expression)</code></a><code></code><code></code><code></code><code></code><li><a href="Introduction_to_the_JavaScript_shell.html#untrap(function_.5B.2C_pc.5D)" rel="internal"><code>untrap(function [, pc])</code></a><li><a href="Introduction_to_the_JavaScript_shell.html#version(.5Bnumber.5D)" rel="internal"><code>version([number])</code></a><code></code></ol></li></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>この記事は Mozilla の CVS サーバから JavaScript シェルの入手とビルドを紹介します。そしてテストと実験のためにプレリリース版を入手しビルドする事に特にフォーカスを当てています。</p>
+<p>さらにこの記事は JavaScript コードを実験し JavaScript プログラムを実行するためのシェルの使いかたに関する基本的な情報を提供します。</p>
+<h2 id="JavaScript_.E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E5.85.A5.E6.89.8B.E3.81.97.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B">JavaScript シェルを入手しビルドする</h2>
+<div class="note"><strong>Note:</strong> 現在別の Mozilla プロジェクトをビルドしていても、Mozilla ソースツリーでは通常見つからないシェル特有のファイルがあるので、明示的に JavaScript シェルのソースをダウンロードする必要があるでしょう。</div>
+<h3 id="CVS_.E3.82.B5.E3.83.BC.E3.83.90.E3.81.B8.E3.81.AE.E3.83.AD.E3.82.B0.E3.82.A4.E3.83.B3">CVS サーバへのログイン</h3>
+<p>他の Mozilla プロジェクト を CVS からとってくるのと同様に、最初に CVS サーバにログインする必要があります。そうするには、コードをチェックアウトしたい基本のディレクトリに <code>cd</code> し、以下のコマンドをコマンドラインに入力します。</p>
+<pre class="eval">cvs -d :pserver:<a class=" link-mailto" href="mailto:anonymous@cvs-mirror.mozilla.org">anonymous@cvs-mirror.mozilla.org</a>:/cvsroot login
+</pre>
+<p>入力を促されたら、パスワード <code>anonymous</code> を入力してください。</p>
+<h3 id="Trunk_.E7.89.88.E3.81.AE_JavaScript_.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B">Trunk 版の JavaScript をビルドする</h3>
+<p>一度サーバにログインしたなら CVS からコードをとってきましょう。最初に CVS ツリーのルートに <code>cd</code> する必要があり、次に以下のコマンドを入力してください。</p>
+<pre>cvs -d :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot co -l mozilla/js/src mozilla/js/src/config mozilla/js/src/editline mozilla/js/src/fdlibm
+</pre>
+<p>これは JavaScript シェルをビルドするために必要な全てのファイルをチェックアウトします。</p>
+<p>これで以下の 2 つのコマンドを実行すると JavaScript をビルドできるようになりました。</p>
+<pre>cd mozilla/js/src
+make -f Makefile.ref
+</pre>
+<p>コンパイルが完了したら、あるディレクトリ(名前はビルドしたシステムに依存します)の中に <code>js</code> という実行ファイルがあるはずです。<code>js</code>。例えば Mac OS X では実行ファイルは <code>Darwin_DBG.OBJ/js</code> にあります。</p>
+<p>この時点で、<a href="Introduction_to_the_JavaScript_shell.html#JavaScript_.E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E4.BD.BF.E3.81.86">シェルを実行し試す</a>準備ができました。</p>
+<h3 id=".E3.83.96.E3.83.A9.E3.83.B3.E3.83.81.E7.89.88.E3.81.AE_JavaScript_.E3.82.92.E3.83.93.E3.83.AB.E3.83.89.E3.81.99.E3.82.8B">ブランチ版の JavaScript をビルドする</h3>
+<p>JavaScript の特定のブランチ版のを実験したいなら、ブランチから <code>js/src</code> を、trunk から <code>editline</code> と <code>config</code> をチェックアウトします。</p>
+<pre class="eval">cvs -d :pserver:<a class=" link-mailto" href="mailto:anonymous@cvs-mirror.mozilla.org">anonymous@cvs-mirror.mozilla.org</a>:/cvsroot co -l -r &lt;var&gt;BRANCH_NAME&lt;/var&gt; mozilla/js/src mozilla/js/src/fdlibm
+cvs -d :pserver:<a class=" link-mailto" href="mailto:anonymous@cvs-mirror.mozilla.org">anonymous@cvs-mirror.mozilla.org</a>:/cvsroot co -l mozilla/js/src/config mozilla/js/src/editline
+</pre>
+<p>&lt;var&gt;BRANCH_NAME&lt;/var&gt; はチェックアウトしたいブランチの名前に変更してください。You can use a JavaScript のブランチ名 (例えば <code>JS_1_7_ALPHA_BRANCH</code>) か Mozilla のブランチ名 (例えば <code>MOZILLA_1_8_BRANCH</code>) を使うことができます。</p>
+<p>その後は前の章と同様にコンパイルし実行できます。</p>
+<h2 id="JavaScript_.E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E4.BD.BF.E3.81.86">JavaScript シェルを使う</h2>
+<p>シェルは 2 種類の操作モードを提供します。それを対話的なシェルとして使うことができます。それは JavaScript コードをプロンプトで書き、その瞬間に満足を得られます。これは新機能を実験するかテストするのに便利です。プログラムを自動的に実行したい場合にはコマンドラインで実行する JavaScript プログラムファイルを渡すこともができます。</p>
+<div class="note"><strong>注意:</strong> JavaScript シェルは JavaScript エンジンのテスト環境として使われているため、利用可能なオプションと組み込み関数はそのうちに変わる可能性があります。</div>
+<h3 id=".E3.82.B3.E3.83.9E.E3.83.B3.E3.83.89.E3.83.A9.E3.82.A4.E3.83.B3.E3.82.AA.E3.83.97.E3.82.B7.E3.83.A7.E3.83.B3">コマンドラインオプション</h3>
+<p>シェルを管理するために設定できる多くのコマンドラインがあります。以下にそれは要約されています。</p>
+<ul> <li><code>-b <em>branchlimit</em></code> <ul> <li>Sets the branch limit.</li> </ul> </li> <li><code>-c <em>stackchunksize</em></code> <ul> <li>スタックチャンクの大きさを設定する。<span>Sets the stack chunk size.</span></li> </ul> </li> <li><code>-C</code> <ul> <li>シェルにプログラムをコンパイルするが実行しないように指示する。これはプログラムを実際に実行しないでシンタックスエラーを確認する便利な方法である。<span>Tells the shell to compile the program but not run it. This is a convenient way to quickly check for syntax errors in your program without actually running it.</span></li> </ul> </li> <li><code>-e <em>script</em></code> <ul> <li>指定された <em>script</em> を実行する。<em>script</em> は実行するコードを含む文字列である。<span>Runs the specified ''script'', which is a literal string containing the code to execute.</span></li> </ul> </li> <li><code>-f <em>filename</em></code> <ul> <li><em>filename</em> で指定されたファイルの JavaScript プログラムを実行する。<span>Runs the JavaScript program specified by ''filename''.</span></li> </ul> </li> <li><code>-i</code> <ul> <li>対話的モードを有効にする。<span>Enables interactive mode.</span></li> </ul> </li> <li><code>-P</code> <ul> <li><em>私もなんなのかまだわからない。</em><span>''I'm not sure yet what this does.''</span></li> </ul> </li> <li><code>-s</code> <ul> <li>厳密に警告を出すモードを有効にする。<span>Enables strict warning mode.</span></li> </ul> </li> <li><code>-S <em>stacksize</em></code> <ul> <li>スタックサイズの最大値を設定する。<span>Sets the maximum stack size.</span></li> </ul> </li> <li><code>-v <em>version</em></code> <ul> <li><em>version</em> で指定された JavaScript のバージョンを設定する。(例えば、JavaScript 1.7 では <code>170</code>)</li> </ul> </li> <li><code>-w</code> <ul> <li>警告メッセージを有効にする。<span>Enables warning messages.</span></li> </ul> </li> <li><code>-W</code> <ul> <li>警告メッセージを無効にする。<span>Disables warning messages.</span></li> </ul> </li> <li><code>-x</code> <ul> <li><a href="../E4X.html" title="ja/E4X">E4X</a> XML モードを有効にする。<span>Enables E4X XML mode.</span></li> </ul> </li>
+</ul>
+<h3 id=".E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E5.AE.9F.E8.A1.8C.E3.81.99.E3.82.8B">シェルを実行する</h3>
+<p>もし対話的モードでシェルを実行したいなら、単にコマンドを使うだけでできます。<span>If you want to run the shell in interactive mode, you can simply use the command:</span></p>
+<pre class="eval">js
+</pre>
+<p>もし <code>foo.js</code> ファイルの中の JavaScript コードを実行したいなら、このコマンドを使うことができます。</p>
+<pre class="eval">js -f foo.js
+</pre>
+<p>foo.js を実行した後に対話的シェルに入るにはこうします。</p>
+<pre class="eval">js -f foo.js -f -
+</pre>
+<h4 id=".E3.82.B7.E3.82.A7.E3.83.AB.E3.82.92.E5.AF.BE.E8.A9.B1.E7.9A.84.E3.83.A2.E3.83.BC.E3.83.89.E3.81.A7.E4.BD.BF.E3.81.86">シェルを対話的モードで使う</h4>
+<p>対話的モードでは、個別の文と同様にオブジェクトや関数を作るために手で JavaScript コードを入力できます。これはアイディアを試す、JavaScript エンジンで作業している開発者にとってより重要な、言語の新しい機能をテストするには簡単な方法です。</p>
+<h3 id=".E7.B5.84.E3.81.BF.E8.BE.BC.E3.81.BF.E9.96.A2.E6.95.B0">組み込み関数</h3>
+<p>JavaScript シェルをより便利にするために、JavaScript プログラムか対話的モードで使うことができる多くの組み込み関数が提供されています。</p>
+<h4 id="build()"><code>build()</code></h4>
+<p>JavaScript シェルがビルドされた日付と時間を返します。</p>
+<h4 id="clear(.5Bobject.5D)"><code>clear(<em>[object]</em>)</code></h4>
+<p>指定された &lt;var&gt;object&lt;/var&gt; のプロパティをクリアします。パラメータ無しで <code>clear()</code> を呼び出すと全てがクリアされるので白紙の状態で始めることができます。</p>
+<div class="note"><strong>注意:</strong> パラメータ無しの <code>clear()</code> は本当に全てをクリアします。これはこれら全ての組み込み関数を含んでいます。</div>
+<h4 id="clone(function.2C_.5Bscope.5D)"><code>clone(<em>function, [scope]</em>)</code></h4>
+<p>指定された &lt;var&gt;function&lt;/var&gt; オブジェクトをクローンします。もし &lt;var&gt;scope&lt;/var&gt; が指定されていないと、新しいオブジェクトの親は元のオブジェクトの親と同じになります。それ以外なら新しいオブジェクトは &lt;var&gt;scope&lt;/var&gt; で指定されたオブジェクトのスコープの中に置かれます。</p>
+<h4 id="dis(.5Bfunction.5D)"><code>dis(<em>[function]</em>)</code></h4>
+<p>JavaScript バイトコードをプログラム全体、あるいは特定の <em>function</em> を逆アセンブルします。</p>
+<p>例えば、以下の JavaScript 関数を入力したとします:</p>
+<pre>function test() {
+  var i = 3;
+  print(i+2);
+}
+</pre>
+<p>次に <code>dis(test);</code> を実行すると、この出力を受け取るでしょう:</p>
+<pre>main:
+00000:  uint16 3
+00003:  setvar 0
+00006:  pop
+00007:  name "print"
+00010:  pushobj
+00011:  getvar 0
+00014:  uint16 2
+00017:  add
+00018:  call 1
+00021:  pop
+00022:  stop
+
+Source notes:
+  0:     0 [   0] newline 
+  1:     3 [   3] decl     offset 0
+  2:     7 [   4] newline 
+  3:    18 [  11] xdelta  
+  4:    18 [   0] pcbase   offset 11
+</pre>
+<h4 id="dissrc(.5Bfunction.5D)"><code>dissrc(<em>[function]</em>)</code></h4>
+<p>元の行を表示しながら、プログラム全体か特定の<em>関数</em>の JavaScript バイトコードを逆アセンブルします。この関数はファイルから読み込まれたプログラムに対してのみ動きます。つまりシェルの起動時の <code>-f</code> フラグか、<code>load()</code> 関数を使うかのどちらか。</p>
+<p>あなたのプログラムがこのような <code>doStuff()</code> という関数を含んでいると:</p>
+<pre>function doStuff(input) {
+	print("数字を入力してください: ");
+	var n1 = readline();
+	print("もう 1 つ数字を入力してください: ");
+	var n2 = readline();
+	
+	print("You entered " + n1 + " and " + n2 + "\n");
+}
+</pre>
+<p><code>dissrc(doStuff)</code> 関数を呼び出すとこのような出力が得られるでしょう:</p>
+<pre>;-------------------------  10:         print("Enter a number: ");
+00000:  10  name "print"
+00003:  10  pushobj
+00004:  10  string "Enter a number: "
+00007:  10  call 1
+00010:  10  pop
+;-------------------------  11:         var n1 = readline();
+00011:  11  name "readline"
+00014:  11  pushobj
+00015:  11  call 0
+00018:  11  setvar 0
+00021:  11  pop
+;-------------------------  12:         print("Enter another one: ");
+00022:  12  name "print"
+00025:  12  pushobj
+00026:  12  string "Enter another one: "
+00029:  12  call 1
+00032:  12  pop
+;-------------------------  13:         var n2 = readline();
+00033:  13  name "readline"
+00036:  13  pushobj
+00037:  13  call 0
+00040:  13  setvar 1
+00043:  13  pop
+;-------------------------  14: 
+;-------------------------  15:         print("You entered " + n1 + " and " + n2 + "\n");
+00044:  15  name "print"
+00047:  15  pushobj
+00048:  15  string "You entered "
+00051:  15  getvar 0
+00054:  15  add
+00055:  15  string " and "
+00058:  15  add
+00059:  15  getvar 1
+00062:  15  add
+00063:  15  string "\\n"
+00066:  15  add
+00067:  15  call 1
+00070:  15  pop
+00071:  15  stop
+</pre>
+<h4 id="evalcx(string.5B.2C_object.5D)"><code>evalcx(<em>string[, object]</em>)</code></h4>
+<p><em>string</em> の JavaScript コードを実行します。もし <em>object</em> が指定されているとサンドボックスとして扱い、コードはそのオブジェクトの中で実行されます。</p>
+<p>もし <em>string</em> が空で、<em>ojbect</em> が指定されていないと、<code>evalcx()</code> は熱心な標準的なクラスをもった新しいオブジェクトを返します。</p>
+<p>もし <em>string</em> が "lazy" で <em>object</em> が指定されていないと、<code>evalcx()</code> はだらけた標準的なクラスをもった新しいオブジェクトを返します。</p>
+<div class="note"><strong>Note:</strong> <code>evalcx()</code> は JavaScript エンジンの奥深くで作業する人にのみ便利です。テスト目的にはシェルの <code>evalInSandbox</code> の様な環境を使ってください</div>
+<h4 id="gc()"><code>gc()</code></h4>
+<p>メモリをクリーンアップするためにガベージコレクタを実行します。</p>
+<h4 id="getpda(object)"><code>getpda(<em>object</em>)</code></h4>
+<p>指定した <em>object</em> のプロパティ記述子 (<span style="color: green;">property descriptors</span>)を返します</p>
+<h4 id="getslx(object)"><code>getslx(<em>object</em>)</code></h4>
+<p>スクリプトの行の範囲を返します。行の範囲とは指定されたオブジェクトを構成するコードの行数のことです。</p>
+<h4 id="help(.5Bcommand_....5D)"><code>help(<em>[command ...]</em>)</code></h4>
+<p>指定されたコマンドか、何も指定されなければ利用可能な全ての関数についての簡単なヘルプを表示します。</p>
+<h4 id="intern(string)"><code>intern(<em>string</em>)</code></h4>
+<p>指定された &lt;var&gt;string&lt;/var&gt; を atom テーブルに内部化します。全ての文字列は atom と呼ばれる一意の識別子を持っています。この仕組は文字列の比較を用意にします。</p>
+<div class="note"><strong>Note:</strong> この関数は JavaScript エンジンのテストにのみ使うことを目的にしています。</div>
+<h4 id="line2pc(.5Bfunction.2C_.5D_line)"><code>line2pc(<em>[function, ] line</em>)</code></h4>
+<p>コードの指定された <em>line</em> に対応するプログラムカウンタの値を返します。もし が指定されたら <em>function</em> が指定されると <em>line</em> は指定された関数の中のオフセットです。</p>
+<h4 id="load(filename1_.5Bfilename.5D)"><code>load(<em>filename1</em> <em>[filename]</em>)</code></h4>
+<p>指定された名前のファイルを読み込みます。</p>
+<h4 id="notes(.5Bfunction.5D)"><code>notes(<em>[function]</em>)</code></h4>
+<p>指定された関数のソースの注意書きを表示します。ソースの注意書きはコードを逆コンパイルする時 (<code>dissrc()</code> 関数が使われる時など) に使われる bytecode からソースコードへのマップの情報を含んでいます。</p>
+<h4 id="options(.5Boption_....5D)"><code>options(<em>[option ...]</em>)</code></h4>
+<p>オプションの設定あるいは取得。コマンドラインで特定のオプションを指定したなら <code>options</code> の呼出結果はリクエストしたオプションを示します。新しく設定するオプションを引数にすることもできます。</p>
+<p><code>js -x</code> コマンドでシェルを開始したらなら <code>options()</code> 関数は <code>xml</code> を返すでしょう。もしオプション無しでシェルを開始して XML モードを有効にすると決めたなら、以下のコマンドの発行で出来ます。</p>
+<pre class="eval">options('xml');
+</pre>
+<p>利用可能なオプションは:</p>
+<table class="standard-table"> <tbody> <tr> <td class="header">オプション名</td> <td class="header">概要</td> </tr> <tr> <td><code>strict</code></td> <td>厳格モードが有効。</td> </tr> <tr> <td><code>werror</code></td> <td>警告がエラーとして扱われる。</td> </tr> <tr> <td><code>atline</code></td> <td><code>atline</code> が有効だと <code>//@line <em>num</em></code> 形式のコメントは、それ以下の行数を <code><em>num</em></code> に設定します。</td> </tr> <tr> <td><code>xml</code></td> <td>XML モードが有効</td> </tr> </tbody>
+</table>
+<h4 id="pc2line(function.2C_.5Bpc.5D)"><code>pc2line(<em>function, [pc]</em>)</code></h4>
+<p>指定した <em>function</em> の最初の行に対応する JavaScript コードの行数を返します。もしあなたが、その関数の中のプログラムカウンタオフセットを指定すると、オフセットを含んだコードの行数が返されます。</p>
+<h4 id="print(.5Bexpression_....5D)"><code>print(<em>[expression ...]</em>)</code></h4>
+<p><em>expression</em> が評価され、結果が <code>stdout</code> に表示されます。</p>
+<h4 id="quit()"><code>quit()</code></h4>
+<p>シェルを終了。</p>
+<h4 id="readline()"><code>readline()</code></h4>
+<p><code>stdin</code> から一行の入力を読み、呼出基に返します。これは JavaScript で対話的なシェルを作るのに使うことができます。</p>
+<h4 id="seal(object.5B.2C_deep.5D)"><code>seal(<em>object[, deep]</em>)</code></h4>
+<p>指定された <em>object</em> か、<em>deep</em> が <code>true</code> ならオブジェクトグラフ (<span style="color: green;">object graph</span>) を封印します。オブジェクトかオブジェクトグラフを封印することで、それらのオブジェクトの変更ができなくなります。</p>
+<h4 id="stats(.5Bstring_....5D)"><code>stats(<em>[string ...]</em>)</code></h4>
+<p>統計をダンプします。正しいオプションは <em>arena</em> と <em>atom</em>、<em>global</em> です。</p>
+<table class="standard-table"> <tbody> <tr> <td class="header">オプション</td> <td class="header">概要</td> </tr> <tr> <td><code>arena</code></td> <td>アリーナテーブルを出力します。</td> </tr> <tr> <td><code>atom</code></td> <td>atom テーブルを出力します。</td> </tr> <tr> <td><code>global</code></td> <td>グローバル名テーブルを出力します。</td> </tr> </tbody>
+</table>
+<p><em>アリーナ</em> は JavaScript エンジンが性能を最適化するためにサブブロックを割り当てた メモリ上の巨大なブロックです。それぞれの個々のブロックのために大量の <code>malloc()</code> を呼び出すのは効率が悪いため、エンジンはアリーナを作り、その中からメモリを割り当てる内部メモリ管理システムを使います。アリーナテーブルはシェルによって割り当てられた全アリーナのリストです。<code>stats("arena")</code> を使ってアリーナテーブルを調査しテストケースのアリーナの使いかたを見ることができます。</p>
+<p><em>atom</em> は文字列に対する一意の識別子です。文字列同士の比較を最適化するため、それぞれの文字列には atom が与えられています。これらのは atom はハッシュテーブルに保存されています。ハッシュテーブルは <code>stats("atom")</code> コマンドを使って表示することができます。</p>
+<p><code>stats("global")</code> はグローバル名テーブルを表示します。メモリ上のそれぞれのオブジェクトの名前と情報を表示します。</p>
+<h4 id="stringsAreUtf8()"><code>stringsAreUtf8()</code></h4>
+<p>もし文字列が UTF-8 でエンコードされていれば <code>true</code> を返し、それ以外なら <code>false</code> を返します。</p>
+<h4 id="testUtf8(mode)"><code>testUtf8(<em>mode</em>)</code></h4>
+<p>UTF-8 テストを行います。<em>mode</em> パラメータは 1 から 4 までの整数です。</p>
+<p>これはUTF-8 文字列処理を確認を簡単に実行するデバッグコマンドです。JavaScript エンジン自体で作業しない限り一般的には使いません。</p>
+<h4 id="throwError()"><code>throwError()</code></h4>
+<p><code>JS_ReportError()</code> 関数からエラーを投げます。</p>
+<div class="note"><strong>注意:</strong> この関数は JavaScript エンジンのテスト時にのみ使われます。</div>
+<h4 id="tracing(.5Btoggle.5D)"><code>tracing(<em>[toggle]</em>)</code></h4>
+<p>追跡モードを有効あるいは無効にします。追跡を有効にするには <code>true</code> を無効にするには <code>false</code> を渡します。もしパラメータを指定しないと <code>tracing()</code> は現在の設定を返します。</p>
+<div class="tip"><strong>ヒント:</strong> これは <code>jsinterp.c</code> ファイルで <code>JS_THREADED_INTERP</code> が無効になっている場合のみ働きます。</div>
+<h4 id="trap(.5Bfunction.2C_.5Bpc.2C.5D.5D_expression)"><code>trap(<em>[function, [pc,]] expression</em>)</code></h4>
+<p>JavaScript コードの指定した場所にトラップを設定します。<em>pc</em> で指定された 関数 <em>function' のオフセットのバイトコードが実行されようとする時、</em>expression<em> が評価されます。</em></p>
+<p><code>line2pc()</code> と協力して使うと、これは強力なデバッグ機構です。例えばある関数、<code>doSomething()</code> の 6 行目が実行されるときにメッセージを表示したいなら、以下を入力できます。</p>
+<pre>trap(doSomething, line2pc(test, 6), "print('line 6!\n')");
+</pre>
+<div class="note"><strong>注意:</strong> トラップが設定されるとプログラムの対応するバイトコードは、<code>untrap</code> を使ってトラップを取り除くまで、 <code>trap</code> バイトコードに置き換えられます。</div>
+<h4 id="untrap(function_.5B.2C_pc.5D)"><code>untrap(<em>function [, pc]</em>)</code></h4>
+<p><em>pc</em> オフセットの指定した <em>function</em> からトラップを取り除きます。もし <em>pc</em> が指定されていないと、トラップは関数のエントリポイントから取り除かれます。</p>
+<p>この関数は指定した場所にトラップがないと効果がありません。</p>
+<h4 id="version(.5Bnumber.5D)"><code>version(<em>[number]</em>)</code></h4>
+<p><code>version()</code> 関数は JavaScript のバージョン番号を取得する、または設定します。これは JavaScript の特定のバージョンで利用可能な構文にアクセスする時便利です (例えば、<a href="https://developer.mozilla.org/ja/JavaScript/New_in_JavaScript/1.7#Using_JavaScript_1.7" title="ja/JavaScript/New_in_JavaScript/1.7#Using_JavaScript_1.7">JavaScript 1.7 を使う</a>を参照してください)。</p>
+<p></p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../tag/SpiderMonkey.html">SpiderMonkey</a></li><li><a href="../tag/JavaScript.html">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/Dynamis">Dynamis</a>, <a href="https://developer.mozilla.org/ja/profiles/kano">kano</a>, <a href="../../profiles/Taken.html">Taken</a>, <a href="../../profiles/Mgjbot.html">Mgjbot</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/kano">kano</a>,
+                      <time datetime="2011-12-09T13:12:04-08:00">2011/12/09 13:12:04</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                  </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":360}</script></body>
+</html>

@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/API/window.open by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:01:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>window.open - Web API インターフェイス | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="window-73.json">
+  <link rel="canonical" href="window-87.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/API/Window.open" title="Window.open">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/DOM/window.open" title="window.open">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/DOM/window.open" title="window.open">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/DOM/window.open" title="window.open">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="window.open">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/API/window.open">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/API/window.open">
+  <meta name="twitter:title" content="window.open">
+    <meta property="og:description" content="新しい副ブラウザウィンドウを生成し、参照されているリソースをロードします。">
+  <meta name="description" content="新しい副ブラウザウィンドウを生成し、参照されているリソースをロードします。">
+  <meta name="twitter:description" content="新しい副ブラウザウィンドウを生成し、参照されているリソースをロードします。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/API/window.open" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/API/window.open" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/API/window.open" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/API/Window.open" title="Window.open">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/DOM/window.open" title="window.open">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/DOM/window.open" title="window.open">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/DOM/window.open" title="window.open">Polski</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/API/window.open%24edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="window-227.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../API.html" rel="v:url" property="v:title">Web API インターフェイス</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">window.open</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>window.open</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><li><ol><li><a href="#.E5.AE.9A.E7.BE.A9" rel="internal">定義</a><li><a href="#.E6.A7.8B.E6.96.87" rel="internal">構文</a><li><a href="#.E6.88.BB.E3.82.8A.E5.80.A4.E3.81.A8.E3.83.91.E3.83.A9.E3.83.A1.E3.83.BC.E3.82.BF" rel="internal">戻り値とパラメータ</a><code></code><code></code><code></code><code></code><code></code><code></code><code style="font-size: 1em;"></code><code style="font-size: 1em;"></code><code></code><li><a href="#.E8.AA.AC.E6.98.8E" rel="internal">説明</a><code></code><code></code><code></code><code></code><ol><li><a href="#.E4.BE.8B" rel="internal">例</a><code></code><li><a href="#.E4.BD.8D.E7.BD.AE.E3.81.A8.E3.82.B5.E3.82.A4.E3.82.BA.E3.81.AE.E7.89.B9.E6.80.A7" rel="internal">位置とサイズの特性</a><li><a href="#.E3.83.84.E3.83.BC.E3.83.AB.E3.83.90.E3.83.BC.E3.81.A8_chrome_.E3.81.AE.E7.89.B9.E6.80.A7" rel="internal">ツールバーと chrome の特性</a><code></code><code></code><code></code><code></code><code></code><li><a href="#.E3.82.A6.E3.82.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.81.AE.E6.A9.9F.E8.83.BD.E3.81.AE.E7.89.B9.E6.80.A7" rel="internal">ウィンドウの機能の特性</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#.E7.89.B9.E6.A8.A9.E3.82.92.E5.BF.85.E8.A6.81.E3.81.A8.E3.81.99.E3.82.8B.E7.89.B9.E6.80.A7" rel="internal">特権を必要とする特性</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="#.E3.83.99.E3.82.B9.E3.83.88.E3.83.97.E3.83.A9.E3.82.AF.E3.83.86.E3.82.A3.E3.82.B9" rel="internal">ベストプラクティス</a><code></code><li><a href="#FAQ" rel="internal">FAQ</a><code></code><code></code><code style="white-space: normal;"></code><code style="white-space: normal;"></code><code></code><code></code><code></code><li><a href="#.E3.83.A6.E3.83.BC.E3.82.B6.E3.83.93.E3.83.AA.E3.83.86.E3.82.A3.E3.81.AE.E5.95.8F.E9.A1.8C" rel="internal">ユーザビリティの問題</a><ol><li><a href="#window.open.28.29_.E3.81.B8.E3.81.AE.E4.BE.9D.E5.AD.98.E3.82.92.E5.9B.9E.E9.81.BF.E3.81.99.E3.82.8B" rel="internal"><code>window.open()</code> への依存を回避する</a><code></code><li><a href="#.E3.83.AA.E3.83.B3.E3.82.AF.E3.82.92.E6.96.B0.E3.81.97.E3.81.84.E3.82.A6.E3.82.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.81.AB.E9.96.8B.E3.81.8F.E3.81.93.E3.81.A8.E3.82.92.E6.8F.90.E4.BE.9B.E3.81.99.E3.82.8B.E5.A0.B4.E5.90.88.E3.80.81.E4.BB.A5.E4.B8.8B.E3.81.AE.E3.82.AC.E3.82.A4.E3.83.89.E3.83.A9.E3.82.A4.E3.83.B3.E3.82.92.E4.BD.BF.E7.94.A8.E3.81.97.E3.81.A6.E3.81.8F.E3.81.A0.E3.81.95.E3.81.84" rel="internal">リンクを新しいウィンドウに開くことを提供する場合、以下のガイドラインを使用してください</a><code></code><code></code><code></code></ol></li><li><a href="#.E7.94.A8.E8.AA.9E" rel="internal">用語</a><li><a href="#.E4.BB.95.E6.A7.98" rel="internal">仕様</a><li><a href="#.E6.B3.A8.E8.A8.98" rel="internal">注記</a><ol><li><a href="#.E5.84.AA.E5.85.88.E5.BA.A6.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" rel="internal">優先度についての注記</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#.E4.BD.8D.E7.BD.AE.E3.81.A8.E5.AF.B8.E6.B3.95.E3.81.AE.E3.82.A8.E3.83.A9.E3.83.BC.E4.BF.AE.E6.AD.A3.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" rel="internal">位置と寸法のエラー修正についての注記</a><li><a href="#.E3.82.B9.E3.82.AF.E3.83.AD.E3.83.BC.E3.83.AB.E3.83.90.E3.83.BC.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" rel="internal">スクロールバーについての注記</a><li><a href="#.E3.82.B9.E3.83.86.E3.83.BC.E3.82.BF.E3.82.B9.E3.83.90.E3.83.BC.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" rel="internal">ステータスバーについての注記</a><li><a href="#.E3.82.B9.E3.83.86.E3.83.BC.E3.82.BF.E3.82.B9.E3.83.90.E3.83.BC.E3.81.AE.E8.A1.A8.E7.A4.BA.E3.81.AB.E9.96.A2.E3.81.99.E3.82.8B.E3.82.BB.E3.82.AD.E3.83.A5.E3.83.AA.E3.83.86.E3.82.A3.E4.B8.8A.E3.81.AE.E5.95.8F.E9.A1.8C.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" rel="internal">ステータスバーの表示に関するセキュリティ上の問題についての注記</a><li><a href="#.E3.83.95.E3.83.AB.E3.82.B9.E3.82.AF.E3.83.AA.E3.83.BC.E3.83.B3.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" rel="internal">フルスクリーンについての注記</a><li><a href="#outerHeight_.E5.AF.BE_height_.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" rel="internal">outerHeight 対 height についての注記</a></ol></li><li><a href="#.E3.83.81.E3.83.A5.E3.83.BC.E3.83.88.E3.83.AA.E3.82.A2.E3.83.AB" rel="internal">チュートリアル</a><li><a href="#.E3.83.AA.E3.83.95.E3.82.A1.E3.83.AC.E3.83.B3.E3.82.B9" rel="internal">リファレンス</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p><span class="breadcrumbs domRef_breadcrumbs themeUpdated">« <a href="https://developer.mozilla.org/ja/docs/DOM/DOM_Reference">DOM リファレンス</a></span> 
+ 
+ 
+</p><section class="Quick_links" id="Quick_Links"><!-- --></section> <span id="Definition"></span><p></p>
+<h3 id=".E5.AE.9A.E7.BE.A9" name=".E5.AE.9A.E7.BE.A9">定義</h3>
+<p>新しい副ブラウザウィンドウを生成し、参照されているリソースをロードします。</p>
+<p><span id="Syntax"></span></p>
+<h3 id=".E6.A7.8B.E6.96.87" name=".E6.A7.8B.E6.96.87">構文</h3>
+<pre class="eval">var <var>win</var> = window.open(<var>url</var>, <var>name</var> [, <var>features</var>]);
+</pre>
+<p><span id="Return_value_and_parameters"></span></p>
+<h3 id=".E6.88.BB.E3.82.8A.E5.80.A4.E3.81.A8.E3.83.91.E3.83.A9.E3.83.A1.E3.83.BC.E3.82.BF" name=".E6.88.BB.E3.82.8A.E5.80.A4.E3.81.A8.E3.83.91.E3.83.A9.E3.83.A1.E3.83.BC.E3.82.BF">戻り値とパラメータ</h3>
+<dl>
+  <dt>
+    <code>win</code></dt>
+  <dd>
+    新しく開かれた文書の <code>window</code>。何らかの理由でこのメソッドの呼びだしでウィンドウを開くことに失敗した場合、この値は <code>null</code> になります（例えば、ポップアップブロッカーがその <code>window</code> を開くことを妨げた場合）。</dd>
+</dl>
+<dl>
+  <dt>
+    <code>url</code></dt>
+  <dd>
+    新しく開かれるウィンドウでロードされる URL。</dd>
+</dl>
+<dl>
+  <dt>
+    <code>name</code></dt>
+  <dd>
+    <code style="font-size: 1em;">&lt;a&gt;</code> 要素や <code style="font-size: 1em;">&lt;form&gt;</code> 要素のターゲットの属性を文字列 "name" で指定したときにリンクやフォームのターゲットとして参照することができる新しいウィンドウの名前。文字列の引数には一切空白を含むべきではありません。<var>name</var> は新しいウィンドウのタイトルを指定する<b>ものではありません</b>。</dd>
+</dl>
+<dl>
+  <dt>
+    <code>features</code></dt>
+  <dd>
+    オプションの引数。このパラメータは、新しいブラウザをウィンドウのリクエストされたウィンドウの特性（ウィンドウの機能やツールバー）をリスト化した文字列です。この文字列の引数は、空白スペースを一切含んではいけません。リクエストされたウィンドウの特性の各々は、文字列内においてコンマで区切られけばなりません。</dd>
+</dl>
+<p><span id="Description"></span></p>
+<h3 id=".E8.AA.AC.E6.98.8E" name=".E8.AA.AC.E6.98.8E">説明</h3>
+<p><code>open()</code> メソッドは、新しい副ブラウザウィンドウを生成します。それは、ファイルメニューから新しいウィンドウを選ぶのに似ています。引数 <var>url</var> は、新しいウィンドウにおいてフェッチしロードする URL を指定します。<var>url</var> が空文字列の場合は、メインウィンドウのデフォルトツールバーを持った新しい空白の空のウィンドウ（URL は <code>about:blank</code> がロードされます）が生成されます。</p>
+<p>リモート URL は、すぐにはロードされないことに注意してください。<code>window.open()</code> が戻り値を返すとき、ウィンドウは、常に <code>about:blank</code> を含んでいます。URL が実際にフェッチされるまでには猶予期間があり、現在のスクリプトブロックが実行を終えた後に開始されます。ウィンドウの生成と参照されるリソースの読み込みは、非同期に行われます。</p>
+<p><span id="Examples"></span></p>
+<h4 id=".E4.BE.8B" name=".E4.BE.8B">例</h4>
+<pre>var win;
+var features = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
+function openRequestedPopup()
+{
+win = window.open("http://www.cnn.com/", "CNN_WindowName", features);
+}
+</pre>
+<pre>var win;
+
+function openRequestedPopup()
+{
+win = window.open("http://www.domainname.ext/path/ImageFile.png",
+    "DescriptiveWindowName",
+    "resizable=no,scrollbars=yes,status=no");
+}
+</pre>
+<p><var>name</var> の名前を持っているウィンドウがすでに存在する場合は、新しいウィンドウが開かれる代わりに、<var>url</var> がその存在するウィンドウにロードされます。この場合において、そのメソッドの戻り値は、その存在するウィンドウであり、<var>features</var> は無視されます。<var>url</var> に空文字列を与えることは、ウィンドウのロケーションを変えずに、その名前によって開いたウィンドウの参照を得るための手段です。 <code>window.open()</code> の全ての呼びだしで新しいウィンドウを開きたい場合、<var>name</var> に <var>_blank</var> という特別な値を用いるべきです。</p>
+<p><var>features</var> は、新しいウィンドウに指定する特性をコンマで分割したリストを含む、オプションの文字列です。ウィンドウが開かれた後、ウィンドウの機能やウィンドウのツールバーを変えるために JavaScript を用いることはできません。<var>name</var> が存在するウィンドウを指定しなかった場合、かつ、引数 <var>features</var> を与えなかった場合（もしくは、引数 <var>features</var> が空文字列だった場合）は、新しい副ウィンドウにメインウィンドウのデフォルトのツールバーが表示されるでしょう。</p>
+<p>引数 <var>features</var> が使用され、サイズの特性が定義されなかった場合は、新しいウィンドウの寸法は、最も最近に表示されたウィンドウの寸法と同じになります。</p>
+<p>引数 <var>features</var> が使用され、位置の特性が定義されなかった場合は、新しいウィンドウの面の左と上の座標は、最も最近に表示されたウィンドウがあった位置から 22 ピクセル離れた位置になります。離す距離の設定は、ブラウザの製造者（デフォルトテーマでの MSIE 6 SP2 では 29 ピクセルです）によって普遍的に実装されます。そして、その目的は、ユーザに新しいウィンドウが開いたということに気づくのを助けることにあります。最も最近に使用されたウィンドウが最大化された状態である場合は、22 ピクセル離れた状態にはなりません。つまり、新しい副ウィンドウも同様に最大化されます。</p>
+<p><strong>引数 <var>features</var> を定義する場合、文字列として指定されずに、列挙されなかった特性は、無効になるか非表示になるでしょう。</strong>(デフォルトで <var>yes</var> である <var>titlebar</var> と <var>close</var> は除きます。)</p>
+<p> </p>
+<div class="tip">
+  <p><strong>Tip</strong>: 引数 <var>features</var> を使用する場合は、新しいウィンドウに含めたい特性のリストだけを指定するようにしてください。望むものだけが、有効に、もしくは、表示され、他のものは(デフォルトで <var>yes</var> である <var>titlebar</var> と <var>close</var> は除きます。)、無効、もしくは、非表示になるでしょう。</p>
+</div>
+<p style="border: 1px dotted green;"><img alt="Firefox Chrome Toolbars Illustration"></p>
+<p><span id="Position_and_size_features"></span></p>
+<h4 id=".E4.BD.8D.E7.BD.AE.E3.81.A8.E3.82.B5.E3.82.A4.E3.82.BA.E3.81.AE.E7.89.B9.E6.80.A7" name=".E4.BD.8D.E7.BD.AE.E3.81.A8.E3.82.B5.E3.82.A4.E3.82.BA.E3.81.AE.E7.89.B9.E6.80.A7">位置とサイズの特性</h4>
+<p><a href="#Note_on_position_and_dimension_error_correction">位置と寸法のエラー修正についての注記</a></p>
+<div class="bug">
+  <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=176320" rel="external" title="https://bugzilla.mozilla.org/show_bug.cgi?id=176320">Bug 176320: Minimal innerWidth/innerHeight values for popup windows</a></div>
+<p><a href="#Note_on_precedence">優先度についての注記</a></p>
+<dl>
+  <dt>
+    left </dt>
+  <dd>
+    <span id="left">ユーザのオペレーティングシステムのアプリケーションのための作業領域の左端からブラウザウィンドウの左端ボーダー（リサイズハンドル）までの新しいウィンドウが配置される間隔を指定します。新しいウィンドウは、最初からスクリーン外に配置されることはありません。</span></dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x">, <img alt="Opera 6+"></dd>
+</dl>
+<dl>
+  <dt>
+    top </dt>
+  <dd>
+    <span id="topS">ユーザのオペレーティングシステムのアプリケーションのための作業領域の上端からブラウザウィンドウの上端ボーダー（リサイズハンドル）までの新しいウィンドウが配置される間隔を指定します。新しいウィンドウは、最初からスクリーン外に配置されることはありません。</span></dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x">, <img alt="Opera 6+"></dd>
+</dl>
+<dl>
+  <dt>
+    height </dt>
+  <dd>
+    <span id="height">コンテンツエリア、新しい副ウィンドウのビューエリアの高さをピクセル単位で指定します。</span> 高さの値は、水平スクロールバーが存在するならば、その高さを含めます。最小の要求値は 100 です。</dd>
+  <dd>
+    <a href="#Note_on_outerHeight_versus_height">outerHeight 対 height (or innerHeight) についての注記</a></dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x">, <img alt="Opera 6+"></dd>
+</dl>
+<dl>
+  <dt>
+    width </dt>
+  <dd>
+    <span id="width">コンテンツエリア、、新しい副ウィンドウのビューエリアの幅をピクセル単位で指定します。</span> 幅の値は、垂直スクロールバーが存在すれば、その高さを含みます。幅の値は、サイドバーが展開されていても、その幅を含みません。最小の要求値は 100 です。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x">, <img alt="Opera 6+"></dd>
+</dl>
+<dl>
+  <dt>
+    screenX </dt>
+  <dd>
+    非推奨。<a href="#left">left</a> と同様ですが、Netscape と Mozilla ベースのブラウザでしかサポートされていません。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    screenY </dt>
+  <dd>
+    非推奨。<a href="#topS">top</a> と同様ですが、Netscape と Mozilla ベースのブラウザでしかサポートされていません。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    centerscreen </dt>
+  <dd>
+    その親のサイズのと位置に関連付けられたウィンドウの中央。chrome=yes が必要。</dd>
+</dl>
+<dl>
+  <dt>
+    outerHeight </dt>
+  <dd>
+    ブラウザウィンドウ全体の高さをピクセル単位で指定します。この outerHeight の値は、任意/全て のツールバーを含みます。この outerHeight の値は、ウィンドウの水平スクロールバー（存在する場合）と上と下のウィンドウリサイズボーダーを含みます。最小の要求値は、100 です。</dd>
+  <dd>
+    <strong>注記</strong>: タイトルバーは常に表示されるので、outerHeight=100 を指定したとき、ブラウザウィンドウの innerHeight は、最小 100 ピクセル未満になります。</dd>
+  <dd>
+    <a href="#Note_on_outerHeight_versus_height">outerHeight 対 height (or innerHeight) についての注記</a></dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    outerWidth </dt>
+  <dd>
+    ブラウザウィンドウ全体の幅をピクセル単位で指定します。この outerWidth の値は、任意/全て のツールバーを含みます。この outerWidth の値は、ウィンドウの垂直スクロールバー（存在する場合）と 左と右のウィンドウリサイズボーダーを含みます。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    innerHeight </dt>
+  <dd>
+    <a href="#height">height</a> と同じですが、Netscape と Mozilla ベースのブラウザでしかサポートされていません。コンテンツエリア、新しい副ウィンドウのビューエリアの高さをピクセル単位で指定します。<var>innerHeight</var> の値は、水平スクロールバーが存在するならば、その高さを含めます。最小の要求値は 100 です。</dd>
+  <dd>
+    <a href="#Note_on_outerHeight_versus_height">outerHeight 対 height (or innerHeight) についての注記</a></dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    innerWidth </dt>
+  <dd>
+    <a href="#width">width</a> と同じですが、Netscape と Mozilla ベースのブラウザでしかサポートされていません。コンテンツエリア、新しい副ウィンドウのビューエリアの幅をピクセル単位で指定します。幅の値は、垂直スクロールバーが存在すれば、その高さを含みます。幅の値は、サイドバーが展開されていても、その幅を含みません。最小の要求値は 100 です。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<p><span id="Toolbar_and_chrome_features"></span></p>
+<h4 id=".E3.83.84.E3.83.BC.E3.83.AB.E3.83.90.E3.83.BC.E3.81.A8_chrome_.E3.81.AE.E7.89.B9.E6.80.A7" name=".E3.83.84.E3.83.BC.E3.83.AB.E3.83.90.E3.83.BC.E3.81.A8_chrome_.E3.81.AE.E7.89.B9.E6.80.A7">ツールバーと chrome の特性</h4>
+<dl>
+  <dt>
+    menubar </dt>
+  <dd>
+    この特性が yes に設定されている場合、新しい副ウィンドウにメニューバーが表示されます。</dd>
+  <dd>
+    Mozilla と Firefox ユーザは、<a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#about_config">about:config</a> か <a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#user_js">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">旧ページの日本語版</a>）で、<br>
+    <code>dom.disable_window_open_feature.menubar</code><br>
+    を <var>true</var> に設定することにより、常に新しいウィンドウにメニューバーを表示させるようにすることができます。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    toolbar </dt>
+  <dd>
+    この特性が yes に設定されている場合、新しい副ウィンドウにナビゲーションツールバー（戻る、進む、更新、中止ボタンなどを配置できるバー）が表示されます。ナビゲーションツールバーに加えて、Mozilla ベースのブラウザには、タブバーが表示されるでしょう（親ウィンドウに存在し、表示されている状態である場合）。</dd>
+  <dd>
+    Mozilla Firefox ユーザは、<a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#about_config">about:config</a> か <a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#user_js">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">旧ページの日本語版</a>）で、<br>
+    <code>dom.disable_window_open_feature.toolbar</code><br>
+    を <var>true</var> に設定することにより、常に新しいウィンドウにナビゲーションツールバーを表示させるようにすることができます。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    location </dt>
+  <dd>
+    この特性が yes に設定されている場合、新しい副ウィンドウに Mozilla ベースのブラウザではロケーションバーが、MSIE 5+ 及び Opera 7.x ではアドレスバーが表示されます。</dd>
+  <dd>
+    Mozilla と Firefox ユーザは、<a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#about_config">about:config</a> か <a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#user_js">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">旧ページの日本語版</a>）で、<br>
+    <code>dom.disable_window_open_feature.location </code><br>
+    を <var>true</var> に設定することにより、常に新しいウィンドウにロケーションバーを表示させるようにすることができます。</dd>
+</dl>
+<p></p><div class="blockIndicator standardNote standardNoteBlock"> 
+    <p><a href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/3">Firefox 3 における注記</a></p> 
+    <p style="font-weight: 400;">Firefox 3 では、<code>dom.disable_window_open_feature.location</code> がデフォルトで <var>true</var> になっているので、IE7 のようにロケーションバーを強制的に表示します。 さらなる情報は、Bug 337344 を参照してください。</p> 
+</div><p></p>
+<dl>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x">, <img alt="Opera 6+"></dd>
+</dl>
+<dl>
+  <dt>
+    directories </dt>
+  <dd>
+    この特性が yes に設定されている場合、新しい副ウィンドウに Netscape 6.x、Netscape 7.x、 Mozilla ブラウザでは、パーソナルツールバーが表示されます。Firefox 1.x では、ブックマークツールバーが表示され、MSIE 5+ では、リンクバーが表示されます。パーソナルツールバーに加えて、Mozilla ブラウザでは、サイトナビゲーションバーも表示されるでしょう（親ウィンドウに存在し、表示されている場合）。</dd>
+  <dd>
+    Mozilla と Firefox ユーザは、<a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#about_config">about:config</a> か <a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#user_js">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">旧ページの日本語版</a>）で、<br>
+    <code>dom.disable_window_open_feature.directries </code><br>
+    を <var>true</var> に設定することにより、常に新しいウィンドウに、パーソナルツールバー / ブックマークツールバーを表示させるようにすることができます。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    personalbar </dt>
+  <dd>
+    <var>directories</var> と同じですが、Netscape と Mozilla ベースブラウザでのみサポートされています。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    status </dt>
+  <dd>
+    この特性が yes に設定されている場合、新しい副ウィンドウにステータスバーが表示されます。ユーザは、 全ての Mozilla ベースブラウザ、MSIE 6 SP2 (<a href="#Note_on_security_issues_of_the_status_bar_presence">XP SP2 におけるステータスバーについての注記</a>)、Opera 6+ において、ステータスバーの表示を強制させることができます。 最近の Mozilla ベースブラウザのリリース版及び Firefox 1.0 におけるデフォルト設定では、ステータスバーの表示を強制します。</dd>
+  <dd>
+    <a href="#Note_on_status_bar">ステータスバーについての注記</a></dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<p><span id="Window_functionality_features"></span></p>
+<h4 id=".E3.82.A6.E3.82.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.81.AE.E6.A9.9F.E8.83.BD.E3.81.AE.E7.89.B9.E6.80.A7" name=".E3.82.A6.E3.82.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.81.AE.E6.A9.9F.E8.83.BD.E3.81.AE.E7.89.B9.E6.80.A7">ウィンドウの機能の特性</h4>
+<dl>
+  <dt>
+    resizable </dt>
+  <dd>
+    この特性が <var>yes</var> に設定されている場合、新しい副ウィンドウがリサイズ可能になります。</dd>
+  <dd>
+    <strong>Note</strong>: バージョン 1.4 から、Mozilla ベースのブラウザには、ステータスバーの右端にウィンドウをリサイズできるつまみ (<span style="color: green;">grippy</span>)があるので、web 制作者が副ウィンドウをリサイズ不可能に設定しても、ユーザがブラウザウィンドウをリサイズできることが保証されています。このとき、ウィンドウのタイトルバーの 最大化 / 元に戻す アイコンが非表示になり、ウィンドウの端でリサイズできなくなりますが、ウィンドウは依然としてステータスバーのつまみでリサイズ可能です。</dd>
+</dl>
+<p>Firefox 3 では、副ウィンドウは常にリサイズ可能になることが期待されています(<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=177838" title="FIXED: Make all popup windows resizable, ignoring resizable=no">バグ 177838</a>)。</p>
+<div class="tip">
+  <p><strong>Tip</strong>: アクセシビリティの観点から、この特性は常に <var>yes</var> に設定することが強く推奨されています。</p>
+</div>
+<dl>
+  <dd>
+    Mozilla と Firefox ユーザは、<a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#about_config">about:config</a> か <a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#user_js">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">旧ページの日本語版</a>）で、<br>
+    <code>dom.disable_window_open_feature.resizable</code><br>
+    を <var>true</var> に設定することにより、新しいウィンドウを常に容易にリサイズ可能にすることができます。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    scrollbars </dt>
+  <dd>
+    この特性が <var>yes</var> に設定されている場合、新しい副ウィンドウに、水平 / 垂直スクロールバーの両方かいずれかが表示されます（文書がウィンドウのビューポート (<span style="color: green;">viewport</span>)に収まらない場合）。</dd>
+</dl>
+<div class="tip">
+  <p><strong>Tip</strong>: アクセシビリティの観点から、この特性は常に <var>yes</var> に設定することが強く奨励されています。</p>
+</div>
+<dl>
+  <dd>
+    Mozilla と Firefox ユーザは、<a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#about_config">about:config</a> か <a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#user_js">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">旧ページの日本語版</a>）で、<br>
+    <code>dom.disable_window_open_feature.scrollbars</code><br>
+    を <var>true</var> に設定することにより、新しいウィンドウでこのオプションを常に有効にすることができます。</dd>
+  <dd>
+    <a href="#Note_on_scrollbars">スクロールバーについての注記</a></dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+">, <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    dependent </dt>
+  <dd>
+    この特性が <var>yes</var> に設定されている場合、新しいウィンドウが親ウィンドウに依存している状態になります。依存状態のウィンドウは親ウィンドウが閉じると閉じます。依存状態のウィンドウは、親ウィンドウが最小化されたときにのみ Windows のタスクバーに最小化されます。Windows プラットフォームでは、依存状態のウィンドウはタスクバーに表示されません。依存状態のウィンドウは、常に親ウィンドウの前面に表示されます。</dd>
+  <dd>
+    依存状態のウィンドウは、MacOS X では、実装されていません。このオプションは無視されるでしょう。</dd>
+  <dd>
+    依存状態の特性は現在の開発版では削除されています(<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=214867" title="Don't let web pages use dependent=yes in window.open()">バグ 214867</a>)。</dd>
+  <dd>
+    MSIE 6 において、この特性に近いものは、<code>showModelessDialog()</code> メソッドです。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    dialog </dt>
+  <dd>
+    <code>dialog</code> 特性は、ウィンドウのタイトルバーから閉じるボタンを除いた全てのアイコン（元に戻す、最小化、最大化）を非表示にします。 <span class="float-right"><img alt="Windows における Firefox と そのコマンドシステムメニュー"></span>Mozilla 1.2+ と Netscape 7.1 は、他のメニューシステムコマンドを表示するでしょう（FF 1.0 と NS 7.0x では、コマンドシステムメニューをタイトルバーの左端の Firefox/NS 7.0x のアイコンで呼びだすことができません。:これは恐らくバグです。タイトルバーを右クリックすることでコマンドシステムメニューにアクセスすることができます）。ダイアログウィンドウは、最小化システムコマンドアイコンと最大化 / 元に戻すシステムコマンドアイコンが、タイトルバーにもコマンドシステムメニュー内の代理メニューアイテム内にも表示されないウィンドウです。通常のダイアログと言われるものは、情報を通知するだけのもの、及び、退去時、閉じる時に表示されるものです。Mac システムにおける、ダイアログウィンドウでのウィンドウ端は異なっており、ダイアログはシートで代用されるかもしれません。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    minimizable </dt>
+  <dd>
+    この設定は、ダイアログウィンドウにだけ適用されます。つまり、"minimizable" を設定するには、<code>dialog=yes</code> が必須です。<code>minimizable</code> が <var>yes</var> に設定されている場合、新しいダイアログウィンドウには、「最小化」システムコマンドアイコンがタイトルバーに表示され、最小化可能となります。ダイアログウィンドウではないウィンドウは、常に最小化可能であり、 <code>minimizable=no</code> を無視します。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    fullscreen </dt>
+  <dd>
+    使用しないでください。Mozilla では実装されていません。Mozilla でこの特性を実装する予定はありません。</dd>
+  <dd>
+    この特性は、 MSIE 6 SP2 においては、MSIE 5.x で動作した方法 では、もはや動作しません。MSIE 5.x で有効になっているときは、Windows のタスクバーは、ウィンドウのタイトルバーとステータスバー同様に、表示されませんし、アクセスも出来ません。</dd>
+  <dd>
+    <code>fullscreen</code> は、広いモニタースクリーンやデュアルモニタースクリーンのユーザをいつも混乱させます。他のユーザに <code>fullscreen</code> を強制することは、いつも非常に不評であり、web 制作者の見方の設定をユーザに押し付けるのは、あからさまに不作法です。</dd>
+  <dd>
+    <a href="#Note_on_fullscreen">fullscreen についての注記</a></dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Internet Explorer 5+"></dd>
+  <dd>
+    <code>fullscreen</code> は、MSIE 6 SP2 では、正しく動きません。</dd>
+</dl>
+<p><span id="Features_requiring_privileges"></span></p>
+<h4 id=".E7.89.B9.E6.A8.A9.E3.82.92.E5.BF.85.E8.A6.81.E3.81.A8.E3.81.99.E3.82.8B.E7.89.B9.E6.80.A7" name=".E7.89.B9.E6.A8.A9.E3.82.92.E5.BF.85.E8.A6.81.E3.81.A8.E3.81.99.E3.82.8B.E7.89.B9.E6.80.A7">特権を必要とする特性</h4>
+<p>以下の特性は、 <code>UniversalBrowserWrite</code> 特権が必要です。特権がない場合、それらの指定は無視されます。Chrome で実行されるスクリプトには、自動的にこの特権が付加されます。それ以外の場合は、<a href="ja/PrivilegeManager.html">PrivilegeManager</a> から特権のリクエストをする必要があります。</p>
+<dl>
+  <dt>
+    chrome </dt>
+  <dd>
+    <strong>注記</strong>: Mozilla 1.7/Firefox 0.9 から、この特性は、<code>UniversalBrowserWrite</code> 特権を必要とします（<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=244965" title='FIXED: Untrusted web content can display content using "chrome" flag in window.open'>バグ 244965</a>）。</dd>
+  <dd>
+    <var>yes</var> に設定されている場合、そのページには、ウィンドウのコンテンツだけがロードされ、ブラウザのインターフェース要素は一切表示されません。 デフォルトで定義されたコンテキストメニューも表示されず、標準のキーボードショートカットも機能しません。 そのページには、それ自身のユーザインターフェースが提供されなければならず、たいてい、この特性は、XUL 文書を開くために使われます（JavaScript コンソール のような標準のダイアログは、この方法で開かれます）。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    modal </dt>
+  <dd>
+    <strong>注記</strong>: Mozilla 1.2.1 から、この特性は、<code>UniversalBrowserWrite</code> 特権を必要とします（<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=180048" title="FIXED: suggest an override for modal in window.open">バグ 180048</a>）。 この特権が無ければ、この特性は無視されます。</dd>
+  <dd>
+    <var>yes</var> に設定されている場合、その新しいウィンドウは、モーダルと呼ばれます。ユーザは、モーダルウィンドウが閉じられるまで、メインウィンドウに戻ることができません。典型的なモーダルウィンドウは、<a href="ja/DOM/window-22.html">alert() メソッド</a>によって、生成されます。</dd>
+  <dd>
+    モーダルウィンドウの厳密な挙動は、プラットフォーム及び Mozilla のリリースバージョンに依存します。</dd>
+</dl>
+<p></p><div class="blockIndicator standardNote standardNoteBlock"> 
+    <p><a href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/3">Firefox 3 における注記</a></p> 
+    <p style="font-weight: 400;">MSIE 6 において、この特性と同等のものは、<code><a href='_ja/DOM/window.html'>showModalDialog()</a></code> メソッドです。互換性の理由で、Firefox 3 でもこのメソッドがサポートされます。</p> 
+</div><p></p>
+<dl>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    titlebar </dt>
+  <dd>
+    デフォルトでは、新しい副ウィンドウの全てにタイトルバーが表示されるようになっています。<var>no</var> に設定されている場合、この特性は、タイトルバーを新しい副ウィンドウで表示しないようにします。</dd>
+  <dd>
+    Mozilla と Firefox ユーザは、<a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#about_config">about:config</a> か <a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#user_js">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">旧ページの日本語版</a>）で、<br>
+    <code>dom.disable_window_open_feature.titlebar</code><br>
+    を <var>true</var> に設定することにより、新しいウィンドウに常にタイトルバーを表示させるようにすることができます。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    alwaysRaised </dt>
+  <dd>
+    <var>yes</var> に設定されている場合、 その新しいウィンドウは、アクティブかどうかに関わらず、常に他のブラウザウィンドウの最前面に表示されます。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    alwaysLowered </dt>
+  <dd>
+    <var>yes</var> に設定されている場合、その新しく生成されるウィンドウは、それ自身の親ウィンドウの下に表示されます。そのときの親ウィンドウは最小化されていない状態です。alwaysLowered 状態のウィンドウは、しばしば、ポップアップウィンドウとして参照されます。alwaysLowered 状態のウィンドウは最前面に表示させることはできませんが、親ウィンドウは最小化することができます。NS 6.x では、alwaysLowered 状態のウィンドウに「最小化」システムコマンドアイコンと「元に戻す/最大化」システムコマンドが表示されません。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<dl>
+  <dt>
+    z-lock </dt>
+  <dd>
+    <code>alwaysLowered</code> と同様です。</dd>
+</dl>
+<dl>
+  <dt>
+    close </dt>
+  <dd>
+    <var>no</var> に設定されている場合、システムの「閉じる」コマンドアイコンとシステムの「閉じる」メニューアイテムが非表示になります。この特性は、ダイアログウィンドウ（<code>dialog</code> 特性が設定されている状態）でのみ動作します。</dd>
+  <dd>
+    Mozilla と Firefox ユーザは、<a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#about_config">about:config</a> か <a class="external" href="http://support.mozilla.com/en-US/kb/Editing+configuration+files#user_js">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">旧ページの日本語版</a>）で、<br>
+    <code>dom.disable_window_open_feature.close</code><br>
+    を <var>true</var> に設定することにより、新しいウィンドウで「閉じる」ボタンを常に表示させることができます。</dd>
+  <dd>
+    サポートされるブラウザ: <img alt="Netscape 6.x">, <img alt="Netscape 7.x">, <img alt="Mozilla 1.x">, <img alt="Firefox 1.x"></dd>
+</dl>
+<p>位置とサイズの特性の要素は、数値を設定する必要があります。ツールバー、chrome、ウィンドウの機能の特性は、<var>yes</var> 、もしくは、<var>no</var> を設定することができます。ちなみに、<var>yes</var> の代わりに <var>1</var> を、<var>no</var> の代わりに <var>0</var> を使うこともできます。ツールバーと機能の特性の要素は、簡略形でも受け入れます。つまり、<var>features</var> の文字列に特性の名前を列挙するだけで特性を変更することができます。<var>features</var> の引数を与えた場合、<code>titlebar</code> と <code>close</code> は、依然として、デフォルト状態で <var>yes</var> です。しかし、<var>yes</var>/<var>no</var> の選択を持っている他の特性は、 デフォルト状態で <var>no</var> になり、無効状態に変更されるでしょう。</p>
+<p>例:</p>
+<pre>&lt;script type="text/javascript"&gt;
+var WindowObjectReference; // グローバル変数
+
+function openRequestedPopup()
+{
+WindowObjectReference = 
+window.open("http://www.domainname.ext/path/ImgFile.png",
+   "DescriptiveWindowName",
+   "width=420,height=230,resizable,scrollbars=yes,status=1");
+}
+&lt;/script&gt;
+</pre>
+<p>この例では、開かれるウィンドウは、リサイズ可能で、必要ならば（コンテンツが指定したウィンドウの範囲からあふれた場合）、スクロールバーが表示され、そして、ステータスバーが表示されます。メニューバーとロケーションバーは表示されません。作者は、画像のサイズが、幅 400 ピクセル、高さ 200 ピクセル であることを知っていたので、上マージンが 15 ピクセル、下マージンが 15 ピクセル、左マージンが 10 ピクセル、右マージンが 10 ピクセルである MSIE 6 のルート要素に適用されるマージンを加えました。</p>
+<p><span id="Best_practices"></span></p>
+<h3 id=".E3.83.99.E3.82.B9.E3.83.88.E3.83.97.E3.83.A9.E3.82.AF.E3.83.86.E3.82.A3.E3.82.B9" name=".E3.83.99.E3.82.B9.E3.83.88.E3.83.97.E3.83.A9.E3.82.AF.E3.83.86.E3.82.A3.E3.82.B9">ベストプラクティス</h3>
+<pre>&lt;script type="text/javascript"&gt;
+var WindowObjectReference = null; // グローバル変数
+
+function openFFPromotionPopup()
+{
+  if(WindowObjectReference == null || WindowObjectReference.closed)
+  /* メモリ内のウィンドウオブジェクトへのポインタが存在しないか、
+     そのようなポインタが存在するが、そのウィンドウが閉じられている場合 */
+
+  {
+    WindowObjectReference = window.open("http://www.spreadfirefox.com/",
+   "PromoteFirefoxWindowName", "resizable=yes,scrollbars=yes,status=yes");
+    /* 真であれば、ウィンドウを生成。新しいウィンドウが生成され、
+       他のウィンドウの最前面に移動します。*/
+  }
+  else
+  {
+    WindowObjectReference.focus();
+    /* 偽であれば、ウィンドウへの参照は存在しなればならず、ウィンドウは
+       閉じられていません。それゆえ、 focus() メソッドで他のウィンドウの
+       最前面にそのウィンドウを移動させることができます。ウィンドウを再生成し、
+       参照されているリソースを更新させる必要はありません。 */
+  };
+}
+&lt;/script&gt;
+
+(...)
+
+&lt;p&gt;&lt;a href="http://www.spreadfirefox.com/"
+target="PromoteFirefoxWindowName"
+onclick="openFFPromotionPopup(); return false;" 
+title="このリンクは、新しいウィンドウを生成するか、すでに開かれているウィンドウを再利用します。"&gt;Firefox 採用の宣伝&lt;/a&gt;&lt;/p&gt;
+</pre>
+<p>上記のコードは、副ウィンドウを開くリンクに関する、わずかなユーザビリティの問題を解決します。コード内の <code>return false</code> の目的は、リンクのデフォルトアクションをキャンセルすることです。: onclick イベントハンドラが実行される場合、リンクのデフォルトアクションを実行する必要はありません。しかし、ユーザのブラウザで javascript サポートが無効、もしくは、存在しない場合、onclick イベントハンドラは無視され、ブラウザは、target の "PromoteFirefoxWindowName" という名前のフレーム、もしくは、ウィンドウ内の参照されたリソースを読みこみます。"PromoteFirefoxWindowName" という名前のフレームもウィンドウも存在しない場合は、ブラウザは新しいウィンドウを生成し、そのウィンドウに "PromoteFirefoxWindowName" という名前を付けます。</p>
+<p>target 属性の使い方の参考ページ:</p>
+<p><a class="external" href="http://www.w3.org/TR/html401/present/frames.html#h-16.3.2">HTML 4.01 Target attribute specifications</a>（<a class="external" href="http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/present/frames.html#h-16.3.2">日本語訳</a>）</p>
+<p><a class="external" href="http://www.htmlhelp.com/faq/html/links.html#new-window">How do I create a link that opens a new window?</a></p>
+<p>関数をパラメタライズして、より多くの状況で機能する、多用途なものにすることもできます。そうすることで、スクリプト及びウェブページ内で、再利用可能なものになります。:</p>
+<pre class="eval">var win = null;
+
+function openRequestedPopup(url, name)
+{
+  if (win == null || win.closed)
+    win = window.open(url, name, "resizable=yes,scrollbars=yes,status=yes");
+  else
+    win.focus();
+}
+</pre>
+<pre>&lt;p&gt;&lt;a href="http://www.spreadfirefox.com/" target="PromoteFirefoxWindow"
+onclick="openRequestedPopup(this.href, this.target); return false;"
+title="このリンクは、新しいウィンドウを生成するか、すでに開かれているウィンドウを再利用します。"&gt;Firefox 採用の宣伝&lt;/a&gt;&lt;/p&gt;
+</pre>
+<p>この関数を、 副ウィンドウを 1 つだけ開くようにし、その単一の副ウィンドウをこの関数で開く他のリンクで再利用するようにすることもできます。:</p>
+<pre>&lt;script type="text/javascript"&gt;
+var WindowObjectReference = null; // グローバル変数
+var PreviousUrl; /* 副ウィンドウ内の現在の URL を
+                    保存しているであろうグローバル変数 */
+
+function openRequestedSinglePopup(strUrl)
+{
+  if(WindowObjectReference == null || WindowObjectReference.closed)
+  {
+   WindowObjectReference = window.open(strUrl, "SingleSecondaryWindowName",
+         "resizable=yes,scrollbars=yes,status=yes");
+  }
+  else if(previousUrl != strUrl)
+  {
+   WindowObjectReference = window.open(strUrl, "SingleSecondaryWindowName",
+      "resizable=yes,scrollbars=yes,status=yes");
+    /* 読み込まれるリソースが異なる場合、
+       それをすでに開かれている副ウィンドウに読み込み、
+       そのウィンドウをその親ウィンドウの最前面に再移動します。 */
+   WindowObjectReference.focus();
+  }
+  else
+  {
+    WindowObjectReference.focus();
+  };
+  PreviousUrl = strUrl;
+  /* 説明: 現在の URL を保存し、この関数が再度呼び出されたときの
+     URL と比較できるようにします。 */
+}
+&lt;/script&gt;
+
+(...)
+
+&lt;p&gt;&lt;a href="http://www.spreadfirefox.com/"
+target="SingleSecondaryWindowName"
+onclick="openRequestedSinglePopup(this.href); return false;"
+title="このリンクは、新しいウィンドウを生成するか、すでに開かれているウィンドウを再利用します。"&gt;Firefox 採用の宣伝&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.mozilla.org/support/firefox/faq"
+target="SingleSecondaryWindowName"
+onclick="openRequestedSinglePopup(this.href); return false;"
+title="このリンクは、新しいウィンドウを生成するか、すでに開かれているウィンドウを再利用します。"&gt;Firefox FAQ&lt;/a&gt;&lt;/p&gt;
+</pre>
+<p><span id="FAQ"></span></p>
+<h3 id="FAQ" name="FAQ">FAQ</h3>
+<dl>
+  <dt>
+    どのようにすれば、ユーザにウィンドウを閉じるかどうか確認するメッセージを出さないようにすることができますか？</dt>
+  <dd>
+    できません。 <strong>JavaScript によって開かれていない新しいウィンドウは、JavaScript によって閉じることは原則としてできません。</strong> Mozilla ベースブラウザの JavaScript コンソールは、次の警告メッセージを出すでしょう。: <code>"スクリプトはスクリプトによって開かれたウィンドウ以外を閉じることができません。"</code> そうしなければ、ブラウザセッション中の訪問した URL の履歴が失われるでしょう。</dd>
+  <dd>
+    詳細は、<a href="ja/DOM/window-23.html">window.close()</a> メソッドを参照してください。</dd>
+</dl>
+<dl>
+  <dt>
+    どのようにすれば、ウィンドウを、最小化状態、あるいは、他のウィンドウの背後にある状態から復帰することができますか？</dt>
+  <dd>
+    まず、対象ウィンドウのウィンドウオブジェクトへの参照が存在するかどうかを調べてください。それが存在し、かつ、閉じてしまっていない場合は、<a href="ja/DOM/window-24.html">focus()</a> メソッドを使用してください。他に確実な方法はありません。<a href="#Best_practices">focus() メソッドの使用方法を説明している例</a> でテストすることができます。</dd>
+</dl>
+<dl>
+  <dt>
+    どのようにして、最大化したウィンドウを強制させるのですか？</dt>
+  <dd>
+    できません。全てのブラウザ制作者は、新しい副ウィンドウが開くことを、ユーザを混乱させずに、ユーザに気づかせることができるように努力しています。</dd>
+</dl>
+<dl>
+  <dt>
+    どのようにすれば、ウィンドウのリサイズを無効にしたり、ツールバーを非表示にできますか？</dt>
+  <dd>
+    これを強制することはできません。Mozilla ベースのブラウザのユーザは、<code>about:config</code> における ユーザ設定で、リサイズ、スクロール、ツールバーの表示を自らコントロールできます。 あなたのユーザはそのウィンドウを使うであろう一人に過ぎない（ウェブ制作者であるあなたではありません）ので、最も良いのは、彼らの習慣や設定に干渉することを避けることです。推奨する方法は、コンテンツへのアクセシビリティとウィンドウのユーザビリティを保証するために、リサイズとスクロールバーの表示を（必要ならば） 常に yes に設定することです。これは、ウェブ制作者とそのユーザの両者のとって最も有益な方法です。</dd>
+</dl>
+<dl>
+  <dt>
+    どのようにすれば、ウィンドウをコンテンツに合うようにリサイズできますか。</dt>
+  <dd>
+    確実にはできません。なぜなら、ユーザは、Mozilla では、<br>
+    <code style="white-space: normal;">編集/設定/詳細/スクリプトとプラグイン/以下のスクリプトを許可/ウィンドウの移動または大きさの変更</code><br>
+    のチェックボックスをチェックしないことによって、Firefox では、<br>
+    <code style="white-space: normal;">ツール/オプション.../コンテンツ タブ/Javascript を有効にする/詳細設定 ボタン/ウィンドウの移動または大きさの変更</code><br>
+    のチェックボックスをチェックしない、あるいは、<kbd>about:config</kbd> か<a class="external" href="http://www.mozilla.org/support/firefox/edit#user">user.js ファイル</a>（<a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#user">日本語版</a>）で、<br>
+    <code>dom.disable_window_move_resize</code><br>
+    を <var>true</var> に設定することで、ウィンドウがリサイズされないようにすることができるからです。</dd>
+</dl>
+<dl>
+  <dd>
+    一般に、ユーザは、たいてい、ウィンドウの移動またはリサイズを無効にしています。その理由は、過去に、制作者のそのようなスクリプトを許可することで、大変な弊害を受けており、この特性を濫用しない、めったにないスクリプトでも、ウィンドウをリサイズするときに、間違ったリサイズをしばしば行うからです。これらのスクリプトの 99% は、ウィンドウのリサイズを不可能にしたり、スクロールバーを非表示にします。そのような場合、本来は、それらのスクリプトの計算が間違っている場合のための、用心深く、分別のある代替の仕組みとして、それらの特性の両方が有効であるべきです。</dd>
+</dl>
+<dl>
+  <dd>
+    window オブジェクトのメソッドである、<a href="ja/DOM/window-25.html">sizeToContent()</a> メソッドもまた、ユーザが、設定の <code>ウィンドウの移動または大きさの変更</code> のチェックボックスをチェックしないことにより、無効化されます。スクリプトによるユーザ画面上における遠隔操作的なウィンドウの移動または大きさの変更は、大変非常にユーザをいらいらさせるでしょうし、ユーザの頭を混乱させるでしょうし、最も間違っていることでしょう。そのようなウェブ制作者は、架空のユーザのブラウザウィンドウのあらゆる位置とサイズのアスペクトの完全なコントロールを期待しています（し、決めつけています）。</dd>
+</dl>
+<dl>
+  <dt>
+    どのようにして、リンク先の参照リソースを新しいタブ、あるいは、指定したタブに開くのですか？</dt>
+  <dd>
+    現在のところ、できません。ユーザだけが自身の詳細設定でそうするように設定することができます。Mozilla ベースのブラウザである、<a class="external" href="http://kmeleon.sourceforge.net/">K-meleon 1.1</a> は、どのようにリンクを開くかに関する完全な管理と選択肢をユーザに与えています。いくつかの高度な拡張も、Mozilla と Firefox にどのように参照リソースをロードするかに関する多くの選択肢を与えます。</dd>
+</dl>
+<dl>
+  <dd>
+    ここ数年の間に、<a class="external" href="http://www.w3.org/TR/2004/WD-css3-hyperlinks-20040224/#target0">CSS3 ハイパーリンクモジュールの target プロパティ</a>（<a class="external" href="http://www.d-toybox.com/spec/CSS3/hyperlinks/index.html#target0">日本語訳</a>） が実装されるかもしれません（CSS3 ハイパーリンクモジュールが承認された場合）。そうなった場合、タブブラウザ制作者がユーザにどのようにリンクからウェブページを開くことができるかに関する完全に拒否する権利と完全な管理を与えることを期待できます。どのようにリンクを開くかは、常に、完全にユーザの管理下にあるべきです。</dd>
+</dl>
+<dl>
+  <dt>
+    どんなようにして、開いたウィンドウがまだ開かれているかどうかを知るのですか？</dt>
+  <dd>
+    ウィンドウオブジェクトへの参照が存在するかどうかをテストできます。それは、window.open() メソッドの呼び出しが成功した場合の戻り値です。また、<var>WindowObjectReference</var>.closed プロパティの値の戻り値が <var>false</var> であるかどうかを調べることでもできます。</dd>
+</dl>
+<dl>
+  <dt>
+    どのようにすれば、ウィンドウがポップアップブロッカーによってブロックされていることを伝えることができますか？</dt>
+  <dd>
+    Mozilla/Firefox と Internet Explorer 6 SP2 の組み込みポップアップブロッカーでは、<code>window.open()</code> の戻り値を調べる必要があります。ウィンドウが開くことが許可されなかった場合の戻り値は、<var>null</var> です。しかし、多くの他のポップアップブロッカーに対しては、そのような方法はありません。</dd>
+</dl>
+<dl>
+  <dt>
+    主ウィンドウと副ウィンドウの JavaScript の関係は？</dt>
+  <dd>
+    window.open() メソッドと <a href="ja/DOM/window-26.html">opener</a> プロパティの戻り値です。<var>WindowObjectReference</var> は、opener キーワードが副ウィンドウをそれの主ウィンドウ（開く側 (<span style="color: green;">opener</span>)）へつなげている間、主ウィンドウ（開く側）を副ウィンドウ（サブウィンドウ）へつなげています。</dd>
+</dl>
+<dl>
+  <dt>
+    新しい副ウィンドウのプロパティにアクセスできません。JavaScript コンソールに、"Error<span class="nowiki">:</span> uncaught exception<span class="nowiki">:</span> Permission denied to get property &lt;プロパティ名 or メソッド名&gt;." というエラーが常に出ます。なぜそのようになるのですか？</dt>
+  <dd>
+    それは、クロスドメインスクリプトセキュリティの制限（"同一生成元ポリシー"とも）のためです。異なった生成元（ドメイン名）からウィンドウ（あるいは、フレーム）にロードされるスクリプトは、別ウィンドウ（あるいは、フレーム）のプロパティ、または、別の異なった生成元（ドメイン名）由来の HTML オブジェクトの<strong>取得も設定もできません。</strong>それゆえ、主ウィンドウのブラウザは、副ウィンドウをターゲットとしたスクリプトを実行する前に、副ウィンドウが同じドメイン名を持っているかどうかを調べるでしょう。</dd>
+  <dd>
+    クロスドメインスクリプトセキュリティ制限については、以下で詳細を参照してください。: <a class="external" href="http://www.mozilla.org/projects/security/components/same-origin.html" rel="freelink">http://www.mozilla.org/projects/secu...me-origin.html</a>（<a class="external" href="http://www.mozilla-japan.org/projects/security/components/same-origin.html">日本語版</a>）</dd>
+</dl>
+<p><span id="Usability_issues"></span></p>
+<h3 id=".E3.83.A6.E3.83.BC.E3.82.B6.E3.83.93.E3.83.AA.E3.83.86.E3.82.A3.E3.81.AE.E5.95.8F.E9.A1.8C" name=".E3.83.A6.E3.83.BC.E3.82.B6.E3.83.93.E3.83.AA.E3.83.86.E3.82.A3.E3.81.AE.E5.95.8F.E9.A1.8C">ユーザビリティの問題</h3>
+<p><span id="Avoid_resorting_to_&lt;code>window.open()&lt;/code>"></span></p>
+<h4 id="window.open.28.29_.E3.81.B8.E3.81.AE.E4.BE.9D.E5.AD.98.E3.82.92.E5.9B.9E.E9.81.BF.E3.81.99.E3.82.8B" name="window.open.28.29_.E3.81.B8.E3.81.AE.E4.BE.9D.E5.AD.98.E3.82.92.E5.9B.9E.E9.81.BF.E3.81.99.E3.82.8B"><code>window.open()</code> への依存を回避する</h4>
+<p>一般的に言えば、いくつかの理由で、<code>window.open()</code> への依存を回避することを選択するべきです。:</p>
+<ul>
+  <li>全ての Mozilla ベースのブラウザは、タブブラウジングを提供しています。タブブラウジングは、参照するリソースを開くときに（ウィンドウを開くよりも）よりましな形態です。…これは、Mozilla ベースのブラウザだけでなく、他のタブブラウジングを提供しているブラウザの全てにおいていえることですが。言い換えれば、タブ機能を持つブラウザのユーザは、全般的に、ウェブページを見るときのほとんどの場面で、新しいウィンドウで開くよりも、新しいタブで開く方を好むということです。過去3年の間に、インターネット上でのタブ機能を持つブラウザへの支援と熱狂的な支持は、劇的な速度で拡大しました。そして、この流行は、逆戻りすることはないでしょう。2006 年 10 月にリリースされた MSIE 7 は、タブブラウジングを完全にサポートしています。</li>
+</ul>
+<ul>
+  <li>Multizilla のような <a class="external link-https" href="https://addons.mozilla.org/seamonkey/browse/type:1/cat:48/sort:updated">いくつかの Mozilla の拡張</a> と <a class="external link-https" href="https://addons.mozilla.org/firefox/addon/158">Tabbrowser preferences</a> のような <a class="external link-https" href="https://addons.update.mozilla.org/firefox/browse/type:1/cat:14/sort:updated">Firefox の拡張</a> が現在存在しますが、それらの機能、設定、詳細な設定は、タブブラウジングを基本とし、また、window.open() の呼び出しを、タブとして開くことに置き換える、または、（特に、リクエストされていない新しいウィンドウを開く場合）無効化すること（リクエストされていないポップアップをブロックすること、もしくは、スクリプトで自動的に開かれるウィンドウをブロックすることがそれにあてはまります）を基本としています。 それらの拡張の機能には、リンクを新しいウィンドウで開くかどうか、同じウィンドウに読み込むかどうか、新しいタブで開くかどうか、"バックグラウンド" で開くかどうかというような設定が含まれています。むやみに新しいウィンドウを開くようにコーディングしても、もはや上手く動作する保証はありませんし、強制的に上手く動作させることもできません。そのようなことをした場合、大多数のユーザの反感を買うことになるでしょう。</li>
+</ul>
+<ul>
+  <li>新しいウィンドウでは、メニューバーが非表示になったり、スクロールバーが非表示になったり、ステータスバーが非表示になったり、ウィンドウのリサイズができなくなるようになる可能性などがあります。しかし、新しいタブは、それらのバーや機能、ツールバー（少なくとも、デフォルトで存在しているツールバー）が無くなることはありません。それゆえ、タブブラウジングは、多くのユーザに好まれます。タブを利用することで、ユーザが好むブラウザウィンドウの通常のユーザインタフェースが完全な状態を維持し、安定した状態が保たれるからです。</li>
+</ul>
+<ul>
+  <li>新しいウィンドウを開くことは、ウィンドウの機能を削ったとしても、考慮しなければならないほど多くのユーザのシステムリソース（CPU、RAM）を使用し、考慮しなければならないほどの多くのコーディングをソースコードにおいて伴います（セキュリティ管理、メモリ管理、ときどきかなり複雑になる様々なコードブランチ、ウィンドウのフレーム/chrome/ツールバーの構築、ウィンドウの位置調整及び大きさの調整など）。新しいタブを開くことは新しいウィンドウを開くよりもユーザのシステムリソースの要求が少なくてすみます（そして、実装がより迅速です）。</li>
+</ul>
+<p><span id="Offer_to_open_a_link_in_a_new_window,_using_these_guidelines"></span></p>
+<h4 id=".E3.83.AA.E3.83.B3.E3.82.AF.E3.82.92.E6.96.B0.E3.81.97.E3.81.84.E3.82.A6.E3.82.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.81.AB.E9.96.8B.E3.81.8F.E3.81.93.E3.81.A8.E3.82.92.E6.8F.90.E4.BE.9B.E3.81.99.E3.82.8B.E5.A0.B4.E5.90.88.E3.80.81.E4.BB.A5.E4.B8.8B.E3.81.AE.E3.82.AC.E3.82.A4.E3.83.89.E3.83.A9.E3.82.A4.E3.83.B3.E3.82.92.E4.BD.BF.E7.94.A8.E3.81.97.E3.81.A6.E3.81.8F.E3.81.A0.E3.81.95.E3.81.84" name=".E3.83.AA.E3.83.B3.E3.82.AF.E3.82.92.E6.96.B0.E3.81.97.E3.81.84.E3.82.A6.E3.82.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.81.AB.E9.96.8B.E3.81.8F.E3.81.93.E3.81.A8.E3.82.92.E6.8F.90.E4.BE.9B.E3.81.99.E3.82.8B.E5.A0.B4.E5.90.88.E3.80.81.E4.BB.A5.E4.B8.8B.E3.81.AE.E3.82.AC.E3.82.A4.E3.83.89.E3.83.A9.E3.82.A4.E3.83.B3.E3.82.92.E4.BD.BF.E7.94.A8.E3.81.97.E3.81.A6.E3.81.8F.E3.81.A0.E3.81.95.E3.81.84">リンクを新しいウィンドウに開くことを提供する場合、以下のガイドラインを使用してください</h4>
+<p>リンクを新しいウィンドウで開くことを提供したい場合、テストされ、推奨できる、ユーザビリティとアクセシビリティのガイドラインに従うべきです。:</p>
+<p><span id="&lt;em>Never&lt;/em>_use_this_form_of_code_for_links:&lt;br>
+__&lt;a_href='">"&gt;</span></p>
+<h5 id=".E6.B1.BA.E3.81.97.E3.81.A6_.E3.83.AA.E3.83.B3.E3.82.AF.E3.81.AB.E6.AC.A1.E3.81.AE.E5.BD.A2.E5.BC.8F.E3.81.AE.E3.82.B3.E3.83.BC.E3.83.89.E3.82.92.E4.BD.BF.E3.82.8F.E3.81.AA.E3.81.84:.3Ca_href.3D.22javascript:window.open.28....29.22_....3E" name=".E6.B1.BA.E3.81.97.E3.81.A6_.E3.83.AA.E3.83.B3.E3.82.AF.E3.81.AB.E6.AC.A1.E3.81.AE.E5.BD.A2.E5.BC.8F.E3.81.AE.E3.82.B3.E3.83.BC.E3.83.89.E3.82.92.E4.BD.BF.E3.82.8F.E3.81.AA.E3.81.84:.3Ca_href.3D.22javascript:window.open.28....29.22_....3E"><em>決して</em> リンクに次の形式のコードを使わない:<br>
+  <code>&lt;a href="javascript:window.open(...)" ...&gt;</code></h5>
+<p>"javascript:" 形式のリンクは、全てのブラウザにおいて、ウェブページのアクセシビリティとユーザビリティを損ねます。</p>
+<ul>
+  <li>"javascript:" 疑似リンクは、JavaScript サポートが無効化、もしくは、存在しない場合、障害的な機能となります。企業によっては、従業員にウェブの閲覧を許可していても、それが厳格なセキュリティポリシーで管理されている場合があります。例えば、JavaScript 有効の禁止、Java の禁止、Active X の禁止、Flash の禁止などです。様々な理由で（セキュリティ、共用アクセス、テキストブラウザ、など…）、ユーザの 5%～10% が、JavaScript を無効化にしてウェブを閲覧しています。</li>
+  <li>"javascript:" 形式のリンクは、タブ機能があるブラウザの高度な機能を妨害する可能性があります。例えば、リンクのミドルクリック、リンクの Ctrl + クリック、拡張におけるタブブラウジングの機能などです。</li>
+  <li>"javascript:" 形式のリンクは、検索エンジンによるウェブページのインデックス処理を妨害する可能性があります。</li>
+  <li>"javascript:" 形式のリンクは、ボイスブラウザなどの支援技術 (<span style="color: green;">assistive technologies</span>) と <abbr title="Personal Digital Assistant">PDA</abbr> や モバイルブラウザなどのいくつかの Web-Aware アプリケーションを妨害します。</li>
+  <li>"javascript:" 形式のリンクは、ブラウザに実装された "マウスジェスチャ" 機能も妨害します。</li>
+  <li>プロトコルスキーマとしての "javascript:" は、link Validator 及び リンクチェッカーでは、エラーとして報告されます。</li>
+</ul>
+<p><b>参考 URL:</b></p>
+<ul>
+  <li><a class="external" href="http://www.useit.com/alertbox/20021223.html">Top Ten Web-Design Mistakes of 2002</a>, 6. JavaScript in Links, Jakob Nielsen, December 2002（<a class="external" href="http://www.usability.gr.jp/alertbox/20021223.html">日本語版</a>）</li>
+  <li><a class="external" href="http://www.evolt.org/article/Links_and_JavaScript_Living_Together_in_Harmony/17/20938/">Links &amp; JavaScript Living Together in Harmony</a>, Jeff Howden, February 2002</li>
+  <li><a class="external" href="http://jibbering.com/faq/#FAQ4_24">comp.lang.javascript newsgroup discussion FAQ on "javascript:" links</a></li>
+</ul>
+<p><span id="Never_use_&lt;a_href='">"&gt;</span></p>
+<h5 id=".E6.B1.BA.E3.81.97.E3.81.A6_.3Ca_href.3D.22.23.22_onclick.3D.22window.open.28....29.3B.22.3E_.E3.82.92.E4.BD.BF.E3.82.8F.E3.81.AA.E3.81.84" name=".E6.B1.BA.E3.81.97.E3.81.A6_.3Ca_href.3D.22.23.22_onclick.3D.22window.open.28....29.3B.22.3E_.E3.82.92.E4.BD.BF.E3.82.8F.E3.81.AA.E3.81.84">決して <code>&lt;a href="#" onclick="window.open(...);"&gt;</code> を使わない</h5>
+<p>そのような疑似リンクもリンクのアクセシビリティを損ねます。<strong>常に href 属性値を持つ本来の URL を使ってください。</strong> そうすれば、JavaScript サポートが無効にされていたり、存在しない場合や、 MS-Web TV や、テキストブラウザなどのようなユーザエージェントが副ウィンドウを開くことをサポートしていない場合でも、そのようなユーザエージェントが、それらがサポートするデフォルトの方法に従って参照されるリソースを読みこむことができます。また、この形式のコードは、タブ機能を持つブラウザの高度な機能を妨害します。例えば、リンクのミドルクリック、リンクの Ctrl + クリック、リンクの Ctrl + Enter、"マウスジェスチャ" 機能です。</p>
+<p><span id="Always_identify_links_which_will_create_(or_will_re-use)_a_new,_secondary_window"></span></p>
+<h5 id=".E6.96.B0.E3.81.97.E3.81.84.E5.89.AF.E3.82.A6.E3.82.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.82.92.E7.94.9F.E6.88.90.EF.BC.88.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF.E5.86.8D.E5.88.A9.E7.94.A8.EF.BC.89.E3.81.99.E3.82.8B.E3.83.AA.E3.83.B3.E3.82.AF.E3.82.92.E5.B8.B8.E3.81.AB.E8.AD.98.E5.88.A5.E3.81.A7.E3.81.8D.E3.82.8B.E3.82.88.E3.81.86.E3.81.AB.E3.81.99.E3.82.8B" name=".E6.96.B0.E3.81.97.E3.81.84.E5.89.AF.E3.82.A6.E3.82.A3.E3.83.B3.E3.83.89.E3.82.A6.E3.82.92.E7.94.9F.E6.88.90.EF.BC.88.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF.E5.86.8D.E5.88.A9.E7.94.A8.EF.BC.89.E3.81.99.E3.82.8B.E3.83.AA.E3.83.B3.E3.82.AF.E3.82.92.E5.B8.B8.E3.81.AB.E8.AD.98.E5.88.A5.E3.81.A7.E3.81.8D.E3.82.8B.E3.82.88.E3.81.86.E3.81.AB.E3.81.99.E3.82.8B">新しい副ウィンドウを生成（もしくは再利用）するリンクを常に識別できるようにする</h5>
+<p>リンクの title 属性を記述したり、リンクの最後にアイコンを追加したり、反応するカーソルを記述することによってユーザに情報を与え、新しいウィンドウを開くことになるリンクを識別できるようにしてください。</p>
+<p>ユーザに警告をする目的は、コンテキストが変化するときに、ユーザの混乱を最小限にするためです。現在のウィンドウが変化したり、新しいウィンドウがポップアップすることは、ユーザを混乱させます（ツールバーボタンの戻るは使えません）。</p>
+<blockquote>
+  <p>"ユーザが新しいウィンドウが開いたことに気づかないことはけっこうあります。特に、小さなモニターを使用していて、ウィンドウが最大化されている場合です。元のページに戻ろうとするユーザは、 <i>Back</i> ボタンがグレーアウトしているので、混乱してしまいます。"<br>
+    引用元：<a class="external" href="http://www.useit.com/alertbox/990530.html">The Top Ten <i>New</i> Mistakes of Web Design</a>: 2. Opening New Browser Windows, Jakob Nielsen, May 1999（<a class="external" href="http://www.usability.gr.jp/alertbox/990530.html">日本語版</a>）</p>
+</blockquote>
+<p>コンテキストにおける急激な変化が発生する前にそれらが明確に示唆されるとき、ユーザは、そのまま進みたいかどうかを決めることができ、変化に対して準備することができます。ユーザを混乱させないだけでなく、より経験豊富なユーザは、そのようなリンクをどのように開くかに対するより良い決定を下すこともできます（新しいウィンドウとして開くかどうか、同じウインドウに読み込むか、新しいタブに開くどうか、"バックグラウンド" で開くかどうか）。</p>
+<p><b>リファレンス</b></p>
+<ul>
+  <li>"リンクが新しいウィンドウを開いたり、別のウィンドウをディスプレイにポップアップさせたり、システムのフォーカスを新しいフレームやウィンドウに移動させる場合、行うべき良策は、ユーザにそのようなことが起きるということを伝えることです。" <a class="external" href="http://www.w3.org/WAI/wcag-curric/sam77-0.htm">World Wide Web Consortium Accessibility Initiative regarding popups</a></li>
+  <li>"リンクをクリックする前に、そのリンクでどこへ行くかの情報をユーザに提供するためにリンクタイトルを使用してください。" <a class="external" href="http://www.useit.com/alertbox/991003.html">Ten Good Deeds in Web Design</a>, Jakob Nielsen, October 1999（<a class="external" href="http://www.usability.gr.jp/alertbox/991003.html">日本語版</a>）</li>
+  <li><a class="external" href="http://www.useit.com/alertbox/980111.html">Using Link Titles to Help Users Predict Where They Are Going</a>, Jakob Nielsen, January 1998（<a class="external" href="http://www.usability.gr.jp/alertbox/980111.html">日本語版</a>）</li>
+</ul>
+<table class="standard-table">
+  <tbody>
+    <tr>
+      <td class="header" colspan="4">"新しいウィンドウ" を示すアイコンとカーソルの例</td>
+    </tr>
+    <tr>
+      <td style="width: 25%;"><img alt="yahoo.com の新しいウィンドウアイコン"></td>
+      <td style="width: 25%;"><img alt="microsoft.com の新しいウィンドウアイコン"></td>
+      <td style="width: 25%;"><img alt="webaim.org の新しいウィンドウアイコン"></td>
+      <td style="width: 25%;"><img alt="sun.com の新しいウィンドウアイコン"></td>
+    </tr>
+    <tr>
+      <td><img alt="bbc.co.uk の新しいウィンドウアイコン"></td>
+      <td><img alt="Accessible Internet Solutions の新しいウィンドウアイコン"></td>
+      <td><img alt="accessify.com の新しいウィンドウアイコン"></td>
+      <td><img alt="webstyleguide.com の新しいウィンドウアイコン"></td>
+    </tr>
+    <tr>
+      <td><img alt="ソース不明の新しいウィンドウアイコン"></td>
+      <td><img alt="ソース不明の新しいウィンドウアイコン"></td>
+      <td><img alt="ソース不明の新しいウィンドウアイコン"></td>
+      <td><img alt="gtalbot.org の新しいウィンドウアイコン"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><img alt="draig.de の新しいウィンドウカーソル"></td>
+      <td colspan="2"><img alt="mithgol.ru の新しいウィンドウカーソル"></td>
+    </tr>
+  </tbody>
+</table>
+<p><span id="Always_use_the_target_attribute"></span></p>
+<h5 id=".E5.B8.B8.E3.81.AB_target_.E5.B1.9E.E6.80.A7.E3.82.92.E4.BD.BF.E3.81.86" name=".E5.B8.B8.E3.81.AB_target_.E5.B1.9E.E6.80.A7.E3.82.92.E4.BD.BF.E3.81.86">常に target 属性を使う</h5>
+<p>JavaScript サポートが無効化されている、もしくは、存在しない場合、ユーザエージェントは、自身の target 属性の扱い方に従って、副ウィンドウを生成するか、参照されるリソースを表示するでしょう。例えば、MS Web TV のような、新しいウィンドウを生成できないいくつかのユーザエージェントは、参照されたリソースを取りだしてから、それを現在のウィンドウの最後に追加します。その最終目的と考え方は、ユーザに参照されるリソースを開く方法、つまり、リンクを開く形式を提供しようとすることであり、 - <strong>強制することではありません。</strong> - あなたのコードはユーザが自由に選択できるブラウザの機能を妨害すべきではありませんし、ユーザに与えられる最終決定権を妨害すべきではありません。</p>
+<p><span id="Do_not_use_&lt;code>target=">"&gt;</span></p>
+<h5 id="target.3D.22_blank.22_.E3.82.92.E4.BD.BF.E3.82.8F.E3.81.AA.E3.81.84" name="target.3D.22_blank.22_.E3.82.92.E4.BD.BF.E3.82.8F.E3.81.AA.E3.81.84"><code>target="_blank"</code> を使わない</h5>
+<p>target 属性には常に意味のある名前を指定し、あなたのページでそのような target 属性を再利用するようにしてください。そうすれば、別のリンクをクリックしても、参照されるリソースがすでに生成され、表示されているウィンドウに読みこまれることになるでしょう（そうすることで、ユーザ側の処理がスピードアップします）。また、そうすることで、副ウィンドウを最初の場所に生成する理由（とユーザのシステムリソース、時間消費）が正当化されるでしょう。単一の target 属性値を使用し、それをリンクで再利用することは、再利用される単一の副ウィンドウを生成するよりも、非常にユーザリソースに優しいことです。一方、target 属性の値として、"_blank" を使用すると、いくつかの新しい、名前のないウィンドウをユーザにデスクトップに生成することになり、それらは、再利用も、再使用もできません。どんな場合でも、あなたのコードが上手く動作する場合でも、ユーザの最終選択を妨害するべきではありません。そうではなく、より多くの選択肢、リンクを開くためのより多くの方法、ユーザが使用しているツール（ブラウザ）へのより多くの機能をユーザに提供するようにしてください。</p>
+<p><span id="Glossary"></span></p>
+<h3 id=".E7.94.A8.E8.AA.9E" name=".E7.94.A8.E8.AA.9E">用語</h3>
+<dl>
+  <dt>
+    開く側のウィンドウ (<span style="color: green;">Opener window</span>)、親ウィンドウ (<span style="color: green;">parent window</span>)、主ウィンドウ (<span style="color: green;">main window</span>)、第 1 ウィンドウ (<span style="color: green;">first window</span>) </dt>
+  <dd>
+    これらの語は、同じウィンドウのことを記述、または、指し示すために使われています。これは、新しいウィンドウが生成される元ウィンドウのことです。つまり、これは、ユーザが別の新しいウィンドウを生成するためのリンクをクリックした際の元ウィンドウのことです。</dd>
+</dl>
+<dl>
+  <dt>
+    サブウィンドウ (<span style="color: green;">Sub-window</span>)、子ウィンドウ (<span style="color: green;">child window</span>)、副ウィンドウ (<span style="color: green;">secondary window</span>)、第 2 ウィンドウ (<span style="color: green;">second window</span>)</dt>
+  <dd>
+    これらの語は、同じウィンドウのことを記述、または、指し示すために使われています。これは、生成された新しいウィンドウのことです。</dd>
+</dl>
+<dl>
+  <dt>
+    リクエストされていないポップアップウィンドウ (<span style="color: green;">Unrequested popup windows</span>)</dt>
+  <dd>
+    スクリプトで初期化されたウィンドウで、ユーザの了承無しに、自動的に開くウィンドウのことです。</dd>
+</dl>
+<p><span id="Specification"></span></p>
+<h3 id=".E4.BB.95.E6.A7.98" name=".E4.BB.95.E6.A7.98">仕様</h3>
+<p>DOM Level 0。window.open() は、<abbr title="World Wide Web Consortium">W3C</abbr> の仕様、技術勧告の一部ではありません。</p>
+<p><span id="Notes"></span></p>
+<h3 id=".E6.B3.A8.E8.A8.98" name=".E6.B3.A8.E8.A8.98">注記</h3>
+<p><span id="Note_on_precedence"></span></p>
+<h4 id=".E5.84.AA.E5.85.88.E5.BA.A6.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" name=".E5.84.AA.E5.85.88.E5.BA.A6.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98">優先度についての注記</h4>
+<p><code>left</code> と <code>screenX</code>（かつ/または <code>top</code> と <code>screenY</code>）で値が衝突した場合は、それぞれ、<code>left</code> と <code>top</code> が <code>screenX</code> と <code>screenY</code> よりも優先されます。<code>left</code> と <code>screenX</code>（かつ/または <code>top</code> と <code>screenY</code>） <var>features</var> のリストで定義された場合は、<code>left</code>（かつ/または <code>top</code>）が優先され、その値を用いて表示されます。次の例の新しいウィンドウは、ユーザのオペレーティングシステムにおけるアプリケーションのための作業領域の左端から 100 ピクセルの位置に表示されます。200 ピクセルの位置には表示されません。</p>
+<pre>&lt;script type="text/javascript"&gt;
+WindowObjectReference = window.open("http://news.bbc.co.uk/", 
+       "BBCWorldNewsWindowName", 
+       "left=100,screenX=200,resizable,scrollbars,status");
+&lt;/script&gt;
+</pre>
+<p>left の値が設定され、top の値が設定されていない、かつ、screenY の値が設定されている場合は、left と screenY の値が副ウィンドウの座標位置を決定します。</p>
+<p>outerWidth は width より優先され、 width は innerWidth より優先されます。outerHeight は height より優先され、height は innerHeight より優先されます。次の例では、Mozilla ブラウザは、新しいウィンドウを outerWidth 600 ピクセルの幅で生成し、width 500 ピクセル と innerWidth 400 ピクセルの各指定は両方とも無視されます。</p>
+<pre>&lt;script type="text/javascript"&gt;
+WindowObjectReference = window.open("http://www.wwf.org/",
+     "WWildlifeOrgWindowName",
+   "outerWidth=600,width=500,innerWidth=400,resizable,scrollbars,status");
+&lt;/script&gt;
+</pre>
+<p><span id="Note_on_position_and_dimension_error_correction"></span></p>
+<h4 id=".E4.BD.8D.E7.BD.AE.E3.81.A8.E5.AF.B8.E6.B3.95.E3.81.AE.E3.82.A8.E3.83.A9.E3.83.BC.E4.BF.AE.E6.AD.A3.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" name=".E4.BD.8D.E7.BD.AE.E3.81.A8.E5.AF.B8.E6.B3.95.E3.81.AE.E3.82.A8.E3.83.A9.E3.83.BC.E4.BF.AE.E6.AD.A3.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98">位置と寸法のエラー修正についての注記</h4>
+<p><var>features</var> のリストで指定された位置と寸法の値でブラウザウィンドウ全体がユーザのオペレーティングシステムにおけるアプリケーションのための作業領域内に表示し切れない場合、それらの値は、優先されず、<strong>修正されません。</strong><strong>新しいウィンドウのどの部分も最初からスクリーン外に配置されることはありません。これは、Mozilla ベースのブラウザのリリース版の全てでデフォルトです。</strong></p>
+<p><a class="external" href="http://msdn2.microsoft.com/en-us/library/ms997645.aspx#xpsp_topic5">MSIE 6 SP2 にも同じようなエラー修正の仕組みがあります。</a>（<a class="external" href="http://msdn.microsoft.com/library/ja/jpdnwxp/htm/xpsp2web.asp?frame=true#xpsp_topic5">日本語版</a>）しかし、それは、全てのセキュリティレベルにおいてデフォルトでは有効にされていません。つまり、セキュリティの設定でそのようなエラー修正の仕組みを無効にすることができるということです。<span style="color: darkgreen; background: #ef9;">【訳注: 日本語版 IE では、「サイズや位置の制限無しにスクリプトでウィンドウを開くことを許可する」がその設定に該当します。】</span></p>
+<p><span id="Note_on_scrollbars"></span></p>
+<h4 id=".E3.82.B9.E3.82.AF.E3.83.AD.E3.83.BC.E3.83.AB.E3.83.90.E3.83.BC.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" name=".E3.82.B9.E3.82.AF.E3.83.AD.E3.83.BC.E3.83.AB.E3.83.90.E3.83.BC.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98">スクロールバーについての注記</h4>
+<p>コンテンツがビューポートの範囲からはみ出すときは、ユーザがコンテンツにアクセスできることを保証するために、スクロールバー（あるいは、スクロールする仕組み）が必要です。ウェブ制作者のコントロール外となるいくつかの理由でコンテンツがウィンドウの範囲をはみ出すことがあります。:</p>
+<ul>
+  <li>ユーザはウィンドウをリサイズします。</li>
+  <li>ユーザはテキストのフォントサイズを、Mozilla では、メニューアイテムの 表示/文字の大きさ (%) で、Firefox では、表示/文字サイズ/大きく or 小さく を使って大きくします。</li>
+  <li>ユーザはページの最小フォントサイズをウェブ制作者が指定したフォントサイズよりも大きく設定します。40 歳以上、もしくは、特殊な閲覧習慣、閲覧設定を持つ人々は、よく、Mozilla ベースのブラウザで最小フォントサイズを設定しています。</li>
+  <li>ウェブ制作者は、様々なブラウザ及び様々なブラウザのバージョンの、ルート要素、または、body ノードに適用されるデフォルトの margin（かつ/または border かつ/または padding）の値に注意していません。</li>
+  <li>ユーザは、文書のボックスサイズ（margin、padding、デフォルトフォントサイズ）を大きくする閲覧習慣のためにユーザスタイルシート(<a class="external" href="http://www.mozilla.org/support/firefox/edit#content">userContent.css in Mozilla-based browsers</a>, <a class="external" href="http://www.mozilla-japan.org/support/firefox/edit#content">日本語版</a>)を用いています。</li>
+  <li>ユーザは、オペレーティングシステムの設定で多くのツールバーのサイズ（高さ、幅）を独自にカスタマイズしています。例えば、Windows XP オペレーティングシステムでは、ユーザがウィンドウリサイズの限界、ブラウザのタイトルバー、メニューバー、スクロールバーの高さ、フォントサイズを完全にカスタマイズできます。これらのツールバーの寸法は、ブラウザテーマとスキン、あるいは、オペレーティングシステムのテーマによっても設定されることがあります。</li>
+  <li>ウェブ制作者は、ユーザのデフォルトのブラウザウィンドウに、指定された目的のためのカスタムツールバーがあることに気付きません。例えば、設定バー、ウェブ開発者パー、アクセシビリティツールバー、ポップアップブロックと検索ツールバー、多機能ツールバーなどです。</li>
+  <li>ユーザは、アプリケーションのためのオペレーティングシステムの作業領域を変更する支援技術、あるいは、アドオン機能を用います。例えば、拡大鏡 (<span style="color: green;">MS-Magnifier</span>)です。</li>
+  <li>ユーザは、直接、または、間接的に、アプリケーションのためのオペレーティングシステムの作業領域を再配置 かつ/または リサイズします。例えば、ユーザは、Windows のタスクバーをリサイズしたり、Windows のタスクバーを左側（アラビア語ベース）や右側（ヘブライ語）に配置したり、固定の MS-Office クイック起動ツールバーを置いたりします。</li>
+  <li>いくつかのオペレーティングシステム（Mac OS X）はウェブ制作者のブラウザウィンドウの有効範囲の予測、計算がはずれたツールバーを強制的に表示させます。</li>
+</ul>
+<p><span id="Note_on_status_bar"></span></p>
+<h4 id=".E3.82.B9.E3.83.86.E3.83.BC.E3.82.BF.E3.82.B9.E3.83.90.E3.83.BC.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" name=".E3.82.B9.E3.83.86.E3.83.BC.E3.82.BF.E3.82.B9.E3.83.90.E3.83.BC.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98">ステータスバーについての注記</h4>
+<p>大多数のユーザのブラウザにはステータスバーが表示されており、大多数のユーザがステータスバーの表示を強制させたいと思っていることを仮定すべきです。つまり、最もベストなのは、この機能を yes に常に設定することです。また、ステータスバーを非表示にするように明確に指定した場合、Firefox のユーザは、Site Navigation toolbar（インストールされていれば）も見ることができません。Mozilla と Firefox においては、ステータスバーの右端に、ウィンドウをリサイズするためのつまみがあります（ステータスバーがあるウィンドウの全てにそれは存在します）。 ステータスバーは、http 接続の情報、ハイパーテキストリソースの場所、ダウンロード進捗バー、 <abbr title="Secure Socket Layer">SSL</abbr> 接続で 暗号化された/保護された 接続の情報（黄色の南京錠のアイコンが表示されている状態）、インターネット/セキュリティ ゾーンのアイコン、プライバシーポリシー/クッキー のアイコン、なども提供します。<strong>ステータスバーを非表示にすることは、たいてい、ユーザにとって役立つ（ときには、不可欠な）と思われる、多くの機能、特性、情報を非表示にするのです。</strong></p>
+<p><span id="Note_on_security_issues_of_the_status_bar_presence"></span></p>
+<h4 id=".E3.82.B9.E3.83.86.E3.83.BC.E3.82.BF.E3.82.B9.E3.83.90.E3.83.BC.E3.81.AE.E8.A1.A8.E7.A4.BA.E3.81.AB.E9.96.A2.E3.81.99.E3.82.8B.E3.82.BB.E3.82.AD.E3.83.A5.E3.83.AA.E3.83.86.E3.82.A3.E4.B8.8A.E3.81.AE.E5.95.8F.E9.A1.8C.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" name=".E3.82.B9.E3.83.86.E3.83.BC.E3.82.BF.E3.82.B9.E3.83.90.E3.83.BC.E3.81.AE.E8.A1.A8.E7.A4.BA.E3.81.AB.E9.96.A2.E3.81.99.E3.82.8B.E3.82.BB.E3.82.AD.E3.83.A5.E3.83.AA.E3.83.86.E3.82.A3.E4.B8.8A.E3.81.AE.E5.95.8F.E9.A1.8C.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98">ステータスバーの表示に関するセキュリティ上の問題についての注記</h4>
+<p>XP SP2 向け MSIE 6 における:window.open() を使用して開かれるウィンドウ:</p>
+<blockquote>
+  <p>"window.open() を使用して開かれるウィンドウ:<br>
+    ステータスバーが表示されていることが期待されます。また、その前提でコードを記述してください。<strong>ステータスバーはデフォルトで表示され、</strong>その高さは、20～25 ピクセルになります。(...)"<br>
+    引用元 <a class="external" href="http://msdn2.microsoft.com/en-us/library/ms997645.aspx#xpsp_topic5">Fine-Tune Your Web Site for Windows XP Service Pack 2, Browser Window Restrictions in XP SP2</a>（<a class="external" href="http://msdn.microsoft.com/library/ja/jpdnwxp/htm/xpsp2web.asp?frame=true#xpsp_topic5">日本語版</a>）</p>
+</blockquote>
+<blockquote>
+  <p>"(...) window.open() メソッドを用いて生成されたウィンドウがスクリプトによって呼び出され、、ユーザインタフェースやデスクトップを偽装 (<span style="color: green;">spoof</span>)するために使われたり、ウィンドウの大きさを変えることでステータスバーを非表示にする動作や悪意のある情報を隠したりする可能性があります。<br>
+    Internet Explorer のウィンドウは、ユーザに可視性のあるセキュリティ情報を提供します。そのおかげで、ユーザは、ウェブページのソースとそのページとのやりとりの安全性を確認できます。これらの要素が表示されないとき、ユーザは、信頼されたページと誤認したり、実際には、悪意のあるホストと通信するシステムプロセスを実行したりする可能性があります。 (...)<br>
+    <strong>スクリプトで起動されたウィンドウが画面いっぱいに表示されても、Internet Explorer のタイトルバーとステータスバーも表示されます。</strong> (...)<br>
+    Internet Explorer のステータスバーのスクリプトによる管理<br>
+    詳細説明<br>
+    <strong>Internet Explorer では、全てのウィンドウにおいて、ステータスバーを非表示にすることはできません。Internet Explorer のウィンドウの全てにおいて、ステータスバーは常に表示されます。</strong> (...) この変更がなければ、window.open() メソッドを用いて生成されたウィンドウがスクリプトによって呼び出され、ユーザインタフェースやデスクトップを偽装したり、悪意ある情報やユーザにとって重要な要素をユーザから隠したりする可能性があります。<br>
+    ステータスバーは、Internet Explorer のウィンドウのセキュリティ機能であり、ユーザに Internet Explorer のセキュリティゾーンの情報を提供します。このゾーンは偽装できません。(...)"<br>
+    引用元<a class="external" href="http://technet.microsoft.com/en-us/library/bb457150.aspx#ECAA">Changes to Functionality in Microsoft Windows XP Service Pack 2, Internet Explorer Window Restrictions</a>（<a class="external" href="http://www.microsoft.com/japan/technet/prodtechnol/winxppro/maintain/sp2brows.mspx#E5RBG">日本語版</a>）</p>
+</blockquote>
+<p><span id="Note_on_fullscreen"></span></p>
+<h4 id=".E3.83.95.E3.83.AB.E3.82.B9.E3.82.AF.E3.83.AA.E3.83.BC.E3.83.B3.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" name=".E3.83.95.E3.83.AB.E3.82.B9.E3.82.AF.E3.83.AA.E3.83.BC.E3.83.B3.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98">フルスクリーンについての注記</h4>
+<p>XP SP2 向けの MSIE 6 では :</p>
+<ul>
+  <li>"fullscreen=yes を指定した window.open() は、キオスク モードのウィンドウではなく、最大化されたウィンドウになります。"</li>
+</ul>
+<ul>
+  <li>"fullscreen=yes の仕様の定義が、タイトルバー、アドレスバーおよびステータスバーの表示を保持する 'ウィンドウを最大化して表示' を意味するように変更されました。"</li>
+</ul>
+<p><i>リファレンス:</i></p>
+<ul>
+  <li><a class="external" href="http://msdn2.microsoft.com/en-us/library/ms997645.aspx#xpsp_topic5">Fine-Tune Your Web Site for Windows XP Service Pack 2</a>（<a class="external" href="http://msdn.microsoft.com/library/ja/jpdnwxp/htm/xpsp2web.asp?frame=true#xpsp_topic5">日本語版</a>）</li>
+</ul>
+<ul>
+  <li><a class="external" href="http://technet.microsoft.com/en-us/library/bb457150.aspx#ECAA">Changes to Functionality in Microsoft Windows XP Service Pack 2, Script sizing of Internet Explorer windows</a>（<a class="external" href="http://www.microsoft.com/japan/technet/prodtechnol/winxppro/maintain/sp2brows.mspx#E5RBG">日本語版</a>）</li>
+</ul>
+<p><span id="Note_on_outerHeight_versus_height"></span></p>
+<h4 id="outerHeight_.E5.AF.BE_height_.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98" name="outerHeight_.E5.AF.BE_height_.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6.E3.81.AE.E6.B3.A8.E8.A8.98">outerHeight 対 height についての注記</h4>
+<p><img alt="innerHeight vs outerHeight の図示"></p>
+<p><span id="Tutorials"></span></p>
+<h3 id=".E3.83.81.E3.83.A5.E3.83.BC.E3.83.88.E3.83.AA.E3.82.A2.E3.83.AB" name=".E3.83.81.E3.83.A5.E3.83.BC.E3.83.88.E3.83.AA.E3.82.A2.E3.83.AB">チュートリアル</h3>
+<p><a class="external" href="http://www.infimum.dk/HTML/JSwindows.html">JavaScript windows (tutorial)</a> by Lasse Reichstein Nielsen</p>
+<p><a class="external" href="http://www.accessify.com/tutorials/the-perfect-pop-up.asp">The perfect pop-up (tutorial)</a> by Ian Lloyd</p>
+<p><a class="external" href="http://www.gtalbot.org/FirefoxSection/Popup/PopupAndFirefox.html">Popup windows and Firefox (interactive demos)</a> by Gérard Talbot</p>
+<p><span id="References"></span></p>
+<h3 id=".E3.83.AA.E3.83.95.E3.82.A1.E3.83.AC.E3.83.B3.E3.82.B9" name=".E3.83.AA.E3.83.95.E3.82.A1.E3.83.AC.E3.83.B3.E3.82.B9">リファレンス</h3>
+<p><a class="external" href="http://www.cs.tut.fi/~jkorpela/www/links.html">Links Want To Be Links</a> by Jukka K. Korpela</p>
+<p><a class="external" href="http://www.evolt.org/article/Links_and_JavaScript_Living_Together_in_Harmony/17/20938/">Links &amp; JavaScript Living Together in Harmony</a> by Jeff Howden</p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Gecko DOM Reference">Gecko DOM Reference</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/DOM">DOM</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/要更新">要更新</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Gecko">Gecko</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Window">Window</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/Potappo">Potappo</a>, <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/Mgjbot">Mgjbot</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>,
+                      <time datetime="2013-05-23T09:35:25-07:00">2013/05/23 9:35:25</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+  <ol> 
+     
+    <li><a href="https://developer.mozilla.org/ja/docs/DOM/DOM_Reference">DOM リファレンス</a></li> 
+    <li><strong><a href="window-2.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>window</code></a></strong></li> 
+     
+    <li data-default-state="open"><a href="#"><strong>Properties</strong></a> 
+    <ol> 
+     
+    </ol></li> 
+     
+    <li data-default-state="open"><a href="#"><strong>Methods</strong></a> 
+    <ol> 
+     
+    </ol></li> 
+  </ol> 
+
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/API/window.open" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/API/Window.open">
+            English (US)
+          </option>          <option value="/fr/docs/DOM/window.open">
+            Français
+          </option>          <option value="/zh-CN/docs/DOM/window.open">
+            中文 (简体)
+          </option>          <option value="/pl/docs/DOM/window.open">
+            Polski
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":735}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/API/window.open by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:01:56 GMT -->
+</html>

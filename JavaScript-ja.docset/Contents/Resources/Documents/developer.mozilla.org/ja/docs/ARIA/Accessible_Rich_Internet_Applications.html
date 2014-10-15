@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Accessible Rich Internet Applications - ARIA | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../index.html">
+  <link rel="copyright" href="Accessible_Rich_Internet_Applications.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/ARIA/Accessible_Rich_Internet_Applications$json">
+  <link rel="canonical" href="Accessible_Rich_Internet_Applications.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/ARIA/Accessible_Rich_Internet_Applications" title="Accessible Rich Internet Applications">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Accessibilit%C3%A9/ARIA/Applications_riches_Internet_accessibles" title="Applications riches Internet accessibles">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Accessible Rich Internet Applications">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/ARIA/Accessible_Rich_Internet_Applications">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/ARIA/Accessible_Rich_Internet_Applications">
+  <meta name="twitter:title" content="Accessible Rich Internet Applications">
+    <meta property="og:description" content="Accessibility Rich Internet Applications(ARIA) の Firefox による実装は、ツリービューやメニューバー、表計算などのデスクトップスタイルのウィジェットを、キーボードとスクリーンリーダや拡大鏡、代替入力機器などの支援技術から利用可能にします。また、ページ上で一部を AJAX スタイルのライブアップデートを行う際のアクセシビリティの解決策を提供します。">
+  <meta name="description" content="Accessibility Rich Internet Applications(ARIA) の Firefox による実装は、ツリービューやメニューバー、表計算などのデスクトップスタイルのウィジェットを、キーボードとスクリーンリーダや拡大鏡、代替入力機器などの支援技術から利用可能にします。また、ページ上で一部を AJAX スタイルのライブアップデートを行う際のアクセシビリティの解決策を提供します。">
+  <meta name="twitter:description" content="Accessibility Rich Internet Applications(ARIA) の Firefox による実装は、ツリービューやメニューバー、表計算などのデスクトップスタイルのウィジェットを、キーボードとスクリーンリーダや拡大鏡、代替入力機器などの支援技術から利用可能にします。また、ページ上で一部を AJAX スタイルのライブアップデートを行う際のアクセシビリティの解決策を提供します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="ARIA/Accessible_Rich_Internet_Applications" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Accessible_Rich_Internet_Applications.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Accessible_Rich_Internet_Applications.html#language">言語の選択</a></li>
+          <li><a href="Accessible_Rich_Internet_Applications.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/ARIA/Accessible_Rich_Internet_Applications" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/ARIA/Accessible_Rich_Internet_Applications" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../Web/HTML.html">HTML</a></li>
+              <li><a href="../Web/CSS.html">CSS</a></li>
+              <li><a href="../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../Web/API.html">API / DOM</a></li>
+              <li><a href="../Web/Apps.html">Apps</a></li>
+              <li><a href="../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Tools.html">ツール</a></li><li><a href="../../demos/index.html">MDN デモ</a></li><li><a href="../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/ARIA/Accessible_Rich_Internet_Applications" title="Accessible Rich Internet Applications">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Accessibilit%C3%A9/ARIA/Applications_riches_Internet_accessibles" title="Applications riches Internet accessibles">Français</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/ARIA/Accessible_Rich_Internet_Applications$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/ARIA/Accessible_Rich_Internet_Applications$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Accessible_Rich_Internet_Applications.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/ARIA" rel="v:url" property="v:title">ARIA</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Accessible Rich Internet Applications</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Accessible_Rich_Internet_Applications.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Accessible Rich Internet Applications</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Accessible_Rich_Internet_Applications.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><ol><li><a href="Accessible_Rich_Internet_Applications.html#.E3.82.AD.E3.83.BC.E3.83.9C.E3.83.BC.E3.83.89.E3.81.AB.E3.82.88.E3.82.8B.E6.93.8D.E4.BD.9C" rel="internal">キーボードによる操作</a><li><a href="Accessible_Rich_Internet_Applications.html#.E6.94.AF.E6.8F.B4.E6.8A.80.E8.A1.93.E3.81.AE.E3.81.9F.E3.82.81.E3.81.AE.E5.9F.BA.E6.9C.AC.E7.9A.84.E3.81.AA.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88" rel="internal">支援技術のための基本的なサポート</a><li><a href="Accessible_Rich_Internet_Applications.html#.E3.83.9E.E3.83.BC.E3.82.AF.E3.82.A2.E3.83.83.E3.83.97.E4.BE.8B" rel="internal">マークアップ例</a><ol><li><a href="Accessible_Rich_Internet_Applications.html#HTML_.E3.81.A7.E3.81.AF_.28.E8.A6.81_Firefox_3.29" rel="internal">HTML では (要 Firefox 3)</a><li><a href="Accessible_Rich_Internet_Applications.html#.E4.BC.9D.E7.B5.B1.E7.9A.84.E3.81.AA.E5.90.8D.E5.89.8D.E7.A9.BA.E9.96.93.E3.81.AB.E3.82.88.E3.82.8B.E3.82.A2.E3.83.97.E3.83.AD.E3.83.BC.E3.83.81_.28.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.BE.E3.81.9B.E3.82.93.29" rel="internal">伝統的な名前空間によるアプローチ (サポートされません)</a></ol></li><li><a href="Accessible_Rich_Internet_Applications.html#XHTML_.E3.81.A8_HTML_.E3.81.AE.E3.81.A9.E3.81.A1.E3.82.89.E3.82.92.E9.81.B8.E3.81.B6.E3.81.8B" rel="internal">XHTML と HTML のどちらを選ぶか</a><li><a href="Accessible_Rich_Internet_Applications.html#.E3.82.B5.E3.83.B3.E3.83.97.E3.83.AB.E3.82.A6.E3.82.A3.E3.82.B8.E3.82.A7.E3.83.83.E3.83.88" rel="internal">サンプルウィジェット</a><ol><li><a href="Accessible_Rich_Internet_Applications.html#.E3.82.AD.E3.83.BC.E3.83.9C.E3.83.BC.E3.83.89.E3.81.A8.E3.83.9E.E3.82.A6.E3.82.B9.E3.81.AB.E3.82.88.E3.82.8B.E6.93.8D.E4.BD.9C.E3.82.92.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B" rel="internal">キーボードとマウスによる操作をテストする</a><li><a href="Accessible_Rich_Internet_Applications.html#Firefox_.E3.81.AE.E3.82.A2.E3.82.AF.E3.82.BB.E3.82.B7.E3.83.93.E3.83.AA.E3.83.86.E3.82.A3.E6.8B.A1.E5.BC.B5.E3.81.A7.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B" rel="internal">Firefox のアクセシビリティ拡張でテストする</a><li><a href="Accessible_Rich_Internet_Applications.html#.E3.82.B9.E3.82.AF.E3.83.AA.E3.83.BC.E3.83.B3.E3.83.AA.E3.83.BC.E3.83.80.E3.81.A7.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B" rel="internal">スクリーンリーダでテストする</a><li><a href="Accessible_Rich_Internet_Applications.html#.E3.82.B5.E3.83.B3.E3.83.97.E3.83.AB.E3.81.AF.E3.81.A9.E3.81.93.E3.81.AB.E3.81.82.E3.82.8A.E3.81.BE.E3.81.99.E3.81.8B.3F" rel="internal">サンプルはどこにありますか?</a></ol></li><li><a href="Accessible_Rich_Internet_Applications.html#.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.A6.E3.81.84.E3.82.8B_role" rel="internal">サポートされている role</a><ol><li><a href="Accessible_Rich_Internet_Applications.html#.E4.BB.A3.E8.A1.A8.E7.9A.84.E3.81.AA_XHTML_.E3.81.AE_role_.E5.B1.9E.E6.80.A7.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB" rel="internal">代表的な XHTML の role 属性モジュール</a></ol></li><li><a href="Accessible_Rich_Internet_Applications.html#.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.A6.E3.81.84.E3.82.8B_property" rel="internal">サポートされている property</a><li><a href="Accessible_Rich_Internet_Applications.html#Live_regions" rel="internal">Live regions</a><li><a href="Accessible_Rich_Internet_Applications.html#ARIA_.E3.81.AE.E3.81.9F.E3.82.81.E3.81.AE.E6.A8.99.E6.BA.96.E9.96.8B.E7.99.BA" rel="internal">ARIA のための標準開発</a><li><a href="Accessible_Rich_Internet_Applications.html#Firefox_.E3.81.AE.E5.85.AC.E9.96.8B.E3.83.90.E3.82.B0" rel="internal">Firefox の公開バグ</a><li><a href="Accessible_Rich_Internet_Applications.html#.E5.B0.86.E6.9D.A5.E3.81.AE_ARIA" rel="internal">将来の ARIA</a><li><a href="Accessible_Rich_Internet_Applications.html#ARIA_IRC_.E3.83.81.E3.83.A3.E3.83.B3.E3.83.8D.E3.83.AB.E3.81.A8.E3.83.A1.E3.83.BC.E3.83.AA.E3.83.B3.E3.82.B0.E3.83.AA.E3.82.B9.E3.83.88" rel="internal">ARIA IRC チャンネルとメーリングリスト</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p> </p>
+<p>Accessibility Rich Internet Applications(ARIA) の Firefox による実装は、ツリービューやメニューバー、表計算などのデスクトップスタイルのウィジェットを、キーボードとスクリーンリーダや拡大鏡、代替入力機器などの支援技術から利用可能にします。また、ページ上で一部を AJAX スタイルのライブアップデートを行う際のアクセシビリティの解決策を提供します。</p>
+<p>ARIA は、以前は <a href="https://developer.mozilla.org/ja/docs/ARIA/ja/DHTML">DHTML</a> アクセシビリティとして知られており、<a class="external" href="http://www.w3.org/">W3C - World Wide Web Consortium</a> にて開発中の標準です。すべての文書は <a class="external" href="http://w3.org/wai/pf">Protocols and Formats Working Group 公式ページ</a> で利用可能です。ここには、<a class="external" href="http://www.w3.org/TR/aria-roadmap/">ARIA ロードマップ</a> および <a class="external" href="http://www.w3.org/TR/aria-role/">ARIA roles 仕様</a>, <a class="external" href="http://www.w3.org/TR/aria-state/">states モジュール</a> が含まれます。</p>
+<p>Firefox における ARIA のためのソースコードは IBM によって寄贈されています。</p>
+<p>また、<a class="new external" href="http://developer.mozilla.org/en/docs/ARIA:_Accessible_Rich_Internet_Applications/Relationship_to_HTML_FAQ">ARIA のよくある質問とその答え(FAQ)</a> もご覧ください。</p>
+<p><br>
+ ARIA の例は Firefox の実装で説明することができます。コミュニティが W3C の Protocols and Formats グループがいくつかの標準化プロセスを経て ARIA 実装へと移行するのを待つ間、今日のウェブサイトはすでに Firefox の ARIA サポートを利用して書かれています。バグ修正と小さな改良は続いており、Firefox における ARIA サポートは進化し続けています。 <span id="Keyboard_navigation"></span></p>
+<h3 id=".E3.82.AD.E3.83.BC.E3.83.9C.E3.83.BC.E3.83.89.E3.81.AB.E3.82.88.E3.82.8B.E6.93.8D.E4.BD.9C" name=".E3.82.AD.E3.83.BC.E3.83.9C.E3.83.BC.E3.83.89.E3.81.AB.E3.82.88.E3.82.8B.E6.93.8D.E4.BD.9C">キーボードによる操作</h3>
+<p>キーボードナビゲーションは二通りの方法でサポートされています:</p>
+<ol>
+ <li>HTML の <code>tabindex</code> 属性を通して、どの HTML 要素へもタブで移動可能にし、また少なくとも、スクリプトやマウスを通してフォーカスすることができます。タブで移動可能な要素と単にフォーカス可能な要素を区別することによって、コンテナ内の子要素を矢印キーを使って移動できる、ツリービューや表計算のようなコンテナウィジェットを開発することができます。現在、これは Internet Explorer や Firefox, Opera で動作します。Safari では動作しません。キーボードから操作可能な DHTML ウィジェットの tabindex コードの書き方は、<a href="https://developer.mozilla.org/ja/docs/ARIA/ja/Key-navigable_custom_DHTML_widgets">Practical documentation on building key navigable custom widgets</a> を参照してください。</li>
+ <li><code>aria-activedescendant</code> 属性を通して。これを利用すると、とても簡単です。(例えば、list や tree, grid などの) コンテナウィジェット 上に tabindex="0" を置くだけで、ウィジェットがタブの移動順に追加されます。そして、aria-activedescendant="[id]" 属性を持つ、現在フォーカスされたものの子孫にフォーカスが移ります。コンテナウィジェット上の keydown ハンドラは、そのフォーカスが移った子孫に変更され、現在の項目がそれと分かるように (border や background color によって) スタイル付けされます。この方法は、すべてのブラウザで動作させることができます。この動作を直接描いた例は、<a class="external" href="http://www.mozilla.org/access/dhtml/listbox">listbox example</a> のソースコードをご覧ください。</li>
+</ol>
+<p><span id="Basic_support_for_assistive_technologies"></span></p>
+<h3 id=".E6.94.AF.E6.8F.B4.E6.8A.80.E8.A1.93.E3.81.AE.E3.81.9F.E3.82.81.E3.81.AE.E5.9F.BA.E6.9C.AC.E7.9A.84.E3.81.AA.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88" name=".E6.94.AF.E6.8F.B4.E6.8A.80.E8.A1.93.E3.81.AE.E3.81.9F.E3.82.81.E3.81.AE.E5.9F.BA.E6.9C.AC.E7.9A.84.E3.81.AA.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88">支援技術のための基本的なサポート</h3>
+<p>支援技術のサポートには、<a class="external" href="http://www.mozilla.org/projects/firefox/">Firefox 2 以降</a>と、各ウィジェットを記述するために ARIA マークアップを使用するコンテンツを必要とします。例えば、各ウィジェットの種類を指定するために ARIA role を使用する必要があります。ウィジェットの種類にはメニューやスライダー、プログレスバーなどがあります。各 role は、<code>checked</code> および <code>selected</code>, <code>required</code>, <code>invalid</code>, <code>expanded</code> などの追加の property 属性をサポートします。 <span id="What_does_the_markup_look_like?"></span></p>
+<h3 id=".E3.83.9E.E3.83.BC.E3.82.AF.E3.82.A2.E3.83.83.E3.83.97.E4.BE.8B" name=".E3.83.9E.E3.83.BC.E3.82.AF.E3.82.A2.E3.83.83.E3.83.97.E4.BE.8B">マークアップ例</h3>
+<p>ARIA の勧告が変更され、名前空間がマークアップ内で使用されなくなったため、HTML 内で使用できるようになりました。</p>
+<p>例えば、checkbox は以下のように指定します: <span id="In_HTML_(requires_Firefox_3)"></span></p>
+<h4 id="HTML_.E3.81.A7.E3.81.AF_.28.E8.A6.81_Firefox_3.29" name="HTML_.E3.81.A7.E3.81.AF_.28.E8.A6.81_Firefox_3.29">HTML では (要 Firefox 3)</h4>
+<pre>&lt;span tabindex="0" role="checkbox"
+      aria-checked="true"
+      onkeydown="return checkBoxEvent(event);"
+      onclick="return checkBoxEvent(event);"&gt;
+  チェックボックスのラベル
+&lt;/span&gt;
+</pre>
+<p><span id="Historical_Namespace_approach_(no_longer_supported)"></span></p>
+<h4 id=".E4.BC.9D.E7.B5.B1.E7.9A.84.E3.81.AA.E5.90.8D.E5.89.8D.E7.A9.BA.E9.96.93.E3.81.AB.E3.82.88.E3.82.8B.E3.82.A2.E3.83.97.E3.83.AD.E3.83.BC.E3.83.81_.28.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.BE.E3.81.9B.E3.82.93.29" name=".E4.BC.9D.E7.B5.B1.E7.9A.84.E3.81.AA.E5.90.8D.E5.89.8D.E7.A9.BA.E9.96.93.E3.81.AB.E3.82.88.E3.82.8B.E3.82.A2.E3.83.97.E3.83.AD.E3.83.BC.E3.83.81_.28.E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.BE.E3.81.9B.E3.82.93.29">伝統的な名前空間によるアプローチ (サポートされません)</h4>
+<p>これは、歴史に残しておくための名前空間によるアプローチです。この方法は宣言が使用されるため、XHTML が必要です。Firefox 3 ではサポートされません:</p>
+<pre>&lt;span tabindex="0" role="wairole:checkbox"
+      aaa:checked="true"
+      onkeydown="return checkBoxEvent(event);"
+      onclick="return checkBoxEvent(event);"&gt;
+  チェックボックスのラベル
+&lt;/span&gt;
+</pre>
+<p><br>
+ 上記の checkbox はカスタム構成です。しかし、支援技術とユーザに関しては通常の checkbox のように動作します。作者が望めば、<a href="https://developer.mozilla.org/ja/docs/ARIA/ja/CSS">CSS</a> を通してビジュアルな外観にすることができます。以下に各属性の意味を解説します:</p>
+<table class="fullwidth-table">
+ <tbody>
+  <tr>
+   <th>属性</th>
+   <th>意味</th>
+  </tr>
+  <tr>
+   <td><code>tabindex="0"</code></td>
+   <td><code><span class="nowiki">&lt;span&gt;</span></code> ベースのチェックボックスをタブで移動する順番に含め、マウスでクリックしてフォーカスできるようにします。対照的に、<code>tabindex="-1"</code> はスクリプトやマウスクリックから要素をフォーカスできるようにしますが、既定のタブで移動する順番には含まれません。</td>
+  </tr>
+  <tr>
+   <td><code>role="checkbox"</code></td>
+   <td>これが checkbox であることを指定します。スクリーンリーダなどの支援技術は、これが checkbox であることを知ることができます。</td>
+  </tr>
+  <tr>
+   <td><code>aria-checked="true"</code></td>
+   <td>checkbox はチェックが入っているかどうかをサポートしています。この指定により、checkbox がチェック可能であることを示しています。property は支援技術にも向いています。</td>
+  </tr>
+  <tr>
+   <td><code>onkeydown="return checkBoxEvent(event);"</code></td>
+   <td>スペースキーでチェックの切り替えができるようにします。<code>checkBoxEvent()</code> メソッドでこれを実装しています。同様に、(消費された)イベントが伝達され続けるべきではない場合に false を返します。</td>
+  </tr>
+  <tr>
+   <td><code>onclick="return checkBoxEvent(event);"</code></td>
+   <td>キーボードハンドラに加えて、これも必要です。checkbox をクリックすると checkbox の値を切り替えます。</td>
+  </tr>
+ </tbody>
+</table>
+<p>このマークアップが使用されている例は、<a href="Accessible_Rich_Internet_Applications.html#Sample_widgets">ARIA サンプル</a> をご覧ください。Firefox はこれらのマークアップ role と property を
+ <i>
+  MSAA - Microsoft Active Accessibility</i>
+ と
+ <i>
+  ATK - Accessibility Toolkit</i>
+ (from <a class="external" href="http://developer.gnome.org/projects/gap/">Gnome Accessibility Project</a>) から実装しています。これは、Windows と Linux 上でのアクセシビリティ API 標準です。ウィジェットの情報がアクセシビリティ API 標準を通して公開されているため、支援技術はこれらのウィジェットを用いて、新しいコードなしで多くの互換性を得ることができます。現在、最も完全なスクリーンリーダによるサポートには
+ <i>
+  <a class="external" href="http://www.gwmicro.com/">Window-Eyes 5.5</a></i>
+ が必要です。
+ <i>
+  <a class="external" href="http://www.aisquared.com/">ZoomText</a></i>
+ などのスクリーン拡大鏡もまた、ARIA と互換性があります。</p>
+<p>Internet Explorer による role や property のサポートは現在利用できません。Internet Explorer は現在、これらのウィジェットのキーボード操作のみサポートしています。支援技術ベンダーは、Internet Explorer を変更せずに <a href="https://developer.mozilla.org/ja/docs/ARIA/ja/DOM">DOM</a> と DOM 変更イベントを直接探すことによって、ARIA のセマンティクスをサポートできるようにするべきです。 <span id="Choosing_XHTML_or_HTML"></span></p>
+<h3 id="XHTML_.E3.81.A8_HTML_.E3.81.AE.E3.81.A9.E3.81.A1.E3.82.89.E3.82.92.E9.81.B8.E3.81.B6.E3.81.8B" name="XHTML_.E3.81.A8_HTML_.E3.81.AE.E3.81.A9.E3.81.A1.E3.82.89.E3.82.92.E9.81.B8.E3.81.B6.E3.81.8B">XHTML と HTML のどちらを選ぶか</h3>
+<p>XHTML と HTML (または SVG と XUL) のどちらを使用するかという問題はなくなりました。Firefox は名前空間なしの新しいマークアップを、他のものと同じ方法で処理します。content type の心配をしなくても、ARIA マークアップ宣言を使用し、それを他のものと同様に動的に設定することができます。初期の ARIA の扱いに比べれば、これは劇的な向上です! <span id="Sample_widgets"></span></p>
+<h3 id=".E3.82.B5.E3.83.B3.E3.83.97.E3.83.AB.E3.82.A6.E3.82.A3.E3.82.B8.E3.82.A7.E3.83.83.E3.83.88" name=".E3.82.B5.E3.83.B3.E3.83.97.E3.83.AB.E3.82.A6.E3.82.A3.E3.82.B8.E3.82.A7.E3.83.83.E3.83.88">サンプルウィジェット</h3>
+<p><span id="Testing_with_keyboard_and_mouse_navigation"></span></p>
+<h4 id=".E3.82.AD.E3.83.BC.E3.83.9C.E3.83.BC.E3.83.89.E3.81.A8.E3.83.9E.E3.82.A6.E3.82.B9.E3.81.AB.E3.82.88.E3.82.8B.E6.93.8D.E4.BD.9C.E3.82.92.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B" name=".E3.82.AD.E3.83.BC.E3.83.9C.E3.83.BC.E3.83.89.E3.81.A8.E3.83.9E.E3.82.A6.E3.82.B9.E3.81.AB.E3.82.88.E3.82.8B.E6.93.8D.E4.BD.9C.E3.82.92.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B">キーボードとマウスによる操作をテストする</h4>
+<p>キーボードまたはマウスによる操作は、Internet Explorer と Firefox のどちらでも可能です。サンプルの HTML バージョンのみが Internet Explorer 上でテストし、動作するように作られているので注意してください。サンプルの XHTML バージョンはそうではありません。 <span id="Testing_with_Firefox_Accessibility_Extension"></span></p>
+<h4 id="Firefox_.E3.81.AE.E3.82.A2.E3.82.AF.E3.82.BB.E3.82.B7.E3.83.93.E3.83.AA.E3.83.86.E3.82.A3.E6.8B.A1.E5.BC.B5.E3.81.A7.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B" name="Firefox_.E3.81.AE.E3.82.A2.E3.82.AF.E3.82.BB.E3.82.B7.E3.83.93.E3.83.AA.E3.83.86.E3.82.A3.E6.8B.A1.E5.BC.B5.E3.81.A7.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B">Firefox のアクセシビリティ拡張でテストする</h4>
+<p><a class="external" href="http://firefox.cita.uiuc.edu/index.php">Firefox Accessibility Extension</a> は ARIA role のアクセシビリティをテストする機能を持っています。 <span id="Testing_with_screen_readers"></span></p>
+<h4 id=".E3.82.B9.E3.82.AF.E3.83.AA.E3.83.BC.E3.83.B3.E3.83.AA.E3.83.BC.E3.83.80.E3.81.A7.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B" name=".E3.82.B9.E3.82.AF.E3.83.AA.E3.83.BC.E3.83.B3.E3.83.AA.E3.83.BC.E3.83.80.E3.81.A7.E3.83.86.E3.82.B9.E3.83.88.E3.81.99.E3.82.8B">スクリーンリーダでテストする</h4>
+<p>スクリーンリーダのサポートは Firefox 1.5 以降でのみ利用可能です。以下のコンポーネントをインストールする必要があります:</p>
+<ol>
+ <li>Firefox: <a class="external" href="http://www.mozilla.com/firefox/">Firefox</a> からダウンロードしてインストールしてください。</li>
+ <li>スクリーンリーダ: スクリーンリーダでテストするには <a class="external" href="http://www.gwmicro.com/">Window-Eyes</a> 5.5 以降が必要です。加えて、JAWS 7.x が ARIA の一部をサポートしています。また、Orca 2.20 以降が Firefox 3.0 のほとんどの ARIA ウィジェット型をサポートしています。</li>
+</ol>
+<p><span id="Where_can_I_find_samples?"></span></p>
+<h4 id=".E3.82.B5.E3.83.B3.E3.83.97.E3.83.AB.E3.81.AF.E3.81.A9.E3.81.93.E3.81.AB.E3.81.82.E3.82.8A.E3.81.BE.E3.81.99.E3.81.8B.3F" name=".E3.82.B5.E3.83.B3.E3.83.97.E3.83.AB.E3.81.AF.E3.81.A9.E3.81.93.E3.81.AB.E3.81.82.E3.82.8A.E3.81.BE.E3.81.99.E3.81.8B.3F">サンプルはどこにありますか?</h4>
+<p>注意: 以下の例は、次のセクションの role/property にもあります。 <span id="Dojo_Toolkit"></span></p>
+<h5 id="Dojo_Toolkit" name="Dojo_Toolkit">Dojo Toolkit</h5>
+<p><a class="external" href="http://www.dojotoolkit.org/">Dojo 1.0 widget toolkit</a> のすべての <a class="external" href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/">Dijit ウィジェット</a>コアは ARIA をサポートしています。スクリーンリーダをサポートする Dojo の例は、Firefox 2 または Firefox 3 で開かなくてはなりません。 <span id="University_of_Illinois"></span></p>
+<h5 id=".E3.82.A4.E3.83.AA.E3.83.8E.E3.82.A4.E5.A4.A7.E5.AD.A6" name=".E3.82.A4.E3.83.AA.E3.83.8E.E3.82.A4.E5.A4.A7.E5.AD.A6">イリノイ大学</h5>
+<p><a class="external" href="http://test.cita.uiuc.edu/aria/">イリノイ大学の ARIA テストスイート</a>は、スクリーンリーダのサポートに Firefox 3 が必要です。 <span id="Mozilla_bare_bones_examples"></span></p>
+<h5 id="Mozilla_.E3.83.99.E3.82.A2.E3.83.9C.E3.83.BC.E3.83.B3.E3.81.AE.E4.BE.8B" name="Mozilla_.E3.83.99.E3.82.A2.E3.83.9C.E3.83.BC.E3.83.B3.E3.81.AE.E4.BE.8B">Mozilla ベアボーンの例</h5>
+<p>Mozilla.org の ARIA テストページは、ここから学ぶためのいくつかの例を提供しています。スクリーンリーダのサポートは Firefox 3 が必要です:</p>
+<ol>
+ <li><a class="external" href="http://www.mozilla.org/access/dhtml/checkbox">Checkbox</a>, <a class="external" href="http://www.mozilla.org/access/dhtml/button">説明つき Button</a></li>
+ <li><a class="external" href="http://www.mozilla.org/access/dhtml/pretty-slider.htm">グラフィカルな slider</a>, <a class="external" href="http://www.mozilla.org/access/dhtml/simple-slider">簡単な slider</a>, <a class="external" href="http://www.mozilla.org/access/dhtml/progressbar">Progress bar</a></li>
+ <li><a class="external" href="http://www.mozilla.org/access/dhtml/alert">Alert</a></li>
+ <li><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">menubar 付きの Grid (spreadsheet)</a></li>
+ <li><a class="external" href="http://www.mozilla.org/access/dhtml/tabpanel">タブパネル</a></li>
+ <li><a class="external" href="http://www.mozilla.org/access/dhtml/tabpanel">Listbox</a></li>
+ <li><a class="external" href="http://www.mozilla.org/access/dhtml/tree">Tree ビュー</a>, <a class="external" href="http://www.weba11y.com/AjaxDemo/sample.html">Tree ビュー #2</a></li>
+</ol>
+<p><span id="CLC_World:_live_region_examples"></span></p>
+<h5 id="CLC_World:_live_region_.E3.81.AE.E4.BE.8B" name="CLC_World:_live_region_.E3.81.AE.E4.BE.8B">CLC World: live region の例</h5>
+<p>現在の <a class="external" href="http://accessibleajax.clcworld.net/">live region の例</a> は Fire Vox 内で動作します。Fire Vox スクリーンリーダ拡張の実行は、Firefox のどのバージョンを使用しても問題ありません。 <span id="Supported_roles"></span></p>
+<h3 id=".E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.A6.E3.81.84.E3.82.8B_role" name=".E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.A6.E3.81.84.E3.82.8B_role">サポートされている role</h3>
+<p>ここには、Firefox に対応した使用例のある role と 各 role に対応する property の表があります。一部の property は "universal properties" であり、すべての要素上で動作することに注意してください。詳しくは、対応する property のセクションをご覧ください。</p>
+<p>他の方法で指示されていない限り、property はブーリアン値で <code>true</code> または <code>false</code> に対応します。ブーリアン値である場合は、値が設定されていない属性には <code>false</code> が設定されます。</p>
+<p>ただし、<code>checked</code> および <code>selected</code>, <code>expanded</code> 属性は特別です。属性に <code>false</code> が提供されている場合は、ウィジェットが checkable/selectable/expandable であると指示され、<code>false</code> が無いものとは異なります。</p>
+<p>また私たちは、<a href="https://developer.mozilla.org/ja/docs/ARIA/ja/ARIA_to_API_mapping">これらの情報を Firefox がどのように Windows(MSAA) や Linux(ATK) 上のアクセシビリティ API を通して公開しているか</a>、技術の詳細を提供しています。</p>
+<table class="fullwidth-table">
+ <tbody>
+  <tr>
+   <th>Role</th>
+   <th>サポートされている作者が定義した property †</th>
+   <th>自動的にサポートされる property</th>
+   <th>使用例</th>
+   <th>Firefox 1.5 対応</th>
+   <th>Firefox 2 対応</th>
+   <th><a class="external" href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/">Firefox 3</a> テストビルド対応</th>
+  </tr>
+  <tr>
+   <td><code>alert</code></td>
+   <td> </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/alert">Mozilla.org alert</a>,</td>
+   <td colspan="3">Window-Eyes 5.5 以降、ZoomText 9.1 以降、JAWS 7.1 以降</td>
+  </tr>
+  <tr>
+   <td><code>alertdialog</code></td>
+   <td> </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td> </td>
+   <td>なし</td>
+   <td>Window-Eyes 5.5 以降、ZoomText 9.1 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、ZoomText 9.1 以降、JAWS 7.1 以降</td>
+  </tr>
+  <tr>
+   <td><code>application</code></td>
+   <td> </td>
+   <td> </td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">Mozilla.org Grid (spreadsheet) と menubar</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降</td>
+   <td>Window-Eyes 5.5 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>button</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>pressed</code></li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.weba11y.com/Examples/button.html">Weba11y button</a> <a class="external" href="http://www.mozilla.org/access/dhtml/button">説明付きの Mozilla.org button</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/button">UIUC button</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 8.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 8.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>checkbox</code></td>
+   <td>
+    <ul>
+     <li><code>checked</code></li>
+     <li><code>disabled</code></li>
+     <li><code>readonly</code></li>
+     <li><code>required</code></li>
+     <li><code>invalid</code></li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/checkbox">Mozilla.org checkbox</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/checkbox">UIUC checkbox</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>columnheader</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>selected=true|false</code> (<code>selected</code> 属性が無いときは選択できない状態を指示)</li>
+     <li><code>readonly</code></li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">Mozilla.org grid (spreadsheet) と menubar</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>combobox</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>readonly</code></li>
+     <li><code>expanded</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/combo">Mozilla.org combo box</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>description</code></td>
+   <td> </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/button">Mozilla.org button</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.0 以降<br>
+    要素上では、その要素のための記述と共に <code>aria-describedby</code> を使用する必要があります。</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>dialog</code></td>
+   <td> </td>
+   <td> </td>
+   <td><a class="external" href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/test_Dialog.html">Dojo dialog</a></td>
+   <td colspan="2"> </td>
+   <td>Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>directory</code></td>
+   <td> </td>
+   <td> </td>
+   <td> </td>
+   <td colspan="3">公開されているが、対応する特別な支援技術は無い</td>
+  </tr>
+  <tr>
+   <td><code>document</code></td>
+   <td> </td>
+   <td> </td>
+   <td> </td>
+   <td colspan="3">Window-Eyes 5.5 以降</td>
+  </tr>
+  <tr>
+   <td><code>grid</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>readonly</code></li>
+     <li><code>multiselectable</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">Mozilla.org grid (spreadsheet) と menubar</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/grid">UIUC grid</a></td>
+   <td>
+    <ul>
+     <li>Window-Eyes 5.5 以降は完全対応</li>
+     <li>JAWS 7.1 以降は一部対応(JAWS は row/column ヘッダを読まないため)</li>
+     <li>まだ公開されていなかったため、Firefox 1.5 では <code>multiselectable</code> に未対応。</li>
+    </ul>
+   </td>
+   <td>
+    <ul>
+     <li>Window-Eyes 5.5 以降は完全対応</li>
+     <li>JAWS 7.1 以降は一部対応(row/column ヘッダを読まないため)</li>
+     <li><code>multiselectable</code> に対応している場合、検証データをテストする必要あり</li>
+    </ul>
+   </td>
+   <td>
+    <ul>
+     <li>Window-Eyes 5.5 以降は完全対応</li>
+     <li>Orca 2.20 以降は完全対応</li>
+     <li>JAWS 7.1 以降は一部対応(row/column ヘッダを読まないため)</li>
+     <li><code>multiselectable</code> に対応している場合、検証データをテストする必要あり</li>
+    </ul>
+   </td>
+  </tr>
+  <tr>
+   <td><code>gridcell</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code><code>selected=true|false</code> (<code>selected</code> 属性が無いときは選択できないない状態を指示)</li>
+     <li><code>readonly</code></li>
+     <li><code>invalid</code></li>
+     <li><code>required</code></li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">Mozilla.org grid (spreadsheet) と menubar</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/grid">UIUC grid</a></td>
+   <td colspan="2">
+    <ul>
+     <li>Window-Eyes 5.5 以降は完全対応</li>
+     <li>JAWS 7.1 以降は一部対応(各セルに関連する row ヘッダまたは column ヘッダセルを読まないため)</li>
+    </ul>
+   </td>
+   <td>
+    <ul>
+     <li>Window-Eyes 5.5 以降は完全対応</li>
+     <li>JAWS 7.1 以降は一部対応(各セルに関連する row ヘッダまたは column ヘッダセルを読まないため)</li>
+     <li>Orca 2.20 以降</li>
+    </ul>
+   </td>
+  </tr>
+  <tr>
+   <td><code>group</code></td>
+   <td> </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://test.cita.uiuc.edu/aria/tree">UIUC tree</a>, <a class="external" href="http://www.mozilla.org/access/dhtml/progressbar">Mozilla.org progress bar</a></td>
+   <td colspan="2">Window-eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>img</code></td>
+   <td> </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/imagetiled">Mozilla.org 並べられた image</a></td>
+   <td>未対応</td>
+   <td>未対応</td>
+   <td>Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>label</code></td>
+   <td> </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td> </td>
+   <td colspan="3">Window-Eyes 5.5 以降、JAWS 7.1 以降</td>
+  </tr>
+  <tr>
+   <td><code>link</code></td>
+   <td> </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前、<code>linked</code>(常に true)</td>
+   <td><code>disabled</code></td>
+   <td>名前の処理が不正確</td>
+   <td>名前の処理が不正確</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降</td>
+  </tr>
+  <tr>
+   <td><code>list</code></td>
+   <td>
+    <ul>
+     <li><code>readonly</code></li>
+     <li><code>multiselectable</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td> </td>
+   <td colspan="3">Window-Eyes 5.5 以降、JAWS 7.1 以降</td>
+  </tr>
+  <tr>
+   <td><code>listbox</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code><code>readonly</code></li>
+     <li><code>multiselectable</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/listbox">Mozilla.org listbox</a></td>
+   <td>なし</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>listitem</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code><code>selected=true|false</code> (<code>selected</code> 属性が無いときは選択できない状態を指示)</li>
+     <li><code>checked=true|false</code> (<code>checked</code> 属性が無いときは <code>checkable</code> ではない状態を指示)</li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td> </td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>log</code> (チャットログ、ゲームログ、エラーログなど。デフォルトで実況)</td>
+   <td> </td>
+   <td> </td>
+   <td><a class="external" href="http://accessibleajax.clcworld.net/ajax_chat/chat.htm">AJAX チャット</a></td>
+   <td colspan="3">公開されているが、現在は対応する特別な支援技術は無い</td>
+  </tr>
+  <tr>
+   <td><code>menu</code></td>
+   <td><code>disabled</code></td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">Mozilla.org grid (spreadsheet) と menubar</a></td>
+   <td colspan="2">Window-eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>menubar</code></td>
+   <td><code>disabled</code></td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">Mozilla.org grid (spreadsheet) と menubar</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/menubar">UIUC menubar</a></td>
+   <td colspan="2">Window-eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>menuitem</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>checked=true|false|mixed</code></li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">Mozilla.org grid (spreadsheet) と menubar</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/menubar">UIUC menubar</a></td>
+   <td>Window-Eyes 5.5, JAWS 7.1 以降 (<code>checked=mixed</code> には未対応)</td>
+   <td>Window-Eyes 5.5, JAWS 7.1 以降 (<code>checked=mixed</code> に対応している場合、検証データをテストする必要あり)</td>
+   <td>Window-Eyes 5.5, Orca 2.20 以降、JAWS 7.1 以降 (<code>checked=mixed</code> に対応している場合、検証データをテストする必要あり)</td>
+  </tr>
+  <tr>
+   <td><code>menuitemcheckbox</code></td>
+   <td>
+    <ul>
+     <li><code>checked</code></li>
+     <li><code>disabled</code></li>
+    </ul>
+   </td>
+   <td><code>checkable</code>, 子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td> </td>
+   <td>なし</td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+  </tr>
+  <tr>
+   <td><code>menuitemradio</code></td>
+   <td>
+    <ul>
+     <li><code>checked</code></li>
+     <li><code>disabled</code></li>
+    </ul>
+   </td>
+   <td><code>checkable</code>, 子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td> </td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+  </tr>
+  <tr>
+   <td><code>option</code></td>
+   <td>
+    <ul>
+     <li><code>selected=true|false</code> (<code>selected</code> 属性が無いときは選択できない状態を指示)</li>
+     <li><code>checked=true|false</code> (<code>checked</code> 属性が無いときは <code>checkable</code> ではない状態を指示)</li>
+     <li><code>disabled</code></li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/listbox">Mozilla.org listbox</a></td>
+   <td>なし</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>presentation</code></td>
+   <td> </td>
+   <td>これらの項目はアクセシビリティの階層から自動的に削除されます。table 上に置いたときは、table 以下のすべての子孫もまたアクセシビリティの階層から自動的に削除されます。</td>
+   <td> </td>
+   <td colspan="3">MSAA や ATK のようにアクセシビリティ API を使用する、DOM ベースでない支援技術すべて<br>
+    例えば、Window-Eyes 5.5 以降、JAWS 7.0 以降、ZoomText 9.1 以降、Orca 2.20 以降で動作するが、Fire Vox では動作しない</td>
+  </tr>
+  <tr>
+   <td><code>progressbar</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>valuenow="#"|"unknown"</code></li>
+     <li><code>valuemin="#"</code></li>
+     <li><code>valuemax="#"</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/progressbar">Mozilla.org progress bar</a></td>
+   <td colspan="2">Window-eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>radio</code></td>
+   <td>
+    <ul>
+     <li><code>checked</code></li>
+     <li><code>disabled</code></li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://david.atrc.utoronto.ca/aria/radios/posinset.xhtml">模擬 radio buttons ATRC radio buttons (ARIA の名前空間のみ)</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/radio">UIUC radio buttons</a></td>
+   <td colspan="2">Window-eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>radiogroup</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>invalid</code></li>
+     <li><code>required</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://test.cita.uiuc.edu/aria/radio">UIUC radio buttons</a></td>
+   <td colspan="2">Window-eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>region</code></td>
+   <td> </td>
+   <td> </td>
+   <td> </td>
+   <td colspan="3">公開されているが、対応する特別な支援技術は無い</td>
+  </tr>
+  <tr>
+   <td><code>row</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>selected=true|false</code> (<code>selected</code> 属性が無いときは選択できない状態を指示)</li>
+     <li><code>checked=true|false|mixed</code> (<code>checked</code> 属性が無いときは <code>checkable</code> ではない状態を指示)</li>
+     <li><code>expanded=true|false</code> (<code>expanded</code> 属性が無いものは展開できない状態を指示)</li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td> </td>
+   <td>なし</td>
+   <td>なし</td>
+   <td>Firefox 3 に向けて作業中</td>
+  </tr>
+  <tr>
+   <td><code>rowheader</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>selected=true|false</code> (<code>selected</code> 属性が無いときは選択できない状態を指示)</li>
+     <li><code>readonly</code></li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/spreadsheet">Mozilla.org grid (spreadsheet) と menubar</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.1 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.1 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>separator</code></td>
+   <td> </td>
+   <td> </td>
+   <td> </td>
+   <td colspan="3">検証データをテストする必要あり</td>
+  </tr>
+  <tr>
+   <td><code>slider</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>invalid</code></li>
+     <li><code>readonly</code></li>
+     <li><code>required</code></li>
+     <li><code>valuenow="#"</code></li>
+     <li><code>valuemin="#"</code></li>
+     <li><code>valuemax="#"</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/simple-slider">Mozilla.org 平坦な slider</a>, <a class="external" href="http://www.mozilla.org/access/dhtml/pretty-slider.htm">Mozilla.org グラフィカルな slider</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/slider">UIUC slider</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.1 以降 (JAWS 8.0 では矢印キーによる操作不可)</td>
+   <td>Window-Eyes 5.5 以降、Orca 2.20 以降、JAWS 7.1 以降 (JAWS 8.0 では矢印キーによる操作不可)</td>
+  </tr>
+  <tr>
+   <td><code>spinbutton</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>invalid</code></li>
+     <li><code>readonly</code></li>
+     <li><code>required</code></li>
+     <li><code>valuenow="#"</code></li>
+     <li><code>valuemin="#"</code></li>
+     <li><code>valuemax="#"</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/test_Spinner.html">Dojo spinner</a></td>
+   <td colspan="2"> </td>
+   <td>Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>tab</code></td>
+   <td><code>disabled</code></td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/tabpanel">Mozilla.org tab panel</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/tabpanel">UIUC tab panel</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.21.5 以降</td>
+  </tr>
+  <tr>
+   <td><code>tablist</code></td>
+   <td> </td>
+   <td> </td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/tabpanel">Mozilla.org tab panel</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/tabpanel">UIUC tab panel</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.21.5 以降</td>
+  </tr>
+  <tr>
+   <td><code>tabpanel</code></td>
+   <td> </td>
+   <td> </td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/tabpanel">Mozilla.org tab panel</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/tabpanel">UIUC tab panel</a></td>
+   <td colspan="2">Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.21.5 以降</td>
+  </tr>
+  <tr>
+   <td><code>textbox</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>readonly</code></li>
+     <li><code>multiline</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://test.cita.uiuc.edu/aria/textfield">UIUC textfield</a></td>
+   <td>未対応</td>
+   <td>未対応</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+  </tr>
+  <tr>
+   <td><code>toolbar</code></td>
+   <td><code>disabled</code></td>
+   <td> </td>
+   <td> </td>
+   <td colspan="3">公開されているが、どの支援技術がこれに対応しているか、または必要としているかが不明確</td>
+  </tr>
+  <tr>
+   <td><code>tooltip</code></td>
+   <td> </td>
+   <td> </td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/new/tooltip.html">Mozilla.org tooltip</a></td>
+   <td> </td>
+   <td> </td>
+   <td> </td>
+  </tr>
+  <tr>
+   <td><code>tree</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>multiselectable</code></li>
+     <li><code>readonly</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/tree">Mozilla.org tree</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/tree">UIUC tree</a></td>
+   <td colspan="2">Windows-Eyes 5.5 以降、JAWS 7.0</td>
+   <td>Windows-Eyes 5.5 以降、JAWS 7.0, Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>treegrid</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>multiselectable</code></li>
+     <li><code>readonly</code></li>
+    </ul>
+   </td>
+   <td><code>title</code> 属性からの名前</td>
+   <td> </td>
+   <td>なし</td>
+   <td>なし</td>
+   <td>Firefox で作業中のため未サポート</td>
+  </tr>
+  <tr>
+   <td><code>treeitem</code></td>
+   <td>
+    <ul>
+     <li><code>disabled</code></li>
+     <li><code>selected=true|false</code> (<code>selected</code> 属性が無いときは選択できない状態を指示)</li>
+     <li><code>checked=true|false|mixed</code> (<code>checked</code> 属性が無いときは <code>checkable</code> ではない状態を指示)</li>
+     <li><code>expanded=true|false</code> (<code>expanded</code> 属性が無いものは展開できない状態を指示)</li>
+    </ul>
+   </td>
+   <td>子コンテンツまたは <code>title</code> 属性からの名前</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/tree">Mozilla.org tree</a>, <a class="external" href="http://test.cita.uiuc.edu/aria/tree">UIUC tree</a></td>
+   <td>Windows-Eyes 5.5 以降、JAWS 7.0 以降、<code>checked=mixed</code> には未対応</td>
+   <td>Windows-Eyes 5.5 以降、JAWS 7.0</td>
+   <td>Windows-Eyes 5.5 以降、JAWS 7.0, Orca 2.20 以降</td>
+  </tr>
+ </tbody>
+</table>
+<p>† 下記の表において、適用性の列が "すべての要素" と書かれているすべての要素が universal property を許容します。 <span id="Landmark_Roles_from_XHTML_role_attribute_module"></span></p>
+<h4 id=".E4.BB.A3.E8.A1.A8.E7.9A.84.E3.81.AA_XHTML_.E3.81.AE_role_.E5.B1.9E.E6.80.A7.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB" name=".E4.BB.A3.E8.A1.A8.E7.9A.84.E3.81.AA_XHTML_.E3.81.AE_role_.E5.B1.9E.E6.80.A7.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB">代表的な XHTML の role 属性モジュール</h4>
+<p><a class="external" href="http://www.w3.org/TR/xhtml-role/">XHTML の role 属性モジュール</a> は次の role を定義しています: <code>banner, contentinfo, definition, main, navigation, note, search, secondary, seealso</code></p>
+<p>XHTML では、これらの代表的な role を "wairole:" プレフィックス無しで使用することができます (例: <code>&lt;div role="main"&gt;</code>)。理想的なスクリーンリーダーは、これらの role を用いてナビゲーション機構を提供するか、ユーザがメインコンテンツに入ると自動的にナビゲーションを開始します。スクリーン拡大鏡や携帯電話もまた、メインコンテンツから開始するか、特別なハイライトやナビゲーション機構を提供します。しかしながら、これらの role は MSAA 下の role を通じて公開されており、現在ある支援技術には特別なサポートが知られていません。 <span id="Supported_properties"></span></p>
+<h3 id=".E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.A6.E3.81.84.E3.82.8B_property" name=".E3.82.B5.E3.83.9D.E3.83.BC.E3.83.88.E3.81.95.E3.82.8C.E3.81.A6.E3.81.84.E3.82.8B_property">サポートされている property</h3>
+<table class="fullwidth-table">
+ <tbody>
+  <tr>
+   <th>Property 名</th>
+   <th>適用性</th>
+   <th>使用例</th>
+   <th>Firefox 1.5 対応</th>
+   <th>Firefox 2 対応</th>
+   <th><a class="external" href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/">Firefox 3</a> テストビルド対応</th>
+  </tr>
+  <tr>
+   <td><code>aria-activedescendant="[id]"</code></td>
+   <td>すべての要素</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/listbox">Mozilla.org Listbox</a></td>
+   <td>無し</td>
+   <td>無し</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-atomic="true"</code></td>
+   <td>すべての要素</td>
+   <td>
+    <ul>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/atomic_false.htm">aria-atomic="false"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/atomic_true.htm">aria-atomic="true"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/ajax_chat/chat.htm">AJAX チャット</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/form_hints/form_hints.htm">フォームのヒント</a></li>
+    </ul>
+   </td>
+   <td>Fire Vox 2.7 以降</td>
+   <td>Fire Vox 2.7 以降</td>
+   <td>Fire Vox 2.7 以降<br>
+    アクセシビリティ API を通じて公開されているが、一般的な目的の支援技術にはまだ使用されていない</td>
+  </tr>
+  <tr>
+   <td><code>aria-busy="true" or "false" or "error"</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td> </td>
+   <td>未実装</td>
+   <td>未実装</td>
+  </tr>
+  <tr>
+   <td><code>aria-channel="main" (default) or "notify"</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>未実装</td>
+   <td>未実装</td>
+   <td>未実装</td>
+  </tr>
+  <tr>
+   <td><code>aria-checked="true"</code><br>
+    <code>aria-checked="false"</code> (チェック可能だがチェックされていない)</td>
+   <td>roles: checkbox, menuitem, menuitemcheckbox, menuitemradio, listitem, option, radio, treeitem</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/checkbox">Mozilla.org checkbox</a>,
+    <p><a class="external" href="http://test.cita.uiuc.edu/aria/checkbox">UIUC checkbox</a></p>
+   </td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-checked="mixed"</code> (チェック可能だが未確定)</td>
+   <td>roles: checkbox, menuitem, treeitem</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/checkbox">Mozilla.org checkbox</a></td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+  </tr>
+  <tr>
+   <td><code>aria-controls=IDLIST</code></td>
+   <td>すべての要素</td>
+   <td>
+    <ul>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/controls.htm">aria-controls=IDLIST</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/advanced/live_controls-and-politeness.htm">controls と politeness</a></li>
+    </ul>
+   </td>
+   <td>Fire Vox 2.7 以降<br>
+    アクセシビリティ API を通じて公開されているが、一般的な目的の支援技術にはまだ使用されていない</td>
+   <td>Fire Vox 2.7 以降<br>
+    アクセシビリティ API を通じて公開されているが、一般的な目的の支援技術にはまだ使用されていない</td>
+   <td>Fire Vox 2.7 以降<br>
+    アクセシビリティ API を通じて公開されているが、一般的な目的の支援技術にはまだ使用されていない</td>
+  </tr>
+  <tr>
+   <td><code>aria-datatype="xsd:DATATYPE"</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>無し</td>
+   <td>無し</td>
+   <td>公開されているが、対応する支援技術は無い</td>
+  </tr>
+  <tr>
+   <td><code>aria-describedby=IDLIST</code></td>
+   <td>すべての要素</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/button">Mozilla.org button with aria-describedby</a>
+    <p><a class="external" href="http://accessibleajax.clcworld.net/simple/describedby.htm">Live region with aria-describedby</a></p>
+   </td>
+   <td>Window-Eyes 5.5 以降</td>
+   <td>Window-Eyes 5.5 以降</td>
+   <td>Window-Eyes 5.5 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-disabled="true"</code></td>
+   <td>roles: button, checkbox, columnheader, combobox, grid, gridcell, link, listbox, menu, menubar, menuitem, menuitemcheckbox, menuitemradio, option, progressbar, radio, radiogroup, row, rowheader, slider, spinbutton, tab, textbox, toolbar, tree, treegrid, treeitem</td>
+   <td> </td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降 (span への参照点なし)</td>
+  </tr>
+  <tr>
+   <td><code>aria-dropeffect="copy" または "move", "reference", "none"</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>未実装</td>
+   <td>未実装</td>
+   <td>未実装</td>
+  </tr>
+  <tr>
+   <td><code>aria-expanded="true"</code></td>
+   <td>roles: treeitem, region, (combobox?)</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/tree">Mozilla.org tree</a>,
+    <p><a class="external" href="http://test.cita.uiuc.edu/aria/tree">UIUC tree</a></p>
+   </td>
+   <td> </td>
+   <td> </td>
+   <td>Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-flowto=IDLIST</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>公開されているが、対応する支援技術は無い</td>
+   <td>公開されているが、対応する支援技術は無い</td>
+   <td>公開されているが、対応する支援技術は無い</td>
+  </tr>
+  <tr>
+   <td><code>aria-grab= "true" または "false", "supported"</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>未実装</td>
+   <td>未実装</td>
+   <td>未実装</td>
+  </tr>
+  <tr>
+   <td><code>aria-haspopup="true"</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-hidden="true"</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>要素のスタイルに display: none がある場合に動作</td>
+   <td>要素のスタイルに display: none がある場合に動作</td>
+   <td>要素のスタイルに display: none がある場合に動作</td>
+  </tr>
+  <tr>
+   <td><code>aria-invalid="true"</code></td>
+   <td>すべての要素</td>
+   <td><a class="external" href="http://david.atrc.utoronto.ca/aria/errorAlert.xhtml">ATRC alert</a>,
+    <p><a class="external" href="http://www.mozilla.org/access/dhtml/checkbox">Mozilla.org checkbox</a></p>
+   </td>
+   <td>Window-Eyes 5.5 以降</td>
+   <td>Window-Eyes 5.5 以降</td>
+   <td>Window-Eyes 5.5 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-labelledby="[IDLIST]"</code></td>
+   <td>すべての要素</td>
+   <td><a class="external" href="http://accessibleajax.clcworld.net/simple/labelledby.htm">aria-labelledby=IDLIST</a></td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-level=POSITIVE_NUMBER</code></td>
+   <td>すべての要素、特に treeitem 上で有用</td>
+   <td> </td>
+   <td>無し</td>
+   <td>無し</td>
+   <td>ツリービューでのみ動作、Window-Eyes 5.5 以降および JAWS 7.0 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-live=POLITENESS</code></td>
+   <td>すべての要素</td>
+   <td>
+    <ul>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/live_off.htm">aria-live="off"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/live_polite.htm">aria-live="polite"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/live_assertive.htm">aria-live="assertive"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/live_rude.htm">aria-live="rude"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/advanced/live_multiple-regions.htm">複数の live region</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/advanced/live_nested-regions.htm">入れ子状の live regions</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/advanced/live_controls-and-politeness.htm">controls と politeness</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/form_hints/form_hints.htm">フォームのヒント</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/ajax_chat/chat.htm">AJAX チャット</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/scoreboard/scoreboard.htm">Scoreboard</a></li>
+    </ul>
+   </td>
+   <td>Fire Vox 2.7 以降</td>
+   <td>Fire Vox 2.7 以降</td>
+   <td>Fire Vox 2.7 以降<br>
+    アクセシビリティ API を通じて公開されているが、一般的な目的の支援技術にはまだ使用されていない</td>
+  </tr>
+  <tr>
+   <td><code>aria-multiselectable="true"</code></td>
+   <td>roles: grid, list, tree</td>
+   <td><a class="external" href="http://test.cita.uiuc.edu/aria/grid/grid.html">UIUC grid</a></td>
+   <td>未対応</td>
+   <td>未対応</td>
+   <td>検証データをテストする必要あり</td>
+  </tr>
+  <tr>
+   <td><code>aria-owns</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>無し</td>
+   <td>無し</td>
+   <td>無し</td>
+  </tr>
+  <tr>
+   <td><code>aria-pressed="true"</code></td>
+   <td>roles: button</td>
+   <td><a class="external" href="http://test.cita.uiuc.edu/aria/button">UIUC button</a></td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+   <td>Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-posinset=POSITIVE_NUMBER</code> (treeitem 上の場合、aria-setsize および aria-level と共に使用)</td>
+   <td>すべての要素、特に option, listitem, treeitem 上で有用</td>
+   <td><a class="external" href="http://david.atrc.utoronto.ca/aria/radios/posinset.xhtml">模擬 radio buttons (名前空間付き/xhtml/FF2 のみ)</a></td>
+   <td>無し</td>
+   <td>無し</td>
+   <td>Window-Eyes 5.5 以降および JAWS 7.0 以降、Orca 2.20 以降において、option および listitem, treeitem のみ動作</td>
+  </tr>
+  <tr>
+   <td><code>aria-readonly="true"</code></td>
+   <td>roles: checkbox, columnheader grid, gridcell, list, rowheader, spinbutton, textarea, textfield</td>
+   <td> </td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>aria-relevant=RELEVANCE_LIST</code></td>
+   <td>すべての要素</td>
+   <td>
+    <ul>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/relevant_additions.htm">aria-relevant="additions"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/relevant_removals.htm">aria-relevant="removals"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/relevant_text.htm">aria-relevant="text"</a></li>
+     <li><a class="external" href="http://accessibleajax.clcworld.net/simple/relevant_all.htm">aria-relevant="all"</a></li>
+    </ul>
+   </td>
+   <td>Fire Vox 2.7 以降</td>
+   <td>Fire Vox 2.7 以降</td>
+   <td>Fire Vox 2.7 以降<br>
+    アクセシビリティ API を通じて公開されているが、一般的な目的の支援技術にはまだ使用されていない</td>
+  </tr>
+  <tr>
+   <td><code>role="[rolename]"</code></td>
+   <td>すべての要素</td>
+   <td>上記の role 表をご覧ください</td>
+   <td>上記の role 表をご覧ください</td>
+   <td>上記の role 表をご覧ください</td>
+   <td>上記の role 表をご覧ください</td>
+  </tr>
+  <tr>
+   <td><code>aria-required="true"</code></td>
+   <td>すべての要素</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/checkbox">Mozilla.org checkbox</a></td>
+   <td>Window-Eyes 5.5 以降</td>
+   <td>Window-Eyes 5.5 以降</td>
+   <td>Window-Eyes 5.5 以降</td>
+  </tr>
+  <tr>
+   <td><code>selected="true"</code><br>
+    <code>selected="false"</code> (選択可能だが、選択されていない)</td>
+   <td>roles: columnheader, gridcell, listitem, option, rowheader</td>
+   <td><a class="external" href="http://test.cita.uiuc.edu/aria/grid/grid.html">UIUC grid</a></td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+  </tr>
+  <tr>
+   <td><code>aria-setsize=POSITIVE_NUMBER</code> (treeitem 上の場合、aria-setsize および aria-level と共に使用)</td>
+   <td>すべての要素、特に option, listitem, treeitem 上で有用</td>
+   <td><a class="external" href="http://david.atrc.utoronto.ca/aria/radios/posinset.xhtml">模擬 radio buttons (名前空間付き/xhtml/FF2 のみ)</a></td>
+   <td>無し</td>
+   <td>無し</td>
+   <td>Window-Eyes 5.5 以降および JAWS 7.0 以降、Orca 2.20 以降において、option および listitem, treeitem のみ動作</td>
+  </tr>
+  <tr>
+   <td><code>aria-sort=SORT_TYPE</code></td>
+   <td>すべての要素</td>
+   <td> </td>
+   <td>無し</td>
+   <td>無し</td>
+   <td>アクセシビリティ API を通して公開されているが、一般的な目的の支援技術にはまだ使用されていない</td>
+  </tr>
+  <tr>
+   <td><code>tabindex</code></td>
+   <td>すべての HTML 要素</td>
+   <td> </td>
+   <td>すべての支援技術、同様に IE 5 以降も対応</td>
+   <td>すべての支援技術、同様に IE 5 以降も対応</td>
+   <td>すべての支援技術、同様に IE 5 以降も対応</td>
+  </tr>
+  <tr>
+   <td><code>valuenow="#"</code><br>
+    <code>valuemin="#"</code><br>
+    <code>valuemax="#"</code></td>
+   <td>roles: progressbar, slider, spinbutton</td>
+   <td><a class="external" href="http://www.mozilla.org/access/dhtml/simple-slider">Mozilla.org 平坦な slider</a> <a class="external" href="http://www.mozilla.org/access/dhtml/pretty-slider.htm">Mozilla.org グラフィカルな slider</a> <a class="external" href="http://www.mozilla.org/access/dhtml/progressbar">Mozilla.org plain progress bar</a></td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降</td>
+   <td>Window-Eyes 5.5 以降、JAWS 7.0 以降、Orca 2.20 以降</td>
+  </tr>
+  <tr>
+   <td><code>valuenow の設定なし (値が未確定)</code></td>
+   <td>roles: progressbar</td>
+   <td> </td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+   <td>検証データをテストする必要あり</td>
+  </tr>
+ </tbody>
+</table>
+<p><span id="Live_regions"></span></p>
+<h3 id="Live_regions" name="Live_regions">Live regions</h3>
+<p>一部のウェブページには、ユーザのアクションや現実世界のイベントによって更新することができる Live region(動的更新が可能な領域) があります。ユーザのアクションによる変更の例は、<a class="new external" href="http://developer.mozilla.org/ja/docs/Special:Preferences">この wiki のオプションページ</a>です。現実世界のイベントによる変更の例には、<a class="external" href="http://ircatwork.com/">チャット領域</a> や <a class="external" href="http://cbs.sportsline.com/nba/scoreboard">試合状況のライブ更新</a>, <a class="external" href="http://finance.yahoo.com">金融情報のライブ更新</a> があります。</p>
+<p>今のところ、スクリーンリーダの Live region のためのアクセシビリティには問題があります。スクリーンリーダがページ上のすべての変更を逐次読み上げてしまうと、ユーザにとって迷惑になります。もし、スクリーンリーダがそれらを読み上げなければ、ユーザは極めて重要な情報を失うことになります。</p>
+<p>解決策は ARIA を通して開発されており、ウェブページの作者がそこにある Live region が何かを指定し、また Live region についての追加の役立つ情報を指定することができます。これは、スクリーンリーダが何をいつ読み上げればよいかを決められるようにします。</p>
+<p>これらの ARIA プロパティには、aria-live および aria-atomic, aria-relevant, aria-controls, aria-labelledby, aria-describedby があります。現在のサポートは、標準仕様の執筆活動を前進させ、ウェブ開発者コミュニティに対して WAI-ARIA を採用する利点を実証し、またスクリーンリーダ開発者コミュニティがエンドユーザに WAI-ARIA の 動作を体験できることを示すため、<a class="external" href="http://www.firevox.clcworld.net/">Fire Vox スクリーン読み上げ拡張機能</a>で開発されています。</p>
+<p>さらに詳しい情報:</p>
+<ul>
+ <li>Live region マークアップの開発状況の完全なリポートは、<a href="https://developer.mozilla.org/ja/docs/ARIA/ja/AJAX/WAI_ARIA_Live_Regions">AJAX:WAI_ARIA_Live_Regions</a> をご覧ください。ここでは、Fire Vox で動作するテストケースへのリンクも提供しています。</li>
+ <li><a class="external" href="http://accessibleajax.clcworld.net/">テストケースの簡単なものと詳細なもの</a> は、Fire Vox 拡張の開発者である Charles Chen 氏によって提供されています。これらの例はすべて、Fire Vox で動作します。</li>
+ <li>その他のマークアップの記述は、Gez Lemon 氏による Juicy Studio の <a class="external" href="http://juicystudio.com/article/wai-aria-live-regions.php">ARIA live region についての記事</a>にあります。</li>
+</ul>
+<p>Firefox 3 の登場までに、Live region がスクリーンリーダのすべての目的に対応することは期待されていません。 <span id="Standards_development_for_ARIA"></span></p>
+<h3 id="ARIA_.E3.81.AE.E3.81.9F.E3.82.81.E3.81.AE.E6.A8.99.E6.BA.96.E9.96.8B.E7.99.BA" name="ARIA_.E3.81.AE.E3.81.9F.E3.82.81.E3.81.AE.E6.A8.99.E6.BA.96.E9.96.8B.E7.99.BA">ARIA のための標準開発</h3>
+<p><a class="external" href="http://www.w3.org">W3C</a> の <a class="external" href="http://www.w3.org/WAI/">Web Accessibility Initiative</a> の中身は <a class="external" href="http://www.w3.org/WAI/PF/">Protocols and Formats Working Group (PFWG)</a> です。このグループは、<a class="external" href="http://www.w3.org/WAI/PF/#Roadmap">Dynamic Web Content Accessibility Work roadmap</a> と呼ばれるものに大きく焦点を当てており、すべての重要な格差を埋める長期的な努力と同時に、基本的な role および properties を定義する短期間の努力をしています。 <span id="Open_Bugs_in_Firefox"></span></p>
+<h3 id="Firefox_.E3.81.AE.E5.85.AC.E9.96.8B.E3.83.90.E3.82.B0" name="Firefox_.E3.81.AE.E5.85.AC.E9.96.8B.E3.83.90.E3.82.B0">Firefox の公開バグ</h3>
+<p>完全な <a class="external link-https" href="https://bugzilla.mozilla.org/showdependencytree.cgi?id=343213&hide_resolved=1">Firefox の ARIA バグ一覧</a> では、Firefox の ARIA 対応の進捗を追跡することができます。 <span id="Future_of_ARIA"></span></p>
+<h3 id=".E5.B0.86.E6.9D.A5.E3.81.AE_ARIA" name=".E5.B0.86.E6.9D.A5.E3.81.AE_ARIA">将来の ARIA</h3>
+<p>追加の ARIA サポートは将来のリリースで計画されています。この作業は W3C PF グループの安定した標準から得ることに依存しています。これらの変更には、作者が既存の role を継承して新しい role を定義したり、動作を記述したり、要素間の関係を新たに指定したり、またブラウザと Web ページの間でのキーボード・アクセラレータの今日のような衝突を避けるセマンティック・アクセスキーのサポートが含まれます。 <span id="ARIA_IRC_channel_and_mailing_list"></span></p>
+<h3 id="ARIA_IRC_.E3.83.81.E3.83.A3.E3.83.B3.E3.83.8D.E3.83.AB.E3.81.A8.E3.83.A1.E3.83.BC.E3.83.AA.E3.83.B3.E3.82.B0.E3.83.AA.E3.82.B9.E3.83.88" name="ARIA_IRC_.E3.83.81.E3.83.A3.E3.83.B3.E3.83.8D.E3.83.AB.E3.81.A8.E3.83.A1.E3.83.BC.E3.83.AA.E3.83.B3.E3.82.B0.E3.83.AA.E3.82.B9.E3.83.88">ARIA IRC チャンネルとメーリングリスト</h3>
+<p>WAI-ARIA について公共の場で討議するには #wai-aria チャンネル (irc.w3.org:6665) に参加してください。メンバーは内部ドラフト案を #pf で審議してください。</p>
+<p>公共の討議をするメーリングリストは wai-xtech です。wai-xtech に参加したい方は PFWG 議長 <a class="link-mailto" href="mailto:(wai-pf-call@w3.org)" rel="freelink">(wai-pf-call@w3.org)</a> に購読希望のメールを出してください。</p>
+<div class="noinclude">
+  </div>
+<p></p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../tag/AJAX.html">AJAX</a></li><li><a href="../tag/Accessibility.html">Accessibility</a></li><li><a href="../tag/DOM.html">DOM</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/DHTML">DHTML</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../profiles/Marsf.html">Marsf</a>, <a href="../../profiles/teoli.html">teoli</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../profiles/teoli.html">teoli</a>,
+                      <time datetime="2014-05-09T11:58:53-07:00">2014/05/09 11:58:53</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/ARIA/Accessible_Rich_Internet_Applications" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/ARIA/Accessible_Rich_Internet_Applications">
+            English (US)
+          </option>          <option value="/fr/docs/Accessibilit%C3%A9/ARIA/Applications_riches_Internet_accessibles">
+            Français
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":792}</script></body>
+</html>

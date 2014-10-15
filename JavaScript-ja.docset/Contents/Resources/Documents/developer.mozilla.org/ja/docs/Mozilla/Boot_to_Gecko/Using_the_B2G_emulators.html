@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>B2G エミュレータを使用する - Mozilla | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="Using_the_B2G_emulators.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+                  <link rel="stylesheet" type="text/css" href="../../../Firefox_OS$styles.css">
+          
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators$json">
+  <link rel="canonical" href="Using_the_B2G_emulators.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/Firefox_OS/Using_the_B2G_emulators" title="Using the B2G emulators">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/Firefox_OS/Usande_emuladores_Firefox_OS" title="Usando emuladores B2G">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/Firefox_OS/Using_the_B2G_emulators" title="使用 B2G 模擬器">
+          <link rel="alternate" hreflang="ca" href="https://developer.mozilla.org/ca/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators" title="Ús de l&#39;emulador B2G">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/Firefox_OS/Using_the_B2G_emulators" title="使用B2G仿真器">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/Firefox_OS/Using_the_B2G_emulators" title="B2G এমুলেটরের ব্যবহার">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/Firefox_OS/Using_the_B2G_emulators" title="Using the B2G emulators">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="B2G エミュレータを使用する">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators">
+  <meta name="twitter:title" content="B2G エミュレータを使用する">
+    <meta property="og:description" content="この記事は、Boot to Gecko エミュレータを使用する際に知っておくべき重要な事項を要約したガイドです。完全なユーザマニュアルではなく、代わりにいくつかの有益な事項を、あなた自身が学ばなくてもいいように、簡単に説明します。">
+  <meta name="description" content="この記事は、Boot to Gecko エミュレータを使用する際に知っておくべき重要な事項を要約したガイドです。完全なユーザマニュアルではなく、代わりにいくつかの有益な事項を、あなた自身が学ばなくてもいいように、簡単に説明します。">
+  <meta name="twitter:description" content="この記事は、Boot to Gecko エミュレータを使用する際に知っておくべき重要な事項を要約したガイドです。完全なユーザマニュアルではなく、代わりにいくつかの有益な事項を、あなた自身が学ばなくてもいいように、簡単に説明します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Mozilla/Boot_to_Gecko/Using_the_B2G_emulators" contextmenu="edit-history-menu" class="document zone ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Using_the_B2G_emulators.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Using_the_B2G_emulators.html#language">言語の選択</a></li>
+          <li><a href="Using_the_B2G_emulators.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+                <div class="zone-article-header" id="document-main"><div class="center">
+          <!-- zone title -->
+          <div class="zone-title"><a href="../../../Firefox_OS.html">Firefox OS</a></div>
+          <!-- zone image -->
+          <div class="zone-image"></div>
+        </div></div>
+      
+     <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" ><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/Firefox_OS/Using_the_B2G_emulators" title="Using the B2G emulators">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/Firefox_OS/Usande_emuladores_Firefox_OS" title="Usando emuladores B2G">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/Firefox_OS/Using_the_B2G_emulators" title="使用 B2G 模擬器">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ca/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators" title="Ús de l&#39;emulador B2G">Català</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/Firefox_OS/Using_the_B2G_emulators" title="使用B2G仿真器">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/Firefox_OS/Using_the_B2G_emulators" title="B2G এমুলেটরের ব্যবহার">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/Firefox_OS/Using_the_B2G_emulators" title="Using the B2G emulators">Français</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Using_the_B2G_emulators.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Firefox_OS.html" rel="v:url" property="v:title">Firefox OS</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">B2G エミュレータを使用する</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Using_the_B2G_emulators.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>B2G エミュレータを使用する</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="Using_the_B2G_emulators.html#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Using_the_B2G_emulators.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Using_the_B2G_emulators.html#B2G_.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6" rel="internal">B2G エミュレータについて</a><li><a href="Using_the_B2G_emulators.html#.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E8.B5.B7.E5.8B.95.E3.81.99.E3.82.8B" rel="internal">エミュレータを起動する</a><li><a href="Using_the_B2G_emulators.html#.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.8C.E8.B5.B7.E5.8B.95.E3.81.97.E3.81.AA.E3.81.8B.E3.81.A3.E3.81.9F.E5.A0.B4.E5.90.88" rel="internal">エミュレータが起動しなかった場合</a><ol><li><a href="Using_the_B2G_emulators.html#VM.E5.86.85.E3.81.A7.E8.A9.A6.E3.81.97.E3.81.A6.E3.81.84.E3.81.BE.E3.81.99.E3.81.8B.3F" rel="internal">VM内で試していますか?</a><li><a href="Using_the_B2G_emulators.html#adb_.E3.82.B5.E3.83.BC.E3.83.90.E3.81.8C.E5.8B.95.E4.BD.9C.E3.81.97.E3.81.A6.E3.81.84.E3.82.8B.E3.81.8B.E7.A2.BA.E8.AA.8D.E3.81.99.E3.82.8B" rel="internal">adb サーバが動作しているか確認する</a><li><a href="Using_the_B2G_emulators.html#.E6.A7.8B.E6.88.90.E8.A8.AD.E5.AE.9A.E3.82.92.E5.89.8A.E9.99.A4.E3.81.99.E3.82.8B" rel="internal">構成設定を削除する</a></ol></li><li><a href="Using_the_B2G_emulators.html#.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.8C.E9.96.8B.E5.A7.8B.E3.81.97.E3.81.A6.E3.82.82.22mozilla_technology.22.E3.81.AE.E3.82.B9.E3.83.97.E3.83.A9.E3.83.83.E3.82.B7.E3.83.A5.E3.82.B9.E3.82.AF.E3.83.AA.E3.83.BC.E3.83.B3.E3.81.8C.E5.87.BA.E3.82.8B.E5.89.8D.E5.BE.8C.E3.81.A7.E7.94.BB.E9.9D.A2.E3.81.8C.E7.9C.9F.E3.81.A3.E9.BB.92.E3.81.AA.E5.A0.B4.E5.90.88" rel="internal">エミュレータが開始しても"mozilla technology"のスプラッシュスクリーンが出る前後で画面が真っ黒な場合</a><li><a href="Using_the_B2G_emulators.html#.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AE.E8.A8.AD.E5.AE.9A" rel="internal">エミュレータの設定</a><ol><li><a href="Using_the_B2G_emulators.html#.E3.82.B9.E3.82.AD.E3.83.B3.E3.82.92.E5.A4.89.E6.9B.B4.E3.81.99.E3.82.8B" rel="internal">スキンを変更する</a><li><a href="Using_the_B2G_emulators.html#.E3.83.A1.E3.83.A2.E3.83.AA.E3.82.B5.E3.82.A4.E3.82.BA.E3.82.92.E5.A4.89.E6.9B.B4.E3.81.99.E3.82.8B" rel="internal">メモリサイズを変更する</a><li><a href="Using_the_B2G_emulators.html#.E3.83.8D.E3.83.83.E3.83.88.E3.83.AF.E3.83.BC.E3.82.AF.E6.8E.A5.E7.B6.9A" rel="internal">ネットワーク接続</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p></p>
+<p>この記事は、Boot to Gecko エミュレータを使用する際に知っておくべき重要な事項を要約したガイドです。完全なユーザマニュアルではなく、代わりにいくつかの有益な事項を、あなた自身が学ばなくてもいいように、簡単に説明します。</p>
+<p>このガイドは、既にエミュレータをビルドしていることを前提としています。もしまだなら、<a href="https://developer.mozilla.org/ja/Mozilla/Boot_to_Gecko/Building_and_installing_Boot_to_Gecko" title="ja/Mozilla/Boot_to_Gecko/Building_and_installing_Boot_to_Gecko">FirefoxOS のビルドとインストール</a>に巻き戻ってください！</p>
+<h2 id="B2G_.E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AB.E3.81.A4.E3.81.84.E3.81.A6">B2G エミュレータについて</h2>
+<p>B2G エミュレータは 2 種類あります。ひとつは、<code>config.sh</code> を実行する際に "emulator-x86" 用に構成されたビルドによるもので、x86 デバイスエミュレータです。ARM プロセッサをエミュレートしたものよりもずっと速いのですが、実際のデバイスが行うような正確な表示ではありません。<code>config.sh</code> を実行する際に "emulator" として構成したものは、ARM デバイスエミュレータとなります。</p>
+<div class="note">
+ <strong>Note:</strong> 最近数ヶ月、自動化チームは安定性の問題のため、x86エミュレーターの使用を停止しました。すなわち、 emulator-x86の全てにおいて、うまく動作しない可能性がかなりあります。そうしない理由がない限り、ARMエミュレータを使用してください。</div>
+<p>一旦、選択、構成して、エミュレータをビルドしたら、残りの作業はユーザ的観点から同じやり方ですので、このガイドの残りの部分はどちらにも共通です。</p>
+<div class="note">
+ <strong>注意 :</strong> Mac OS X では、B2G エミュレータは Core 2 Duo プロセッサ以降、Mac OS X 10.7 "Lion" と互換性のあるシステムが必要です。実際に Lion を稼働させている必要はありませんが、互換性がなければいけません。</div>
+<h2 id=".E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.82.92.E8.B5.B7.E5.8B.95.E3.81.99.E3.82.8B">エミュレータを起動する</h2>
+<p>B2G エミュレータを起動するには、以下のコマンドを入力してください :</p>
+<pre>./run-emulator.sh
+</pre>
+<p>これで、エミュレータのスタートアップタスクを全て処理します。では、エミュレー タが起動して、Boot to Gecko が立ち上がるのを根気よく待ってください。2 分程かかりますが、我慢してください。</p>
+<h2 id=".E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.8C.E8.B5.B7.E5.8B.95.E3.81.97.E3.81.AA.E3.81.8B.E3.81.A3.E3.81.9F.E5.A0.B4.E5.90.88">エミュレータが起動しなかった場合</h2>
+<p>エミュレータは、よく起動に失敗します。超最先端テクノロジにようこそ！ここに問題を解決するいくつかのヒントがあります。</p>
+<h3 id="VM.E5.86.85.E3.81.A7.E8.A9.A6.E3.81.97.E3.81.A6.E3.81.84.E3.81.BE.E3.81.99.E3.81.8B.3F">VM内で試していますか?</h3>
+<p>VirtualBox とParallels はグラフィックアクセラレータのサポートに問題の多いことが原因で、エミュレータやOpenGL端末のブート時に失敗を起こします。端末がブート開始し、失敗し、再起動するループに入ったり、起動するがエミュレータ画面に何も表示されなかったりします。不幸にも解決方法はありません。(VirtualBox用の<a class="external" href="http://www.digitalmihailo.com/setting-up-ubuntu-12-04-virtual-machine-for-firefox-os-build/">回避策</a>はあります)- VMWare Player (Freeware), Workstation あるいは Fusionを使う必要があります。VirtualBoxでは - ゲストのアドオンをインストールせず、またはvboxvideoモジュールを無効化します。</p>
+<h3 id="adb_.E3.82.B5.E3.83.BC.E3.83.90.E3.81.8C.E5.8B.95.E4.BD.9C.E3.81.97.E3.81.A6.E3.81.84.E3.82.8B.E3.81.8B.E7.A2.BA.E8.AA.8D.E3.81.99.E3.82.8B">adb サーバが動作しているか確認する</h3>
+<p>通常エミュレータが動作しない原因は、エミュレートされたデバイスとの対話を行う adb サーバが実行されないか、もしくは正しく機能していないことです。</p>
+<div class="note">
+ <p><strong>注意 :</strong> もし、B2G ビルドシステムによってビルドされた <code>adb</code> を使用しているなら（多分そのはずですが）<code> $B2G/out/host/&lt;platform&gt;/bin</code> ディレクトリにあります。Mac では、これが、例えば、<code>$B2G/out/host/darwin-x86/bin</code> にあります。</p>
+</div>
+<p><code>adb</code> が実行されているか確認するには、このようにしてください :</p>
+<pre>ps aux | grep adb
+</pre>
+<p>もし存在したら、多分正しく動作していないので、これを実行してキルしてください。</p>
+<pre>adb kill-server
+</pre>
+<p>存在しなかったら、これを実行してください :</p>
+<pre>adb start-server
+</pre>
+<p>それから、もう一度エミュレータを実行してみてください。もし、それでも動作しなかったら、irc.mozilla.org の <a class="link-irc" href="irc://irc.mozilla.org/b2g" title="irc://irc.mozilla.org/b2g">#b2g</a> を訪れて、助けを求めるべき時です。</p>
+<h3 id=".E6.A7.8B.E6.88.90.E8.A8.AD.E5.AE.9A.E3.82.92.E5.89.8A.E9.99.A4.E3.81.99.E3.82.8B">構成設定を削除する</h3>
+<p>時々、エミュレートされたデバイス上にある無効な構成設定が、不具合の原因になります。これを修正するために、以下のやり方で IndexedDB データベースを削除することができます :</p>
+<ol>
+ <li><a href="Using_the_B2G_emulators.html#adb_.E3.82.B5.E3.83.BC.E3.83.90.E3.81.8C.E5.8B.95.E4.BD.9C.E3.81.97.E3.81.A6.E3.81.84.E3.82.8B.E3.81.8B.E7.A2.BA.E8.AA.8D.E3.81.99.E3.82.8B">adb サーバが動作しているか確認する</a> を参照して、adb が動作していることを確認します</li>
+ <li>エミュレータを起動します</li>
+ <li>ホストコンピュータのターミナルから、エミュレータのビルドディレクトリのルートで、次のように入力します : <code>out/host/&lt;platform&gt;/bin/adb -e shell</code> Mac の場合は、<code>out/host/darwin-x86/bin/adb -e shell</code> です</li>
+ <li>これで adb shell にいるはずですので、エミュレートされたデバイス上でシェルコマンドを実行可能になります。デバイス上で B2G を止めましょう : <code>stop b2g</code></li>
+ <li>IndexedDB データベースを削除します : <code>rm -rf /data/local/indexedDB</code></li>
+ <li>エミュレートされたデバイス上の B2G を再起動します : <code>start b2g</code></li>
+</ol>
+<p>この点で、できれば、あなたが Gaia インターフェースで解決して、全てがうまくいくようにしてくれるといいのですが。</p>
+<h2 id=".E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.8C.E9.96.8B.E5.A7.8B.E3.81.97.E3.81.A6.E3.82.82.22mozilla_technology.22.E3.81.AE.E3.82.B9.E3.83.97.E3.83.A9.E3.83.83.E3.82.B7.E3.83.A5.E3.82.B9.E3.82.AF.E3.83.AA.E3.83.BC.E3.83.B3.E3.81.8C.E5.87.BA.E3.82.8B.E5.89.8D.E5.BE.8C.E3.81.A7.E7.94.BB.E9.9D.A2.E3.81.8C.E7.9C.9F.E3.81.A3.E9.BB.92.E3.81.AA.E5.A0.B4.E5.90.88">エミュレータが開始しても"mozilla technology"のスプラッシュスクリーンが出る前後で画面が真っ黒な場合</h2>
+<p>これが起こる場合、エミュレータを動作させている機械のドライバーのバグの可能性があります。Linuxのオープンソースの<span class="st"><em>nouveau</em></span>ドライバーで観測されます。最も簡単な方法は、機械のドライバーを変更することです。<span class="st"><em>nouveau</em>ドライバーの場合は代わりにプロプライエタリな(Ubuntuの<span class="st">"追加の" </span>)ドライバーをインストールします。</span>オンボードグラフィックのチップセットの場合、Linuxデフォルトのドライバーは、エミュレータの'eglMakeCurrent failed'エラーを起こす事があり、どうやらOpenGLバージョン 2.0未満が、GPUエミュレーションに必要なようです。解決法はGPUをアクティベート解除することで、 <code>run-emulator.sh</code> スクリプトを編集するとできます (これは遅くなります).</p>
+<h2 id=".E3.82.A8.E3.83.9F.E3.83.A5.E3.83.AC.E3.83.BC.E3.82.BF.E3.81.AE.E8.A8.AD.E5.AE.9A">エミュレータの設定</h2>
+<p>エミュレートしたいデバイスにより近づけるために、エミュレータを調整する複数の変更可能なオプションがあります。このセクションでは、そのやり方に関するいくつかの基本的な情報を提供します。エミュレータの設定は <code>run-emulator.sh</code> スクリプトを（理想的にはコピーして）編集することで調整できます。ここに記述されているパラメータは、非常に有用なパラメータの極一部にすぎません。その他のパラメータの詳細情報は <a class="external" href="http://www.qemu.org/" title="http://www.qemu.org/">qemu のサイト</a>で調べてみてください。</p>
+<div class="note">
+ <strong>ヒント :</strong> シミュレートしたいデバイス毎に <code>run-emulator.sh</code> のコピーを 1 つ作成してください。異なる設定で起動するのが楽になります。</div>
+<h3 id=".E3.82.B9.E3.82.AD.E3.83.B3.E3.82.92.E5.A4.89.E6.9B.B4.E3.81.99.E3.82.8B">スキンを変更する</h3>
+<p>デフォルトでは、エミュレータは HVGA モード、つまり half-VGA 、320×480 ピクセルで起動します。この値は、エミュレータが起動する際に与えられる <code>-skin</code> パラメータで指定されます。<code>run-emulator.sh</code> スクリプトを（理想的にはコピーして）編集することで、異なるディスプレイモードに切り替えることができます。提供されているスキンは以下の通りです :</p>
+<ul>
+ <li>HVGA (320x480)</li>
+ <li>QVGA (240x320)</li>
+ <li>WQVGA (240x400)</li>
+ <li>WQVGA432 (240x432)</li>
+ <li>WSVGA (1024x600)</li>
+ <li>WVGA800 (480x800)</li>
+ <li>WVGA854 (480x854)</li>
+ <li>WXGA720 (1280x720)</li>
+ <li>WXGA800 (1280x800)</li>
+</ul>
+<p>スキンは、<code>B2G/development/tools/emulator/skins</code> ディレクトリにあります。特筆すべきなのは、スキン用の書式がかなりシンプルになっていることです。内容を確認してみると、様々なユーザインターフェースオブジェクト用の PNG ファイルや、インターフェースと画面領域のレイアウトを説明する <code>layout</code> という名前のテキストファイルがたくさん入っている、シンプルなフォルダであることがわかるでしょう。カスタムスキンが必要なら、作成するのは非常に簡単です。</p>
+<h3 id=".E3.83.A1.E3.83.A2.E3.83.AA.E3.82.B5.E3.82.A4.E3.82.BA.E3.82.92.E5.A4.89.E6.9B.B4.E3.81.99.E3.82.8B">メモリサイズを変更する</h3>
+<p>変更したい、もしくは変更する必要のある設定の、もう一つのオプションは、デバイスメモリサイズです。デフォルトでは 512MB ですが、エミュレートしているデバイスのメモリがもっと多いか、少ない場合、取り組みたい基本デバイスでアプリを確実に動作させるには、設定が一致するよう調整するのは重要でしょう。これを行うには <code>-memory</code> パラメータの値を、必要とするサイズに MB 単位で変更してください。デフォルトの 512MB 以外では、256MB や 1024MB が、一番試してみたくなりそうな値です。</p>
+<p>デバイス用にエミュレートされた記憶容量を変更するには（これは、携帯電話のフラ ッシュストレージや、コンピュータのハードディスクのような、ローカルデータ用記憶域 のことです）<code>-partition-size</code> パラメータを変更してください。デフォルトは 512MB ですが、テストを要するデバイスの種類をシミュレートするために、必要となるどのようなサイズでも MB 単位で指定可能です。</p>
+<h3 id=".E3.83.8D.E3.83.83.E3.83.88.E3.83.AF.E3.83.BC.E3.82.AF.E6.8E.A5.E7.B6.9A">ネットワーク接続</h3>
+<p>何らかの理由でエミュレータがインターネットに接続できなかった場合、以下のコマ ンドをコマンドラインから実行してください :e:</p>
+<pre class="language-html"><code class="language-html">adb shell setprop net.dns1 10.0.2.3</code></pre>
+<p>emulator-jb またはemulator-kkを実行している場合、DNSサーバーの設定コマンドは異なります。<br>
+ 下記のコマンドを実行します：</p>
+<pre class="language-html"><code class="language-html">adb shell ndc resolver setdefaultif eth0
+adb shell ndc resolver setifdns eth0 10.0.0.0 10.0.2.3</code></pre>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../tag/B2G.html">B2G</a></li><li><a href="../../tag/Firefox OS.html">Firefox OS</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../profiles/ethertank.html">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/taguchi-ch">taguchi-ch</a>, <a href="../../../profiles/Uemmra3.html">Uemmra3</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/Uemmra3.html">Uemmra3</a>,
+                      <time datetime="2014-08-31T12:09:56-07:00">2014/08/31 12:09:56</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="Using_the_B2G_emulators.html#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                                  <!-- zone subnav -->
+                    <nav class="zone-subnav-container" role="navigation">
+    <div class="subnav" id="Subnav">
+      
+<ol>
+ <li><a href="../../../Firefox_OS/Introduction.html">イントロダクション</a></li>
+ <li><a href="../../../Firefox_OS/Platform.html" title="Documentation about the Firefox OS platform, including Gonk, Gaia, and everything in between.">プラットフォームガイド</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Platform/Architecture.html" title="An overview of how Firefox OS is structured internally; this is primarily of interest to platform developers and people doing porting work.">アーキテクチャ</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Apps_architecture.html" title="An overview of the application model on Firefox OS.">アプリ構造</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Gonk.html" title="Documentation about Gonk, the operating system layer underneath Gaia. This consists of a Linux kernel and a hardware abstraction layer to which Gecko communicates.">Gonk</a></li>
+   <li><a href="../Gecko.html" title="Gecko is the layer of Firefox OS that provides the same open web standards implementation used by Firefox and Thunderbird, as well as many other applications.">Gecko</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Gaia.html" title="Documentation about Gaia, the user interface application for Firefox OS devices; this is a Web application running atop the Firefox OS software stack.">Gaia</a></li>
+   <li><a href="../../../Firefox_OS/Security.html" title="Documentation about security in Firefox OS">セキュリティ</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Feature_support_chart.html" title="A chart of which features are available in which types of Firefox OS builds.">Feature support chart</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Settings_list.html" title="A list of common setting names that can be used with the settings API">Settings list</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Building_and_installing_Firefox_OS.html" title="This includes documentation for building and installing the platform onto devices, as well as building the simulator and emulators.">ビルド &amp; インストール</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Building_and_installing_Firefox_OS/Firefox_OS_build_overview.html">Firefox OSのビルドの概要</a></li>
+   <li><a href="B2G_build_prerequisites.html" title="Steps to take before you build Firefox OS for the first time.">Firefox OS ビルドの必要条件</a></li>
+   <li><a href="Preparing_for_your_first_B2G_build.html" title="Before you can build Firefox OS, you need to clone the repository and configure your build.">初回 B2G ビルドの準備</a></li>
+   <li><a href="Building_Boot_to_Gecko.html" title="How to build Firefox OS.">Firefox OSのビルド</a></li>
+   <li><a href="../../../Firefox_OS/Porting.html" title="Information about how to port Firefox OS to new devices.">Porting Firefox OS</a></li>
+   <li><a href="Choosing_how_to_run_Gaia_or_B2G.html" title="Using Gaia within Firefox, running Firefox OS on a mobile device, or in a desktop-based simulator. Which is best?">Gaia もしくは B2G の実行方法を選択する</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Using_the_B2G_desktop_client" title="Simulating the Gaia environment in a desktop application - more accurate than running Gaia in Firefox but not as accurate as the emulators.">B2G デスクトップクライアントを使用する</a></li>
+   <li><a href="Using_the_B2G_emulators.html" title="A guide to building and using the Firefox OS emulators, and when to use which emulator.">B2G エミュレータを使用する</a></li>
+   <li><a href="Installing_Boot_to_Gecko_on_a_mobile_device.html" title="How to install Firefox OS on a real mobile device.">B2G をモバイルデバイスにインストールする</a></li>
+   <li><a href="../../../Firefox_OS/Building_and_installing_Firefox_OS/Firefox_OS_update_packages.html">Creating and applying Firefox OS update packages</a></li>
+   <li><a href="../../../Firefox_OS/Runtime_tools.html">Runtime tools</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Developing_Firefox_OS.html" title="Hack the OS, customize your builds, get things the way you think they should be!">Firefox OS の開発</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Quickstart_guide_to_Gaia_development">Quickstart guide to Gaia development</a></li>
+   <li><a href="../../../Firefox_OS/Developing_Firefox_OS/Quickstart_guide_to_B2G_development.html">Quickstart guide to B2G development</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Platform/Gaia/Build_System_Primer">Build system primer</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Firefox_OS_bugwork">Firefox OS bugwork</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Platform/Gaia/Hacking">Hacking Gaia</a></li>
+   <li><a href="../../../Firefox_OS/Platform/Gaia/Gaia_apps.html">Gaia apps guide</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Market_customizations_guide">Market customizations guide</a></li>
+   <li><a href="../../../Firefox_OS/Developing_Firefox_OS/modifying_hosts_file.html" title="A guide to what can be achieved by modifying the Firefox OS hosts file.">Modifying the hosts file</a></li>
+   <li><a href="../../../Firefox_OS/Customization_with_the_.userconfig_file.html" title="How to customize the build and execution of Firefox OS by changing the .userconfig file.">Customization with the .userconfig file</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Customizing_the_keyboard">Customizing the keyboard in Firefox OS apps</a></li>
+   <li><a href="../../../Firefox_OS/Developing_Firefox_OS/Customizing_the_b2g.sh_script.html">Customizing the b2g.sh script</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Developing_Firefox_OS/Localizing_Firefox_OS">Localizing Firefox OS</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Developer_phone_guide.html" title="A developer's guide to the Firefox OS developer phones available.">開発端末ガイド</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Phone_specs.html">Phone and device specs</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Geeksphone.html">Geeksphone</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/ZTE_OPEN.html">ZTE OPEN</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Flame.html">Flame</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Firefox_OS_device_features.html">General device features</a></li>
+   <li><a href="../../../Firefox_OS/トラブルシューティング.html" title="A guide to resolving common problems with Firefox OS.">Troubleshooting</a></li>
+   <li><a href="../../../Firefox_OS/Developer_phone_guide/Best_practices_open_reference_devices.html">Best practices for open reference devices</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Releases.html" title="This section of the site contains release notes, explaining what new features and changes of significance to developers have landed in each new release of Gaia and Gecko on Firefox OS.">Firefox OS リリースノート</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Releases/1.3.html">Firefox OS 1.3 for developers</a></li>
+   <li><a href="../../../Firefox_OS/Releases/1.2.html">Firefox OS 1.2 for developers</a></li>
+   <li><a href="../../../Firefox_OS/Releases/1.1.html">Firefox OS 1.1 for developers</a></li>
+   <li><a href="../../../Firefox_OS/Releases/1.0.1.html">Firefox OS 1.0.1 for developers</a></li>
+  </ol>
+ </li>
+ <li><a href="../../../Firefox_OS/Platform/Testing.html">Testing</a></li>
+ <li><a href="../../../Firefox_OS/Debugging.html" title="A guide to debugging both your mobile apps and Firefox OS itself.">Debugging</a>
+  <ol>
+   <li><a href="../../../Firefox_OS/Debugging/Developer_settings.html">Developer settings for Firefox OS</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Connecting_a_Firefox_OS_device_to_the_desktop.html">Connecting a Firefox OS device to the desktop</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Setting_up.html">Setting up to debug Firefox OS using Firefox developer tools</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/On-device_console_logging.html">On-device console logging</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Installing_ADB.html">Installing and using ADB</a></li>
+   <li><a href="https://developer.mozilla.org/ja/Firefox_OS/Firefox_OS_usage_tips/taking_screenshots">Taking screenshots</a></li>
+   <li><a href="../../../Firefox_OS/Using_the_App_Manager.html" title="A tool that allows you to install open web apps from your computer to a device capable of installing them (such as Firefox OS) - and debug any running app.">Using the Firefox OS app manager</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Debugging_OOMs.html">Debugging out of memory errors on Firefox OS</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Debugging_B2G_using_gdb.html">Debugging B2G using gdb</a></li>
+   <li><a href="../../../Firefox_OS/Debugging/Debugging_B2G_using_valgrind.html">Debugging B2G using Valgrind</a></li>
+  </ol>
+ </li>
+</ol>
+<p> </p>
+    </div>
+  </nav>&nbsp;
+                
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators" selected>
+          日本語
+        </option>
+                  <option value="/en-US/Firefox_OS/Using_the_B2G_emulators">
+            English (US)
+          </option>          <option value="/pt-BR/Firefox_OS/Usande_emuladores_Firefox_OS">
+            Português (do Brasil)
+          </option>          <option value="/zh-TW/Firefox_OS/Using_the_B2G_emulators">
+            正體中文 (繁體)
+          </option>          <option value="/ca/docs/Mozilla/Boot_to_Gecko/Using_the_B2G_emulators">
+            Català
+          </option>          <option value="/zh-CN/Firefox_OS/Using_the_B2G_emulators">
+            中文 (简体)
+          </option>          <option value="/bn-BD/Firefox_OS/Using_the_B2G_emulators">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/fr/Firefox_OS/Using_the_B2G_emulators">
+            Français
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":820}</script></body>
+</html>

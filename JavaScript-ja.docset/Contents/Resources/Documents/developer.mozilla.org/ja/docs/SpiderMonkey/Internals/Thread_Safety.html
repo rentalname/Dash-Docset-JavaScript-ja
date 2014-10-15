@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Thread Safety - SpiderMonkey | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="Thread_Safety.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1324c0a" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1324c0a" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Internals/Thread_Safety$json">
+  <link rel="canonical" href="Thread_Safety.html" >
+
+  
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Thread Safety">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/Internals/Thread_Safety">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/SpiderMonkey/Internals/Thread_Safety">
+  <meta name="twitter:title" content="Thread Safety">
+    <meta property="og:description" content="This page describes implementation details of the SpiderMonkey JavaScript engine. It is mainly of interest to people working on SpiderMonkey itself, but this information is also helpful for anyone embedding SpiderMonkey in a multithreaded environment. See also JS_THREADSAFE .">
+  <meta name="description" content="This page describes implementation details of the SpiderMonkey JavaScript engine. It is mainly of interest to people working on SpiderMonkey itself, but this information is also helpful for anyone embedding SpiderMonkey in a multithreaded environment. See also JS_THREADSAFE .">
+  <meta name="twitter:description" content="This page describes implementation details of the SpiderMonkey JavaScript engine. It is mainly of interest to people working on SpiderMonkey itself, but this information is also helpful for anyone embedding SpiderMonkey in a multithreaded environment. See also JS_THREADSAFE .">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="SpiderMonkey/Internals/Thread_Safety" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1324c0a',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Thread_Safety.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Thread_Safety.html#language">言語の選択</a></li>
+          <li><a href="Thread_Safety.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/SpiderMonkey/Internals/Thread_Safety" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/SpiderMonkey/Internals/Thread_Safety" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                              <li class="smaller">No translations exist for this document.</li>
+              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Internals/Thread_Safety$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/SpiderMonkey/Internals/Thread_Safety$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Thread_Safety.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Mozilla/Projects.html" rel="v:url" property="v:title">Projects</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../SpiderMonkey.html" rel="v:url" property="v:title">SpiderMonkey</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Internals.html" rel="v:url" property="v:title">Internals</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Thread Safety</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Thread_Safety.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Thread Safety</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Thread_Safety.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><li><ol><li><ol><li><a href="Thread_Safety.html#General_background_2" rel="internal">General background</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Thread_Safety.html#Making_GC_thread-safe_2" rel="internal">Making GC thread-safe</a><code></code><code></code><li><a href="Thread_Safety.html#Making_property_accesses_thread-safe_2" rel="internal">Making property accesses thread-safe</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Thread_Safety.html#Patent_2" rel="internal">Patent</a></ol></li></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>This page describes implementation details of the <a href="https://developer.mozilla.org/ja/SpiderMonkey" title="ja/SpiderMonkey">SpiderMonkey</a> JavaScript engine. It is mainly of interest to people working on SpiderMonkey itself, but this information is also helpful for anyone embedding SpiderMonkey in a multithreaded environment. See also <code><a href="https://developer.mozilla.org/ja/JS_THREADSAFE" title="ja/JS_THREADSAFE">JS_THREADSAFE</a></code>.</p>
+<p><span id="General_background"></span></p>
+<h4 id="General_background_2">General background</h4>
+<p>SpiderMonkeyは、最上位の構造体として<code><a href="https://developer.mozilla.org/ja/JS_NewRuntime" title="ja/JS_NewRuntime">JSRuntime</a></code>を利用します。これらの構造体は、メモリの管理とグローバルなデータ構造を扱います。 通常の場合プログラムは、多くのスレッドを利用する場合でも、1つだけ<code>JSRuntime</code>を使います。<code>JSRuntime</code>は、JSオブジェクトが動作する 世界といってもよいでしょう。オブジェクトは、他の<code>JSRuntime</code>に移って動作することはできません。 <span>SpiderMonkey has a top-level struct, &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewRuntime" title="ja/JS_NewRuntime">&lt;/code&gt;, that handles, among other things, memory management and "global" data structures. A program typically has only one &lt;code&gt;JSRuntime&lt;/code&gt;, even if it has many threads. The &lt;code&gt;JSRuntime&lt;/code&gt; is the universe in which JS objects live; they can't travel to other &lt;code&gt;JSRuntime&lt;/code&gt;s.</a></span></p>
+<p>全てのJSコードとほとんどのJSAPIの呼び出しは、<code><a href="https://developer.mozilla.org/ja/JS_NewContext" title="ja/JS_NewContext">JSContext</a></code>の中で動作します。<code>JSContext</code>は、 <code>JSRuntime</code>の子供のようなもので、例えば、例外の処理などは、<code>JSContext</code>ごとに実行されます。 各<code>JSContext</code>は、同時に複数スレッドからアクセスしてはなりません。 <span>All JS code and most JSAPI calls run within a &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_NewContext" title="ja/JS_NewContext">JSContext</a>&lt;/code&gt;. The &lt;code&gt;JSContext&lt;/code&gt; is a child of the &lt;code&gt;JSRuntime&lt;/code&gt;; exception handling, for example, is per-&lt;code&gt;JSContext&lt;/code&gt;. Each &lt;code&gt;JSContext&lt;/code&gt; must be used by only one thread at a time.</span></p>
+<p>オブジェクトは、同じ<code>JSRuntime</code>内の<code>JSContext</code>間で共有できます。コンテキストとオブジェクトの間には、固定的な関係はありません。 <span>Objects may be shared among &lt;code&gt;JSContext&lt;/code&gt;s within a &lt;code&gt;JSRuntime&lt;/code&gt;. There's no fixed association between an object and a context.</span></p>
+<p>SpiderMonkeyにおけるスレッドセーフ機能は、<code>-DJS_THREADSAFE</code>をつけてコンパイルすることで有効になります。<code><a href="https://developer.mozilla.org/ja/JS_THREADSAFE" title="ja/JS_THREADSAFE">JS_THREADSAFE</a></code>を有効にしたビルドでは、次のような操作について特別な処理が行われます。 <span>Thread-safety in SpiderMonkey is turned on by compiling with &lt;code&gt;-DJS_THREADSAFE&lt;/code&gt;. In a &lt;code&gt;<a href="https://developer.mozilla.org/ja/JS_THREADSAFE" title="ja/JS_THREADSAFE">JS_THREADSAFE</a>&lt;/code&gt; build, these operations are handled specially:</span></p>
+<ul> <li><code>JSRuntime</code>のデータ構造にアクセスする場合</li> <li>ガーベジコレクションを行う場合</li> <li>オブジェクトのプロパティにアクセスする場合</li>
+</ul>
+<p><span>* access to &lt;code&gt;JSRuntime&lt;/code&gt; data structures * garbage collection * access to properties of objects</span></p>
+<p><code>JSRuntime</code>のデータ構造へのアクセスは、mutexによってシリアライズされます。 GCとプロパティに関する処理については、もう少し詳しく説明します。 <span>Accesses to &lt;code&gt;JSRuntime&lt;/code&gt; data structures are serialized with a few mutexes. The treatment of GC and properties requires more explanation.</span></p>
+<p><span id="Making_GC_thread-safe"></span></p>
+<h4 id="Making_GC_thread-safe_2">Making GC thread-safe</h4>
+<p><code>JS_THREADSAFE</code>を用いるときは、APIを若干変更します。プログラム中でJSAPIを呼び出すときは、次に示す"request"で くくらなくてはなりません。 <span>With &lt;code&gt;JS_THREADSAFE&lt;/code&gt;, the API changes slightly. The program must group JSAPI calls into "requests":</span></p>
+<pre class="eval">   <a href="https://developer.mozilla.org/ja/JS_SetContextThread" title="ja/JS_SetContextThread">JS_SetContextThread</a>(cx);
+   <a href="https://developer.mozilla.org/ja/JS_BeginRequest" title="ja/JS_BeginRequest">JS_BeginRequest</a>(cx);
+   /* ... do stuff ... */
+   <a href="https://developer.mozilla.org/ja/JS_EndRequest" title="ja/JS_EndRequest">JS_EndRequest</a>(cx);
+   <a href="https://developer.mozilla.org/ja/JS_ClearContextThread" title="ja/JS_ClearContextThread">JS_ClearContextThread</a>(cx);
+</pre>
+<p>複数のスレッドがrequest内で同じ<code>JSRuntime</code>を同時にアクセスできるため、この操作がボトルネックになることはありません。詳細は<a href="https://developer.mozilla.org/ja/JS_BeginRequest" title="ja/JS_BeginRequest">JS_BeginRequest</a>を参照してください。 <span>It isn't a bottleneck; multiple threads are allowed to be in requests on the same &lt;code&gt;JSRuntime&lt;/code&gt; at once. See <a href="https://developer.mozilla.org/ja/JS_BeginRequest" title="ja/JS_BeginRequest">JS_BeginRequest</a>.</span></p>
+<p>requestの最も顕著な効果は、いつでも複数のスレッドがrequestのくくりを実行することができるか、1つのスレッドだけがGCを実行していて他のスレッドが停止させられている 用にすることです。JS_GC()を呼び出しても、他のスレッドが停止させられるまでは、処理がブロックされます。つまり、他のスレッドがJSAPIを呼び出していないか (呼び出していないときには、特に注意する必要がないので)、JSAPIを実行中であってもGCが終了するのを待っているブロックしている状態になるまで、 GCの実行は停止させられます。 <span>The most obvious effect of a request is: at any given moment there can either be multiple threads in active requests, or one thread doing GC and all requests suspended. A call to JS_GC() will block until the latter becomes possible. In other words, GC waits until each other thread is either outside JSAPI (in which case we don't care what it's doing) or else in JSAPI, but blocked, waiting for GC to finish.</span></p>
+<p>requestのくくりの中にいないときには、スレッドは、GCに影響を与えるような処理を行ってはいけません。 当たり前のことですが、requestのくくりの中では、GCが抑止されてしまうので、ブロックしたり、時間のかかる処理を行ってはいけません。 <span>Threads must not do anything that would affect GC while outside a request. And obviously you shouldn't block or otherwise dilly-dally while in a request; it prohibits GC. 最適化のために、スレッドには、スレッドごとの大きさごとに分けられた、割り当て可能なGC用のメモリの集合に関するフリーリストを持っています。 このリストにより、ほとんどの場合ロックせずにメモリを割り当てることができます。スレッドがロックを必要とするのは、スレッドの対応するフリーリストが 空だった場合だけです。このようなことが怒った場合に、ロックして広域のGC割り当てを行い、&lt;code&gt;JSRuntime&lt;/code&gt;から、フリーリストに領域を補充します。 &lt;!--As an optimization, each thread has its own size-classified freelists containing chunks of GC-managed memory ready to be allocated. This allows allocation to avoid locking most of the time (a significant speed win). A thread needs to lock on allocation only when the relevant per-thread freelist is empty. When this happens, the thread also refills that freelist from the &lt;code&gt;JSRuntime&lt;/code&gt;-wide GC allocator while it's in the lock.</span></p>
+<p><span id="Making_property_accesses_thread-safe"></span></p>
+<h4 id="Making_property_accesses_thread-safe_2">Making property accesses thread-safe</h4>
+<p>JSAPIのユーザにとっては、プロパティへのアクセスは全てシリアライズされているように見えます。これから記述する方法は、SpiderMonkeyの内部に関するもので ユーザにとっては見えない、最適化についてです。 <span>To the JSAPI user, all property accesses appear to be serialized. The scheme described below is an optimization, internal to SpiderMonkey and invisible to the user.</span></p>
+<p>SpiderMonkeyの実装では、mutableなオブジェクトは必要に応じて暗黙のうちにロックされます。ロックの手順は、うまく最適化されていて、単なるmutexではありません。 <span>SpiderMonkey implicitly locks mutable objects as needed. The locking protocol is cleverly optimized. It's not a simple mutex.</span></p>
+<p>それぞれの、mutableなオブジェクトは、<code>JSContext</code>が"占有"している(つまり、コンテキストがロックをしなくてもプロパティにアクセスできる) か、<code>JSRuntime</code>内の<code>JSContext</code>で、"共有"しているかのいずれかです。(繰り返しになりますが、JSAPIのユーザにとっては、全てのオブジェクトは 共有されており、この"所有関係"は、ユーザには見えないように最適化されています。) <span>Each mutable object is either "owned" by a &lt;code&gt;JSContext&lt;/code&gt;, meaning that context may access its properties without locking; or "shared" across all &lt;code&gt;JSContext&lt;/code&gt;s in the &lt;code&gt;JSRuntime&lt;/code&gt;. (Again, to the end user, all objects are shared--this "ownership" is a transparent optimization.)</span></p>
+<p>初期状態では、オブジェクトの所有者は、オブジェクトを作った<code>JSContext&lt;/code.です。他の&lt;code&gt;JSContext</code>がオブジェクトにアクセスしようとするまでは、 ロックは全く必要ではありません。他のコンテキストがアクセスしようとした時点で、<code>JSRuntime</code>の広域ロックを取得します。ただ、この時点においても プロパティへの通常のアクセスは、1つのオブジェクト(つまり、プロパティを持っているオブジェクトのこと)のmutable部分に触る必要があるだけです。 従って、デッドロックは問題になりません。* また、スレッドがロックする必要がある場合でも、オブジェクトを所有しているコンテキストが requestのくくりを実行していないのであれば、コストのかかる他のスレッドとのランデブ**を避けることができます。 <span>Initially an object is owned by the &lt;code&gt;JSContext&lt;/code&gt; in which it was created. Locking is never needed until some other &lt;code&gt;JSContext&lt;/code&gt; tries to access the object. At that point, we acquire a &lt;code&gt;JSRuntime&lt;/code&gt;-wide lock. But even then, each ordinary property access only needs to touch mutable parts of one object (the one that has the property), so deadlock isn't an issue.* And even though the calling thread must lock, it can still avoid a costly rendezvous** with another thread, if the context that owns the object is not currently in a request.</span></p>
+<p>I found it helpful to read the code for <code><a class="external" href="http://lxr.mozilla.org/seamonkey/ident?i=OBJ_GET_SLOT">OBJ_GET_SLOT</a></code>, defined in <a class="external" href="http://hg.mozilla.org/mozilla-central/?file/tip/js/src/jsobj.h">jsobj.h</a>, and track down the various things it calls.</p>
+<pre class="eval">   /* Thread-safe functions and wrapper macros for accessing slots in obj. */
+   #define OBJ_GET_SLOT(cx,obj,slot)                                     \
+       (OBJ_CHECK_SLOT(obj, slot),                                       \
+        (OBJ_IS_NATIVE(obj) &amp;&amp; OBJ_SCOPE(obj)-&gt;ownercx == cx)            \
+        ? LOCKED_OBJ_GET_SLOT(obj, slot)                                 \
+        : js_GetSlotThreadSafe(cx, obj, slot))
+</pre>
+<p>Here <code>OBJ_CHECK_SLOT()</code> is just an assertion. <code>LOCKED_OBJ_GET_SLOT()</code> is the fast path; it amounts to an array access. <code>OBJ_SCOPE(obj)-&gt;ownercx</code> is the object's owning context, or <code>NULL</code> if the object is "shared". (An <code>OBJ_SCOPE</code> is just a handy place to stick this field; it is often shared across multiple objects, so all this locking is somewhat higher than object-level.)</p>
+<p>This may appear unsafe, at least in SMP environments where writing a word isn't guaranteed to make the new value immediately visible to other CPUs. Requests save the day again: entering or leaving a request always briefly acquires a lock, which forces a read-write barrier. This barrier is necessary and sufficient to make several of these optimizations safe.</p>
+<p>In short, any <code>JSContext</code> may touch any object, yet not only is locking usually optimized away, the threads don't even have to execute atomic instructions or barrier instructions in the most common path.</p>
+&lt;hr&gt;
+<p>* deadlock isn't an issue: That is, SpiderMonkey doesn't need any special code to detect and avoid potential deadlock when getting or setting an ordinary property, because it can't happen--you're only locking one object at a time. Assigning to <code>__proto__</code> is an example of a special case: SpiderMonkey checks for prototype chain cycles, which means locking the whole chain. So in that case, and maybe others, SpiderMonkey does extra work to avoid deadlock.</p>
+<p>** can still avoid a costly rendezvous: That is, it can avoid "asking" that thread to surrender the object and then waiting for the thread to respond. It just takes the object. See <a class="external" href="http://lxr.mozilla.org/seamonkey/ident?i=ClaimScope">ClaimScope</a> in jslock.c.</p>
+<p><span id="Patent"></span></p>
+<h4 id="Patent_2">Patent</h4>
+<p>The SpiderMonkey request model is patented: <a class=" external" href="http://www.wipo.int/pctdb/en/wo.jsp?wo=2003042845">http://www.wipo.int/pctdb/en/wo.jsp?wo=2003042845</a></p>
+<p>The Mozilla Public License in the SpiderMonkey source code grants a worldwide royalty-free license to this invention.</p>
+
+<p> </p>
+                                                </article>
+
+              
+                <!-- attachments list -->
+                
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../tag/SpiderMonkey.html">SpiderMonkey</a></li><li><a href="../../tag/JavaScript.html">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/Ywata">Ywata</a>, <a href="../../../profiles/fscholz.html">fscholz</a>, <a href="https://developer.mozilla.org/ja/profiles/Norihiro">Norihiro</a>, <a href="../../../profiles/Mgjbot.html">Mgjbot</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/fscholz.html">fscholz</a>,
+                      <time datetime="2010-05-21T17:55:31-07:00">2010/05/21 17:55:31</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                  </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="../../../jsi18n/build-1324c0a.js"></script>
+  
+      <!--[if lte IE 8]><script src="/media/redesign/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1324c0a"></script>
+
+          <script>
+        mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1324c0a"></script>
+      
+    <script type="text/javascript">
+      jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":410}</script></body>
+</html>

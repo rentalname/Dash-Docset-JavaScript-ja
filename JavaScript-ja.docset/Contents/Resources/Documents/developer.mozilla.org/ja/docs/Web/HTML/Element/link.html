@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/HTML/Element/link by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:54:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>link 要素 - HTML | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="link%24json.json">
+  <link rel="canonical" href="link.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link" title="&lt;link&gt;">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/Web/HTML/Element/link" title="link">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/link" title="&lt;link&gt;">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Web/HTML/Elemento/link" title="link">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="link 要素">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/HTML/Element/link">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/HTML/Element/link">
+  <meta name="twitter:title" content="link 要素">
+    <meta property="og:description" content="HTML link 要素 は、現在の文書と外部のリソースとの関係を明示します。考えられる要素として、ナビゲーションのための関係構造の定義があります。この要素は、スタイルシートをリンクするためにもっとも使用されます。">
+  <meta name="description" content="HTML link 要素 は、現在の文書と外部のリソースとの関係を明示します。考えられる要素として、ナビゲーションのための関係構造の定義があります。この要素は、スタイルシートをリンクするためにもっとも使用されます。">
+  <meta name="twitter:description" content="HTML link 要素 は、現在の文書と外部のリソースとの関係を明示します。考えられる要素として、ナビゲーションのための関係構造の定義があります。この要素は、スタイルシートをリンクするためにもっとも使用されます。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/HTML/Element/link" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/HTML/Element/link" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/HTML/Element/link" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link" title="&lt;link&gt;">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/Web/HTML/Element/link" title="link">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/link" title="&lt;link&gt;">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Web/HTML/Elemento/link" title="link">Español</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/HTML/Element/link%24edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="link%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../HTML.html" rel="v:url" property="v:title">HTML</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Element.html" rel="v:url" property="v:title">HTML 要素リファレンス</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">link 要素</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>link 要素</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#Summary" rel="internal">概要</a><code></code><code></code><code></code><code></code><li><a href="#Attributes" rel="internal">属性</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#Examples" rel="internal">例</a><ol><li><a href="#Including_a_stylesheet" rel="internal">スタイルシートのインクルード</a><li><a href="#Providing_alternative_stylesheets" rel="internal">代替スタイルシートの提供</a><li><a href="#Stylesheet_load_events" rel="internal">スタイルシートの load イベント</a><code></code><code></code><code></code></ol></li><li><a href="#Notes" rel="internal">注記</a><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#Specifications" rel="internal">仕様</a><li><a href="#Browser_compatibility" rel="internal">ブラウザ実装状況</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#See_also" rel="internal">関連情報</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <h2 id="Summary" name="Summary">概要</h2>
+<p><strong>HTML <code>&lt;link&gt;</code> 要素</strong>は、現在の文書と外部のリソースとの関係を明示します。考えられる要素として、ナビゲーションのための関係構造の定義があります。この要素は、スタイルシートをリンクするためにもっとも使用されます。</p>
+<ul class="htmlelt">
+ <li><dfn><a href="../Content_categories.html">コンテンツカテゴリ</a></dfn> メタデータコンテンツ。<code><a href="link.html#attr-itemprop">itemprop</a></code> 属性を与えた場合: <a href="../Content_categories.html#Flow_content">フローコンテンツ</a><a href="../Content_categories.html#Phrasing_content">、フレージングコンテンツ</a>。</li>
+ <li><dfn>許可された内容</dfn> なし。これは空要素です。</li>
+ <li><dfn>タグの省略</dfn> 空要素であるため開始タグは必須であり、終了タグは置いてはいけません。</li>
+ <li><dfn>許可された親要素</dfn> メタデータ要素を受け入れるすべての要素。<code><a href="link.html#attr-itemprop">itemprop</a></code> 属性を与えた場合: <a href="../Content_categories.html#Phrasing_content">フレージングコンテンツ</a>を受け入れるすべての要素。</li>
+ <li><dfn>DOM インターフェイス</dfn> <a href="../../API/HTMLLinkElement.html" title="link オブジェクトは、外部リソースの参照情報、また、外部リソースから文書に対しての関係も含む、HTMLLinkElement インタフェースを公開します。このオブジェクトは HTMLElement のすべてのプロパティとメソッドを継承します。"><code>HTMLLinkElement</code></a></li>
+</ul>
+<h2 id="Attributes" name="Attributes">属性</h2>
+<p>他のすべての要素と同様に、この要素は<a href="../Global_attributes.html">グローバル属性</a>を持ちます。</p>
+<dl>
+ <dt>
+  <strong><code><a name="attr-charset">charset</a></code></strong><span title="これは廃止されたAPIであり、今後の動作は保障されていません。ご注意下さい。"><i class="icon-trash"> </i></span></dt>
+ <dd>
+  この属性は、リンク先のリソースの文字エンコーディングを定義します。この値は <a class="external" href="http://tools.ietf.org/html/rfc2045">RFC 2045</a> で定義されている文字セットの、スペースまたはカンマで区切られたリストです。デフォルト値は ISO-8859-1 です。
+  <div class="note">
+   <strong>使用上の注意:</strong> この属性は HTML5 で廃止されており、<strong>ページ作者が使用してはいけません</strong>。この属性と同じ効果を得るには、リンク先のリソースで <code>Content-Type</code>: HTTP ヘッダを使用してください。</div>
+ </dd>
+ <dt>
+  <strong><code><a name="attr-crossorigin">crossorigin</a></code></strong> <span class="inlineIndicator htmlVer htmlVerInline"><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5">HTML5</a></span></dt>
+ <dd>
+  この列挙型の属性は、関連画像を CORS を使用して取得しなければならないか、そうでないかを示します。<a href="https://developer.mozilla.org/ja/docs/CORS_Enabled_Image">CORS が有効な画像</a>は、<em>汚染</em>されることなく <a href="canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> 要素で再利用できます。次の値が使用できます:
+  <dl>
+   <dt>
+    anonymous</dt>
+   <dd>
+    クロスオリジン要求 (<code>Origin:</code> HTTP ヘッダを持つ要求) が実行されます。ただし、信用情報は送信されません (Cookie、X.509 証明書、HTTP ベーシック認証は利用されません)。サーバが元のサイトに信用情報を付与しない場合 (<code>Access-Control-Allow-Origin:</code> HTTP ヘッダの設定なし)、画像が<em>汚染</em>され、その使用も制限されます。</dd>
+   <dt>
+    use-credentials</dt>
+   <dd>
+    クロスオリジン要求 (<code>Origin:</code> HTTP ヘッダを持つ要求) が実行され、信用情報が送信されます (Cookie、証明書、HTTP ベーシック認証が利用されます)。サーバが元のサイトに信用情報を付与しない場合 (<code>Access-Control-Allow-Credentials:</code> HTTP ヘッダに関わらず)、画像が<em>汚染</em>され、その使用も制限されます。</dd>
+  </dl>
+  この属性が提供されない場合、リソースは CORS 要求なしで取得され (<code>Origin:</code> HTTP ヘッダを送信せずに取得)、<a href="canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> 要素での汚染されない使用が妨げられます。これが無効な場合、列挙型のキーワードに <strong>anonymous</strong> が指定されたものとして扱われます。追加の情報は <a href="../CORS_settings_attributes.html">CORS 設定属性</a>を参照してください。</dd>
+ <dt>
+  <strong><code><a name="attr-disabled">disabled</a></code></strong> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  この属性は、リンクの関係を無効化するために使用します。スクリプトと連携して、さまざまなスタイルシートの関係を有効化・無効化するためにこの属性を使用できます。
+  <div class="note">
+   <p><strong>注記:</strong> HTML 標準に <code>disabled</code> 属性は存在しませんが、<code>HTMLLinkElement</code> DOM オブジェクトに <code>disabled</code> 属性が<strong>存在します</strong>。</p>
+   <p>HTML の属性として <code>disabled</code> を使用することは非標準であり、一部のブラウザにしか使用されません。<strong>この属性は使用しないでください。</strong>。同様の効果を得るには、以下の手法のいずれかを使用してください:</p>
+   <ul>
+    <li>ページ上の要素に <code>disabled</code> 属性が直接追加されている場合は、<a href="link.html" title="HTML &lt;link> 要素は、現在の文書と外部のリソースとの関係を明示します。考えられる要素として、ナビゲーションのための関係構造の定義があります。この要素は、スタイルシートをリンクするためにもっとも使用されます。"><code>&lt;link&gt;</code></a> 要素を含めないようにしてください。</li>
+    <li>スクリプトで、<code>StyleSheet</code> DOM オブジェクトの <code>disabled</code> <strong>プロパティ</strong> を設定してください。</li>
+   </ul>
+  </div>
+ </dd>
+ <dt>
+  <strong><code><a name="attr-href">href</a></code></strong></dt>
+ <dd>
+  この属性は、リンクしたリソースの <a class="new" href="https://developer.mozilla.org/ja/docs/URIs_and_URLs">URL</a> を指定します。URL は絶対・相対のどちらでもかまいません。</dd>
+ <dt>
+  <strong><code><a name="attr-hreflang">hreflang</a></code></strong></dt>
+ <dd>
+  この属性は、リンク先のリソースの言語を示します。これは単なる助言です。許容される値は、HTML5 向けは <a class="external" href="http://www.ietf.org/rfc/bcp/bcp47.txt">BCP47</a> で、HTML4 向けは <a class="external" href="http://www.ietf.org/rfc/rfc1766.txt">RFC1766</a> で定めています。この属性は、<code><a href="link.html#attr-href">href</a></code> 属性が提供されている場合にのみ使用します。</dd>
+ <dt>
+  <strong><code><a name="attr-media">media</a></code></strong></dt>
+ <dd>
+  この属性は、リンク先のリソースが適用されるメディアを指定します。この値は<a href="https://developer.mozilla.org/ja/docs/CSS/Media_queries">メディアクエリ</a>でなければなりません。この属性は主に外部のスタイルシートを、実行中のデバイスに最適なものをユーザエージェントが選択できるようにリンクするときに役立ちます。<br>
+  <div class="note">
+   <strong>使用上の注意: </strong>
+   <ul>
+    <li>HTML 4 では、単純なホワイトスペースで区切られたメディアリテラルのリストのみ記述できます。これは<a href="https://developer.mozilla.org/ja/docs/CSS/@media">メディアタイプとグループ</a>で、<code>print</code>、<code>screen</code>、<code>aural</code>、<code>braille</code> などの使用可能な値が定義されています。HTML5 ではこれがあらゆる<a href="https://developer.mozilla.org/ja/docs/CSS/Media_queries">メディアクエリ</a>に拡張され、HTML 4 で使用できる値の上位互換となっています。</li>
+    <li><a href="https://developer.mozilla.org/ja/docs/CSS/Media_queries">CSS3 メディアクエリ</a>をサポートしていないブラウザは、必ずしもリンクを適切に理解するとは限りません。フォールバックリンクを設定することを忘れないでください。制限されたメディアクエリのセットは、HTML 4 で定義されています。</li>
+   </ul>
+  </div>
+ </dd>
+ <dt>
+  <strong><code><a name="attr-methods">methods</a></code></strong> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  この属性の値は、オブジェクト上で動作する関数についての情報を提供します。この値は基本的に HTTP プロトコルが利用されたときに与えられますが、(<strong>title</strong> 属性と同じような理由で) リンク先の情報を前もって含めるときに役立ちます。例えば定義されたメソッドの機能によって、異なるリンクの描画をブラウザが選択します。検索可能なリンクで異なるアイコンを取得したり、外部リンクには現在のサイトから去ることを示す描画にしたりできます。この属性は、定義された Internet Explorer 4 ですら、あまり理解されておらずサポートもされていません。<a class="external" href="http://msdn.microsoft.com/en-us/library/ms534168(VS.85).aspx" rel="external nofollow">Methods プロパティ (MSDN)</a> をご覧ください。</dd>
+ <dt>
+  <strong><code><a name="attr-rel">rel</a></code></strong></dt>
+ <dd>
+  この属性は現在の文書に対する、リンクされた文書の関係を示します。属性値は、空白で区切られた<a class="new" href="../Link_types.html">リンクタイプ値</a>のリストでなければなりません。この属性のもっとも一般的な使用法は、外部スタイルシートへのリンクを明示することです。 <strong>rel</strong> 属性に <code>stylesheet</code> を設定して、<strong>href</strong> 属性にページを整形する外部スタイルシートの URL を設定します。WebTV は一連の文書の次のページをプリロードするために、<strong>rel</strong> で値 <code>next</code> の使用もサポートしています。</dd>
+ <dt>
+  <strong><code><a name="attr-rev">rev</a></code></strong><span title="これは廃止されたAPIであり、今後の動作は保障されていません。ご注意下さい。"><i class="icon-trash"> </i></span></dt>
+ <dd>
+  この属性の値は、<code><a href="link.html#attr-href">href</a></code> 属性で定義したリンク先文書に対する、現在の文書の関係を示します。従って、この属性は <strong>rel</strong> 属性の値と比べたときに逆向きの関係を定義します。この属性向けの<a class="new" href="../Link_types.html">リンクタイプ値</a>は、<code><a href="link.html#attr-rel">rel</a></code> 向けの値と似ています。<br>
+  <div class="note">
+   <strong>使用上の注意:</strong> この属性は HTML5 で廃止されました。<strong>この属性は使用しないでください</strong>。同じ効果を得るには、逆の意味の<a class="new" href="../Link_types.html">リンクタイプ値</a>を与えた <code><a href="link.html#attr-rel">rel</a></code> 属性を使用してください。例えば <code>made</code> は <code>author</code> に置き換えます。また、この属性は<em>リビジョン (<span style="color: green;">revision</span>)</em> を表すものではなくバージョン番号を指定してはいけませんが、残念ながら多くのサイトでそのように使用されています。</div>
+ </dd>
+ <dt>
+  <strong><code><a name="attr-sizes">sizes</a></code></strong> <span class="inlineIndicator htmlVer htmlVerInline"><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5">HTML5</a></span></dt>
+ <dd>
+  この属性は、リソースに含まれる映像メディア向けのアイコンのサイズを定義します。これは、<code><a href="link.html#attr-rel">rel</a></code> が <code>icon</code> <a class="new" href="../Link_types.html">リンクタイプ値</a>である場合にのみ与えなければなりません。以下の値を指定できます:
+  <ul>
+   <li><code>any</code>: <code>image/svg+xml</code> のようなベクトル画像であるため、どのようなサイズにも調整可能であることを示します。</li>
+   <li>ホワイトスペースで区切られたサイズのリスト。サイズはそれぞれ <span style="font-family: Courier New;"><em>&lt;幅のピクセル値&gt;</em>x<em>&lt;高さのピクセル値&gt;</em></span> または <span style="font-family: Courier New;"><em>&lt;幅のピクセル値&gt;</em>X<em>&lt;高さのピクセル値&gt;</em></span> という形式です。それぞれのサイズがリソースに含まれていることが必要です。</li>
+  </ul>
+  <div class="note">
+   <strong>使用上の注意: </strong>
+   <ul>
+    <li>ほとんどのアイコン形式は 1 個のアイコンのみ保存可能です。よってほとんどの場合、<code><a href="https://developer.mozilla.org/jadocs/Web/HTML/Global_attributes#attr-sizes">sizes</a></code> はエントリが 1 個だけになります。主要なブラウザの中では Apple の ICNS 形式のみが複数のアイコンを収容でき、また WebKit だけがこの形式をサポートします。</li>
+    <li>Apple の iOS はこの属性をサポートしていないため、Apple の iPhone および iPad は Web Clip やスタートアッププレースホルダとして使用するアイコンを定義するための、特殊な非標準の<a class="new" href="../Link_types.html">リンクタイプ値</a>を使用します。それは <code>apple-touch-icon</code> および <code>apple-touch-startup-icon</code> です。</li>
+   </ul>
+  </div>
+ </dd>
+ <dt>
+  <strong><code><a name="attr-target">target</a></code></strong><span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  定義されたリンク関係を持つ、またはリンクしたリソースを表示するフレームまたはウィンドウの名前を定義します。</dd>
+ <dt>
+  <strong><code><a name="attr-type">type</a></code></strong></dt>
+ <dd>
+  この属性は、リンク先コンテンツの種類を定義します。この属性の値は <strong>text/html</strong> や <strong>text/css</strong> などの MIME type にします。この属性の一般的な使用法はリンクしたスタイルシートの種類の定義であり、現在もっとも一般的な値は <strong>text/css</strong> です。これはカスケーディングスタイルシート形式を示します。</dd>
+</dl>
+<h2 id="Examples" name="Examples">例</h2>
+<h3 id="Including_a_stylesheet" name="Including_a_stylesheet">スタイルシートのインクルード</h3>
+<p>ページにスタイルシートをインクルードするには、以下の構文を使用します:</p>
+<pre class="brush: html">&lt;link href="style.css" rel="stylesheet" type="text/css" media="all"&gt;
+</pre>
+<h3 id="Providing_alternative_stylesheets" name="Providing_alternative_stylesheets">代替スタイルシートの提供</h3>
+<p><a href="../../CSS/Alternative_style_sheets.html">代替スタイルシート</a>も提示できます。</p>
+<p>ユーザはメニューの 表示 &gt; スタイルシート で、使用するスタイルシートを選択できます。これは、ユーザがページをさまざまなバージョンで閲覧する手段を提供します。</p>
+<pre class="brush: html">&lt;link href="default.css" rel="stylesheet" type="text/css" title="Default Style"&gt;
+&lt;link href="fancy.css" rel="alternate stylesheet" type="text/css" title="Fancy"&gt;
+&lt;link href="basic.css" rel="alternate stylesheet" type="text/css" title="Basic"&gt;
+</pre>
+<h3 id="Stylesheet_load_events" name="Stylesheet_load_events">スタイルシートの load イベント</h3>
+<p><code>load</code> イベントの発生を確認することで、スタイルシートが読み込まれた時を判断できます。同様に <code>error</code> イベントを確認することで、スタイルシートを処理する際のエラー発生を検出できます:</p>
+<pre class="brush: html">&lt;script&gt;
+function sheetLoaded() {
+  // Do something interesting; the sheet has been loaded
+}
+
+function sheetError() {
+  alert("An error occurred loading the stylesheet!");
+}
+&lt;/script&gt;
+
+&lt;link rel="stylesheet" href="mystylesheet.css" type="text/css" onload="sheetLoaded()" onerror="sheetError()"&gt;
+</pre>
+<div class="note">
+ <strong>注記:</strong> <code>load</code> イベントはスタイルシートとスタイルシートがインポートするすべてのコンテンツの読み込みと解析が行われた後、スタイルシートがコンテンツに適用される直前に発生します。</div>
+<h2 id="Notes" name="Notes">注記</h2>
+<ul>
+ <li><code>&lt;link&gt;</code> タグは head 要素内にのみ置けます。ただし、<code>&lt;link&gt;</code> は複数置くことができます。</li>
+ <li>HTML 3.2 では link 要素の属性として <strong>href</strong>、<strong>rel</strong>、<strong>rev</strong>、<strong>title</strong> のみ定義しています。</li>
+ <li>HTML 2 では <code>&lt;link&gt;</code> 要素の属性として <strong>href</strong>、<strong>methods</strong>、<strong>rel</strong>、<strong>rev</strong>、<strong>title</strong>、<strong>urn</strong> のみ定義しています。<strong>methods</strong> 属性および <strong>urn</strong> 属性は、後に仕様から削除されました。</li>
+ <li>HTML および XHTML の仕様では <code>&lt;link&gt;</code> 要素向けのイベントハンドラを定義していますが、それらがどのように使用されるかは不明確です。</li>
+ <li>XHTML 1.0 では <code>&lt;link&gt;</code> のような空要素で、末尾のスラッシュが必要です: <code>&lt;link /&gt;</code></li>
+</ul>
+<h2 id="Specifications" name="Specifications">仕様</h2>
+<table class="standard-table">
+ <thead>
+  <tr>
+   <th scope="col">仕様書</th>
+   <th scope="col">策定状況</th>
+   <th scope="col">コメント</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/semantics.html#the-link-element" lang="en" title="The definition of '&lt;link>' in that specification.">WHATWG HTML Living Standard</a></td>
+   <td><span class="spec-Living">Living Standard</span></td>
+   <td> </td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.w3.org/TR/html5/document-metadata.html#the-link-element" lang="en" title="The definition of '&lt;link>' in that specification.">HTML5</a></td>
+   <td><span class="spec-CR">勧告候補</span></td>
+   <td> </td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.w3.org/TR/html401/struct/links.html#h-12.3" lang="en" title="The definition of '&lt;link>' in that specification.">HTML 4.01 Specification</a></td>
+   <td><span class="spec-REC">勧告</span></td>
+   <td> </td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Browser_compatibility" name="Browser_compatibility">ブラウザ実装状況</h2>
+<div>
+ <div class="htab"> 
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a> 
+    <ul> 
+        <li class="selected"><a>デスクトップ</a></li> 
+        <li><a>モバイル</a></li> 
+    </ul> 
+</div></div>
+<div id="compat-desktop">
+ <table class="compat-table">
+  <tbody>
+   <tr>
+    <th>機能</th>
+    <th>Chrome</th>
+    <th>Firefox (Gecko)</th>
+    <th>Internet Explorer</th>
+    <th>Opera</th>
+    <th>Safari</th>
+   </tr>
+   <tr>
+    <td>基本サポート</td>
+    <td>1.0</td>
+    <td>1.0 (1.7 or earlier)</td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+   </tr>
+   <tr>
+    <td>代替スタイルシート</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/3" title="Released on 2008-06-17.">3.0</a> (1.9)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>disabled</code> 属性 <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+   </tr>
+   <tr>
+    <td><code>methods</code> 属性 <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td>4.0</td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+   </tr>
+   <tr>
+    <td><code>sizes</code> 属性</td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span> <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=441770" title="Add 'sizes' getter/setter to link elements">バグ 441770</a></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+   </tr>
+   <tr>
+    <td><code>load</code> および <code>error</code> イベント</td>
+    <td>19 (Webkit: 535.23)<br>
+     (<a class="external" href="https://bugs.webkit.org/show_bug.cgi?id=38995" rel="external" title="">WebKit bug 38995</a>)</td>
+    <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/9" title="Released on 2011-12-20.">9.0</a> (9.0)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>11.60</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>crossorigin</code> 属性</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/18" title="Released on 2013-01-08.">18.0</a> (18.0)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<div id="compat-mobile">
+ <table class="compat-table">
+  <tbody>
+   <tr>
+    <th>機能</th>
+    <th>Android</th>
+    <th>Firefox Mobile (Gecko)</th>
+    <th>IE Mobile</th>
+    <th>Opera Mobile</th>
+    <th>Safari Mobile</th>
+   </tr>
+   <tr>
+    <td>基本サポート</td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td>1.0 (1.0)</td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+   </tr>
+   <tr>
+    <td>代替スタイルシート</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>4.0 (2.0)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>disabled</code> 属性 <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+   </tr>
+   <tr>
+    <td><code>methods</code> 属性 <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td>4.0</td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+   </tr>
+   <tr>
+    <td><code>sizes</code> 属性</td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span> <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=441770" title="Add 'sizes' getter/setter to link elements">バグ 441770</a></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+    <td><span style="color: #f00;">未サポート</span></td>
+   </tr>
+   <tr>
+    <td><code>load</code> および <code>error</code> イベント</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>9.0 (9.0)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+   <tr>
+    <td><code>crossorigin</code></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td>18.0 (18.0)</td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+    <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h2 id="See_also" name="See_also">関連情報</h2>
+<ul>
+ <li><a class="external" href="http://pieisgood.org/test/script-link-events/">Ryan Grove's &lt;script&gt; and &lt;link&gt; node event compatibility chart</a></li>
+</ul>
+<div>
+ <section class="Quick_links" id="Quick_Links"><!-- --></section></div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/HTML document metadata">HTML document metadata</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Élément">Élément</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Element">Element</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Reference">Reference</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Référence">Référence</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Web">Web</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/HTML">HTML</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/yyss">yyss</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/yyss">yyss</a>,
+                      <time datetime="2014-01-13T08:20:35-08:00">2014/01/13 8:20:35</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+  <ol> 
+    
+            <li><a href="link%20%e8%a6%81%e7%b4%a0.html" title="This article hasn't been written yet. Please consider contributing!">link 要素</a></li> 
+   
+            <li><a href="meta%20%e8%a6%81%e7%b4%a0.html" title="This article hasn't been written yet. Please consider contributing!">meta 要素</a></li> 
+   
+   <li><a href="../../HTML.html">HTML Elements</a><ol> 
+   <li>A 
+ <ol> 
+  <li><a href="a.html" title="HTML &lt;a> 要素 (または HTML アンカー要素) は、ハイパーリンク、ハイパーリンクからジャンプする名前付きターゲット、またはその両方を定義します。"><code>&lt;a&gt;</code></a></li> 
+  <li><a href="abbr.html" title="HTML の &lt;abbr> 要素 (または HTML 略語要素) は、略語と、また任意でその略語の完全な説明を提供します。略語の説明は title 属性にすべて含める必要があります。"><code>&lt;abbr&gt;</code></a></li> 
+  <li><s class="obsoleteElement"><a href="acronym.html" title="HTML の acronym 要素 (&lt;acronym>) は、頭字語または省略形の単語を構成する文字のシーケンスを明示することができます。"><code>&lt;acronym&gt;</code></a></s></li> 
+  <li><a href="address.html" title="HTML &lt;address> 要素は、祖先要素の内、直近の &lt;article> 要素か &lt;body> 要素の著作者の連絡先情報を表します。後者の場合は、ドキュメント全体に適用します。"><code>&lt;address&gt;</code></a></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="applet.html" title="HTML applet 要素 (&lt;applet>) は、Java アプレットの包含を示します。"><code>&lt;applet&gt;</code></a></s></li> 
+  <li><a href="area.html" title="HTML &lt;area> 要素は画像のホットスポット領域の定義、また任意で領域とハイパーテキストリンクの関連づけを行います。この要素は &lt;map> 要素内だけで使用します。"><code>&lt;area&gt;</code></a></li> 
+  <li class="html5"><a href="article.html" title="HTML &lt;article> 要素はドキュメント、ページ、アプリケーション、あるいはサイトの中で自己完結した構成物を表します。これは、例えば通信社によって独立して配信や再利用が可能であることを意図します。これはフォーラムへの投稿、雑誌や新聞の記事、ブログのエントリ、ユーザが投稿したコメント、インタラクティブなウィジェットやガジェット、その他のコンテンツで独立したアイテムが考えられるでしょう。"><code>&lt;article&gt;</code></a></li> 
+  <li class="html5"><a href="aside.html" title="aside 要素（&lt;aside>）は、メインコンテンツとの関連性が希薄でメインコンテンツから切り離す事が可能なセクションを表します。いわゆる「サイドバー」や、メインの記事内のコラムの部分に頻繁に用いられます。用語の説明、広告（コンテンツ・マッチング広告の様な主文に僅かな関連性を持つ広告であれば article 要素等の子要素として配置する）、著作者に関する情報、ウェブアプリケーションに於けるユーザ情報、ブログロール等に用います。"><code>&lt;aside&gt;</code></a></li> 
+  <li class="html5"><a href="audio.html" title="HTML &lt;audio> 要素は、ドキュメント内で音声コンテンツを表します。audio 要素は HTML5 の一部として導入され、複数の音声ソースを含むことができます。音声ソースは &lt;source> 要素の src 属性を使用して表し、ブラウザはもっとも適切なソースを選択します。また、&lt;audio> 要素をサポートしないブラウザ向けのコンテンツも追加できます。"><code>&lt;audio&gt;</code></a></li> 
+ </ol> 
+ </li><li>B 
+ <ol> 
+  <li><a href="b.html" title="HTML の b 要素 ( &lt;b> ) は、特別な重要性や関連性を伴わないで通常と文体の異なるテキストの範囲を表します。一般的に、要約中のキーワード、レビュー文内での製品名などの部分。または、その他の表記上太字で記述される通例のある箇所などに用います。記事の各段落のリード文をマークする場合にも適しています。"><code>&lt;b&gt;</code></a></li> 
+  <li><a href="base.html" title="HTML Base 要素 (&lt;base>) は、ドキュメント内に含まれるすべての相対 URL の基点となる URL を指定します。"><code>&lt;base&gt;</code></a></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="basefont.html" title="HTML の basefont 要素 (&lt;basefont>) は、文書の基本のフォントサイズを設定します。これを基準としたフォントサイズを &lt;font> 要素で指定します。"><code>&lt;basefont&gt;</code></a></s></li> 
+  <li class="html5"><a href="bdi.html" title="HTML の双方向アイソレート要素(&lt;bdi>) は、他部位とは異なる書字方向で書式設定するテキストの範囲を表します。"><code>&lt;bdi&gt;</code></a></li> 
+  <li><a href="bdo.html" title="HTML の Bidirectional Override 要素（&lt;bdo>）は、テキストの書字方向規則を部分的に上書きします。例えば ltr の書字方向規則を持つ英語や日本語の文中に rtl の書字方向規則を持つアラビア語等のテキストを挿入する際に用いる事が出来ます。"><code>&lt;bdo&gt;</code></a></li> 
+  <li><s class="nonStdElement"><a href="bgsound.html" title="Background Sound 要素（）は Internet Explorer に実装されている、バックグラウンド音声を実現する為の要素です。"><code>&lt;bgsound&gt;</code></a></s></li> 
+  <li><s class="obsoleteElement"><a href="big.html" title="big 要素（&lt;big>) 内包するテキストの font size をブラウザの最大フォントサイズを限度に一段階大きくします（※small から medium、large から x-large）"><code>&lt;big&gt;</code></a></s></li> 
+  <li><s class="nonStdElement"><a href="blink.html" title="Blink 要素(&lt;blink>) は Netscape Navigator 2.0 に独自に実装された、テキストを点滅させる為の要素です。その後、他のブラウザにも実装され、後に標準仕様で非推奨要素と定められました。"><code>&lt;blink&gt;</code></a></s></li> 
+  <li><a href="blockquote.html" title="ブロック引用要素 (&lt;blockquote>) は、内包する要素のテキストが引用文である事を示します。通常、字下げを伴ってレンダリングされます（成形方法については「注意」の項を参照して下さい）。cite 属性により引用元の文書の URI を、&lt;cite> 要素により引用元の文書のタイトルなどを明示可能です。"><code>&lt;blockquote&gt;</code></a></li> 
+  <li><a href="body.html" title="body 要素 (&lt;body>) は、HTML 及び html 文書のコンテンツを示す要素です。&lt;body> 要素は文書中に一つだけ配置できます。"><code>&lt;body&gt;</code></a></li> 
+  <li><a href="br.html" title="HTML のbr 要素 (&lt;br>) は、文中に改行（キャリッジ・リターン）を生成します。これは、詩や散文、住所など、（段落として以外の）行の分割が重要な文章を記述するのに便利な要素です。"><code>&lt;br&gt;</code></a></li> 
+  <li><a href="button.html" title="HTML の button 要素（&lt;button>）は、クリック可能なボタンを表します。"><code>&lt;button&gt;</code></a></li> 
+ </ol> 
+ </li><li>C 
+ <ol> 
+  <li class="html5"><a href="canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a></li> 
+  <li><a href="caption.html" title="HTML の Table Caption 要素（&lt;caption>）は、テーブルのタイトルを表します。対象とする &lt;table> 要素の最初の子要素としてのみ配置可能であり、しかしながらその視覚上の位置については、CSS を用いて table 要素の位置を基準とする相対的な位置に配置する事が可能です。"><code>&lt;caption&gt;</code></a></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="center.html" title="HTML のセンター要素 （&lt;center>）はブロックレベルの要素で段落や他のブロックレベルの要素やインライン要素を含むことができます。含んでいる要素の中の全体のコンテンツを水平方向にセンタリングします 。このタグは HTML 4 （及び XHTML）で非推奨要素に指定され、HTML5 で完全に廃止されています。代替として CSS の text-align プロパティを用い、この属性値に centerを指定する事で同じ表現を実現可能です（※その際、対象とする要素のスタイルは display: block 等になっていなくてはなりません。インライン要素はテキストの中央寄せは出来ません）"><code>&lt;center&gt;</code></a></s></li> 
+  <li><a href="cite.html" title="cite (Citation) 要素（&lt;cite>）は、書籍、楽曲、映画、TV番組、絵画、彫刻のような、作品のタイトルを示します。"><code>&lt;cite&gt;</code></a></li> 
+  <li><a href="code.html" title="コード 要素（&lt;code>）はコンピューター・コードの断片を表します。殆どのブラウザーのデフォルト・スタイルは、これを等幅フォントで描画するように指定されています。"><code>&lt;code&gt;</code></a></li> 
+  <li><a href="col.html" title="HTML の &lt;col> 要素 (または HTML Table Column 要素) はテーブル内の列を定義して、すべての一般セルに共通の意味を定義するために使用します。この要素は通常、&lt;colgroup> 内にみられます。"><code>&lt;col&gt;</code></a></li> 
+  <li><a href="colgroup.html" title="HTML &lt;colgroup> 要素 (または HTML Table Column Group 要素) は、テーブル内の列のグループを定義します。"><code>&lt;colgroup&gt;</code></a></li> 
+  <li class="webcomp"><a href="content.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;content&gt;</code></a></li> 
+ </ol> 
+ </li><li>D 
+ <ol> 
+  <li class="html5"><a href="data.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;data&gt;</code></a></li> 
+  <li class="html5"><a href="datalist.html" title="HTML の Datalist 要素（&lt;datalist>）は、ユーザーに入力候補の選択肢を提供します。その候補となる値を持つ &lt;option> 要素のセットをその子要素として内包します。"><code>&lt;datalist&gt;</code></a></li> 
+  <li><a href="dd.html" title="HTML の 定義説明要素 (&lt;dd>) は、定義リスト要素（&lt;dl>）に於ける、定義語の説明部分を表します。この要素は定義リストの子要素としてのみ配置可能であり、また、&lt;dt> に後続する必要があります。"><code>&lt;dd&gt;</code></a></li> 
+  <li class="webcomp"><a href="decorator.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;decorator&gt;</code></a></li> 
+  <li><a href="del.html" title="del 要素（&lt;del>）は、文書から削除されたテキストの範囲を表します。一般的にこの要素は打ち消し線のスタイルを伴って描画されます。"><code>&lt;del&gt;</code></a></li> 
+  <li class="html5"><a href="details.html" title="HTML の詳細 要素 (&lt;details>) は、ユーザに追加の詳細情報を提供する「ディスクロージャー・ウィジェット」を表します。"><code>&lt;details&gt;</code></a></li> 
+  <li><a href="dfn.html" title="HTML の dfn 要素（&lt;dfn>）は、内包する語句の意味合いを定義し、同時に自身が定義語で有る事を表します。"><code>&lt;dfn&gt;</code></a></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="https://developer.mozilla.org/ja/docs/HTML/Element/dir" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;dir&gt;</code></a></s></li> 
+  <li><a href="div.html" title="HTML の &lt;div> 要素 (HTML Document Division Element) は、何か特定のセマンティクスを表すものではない、フローコンテンツの為の汎用コンテナです。CSS によるスタイリングの用途等で、要素のグループ化が必要な場合に用います。多くの場合、 class 属性か id 属性、lang 属性等と共に使われます。セマンティクス上で(&lt;article> 、&lt;nav>) など他に適切な要素がある場合はそちらを使用して下さい。"><code>&lt;div&gt;</code></a></li> 
+  <li><a href="dl.html" title="HTML の 説明リスト要素（&lt;dl>）は、用語とその説明のセットのリストを表します。 一般的な使用例として、用語集の作成やメタデータ (キーと値のペアのリスト) の表示が挙げられます。"><code>&lt;dl&gt;</code></a></li> 
+  <li><a href="dt.html" title="HTML の 定義語要素 (Definition Term Element) (&lt;dt>) は、定義リスト中の用語を表す部分です。この要素は、&lt;dl> の子要素としてのみ用いる事が出来ます。後続する &lt;dd> 要素により、先行する &lt;dt> の用語を定義します。複数の &lt;dt> 要素を続けて配置し、後続する &lt;dd> 要素でまとめてそれらを定義する事も可能です。"><code>&lt;dt&gt;</code></a></li> 
+ </ol> 
+ </li><li>E 
+ <ol> 
+  <li><a href="em.html" title="HTML の強調要素（&lt;em>）は、強調されたテキストを示します。 &lt;em> 要素は入れ子にすることができ、入れ子の段階に応じてより強い程度の強調を表すことができます。"><code>&lt;em&gt;</code></a></li> 
+  <li class="html5"><a href="embed.html" title="HTML &lt;embed> 要素は、外部のアプリケーションやインタラクティブコンテンツ (言い換えると、プラグイン) との統合箇所を表します。"><code>&lt;embed&gt;</code></a></li> 
+ </ol> 
+ </li><li>F 
+ <ol> 
+  <li><a href="fieldset.html" title="fieldset 要素（&lt;fieldset>）は label 要素（&lt;label>）の様な役割に加え、フォーム内部品のグループ化の働きをします。"><code>&lt;fieldset&gt;</code></a></li> 
+  <li class="html5"><a href="figcaption.html" title="figcaption 要素（&lt;figcaption>) は、親要素となる &lt;figure> 要素の中の自身以外のコンテンツのキャプションや説明を表します。 &lt;figcaption> は &lt;figure> 要素内の先頭、或いは末尾に入れることが出来ます。 &lt;figure> 要素に於いて、figcaption 要素は必須という訳ではありません。figcaption 要素が省略された場合は、親の &lt;figure> 要素はキャプションを持たないものと見做されます。"><code>&lt;figcaption&gt;</code></a></li> 
+  <li class="html5"><a href="figure.html" title="figure 要素（&lt;figure>）は図表などの自己完結型のコンテンツを表す要素です。多くの場合、キャプション（&lt;figcaption>）を伴って使用され、単独のユニットとして参照されます。メインのフローに関連しつつも、メインのフローとは無関係な位置に配置する事が可能です。この要素は通常、「主なテキストの中から参考文献として参照されるが、メインのフローに影響を与える事無く別ページまたは付録に移動することが可能な画像、実例、図表、コード断片あるいは図表など」に対し用います。"><code>&lt;figure&gt;</code></a></li> 
+  <li><s class="deprecatedElement obsoleteElement"><a href="font.html" title="Font 要素（&lt;font>）はその内包するテキストの、フォントサイズ、文字色、使用フォントを定義します。"><code>&lt;font&gt;</code></a></s></li> 
+  <li class="html5"><a href="footer.html" title="Footer 要素（&lt;footer>）は自身の祖先要素の内で直近のセクショニングコンテンツかセクショニングルート要素（つまり &lt;article>、 &lt;aside>、 &lt;nav>、 &lt;section>、 &lt;blockquote>、 &lt;body>、 &lt;details>、 &lt;fieldset>、 &lt;figure>、 &lt;td> の中で最も近い親要素）のフッターを表します。「フッター」には通常、そのセクションの著作者に関する情報、関連ドキュメントへのリンク、著作権情報等を含めます。"><code>&lt;footer&gt;</code></a></li> 
+  <li><a href="form.html" title="HTML の form要素 (&lt;form>) は、ユーザが Web サーバーに情報を送信できるようにするインタラクティブなコントロールを含むドキュメントセクションを表します。"><code>&lt;form&gt;</code></a></li> 
+  <li><s class="obsoleteElement"><a href="frame.html" title="&lt;frame> は、別の HTML ドキュメントを表示できる個々の領域を定義する HTML 要素です。frame 要素は &lt;frameset> の内部で使用します。"><code>&lt;frame&gt;</code></a></s></li> 
+  <li><s class="obsoleteElement"><a href="frameset.html" title="&lt;frameset> は、&lt;frame> 要素を包含するために使用する HTML 要素です。"><code>&lt;frameset&gt;</code></a></s></li> 
+ </ol> 
+ </li><li>G H 
+ <ol> 
+  <li><a href="h1.html" title="見出し要素は文書中の見出しを示す為の要素です。&lt;h1> を最上位とし &lt;h​6> を最も低いレベルとする 6 段階 のレベルで実装されています。見出し要素にはセクションで紹介されるトピックを簡潔に記述します。ユーザーエージェントの中には、文書中の見出し要素の記述を解析し、自動的に文書の目次を生成するものもあります。"><code>&lt;h1&gt;</code></a></li> 
+  <li><a href="h2.html" title="見出し要素は文書中の見出しを示す為の要素です。&lt;h1> を最上位とし &lt;h​6> を最も低いレベルとする 6 段階 のレベルで実装されています。見出し要素にはセクションで紹介されるトピックを簡潔に記述します。ユーザーエージェントの中には、文書中の見出し要素の記述を解析し、自動的に文書の目次を生成するものもあります。"><code>&lt;h2&gt;</code></a></li> 
+  <li><a href="h3.html" title="見出し要素は文書中の見出しを示す為の要素です。&lt;h1> を最上位とし &lt;h​6> を最も低いレベルとする 6 段階 のレベルで実装されています。見出し要素にはセクションで紹介されるトピックを簡潔に記述します。ユーザーエージェントの中には、文書中の見出し要素の記述を解析し、自動的に文書の目次を生成するものもあります。"><code>&lt;h3&gt;</code></a></li> 
+  <li><a href="h4.html" title="見出し要素は文書中の見出しを示す為の要素です。&lt;h1> を最上位とし &lt;h​6> を最も低いレベルとする 6 段階 のレベルで実装されています。見出し要素にはセクションで紹介されるトピックを簡潔に記述します。ユーザーエージェントの中には、文書中の見出し要素の記述を解析し、自動的に文書の目次を生成するものもあります。"><code>&lt;h4&gt;</code></a></li> 
+  <li><a href="h5.html" title="見出し要素は文書中の見出しを示す為の要素です。&lt;h1> を最上位とし &lt;h​6> を最も低いレベルとする 6 段階 のレベルで実装されています。見出し要素にはセクションで紹介されるトピックを簡潔に記述します。ユーザーエージェントの中には、文書中の見出し要素の記述を解析し、自動的に文書の目次を生成するものもあります。"><code>&lt;h5&gt;</code></a></li> 
+  <li><a href="h6.html" title="見出し要素は文書中の見出しを示す為の要素です。&lt;h1> を最上位とし &lt;h​6> を最も低いレベルとする 6 段階 のレベルで実装されています。見出し要素にはセクションで紹介されるトピックを簡潔に記述します。ユーザーエージェントの中には、文書中の見出し要素の記述を解析し、自動的に文書の目次を生成するものもあります。"><code>&lt;h6&gt;</code></a></li> 
+  <li><a href="head.html" title="&lt;head> 要素は HTML 文書のメタデータ群を内包する要素です。他の要素を用いて記述された、文書のタイトルや概要、前後のページ等へのリンク、スクリプトやスタイルシートの定義などを内包する事が可能です。"><code>&lt;head&gt;</code></a></li> 
+  <li class="html5"><a href="header.html" title="header 要素（&lt;header>）は、イントロダクション、ナビゲーション等のグループを表します。ひとつまたは複数の見出し以外に、ロゴ、セクションのヘッダー部分、検索フォームなども含める事ができます。"><code>&lt;header&gt;</code></a></li> 
+  <li class="html5"><s class="deprecatedElement obsoleteElement"><a href="hgroup.html" title="HTML &lt;hgroup> 要素 (HTML Headings Group 要素) は、セクションのヘッダを表します。これはドキュメントのアウトラインに関する 1 つのタイトルを、それが属する暗黙的または明示的なセクションのヘッダとして定義します。"><code>&lt;hgroup&gt;</code></a></s></li> 
+  <li><a href="hr.html" title="HTML5 の hr 要素 (horizontal rule element / &lt;hr>) は、段落間のテーマ（例えば物語の中でのシーンの変化や、話題の転換など）の意味的な区切りを表します。過去のバージョンの HTML では区切り線として定義されており、また現行のブラウザーもこれを踏襲したデフォルト・スタイルを持っています。しかし、視覚的な区切り線としてではなく、あくまで意味的な用途としての使用が推奨されます。"><code>&lt;hr&gt;</code></a></li> 
+  <li><a href="html.html" title="HTML ルート要素（&lt;html>）は HTML や XHTML に於いて、その文書のルート（基点）となる要素です。他の全ての要素は、この要素の子孫として配置しなければなりません。"><code>&lt;html&gt;</code></a></li> 
+ </ol> 
+ </li><li>I 
+ <ol> 
+  <li><a href="i.html" title="オフセットテキスト（或いはイタリック）要素（&lt;i>）は、技術用語、外国語のフレーズ、または架空の人物の思考など、何らかの理由で他のテキストと離して配置して区別されるテキストの範囲を表します。英文においては通常斜体で表示される事の多い部分であり、殆どの場合、ブラウザはこの要素に対しイタリック体のデフォルトスタイルを指定しています。"><code>&lt;i&gt;</code></a></li> 
+  <li><a href="iframe.html" title="HTML の &lt;iframe> 要素 (またはHTML インラインフレーム要素) は、ブラウジングコンテキスト (browsing context) の入れ子を表現し、事実上現在のページに他の HTML ページを埋め込むことができます。HTML 4.01 では、文書は head および body、または head および frame-set を持つことができ、body と frame-set の両方は持ちません。しかし、&lt;iframe> は通常の文書 body 内で使用できます。ブラウジングコンテキストはそれぞれ、セッション履歴とアクティブな文書を持ちます。埋め込みコンテンツを含む側のブラウジングコンテキストを、親ブラウジングコンテキストと呼びます。トップレベルのブラウジングコンテキスト（親を持ちません）は通常ブラウザウィンドウです。"><code>&lt;iframe&gt;</code></a></li> 
+  <li><a href="img.html" title="HTML 画像要素 (&lt;img>) は、ドキュメントに画像を表示します。"><code>&lt;img&gt;</code></a></li> 
+  <li><a href="input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a></li> 
+  <li><a href="ins.html" title="HTML の ins 要素（&lt;ins>）は文書に追加されたテキストの範囲を示します。"><code>&lt;ins&gt;</code></a></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="isindex.html" title="&lt;isindex> は、ドキュメントに問い合わせを行うためのテキストフィールドを、ドキュメントに追加するための HTML 要素です。W3C は &lt;isindex> を &lt;head> 要素内で使用するものとしましたが、ブラウザはドキュメント内のどこででも使用するものとしてサポートしました。"><code>&lt;isindex&gt;</code></a></s></li> 
+ </ol> 
+ </li><li>J K 
+ <ol> 
+  <li><a href="kbd.html" title="キーボードインプット要素（&lt;kbd>）はコンピューターへのユーザーの入力コードを表します。要素名はキーボードの略語ですが、音声入力や手書き入力などの他の入力方法も含みます。多くのデフォルトスタイルは、等幅フォントのインラインで表示するものとなっています。"><code>&lt;kbd&gt;</code></a></li> 
+  <li class="html5"><a href="keygen.html" title="HTML keygen 要素は、鍵の材料の生成を容易にするため、および HTML フォームの一部として公開鍵を送信するための要素です。この仕組みは、Web ベースの証明書管理システムと合わせて使用するものとして設計されています。証明書の要求に必要な他の情報を伴う HTML フォームで keygen 要素を使用して、その処理結果が署名済み証明書になることを想定しています。"><code>&lt;keygen&gt;</code></a></li> 
+ </ol> 
+ </li><li>L 
+ <ol> 
+  <li><a href="label.html" title="HTML の Label 要素 (&lt;label>) はユーザインタフェース内のアイテムのキャプションを表します。for 属性を用いるか、コントロール要素を &lt;label> の子要素として配置する事で、ラベルとコントロールを紐付ける事が出来ます。その様に紐付けられたコントロールは、ラベル要素の labeled control（ラベル付きコントロール） と呼ばれます。"><code>&lt;label&gt;</code></a></li> 
+  <li><a href="legend.html" title="HTML の凡例フィールド (Legend Field)要素（&lt;legend>）は、その親要素である &lt;fieldset> のキャプションを表します。"><code>&lt;legend&gt;</code></a></li> 
+  <li><a href="li.html" title="HTML の リストアイテム要素（&lt;li>）は、リストの項目を表す為に用いられます。この要素は、そのアイテムが属する、順序リスト (&lt;ol>)、順不同リスト(&lt;ul>)、メニュー(&lt;menu>) の何れかの子要素として配置する必要があります。メニュー要素及び順不同リスト要素内に於いては、各リストアイテムは通常ビュレットを伴って表示され、順序リスト内では、数字や文字による連番のリストマーカーを伴って描画されます。"><code>&lt;li&gt;</code></a></li> 
+  <li><a href="link.html" title="HTML &lt;link> 要素は、現在の文書と外部のリソースとの関係を明示します。考えられる要素として、ナビゲーションのための関係構造の定義があります。この要素は、スタイルシートをリンクするためにもっとも使用されます。"><code>&lt;link&gt;</code></a></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="listing.html" title="HTML Listing 要素 (&lt;listing>) は、開始タグと終了タグの間にあるテキストを HTML として解釈せず、等幅フォントを使用して表示します。HTML 2 標準では、1 行が 132 文字を超えない場合は改行すべきではないと勧告しています。"><code>&lt;listing&gt;</code></a></s></li> 
+ </ol> 
+ </li><li>M 
+ <ol> 
+  <li class="html5"><a href="main.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;main&gt;</code></a></li> 
+  <li><a href="map.html" title="HTML &lt;map> 要素はイメージマップを定義するために、&lt;area> 要素とともに使用します。"><code>&lt;map&gt;</code></a></li> 
+  <li class="html5"><a href="mark.html" title="HTML の mark 要素 (&lt;mark>)は、他の場所からの参照を目的とした、テキストのハイライトに使用されます。例えばウェブサイトの検索窓からの検索結果を表示するページ上で、検索した語句をハイライトする為などに使用できます。"><code>&lt;mark&gt;</code></a></li> 
+  <li><s class="nonStdElement"><a href="marquee.html" title="&lt;marquee> 要素はテキストがスクロールする領域を挿入します。"><code>&lt;marquee&gt;</code></a></s></li> 
+  <li class="html5"><a href="https://developer.mozilla.org/ja/docs/HTML/Element/menu" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;menu&gt;</code></a></li> 
+  <li class="html5"><a href="menuitem.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;menuitem&gt;</code></a></li> 
+  <li><a href="meta.html" title="HTML &lt;meta> 要素は、他のメタ関連要素 (&lt;base>、&lt;link>、&lt;script>、&lt;style>、&lt;title>) で表すことができない任意のメタデータ情報を提示します。属性のセットによれば、メタデータの種類は以下のいずれかになります:"><code>&lt;meta&gt;</code></a></li> 
+  <li class="html5"><a href="https://developer.mozilla.org/ja/docs/HTML/Element/meter" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;meter&gt;</code></a></li> 
+ </ol> 
+ </li><li>N 
+ <ol> 
+  <li class="html5"><a href="nav.html" title="ナビゲーション要素(&lt;nav>) は、その内容がページ上の主要なナビゲーションである事を表します。"><code>&lt;nav&gt;</code></a></li> 
+  <li><s class="nonStdElement"><a href="nobr.html" title="nobr 要素（&lt;nobr>） は、その内包するテキストの自動改行を無効化します。行内におさまらないテキストは、領域からはみ出てレンダリングされるか、スクロールバーを伴なって表示されます。"><code>&lt;nobr&gt;</code></a></s></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="noframes.html" title="&lt;noframes> は、&lt;frame> 要素をサポートしない、またはフレームを無効に設定したブラウザを支援するために使用する HTML 要素です。"><code>&lt;noframes&gt;</code></a></s></li> 
+  <li><a href="noscript.html" title="NoScript 要素（&lt;noscript>）はページで使用中のスクリプト言語が閲覧者のブラウザでサポートされていないタイプである場合や、ブラウザの設定でスクリプトが無効にされている場合に表示するセクションを表します。"><code>&lt;noscript&gt;</code></a></li> 
+ </ol> 
+ </li><li>O 
+ <ol> 
+  <li><a href="object.html" title="埋め込みオブジェクト要素 (The Embedded Object element) () は、「画像」、「ネストされたブラウジング・コンテキスト」、または「プラグインによって処理されリソースとして扱うことが可能なもの」の何れかの外部リソースを表します。"><code>&lt;object&gt;</code></a></li> 
+  <li><a href="ol.html" title="HTML 順序付きリスト要素 (&lt;ol>) は、項目の順序付きリストを表示します。一般的に、順序付きリストの項目の先頭に、数字、ローマ数字、アルファベットなどの番号が表示されます。この順序付きリストのスタイルは、ページの HTML 記述では定義されていませんが、CSS に関連付けられ、list-style-type プロパティを使用してスタイル付けできます。"><code>&lt;ol&gt;</code></a></li> 
+  <li><a href="optgroup.html" title="HTML の optgroup 要素 (&lt;optgroup>) は、Web フォームに於いて &lt;select> 要素内の、選択肢 (&lt;option>) のグループを作成します。"><code>&lt;optgroup&gt;</code></a></li> 
+  <li><a href="option.html" title="Web フォームにおいて HTML &lt;option> 要素は、&lt;select> 要素、&lt;optgroup> 要素、HTML5 の &lt;datalist> 要素内で項目を表すコントロールを生成します。"><code>&lt;option&gt;</code></a></li> 
+  <li class="html5"><a href="output.html" title="output 要素（&lt;output>）は、何らかの計算結果を表します。"><code>&lt;output&gt;</code></a></li> 
+ </ol> 
+ </li><li>P 
+ <ol> 
+  <li><a href="p.html" title="p 要素（&lt;p>）は、パラグラフ（段落）を表します。"><code>&lt;p&gt;</code></a></li> 
+  <li><a href="param.html" title="パラメーター要素は、&lt;object> 要素のパラメータを定義する為の HTML 要素です。"><code>&lt;param&gt;</code></a></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="plaintext.html" title="Plaintext 要素（&lt;plaintext>）は、開始タグ以降を HTML としてではなくプレーンテキストとして解してレンダリングさせます。開始タグ以降は全てプレーンテキスト扱いになるので、終了タグはありません。"><code>&lt;plaintext&gt;</code></a></s></li> 
+  <li><a href="pre.html" title="整形済みテキスト (preformatted text) を表します。この要素内の空白文字や改行はそのままレンダリングに反映され、等幅フォントで表示されます。もしこれらのスタイルを変更したい場合は、CSS を用います。"><code>&lt;pre&gt;</code></a></li> 
+  <li class="html5"><a href="progress.html" title="HTML の progress (&lt;progress>) 要素は、タスクの進捗状況の表示に使われます。表示の実装方法はブラウザベンダーに委ねられていますが、通常はプログレスバーとして表示されます。。JavaScript を使用して、プログレスバーの値を操作することが可能です。"><code>&lt;progress&gt;</code></a></li> 
+ </ol> 
+ </li><li>Q 
+ <ol> 
+  <li><a href="q.html" title="q 要素 は、その内容がインラインの引用であることを表します。この要素は、段落やセクションをまたがない短い引用のためのものです。長文の引用には、&lt;blockquote> 要素を使用します。"><code>&lt;q&gt;</code></a></li> 
+ </ol> 
+ </li><li>R 
+ <ol> 
+  <li class="html5"><a href="rp.html" title="HTML &lt;rp> 要素は、ルビのアノテーションをサポートしないブラウザ向けのフォールバックとして括弧を提供するために使用します。ルビのアノテーションは日本語のふりがなや台湾語の注音符号など、東アジア言語で発音を示すものです。&lt;rp> 要素は &lt;ruby> 要素がサポートされていない場合に、コンテンツでルビアノテーションの存在を示すために何を表示すべきかを指定するために使用され、通常は括弧を表示します。"><code>&lt;rp&gt;</code></a></li> 
+  <li class="html5"><a href="rt.html" title="HTML &lt;rt> 要素はルビのアノテーションとして提供する、文字の発音を包含します。これは東アジア言語の発音を表示するためのものであり、&lt;rt> 要素は &lt;ruby> 要素の内部で使用します。"><code>&lt;rt&gt;</code></a></li> 
+  <li class="html5"><a href="ruby.html" title="&lt;ruby> は、ルビのアノテーション（振り仮名）を用いる事が可能な HTML 要素です（ルビのアノテーションとは、東アジアの言語などの語句、例えば漢字などの発音を示すものです）&lt;ruby> 要素は &lt;rt> 要素や &lt;rp> 要素とともに用います。"><code>&lt;ruby&gt;</code></a></li> 
+ </ol> 
+ </li><li>S 
+ <ol> 
+  <li><a href="s.html" title="HTML の 打ち消し要素 (&lt;s>) はその範囲のテキストが既に正確でなくなった事を表す為に用います。これは殆どの環境で、打ち消し線を伴うスタイルでレンダリングされます。但し、編集箇所を伝える用途の場合には &lt;del> と &lt;ins> が適しています。"><code>&lt;s&gt;</code></a></li> 
+  <li><a href="samp.html" title="サンプル要素（&lt;samp>）は、コンピュータープログラムなどからの出力を表すインライン要素です。CSS を使用しない場合、殆どのブラウザで、ブラウザのデフォルトの等幅フォントか、ユーザーの指定した等幅フォントで表示されます。"><code>&lt;samp&gt;</code></a></li> 
+  <li><a href="script.html" title="HTML &lt;script> 要素は HTML または XHTML 文書内に実行可能なスクリプトを埋め込み、または外部参照するコードを指定する際に用いられます。"><code>&lt;script&gt;</code></a></li> 
+  <li class="html5"><a href="https://developer.mozilla.org/ja/docs/HTML/Element/section" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;section&gt;</code></a></li> 
+  <li><a href="select.html" title="HTML の select 要素（&lt;select>）は、選択式のメニューを提供するコントロールを表します。メニューの中にある選択肢は、 &lt;optgroup> 要素でグループ化することのできる、 &lt;option> 要素で表されます。ユーザーのため、選択肢をあらかじめ選択しておくことができます。"><code>&lt;select&gt;</code></a></li> 
+  <li class="webcomp"><a href="shadow.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;shadow&gt;</code></a></li> 
+  <li><a href="small.html" title="small 要素（&lt;small>）は、内包するテキストのフォントサイズをブラウザの最小フォントサイズを限度とし、一段階縮小します（※large から medium、small から x-small）"><code>&lt;small&gt;</code></a></li> 
+  <li class="html5"><a href="source.html" title="source 要素 (&lt;source />) は　HTML5　文書における audio 要素及び video 要素に対し、各ブラウザ毎にサポートの異なる複数のメディア形式 を指定する場合に用います。この要素自体は空要素です。"><code>&lt;source&gt;</code></a></li> 
+  <li><s class="nonStdElement"><a href="spacer.html" title="&lt;spacer> は、Web ページにホワイトスペースを挿入する為の非標準の HTML 要素です。Web デザイナーによって用いられていた 1px の透過 GIF 画像（いわゆるスペーサー GIF ）の挿入と同様の効果を実現する為に NetScape 社が実装したものです。しかし &lt;spacer> は殆どの主要ブラウザでサポートされず、また、同様の効果は CSS を用いて実現可能です。したがって、&lt;spacer> を使用する必要性はありませんでした。Mozilla アプリケーションに於いては、この要素のサポートは Gecko 2.0 にて打ち切られています。"><code>&lt;spacer&gt;</code></a></s></li> 
+  <li><a href="span.html" title="この要素は、何か特定のセマンティクスを表すものではない、フレージング・コンテンツの為の汎用コンテナです。CSS によるスタイリングの用途等で、要素のグループ化が必要な場合に用います。多くの場合、 class 属性か id 属性、lang 属性等と共に使われます。セマンティクス上で他に適切な要素がある場合はそちらを使用して下さい。"><code>&lt;span&gt;</code></a></li> 
+  <li><s class="obsoleteElement deprecatedElement"><a href="strike.html" title="HTML の打消し線要素（&lt;strike>）は、その範囲のテキストを打消し線付きで描画します。"><code>&lt;strike&gt;</code></a></s></li> 
+  <li><a href="strong.html" title="strong 要素（&lt;strong>）は重要なテキストを表します。ほとんどのブラウザーのデフォルトスタイルでは、太字で描画するように指定されています。"><code>&lt;strong&gt;</code></a></li> 
+  <li><a href="style.html" title="Style 要素は、文書のスタイル情報を含みます。スタイル情報は、この要素内に CSS の文法で記述します。"><code>&lt;style&gt;</code></a></li> 
+  <li><a href="https://developer.mozilla.org/ja/docs/HTML/Element/sub" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;sub&gt;</code></a></li> 
+  <li class="html5"><a href="summary.html" title="HTML の summary 要素（&lt;summary>）は &lt;details> 要素の内容の要約、キャプション、説明を表します。"><code>&lt;summary&gt;</code></a></li> 
+  <li><a href="https://developer.mozilla.org/ja/docs/HTML/Element/sup" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;sup&gt;</code></a></li> 
+ </ol> 
+ </li><li>T 
+ <ol> 
+  <li><a href="table.html" title="HTML の table 要素（&lt;table>）は、 2 つまたはそれ以上の次元のデータを表します。"><code>&lt;table&gt;</code></a></li> 
+  <li><a href="tbody.html" title="HTML Table Body 要素 (&lt;tbody>) は、表の本体を表す行のセットを定義します。本体の行は親 &lt;table> の子である &lt;tr> 要素として定義できますので tbody 要素は必須ではありませんが、tbody 要素を与える場合は本体を構成するすべての &lt;tr> 要素を &lt;tbody> 要素内に含めなければなりません。"><code>&lt;tbody&gt;</code></a></li> 
+  <li><a href="td.html" title="テーブルセル HTML 要素 (&lt;td>) は、テーブルでデータを包含するセルを定義します。これはテーブルモデルに関与します。"><code>&lt;td&gt;</code></a></li> 
+  <li class="webcomp"><a href="template.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;template&gt;</code></a></li> 
+  <li><a href="textarea.html" title="HTML &lt;textarea> 要素は、複数行のプレーンテキスト編集コントロールを表します。"><code>&lt;textarea&gt;</code></a></li> 
+  <li><a href="tfoot.html" title="HTML テーブルフッタ要素 (&lt;tfoot>) は、テーブルの列を総括する行のセットを定義します。"><code>&lt;tfoot&gt;</code></a></li> 
+  <li><a href="th.html" title="HTML テーブルヘッダセル要素 (&lt;th>) は、テーブルのセルのグループ用のヘッダであるセルを定義します。ヘッダが指すセルのグループは、scope 属性と headers 属性で定義します。"><code>&lt;th&gt;</code></a></li> 
+  <li><a href="thead.html" title="HTML テーブルヘッダ要素 (&lt;thead>) は、テーブルの列のヘッダを表す行のセットを定義します。"><code>&lt;thead&gt;</code></a></li> 
+  <li class="html5"><a href="time.html" title="HTML &lt;time> 要素は、24 時間制の時刻またはグレゴリオ暦の正確な日付 (時刻やタイムゾーンを伴うことも可能) を表します。"><code>&lt;time&gt;</code></a></li> 
+  <li><a href="title.html" title="HTML の title 要素 (&lt;title>) は文書のタイトルを定義します。一般的には、ブラウザのタイトルバーかタブに表示されます。この要素はテキストのみを内容に持つ事が出来ます。HTML 要素を含める事はできません。"><code>&lt;title&gt;</code></a></li> 
+  <li><a href="tr.html" title="HTML テーブル行要素 (&lt;tr>) は、テーブル内でセルの行を定義します。行は &lt;td> 要素と &lt;th> 要素を混ぜ合わせたものです。"><code>&lt;tr&gt;</code></a></li> 
+  <li class="html5"><a href="track.html" title="track 要素はメディア要素 (&lt;audio> および &lt;video>) の子として使用するもので、それ自身は何も表しません。この要素は、時間指定されたテキストトラック (または時系列データ) を指定できます。"><code>&lt;track&gt;</code></a></li> 
+  <li><s class="obsoleteElement"><a href="tt.html" title="HTML テレタイプテキスト要素 (&lt;tt>) は、ブラウザのデフォルトの等幅フォントで表示されるインライン要素を生成します。この要素は、テレタイプのような等幅の表示装置で表示されるテキストとしてスタイルを設定しようとするものです。おそらく、&lt;code> 要素を使用する等幅文字の表示がより一般的です。"><code>&lt;tt&gt;</code></a></s></li> 
+ </ol> 
+ </li><li>U 
+ <ol> 
+  <li><a href="u.html" title="u 要素（&lt;u>）は、内包するテキストのベースラインの下部にアンダーライン（下線）をレンダリングします。"><code>&lt;u&gt;</code></a></li> 
+  <li><a href="ul.html" title="HTML の順不同リスト 要素（&lt;ul>）は、その配置順に意味を持たないアイテムを持つリストを表します。子となるリストアイテムは基本的にドット、円形、四角形 などのスタイルを持つビュレットを伴って描画されます。係るスタイルは CSS の list-style-type プロパティを用いて変更する事が可能です。"><code>&lt;ul&gt;</code></a></li> 
+ </ol> 
+ </li><li>V 
+ <ol> 
+  <li><a href="var.html" title="HTML の var 要素(&lt;var>)は、数式やプログラムのコード中での変数を表します。"><code>&lt;var&gt;</code></a></li> 
+  <li class="html5"><a href="video.html" title="video 要素は HTML もしくは XHTML 文書に映像コンテンツを埋め込むために用いられます。 video 要素は HTML 5 の一部として導入されました。"><code>&lt;video&gt;</code></a></li> 
+ </ol> 
+ </li><li>W 
+ <ol> 
+  <li class="html5"><a href="wbr.html" title="Word Break Opportunity (&lt;wbr>) HTML 要素は、テキスト内でブラウザが任意で改行を行ってよい位置を表します。また、この改行規則により他の場所で改行されることがなくなるでしょう。"><code>&lt;wbr&gt;</code></a></li> 
+ </ol> 
+ </li><li>X Y Z  
+ <ol> 
+  <li><a href="xmp.html" title="xmp (Example) 要素( &lt;xmp> )は、その開始タグから終了タグまでの間の HTML タグを HTML として解釈せず、等幅フォントでレンダリングします。HTML2 はこれが一行当たり 80 文字を表示するのに充分な幅でレンダリングするよう推奨しています。"><code>&lt;xmp&gt;</code></a></li> 
+ </ol> 
+    </li>   
+   </ol></li> 
+   </ol> 
+  
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/HTML/Element/link" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/HTML/Element/link">
+            English (US)
+          </option>          <option value="/pl/docs/Web/HTML/Element/link">
+            Polski
+          </option>          <option value="/fr/docs/Web/HTML/Element/link">
+            Français
+          </option>          <option value="/es/docs/Web/HTML/Elemento/link">
+            Español
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":416}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/HTML/Element/link by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:54:37 GMT -->
+</html>

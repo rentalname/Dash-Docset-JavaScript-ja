@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>window - Web API インターフェイス | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="window.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/API/Window$json">
+  <link rel="canonical" href="Window.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/API/Window" title="Window">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/DOM/window" title="window">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/DOM/window" title="window">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/DOM/window" title="window">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/DOM/window" title="window">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window" title="window">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/DOM/window" title="window">
+          <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/docs/DOM/window" title="window">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/API/Window" title="Window">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="window">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/API/Window">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/API/Window">
+  <meta name="twitter:title" content="window">
+    <meta property="og:description" content="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference .">
+  <meta name="description" content="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference .">
+  <meta name="twitter:description" content="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference .">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/API/Window" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="window.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="window.html#language">言語の選択</a></li>
+          <li><a href="window.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/API/window" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/API/window" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/API/Window" title="Window">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/DOM/window" title="window">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/DOM/window" title="window">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/DOM/window" title="window">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/DOM/window" title="window">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window" title="window">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/DOM/window" title="window">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/docs/DOM/window" title="window">Italiano</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/API/Window" title="Window">Русский</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/API/Window$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Window$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="window.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../DOM.html" rel="v:url" property="v:title">DOM</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">window</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="window.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>window</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="window.html#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="window.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="window.html#Properties" rel="internal">プロパティ</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code><code></code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="window.html#Methods" rel="internal">メソッド</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="window.html#Event_handlers" rel="internal">Event handlers</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="window.html#Constructors" rel="internal">コンストラクタ</a><code></code><code></code><code></code><code></code><code></code><li><a href="window.html#See_also" rel="internal">関連情報</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div><div class="overheadIndicator translationInProgress translationInProgressHeader"> 
+    <p>この文書は翻訳中です。他国語のままの部分などがあるのはその為です。<br>是非お気軽に MDN に登録して翻訳に参加し、私たちの手助けをして下さい！</p> 
+</div> <span class="breadcrumbs domRef_breadcrumbs themeUpdated">« <a href="../../DOM/DOM_Reference.html">DOM リファレンス</a></span> 
+ 
+ 
+<section class="Quick_links" id="Quick_Links"><!-- --></section></div>
+
+<p>This section provides a brief reference for all of the methods, properties, and events available through the DOM <code>window</code> object. The <code>window</code> object implements the <code>Window</code> interface, which in turn inherits from the <code><a class="external" href="http://www.w3.org/TR/DOM-Level-2-Views/views.html#Views-AbstractView">AbstractView</a></code> interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the <a href="../JavaScript/Reference.html">JavaScript Reference</a>.</p>
+<p>The <code>window</code> object represents the window itself. The <code>document</code> property of a <code>window</code> points to the <a href="https://developer.mozilla.org/ja/docs/DOM/document">DOM document</a> loaded in that window. A window for a given document can be obtained using the <a href="https://developer.mozilla.org/ja/docs/Web/API/document.defaultView" title="ドキュメントに関連付けられている window オブジェクトを返します。もし存在しない時には null が返ります。"><code>document.defaultView</code></a> property.</p>
+<p>In a tabbed browser, such as Firefox, each tab contains its own <code>window</code> object (and if you're writing an extension, the browser window itself is a separate window too - see <a href="https://developer.mozilla.org/ja/docs/Working_with_windows_in_chrome_code#Content_windows">Working with windows in chrome code</a> for more information). That is, the <code>window</code> object is not shared between tabs in the same window. Some methods, namely <a href="https://developer.mozilla.org/ja/docs/Web/API/window.resizeTo" title="ウィンドウサイズを動的に変更します。"><code>window.resizeTo</code></a> and <a href="https://developer.mozilla.org/ja/docs/Web/API/window.resizeBy" title="現在のウィンドウを特定の量だけリサイズします。"><code>window.resizeBy</code></a> apply to the whole window and not to the specific tab the <code>window</code> object belongs to. Generally, anything that can't reasonably pertain to a tab pertains to the window instead.</p>
+
+
+<h2 id="Properties" name="Properties">プロパティ</h2>
+<dl>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.applicationCache" title="ウィンドウのアプリケーションキャッシュオブジェクトへの参照を返します。"><code>window.applicationCache</code></a> </dt>
+  <dd>An <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/OfflineResourceList" title="The documentation about this has not yet been written; please consider contributing!"><code>OfflineResourceList</code></a> object providing access to the offline resources for the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.closed" title="この読取専用プロパティは、対象ウィンドウが閉じられているかどうかを示します。"><code>window.closed</code></a> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></dt>
+  <dd>This property indicates whether the current window is closed or not.</dd>
+  <dt><code><a href="https://developer.mozilla.org/ja/docs/Components_object">window.Components</a></code></dt>
+  <dd>The entry point to many <a href="../../XPCOM.html">XPCOM</a> features. Some properties, e.g. <a href="https://developer.mozilla.org/ja/docs/Components.classes">classes</a>, are only available to sufficiently privileged code.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/Console" title="console オブジェクトは、ブラウザのデバッグコンソールへアクセスする機能を提供します。このオブジェクトの詳細な動作はブラウザによって異なりますが、一般的に共通の機能セットがサポートされています。"><code>window.console</code></a> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></dt>
+  <dd>Returns a reference to the console object providing access to the browser's debugging console.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.content" title='主となるコンテンツウィンドウを表す Window オブジェクトを返します。これは、type="content-primary" 属性を持つ &lt;browser> (もしくは tabbrowser や &lt;iframe>) 要素のある XUL ウィンドウにおいて役立ちます。最も有名な例は、Firefox のメインウィンドウである browser.xul です。このような場合、content はブラウザに現在表示されているドキュメントを表す Window オブジェクトへの参照を返します。これは、browserRef.contentWindow のショートカットです。'><code>window.content</code></a> and window._content <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></dt>
+  <dd>Returns a reference to the content element in the current window. The variant with underscore is deprecated.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.controllers" title="Returns the XUL controllers of the chrome window."><code>window.controllers</code></a></dt>
+  <dd>Returns the XUL controller objects for the current chrome window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.crypto" title="様々なブラウザのセキュリティ機能を扱うために利用できる、ブラウザの crypto オブジェクトを返します。"><code>window.crypto</code></a> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></dt>
+  <dd>Returns the browser crypto object.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.defaultStatus" title="与えられたウィンドウのステータスバーのテキストを取得/設定します。"><code>window.defaultStatus</code></a> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 23 / Thunderbird 23 / SeaMonkey 2.20)">廃止 Gecko 23</span></dt>
+  <dd>Gets/sets the status bar text for the given window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.dialogArguments" title="dialogArguments プロパティは、 window.showModalDialog() メソッドに渡されたパラメータを返します。モーダルダイアログボックスの作成時に、引数にどのようなパラメータが指定されたを判断することができます。"><code>window.dialogArguments</code></a> </dt>
+  <dd>Gets the arguments passed to the window (if it's a dialog box) at the time <a href="https://developer.mozilla.org/ja/docs/Web/API/window.showModalDialog" title="指定された HTML 文書を含む モーダルダイアログボックスを生成し、表示します。"><code>window.showModalDialog()</code></a> was called. This is an <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIArray" title="">nsIArray</a></code>.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.directories" title="ウィンドウディレクトリのツールバーオブジェクトを返します。 "><code>window.directories</code></a> <span title="これは廃止されたAPIであり、今後の動作は保障されていません。ご注意下さい。"><i class="icon-trash"> </i></span></dt>
+  <dd>Synonym of <a href="https://developer.mozilla.org/ja/docs/Web/API/window.personalbar" title="personalbar オブジェクトを返します。このバーの表示は、ウィンドウ内でトグル（表示/非表示の状態を切り替える）ことができます。"><code>window.personalbar</code></a></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.document" title="window に含まれる document への参照を返します。"><code>window.document</code></a></dt>
+  <dd>Returns a reference to the document that the window contains.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.frameElement" title="（&lt;iframe> や &lt;object> のような）ウィンドウが埋め込まれた要素を返します。ウィンドウがトップレベルである場合は、 null を返します。"><code>window.frameElement</code></a></dt>
+  <dd>Returns the element in which the window is embedded, or null if the window is not embedded.</dd>
+
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.frames" title="現在のウィンドウの直接のサブフレームをリスト化した、配列のようなオブジェクトを返します。"><code>window.frames</code></a></dt>
+  <dd>Returns an array of the subframes in the current window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.fullScreen" title="このプロパティは、ウィンドウがフルスクリーンモードで表示されているかどうかを示します。これは、Gecko 1.9 (Firefox 3) 以降でのみ信頼することができます。以下の注記を参照してください。"><code>window.fullScreen</code></a> </dt>
+  <dd>This property indicates whether the window is displayed in full screen or not.</dd>
+  <dt><code>window.globalStorage </code> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 13 / Thunderbird 13 / SeaMonkey 2.10)">廃止 Gecko 13</span></dt>
+  <dd>Unsupported since Gecko 13 (Firefox 13). Use <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/Storage#localStorage" title="The documentation about this has not yet been written; please consider contributing!"><code>window.localStorage</code></a> instead.<br>
+    Was: Multiple storage objects that are used for storing data across multiple pages.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.history" title="ブラウザの履歴を扱うためのインタフェースを提供する history オブジェクトへの参照を返します。"><code>window.history</code></a></dt>
+  <dd>Returns a reference to the history object.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.innerHeight" title="水平スクロールバー（表示されている場合）を含む、ブラウザウィンドウの ビューポート (viewport) の高さを返します。"><code>window.innerHeight</code></a></dt>
+  <dd>Gets the height of the content area of the browser window including, if rendered, the horizontal scrollbar.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.innerWidth" title="垂直スクロールバー（表示されている場合）を含む、ブラウザウィンドウの ビューポート (viewport) の幅を返します。"><code>window.innerWidth</code></a></dt>
+  <dd>Gets the width of the content area of the browser window including, if rendered, the vertical scrollbar.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.length" title="ウィンドウにおけるフレーム（ frame と iframe 要素の両方）の数を返します。"><code>window.length</code></a></dt>
+  <dd>Returns the number of frames in the window. See also <a href="https://developer.mozilla.org/ja/docs/Web/API/window.frames" title="現在のウィンドウの直接のサブフレームをリスト化した、配列のようなオブジェクトを返します。"><code>window.frames</code></a>.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.location" title="文書の URL についての情報を含み、また、URL を変更するためのメソッドを提供をする、 Location オブジェクト を返します。別の URL を読み込ませるために、このプロパティに URL を代入することもできます。 "><code>window.location</code></a></dt>
+  <dd>Gets/sets the location, or current URL, of the window object.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.locationbar" title="locationbar オブジェクトを返します。このバーの表示は、ウィンドウ内でトグル（表示/非表示の状態を切り替える）ことができます。"><code>window.locationbar</code></a></dt>
+  <dd>Returns the locationbar object, whose visibility can be toggled in the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/Storage#localStorage" title="The documentation about this has not yet been written; please consider contributing!"><code>window.localStorage</code></a> </dt>
+  <dd>Returns a reference to the local storage object used to store data that may only be accessed by the origin that created it.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.menubar" title="menubar オブジェクトを返します。このバーの表示は、ウィンドウ内でトグル（表示/非表示の状態を切り替える）ことができます。"><code>window.menubar</code></a></dt>
+  <dd>Returns the menubar object, whose visibility can be toggled in the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.messageManager" title="The documentation about this has not yet been written; please consider contributing!"><code>window.messageManager</code></a> </dt>
+  <dd>Returns the <a href="https://developer.mozilla.org/ja/docs/The_message_manager">message manager</a> object for this window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.mozAnimationStartTime" title="The documentation about this has not yet been written; please consider contributing!"><code>window.mozAnimationStartTime</code></a> </dt>
+  <dd>The time in milliseconds since epoch at which the current animation cycle began.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.mozInnerScreenX" title="ウィンドウのビューポートの左上隅のスクリーン上の X 座標を取得します。"><code>window.mozInnerScreenX</code></a> </dt>
+  <dd>Returns the horizontal (X) coordinate of the top-left corner of the window's viewport, in screen coordinates. This value is reported in CSS pixels. See <code>mozScreenPixelsPerCSSPixel</code> in <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIDOMWindowUtils" title="">nsIDOMWindowUtils</a></code> for a conversion factor to adapt to screen pixels if needed.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.mozInnerScreenY" title="ウィンドウのビューポートの左上隅のスクリーン上の Y 座標を取得します。"><code>window.mozInnerScreenY</code></a> </dt>
+  <dd>Returns the vertical (Y) coordinate of the top-left corner of the window's viewport, in screen coordinates. This value is reported in CSS pixels. See <code>mozScreenPixelsPerCSSPixel</code> for a conversion factor to adapt to screen pixels if needed.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.mozPaintCount" title="The documentation about this has not yet been written; please consider contributing!"><code>window.mozPaintCount</code></a> </dt>
+  <dd>Returns the number of times the current document has been rendered to the screen in this window. This can be used to compute rendering performance.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.name" title="ウィンドウ名を取得 / 設定します。"><code>window.name</code></a></dt>
+  <dd>Gets/sets the name of the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.navigator" title="navigator オブジェクトへの参照を返します。 navigator オブジェクトを用いることで、スクリプトを実行しているアプリケーションについての情報を得ることができます。"><code>window.navigator</code></a></dt>
+  <dd>Returns a reference to the navigator object.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.opener" title="現在のウィンドウを開いたウィンドウへの参照を返します。"><code>window.opener</code></a></dt>
+  <dd>Returns a reference to the window that opened this current window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.outerHeight" title="ブラウザウィンドウの外側の高さを取得します。 window.outerHeight は、ツールバー、ウィンドウ chrome を含む、ブラウザウィンドウ全体の高さを表します。"><code>window.outerHeight</code></a></dt>
+  <dd>Gets the height of the outside of the browser window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.outerWidth" title="ブラウザウィンドウの外側の幅を取得します。 window.outerWidth は、サイドバー（展開されている場合）、ウィンドウ chrome 、ウィンドウをリサイズするボーダー/ハンドルを含む、ブラウザウィンドウ全体の幅を表します。"><code>window.outerWidth</code></a></dt>
+  <dd>Gets the width of the outside of the browser window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollX" title="文書が水平スクロールされているピクセル数を返します。"><code>window.pageXOffset</code></a></dt>
+  <dd>An alias for <a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollX" title="文書が水平スクロールされているピクセル数を返します。"><code>window.scrollX</code></a>.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollY" title="文書が垂直スクロールされているピクセル数を返します。"><code>window.pageYOffset</code></a></dt>
+  <dd>An alias for <a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollY" title="文書が垂直スクロールされているピクセル数を返します。"><code>window.scrollY</code></a></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.parent" title="現在のウィンドウ、または、サブフレームの親ウィンドウへの参照を返します。"><code>window.parent</code></a></dt>
+  <dd>Returns a reference to the parent of the current window or subframe.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.performance" title="The documentation about this has not yet been written; please consider contributing!"><code>window.performance</code></a></dt>
+  <dd>Provides a hosting area for <a class="new" href="https://developer.mozilla.org/ja/docs/Navigation_timing">performance related</a> attributes.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.personalbar" title="personalbar オブジェクトを返します。このバーの表示は、ウィンドウ内でトグル（表示/非表示の状態を切り替える）ことができます。"><code>window.personalbar</code></a></dt>
+  <dd>Returns the personalbar object, whose visibility can be toggled in the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.pkcs11" title="pcks11 プロトコル に関連するドライバや他のソフトウェアをインストールするために用いられる pkcs11 オブジェクトを返します。"><code>window.pkcs11</code></a> <span title="これは廃止されたAPIであり、今後の動作は保障されていません。ご注意下さい。"><i class="icon-trash"> </i></span></dt>
+  <dd>Formerly provided access to install and remove PKCS11 modules. Now this property is always null.</dd>
+  <dt><code>window.returnValue </code></dt>
+  <dd>The return value to be returned to the function that called <code><a href="https://developer.mozilla.org/ja/docs/Web/API/window.showModalDialog" title="指定された HTML 文書を含む モーダルダイアログボックスを生成し、表示します。"><code>window.showModalDialog()</code></a></code> to display the window as a modal dialog.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen" title="window オブジェクトに紐付く screen オブジェクトへの参照を返します。"><code>window.screen</code></a></dt>
+  <dd>Returns a reference to the screen object associated with the window.</dd>
+  
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.availTop" title="固定あるいは半固定されているユーザインタフェース部分は含まない、最初のピクセルの y 座標を示します。"><code>window.screen.availTop</code></a></dt>
+  <dd>Specifies the y-coordinate of the first pixel that is not allocated to permanent or semipermanent user interface features.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.availLeft" title="画面の左端から利用できる最初の有効ピクセルを返します。"><code>window.screen.availLeft</code></a></dt>
+  <dd>Returns the first available pixel available from the left side of the screen.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.availHeight" title="画面上でウィンドウが利用可能な垂直空間の大きさを返します。"><code>window.screen.availHeight</code></a></dt>
+  <dd>Specifies the height of the screen, in pixels, minus permanent or semipermanent user interface features displayed by the operating system, such as the Taskbar on Windows.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.availWidth" title="ウィンドウで利用可能な水平空間の大きさをピクセル単位で返します。"><code>window.screen.availWidth</code></a></dt>
+  <dd>Returns the amount of horizontal space in pixels available to the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.colorDepth" title="画面の色深度を返します。"><code>window.screen.colorDepth</code></a></dt>
+  <dd>Returns the color depth of the screen.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.height" title=""><code>window.screen.height</code></a></dt>
+  <dd>Returns the height of the screen in pixels.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.left" title="メイン画面の左端から現在の画面の左端までの距離をピクセル単位で返します。"><code>window.screen.left</code></a></dt>
+  <dd>Returns the current distance in pixels from the left side of the screen.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.pixelDepth" title="画面のビット深度を返します。"><code>window.screen.pixelDepth</code></a></dt>
+  <dd>Gets the bit depth of the screen.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.top" title="現在の画面の上端からの距離をピクセル単位で返します。"><code>window.screen.top</code></a></dt>
+  <dd>Returns the distance from the top of the screen.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screen.width" title=""><code>window.screen.width</code></a></dt>
+  <dd>Returns the width of the screen.</dd>
+  
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screenX" title="画面の左端からユーザのブラウザの左端までの水平距離を返します。"><code>window.screenX</code></a></dt>
+  <dd>Returns the horizontal distance of the left border of the user's browser from the left side of the screen.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.screenY" title="画面の上端からユーザのブラウザの上端までの垂直距離を返します。"><code>window.screenY</code></a></dt>
+  <dd>Returns the vertical distance of the top border of the user's browser from the top side of the screen.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollbars" title="scrollbars オブジェクトを返します。このバーの表示は、ウィンドウ内でトグル（表示/非表示の状態を切り替える）ことができます。"><code>window.scrollbars</code></a></dt>
+  <dd>Returns the scrollbars object, whose visibility can be toggled in the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollMaxX" title=""><code>window.scrollMaxX</code></a></dt>
+  <dd>The maximum offset that the window can be scrolled to horizontally.</dd>
+  <dd>(i.e., the document width minus the viewport width)</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollMaxY" title=""><code>window.scrollMaxY</code></a></dt>
+  <dd>The maximum offset that the window can be scrolled to vertically (i.e., the document height minus the viewport height).</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollX" title="文書が水平スクロールされているピクセル数を返します。"><code>window.scrollX</code></a></dt>
+  <dd>Returns the number of pixels that the document has already been scrolled horizontally.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollY" title="文書が垂直スクロールされているピクセル数を返します。"><code>window.scrollY</code></a></dt>
+  <dd>Returns the number of pixels that the document has already been scrolled vertically.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.self" title="window オブジェクトへの参照を返します。"><code>window.self</code></a></dt>
+  <dd>Returns an object reference to the window object itself.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/Storage#sessionStorage" title="The documentation about this has not yet been written; please consider contributing!"><code>window.sessionStorage</code></a> </dt>
+  <dd>A storage object for storing data within a single page session.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.sidebar" title="ブラウザにアドオンを追加するためのいくつかのメソッドを含む、sidebar オブジェクトを返します。"><code>window.sidebar</code></a></dt>
+  <dd>Returns a reference to the window object of the sidebar.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.status" title="ブラウザの下部にあるステータスバー内にテキストを設定するか、もしくは、直前に設定されていたテキストを返します。"><code>window.status</code></a></dt>
+  <dd>Gets/sets the text in the statusbar at the bottom of the browser.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.statusbar" title="statusbar オブジェクトを返します。このバーの表示は、ウィンドウ内でトグル（表示/非表示の状態を切り替える）ことができます。"><code>window.statusbar</code></a></dt>
+  <dd>Returns the statusbar object, whose visibility can be toggled in the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.toolbar" title="toolbar オブジェクトを返します。このバーの表示は、ウィンドウ内でトグル（表示/非表示の状態を切り替える）ことができます。 "><code>window.toolbar</code></a></dt>
+  <dd>Returns the toolbar object, whose visibility can be toggled in the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.top" title="ウィンドウ階層における最上位のウィンドウへの参照を返します。"><code>window.top</code></a></dt>
+  <dd>Returns a reference to the topmost window in the window hierarchy. This property is read only.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.URL" title="オブジェクト URL の作成や削除に用いるメソッドを提供します。"><code>window.URL</code></a> </dt>
+  <dd>A DOM URL object, which provides the <a href="https://developer.mozilla.org/ja/docs/Web/API/window.URL.createObjectURL" title="createObjectURL メソッドは、それが作成されたウィンドウ内の document と同じ寿命を持つ、新しいオブジェクトの URL を作成します。新しいオブジェクトの URL は、指定された File オブジェクトを表します。"><code>window.URL.createObjectURL()</code></a> and <a href="https://developer.mozilla.org/ja/docs/Web/API/window.URL.revokeObjectURL" title="window.URL.createObjectURL() を用いてオブジェクト URL を生成した後、ブラウザがファイルへの参照を維持する必要が無くなった際にこのメソッドを呼び出します。"><code>window.URL.revokeObjectURL()</code></a> methods.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.window" title="window オブジェクトの window プロパティは、その window オブジェクト自身を指します。故に、以下の表現は同じ window オブジェクトを返します。"><code>window.window</code></a></dt>
+  <dd>Returns a reference to the current window.</dd>
+  <dt><code>window[0]</code>,<code> window[1]</code>, etc.</dt>
+  <dd>Returns a reference to the <code>window</code> object in the frames. See <a href="https://developer.mozilla.org/ja/docs/Web/API/window.frames" title="現在のウィンドウの直接のサブフレームをリスト化した、配列のようなオブジェクトを返します。"><code>window.frames</code></a> for more details.</dd>
+</dl>
+<h2 id="Methods" name="Methods">メソッド</h2>
+<dl>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/element.addEventListener" title="The documentation about this has not yet been written; please consider contributing!"><code>window.addEventListener</code></a></dt>
+  <dd>Register an event handler to a specific event type on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.alert" title="指定したテキストと OK ボタンを持つ警告ダイアログを表示します。"><code>window.alert</code></a></dt>
+  <dd>Displays an alert dialog.</dd>
+  
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.atob" title="base64 形式でエンコードされたデータの文字列をデコードします。"><code>window.atob</code></a></dt>
+  <dd>Decodes a string of data which has been encoded using base-64 encoding.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.back" title="ウィンドウを履歴のひとつ前の内容に戻します。"><code>window.back</code></a></dt>
+  <dd>Moves back one in the window history.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.blur" title="ウィンドウからフォーカスをはずします。"><code>window.blur</code></a></dt>
+  <dd>Sets focus away from the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.btoa" title="バイナリデータの文字列から base64 エンコードされた文字列を作成します。"><code>window.btoa</code></a></dt>
+  <dd>Creates a base-64 encoded ASCII string from a string of binary data.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.captureEvents" title="The documentation about this has not yet been written; please consider contributing!"><code>window.captureEvents</code></a> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 24 / Thunderbird 24 / SeaMonkey 2.21)">廃止 Gecko 24</span></dt>
+  <dd>Registers the window to capture all events of the specified type.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.clearImmediate" title="The documentation about this has not yet been written; please consider contributing!"><code>window.clearImmediate</code></a></dt>
+  <dd>Cancels the repeated execution set using <code>setImmediate</code>.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.clearInterval" title="setInterval を使用して設定された繰り返し動作をキャンセルします。"><code>window.clearInterval</code></a></dt>
+  <dd>Cancels the repeated execution set using <code>setInterval</code>.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.clearTimeout" title=""><code>window.clearTimeout</code></a></dt>
+  <dd>Cancels the repeated execution set using <code>setTimeout</code>.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.close" title="現在のウィンドウ、または、参照ウィンドウを閉じます。"><code>window.close</code></a></dt>
+  <dd>Closes the current window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.confirm" title="メッセージと、OK と キャンセルの 2 つのボタンを持つモーダルダイアログを表示します。"><code>window.confirm</code></a></dt>
+  <dd>Displays a dialog with a message that the user needs to respond to.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.disableExternalCapture" title="The documentation about this has not yet been written; please consider contributing!"><code>window.disableExternalCapture</code></a> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 24 / Thunderbird 24 / SeaMonkey 2.21)">廃止 Gecko 24</span></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.dispatchEvent" title="element.dispatchEvent のページをご覧下さい。"><code>window.dispatchEvent</code></a></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.dump" title="コンソールにメッセージを表示します。"><code>window.dump</code></a></dt>
+  <dd>Writes a message to the console.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.enableExternalCapture" title="The documentation about this has not yet been written; please consider contributing!"><code>window.enableExternalCapture</code></a> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 24 / Thunderbird 24 / SeaMonkey 2.21)">廃止 Gecko 24</span></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.escape" title="文字列をエンコードし、16 進エスケープシーケンスで表された特定の文字に置換します。"><code>window.escape</code></a></dt>
+  <dd>Encodes a string.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.find" title="ウィンドウ内の文字列を検索します。"><code>window.find</code></a></dt>
+  <dd>Searches for a given string in a window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.focus" title="ウィンドウにフォーカスを合わせます。"><code>window.focus</code></a></dt>
+  <dd>Sets focus on the current window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.forward" title="ウィンドウの文書の履歴のひとつ分だけ前へ進めます。"><code>window.forward</code></a></dt>
+  <dd>Moves the window one document forward in the history.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.GeckoActiveXObject" title="The documentation about this has not yet been written; please consider contributing!"><code>window.GeckoActiveXObject</code></a></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.getAttention" title="ユーザの注意を引きつける動作をします。これがどのような動作になるかは、OS と ウィンドウマネージャー次第で変化します。"><code>window.getAttention</code></a></dt>
+  <dd>Flashes the application icon.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.getAttentionWithCycleCount" title="The documentation about this has not yet been written; please consider contributing!"><code>window.getAttentionWithCycleCount</code></a></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.getComputedStyle" title="要素の算出スタイルを返します。算出スタイルは、要素に対して適用される全ての CSS プロパティにおいて最終的に算出された値です。"><code>window.getComputedStyle</code></a></dt>
+  <dd>Gets computed style for the specified element. Computed style indicates the computed values of all CSS properties of the element.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.getDefaulComputedStyle" title="The documentation about this has not yet been written; please consider contributing!"><code>window.getDefaulComputedStyle</code></a></dt>
+  <dd>Gets default computed style for the specified element, ignoring author stylesheets.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.getSelection" title="ユーザーが選択した範囲を示す、selection オブジェクトを返します。 NB. this is nothing to do with the DOM selection list object! What the heck is 'selection list object'? -Nickolay"><code>window.getSelection</code></a></dt>
+  <dd>Returns the selection object representing the selected item(s).</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.home" title="ウィンドウをホームページに移動させます。"><code>window.home</code></a></dt>
+  <dd>Returns the browser to the home page.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.matchMedia" title="指定された メディアクエリ文字列のパース結果を表す、新しい MediaQueryList オブジェクトを返します。"><code>window.matchMedia</code></a> </dt>
+  <dd>Returns a <a href="MediaQueryList.html" title="MediaQueryList は、document の メディアクエリ のリストを保持する DOM オブジェクトです。Document 上のメディアクエリを変更すると、リスナーに通知を送信する処理を行います。"><code>MediaQueryList</code></a> object representing the specified media query string.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.maximize" title="The documentation about this has not yet been written; please consider contributing!"><code>window.maximize</code></a></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.minimize" title="The documentation about this has not yet been written; please consider contributing!"><code>window.minimize</code></a> (top-level XUL windows only)</dt>
+  <dd>Minimizes the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.moveBy" title="指定された量だけ現在のウィンドウを移動します。"><code>window.moveBy</code></a></dt>
+  <dd>Moves the current window by a specified amount.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.moveTo" title="ウィンドウを指定座標に移動します。"><code>window.moveTo</code></a></dt>
+  <dd>Moves the window to the specified coordinates.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.mozRequestAnimationFrame" title="The documentation about this has not yet been written; please consider contributing!"><code>window.mozRequestAnimationFrame</code></a> </dt>
+  <dd>Tells the browser that an animation is in progress, requesting that the browser schedule a repaint of the window for the next animation frame. This will cause a <code>MozBeforePaint</code> event to fire before that repaint occurs.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.open" title="新しい副ブラウザウィンドウを生成し、参照されているリソースをロードします。"><code>window.open</code></a></dt>
+  <dd>Opens a new window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.openDialog" title="The documentation about this has not yet been written; please consider contributing!"><code>window.openDialog</code></a></dt>
+  <dd>Opens a new dialog window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.postMessage" title="The documentation about this has not yet been written; please consider contributing!"><code>window.postMessage</code></a> </dt>
+  <dd>Provides a secure means for one window to send a string of data to another window, which need not be within the same domain as the first, in a secure manner.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.print" title="The documentation about this has not yet been written; please consider contributing!"><code>window.print</code></a></dt>
+  <dd>Opens the Print Dialog to print the current document.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.prompt" title="ユーザにテキストを入力することを促すメッセージを持つダイアログを表示します。"><code>window.prompt</code></a></dt>
+  <dd>Returns the text entered by the user in a prompt dialog.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.QueryInterface" title="nsISupports のページの『 QueryInterface 』の章をご覧下さい。"><code>window.QueryInterface</code></a></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.releaseEvents" title="The documentation about this has not yet been written; please consider contributing!"><code>window.releaseEvents</code></a> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 24 / Thunderbird 24 / SeaMonkey 2.21)">廃止 Gecko 24</span></dt>
+  <dd>Releases the window from trapping events of a specific type.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/element.removeEventListener" title="The documentation about this has not yet been written; please consider contributing!"><code>window.removeEventListener</code></a></dt>
+  <dd>Removes an event listener from the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.resizeBy" title="現在のウィンドウを特定の量だけリサイズします。"><code>window.resizeBy</code></a></dt>
+  <dd>Resizes the current window by a certain amount.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.resizeTo" title="ウィンドウサイズを動的に変更します。"><code>window.resizeTo</code></a></dt>
+  <dd>Dynamically resizes window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.restore" title="The documentation about this has not yet been written; please consider contributing!"><code>window.restore</code></a></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.routeEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>window.routeEvent</code></a> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 24 / Thunderbird 24 / SeaMonkey 2.21)">廃止 Gecko 24</span></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scroll" title="ウィンドウを文書内の特定の位置までスクロールします。"><code>window.scroll</code></a></dt>
+  <dd>Scrolls the window to a particular place in the document.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollBy" title="指定された量だけウィンドウ内の文書をスクロールします。"><code>window.scrollBy</code></a></dt>
+  <dd>Scrolls the document in the window by the given amount.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollByLines" title="指定した行分文書をスクロールします。 "><code>window.scrollByLines</code></a></dt>
+  <dd>Scrolls the document by the given number of lines.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollByPages" title="指定したページ分文書をスクロールします。 "><code>window.scrollByPages</code></a></dt>
+  <dd>Scrolls the current document by the specified number of pages.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.scrollTo" title="文書内の特定の座標までスクロールします。"><code>window.scrollTo</code></a></dt>
+  <dd>Scrolls to a particular set of coordinates in the document.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.setCursor" title="対象ウィンドウのカーソルを変更します。"><code>window.setCursor</code></a></dt>
+  <dd>Changes the cursor for the current window</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.setImmediate" title="The documentation about this has not yet been written; please consider contributing!"><code>window.setImmediate</code></a></dt>
+  <dd>Execute a function after the browser has finished other heavy tasks</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.setInterval" title="一定の遅延間隔を置いて関数を繰り返し呼び出します。"><code>window.setInterval</code></a></dt>
+  <dd>Execute a function each X milliseconds.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.setResizable" title="The documentation about this has not yet been written; please consider contributing!"><code>window.setResizable</code></a></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="window.setTimeout.html" title="指定された遅延の後に、コードの断片または関数を実行します。"><code>window.setTimeout</code></a></dt>
+  <dd>Sets a delay for executing a function.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.showModalDialog" title="指定された HTML 文書を含む モーダルダイアログボックスを生成し、表示します。"><code>window.showModalDialog</code></a> </dt>
+  <dd>Displays a modal dialog.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.sizeToContent" title="コンテンツの大きさにウィンドウのサイズを変更します。"><code>window.sizeToContent</code></a></dt>
+  <dd>Sizes the window according to its content.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.stop" title="このメソッドは、ウィンドウの読み込みを停止します。"><code>window.stop</code></a></dt>
+  <dd>This method stops window loading.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.unescape" title="16 進でエンコードされた値（例えば、クッキー）をデコードします。"><code>window.unescape</code></a></dt>
+  <dd>Unencodes a value that has been encoded in hexadecimal (e.g. a cookie).</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.updateCommands" title="現在の chrome ウィンドウ（UI）のコマンドの状態を更新します。"><code>window.updateCommands</code></a></dt>
+  <dd>Updates the state of commands of the current chrome window (UI).</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.XPCNativeWrapper" title="The documentation about this has not yet been written; please consider contributing!"><code>window.XPCNativeWrapper</code></a></dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.XPCSafeJSObjectWrapper" title="XPCSafeJSObjectWrapper のページをご覧下さい。"><code>window.XPCSafeJSObjectWrapper</code></a></dt>
+</dl>
+
+
+<h2 id="Event_handlers" name="Event_handlers">Event handlers</h2>
+<p>These are properties of the window object that can be set to establish event handlers for the various things that can happen in the window that might be of interest.</p>
+
+
+<div class="geckoVersionNote">
+  <p></p><div class="geckoVersionHeading"> 
+Gecko 9.0 note 
+<div style="font-size: 9px; line-height: 1; font-style: italic;">(Firefox 9.0 / Thunderbird 9.0 / SeaMonkey 2.6)</div> 
+</div><p></p>
+  <p>Starting in Gecko 9.0 (Firefox 9.0 / Thunderbird 9.0 / SeaMonkey 2.6), you can now use the syntax <code>if ("onabort" in window)</code> to determine whether or not a given event handler property exists. This is because event handler interfaces have been updated to be proper web IDL interfaces. See <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/DOM_event_handlers">DOM event handlers</a> for details.</p>
+</div>
+<dl>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onabort" title="ウィンドウに中断イベントを送ったときのイベントハンドラです。"><code>window.onabort</code></a></dt>
+  <dd>An event handler property for abort events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onbeforeunload" title="window のリソースの unload 直前に発生するイベントに対応する処理を設定します。 文書が未だ可視状態であり、イベントが未だキャンセル可能 (event.preventDefault) なタイミング で発生します。"><code>window.onbeforeunload</code></a></dt>
+  <dd>An event handler property for before-unload events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onblur" title="onblur プロパティは、ウィンドウ上の blur イベントのイベントハンドラを設定するために使うことができます。blur イベントは、ウィンドウからフォーカスが外れたときに発生します。"><code>window.onblur</code></a></dt>
+  <dd>An event handler property for blur events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onchange" title="ウィンドウに変更イベントを送ったときのイベントハンドラです。"><code>window.onchange</code></a></dt>
+  <dd>An event handler property for change events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onclick" title="カーソルがウィンドウ内にある時にユーザがマウスボタンをクリックした場合に呼び出されます。このイベントはどのマウスボタンを押下した場合でも発生します。イベントが発生した地点はイベントのプロパティから取得する事が出来ます。"><code>window.onclick</code></a></dt>
+  <dd>An event handler property for click events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onclose" title="ウィンドウの close イベントに対するイベントハンドラです (Firefox 2 および Safari では使用不可)"><code>window.onclose</code></a></dt>
+  <dd>An event handler property for handling the window close event.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.oncontextmenu" title="The documentation about this has not yet been written; please consider contributing!"><code>window.oncontextmenu</code></a></dt>
+  <dd>An event handler property for right-click events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.ondevicelight" title="デバイスの環境光センサが光の強度の変化を検出した際に発生する devicelight イベントを受け取るイベントリスナーを指定します。"><code>window.ondevicelight</code></a></dt>
+  <dd>An event handler property for any ambient light levels changes</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.ondevicemotion" title="The documentation about this has not yet been written; please consider contributing!"><code>window.ondevicemotion</code></a> </dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.ondeviceorientation" title="The documentation about this has not yet been written; please consider contributing!"><code>window.ondeviceorientation</code></a> </dt>
+  <dd><span class="inlineIndicator todo todoInline"><strong>FIXME:</strong> <em>NeedsContents</em></span></dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.ondeviceproximity" title="The documentation about this has not yet been written; please consider contributing!"><code>window.ondeviceproximity</code></a></dt>
+  <dd>An event handler property for device proximity event</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.ondragdrop" title="The documentation about this has not yet been written; please consider contributing!"><code>window.ondragdrop</code></a></dt>
+  <dd>An event handler property for drag and drop events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onerror" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onerror</code></a></dt>
+  <dd>An event handler property for errors raised on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onfocus" title="window の focus イベントに対応するイベントハンドラです。"><code>window.onfocus</code></a></dt>
+  <dd>An event handler property for focus events on the window.</dd>
+
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onhashchange" title="hashchange イベントは、 window のハッシュが変更された際に発生します (参照：location.hash)"><code>window.onhashchange</code></a> </dt>
+  <dd>An event handler property for hash change events on the window; called when the part of the URL after the hash mark ("#") changes.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onkeydown" title="ウィンドウ上での keydown イベントに対応するイベントハンドラです。"><code>window.onkeydown</code></a></dt>
+  <dd>An event handler property for keydown events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onkeypress" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onkeypress</code></a></dt>
+  <dd>An event handler property for keypress events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onkeyup" title="window の keyup イベントに対応するイベントハンドラです。"><code>window.onkeyup</code></a></dt>
+  <dd>An event handler property for keyup events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onload" title="window の load イベントに対応するイベントハンドラです。"><code>window.onload</code></a></dt>
+  <dd>An event handler property for window loading.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onmousedown" title="window 上での mousedown イベントに対応するイベントハンドラです。"><code>window.onmousedown</code></a></dt>
+  <dd>An event handler property for mousedown events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onmousemove" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onmousemove</code></a></dt>
+  <dd>An event handler property for mousemove events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onmouseout" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onmouseout</code></a></dt>
+  <dd>An event handler property for mouseout events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onmouseover" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onmouseover</code></a></dt>
+  <dd>An event handler property for mouseover events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onmouseup" title="window 上の mouseup イベントに対応するイベントハンドラです。"><code>window.onmouseup</code></a></dt>
+  <dd>An event handler property for mouseup events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onmozbeforepaint" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onmozbeforepaint</code></a> </dt>
+  <dd>An event handler property for the <code>MozBeforePaint</code> event, which is sent before repainting the window if the event has been requested by a call to the <a href="https://developer.mozilla.org/ja/docs/Web/API/window.mozRequestAnimationFrame" title="The documentation about this has not yet been written; please consider contributing!"><code>window.mozRequestAnimationFrame()</code></a> method.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onpaint" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onpaint</code></a></dt>
+  <dd>An event handler property for paint events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onpopstate" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onpopstate</code></a> </dt>
+  <dd>An event handler property for popstate events, which are fired when navigating to a session history entry representing a state object.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onreset" title="フォームの reset イベントに対応するイベントハンドラです。"><code>window.onreset</code></a></dt>
+  <dd>An event handler property for reset events on the window.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onresize" title="window のリサイズイベントに対応するイベントハンドラ。"><code>window.onresize</code></a></dt>
+  <dd>An event handler property for window resizing.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onscroll" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onscroll</code></a></dt>
+  <dd>An event handler property for window scrolling.</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Web/API/window.onselect" title="window の select イベントに対応するイベントハンドラです。"><code>window.onselect</code></a></dt>
+  <dd>An event handler property for window selection.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onsubmit" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onsubmit</code></a></dt>
+  <dd>An event handler property for submits on window forms.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onunload" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onunload</code></a></dt>
+  <dd>An event handler property for unload events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onuserproximity" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onuserproximity</code></a></dt>
+  <dd>An event handler property for user proximity events</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onpageshow" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onpageshow</code></a></dt>
+  <dd>An event handler property for pageshow events on the window.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.onpagehide" title="The documentation about this has not yet been written; please consider contributing!"><code>window.onpagehide</code></a></dt>
+  <dd>An event handler property for pagehide events on the window.</dd>
+</dl>
+
+
+<h2 id="Constructors" name="Constructors">コンストラクタ</h2>
+<dl>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/Image" title="The documentation about this has not yet been written; please consider contributing!"><code>Image</code></a></dt>
+  <dd>Used for creating an <a class="new" href="HTMLImageElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLImageElement</code></a>.</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/Option" title="The documentation about this has not yet been written; please consider contributing!"><code>Option</code></a></dt>
+  <dd>Used for creating an <a class="new" href="HTMLOptionElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLOptionElement</code></a></dd>
+  <dt><a class="new" href="Worker.html" title="The documentation about this has not yet been written; please consider contributing!"><code>Worker</code></a></dt>
+  <dd>Used for creating a <a href="../Guide/Performance/Using_web_workers.html">Web worker</a></dd>
+</dl>
+<h2 id="See_also" name="See_also">関連情報</h2>
+<ul>
+  <li><a href="https://developer.mozilla.org/ja/docs/Working_with_windows_in_chrome_code">Working with windows in chrome code</a></li>
+</ul>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../tag/翻訳中.html">翻訳中</a></li><li><a href="../../tag/Gecko.html">Gecko</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Window">Window</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Gecko%20DOM%20Reference">Gecko DOM Reference</a></li><li><a href="../../tag/DOM.html">DOM</a></li><li><a href="../../tag/要更新.html">要更新</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../profiles/ethertank.html">ethertank</a>, <a href="../../../profiles/Hfjapancom.html">Hfjapancom</a>, <a href="../../../profiles/Shoot.html">Shoot</a>, <a href="https://developer.mozilla.org/ja/profiles/Norah">Norah</a>, <a href="../../../profiles/Mgjbot.html">Mgjbot</a>, <a href="../../../profiles/Potappo.html">Potappo</a>, <a href="https://developer.mozilla.org/ja/profiles/Crash">Crash</a>, <a href="../../../profiles/Okome.html">Okome</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-23T02:35:11-07:00">2013/05/23 2:35:11</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="window.html#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+  <ol> 
+     
+    <li><a href="../../DOM/DOM_Reference.html">DOM リファレンス</a></li> 
+    <li><strong><a href="Window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>Window</code></a></strong></li> 
+     
+    <li data-default-state="open"><a href="window.html#"><strong>Properties</strong></a> 
+    <ol> 
+     
+    </ol></li> 
+     
+    <li data-default-state="open"><a href="window.html#"><strong>Methods</strong></a> 
+    <ol> 
+     
+    </ol></li> 
+  </ol> 
+
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/API/Window" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/API/Window">
+            English (US)
+          </option>          <option value="/de/docs/DOM/window">
+            Deutsch
+          </option>          <option value="/pl/docs/DOM/window">
+            Polski
+          </option>          <option value="/fr/docs/DOM/window">
+            Français
+          </option>          <option value="/es/docs/DOM/window">
+            Español
+          </option>          <option value="/zh-CN/docs/Web/API/Window">
+            中文 (简体)
+          </option>          <option value="/ko/docs/DOM/window">
+            한국어
+          </option>          <option value="/it/docs/DOM/window">
+            Italiano
+          </option>          <option value="/ru/docs/Web/API/Window">
+            Русский
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":0,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":747}</script></body>
+</html>

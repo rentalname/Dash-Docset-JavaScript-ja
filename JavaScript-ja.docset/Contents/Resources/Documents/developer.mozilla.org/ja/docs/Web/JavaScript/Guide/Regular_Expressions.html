@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>正規表現 - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../index.html">
+  <link rel="copyright" href="Regular_Expressions.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1324c0a" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1324c0a" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions$json">
+  <link rel="canonical" href="Regular_Expressions.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" title="Regular Expressions">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide_ru/Regular_Expressions" title="Регулярные выражения">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions" title="Regular Expressions">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Regular_Expressions" title="Reguläre Ausdrücke">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" title="正则表达式">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Regular_Expressions" title="正規表示式">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_r%C3%A9guli%C3%A8res" title="Expressions rationnelles">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/Web/JavaScript/Guide/Regular_Expressions" title="রেগুলার এক্সপ্রেশন">
+          <link rel="alternate" hreflang="th" href="https://developer.mozilla.org/th/docs/Web/JavaScript/Guide/Regular_Expressions" title="Regular Expressions">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions" title="Expresiones Regulares">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="正規表現">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions">
+  <meta name="twitter:title" content="正規表現">
+    <meta property="og:description" content="正規表現とは、文字列内で文字の組み合わせを照合するために用いられるパターンです。JavaScript では、正規表現はオブジェクトでもあります。これらのパターンは RegExp の exec および test メソッドや、 String の match 、 replace 、 search 、および split メソッドで使用できます。この章では、JavaScript の正規表現について説明します。">
+  <meta name="description" content="正規表現とは、文字列内で文字の組み合わせを照合するために用いられるパターンです。JavaScript では、正規表現はオブジェクトでもあります。これらのパターンは RegExp の exec および test メソッドや、 String の match 、 replace 、 search 、および split メソッドで使用できます。この章では、JavaScript の正規表現について説明します。">
+  <meta name="twitter:description" content="正規表現とは、文字列内で文字の組み合わせを照合するために用いられるパターンです。JavaScript では、正規表現はオブジェクトでもあります。これらのパターンは RegExp の exec および test メソッドや、 String の match 、 replace 、 search 、および split メソッドで使用できます。この章では、JavaScript の正規表現について説明します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/JavaScript/Guide/Regular_Expressions" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1324c0a',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Regular_Expressions.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Regular_Expressions.html#language">言語の選択</a></li>
+          <li><a href="Regular_Expressions.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/Guide/Regular_Expressions" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/Guide/Regular_Expressions" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Tools.html">ツール</a></li><li><a href="../../../../demos/index.html">MDN デモ</a></li><li><a href="../../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" title="Regular Expressions">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide_ru/Regular_Expressions" title="Регулярные выражения">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions" title="Regular Expressions">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Regular_Expressions" title="Reguläre Ausdrücke">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" title="正则表达式">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Regular_Expressions" title="正規表示式">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_r%C3%A9guli%C3%A8res" title="Expressions rationnelles">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/Web/JavaScript/Guide/Regular_Expressions" title="রেগুলার এক্সপ্রেশন">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/th/docs/Web/JavaScript/Guide/Regular_Expressions" title="Regular Expressions">ไทย</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions" title="Expresiones Regulares">Español</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Regular_Expressions.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../JavaScript.html" rel="v:url" property="v:title">JavaScript</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Guide.html" rel="v:url" property="v:title">JavaScript ガイド</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">正規表現</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Regular_Expressions.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>正規表現</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Regular_Expressions.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Regular_Expressions.html#Creating_a_Regular_Expression" rel="internal">正規表現の作成</a><code></code><li><a href="Regular_Expressions.html#Writing_a_Regular_Expression_Pattern" rel="internal">正規表現パターンを書く</a><code></code><code></code><code></code><ol><li><a href="Regular_Expressions.html#Using_Simple_Patterns" rel="internal">単純なパターンの使用</a><code></code><li><a href="Regular_Expressions.html#Using_Special_Characters" rel="internal">特殊文字の使用</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Regular_Expressions.html#Using_Parentheses" rel="internal">括弧の使用</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="Regular_Expressions.html#Working_with_Regular_Expressions" rel="internal">正規表現の使用</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="Regular_Expressions.html#Using_Parenthesized_Substring_Matches" rel="internal">括弧で囲まれた部分文字列のマッチの使用</a><code></code><code></code><code></code><code></code><ol><li><a href="Regular_Expressions.html#Example_1" rel="internal">例 1</a><code></code><code></code><code></code></ol></li><li><a href="Regular_Expressions.html#Advanced_Searching_With_Flags" rel="internal">フラグを用いた高度な検索</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="Regular_Expressions.html#Examples" rel="internal">例</a><ol><li><a href="Regular_Expressions.html#Changing_the_Order_in_an_Input_String" rel="internal">入力文字列の順序変更</a><code></code><code></code><li><a href="Regular_Expressions.html#Using_Special_Characters_to_Verify_Input" rel="internal">特殊文字を用いた入力の確認</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>正規表現とは、文字列内で文字の組み合わせを照合するために用いられるパターンです。JavaScript では、正規表現はオブジェクトでもあります。これらのパターンは <a href="../Reference/Global_Objects/RegExp.html" title="RegExp"><code>RegExp</code></a> の <a href="../Reference/Global_Objects/RegExp/exec.html" title="exec"><code>exec</code></a> および <a href="../Reference/Global_Objects/RegExp/test.html" title="test"><code>test</code></a> メソッドや、<a href="../Reference/Global_Objects/String.html" title="String"><code>String</code></a> の <a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/match" title="match"><code>match</code></a>、<a href="../Reference/Global_Objects/String/replace.html" title="replace"><code>replace</code></a>、<a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/search" title="search"><code>search</code></a>、および <a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/split" title="split"><code>split</code></a> メソッドで使用できます。この章では、JavaScript の正規表現について説明します。</p>
+<h2 id="Creating_a_Regular_Expression" name="Creating_a_Regular_Expression">正規表現の作成</h2>
+<p>正規表現は 2 つの方法で作ることができます:</p>
+<ul>
+  <li>次のように、正規表現リテラルを使用する:
+    <div style="margin-right: 270px;">
+      <pre class="brush: js">var re = /ab+c/;
+</pre>
+    </div>
+    <p>正規表現リテラルでは、スクリプトが評価されるときにその正規表現をコンパイルします。正規表現を定数として残しておくときは、この方法を使用するとよいパフォーマンスが得られます。</p>
+  </li>
+  <li>次のように、<code><a href="../Reference/Global_Objects/RegExp.html" title="JavaScript/Reference/Global Objects/RegExp">RegExp</a></code> オブジェクトのコンストラクタ関数を呼び出す。:
+    <div style="margin-right: 270px;">
+      <pre class="brush: js">var re = new RegExp("ab+c");
+</pre>
+    </div>
+    <p>コンストラクタ関数を使用すると、実行時にその正規表現をコンパイルします。正規表現パターンが変わることがわかっている場合や、パターンがわからない場合、ユーザが入力するなど別のソースからパターンを取得する場合は、コンストラクタ関数を使用してください。</p>
+  </li>
+</ul>
+<h2 id="Writing_a_Regular_Expression_Pattern" name="Writing_a_Regular_Expression_Pattern">正規表現パターンを書く</h2>
+<p>正規表現パターンは、<code>/abc/</code> のような単純な文字、または <code>/ab*c/</code> や <code>/Chapter (\d+)\.\d*/</code> のような単純な文字と特殊文字との組み合わせからなります。このセクションの最後の例では、記憶装置として用いられる丸括弧が含まれています。パターンのこの部分でマッチした箇所は、後で使用できるように記憶されます。詳しくは<a href="Regular_Expressions.html#Using_Parenthesized_Substring_Matches">括弧で囲まれた部分文字列のマッチの使用</a>を参照してください。</p>
+<h3 id="Using_Simple_Patterns" name="Using_Simple_Patterns">単純なパターンの使用</h3>
+<p>単純なパターンは、直接マッチしている部分を見つけたい文字で構成されます。例えば <code>/abc/</code> というパターンは、実際に 'abc' という文字が一緒にその順で存在しているときだけ、文字列中の文字の組み合わせにマッチします。"Hi, do you know your abc's?" や "The latest airplane designs evolved from slabcraft." といった文字列でのマッチは成功します。どちらの場合でも 'abc' という部分文字列にマッチします。"Grab crab" という文字列では、'abc' という部分文字列が含まれていないためマッチしません。</p>
+<h3 id="Using_Special_Characters" name="Using_Special_Characters">特殊文字の使用</h3>
+<p>1 つ以上の b を見つけたり、ホワイトスペースを見つけたりといった直接マッチより高度なマッチの検索では、パターンで特殊文字を使用します。例えば <code>/ab*c/</code> というパターンでは、1 つの 'a' とその後ろに続く 0 個以上の 'b' (<code>*</code> は直前のアイテムの 0 回以上の出現を意味します)、そしてそのすぐ後ろに続く 'c' で構成される文字の組み合わせにマッチします。"cbbabbbbcdebc," という文字列では、このパターンは 'abbbbc' という部分文字列にマッチします。</p>
+<p>以下の表で、正規表現で使用できる特殊文字とその意味を詳しく説明します。</p>
+<table class="standard-table">
+  <caption>
+    表 4.1 : 正規表現における特殊文字</caption>
+  <thead>
+    <tr>
+      <th scope="col">文字</th>
+      <th scope="col">意味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-backslash" id="special-backslash" name="special-backslash"><code>\</code></a></td>
+      <td>次のうちのいずれか:
+        <ul>
+          <li>通常は文字どおりに扱われる文字に対して、次の文字は特殊であり文字どおりに解釈すべきではないと指示します。</li>
+          <li style="list-style-type: none;">例えば <code>/b/ </code> は文字 'b' にマッチします。b の前にバックスラッシュを置いて <code>/\b/</code> とすると、その文字は単語の区切りにマッチすることを意味する特殊文字になります。</li>
+          <li>通常は特殊文字として扱われる文字に対して、次の文字は特殊ではなく文字どおりに解釈すべきであると指示します。</li>
+          <li style="list-style-type: none;">例えば <code>*</code> は直前のアイテムの 0 回以上の出現にマッチすることを意味する特殊文字です。例えば <code>/a*/</code> は 0 文字以上の a へのマッチを意味します。<code>*</code> という文字そのものにマッチさせるには、その直前にバックスラッシュを置きます。例えば <code>/a\*/</code> は 'a*' にマッチします。</li>
+          <li style="list-style-type: none;">また、\ も文字列内ではエスケープ文字であることから、新たな RegExp("pattern") を記述する際は \ 自身のエスケープを忘れないようにしてください。</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-caret" id="special-caret" name="special-caret"><code>^</code></a></td>
+      <td>
+        <p>入力の先頭にマッチします。複数行フラグが true にセットされている場合は、改行文字の直後にもマッチします。</p>
+        <p>例えば <code>/^A/</code> は "an A" の 'A' にはマッチしませんが、"An E" の 'A' にはマッチします。</p>
+        <p>この文字は、文字集合パターンの先頭にある場合は異なる意味を持ちます。</p>
+        <p>例えば <code>/[^a-z\s]/</code> は "I have 3 sisters" の '3' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-dollar" id="special-dollar" name="special-dollar"><code>$</code></a></td>
+      <td>
+        <p>入力の末尾にマッチします。複数行フラグが true にセットされている場合は、改行文字の直前にもマッチします。</p>
+        <p>例えば <code>/t$/</code> は "eater" の 't' にはマッチしませんが、"eat" の 't' にはマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-asterisk" id="special-asterisk" name="special-asterisk"><code>*</code></a></td>
+      <td>
+        <p>直前の文字の 0 回以上の繰り返しにマッチします。</p>
+        <p>例えば <code>/bo*/</code> は "A ghost booooed" の 'boooo' や "A bird warbled" の 'b' にマッチしますが、"A goat grunted" ではマッチしません。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-plus" id="special-plus" name="special-plus"><code>+</code></a></td>
+      <td>
+        <p>直前の文字の 1 回以上の繰り返しにマッチします。{1,} と同等です。</p>
+        <p>例えば <code>/a+/</code> は "candy" の 'a' や "caaaaaaandy" のすべての a にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-questionmark" id="special-questionmark" name="special-questionmark"><code>?</code></a></td>
+      <td>
+        <p>直前の文字の 0 回か 1 回の出現にマッチします。{0,1} と同等です。</p>
+        <p>例えば <code>/e?le?/</code> は "angel" の 'el' や "angle" の 'le'、あるいは "oslo" の 'l' にマッチします。</p>
+        <p><code>*</code>、<code>+</code>、<code>?</code>、<code>{}</code> といった量指定子の直後に使用した場合、その量指定子を無欲 (最小回数にマッチ) にします。これはデフォルトとは逆であり、デフォルトは欲張り (最大回数にマッチ) です。例えば /\d+/ は非グローバルマッチで "123abc" の "123" にマッチしますが、/\d+?/ の場合は "1" だけにマッチします。</p>
+        <p>これは先読み表現内でも使用でき、この表の x(?=y) および x(?!y) にて説明します。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-dot" id="special-dot" name="special-dot"><code>.</code></a></td>
+      <td>
+        <p>(小数点) 改行文字以外のどの 1 文字にもマッチします。</p>
+        <p>例えば <code>/.n/</code> は "nay, an apple is on the tree" の 'an' や 'on' にはマッチしますが、'nay' にはマッチしません。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-capturing-parentheses" id="special-capturing-parentheses" name="special-capturing-parentheses"><code>(x)</code></a></td>
+      <td>
+        <p>'x' にマッチし、マッチした内容を記憶します。これはキャプチャする括弧と呼びます。</p>
+        <p>例えば <code>/(foo)/</code> mは "foo bar." の 'foo' にマッチし、これを記憶します。マッチした部分文字列は、結果として生成される配列の要素 <code>[1]</code>, ..., <code>[n]</code> から呼び出すことができます。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-non-capturing-parentheses" id="special-non-capturing-parentheses" name="special-non-capturing-parentheses"><code>(?:x)</code></a></td>
+      <td>'x' にマッチしますが、マッチした内容は記憶しません。これはキャプチャしない括弧と呼びます。マッチした部分文字列を、結果として生成される配列の要素 <code>[1]</code>, ..., <code>[n]</code> から呼び出すことはできません。</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-lookahead" id="special-lookahead" name="special-lookahead"><code>x(?=y)</code></a></td>
+      <td>
+        <p>'x' に 'y' が続く場合のみ 'x' にマッチします。これは先読みと呼ばれます。</p>
+        <p>例えば <code>/Jack(?=Sprat)/</code> は 'Jack' の後に 'Sprat' が続く場合のみ 'Jack' にマッチします。<code>/Jack(?=Sprat|Frost)/</code> は 'Jack' の後ろに 'Sprat' または 'Frost' が続く場合のみ 'Jack' にマッチします。しかしながら、'Sprat' も 'Frost' もマッチの結果には表れません。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-negated-look-ahead" id="special-negated-look-ahead" name="special-negated-look-ahead"><code>x(?!y)</code></a></td>
+      <td>
+        <p>'x' に 'y' が続かない場合のみ 'x' にマッチします。これは否定先読みと呼ばれます。</p>
+        <p>例えば <code>/\d+(?!\.)/</code> は後ろに小数点が続かない数値にマッチします。正規表現 <code>/\d+(?!\.)/.exec("3.141")</code> は '141' にマッチしますが '3.141' にはマッチしません。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-or" id="special-or" name="special-or"><code>x|y</code></a></td>
+      <td>
+        <p>'x' または 'y' にマッチします。</p>
+        <p>例えば <code>/green|red/</code> は "green apple" の 'green' や "red apple" の 'red' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-quantifier" id="special-quantifier" name="special-quantifier"><code>{n}</code></a></td>
+      <td>
+        <p><code>n</code> には正の整数が入ります。直前の文字がちょうど <code>n</code> 回出現するものにマッチします。</p>
+        <p>例えば <code>/a{2}/</code> は "candy" の 'a' にはマッチしませんが、"caaandy" の最初の 2 つの a にはマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-quantifier-range" id="special-quantifier-range" name="special-quantifier-range"><code>{n,m}</code></a></td>
+      <td>
+        <p><code>n</code> および <code>m</code> には正の整数が入ります。直前の文字が少なくとも <code>n</code> 回、多くても <code>m</code> 回出現するものにマッチします。</p>
+        <code>n</code> または <code>m</code> が 0 である場合、それを省略できます。
+        <p>例えば <code>/a{1,3}/</code> は "cndy" ではマッチせず、"candy," の 'a'、"caandy," の 最初の 2 つの a、"caaaaaaandy" の最初の 3 つの a にマッチします。"caaaaaaandy" では元の文字列に a が 4 つ以上ありますが、マッチするのは "aaa" であることに注意してください。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-character-set" id="special-character-set" name="special-character-set"><code>[xyz]</code></a></td>
+      <td>
+        <p>文字の集合です。囲まれた文字のいずれかにマッチします。ハイフンを用いて文字の範囲を指定することも可能です。文字の集合内では、特殊文字 (例えばドット (<code>.</code>) やアスタリスク (<code>*</code>)) は特別な意味を持ちません。それらのエスケープは不要です。エスケープシーケンスでも動作します。</p>
+        <p>例えば <code>[abcd]</code> は <code>[a-d]</code> と同じです。これは "brisket" の 'b' や "city" の 'c' にマッチします。<code>/[a-z.]+/</code> および <code>/[\w.]+/</code> はどちらも、"test.i.ng" の全体にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-negated-character-set" id="special-negated-character-set" name="special-negated-character-set"><code>[^xyz]</code></a></td>
+      <td>
+        <p>文字の集合の否定または補集合です。角括弧で囲まれていないものにマッチします。ハイフンを用いて文字の範囲を指定することも可能です。通常の文字の集合で動作するものすべてがこちらでも動作します。</p>
+        <p>例えば <code>[^abc]</code> は <code>[^a-c]</code> と同じです。これは始めに、"brisket" の 'r' や "chop" の 'h' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-backspace" id="special-backspace" name="special-backspace"><code>[\b]</code></a></td>
+      <td>後退 (U+0008) にマッチします。(<code>\b</code> と混同してはいけません。)</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-word-boundary" id="special-word-boundary" name="special-word-boundary"><code>\b</code></a></td>
+      <td>
+        <p>単語の区切りにマッチします。単語の区切りは、単語構成文字の前または後ろに別の単語構成文字がない位置にマッチします。マッチした単語の区切りは、マッチした部分に含まれないことに注意してください。言い換えると、マッチした単語の区切りの長さは 0 です。(<code>[\b]</code> と混同してはいけません。)</p>
+        <p>例:<br>
+          <code>/\bm/</code> は "moon" の 'm' にマッチします。<br>
+          <code>/oo\b/</code> は "moon" の 'oo' にはマッチしません。これは、'oo' の後ろに単語構成文字である 'n' が続いているためです。<br>
+          <code>/oon\b/</code> は "moon" の 'oon' にマッチします。これは、'oon' が文字列の終端であり単語構成文字が続かないためです。<br>
+          <code>/\w\b\w/</code> はどこにもマッチしないでしょう。これは、単語構成文字の後に非単語構成文字および単語構成文字を続けることができないためです。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-non-word-boundary" id="special-non-word-boundary" name="special-non-word-boundary"><code>\B</code></a></td>
+      <td>
+        <p>単語の区切り以外の文字にマッチします。これは、前の文字と後ろの文字が同じ種類である位置にマッチします。すなわち両方とも単語であるか、両方とも単語でない状況です。文字列の先頭と終端は、単語ではないと考えます。</p>
+        <p>例えば <code>/\B../</code> は "noonday" の 'oo' に、<code>/y\B./</code> は "possibly yesterday" の 'ye' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-control" id="special-control" name="special-control"><code>\c<em>X</em></code></a></td>
+      <td>
+        <p><em>X</em> には A から Z のうち 1 文字が入ります。文字列中の制御文字にマッチします。</p>
+        <p>例えば <code>/\cM/</code> は文字列中の control-M (U+000D) にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-digit" id="special-digit" name="special-digit"><code>\d</code></a></td>
+      <td>
+        <p>数字にマッチします。<code>[0-9]</code> と同等です。</p>
+        <p>例えば <code>/\d/</code> や <code>/[0-9]/</code> は "B2 is the suite number" の '2' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-non-digit" id="special-non-digit" name="special-non-digit"><code>\D</code></a></td>
+      <td>
+        <p>数字以外の文字にマッチします。<code>[^0-9]</code> と同等です。</p>
+        <p>例えば <code>/\D/</code> や <code>/[^0-9]/</code> は "B2 is the suite number" の 'B' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-form-feed" id="special-form-feed" name="special-form-feed"><code>\f</code></a></td>
+      <td>改ページ (U+000C) にマッチします。</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-line-feed" id="special-line-feed" name="special-line-feed"><code>\n</code></a></td>
+      <td>改行 (U+000A) にマッチします。</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-carriage-return" id="special-carriage-return" name="special-carriage-return"><code>\r</code></a></td>
+      <td>復帰 (U+000D) にはマッチします。</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-white-space" id="special-white-space" name="special-white-space"><code>\s</code></a></td>
+      <td>
+        <p>スペース、タブ、改ページ、改行を含む 1 つのホワイトスペース文字にマッチします。<code>[ \f\n\r\t\v\u00A0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u2028\u2029\u202f\u205f\u3000]</code> と同等です。</p>
+        <p>例えば <code>/\s\w*/</code> は "foo bar" の ' bar' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-non-white-space" id="special-non-white-space" name="special-non-white-space"><code>\S</code></a></td>
+      <td>
+        <p>ホワイトスペース以外の 1 文字にマッチします。<code>[^ \f\n\r\t\v\u00A0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u2028\u2029\u202f\u205f\u3000]</code> と同等です。</p>
+        <p>例えば <code>/\S\w*/</code> は "foo bar" の 'foo' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-tab" id="special-tab" name="special-tab"><code>\t</code></a></td>
+      <td>タブ (U+0009) にマッチします。</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-vertical-tab" id="special-vertical-tab" name="special-vertical-tab"><code>\v</code></a></td>
+      <td>垂直タブ (U+000B) にマッチします。</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-word" id="special-word" name="special-word"><code>\w</code></a></td>
+      <td>
+        <p>アンダースコアを含むどの英数字にもマッチします。<code>[A-Za-z0-9_]</code> と同等です。</p>
+        <p>例えば <code>/\w/</code> は、"apple," の 'a' や "$5.28," の '5' や "3D" の '3' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-non-word" id="special-non-word" name="special-non-word"><code>\W</code></a></td>
+      <td>
+        <p>前述以外の文字にマッチします。<code>[^A-Za-z0-9_]</code> と同等です。</p>
+        <p>例えば <code>/\W/</code> や <code>/[^A-Za-z0-9_]/</code> は、"50%" の '%' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-backreference" id="special-backreference" name="special-backreference"><code>\<em>n</em></code></a></td>
+      <td>
+        <p><em>n</em> には正の整数が入ります。正規表現内で <em>n</em> 番目の括弧の部分にマッチする最後の部分文字列への後方参照です (左括弧をカウントします)。</p>
+        <p>例えば <code>/apple(,)\sorange\1/</code> は "apple, orange, cherry, peach" の 'apple, orange,' にマッチします。</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-null" id="special-null" name="special-null"><code>\0</code></a></td>
+      <td>NULL (U+0000) 文字にマッチします。この後ろに他の数字と続けてはいけません。これは、<code>\0&lt;digits&gt;</code> が 8 進数のエスケープシーケンスであるためです。</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-hex-escape" id="special-hex-escape" name="special-hex-escape"><code>\xhh</code></a></td>
+      <td>hh (2 桁の 16 進数) というコードを持つ文字列にマッチする。</td>
+    </tr>
+    <tr>
+      <td><a href="Regular_Expressions.html#special-unicode-escape" id="special-unicode-escape" name="special-unicode-escape"><code>\uhhhh</code></a></td>
+      <td>hhhh (4 桁の 16 進数) というコードを持つ文字列にマッチする。</td>
+    </tr>
+  </tbody>
+</table>
+<p>ユーザ入力を正規表現内の文字列リテラルとして扱うためには上記の記号は全てエスケープする必要がありますが、これは以下の様な関数を用いる事で簡単に達成することができます。</p>
+<pre class="brush: js">function escapeRegExp(string) {
+  return string.replace(/([.*+?^=!:${}()|[\]\/\\])/g, "\\$1");
+}</pre>
+<h3 id="Using_Parentheses" name="Using_Parentheses">括弧の使用</h3>
+<p>正規表現パターンの一部を括弧で囲むことで、マッチした部分文字列を記憶しておくことができます。一度記憶すると、後からその部分文字列を呼び戻すことができます。これに関しては<a href="Regular_Expressions.html#Using_Parenthesized_Substring_Matches">括弧で囲まれた部分文字列のマッチの使用</a>で説明しています。</p>
+<p>例えば <code>/Chapter (\d+)\.\d*/</code> というパターンではエスケープされた文字や特殊文字を付加しており、その一部分を記憶するように指示しています。これは 'Chapter ' という文字列、それに続く 1 文字以上の数字 (<code>\d</code> はいずれかの数字を、<code>+</code> は 1 回以上の繰り返しを意味します)、それに続く小数点 (それ自体は特殊文字であり、小数点の前の \ はパターンが '.' という文字そのものを探すようにすることを意味します)、それに続く 0 文字以上の数字 (<code>\d</code> は数字を、<code>*</code> は 0 回以上の繰り返しを意味します) にマッチします。さらに、括弧を使うことで最初にマッチした数字を記憶させます。</p>
+<p>このパターンは "Open Chapter 4.3, paragraph 6" という文字列で見つかり、'4' が記憶されます。このパターンは "Chapter 3 and 4" では見つかりません。この文字列は '3' の後にピリオドがないためです。</p>
+<p>マッチした部分を記憶させることなく部分文字列にマッチさせたい場合は、その括弧においてパターンの前に <code>?:</code> をつけてください。例えば <code>(?:\d+)</code> は 1 文字以上の数字にマッチしますが、マッチした文字列は記憶しません。</p>
+<h2 id="Working_with_Regular_Expressions" name="Working_with_Regular_Expressions">正規表現の使用</h2>
+<p>正規表現は、<code>RegExp</code> の <code>test</code> および <code>exec</code> メソッド、<code>String</code> の <code>match</code>、<code>replace</code>、<code>search</code>、および<code>split</code> メソッドとともに使用します。これらのメソッドの詳細は <a href="../Reference.html" title="JavaScript/Reference">JavaScript リファレンス</a>で説明しています。</p>
+<table class="standard-table">
+  <caption>
+    表 4.2 : 正規表現を使用するメソッド</caption>
+  <thead>
+    <tr>
+      <th scope="col">メソッド</th>
+      <th scope="col">説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code><a href="../Reference/Global_Objects/RegExp/exec.html" title="JavaScript/Reference/Global_Objects/RegExp/exec">exec</a></code></td>
+      <td>文字列中で一致するものを検索する <code>RegExp</code> のメソッド。結果情報の配列を返します。</td>
+    </tr>
+    <tr>
+      <td><code><a href="../Reference/Global_Objects/RegExp/test.html" title="JavaScript/Reference/Global_Objects/RegExp/test">test</a></code></td>
+      <td>文字列中で一致するものがあるかをテストする <code>RegExp</code> のメソッド。true または false を返します。</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/match" title="JavaScript/Reference/Global_Objects/String/match">match</a></code></td>
+      <td>文字列中で一致するものを検索する <code>String</code> のメソッド。結果情報の配列を返します。マッチしない場合は null を返します。</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/search" title="JavaScript/Reference/Global_Objects/String/search">search</a></code></td>
+      <td>文字列中で一致するものがあるかをテストする <code>String</code> のメソッド。マッチした場所のインデックスを返します。検索に失敗した場合は -1 を返します。</td>
+    </tr>
+    <tr>
+      <td><code><a href="../Reference/Global_Objects/String/replace.html" title="JavaScript/Reference/Global_Objects/String/replace">replace</a></code></td>
+      <td>文字列中で一致するものを検索し、マッチした部分文字列を別の部分文字列に置換する <code>String</code> のオブジェクト。</td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/JavaScript/Reference/Global_Objects/String/split" title="JavaScript/Reference/Global_Objects/String/split">split</a></code></td>
+      <td>正規表現または固定文字列を用いて文字列を分割し、部分文字列の配列に入れる <code>String</code> のメソッド。</td>
+    </tr>
+  </tbody>
+</table>
+<p>あるパターンが文字列に存在するかを知りたいときは、<code>test</code> または <code>search</code> メソッドを使用してください。詳細な情報が知りたいときは (実行時間が長くなりますが) <code>exec</code> または <code>match</code> メソッドを使用してください。<code>exec</code> や <code>match</code> を使用してマッチが成功した場合、これらのメソッドは配列を返し、また結びつけられた正規表現オブジェクトと定義済みオブジェクトである <code>RegExp</code> オブジェクトのプロパティを更新します。マッチが失敗すると、<code>exec</code> メソッドは <code>null</code> (<code>false</code> に変換します) を返します。</p>
+<p>次の例では、<code>exec</code> メソッドを使用して文字列を検索します。</p>
+<pre class="brush: js">var myRe = /d(b+)d/g;
+var myArray = myRe.exec("cdbbdbsbz");
+</pre>
+<p>正規表現のプロパティにアクセスする必要がない場合は、次のスクリプトが <code>myArray</code> を作成する別の方法になります:</p>
+<pre class="brush: js">var myArray = /d(b+)d/g.exec("cdbbdbsbz");
+</pre>
+<p>ある文字列から正規表現を組み立てたい場合は、次のスクリプトのような方法があります:</p>
+<pre class="brush: js">var myRe = new RegExp("d(b+)d", "g");
+var myArray = myRe.exec("cdbbdbsbz");
+</pre>
+<p>これらのスクリプトではマッチが成功し、配列を返すとともに次の表で示すプロパティを更新します。</p>
+<table class="standard-table">
+  <caption>
+    表 4.3 : 正規表現の実行結果</caption>
+  <thead>
+    <tr>
+      <th scope="col">オブジェクト</th>
+      <th scope="col">プロパティまたはインデックス</th>
+      <th scope="col">説明</th>
+      <th scope="col">この例の場合</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4"><code>myArray</code></td>
+      <td> </td>
+      <td>マッチした文字列と、すべての記憶された部分文字列です。</td>
+      <td><code>["dbbd", "bb"]</code></td>
+    </tr>
+    <tr>
+      <td><code>index</code></td>
+      <td>入力文字列でマッチした位置を示す、0 から始まるインデックスです。</td>
+      <td><code>1</code></td>
+    </tr>
+    <tr>
+      <td><code>input</code></td>
+      <td>元の文字列です。</td>
+      <td><code>"cdbbdbsbz"</code></td>
+    </tr>
+    <tr>
+      <td><code>[0]</code></td>
+      <td>最後にマッチした文字列です。</td>
+      <td><code>"dbbd"</code></td>
+    </tr>
+    <tr>
+      <td rowspan="2"><code>myRe</code></td>
+      <td><code>lastIndex</code></td>
+      <td>
+        <p>次のマッチが始まるインデックスです。(このプロパティは、 g オプションを用いる正規表現でのみセットされます。これは<a href="Regular_Expressions.html#Advanced_Searching_With_Flags">フラグを用いた高度な検索</a>で説明します。)</p>
+      </td>
+      <td><code>5</code></td>
+    </tr>
+    <tr>
+      <td><code>source</code></td>
+      <td>パターンのテキストです。正規表現の実行時ではなく作成時に更新されます。</td>
+      <td><code>"d(b+)d"</code></td>
+    </tr>
+  </tbody>
+</table>
+<p>この例の 2 つ目の形式で示したようにオブジェクト初期化子を使用して、変数に代入せずに正規表現を使うことができます。しかしながら、この方法では出現する正規表現がすべて、別の正規表現として作成されます。このため、変数に代入しないこの形式を使用する場合は、その正規表現のプロパティに後からアクセスすることができません。例えば、次のようなスクリプトを使用するとします:</p>
+<pre class="brush: js">var myRe = /d(b+)d/g;
+var myArray = myRe.exec("cdbbdbsbz");
+console.log("The value of lastIndex is " + myRe.lastIndex);
+</pre>
+<p>このスクリプトは以下のように出力します:</p>
+<pre>The value of lastIndex is 5
+</pre>
+<p>しかし、このスクリプトの場合は:</p>
+<pre class="brush: js">var myArray = /d(b+)d/g.exec("cdbbdbsbz");
+console.log("The value of lastIndex is " + /d(b+)d/g.lastIndex);
+</pre>
+<p>次のように出力します:</p>
+<pre>The value of lastIndex is 0
+</pre>
+<p>この 2 つの文にある <code>/d(b+)d/g</code> は別の正規表現オブジェクトであり、そのためにそれぞれの <code>lastIndex</code> プロパティの値も異なるのです。オブジェクト初期化子で作成する正規表現のプロパティにアクセスする必要がある場合は、まずそれを変数に代入するようにしてください。</p>
+<h3 id="Using_Parenthesized_Substring_Matches" name="Using_Parenthesized_Substring_Matches">括弧で囲まれた部分文字列のマッチの使用</h3>
+<p>正規表現パターンに括弧を含めることで、対応するサブマッチが記憶されます。例えば <code>/a(b)c/</code> は 'abc' という文字列にマッチし、'b' が記憶されます。この括弧で囲まれた部分文字列のマッチは、<code>Array</code> の要素 <code>[1]</code>, ..., <code>[n]</code> を使用して呼び戻すことができます。</p>
+<p>括弧で囲まれた部分文字列は何個でも使用できます。返された配列には、見つかったものすべてが存在します。以下の例では、括弧で囲まれた部分文字列の使用法を説明します。</p>
+<h4 id="Example_1" name="Example_1">例 1</h4>
+<p>次のスクリプトは <a href="../Reference/Global_Objects/String/replace.html" title="JavaScript/Reference/Global Objects/String/replace"><code>replace()</code></a> メソッドを使用して文字列中の単語を入れ替えます。テキスト置き換えのために、スクリプトで <code>$1</code> と <code>$2</code> を使用して、最初とその次の括弧で囲まれた部分文字列のマッチを示しています。</p>
+<pre class="brush: js">var re = /(\w+)\s(\w+)/;
+var str = "John Smith";
+var newstr = str.replace(re, "$2, $1");
+console.log(newstr);
+</pre>
+<p>これは "Smith, John" を出力します。</p>
+<h3 id="Advanced_Searching_With_Flags" name="Advanced_Searching_With_Flags">フラグを用いた高度な検索</h3>
+<p>正規表現には、グローバルな検索や大文字／小文字を区別しない検索を可能にする 4 つのオプションフラグがあります。グローバルサーチを行うには、<code>g</code> フラグを使用してください。大文字・小文字を区別しない検索を行うには、<code>i</code> フラグを使用してください。各行の行頭・行末にマッチさせるには、<code>m</code> フラグを使用してください。"sticky" 検索を行うには、<code>y</code> フラグを使用してください。この検索は、対象文字列における現在の位置から開始します。これらのフラグは、単独で使用することもまとめて使用することもできます。順番は問いません。フラグは正規表現の一部として含まれます。</p>
+<p></p><div class="blockIndicator standardNote standardNoteBlock"> 
+    <p><a href="../../../Mozilla/Firefox/Releases/3.html">Firefox 3 における注記</a></p> 
+    <p style="font-weight: 400;"><code>y</code> フラグのサポートは Firefox 3 で追加されました。マッチが対象文字列における現在の位置で成功しない場合、<code>y</code> フラグは失敗します。</p> 
+</div><p></p>
+<p>フラグを正規表現に含めるには、次のようにしてください:</p>
+<pre class="brush: js">var re = /pattern/flags;
+</pre>
+<p>または</p>
+<pre class="brush: js">var re = new RegExp("pattern", "flags");
+</pre>
+<p>フラグは正規表現の不可分な一部であることに注意してください。後から加えたり取り除いたりすることはできません。</p>
+<p>例えば <code>re = /\w+\s/g</code> は、1 つ以上の文字とそれに続くスペースを探す正規表現を作成します。また、これは文字列全体を通してこの組み合わせを探します。</p>
+<pre class="brush: js">var re = /\w+\s/g;
+var str = "fee fi fo fum";
+var myArray = str.match(re);
+console.log(myArray);
+</pre>
+<p>この例では ["fee ", "fi ", "fo "] が表示されます。また、この例では次の行:</p>
+<pre class="brush: js">var re = /\w+\s/g;
+</pre>
+<p>を次の行:</p>
+<pre class="brush: js">var re = new RegExp("\\w+\\s", "g");
+</pre>
+<p>に置き換えることができます。得られる結果は同じです。</p>
+<p><code>m</code> フラグは、複数行の入力文字列を複数の行として扱うときに用います。<code>m</code> フラグを使用した場合 <code>^</code> および <code>$</code> は、文字列全体の先頭または末尾ではなく、入力文字列中のどの行の先頭または末尾にもマッチします。</p>
+<h2 id="Examples" name="Examples">例</h2>
+<p>以下の例では、正規表現の使用法をいくつか示します。</p>
+<h3 id="Changing_the_Order_in_an_Input_String" name="Changing_the_Order_in_an_Input_String">入力文字列の順序変更</h3>
+<p>次の例では、正規表現の構造と <code>string.split()</code> および <code>string.replace()</code> の使用法を示します。空白、タブ、1 つのセミコロンで分割された名前 (ファーストネームが先) で構成される、簡単に整形された入力文字列をきれいにします。最終的に名前の順序を逆転し (ラストネームが先)、リストをソートします。</p>
+<pre class="brush: js">// 名前の文字列は複数の空白やタブを含む。
+// また、ファーストネームとラストネームの間に複数の空白があることもある
+var names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ; Chris Hand ";
+
+var output = ["---------- Original String\n", names + "\n"];
+
+// 2 つの正規表現パターンと、格納用の配列を用意する。
+// 文字列を分割して配列の要素に収める。
+
+// パターン: ホワイトスペースが存在しうる、セミコロンが存在する、ホワイトスペースが存在しうる
+var pattern = /\s*;\s*/;
+
+// 上記のパターンで文字列を断片に分割し、
+// nameList という配列に断片を格納する。
+var nameList = names.split(pattern);
+
+// 新たなパターン: 1 つ以上の文字、1 つ以上のホワイトスペース、1 つ以上の文字
+// 括弧を用いてパターンの断片を記憶する。
+// 記憶した断片は後から参照される。
+pattern = /(\w+)\s+(\w+)/;
+
+// 処理された名前を格納する新しい配列。
+var bySurnameList = [];
+
+// 名前の配列を表示し、新しい配列にコンマ区切りで名前を
+// ラストネーム、ファーストネームの順で格納する。
+//
+// replace メソッドはパターンにマッチしたものを除去し、
+// 記憶しておいた文字列に置き換える。
+// 「2 番目に記憶しておいた断片とその後に続くコンマとスペース、
+// さらにその後に続く 1 番目に記憶しておいた断片」
+//
+// 変数 $1 および $2 は、パターンにマッチさせた際に
+// 記憶しておいた断片を参照する
+
+output.push("---------- After Split by Regular Expression");
+
+var i, len;
+for (i = 0, len = nameList.length; i &lt; len; i++){
+  output.push(nameList[i]);
+  bySurnameList[i] = nameList[i].replace(pattern, "$2, $1");
+}
+
+// 新しい配列を表示する。
+output.push("---------- Names Reversed");
+for (i = 0, len = bySurnameList.length; i &lt; len; i++){
+  output.push(bySurnameList[i]);
+}
+
+// ラストネームについてソートし、ソートした配列を表示する。
+bySurnameList.sort();
+output.push("---------- Sorted");
+for (i = 0, len = bySurnameList.length; i &lt; len; i++){
+  output.push(bySurnameList[i]);
+}
+
+output.push("---------- End");
+
+console.log(output.join("\n"));
+</pre>
+<h3 id="Using_Special_Characters_to_Verify_Input" name="Using_Special_Characters_to_Verify_Input">特殊文字を用いた入力の確認</h3>
+<p>次の例では、ユーザが電話番号を入力します。ユーザが "Check" ボタンを押すと、スクリプトがその番号の妥当性を確認します。その番号が正当である (正規表現で指定した文字の連続にマッチする) 場合、スクリプトはユーザへの感謝のメッセージを表示し、その番号を確認します。番号が正当でない場合は、その番号が妥当でないことをユーザに通知します。</p>
+<p>正規表現は、0 または 1 つの左括弧 <code>\(?</code>、それに続く 3 つの数字 <code>\d{3}</code>、それに続く 0 または 1 つの右括弧 <code>\)?</code>、それに続き、見つかった場合に記憶する 1 つのダッシュ、スラッシュ、または小数点 <code>([-\/\.])</code>、それに続く 3 つの数字 <code>\d{3}</code>、それに続く記憶された 1 つのダッシュ、スラッシュ、または小数点のマッチ <code>\1</code>、それに続く 4 つの数字を探します。</p>
+<p>ユーザが Check ボタンを押した際に発動する <code>Clink</code> イベントは、<code>RegExp.input</code> の値をセットします。</p>
+<pre class="brush: html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;  
+  &lt;head&gt;  
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;  
+    &lt;meta http-equiv="Content-Script-Type" content="text/javascript"&gt;  
+    &lt;script type="text/javascript"&gt;  
+      var re = /\(?\d{3}\)?([-\/\.])\d{3}\1\d{4}/;  
+      function testInfo(phoneInput){  
+        var OK = re.exec(phoneInput.value);  
+        if (!OK)  
+          window.alert(RegExp.input + " isn't a phone number with area code!");  
+        else
+          window.alert("Thanks, your phone number is " + OK[0]);  
+      }  
+    &lt;/script&gt;  
+  &lt;/head&gt;  
+  &lt;body&gt;  
+    &lt;p&gt;Enter your phone number (with area code) and then click "Check".
+        &lt;br&gt;The expected format is like ###-###-####.&lt;/p&gt;
+    &lt;form action="#"&gt;  
+      &lt;input id="phone"&gt;&lt;button onclick="testInfo(document.getElementById('phone'));"&gt;Check&lt;/button&gt;
+    &lt;/form&gt;  
+  &lt;/body&gt;  
+&lt;/html&gt;
+</pre>
+<div>
+  </div>
+                                                </article>
+
+              
+                <!-- attachments list -->
+                
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../../tag/Regular Expressions.html">Regular Expressions</a></li><li><a href="../../../tag/NeedsBrowserCompatibility.html">NeedsBrowserCompatibility</a></li><li><a href="../../../tag/JavaScript.html">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../profiles/saneyuki_s.html">saneyuki_s</a>, <a href="../../../../profiles/Sheppy.html">Sheppy</a>, <a href="../../../../profiles/yyss.html">yyss</a>, <a href="../../../../profiles/ethertank.html">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/jislotz">jislotz</a>, <a href="../../../../profiles/Electrolysis.html">Electrolysis</a>, <a href="../../../../profiles/Mgjbot.html">Mgjbot</a>, <a href="../../../../profiles/Potappo.html">Potappo</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/jislotz">jislotz</a>,
+                      <time datetime="2013-09-13T12:04:04-07:00">2013/09/13 12:04:04</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/JavaScript/Guide/Regular_Expressions" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">
+            English (US)
+          </option>          <option value="/ru/docs/Web/JavaScript/Guide_ru/Regular_Expressions">
+            Русский
+          </option>          <option value="/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions">
+            Português (do Brasil)
+          </option>          <option value="/de/docs/Web/JavaScript/Guide/Regular_Expressions">
+            Deutsch
+          </option>          <option value="/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">
+            中文 (简体)
+          </option>          <option value="/zh-TW/docs/Web/JavaScript/Guide/Regular_Expressions">
+            正體中文 (繁體)
+          </option>          <option value="/fr/docs/Web/JavaScript/Guide/Expressions_r%C3%A9guli%C3%A8res">
+            Français
+          </option>          <option value="/bn-BD/docs/Web/JavaScript/Guide/Regular_Expressions">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/th/docs/Web/JavaScript/Guide/Regular_Expressions">
+            ไทย
+          </option>          <option value="/es/docs/Web/JavaScript/Guide/Regular_Expressions">
+            Español
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="../../../../jsi18n/build-1324c0a.js"></script>
+  
+      <!--[if lte IE 8]><script src="/media/redesign/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1324c0a"></script>
+
+          <script>
+        mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1324c0a"></script>
+      
+    <script type="text/javascript">
+      jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":0,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":638}</script></body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/Apps/Build/Performance/Firefox_OS_performance_testing by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:42:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Firefox OS performance testing - アプリセンター | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+                  <link rel="stylesheet" type="text/css" href="../../../Apps%24styles.html">
+          
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="Firefox_OS_performance_testing%24json.html">
+  <link rel="canonical" href="https://developer.mozilla.org/en-US/Apps/Build/Performance/Firefox_OS_performance_testing" >
+
+  
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Firefox OS performance testing">
+  <meta property="og:url" content="https://developer.mozilla.org/en-US/Apps/Build/Performance/Firefox_OS_performance_testing">
+  <meta name="twitter:url" content="https://developer.mozilla.org/en-US/Apps/Build/Performance/Firefox_OS_performance_testing">
+  <meta name="twitter:title" content="Firefox OS performance testing">
+    <meta property="og:description" content="This article presents a set of tools and processes for measuring and diagnosing performance issues specifically on Firefox OS.">
+  <meta name="description" content="This article presents a set of tools and processes for measuring and diagnosing performance issues specifically on Firefox OS.">
+  <meta name="twitter:description" content="This article presents a set of tools and processes for measuring and diagnosing performance issues specifically on Firefox OS.">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/Apps/Build/Performance/Firefox_OS_performance_testing" contextmenu="edit-history-menu" class="document zone ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/Apps/Build/Performance/Firefox_OS_performance_testing" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/Apps/Build/Performance/Firefox_OS_performance_testing" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../HTML.html">HTML</a></li>
+              <li><a href="../../../CSS.html">CSS</a></li>
+              <li><a href="../../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../API.html">API / DOM</a></li>
+              <li><a href="../../../Apps.html">Apps</a></li>
+              <li><a href="../../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Reference.html">レファレンス</a></li>
+              <li><a href="../../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+                <div class="zone-article-header" id="document-main"><div class="center">
+          <!-- zone title -->
+          <div class="zone-title"><a href="https://developer.mozilla.org/en-US/Apps">App Center</a></div>
+          <!-- zone image -->
+          <div class="zone-image"></div>
+        </div></div>
+      
+     <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" ><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+  
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                              <li class="smaller">No translations exist for this document.</li>
+              
+                              <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Performance/Firefox_OS_performance_testing$locales">Add a translation</a></li>
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/en-US/Apps/Build/Performance/Firefox_OS_performance_testing$translate?tolocale=ja" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="Firefox_OS_performance_testing%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">Web technology for developers</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Apps.html" rel="v:url" property="v:title">App Center</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Developing.html" rel="v:url" property="v:title">Building Web apps</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Performance.html" rel="v:url" property="v:title">Performance</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Firefox OS performance testing</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Firefox OS performance testing</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#Rendering_and_startup_performance" rel="internal">Rendering and startup performance</a><li><a href="#Memory_and_power_usage" rel="internal">Memory and power usage</a><li><a href="#Measuring_performance_and_diagnosing_problems_on_Firefox_OS" rel="internal">Measuring performance and diagnosing problems on Firefox OS</a><ol><li><a href="#Measuring_performance" rel="internal">Measuring performance</a><ol><li><a href="#Framerate_monitor" rel="internal">Framerate monitor</a><li><a href="#First_paint_time_(time_to_load)" rel="internal">First paint time (time to load)</a></ol></li><li><a href="#Diagnosing_performance_problems" rel="internal">Diagnosing performance problems</a><ol><li><a href="#Paint_Flashing" rel="internal">Paint Flashing</a><li><a href="#Animation_logging" rel="internal">Animation logging</a><li><a href="#Gecko_profiler.2C_and_other_approaches" rel="internal">Gecko profiler, and other approaches</a></ol></li></ol></li><li><a href="#See_also" rel="internal">See also</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                <div class="warning warning-review"><p>This article is in need of an editorial review.</p></div>
+                                                                            <div id="doc-pending-fallback" class="warning">
+                  この記事はまだ日本語に翻訳されていません。MDN の翻訳はボランティアによって行われています。<a href="https://developer.mozilla.org/en-US/Apps/Build/Performance/Firefox_OS_performance_testing$translate?tolocale=ja">是非 MDN に登録し、私たちの力になって下さい。</a>                </div>
+              
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                  <div class="summary">
+ <p><span class="seoSummary">This article presents a set of tools and processes for measuring and diagnosing performance issues specifically on Firefox OS.</span></p>
+</div>
+<h2 id="Rendering_and_startup_performance">Rendering and startup performance</h2>
+<p>Firefox OS improves startup experience in several ways :</p>
+<ul>
+ <li>Each web application has its own instance of the Gecko rendering engine. Starting up this large, complicated engine is not free; because of that, Firefox OS keeps around a preallocated copy of the engine in memory. When an app starts up, it takes over this preallocated copy and immediately begins loading its application resources.</li>
+ <li>Applications "start" more quickly when they're already running. To this end, Firefox OS tries to keep as many applications as running in the background as possible, while not regressing the user experience in foreground applications. This is implemented by intelligently prioritizing applications, and discarding background applications according to their priorities when memory is low. For example, it's more disruptive to a user if his\her currently-playing music player is discarded in the background, while their background calculator application keeps running. So, the music player is prioritized above the calculator automatically by Firefox OS and the calculator is discarded first when memory is low.</li>
+ <li>Firefox OS prevents applications that are running in the background from impacting the user experience of foreground applications through two mechanisms. First, timers created by background apps are "throttled" to run at a low frequency. Second, background applications are given a low CPU priority, so that foreground applications can get CPU time when they need it.</li>
+</ul>
+<p>In addition, Firefox OS includes several features designed to improve power usage that are common to mobile operating systems. The Firefox OS kernel will eagerly suspend the device for minimal power usage when the device is idle. Relatedly, ICs like the GPU, cellular radio, and Wifi radio are powered down when not being actively used. Firefox OS also takes advantage of hardware support for media decoding.</p>
+<h2 id="Memory_and_power_usage">Memory and power usage</h2>
+<p>Firefox OS tries to keep as many applications running simultaneously as it can, but does have to discard applications sometimes, usually when the device runs out of memory.</p>
+<p>Improving memory and power usage is a similar problem to speeding up the startup. Don't do unnecessary work, use efficient data structures, lazily load uncommonly-used UI resources, and ensure resources like images are optimized well. Modern CPUs can enter a lower-power mode when mostly idle. Applications that constantly fire timers or keep unnecessary animations running prevent CPUs from entering low-power mode. Power-efficient applications shouldn't do that.</p>
+<p>When applications are sent to the background, a <a href="https://developer.mozilla.org/en-US/docs/Web/Reference/Events/visibilitychange"><code>visibilitychange</code></a> event is fired on their documents. This event is a developer's friend; applications should listen for it. Applications that drop as many loaded resources as possible when sent to the background will use less memory (and be less likely to be discarded, in the case of Firefox OS, see the note). This in turn means they will "start up" faster (by virtue of already being running) and have better UPP.</p>
+<p>Firefox OS applications should prepare for the case when they 
+ <i>
+  are </i>
+ discarded. To improve user-perceived memory usage, that is to say, making the user feel that more of their state is being preserved, applications should save the state needed to return the current view if discarded. If the user is editing an entry, for example, the state of the edit should be saved when entering the background.</p>
+<h2 id="Measuring_performance_and_diagnosing_problems_on_Firefox_OS">Measuring performance and diagnosing problems on Firefox OS</h2>
+<p>Before beginning to measure and diagnose performance problems, remember this:</p>
+<div class="geckoVersionNote">
+ <blockquote>
+   </blockquote>
+ <blockquote>
+  Must. Test. On. Device.</blockquote>
+ <blockquote>
+   </blockquote>
+</div>
+<p>A great strength of the web platform is that the same code written for "desktop" web browsers runs on Firefox OS on mobile devices. Developers should use this to improve productivity as much as possible.They should also develop the same on "desktops" in comfortable and productive environments. When the time comes to test performance, mobile devices must be used. Modern desktops can be more than 100x more powerful than mobile hardware. The lower-end the mobile hardware tested on, the better.</p>
+<p>With that caveat, the sections below describe tools and processes for measuring and diagnosing performance issues.</p>
+<h3 id="Measuring_performance">Measuring performance</h3>
+<p>Firefox OS comes with some convenient and easy-to-use tools built-in that, when used properly, can be used to quickly measure performance.</p>
+<h4 id="Framerate_monitor">Framerate monitor</h4>
+<p>The first tool is the "framerate monitor". This can be enabled in the Firefox OS Settings application (<em>Device Information &gt; More Information &gt; Developer &gt; Show frames per second</em>).</p>
+<p>The framerate monitor continuously reports three numbers in the top left of the Firefox OS display; the values reported are an average of recent results within a sliding window, meant to be "instantaneous" but fairly accurate. As such, all numbers are "guesses":</p>
+<ul>
+ <li>The left number is the <strong>composition rate</strong>: the estimated number of times per second Firefox OS is drawing frames to the hardware framebuffer. This is an estimate of the user-perceived framerate, and only an estimate. For example, the counter may report 60 compositions per second even if the screen is not changing. In that case the user-perceived framerate would be 0. However, when used with this caveat in mind and corroborated with other measurements, the monitor can be a useful and simple tool.</li>
+ <li>The middle number is the <strong>layer transaction rate</strong>, the estimated number of times per second processes are repainting and notifying the compositor. This number is mostly useful for Gecko platform engineers, but it should be less than or equal to the composition rate number on the left.</li>
+ <li>The right hand number is a measure of the number of pixels drawn as a percentage of the screen size. A number of 273 means the screen was painted 2.73 times. Ideally this number should be as close to 100 as possible.</li>
+</ul>
+<p><img alt="A screenshot of Firefox OS, showing three numbers in the top left hand corner that are measurements of app framerate." src="https://mdn.mozillademos.org/files/6889/framerate-fxos.jpg" style="width: 357px; height: 640px; display: block; margin: 0px auto;"></p>
+<h4 id="First_paint_time_(time_to_load)">First paint time (time to load)</h4>
+<p>Firefox OS also has a tool that can help measure startup time, specifically the "first paint" time described above. This "time to load" tool can be enabled using the Settings application (<em>Device Information &gt; More Information &gt; Developer &gt; Show time to load</em>). The value shown by the tool — in the top right of the Firefox OS display — is the elapsed time between when the most recent application was launched, and an estimate of the first time that application painted its UI, in milliseconds. This number only approximates the real "first paint" time, and in particular underestimates it. However, lowering this number almost always correlates to improvements in real startup time, so it can be useful to quickly measure optimization ideas.</p>
+<p><img alt="A screenshot of Firefox OS, showing a number in the top right hand corner that is a measurement of the current app startup time, in milliseconds." src="https://mdn.mozillademos.org/files/6891/startup-time-fxos.jpg" style="width: 378px; height: 640px; display: block; margin: 0px auto;"></p>
+<p>For accurately measuring both startup times and responsiveness, a high-speed camera is indispensable. "High-speed" means that the camera can record 120 frames per second or above. The higher the capture rate, the more accurate the measurements that can be made. This may sound like exotic technology, but consumer models can be purchased for a few hundred US dollars. The measuring process with such cameras is simple: record the action to be studied, and then play back the capture and count the number of frames that elapse between the input (say, a tap gesture) and the desired output (pixels changing in some way). Divide the number of counted frames by the capture rate, and the resulting number is the measured duration.</p>
+<p>Mozilla built an automated tool called <a class="external" href="https://github.com/mozilla/eideticker">Eideticker</a>, which operates on the same principle as described above. The difference is that Eideticker uses synthetic user input events and HDMI capture to measure durations. The code is available and can be used with any device with an HDMI output.</p>
+<p>Measuring power can be more difficult. It's possible to jury-rig measurement apparatus with a soldering iron, but a good approximation of power usage can be gathered by observing CPU load. Simple command-line tools like |top| allow us to monitor CPU usage continuously.</p>
+<p>In general, while measuring performance, don't be proud! "Primitive technology" like a stopwatch or logging, when used effectively, can provide eminently usable data.</p>
+<h3 id="Diagnosing_performance_problems">Diagnosing performance problems</h3>
+<p>If performance measurements show an application is below its targets, how can the underlying problem be diagnosed?</p>
+<p>The first step of any performance work is to create a reproducible workload and reproducible measurement steps. Then gather baseline measurements, before any code changes are made. It seems obvious, but this is required to determine whether code changes actually improve performance! The measurement process selected isn't too important; what's important is that the process be</p>
+<ol>
+ <li>Reproducible</li>
+ <li>Realistic, in that it measures what users will perceive as closely as possible</li>
+ <li>As precise as possible</li>
+ <li>As accurate as possible.</li>
+</ol>
+<p>Even stopwatch timings can meet these demands.</p>
+<p>Firefox OS includes two built-in tools for quickly diagnosing some performance issues.</p>
+<h4 id="Paint_Flashing">Paint Flashing</h4>
+<p>The first is a render mode called "paint flashing" (<em>Device Information &gt; More Information &gt; Developer &gt; Flash repainted area</em>). In this mode, every time a region of the screen is painted by Gecko, Gecko blits a random translucent color over the painted region. Ideally, only parts of the screen that visually change between frames will "flash" with a new color. But sometimes more area than is needed is repainted, causing large areas to "flash". This symptom may indicate that application code is forcing too much of its scene to update. It may also indicate bugs in Gecko itself.</p>
+<p><img alt="A screenshot of Firefox OS with a number of transparent overlays, showing the parts of the screen repainted with each new animation frame." src="https://mdn.mozillademos.org/files/6893/paint-update-fxos.jpg" style="width: 378px; height: 640px; display: block; margin: 0px auto;"></p>
+<h4 id="Animation_logging">Animation logging</h4>
+<p>The second tool is called "animation logging", and can also be enabled in Settings (<em>Device Information &gt; More Information &gt; Developer &gt; Log slow animations</em>). This tool tries to help developers understand why animations are not offloaded to the compositor to be run efficiently as possible. It reports "bugs" like trying to animate elements that are too large, or trying to animate CSS properties that can't be offloaded. The messages you'll get on the device will look like the following:</p>
+<pre>I/Gecko   ( 5644): Performance warning: Async animation disabled because frame size (1280, 410) is bigger than the viewport (360, 518) [div with id 'views']
+</pre>
+<div class="note">
+ <p>A common pitfall is to animate left/top/right/bottom properties instead of using CSS transforms to achieve the same effect. For a variety of reasons, the semantics of transforms make them easier to offload, but left/top/right/bottom are much more difficult. Animation logging will report this.</p>
+</div>
+<h4 id="Gecko_profiler.2C_and_other_approaches">Gecko profiler, and other approaches</h4>
+<p>These tools can help quickly assess a performance problem, but they often show only what developers should be "looking for": hints at deeper problems. When more information is required, the <a href="https://developer.mozilla.org/en-US/docs/Performance/Profiling_with_the_Built-in_Profiler">Gecko Profiler</a> can be used. Briefly, the profiler shows mixed JavaScript/C++ "samples" of what all Firefox OS processes are doing over a rolling time interval. Developers can use these profiles to see what their code and Gecko itself are doing. Warnings are built into the profiler UI for many common pitfalls like excessive garbage collection (caused by creating too many JavaScript objects), and forcing <strong>synchronous reflows</strong>. Sync reflows are bad because Gecko is optimized to do expensive work like reflows in big batches, when needed. Forced reflows throw off this "schedule", and can cause more work to be done than necessary.</p>
+<p>Similarly, advanced users may wish to use a whole-system profiler like the Linux <code>|perf|</code> tool. This is mostly useful for platform engineers, though.</p>
+<p>As with measuring performance, don't be proud about tools used to diagnose it! A few well-placed <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/API/Date.now" title="The documentation about this has not yet been written; please consider contributing!"><code>Date.now()</code></a> calls with logging can often provide a quick and accurate answer.</p>
+<p>Finally, the only way to keep improving performance is to not regress it. The only way to not regress performance is to test it, preferably with automated tests. A full discussion of that topic is beyond the scope of this document, though.</p>
+<h2 id="See_also">See also</h2>
+<p>The Mozilla Paris Firefox OS Performance and Optimization Workshop (March 4-8 2012) included more details discussions of many of the techniques mentioned above. Please take a look at the resources below, which come form this workshop:</p>
+<ol>
+ <li>Technical basics and more
+  <ul>
+   <li>Video : <a class="external" href="https://docs.google.com/file/d/0ByB4v6HDNT-ZdHAtam5IdWpWWkE/edit?usp=sharing" title="https://docs.google.com/file/d/0ByB4v6HDNT-ZdHAtam5IdWpWWkE/edit?usp=sharing">Technical considerations</a></li>
+   <li>Slides : <a class="external" href="https://docs.google.com/file/d/0ByB4v6HDNT-ZNGRxS3A1X21tMjQ/edit?usp=sharing" title="https://docs.google.com/file/d/0ByB4v6HDNT-ZNGRxS3A1X21tMjQ/edit?usp=sharing">Presentation</a></li>
+  </ul>
+ </li>
+ <li><a class="external" href="https://docs.google.com/file/d/0ByB4v6HDNT-ZWFNkRGtyTHd5TUU/edit?usp=sharing" title="https://docs.google.com/file/d/0ByB4v6HDNT-ZWFNkRGtyTHd5TUU/edit?usp=sharing">Performances in a UX point of view</a></li>
+ <li><a class="external" href="https://docs.google.com/file/d/0ByB4v6HDNT-ZdUVadVBmeDlXaW8/edit?usp=sharing" title="https://docs.google.com/file/d/0ByB4v6HDNT-ZdUVadVBmeDlXaW8/edit?usp=sharing">Performances measurement &amp; automation</a></li>
+</ol>
+                              </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/B2G">B2G</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Apps">Apps</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Firefox OS">Firefox OS</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Performance">Performance</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/prathamesh.chavan">prathamesh.chavan</a>, <a href="https://developer.mozilla.org/ja/profiles/vidyamarihemanth">vidyamarihemanth</a>, <a href="https://developer.mozilla.org/ja/profiles/Vlhaierx">Vlhaierx</a>, <a href="https://developer.mozilla.org/ja/profiles/chrisAnderson">chrisAnderson</a>, <a href="https://developer.mozilla.org/ja/profiles/chrisdavidmills">chrisdavidmills</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/chrisAnderson">chrisAnderson</a>,
+                      <time datetime="2014-10-13T22:00:45-07:00">2014/10/13 22:00:45</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                                  <!-- zone subnav -->
+                    <nav class="zone-subnav-container" role="navigation">
+    <div class="subnav" id="Subnav">
+      
+<ol>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Quickstart">Quickstart</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Design" title="Information regarding app and interface design practices.">Design</a>
+  <ol>
+   <li><strong><a href="https://developer.mozilla.org/en-US/Apps/Design">Design overview</a></strong></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Planning_your_app">Planning</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Design_Principles">Design principles</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Installed_app_considerations">Installed app considerations</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Graphics_for_responsive_sites">Graphics for responsive sites</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Content">Content styleguide</a></li>
+   <li><a href="http://www.mozilla.org/en-US/styleguide/products/firefox-os/">Firefox OS styleguide</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Patterns">Small screen design patterns</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Responsive_Navigation_Patterns">Responsive navigation patterns</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Design/Design_asset_library">Design asset library</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/app_layout/responsive_design_building_blocks">Building blocks of responsive design</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/app_layout/Responsive_design_versus_adaptive_design">Responsive design versus adaptive design</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/app_layout/Mobile_first">Mobile first</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Flexible boxes</a></li>
+  </ol>
+ </li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Build" title="This section contains documentation about building app functionality, with HTML5 and device APIs (WebAPIs).">Build</a>
+  <ol>
+   <li><strong><a href="https://developer.mozilla.org/en-US/Apps/Build">Build overview</a></strong></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/installable_apps_for_Firefox_OS">Installable apps for Firefox OS</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Basic_data_flow">Basic data flow</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/gather_and_modify_data">Gather and modify data</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/User_notifications">User notifications</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/User_input_methods">User input and controls</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Offline">Offline apps</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Audio_and_video_delivery">Audio and video delivery</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Audio_and_video_manipulation">Audio and video manipulation</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Advanced_network_communication">Advanced network communication</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/docs/Games">Develop games</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Localization">Localization</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Porting">Porting </a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/Performance">App performance</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Build/App_development_FAQ">App development FAQ</a></li>
+  </ol>
+ </li>
+ <li><a href="https://developer.mozilla.org/en-US/Marketplace">Publish</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Tools_and_frameworks">Tools and frameworks</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps">Reference apps</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Chrono">Chrono</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Face_value">Face Value</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Podcasts">Podcasts</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Roller">Roller</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/Webfighter">Webfighter</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/General_notes">General notes</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference_apps/rtcamera">rtcamera</a></li>
+  </ol>
+ </li>
+ <li><a href="https://developer.mozilla.org/en-US/Apps/Reference">Reference</a>
+  <ol>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Layout_and_structure">Layout and structure</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Drawing_and_animation">Drawing and animation</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Firefox_OS_device_APIs">Firefox OS device APIs</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/General_Web_APIs">General web APIs</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Firefox_Marketplace_services">Firefox Marketplace services</a></li>
+   <li><a href="https://developer.mozilla.org/en-US/Apps/Reference/Firefox_OS_app_tools">Firefox OS app tools</a></li>
+  </ol>
+ </li>
+</ol>
+    </div>
+  </nav>&nbsp;
+                
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                  </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":433}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/Apps/Build/Performance/Firefox_OS_performance_testing by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:42:58 GMT -->
+</html>

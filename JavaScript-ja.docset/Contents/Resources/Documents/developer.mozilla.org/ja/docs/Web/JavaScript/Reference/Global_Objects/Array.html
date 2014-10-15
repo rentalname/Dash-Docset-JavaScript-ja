@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Array - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../../index.html">
+  <link rel="copyright" href="Array.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1324c0a" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1324c0a" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="Array$json.json">
+  <link rel="canonical" href="Array.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array" title="Array">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array" title="Array">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Obiekty/Array" title="Array">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+          <link rel="alternate" hreflang="tr" href="https://developer.mozilla.org/tr/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+          <link rel="alternate" hreflang="ro" href="https://developer.mozilla.org/ro/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+          <link rel="alternate" hreflang="th" href="https://developer.mozilla.org/th/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Array">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array">
+  <meta name="twitter:title" content="Array">
+    <meta property="og:description" content="JavaScript は配列を扱うことができます。配列とは順序を持つ複数のデータの集合であり、JavaScript のグローバルオブジェクトである Array は、高位の、（C言語等で云うところの）「リスト」の様な、配列のコンストラクタです。">
+  <meta name="description" content="JavaScript は配列を扱うことができます。配列とは順序を持つ複数のデータの集合であり、JavaScript のグローバルオブジェクトである Array は、高位の、（C言語等で云うところの）「リスト」の様な、配列のコンストラクタです。">
+  <meta name="twitter:description" content="JavaScript は配列を扱うことができます。配列とは順序を持つ複数のデータの集合であり、JavaScript のグローバルオブジェクトである Array は、高位の、（C言語等で云うところの）「リスト」の様な、配列のコンストラクタです。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/JavaScript/Reference/Global_Objects/Array" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1324c0a',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+            notifications: [
+                                            ],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": null}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": null}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": null}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Array.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Array.html#language">言語の選択</a></li>
+          <li><a href="Array.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/JavaScript/Reference/Global_Objects/Array" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../HTML.html">HTML</a></li>
+              <li><a href="../../../CSS.html">CSS</a></li>
+              <li><a href="../../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../API.html">API / DOM</a></li>
+              <li><a href="../../../Apps.html">Apps</a></li>
+              <li><a href="../../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Reference.html">レファレンス</a></li>
+              <li><a href="../../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../../Tools.html">ツール</a></li><li><a href="../../../../../demos/index.html">MDN デモ</a></li><li><a href="../../../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array" title="Array">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array" title="Array">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Obiekty/Array" title="Array">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/tr/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">Türkçe</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ro/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">română</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/th/docs/Web/JavaScript/Reference/Global_Objects/Array" title="Array">ไทย</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="../../../../../users/signin-next=|ja|docs|Web|JavaScript|Reference|Global_Objects|Array$edit.html" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="Array$history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Array.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../JavaScript.html" rel="v:url" property="v:title">JavaScript</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Reference.html" rel="v:url" property="v:title">JavaScript リファレンス</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Global_Objects.html" rel="v:url" property="v:title">Global Objects</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Array</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Array.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Array</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="Array.html#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Array.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Array.html#Summary" rel="internal">概要</a><li><a href="Array.html#Syntax" rel="internal">構文</a><ol><li><a href="Array.html#Parameters" rel="internal">引数</a></ol></li><li><a href="Array.html#Description" rel="internal">説明</a><ol><li><a href="Array.html#Accessing_array_elements" rel="internal">配列要素へのアクセス</a><li><a href="Array.html#Relationship_between_length_and_numerical_properties" rel="internal"><code>length</code> と数値プロパティとの関係</a><li><a href="Array.html#Creating_an_array_using_the_result_of_a_match" rel="internal">match の結果を利用して配列を作成</a></ol></li><li><a href="Array.html#Properties" rel="internal">プロパティ</a><li><a href="Array.html#Methods" rel="internal">メソッド</a><li><a href="Array.html#Array_instances" rel="internal"><code>Array</code> インスタンス</a><ol><li><a href="Array.html#Properties_of_Array_instances" rel="internal">プロパティ</a><li><a href="Array.html#Methods_of_Array_instances" rel="internal">メソッド</a><ol><li><a href="Array.html#Mutator_methods" rel="internal">Mutator methods</a><li><a href="Array.html#Accessor_methods" rel="internal">Accessor methods</a><li><a href="Array.html#Iteration_methods" rel="internal">Iteration methods</a></ol></li></ol></li><li><a href="Array.html#Array_generic_methods" rel="internal"><code>Array</code> ジェネリックメソッド</a><li><a href="Array.html#Examples" rel="internal">例</a><ol><li><a href="Array.html#Example.3A_Creating_an_array" rel="internal">例: 配列を生成する</a><li><a href="Array.html#Example.3A_Creating_a_two-dimensional_array" rel="internal">例： 2 次元配列を生成する</a></ol></li><li><a href="Array.html#Browser_compatibility" rel="internal">ブラウザ実装状況</a><li><a href="Array.html#See_also" rel="internal">関連情報</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div>
+ <p></p><section class="Quick_links" id="Quick_Links"><!-- --></section><p></p>
+</div>
+
+<h2 id="Summary" name="Summary">概要</h2>
+<p>JavaScript は配列を扱うことができます。配列とは順序を持つ複数のデータの集合であり、JavaScript のグローバルオブジェクトである <code>Array</code> は、高位の、（C言語等で云うところの）「リスト」の様な、配列のコンストラクタです。</p>
+<h2 id="Syntax" name="Syntax">構文</h2>
+<pre class="syntaxbox">[<var>element0</var>, <var>element1</var>, ..., <var>elementN</var>] //配列リテラル
+new Array(<em>element0</em>, <em>element1</em>, ..., <em>elementN</em>)
+new Array(<em>arrayLength</em>)
+</pre>
+<h3 id="Parameters" name="Parameters">引数</h3>
+<dl>
+ <dt>
+  <code><var>element0</var>, <var>element1</var>, ..., <var>elementN</var> </code></dt>
+ <dd>
+  数値が唯一の引数として <code>Array</code> コンストラクタに指定された場合以外は、配列は引数に指定された値を要素として初期化され、配列の <code>length</code> プロパティは引数の数に設定されます (後述)。この特殊なケースは <code>Array</code> コンストラクタによって JavaScript の配列を生成した場合にのみ適用され、ブラケット構文を使用する配列リテラルには適用されない点に注意してください。</dd>
+ <dt>
+  <code>arrayLength</code></dt>
+ <dd>
+  <code>Array</code> コンストラクタに渡される唯一の引数（<code>arrayLength</code>）に 0 から 4,294,967,295( 2<sup>32</sup>-1 ) までの整数値を指定する場合は、その値を要素数とする配列が作成されます。その際に範囲外の値を指定した場合には、例外: <a href="RangeError.html" title="数値が正しい許容範囲にない場合のエラーを表します。"><code>RangeError</code></a> がスローされます。</dd>
+</dl>
+<h2 id="Description" name="Description">説明</h2>
+<p>配列とは、トラバーサルや変異などの操作の為のいくつかの組み込みメソッドを持つ、リストの様なオブジェクトの事を言います。JavaScript の配列は、要素数も型も固定されていません。配列のサイズは常に可変である為、JavaScript の配列は密であることが保証されていません。一般に、これらは便利な特性ではありますが、固定された配列が必要であれば、Typed Array の使用を検討するのも良いでしょう。</p>
+<p><a class="external" href="http://www.andrewdupont.net/2006/05/18/javascript-associative-arrays-considered-harmful/">JavaScript の配列は連想配列として使うべきではありません</a>。連想配列には <a href="Object.html" title="オブジェクトラッパーを生成します。"><code>objects</code></a> を使用できますが、こちらにも注意点があります。例として <a class="external" href="http://www.less-broken.com/blog/2010/12/lightweight-javascript-dictionaries.html" title="http://monogatari.doukut.su/2010/12/lightweight-javascript-dictionaries.html">Lightweight JavaScript dictionaries with arbitrary keys</a> の投稿記事をご覧ください。</p>
+<h3 id="Accessing_array_elements" name="Accessing_array_elements">配列要素へのアクセス</h3>
+<p>JavaScript の配列のインデックスは 0 から始まります。配列の最初の要素のインデックスは <code>0</code>。つまり、最後の要素のインデックスは <a href="Array/length.html" title="配列の要素数を表す符号なし 32 ビット整数。"><code>length</code></a> プロパティの値より 1 小さい値になります。</p>
+<pre class="brush: js">var arr = ["最初の要素", "2 番目の要素"];
+console.log(arr[0]);              // ログ : "最初の要素"
+console.log(arr[1]);              // ログ : "2 番目の要素"
+console.log(arr[arr.length - 1]); // ログ : "2 番目の要素"</pre>
+<p><code>toString</code> が一つのプロパティであるように、配列における配列要素は Array オブジェクトのプロパティです。しかし、次のように配列の最初の要素にアクセスしようとすると、構文エラーがスローされる事に注意してください。</p>
+<pre class="brush: js">console.log(arr.0);</pre>
+<p>これは JavaScript の配列とそのプロパティに限った話ではありません。オブジェクトの、数字から始まるプロパティに対してはドット演算子を用いた参照は出来ません。そこで、ブラケット記法を用いる必要があります。例えば "3d" というプロパティを持つオブジェクトがある場合は、ドット記法ではなくブラケット記法を使用して参照しなければなりません。この類似点を、以下 2 つのコード例で示します:</p>
+<pre class="brush: js">var years = [1950, 1960, 1970, 1980, 1990, 2000, 2010];
+
+try {
+  console.log(years.0);
+}
+catch (ex) {
+  console.log("ブラケット記法でのアクセス");
+  console.log(years[0]);
+}</pre>
+<pre class="brush: js">try {
+  renderer.3d.setTexture(model, "character.png");
+} catch (ex) {
+  console.log("Using bracket notation");
+  renderer["3d"].setTexture(model, "character.png");
+}</pre>
+<p><code>3d</code> の例で、"<code>3d</code>" は引用符で括らなければなりません。必要は有りませんが、配列要素へのアクセスにも <code>years[2]</code> でなく <code>years["2"]</code> を使う事が出来ます。<code>years[2]</code> の 2 は最終的に、JavaScript エンジンが内部的に <code>toString</code> メソッドで型変換することで文字列にされます。これは "2" と "02" が <code>years</code> オブジェクトの異なる場所を指すようにするためであり、このため以下の例は <code>true</code> がログ出力されます:</p>
+<pre class="brush: js">console.log(years["2"] != years["02"]);</pre>
+<h3 id="Relationship_between_length_and_numerical_properties" name="Relationship_between_length_and_numerical_properties"><code>length</code> と数値プロパティとの関係</h3>
+<p>JavaScript の配列の <a href="Array/length.html" title="配列の要素数を表す符号なし 32 ビット整数。"><code>length</code></a>プロパティと数値プロパティは関連しています。 <a href="Array/join.html" title="配列の全ての要素を繋いで文字列にします。"><code>join</code></a>、 <a href="Array/slice.html" title="配列の一部を取り出して新しい配列を返します。"><code>slice</code></a>、 <a href="Array/indexOf.html" title="引数に与えられた内容と同じ内容を持つ配列要素の内、最初のものの添字を返します。存在しない場合は -1 を返します。"><code>indexOf</code></a> 等の配列のビルトインメソッドは、配列の<code>length</code>プロパティの値を考慮します。 また、<a href="Array/push.html" title="与えられた要素を追加することによって配列を変異させ、その配列の新しい長さを返します。"><code>push</code></a>、 <a href="Array/splice.html" title="古い要素を取り除きつつ新しい要素を追加することで、配列の内容を変化させます。"><code>splice</code></a>等は、配列の <code>length</code> プロパティも更新します。</p>
+<pre class="brush: js">var fruits = [];
+
+fruits.push("banana", "apple", "peach");
+console.log(fruits.length); // logs 3</pre>
+<p>有効なインデックスを持つ JavaScript の配列の現在のサイズに収まらない位置に要素を追加すると、配列はそれを収められる位置まで拡張され、<code>length</code> プロパティも更新されます。</p>
+<pre class="brush: js">fruits[3] = "mango";
+
+console.log(fruits[3]);
+console.log(fruits.length); // logs 4</pre>
+<p><code>length</code> プロパティを直接設定した時も特殊な動作となります。</p>
+<pre class="brush: js">fruits.length = 10;
+
+console.log(fruits);        // "undefined" で満たされている
+console.log(fruits.length); // 10</pre>
+<p>これらについては <code>length</code> ページで更に解説します。</p>
+<h3 id="Creating_an_array_using_the_result_of_a_match" name="Creating_an_array_using_the_result_of_a_match">match の結果を利用して配列を作成</h3>
+<p>正規表現と文字列の一致から配列を作る事が出来ます。この配列にはプロパティと、マッチに関する情報を提供する要素を持ちます。 配列は RegExp.exec、 String.match、そして String.replace の戻り値です。 これらのプロパティと要素を理解するために、以下の例と表を参照して下さい。</p>
+<pre class="brush: js">// 1 文字の d、1 文字以上の b、1 文字の d にマッチします
+// マッチした b およびその後の b を記憶します
+// 大文字小文字は区別しません
+
+var myRe = /d(b+)(d)/i;
+var myArray = myRe.exec("cdbBdbsbz");</pre>
+<p>プロパティとこの一致から返される要素は以下のとおりです。</p>
+<table class="fullwidth-table">
+ <tbody>
+  <tr>
+   <td class="header">プロパティ/要素</td>
+   <td class="header">説明</td>
+   <td class="header">例</td>
+  </tr>
+  <tr>
+   <td><code>input</code></td>
+   <td>正規表現がマッチした、元の文字列を反映する読み取り専用プロパティです。</td>
+   <td>cdbBdbsbz</td>
+  </tr>
+  <tr>
+   <td><code>index</code></td>
+   <td>
+    <p>文字列中でマッチした場所を、0 から始まるインデックスで示す読み取り専用プロパティです。</p>
+   </td>
+   <td>1</td>
+  </tr>
+  <tr>
+   <td><code>[0]</code></td>
+   <td>最後にマッチした文字列を指定する読み取り専用の要素です。</td>
+   <td>dbBd</td>
+  </tr>
+  <tr>
+   <td><code>[1], ...[n]</code></td>
+   <td>正規表現に含まれる場合、括弧で囲まれたマッチした部分文字列を指定する読み取り専用の要素です。括弧で囲まれた部分文字列の数は無制限です。</td>
+   <td>[1]: bB<br>
+    [2]: d</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Properties" name="Properties">プロパティ</h2>
+<p><small><em><code>Array</code> インスタンスから継承されているPropertiesについては、<a href="Array/prototype.html#Properties">Array インスタンスのProperties</a>を参照してください。</em></small></p>
+<dl>
+ <dt>
+  Array.length</dt>
+ <dd>
+  The <code>Array</code> constructor's length property whose value is 1.</dd>
+</dl>
+<dl>
+ <dt>
+  <a href="Array/prototype.html" title="Array コンストラクタのプロトタイプを表します。"><code>Array.prototype</code></a></dt>
+ <dd>
+  全てのオブジェクトにプロパティを追加することができます。</dd>
+</dl>
+<div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">  
+<div><span style="font-weight: 700;"><a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Function"><code>Function</code></a> から継承されるプロパティ</span></div> 
+<div><a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Function/Arity"><code>arity</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Function/Caller"><code>caller</code></a>, <a class="new internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Function/Constructor"><code>constructor</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Function/Length"><code>length</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Function/Name"><code>name</code></a></div> 
+</div></div>
+<h2 id="Methods" name="Methods">メソッド</h2>
+<div>
+ <small><em><code>Array</code> インスタンスから継承されているMethodsについては、<a href="Array/prototype.html#Methods">Array インスタンスのMethods</a>を参照してください。</em></small></div>
+<dl>
+ <dt>
+  <a class="new" href="Array/from.html" title="The documentation about this has not yet been written; please consider contributing!"><code>Array.from()</code></a> <span title="これは実験段階の API です。製品内のコードで使用しないようご注意ください。"><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Creates a new <code>Array</code> instance from an array-like or iterable object.</dd>
+</dl>
+<dl>
+ <dt>
+   </dt>
+ <dt>
+  <a href="Array/isArray.html" title="オブジェクトが配列であれば true を、そうでなければ false を返します。"><code>Array.isArray()</code></a></dt>
+ <dd>
+  配列であれば true を、配列でなければ false を返す</dd>
+ <dt>
+  <a class="new" href="Array/of.html" title="The documentation about this has not yet been written; please consider contributing!"><code>Array.of()</code></a> <span title="これは実験段階の API です。製品内のコードで使用しないようご注意ください。"><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Creates a new <code>Array</code> instance with a variable number of arguments, regardless of number or type of the arguments.</dd>
+</dl>
+<h2 id="Array_instances" name="Array_instances"><code>Array</code> インスタンス</h2>
+<p><code>Array</code> インスタンスは、<a href="Array/prototype.html" title="Array コンストラクタのプロトタイプを表します。"><code>Array.prototype</code></a> を継承します。全てのコンストラクタと同様に、コンストラクタのプロトタイプオブジェクトを変更して、<code>Array</code> インスタンスの全てを変更することができます。</p>
+<h3 id="Properties_of_Array_instances" name="Properties_of_Array_instances">プロパティ</h3>
+<div>
+ <dl><dt>
+  <a href="Array.html" title="JavaScript/Reference/Global_Objects/Array/constructor">constructor</a></dt>
+ <dd>
+  オブジェクトのプロトタイプを生成する関数を示す</dd>
+ <dt>
+  <a href="Array/length.html" title="JavaScript/Reference/Global_Objects/Array/length">length</a></dt>
+ <dd>
+  配列の要素数を反映する</dd>
+</dl><div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">  
+<div><span style="font-weight: 700;"><a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object"><code>Object</code></a> から継承されるメソッド</span></div> 
+<div><a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/DefineGetter"><code>__defineGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/DefineSetter"><code>__defineSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/HasOwnProperty"><code>hasOwnProperty</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/IsPrototypeOf"><code>isPrototypeOf</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/LookupGetter"><code>__lookupGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/LookupSetter"><code>__lookupSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/NoSuchMethod"><code>__noSuchMethod__</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/PropertyIsEnumerable"><code>propertyIsEnumerable</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/ToSource"><code>toSource</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/ToLocaleString"><code>toLocaleString</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/ToString"><code>toString</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/Unwatch"><code>unwatch</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/ValueOf"><code>valueOf</code></a>, <a class="internal" href="https://developer.mozilla.org/fr/docs/JavaScript/Reference/Objets_globaux/Object/Watch"><code>watch</code></a></div> 
+</div></div></div>
+<h3 id="Methods_of_Array_instances" name="Methods_of_Array_instances">メソッド</h3>
+<h4 id="Mutator_methods">Mutator methods</h4>
+<div>
+ <p>これらのメソッドは配列を書き換えます。</p>
+<dl><dt>
+  <a href="Array/pop.html" title="JavaScript/Reference/Global_Objects/Array/pop">pop</a></dt>
+ <dd>
+  配列から最後の要素を取り除き、その要素を返す</dd>
+ <dt>
+  <a href="Array/push.html" title="JavaScript/Reference/Global_Objects/Array/push">push</a></dt>
+ <dd>
+  配列の最後に 1 つ以上の要素を追加し、新しい配列の長さを返す</dd>
+ <dt>
+  <a href="Array/reverse.html" title="JavaScript/Reference/Global_Objects/Array/reverse">reverse</a></dt>
+ <dd>
+  配列の要素の順番を逆転させる。最初の要素は最後に、最後の要素は最初になる。</dd>
+ <dt>
+  <a href="Array/shift.html" title="JavaScript/Reference/Global_Objects/Array/shift">shift</a></dt>
+ <dd>
+  配列から最初の要素を取り除き、その要素を返す</dd>
+ <dt>
+  <a href="Array/sort.html" title="JavaScript/Reference/Global_Objects/Array/sort">sort</a></dt>
+ <dd>
+  配列の要素をソート</dd>
+ <dt>
+  <a href="Array/splice.html" title="JavaScript/Reference/Global_Objects/Array/splice">splice</a></dt>
+ <dd>
+  配列から要素を追加したり取り除いたりする</dd>
+ <dt>
+  <a href="Array/unshift.html" title="JavaScript/Reference/Global_Objects/Array/unshift">unshift</a></dt>
+ <dd>
+  配列の最初に 1 つ以上の要素を追加し、新しい配列の長さを返す</dd>
+</dl></div>
+<h4 id="Accessor_methods"><span>Accessor methods</span></h4>
+<div>
+ <p>これらのメソッドは配列を書き換えず、配列を何らかの形で表現したものを返します。</p>
+<dl><dt>
+  <a href="Array/concat.html" title="JavaScript/Reference/Global_Objects/Array/concat">concat</a></dt>
+ <dd>
+  元の配列に他の配列や値をつないでできた新しい配列を返す</dd>
+ <dt>
+  <a href="Array/join.html" title="JavaScript/Reference/Global_Objects/Array/join">join</a></dt>
+ <dd>
+  配列の全ての要素を繋いで文字列にする</dd>
+ <dt>
+  <a href="Array/slice.html" title="JavaScript/Reference/Global_Objects/Array/slice">slice</a></dt>
+ <dd>
+  配列の一部を取り出して新しい配列を返す</dd>
+ <dt>
+  <a href="Array/toSource.html" title="JavaScript/Reference/Global_Objects/Array/toSource">toSource</a> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  指定された配列を表す配列リテラルを返す。この値を新しい配列を作るのに使うことができます。<a href="Object/toSource.html" title="JavaScript/Reference/Global_Objects/Object/toSource">Object.prototype.toSource</a> メソッドを上書きしています。</dd>
+ <dt>
+  <a href="Array/toString.html" title="JavaScript/Reference/Global_Objects/Array/toString">toString</a></dt>
+ <dd>
+  配列とその要素を表す文字列を返す。<a href="Object/toString.html" title="JavaScript/Reference/Global_Objects/Object/toString">Object.prototype.toString</a> メソッドを上書きしています。</dd>
+ <dt>
+  <a href="Array/indexOf.html" title="JavaScript/Reference/Global_Objects/Array/indexOf">indexOf</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> が必要</span></dt>
+ <dd>
+  指定された値と等しい値を持つ最初の（添字の一番小さい）要素の添字を返す。見つからない場合、 -1 を返す。</dd>
+ <dt>
+  <a href="Array/lastIndexOf.html" title="JavaScript/Reference/Global_Objects/Array/lastIndexOf">lastIndexOf</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> が必要</span></dt>
+ <dd>
+  指定された値と等しい値を持つ最後の （添字の一番大きい）要素の添字を返す。見つからない場合、 -1 を返す。</dd>
+</dl></div>
+<h4 class="editable" id="Iteration_methods"><span>Iteration methods</span></h4>
+<div>
+ <p>いくつかのメソッドは引数として、配列を処理する際にコールバックされる関数を取ります。これらのメソッドが呼ばれる際、配列の <code>length</code>（長さ）を一時記憶するため、コールバック中にこの長さを超えて追加された要素には訪れません。配列に対するその他の変更（値の書き換えや要素の削除）は、もしメソッドが変更した要素に後で訪れた場合には、操作の結果に影響を及ぼすかもしれません。</p>
+<p>そのような場合におけるこれらのメソッドの振る舞いはうまく定義されているわけではないので、コードを読む他者を混乱させないよう、これらのメソッドに頼るべきではありません。配列を変化させなければならない場合、代わりに新しい配列にコピーしてください。</p>
+<dl><dt>
+  <a href="Array/filter.html" title="JavaScript/Reference/Global_Objects/Array/filter">filter</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> が必要</span></dt>
+ <dd>
+  ある配列の要素で、与えられたフィルタリング関数が true を返したものすべてからなる新しい配列を生成する</dd>
+ <dt>
+  <a href="Array/forEach.html" title="JavaScript/Reference/Global_Objects/Array/forEach">forEach</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> が必要</span></dt>
+ <dd>
+  配列中のそれぞれの要素について関数を呼び出す</dd>
+ <dt>
+  <a href="Array/every.html" title="JavaScript/Reference/Global_Objects/Array/every">every</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> が必要</span></dt>
+ <dd>
+  ある配列の全ての要素が与えられたテスト関数を満たした場合に <code>true</code> を返す</dd>
+ <dt>
+  <a href="Array/map.html" title="JavaScript/Reference/Global_Objects/Array/map">map</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> が必要</span></dt>
+ <dd>
+  ある配列の全ての要素について与えられた関数を呼び出した結果からなる新しい配列を生成する</dd>
+ <dt>
+  <a href="Array/some.html" title="JavaScript/Reference/Global_Objects/Array/some">some</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.6.html">JavaScript 1.6</a> が必要</span></dt>
+ <dd>
+  ある配列の少なくとも 1 つの要素が与えられたテスト関数を満たした場合に true を返す</dd>
+ <dt>
+  <a href="Array/reduce.html" title="JavaScript/Reference/Global_Objects/Array/reduce">reduce</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.8.html">JavaScript 1.8</a> が必要</span></dt>
+ <dd>
+  1 つの値に還元されるように、配列の 2 つの値に対し（左から右へ）同時に関数を適用していく</dd>
+ <dt>
+  <a href="Array/reduceRight.html" title="JavaScript/Reference/Global_Objects/Array/reduceRight">reduceRight</a> <span class="inlineIndicator jsMinVer"><a href="../../New_in_JavaScript/1.8.html">JavaScript 1.8</a> が必要</span></dt>
+ <dd>
+  1 つの値に還元されるように、配列の 2 つの値に対し（右から左へ）同時に関数を適用していく</dd>
+</dl></div>
+<h2 id="Array_generic_methods" name="Array_generic_methods"><code>Array</code> ジェネリックメソッド</h2>
+<p>文字列や他の配列のようなオブジェクト (関数の <a href="../Functions_and_function_scope/arguments.html" title="JavaScript/Reference/Functions_and_function_scope/arguments"><code>arguments</code></a> など) に Array のメソッドを適用したいと考える場合があります。これにより、文字列を文字の配列として扱います (あるいは、配列ではないものを配列として扱う)。例えば、変数 <var>str</var> に含まれる文字がすべて英字であることをチェックするには、次のように書くでしょう:</p>
+<pre class="brush: js">function isLetter(character) {
+  return (character &gt;= "a" &amp;&amp; character &lt;= "z");
+}
+
+if (Array.prototype.every.call(str, isLetter))
+  alert("The string '" + str + "' contains only letters!");
+</pre>
+<p>この記法はかなりむだであり、JavaScript 1.6 で汎用的な簡易表記を導入しました:</p>
+<pre class="brush: js">if (Array.every(isLetter, str))
+  alert("The string '" + str + "' contains only letters!");
+</pre>
+<p><a href="String.html#String_generic_methods" title="JavaScript/Reference/Global_Objects/String#String_generic_methods">ジェネリックメソッド</a>は <a href="String.html" title="String グローバルオブジェクトは文字列のコンストラクタ、あるいは文字列シーケンスです。"><code>String</code></a> でも使用できます。</p>
+<p>これらは現在 ECMAScript 標準に含まれていません (ただしこれを実現するために、ES6 の <a class="external" href="https://github.com/monolithed/ECMAScript-6" title="https://github.com/monolithed/ECMAScript-5"><code>Array.from()</code></a> を使用できます)。以下は、あらゆるブラウザでこれらを可能にするためのシムです:</p>
+<pre class="brush: js">/*globals define*/
+// Array の拡張は提供されているものと仮定 (ひとつの方法として、さらにシムを使用します)
+(function () {
+    'use strict';
+
+    var i,
+        // 下記の方法で array のメソッドを構築することも可能ですが、
+        //   getOwnPropertyNames() メソッドはシムを適用できません:
+        // Object.getOwnPropertyNames(Array).filter(function (methodName) {return typeof Array[methodName] === 'function'});
+        methods = [
+            'join', 'reverse', 'sort', 'push', 'pop', 'shift', 'unshift',
+            'splice', 'concat', 'slice', 'indexOf', 'lastIndexOf',
+            'forEach', 'map', 'reduce', 'reduceRight', 'filter',
+            'some', 'every', 'isArray'
+        ],
+        methodCount = methods.length,
+        assignArrayGeneric = function (methodName) {
+            var method = Array.prototype[methodName];
+            Array[methodName] = function (arg1) {
+                return method.apply(arg1, Array.prototype.slice.call(arguments, 1));
+            };
+        };
+
+    for (i = 0; i &lt; methodCount; i++) {
+        assignArrayGeneric(methods[i]);
+    }
+}());</pre>
+<h2 id="Examples" name="Examples">例</h2>
+<h3 id="Example.3A_Creating_an_array" name="Example.3A_Creating_an_array">例: 配列を生成する</h3>
+<p>次の例では、空の配列「<code><var>msgArray</var></code>」を生成し、<code>msgArray[0]</code> と <code>msgArray[99]</code> に値を設定、その後配列の要素数が 100 である事を確認しています。</p>
+<pre class="brush: js">var msgArray = new Array();
+msgArray[0] = "Hello";
+msgArray[99] = "world";
+
+if (msgArray.length == 100) {
+   print("配列の length は 100 です。");
+} </pre>
+<h3 id="Example.3A_Creating_a_two-dimensional_array" name="Example.3A_Creating_a_two-dimensional_array">例： 2 次元配列を生成する</h3>
+<p>以下では、文字列の 2 次元配列としてチェスボードを生成しています。 最初の動きは 6,4 の 'P' を 4,4 にコピーすることでなされます。 位置 6,4 は空白にされます。</p>
+<pre class="brush: js">var board = 
+[ ['R','N','B','Q','K','B','N','R'],
+  ['P','P','P','P','P','P','P','P'],
+  [' ',' ',' ',' ',' ',' ',' ',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' '],
+  [' ',' ',' ',' ',' ',' ',' ',' '],
+  ['p','p','p','p','p','p','p','p'],
+  ['r','n','b','q','k','b','n','r']];
+print(board.join('\n') + '\n\n');
+
+// キングの前のポーンを 2 つ前へ移動
+board[4][4] = board[6][4];
+board[6][4] = ' ';
+print(board.join('\n'));
+</pre>
+<p>出力を以下に示します:</p>
+<pre class="eval">R,N,B,Q,K,B,N,R
+P,P,P,P,P,P,P,P
+ , , , , , , , 
+ , , , , , , , 
+ , , , , , , , 
+ , , , , , , , 
+p,p,p,p,p,p,p,p
+r,n,b,q,k,b,n,r
+
+R,N,B,Q,K,B,N,R
+P,P,P,P,P,P,P,P
+ , , , , , , , 
+ , , , , , , , 
+ , , , ,p, , , 
+ , , , , , , , 
+p,p,p,p, ,p,p,p
+r,n,b,q,k,b,n,r
+</pre>
+<h2 id="Browser_compatibility" name="Browser_compatibility">ブラウザ実装状況</h2>
+<p></p><div class="htab"> 
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a> 
+    <ul> 
+        <li class="selected"><a>デスクトップ</a></li> 
+        <li><a>モバイル</a></li> 
+    </ul> 
+</div><p></p>
+<div id="compat-desktop">
+ <table class="compat-table">
+  <tbody>
+   <tr>
+    <th>機能</th>
+    <th>Chrome</th>
+    <th>Firefox (Gecko)</th>
+    <th>Internet Explorer</th>
+    <th>Opera</th>
+    <th>Safari (WebKit)</th>
+   </tr>
+   <tr>
+    <td>基本サポート</td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<div id="compat-mobile">
+ <table class="compat-table">
+  <tbody>
+   <tr>
+    <th>機能</th>
+    <th>Android</th>
+    <th>Firefox Mobile (Gecko)</th>
+    <th>IE Phone</th>
+    <th>Opera Mobile</th>
+    <th>Safari Mobile</th>
+   </tr>
+   <tr>
+    <td>基本サポート</td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+    <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h2 id="See_also" name="See_also">関連情報</h2>
+<ul>
+ <li><a href="../../Guide/Working_with_Objects.html#Indexing_object_properties" title="JavaScript/Guide/Working_with_objects#Indexing_object_properties">JavaScript ガイド "Working with objects" より、"オブジェクトプロパティのインデックスづけ"</a></li>
+ <li><a href="../../New_in_JavaScript/1.7.html#Array_comprehensions" title="New_in_JavaScript_1.7#Array_comprehensions">New in JavaScript 1.7: 配列内包</a></li>
+ <li><a href="../../New_in_JavaScript/1.6.html#Array_extras" title="New_in_JavaScript_1.6#Array_extras">New in JavaScript 1.6: Array の拡張</a></li>
+ <li><a href="../../Typed_arrays.html" title="JavaScript_typed_arrays">Draft: Typed Arrays</a></li>
+</ul>
+                                                </article>
+
+              
+                <!-- attachments list -->
+                
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../../../tag/Array.html">Array</a></li><li><a href="../../../../tag/JavaScript Reference.html">JavaScript Reference</a></li><li><a href="../../../../tag/JavaScript.html">JavaScript</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../../profiles/Fajrovulpo.html">Fajrovulpo</a>, <a href="../../../../../profiles/Taken.html">Taken</a>, <a href="../../../../../profiles/ethertank.html">ethertank</a>, <a href="../../../../../profiles/tekiton.html">tekiton</a>, <a href="../../../../../profiles/Yuichirou.html">Yuichirou</a>, <a href="../../../../../profiles/kuboon.html">kuboon</a>, <a href="../../../../../profiles/Hfjapancom.html">Hfjapancom</a>, <a href="../../../../../profiles/teoli.html">teoli</a>, <a href="../../../../../profiles/hateka.html">hateka</a>, <a href="../../../../../profiles/Shoot.html">Shoot</a>, <a href="../../../../../profiles/coeurl.html">coeurl</a>, <a href="../../../../../profiles/Mgjbot.html">Mgjbot</a>, <a href="../../../../../profiles/Potappo.html">Potappo</a>, <a href="../../../../../profiles/yyss.html">yyss</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../../profiles/teoli.html">teoli</a>,
+                      <time datetime="2014-08-14T06:13:18-07:00">2014/08/14 6:13:18</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="Array.html#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+    <ol> 
+        <li><strong><a href="../Global_Objects.html">Standard built-in objects</a></strong></li> 
+ 
+         
+         
+        <li><strong><a href="Array.html"><code>Array</code></a></strong></li> 
+ 
+ 
+         
+        <li data-default-state="open"><a href="Array.html#"><strong>Properties</strong></a> 
+            <ol> 
+             
+                <li> 
+                     
+                     
+                      <a href="Array/length.html" title="配列の要素数を表す符号なし 32 ビット整数。"><code>Array.length</code></a> 
+                     
+                     
+                     
+                     
+                     
+                     
+                </li> 
+             
+                <li> 
+                     
+                     
+                      <a href="Array/prototype.html" title="Array コンストラクタのプロトタイプを表します。"><code>Array.prototype</code></a> 
+                     
+                     
+                     
+                     
+                     
+                     
+                </li> 
+             
+            </ol> 
+        </li> 
+         
+         
+        <li data-default-state="open"><a href="Array.html#"><strong>Methods</strong></a> 
+            <ol> 
+             
+                <li> 
+                      
+                     
+                        <a href="Array/isArray.html" title="オブジェクトが配列であれば true を、そうでなければ false を返します。"><code>Array.isArray()</code></a> 
+                     
+                     
+                     
+                     
+                     
+                     
+                </li> 
+             
+                <li> 
+                      
+                     
+                        <a href="Array/pop.html" title="配列から最後の要素を取り除き、その要素を返します。"><code>Array.prototype.pop()</code></a> 
+                     
+                     
+                     
+                     
+                     
+                     
+                </li> 
+             
+            </ol> 
+        </li> 
+         
+         
+         
+         
+         
+         
+            <li><strong>Inheritance:</strong></li> 
+         
+        <li><strong><a href="Function.html"><code>Function</code></a></strong></li> 
+ 
+ 
+         
+        <li><a href="Array.html#"><strong>Methods</strong></a> 
+            <ol> 
+             
+                <li> 
+                      
+                     
+                        <a href="Function/bind.html" title="bind() メソッドは、呼び出された時に新しい関数を生成します。最初の引数 thisArg は新しい関数の this キーワードにセットされます。2 個目以降の引数は、新しい関数より前に、ターゲット関数の引数として与えられます。"><code>Function.prototype.bind()</code></a> 
+                     
+                     
+                     
+                     
+                     
+                     
+                </li> 
+             
+            </ol> 
+        </li> 
+         
+         
+         
+         
+         
+         
+        <li><strong><a href="Object.html"><code>Object</code></a></strong></li> 
+ 
+ 
+         
+         
+         
+         
+         
+ 
+    </ol> 
+
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/JavaScript/Reference/Global_Objects/Array" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            English (US)
+          </option>          <option value="/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array">
+            Français
+          </option>          <option value="/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            中文 (简体)
+          </option>          <option value="/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array">
+            Español
+          </option>          <option value="/pl/docs/Web/JavaScript/Referencje/Obiekty/Array">
+            Polski
+          </option>          <option value="/ko/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            한국어
+          </option>          <option value="/ru/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            Русский
+          </option>          <option value="/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            Português (do Brasil)
+          </option>          <option value="/tr/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            Türkçe
+          </option>          <option value="/de/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            Deutsch
+          </option>          <option value="/ro/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            română
+          </option>          <option value="/th/docs/Web/JavaScript/Reference/Global_Objects/Array">
+            ไทย
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="../../../../../jsi18n/build-1324c0a.js"></script>
+  
+      <!--[if lte IE 8]><script src="/media/redesign/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1324c0a"></script>
+
+          <script>
+        mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1324c0a"></script>
+      
+    <script type="text/javascript">
+      jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":567}</script></body>
+</html>

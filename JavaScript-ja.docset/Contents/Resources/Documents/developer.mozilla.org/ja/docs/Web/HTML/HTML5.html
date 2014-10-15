@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>HTML5 - HTML | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="HTML5.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1324c0a" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1324c0a" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="HTML5$json.json">
+  <link rel="canonical" href="HTML5.html" >
+
+            <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="pt-PT" href="https://developer.mozilla.org/pt-PT/docs/Web/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/Guide/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Web/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Web/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/Web/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="fa" href="../../../../fa/docs/HTML/HTML5.html" title="HTML5">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="tr" href="https://developer.mozilla.org/tr/docs/Web/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/docs/Web/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="cs" href="https://developer.mozilla.org/cs/docs/cs_HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="id" href="https://developer.mozilla.org/id/docs/Web/Guide/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="ro" href="https://developer.mozilla.org/ro/docs/Web/Guide/HTML/HTML5" title="HTML5">
+          <link rel="alternate" hreflang="ar" href="https://developer.mozilla.org/ar/docs/Web/Guide/HTML/HTML5" title="HTML5">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="HTML5">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/HTML/HTML5">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/HTML/HTML5">
+  <meta name="twitter:title" content="HTML5">
+    <meta property="og:description" content="HTML5 は HTML で定義されている最新の標準仕様の名称です。 すべての Open Web 開発者に向けて、このリファレンスは、機能に基づいていくつかのグループに分類された、 HTML5 の技術に繋がっています。">
+  <meta name="description" content="HTML5 は HTML で定義されている最新の標準仕様の名称です。 すべての Open Web 開発者に向けて、このリファレンスは、機能に基づいていくつかのグループに分類された、 HTML5 の技術に繋がっています。">
+  <meta name="twitter:description" content="HTML5 は HTML で定義されている最新の標準仕様の名称です。 すべての Open Web 開発者に向けて、このリファレンスは、機能に基づいていくつかのグループに分類された、 HTML5 の技術に繋がっています。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/HTML/HTML5" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1324c0a',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": null}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": null}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": null}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="HTML5.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="HTML5.html#language">言語の選択</a></li>
+          <li><a href="HTML5.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/HTML/HTML5" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/HTML/HTML5" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/HTML/HTML5" title="HTML5">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" title="HTML5">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-PT/docs/Web/HTML/HTML5" title="HTML5">Português (Europeu)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/Guide/HTML/HTML5" title="HTML5">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Web/HTML/HTML5" title="HTML5">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/HTML/HTML5" title="HTML5">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Web/HTML/HTML5" title="HTML5">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/Web/HTML/HTML5" title="HTML5">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="../../../../fa/docs/HTML/HTML5.html" title="HTML5">فارسی</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/HTML/HTML5" title="HTML5">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/tr/docs/Web/HTML/HTML5" title="HTML5">Türkçe</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/docs/Web/HTML/HTML5" title="HTML5">Italiano</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5" title="HTML5">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/HTML/HTML5" title="HTML5">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/HTML/HTML5" title="HTML5">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/cs/docs/cs_HTML/HTML5" title="HTML5">Čeština</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/id/docs/Web/Guide/HTML/HTML5" title="HTML5">Bahasa Indonesia</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ro/docs/Web/Guide/HTML/HTML5" title="HTML5">română</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ar/docs/Web/Guide/HTML/HTML5" title="HTML5">عربي</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="../../../users/signin-next=|ja|docs|Web|HTML|HTML5$edit.html" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="HTML5$history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="HTML5.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../HTML.html" rel="v:url" property="v:title">HTML</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">HTML5</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="HTML5.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>HTML5</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-closed wiki-right-none wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-all wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div>
+  <div class="overheadIndicator translationInProgress translationInProgressHeader"> 
+    <p>この文書は翻訳中です。他国語のままの部分などがあるのはその為です。<br>是非お気軽に MDN に登録して翻訳に参加し、私たちの手助けをして下さい！</p> 
+</div></div>
+<div class="callout-box">
+  <div style="font: normal 20px 'Bebas Neue','League Gothic',Haettenschweiler,Impact,'Arial Narrow',sans-serif; text-transform: uppercase;">
+    HTML5 デモ</div>
+  <p>最新の HTML テクノロジを紹介する、<a href="../../../demos/tag/tech-html5.html" title="/ja/demos/tag/tech:html5">デモのコレクション</a>です。</p>
+  <p><a href="HTML5.html" title="html5"><img alt="HTML5_Logo_128.png" class="internal default" src="https://developer.mozilla.org/@api/deki/files/6020/=HTML5_Logo_128.png" style=""></a></p>
+</div>
+<p><span class="seoSummary">HTML5 は <a href="../HTML.html" title="HTML">HTML</a> で定義されている最新の標準仕様の名称です。</span>この用語は、2 つの異なる概念を表しています。</p>
+<ul>
+  <li>新しい要素、属性、動作を伴う、新しいバージョンの<em>言語</em>のHTML。</li>
+  <li>より多様でパワフルな Web サイトやアプリケーションを可能にする技術のより大きなセット。このセットは <em>HTML5 &amp; friends</em> と呼ばれ、しばしば <em>HTML5</em> と短縮されます。</li>
+</ul>
+<p><span class="seoSummary">すべての Open Web 開発者に向けて、このリファレンスは、機能に基づいていくつかのグループに分類された、 HTML5 の技術に繋がっています。</span>そのコンテンツが何であるかをよりはっきりと表現することを可能にする<em> semantics</em>、新しい方法でサーバーと通信することを可能にする<em> conectivity</em>、 Web サイトがローカルにデータを保存し、ブラウザがオフラインであってもよりよい動作をするよう最適化することを可能にする <em>offline &amp; strage</em>、 Web の第1級の市民であるビデオやオーディオを作ることを可能にする <em>multimedia</em>、ことさらに複雑なプレゼンテーションを達成する<em> 3D, graphics &amp; effects</em>、コンピュータとのより良い融合による、さらにスピーディな Web サイトを可能とする <em>performance &amp; integration</em>、より多くの入力・出力デバイスを使うことを可能にする <em>device access</em>、そして、著者により洗練されたテーマを書かせることを可能にする <em>styling</em> です。</p>
+<table class="topicpage-table">
+  <tbody>
+    <tr>
+      <td>
+        <h2 id="SEMANTICS" style="margin: 0 0 .25em; font: 200 24px/1 'Bebas Neue','League Gothic',Haettenschweiler,'Arial Narrow',sans-serif; letter-spacing: 1px; text-transform: uppercase; border: none;"><img alt="" src="https://developer.mozilla.org/files/3827/HTML5_Semantics_512.png" style="vertical-align: middle; width: 64px; height: 64px; padding-right: 0.5em;">SEMANTICS</h2>
+        <dl>
+          <dt>
+            <a href="Sections_and_Outlines_of_an_HTML5_document.html" title="Sections and Outlines of an HTML5 document">HTML5 のセクションとアウトライン</a></dt>
+          <dd>
+            HTML5 ではアウトラインとセクションに関する要素が追加されました: <a class="new" href="../../HTML/Element/section.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;section&gt;</code></a>、 <a href="Element/article.html" title="HTML &lt;article> 要素はドキュメント、ページ、アプリケーション、あるいはサイトの中で自己完結した構成物を表します。これは、例えば通信社によって独立して配信や再利用が可能であることを意図します。これはフォーラムへの投稿、雑誌や新聞の記事、ブログのエントリ、ユーザが投稿したコメント、インタラクティブなウィジェットやガジェット、その他のコンテンツで独立したアイテムが考えられるでしょう。"><code>&lt;article&gt;</code></a>、 <a href="Element/nav.html" title="ナビゲーション要素(&lt;nav>) は、その内容がページ上の主要なナビゲーションである事を表します。"><code>&lt;nav&gt;</code></a>、 <a href="Element/header.html" title="header 要素（&lt;header>）は、イントロダクション、ナビゲーション等のグループを表します。ひとつまたは複数の見出し以外に、ロゴ、セクションのヘッダー部分、検索フォームなども含める事ができます。"><code>&lt;header&gt;</code></a>、 <a href="Element/footer.html" title="Footer 要素（&lt;footer>）は自身の祖先要素の内で直近のセクショニングコンテンツかセクショニングルート要素（つまり &lt;article>、 &lt;aside>、 &lt;nav>、 &lt;section>、 &lt;blockquote>、 &lt;body>、 &lt;details>、 &lt;fieldset>、 &lt;figure>、 &lt;td> の中で最も近い親要素）のフッターを表します。「フッター」には通常、そのセクションの著作者に関する情報、関連ドキュメントへのリンク、著作権情報等を含めます。"><code>&lt;footer&gt;</code></a>、 <a href="Element/aside.html" title="aside 要素（&lt;aside>）は、メインコンテンツとの関連性が希薄でメインコンテンツから切り離す事が可能なセクションを表します。いわゆる「サイドバー」や、メインの記事内のコラムの部分に頻繁に用いられます。用語の説明、広告（コンテンツ・マッチング広告の様な主文に僅かな関連性を持つ広告であれば article 要素等の子要素として配置する）、著作者に関する情報、ウェブアプリケーションに於けるユーザ情報、ブログロール等に用います。"><code>&lt;aside&gt;</code></a>、 <a href="Element/hgroup.html" title="HTML &lt;hgroup> 要素 (HTML Headings Group 要素) は、セクションのヘッダを表します。これはドキュメントのアウトラインに関する 1 つのタイトルを、それが属する暗黙的または明示的なセクションのヘッダとして定義します。"><code>&lt;hgroup&gt;</code></a>.</dd>
+          <dt>
+            <a href="Using_HTML5_audio_and_video.html" title="Using_HTML5_audio_and_video">HTML5 の audio 要素と video 要素の利用</a></dt>
+          <dd>
+            <a href="Element/audio.html" title="HTML &lt;audio> 要素は、ドキュメント内で音声コンテンツを表します。audio 要素は HTML5 の一部として導入され、複数の音声ソースを含むことができます。音声ソースは &lt;source> 要素の src 属性を使用して表し、ブラウザはもっとも適切なソースを選択します。また、&lt;audio> 要素をサポートしないブラウザ向けのコンテンツも追加できます。"><code>&lt;audio&gt;</code></a> 要素と <a href="Element/video.html" title="video 要素は HTML もしくは XHTML 文書に映像コンテンツを埋め込むために用いられます。 video 要素は HTML 5 の一部として導入されました。"><code>&lt;video&gt;</code></a> 要素はマルチメディアコンテンツの埋め込みや操作を可能にします。</dd>
+          <dt>
+            <a class="new" href="https://developer.mozilla.org/ja/docs/HTML/Forms_in_HTML" title="Forms in HTML5">Forms in HTML5</a></dt>
+          <dd>
+            HTML5 では Web フォームに様々な改善が施されています。制約バリデーション API、多数の新しい属性、<a href="Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> 要素の属性の新しい <code><a href="Element/input.html#attr-type">type</a></code> の値の追加。そして新要素として <a href="Element/output.html" title="output 要素（&lt;output>）は、何らかの計算結果を表します。"><code>&lt;output&gt;</code></a> が追加されています。</dd>
+          <dt>
+            新しいセマンティック要素</dt>
+          <dd>
+            セクションやメディア、フォーム要素のほかに、<a href="Element/mark.html" title="HTML の mark 要素 (&lt;mark>)は、他の場所からの参照を目的とした、テキストのハイライトに使用されます。例えばウェブサイトの検索窓からの検索結果を表示するページ上で、検索した語句をハイライトする為などに使用できます。"><code>&lt;mark&gt;</code></a>、<a href="Element/figure.html" title="figure 要素（&lt;figure>）は図表などの自己完結型のコンテンツを表す要素です。多くの場合、キャプション（&lt;figcaption>）を伴って使用され、単独のユニットとして参照されます。メインのフローに関連しつつも、メインのフローとは無関係な位置に配置する事が可能です。この要素は通常、「主なテキストの中から参考文献として参照されるが、メインのフローに影響を与える事無く別ページまたは付録に移動することが可能な画像、実例、図表、コード断片あるいは図表など」に対し用います。"><code>&lt;figure&gt;</code></a>、<a href="Element/figcaption.html" title="figcaption 要素（&lt;figcaption>) は、親要素となる &lt;figure> 要素の中の自身以外のコンテンツのキャプションや説明を表します。 &lt;figcaption> は &lt;figure> 要素内の先頭、或いは末尾に入れることが出来ます。 &lt;figure> 要素に於いて、figcaption 要素は必須という訳ではありません。figcaption 要素が省略された場合は、親の &lt;figure> 要素はキャプションを持たないものと見做されます。"><code>&lt;figcaption&gt;</code></a>、 <a class="new" href="Element/data.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;data&gt;</code></a>、<a href="Element/time.html" title="HTML &lt;time> 要素は、24 時間制の時刻またはグレゴリオ暦の正確な日付 (時刻やタイムゾーンを伴うことも可能) を表します。"><code>&lt;time&gt;</code></a>、 <a href="Element/output.html" title="output 要素（&lt;output>）は、何らかの計算結果を表します。"><code>&lt;output&gt;</code></a>、 <a href="Element/progress.html" title="HTML の progress (&lt;progress>) 要素は、タスクの進捗状況の表示に使われます。表示の実装方法はブラウザベンダーに委ねられていますが、通常はプログレスバーとして表示されます。。JavaScript を使用して、プログレスバーの値を操作することが可能です。"><code>&lt;progress&gt;</code></a>、 あるいは <a class="new" href="../../HTML/Element/meter.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;meter&gt;</code></a>のような多くの新しい要素、<a href="../Guide/HTML/HTML5/HTML5_element_list.html" title="/ja/docs/HTML/HTML5/HTML5_element_list">妥当なHTML5 の要素</a>はますます増えています。</dd>
+          <dt>
+            <a href="Element/iframe.html" title="HTML の &lt;iframe> 要素 (またはHTML インラインフレーム要素) は、ブラウジングコンテキスト (browsing context) の入れ子を表現し、事実上現在のページに他の HTML ページを埋め込むことができます。HTML 4.01 では、文書は head および body、または head および frame-set を持つことができ、body と frame-set の両方は持ちません。しかし、&lt;iframe> は通常の文書 body 内で使用できます。ブラウジングコンテキストはそれぞれ、セッション履歴とアクティブな文書を持ちます。埋め込みコンテンツを含む側のブラウジングコンテキストを、親ブラウジングコンテキストと呼びます。トップレベルのブラウジングコンテキスト（親を持ちません）は通常ブラウザウィンドウです。"><code>&lt;iframe&gt;</code></a> の改善</dt>
+          <dd>
+            <code><a href="Element/iframe.html#attr-sandbox">sandbox</a></code>、<code><a href="Element/iframe.html#attr-seamless">seamless</a></code>、 <code><a href="Element/iframe.html#attr-srcdoc">srcdoc</a></code> 属性を使用することで、著者は今やセキュリティレベルを明確にし、望まれた <a href="Element/iframe.html" title="HTML の &lt;iframe> 要素 (またはHTML インラインフレーム要素) は、ブラウジングコンテキスト (browsing context) の入れ子を表現し、事実上現在のページに他の HTML ページを埋め込むことができます。HTML 4.01 では、文書は head および body、または head および frame-set を持つことができ、body と frame-set の両方は持ちません。しかし、&lt;iframe> は通常の文書 body 内で使用できます。ブラウジングコンテキストはそれぞれ、セッション履歴とアクティブな文書を持ちます。埋め込みコンテンツを含む側のブラウジングコンテキストを、親ブラウジングコンテキストと呼びます。トップレベルのブラウジングコンテキスト（親を持ちません）は通常ブラウザウィンドウです。"><code>&lt;iframe&gt;</code></a> 要素の描画が可能となりました。</dd>
+          <dt>
+            <a href="../MathML.html" title="MathML">MathML</a></dt>
+          <dd>
+            HTML 文書に数式を直接埋め込むことができます。</dd>
+          <dt>
+            <a href="HTML5/Introduction_to_HTML5.html" title="HTML/HTML5/Introduction_to_HTML5">HTML5 の紹介</a></dt>
+          <dd>
+            この記事では、Web デザインや Web アプリケーションでの HTML5 の利用方法を紹介します。</dd>
+          <dt>
+            <a class="new" href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Parser" title="HTML/HTML5/HTML5 parser">HTML5 に準拠したパーサ</a></dt>
+          <dd>
+            バイト単位の HTML 文書を DOM に変換するパーサは、拡張され、あらゆるケース、たとえ妥当ではない HTML に直面したときであっても、させるべき明確な動作を定義し、 HTML5 に準拠したブラウザの間ではるかに高い予測可能性と相互運用性へ導きます。</dd>
+        </dl>
+        <h2 id="Connectivity" style="margin: 0 0 .25em; font: 200 24px/1 'Bebas Neue','League Gothic',Haettenschweiler,'Arial Narrow',sans-serif; letter-spacing: 1px; text-transform: uppercase; border: none;"><img alt="" src="https://developer.mozilla.org/files/3839/HTML5_Connectivity_512.png" style="vertical-align: middle; width: 64px; height: 64px; padding-right: 0.5em;">Connectivity</h2>
+        <dl>
+          <dt>
+            <a href="../../WebSockets.html" title="WebSockets">Web Sockets</a></dt>
+          <dd>
+            ページとサーバーが永続的な接続を作成し、 HTML ではないデータを交換することが可能になります through that mean。</dd>
+          <dt>
+            <a href="../../Server-sent_events/Using_server-sent_events.html" title="Server-sent_events/Using_server-sent_events">サーバーが送出するイベント</a></dt>
+          <dd>
+            サーバーがクライアントからのリクエストに対するレスポンスとしてのみデータを送ることができたという、古典的な枠組みより、サーバーがクライアントにイベントを送出することが可能になります。</dd>
+          <dt>
+            <a class="new" href="https://developer.mozilla.org/ja/docs/WebRTC" title="/ja/WebRTC">WebRTC</a></dt>
+          <dd>
+            この RTC (Real-Time Communication) という技術によって、プラグインや外部のアプリケーション無しに、ブラウザで直接、他者に接続して、テレビ会議を操作することが可能になります。</dd>
+        </dl>
+        <h2 id="Offline_.26_storage" style="margin: 0 0 .25em; font: 200 24px/1 'Bebas Neue','League Gothic',Haettenschweiler,'Arial Narrow',sans-serif; letter-spacing: 1px; text-transform: uppercase; border: none;"><img alt="" src="https://developer.mozilla.org/files/3833/HTML5_Offline_Storage_512.png" style="vertical-align: middle; width: 64px; height: 64px; padding-right: 0.5em;">Offline &amp; storage</h2>
+        <dl>
+          <dt>
+            <a href="Using_the_application_cache.html" title="Offline_resources_in_Firefox">アプリケーションのキャッシュとしての、オフラインリソース</a></dt>
+          <dd>
+            Firefox は HTML5 のオフラインリソースの仕様を完全にサポートしています。その他のほとんどは、いくつかのレベルでオフラインリソースをサポートしています。</dd>
+          <dt>
+            <a href="../../Online_and_offline_events.html" title="Online_and_offline_events">オンライン及びオフラインのイベント</a></dt>
+          <dd>
+            Firefox 3 は WHATWG の、アプリケーションや拡張機能にアクティブなインターネット接続があるかどうかを検出させ、接続の成功やダウンも検出する、オンライン及びオフラインのイベントをサポートしています。</dd>
+          <dt>
+            <a href="../../DOM/Storage.html" title="DOM/Storage">WHATWG のクライアントサイドセッションと、 DOM Storage として知られる永続的なストレージ</a></dt>
+          <dd>
+            クライアントサイドセッションと永続的なストレージは、 Web アプリケーションが、構築されたデータをクライアントサイドに保存することを可能とします。</dd>
+          <dt>
+            <a href="../../IndexedDB.html" title="IndexedDB">IndexedDB</a></dt>
+          <dd>
+            IndexedDB は、インデックスを使って、ブラウザで大量に構造化されたデータの保存と、このデータの高性能な検索のための Web 標準です。</dd>
+          <dt>
+            <a href="../../Using_files_from_web_applications.html" title="Using_files_from_web_applications">Web アプリケーションからファイルを扱う</a></dt>
+          <dd>
+            新しい HTML5 File API のサポートは Gecko に加えられており、 Web アプリケーションはユーザーによって選択されたローカルファイルにアクセスすることができるようになっています。これは、<strong><a class="new" href="https://developer.mozilla.org/ja/docs/HTML/Element/Input#attr-type" title="/ja/docs/HTML/Element/Input#attr-type">type</a></strong> が <code>file</code> である  <span style="font-family: monospace;"><a href="Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> </span>HTML 要素の新しい <strong><a class="new" href="https://developer.mozilla.org/ja/docs/HTML/Element/Input#attr-multiple" title="/ja/docs/HTML/Element/Input#attr-multiple">multiple</a></strong> 属性を使った、複数のファイル選択のサポートを含みます。<a href="https://developer.mozilla.org/en-US/docs/DOM/FileReader" title="DOM/FileReader"><code> FileReader</code></a> もあります。</dd>
+        </dl>
+        <h2 id="Multimedia" style="margin: 0 0 .25em; font: 200 24px/1 'Bebas Neue','League Gothic',Haettenschweiler,'Arial Narrow',sans-serif; letter-spacing: 1px; text-transform: uppercase; border: none;"><img alt="" src="https://developer.mozilla.org/files/3835/HTML5_Multimedia_512.png" style="vertical-align: middle; width: 64px; height: 64px; padding-right: 0.5em;">Multimedia</h2>
+        <dl>
+          <dt>
+            <a href="Using_HTML5_audio_and_video.html" title="Using_audio_and_video_in_Firefox">HTML5 の audio 要素 と video要素の利用</a></dt>
+          <dd>
+            <a href="Element/audio.html" title="HTML &lt;audio> 要素は、ドキュメント内で音声コンテンツを表します。audio 要素は HTML5 の一部として導入され、複数の音声ソースを含むことができます。音声ソースは &lt;source> 要素の src 属性を使用して表し、ブラウザはもっとも適切なソースを選択します。また、&lt;audio> 要素をサポートしないブラウザ向けのコンテンツも追加できます。"><code>&lt;audio&gt;</code></a> 要素と <a href="Element/video.html" title="video 要素は HTML もしくは XHTML 文書に映像コンテンツを埋め込むために用いられます。 video 要素は HTML 5 の一部として導入されました。"><code>&lt;video&gt;</code></a> 要素はマルチメディアコンテンツの埋め込みと操作を可能にします。</dd>
+          <dt>
+            <a class="new" href="https://developer.mozilla.org/ja/docs/WebRTC" title="/ja/WebRTC">WebRTC</a></dt>
+          <dd>
+            この RTC (Real-Time Communication) という技術によって、プラグインや外部のアプリケーション無しに、ブラウザで直接、他者に接続して、テレビ会議を操作することが可能になります。</dd>
+          <dt>
+            <a href="../../DOM/Using_the_Camera_API.html" title="DOM/Using_the_Camera_API">Camera API の利用</a></dt>
+          <dd>
+            コンピューターのカメラの使用、操作、およびカメラ画像を格納することができます。</dd>
+        </dl>
+        <h2 id="3D.2C_graphics_.26_effects" style="margin: 0 0 .25em; font: 200 24px/1 'Bebas Neue','League Gothic',Haettenschweiler,'Arial Narrow',sans-serif; letter-spacing: 1px; text-transform: uppercase; border: none;"><img alt="" src="https://developer.mozilla.org/files/3841/HTML5_3D_Effects_512.png" style="vertical-align: middle; width: 64px; height: 64px; padding-right: 0.5em;">3D, graphics &amp; effects</h2>
+        <dl>
+          <dt>
+            <a href="Canvas/Tutorial.html" title="Canvas チュートリアル">Canvas チュートリアル</a></dt>
+          <dd>
+            新しい <code><a href="Element/canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> </code>要素についてと、 Firefox でどのようにグラフや他のオブジェクトを描画するかを学習します。</dd>
+          <dt>
+            <a href="../../Drawing_text_using_a_canvas.html" title="Drawing_text_using_a_canvas">HTML5 text API for <code>&lt;canvas&gt;</code> elements</a></dt>
+          <dd>
+            HTML5 の text API が <a href="Element/canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> 要素によってサポートされます。</dd>
+          <dt>
+            <a href="../WebGL.html" title="WebGL">WebGL</a></dt>
+          <dd>
+            WebGL は、 HTML5 の <a href="Element/canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> 要素で利用できる、OpenGL ES 2.0 に厳密に従った API を提供することで、 3D グラフィックスを Web にもたらします。</dd>
+          <dt>
+            <a href="../SVG.html" title="SVG">SVG</a></dt>
+          <dd>
+            ベクター画像の XML ベースのフォーマット。HTML5 では SVG を直接文書に埋め込む事が可能になりました。</dd>
+        </dl>
+      </td>
+      <td>
+        <h2 id="Performance_.26_integration" style="margin: 0 0 .25em; font: 200 24px/1 'Bebas Neue','League Gothic',Haettenschweiler,'Arial Narrow',sans-serif; letter-spacing: 1px; text-transform: uppercase; border: none;"><img alt="" src="https://developer.mozilla.org/files/3831/HTML5_Performance_512.png" style="vertical-align: middle; width: 64px; height: 64px; padding-right: 0.5em;">Performance &amp; integration</h2>
+        <dl>
+          <dt>
+            <a href="../Guide/Performance/Using_web_workers.html" title="Using web workers">Web Workers</a></dt>
+          <dd>
+            JavaScript の評価をバックグラウンドのスレッドに委譲することを可能にして、これらの動作がインタラクティブなイベントを低速にすることを防ぐことを可能にします。</dd>
+          <dt>
+            <code><a href="../API/XMLHttpRequest.html" title="XMLHttpRequest">XMLHttpRequest</a></code> Level 2</dt>
+          <dd>
+            ページのいくつかのパーツの非同期に取得することを可能にして、時間とユーザーのアクションによって変化する、動的なコンテンツを表示することを可能とします。これは <a href="../../AJAX.html" title="/ja/docs/AJAX">Ajax</a> の背後にある技術です。</dd>
+          <dt>
+            JIT-compiling JavaScript engines</dt>
+          <dd>
+            新世代 の JavaScript エンジンは以前よりはるかに強力で、パフォーマンスの向上を導きます。</dd>
+          <dt>
+            <a href="../Guide/DOM/Manipulating_the_browser_history.html" title="../Guide/DOM/Manipulating_the_browser_history.html">History API</a></dt>
+          <dd>
+            ブラウザの閲覧履歴の操作ができます。特に対話的に新しい情報を読み込むページに於いて有益な API です。</dd>
+          <dt>
+            <a href="Content_Editable.html" title="HTML/Content Editable">contentEditable 属性で、あなたの Web サイトが wiki に変身！</a></dt>
+          <dd>
+            HTML5 は contentEditable 属性を標準化しました。この機能についてより学びます。</dd>
+          <dt>
+            <a href="../../DragDrop/Drag_and_Drop.html" title="DragDrop/Drag_and_Drop">ドラッグ＆ドロップ</a></dt>
+          <dd>
+            HTML5 の ドラッグ＆ドロップ API は、 Web サイト内部あるいは Web サイト間の、アイテムのドラッグ及びドロップのサポートを可能にします。これはまた、拡張機能や Mozilla ベースのアプリケーションで使用するための、よりシンプルな API 提供します。</dd>
+          <dt>
+            <a href="Focus_management_in_HTML.html" title="Focus_management_in_HTML">HTML でのフォーカスの管理</a></dt>
+          <dd>
+            新しい HTML5 の <code>activeElement</code> と <code>hasFocus</code> 属性がサポートされています。</dd>
+          <dt>
+            <a href="../../Web-based_protocol_handlers.html" title="Web-based_protocol_handlers">Web ベースのプロトコルハンドラ</a></dt>
+          <dd>
+            <code>navigator.registerProtocolHandler() メソッドを使って、 </code>Web アプリケーションをプロトコルのハンドラとして登録することができます。</dd>
+          <dt>
+            <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/window.requestAnimationFrame" title="DOM/window.requestAnimationFrame"><code>requestAnimationFrame</code></a></dt>
+          <dd>
+            アニメーションのレンダリングのに最適なチューニングが施された新しいメソッド。</dd>
+          <dt>
+            <a href="../Guide/DOM/Using_full_screen_mode.html" title="DOM/Using_full-screen_mode">Fullscreen API</a></dt>
+          <dd>
+            ブラウザの UI を表示せずに、 Web ページやアプリケーションがスクリーン全体の使用を制御します。</dd>
+          <dt>
+            <a href="../../API/Pointer_Lock_API.html" title="API/Pointer_Lock_API">Pointer Lock API</a></dt>
+          <dd>
+            ゲームや類似したアプリケーションが、ポインタがウィンドウの境界に達したときにフォーカスを失わないように、コンテンツにポインタをロックすることを可能にします。</dd>
+          <dt>
+            <a href="../../Online_and_offline_events.html" title="Online_and_offline_events">オンライン及びオフラインのイベント</a></dt>
+          <dd>
+            オフラインで有能な良い Web アプリケーションを構築するため、アプリケーションが実際にオフラインであるときのことを知る必要があります。ついでに、アプリケーションが再度オンライン状態を返したときのことも知る必要があります。</dd>
+        </dl>
+        <h2 id="Device_access" style="margin: 0 0 .25em; font: 200 24px/1 'Bebas Neue','League Gothic',Haettenschweiler,'Arial Narrow',sans-serif; letter-spacing: 1px; text-transform: uppercase; border: none;"><img alt="" src="https://developer.mozilla.org/files/3837/HTML5_Device_Access_512.png" style="vertical-align: middle; width: 64px; height: 64px; padding-right: 0.5em;">Device access</h2>
+        <dl>
+          <dt>
+            <a href="../../DOM/Using_the_Camera_API.html" title="DOM/Using_the_Camera_API">Camera API の利用</a></dt>
+          <dd>
+            コンピュータのカメラからの画像の使用、操作、保存が可能になります。</dd>
+          <dt>
+            <a href="../Guide/DOM/Events/Touch_events.html" title="DOM/Touch_events">Touch events</a></dt>
+          <dd>
+            閲覧者のタッチスクリーン押下によって発生するイベントに対応するハンドラ。</dd>
+          <dt>
+            <a href="../../WebAPI/Using_geolocation.html" title="Using geolocation">Geolocation の利用</a></dt>
+          <dd>
+            ブラウザが閲覧者の現在位置を取得し、これを利用する事が出来ます。</dd>
+          <dt>
+            <a href="../../Detecting_device_orientation.html" title="Detecting_device_orientation">デバイスの方向の検出</a></dt>
+          <dd>
+            ブラウザを起動しているデバイスが方向を変えたときに、その情報を得られるようにします。例えば、デバイスの姿勢に反応するゲームを作るための入力デバイス、あるいは縦長または横長というスクリーンの方向に、ページのレイアウトを適応するために利用できます。</dd>
+          <dt>
+            <a href="../../API/Pointer_Lock_API.html" title="API/Pointer_Lock_API">Pointer Lock API</a></dt>
+          <dd>
+            ゲームや類似したアプリケーションが、ポインタがウィンドウの境界に達したときにフォーカスを失わないように、コンテンツにポインタをロックすることを可能にします。</dd>
+        </dl>
+        <h2 id="Styling" style="margin: 0 0 .25em; font: 200 24px/1 'Bebas Neue','League Gothic',Haettenschweiler,'Arial Narrow',sans-serif; letter-spacing: 1px; text-transform: uppercase; border: none;"><img alt="" src="https://developer.mozilla.org/files/3829/HTML5_Styling_512.png" style="vertical-align: middle; width: 64px; height: 64px; padding-right: 0.5em;">Styling</h2>
+        <p><a href="../CSS.html" title="CSS">CSS</a> は、さらに複雑な方法で要素を形成することができるように拡張されてきました。 CSS はもう一枚岩の仕様ではなく、異なるモジュールがすべてレベル 3 ではありませんが、これはしばしば <a class="new" href="https://developer.mozilla.org/ja/docs/CSS/CSS3" title="CSS/CSS3">CSS3</a> として参照されます。いくつかのモジュールはレベル 1 、あるモジュールはレベル 4 で、その中間のすべてのレベルをカバーしています。</p>
+        <dl>
+          <dt>
+            背景のスタイリングの為の新機能</dt>
+          <dd>
+            <a href="../CSS/box-shadow.html" title=""><code>box-shadow</code></a> を使ってボックスに影を付けることや、<a href="../Guide/CSS/Using_multiple_backgrounds.html" title="/ja/docs/CSS/Multiple_backgrounds">複数の背景</a>を設定することが可能です。</dd>
+          <dt>
+            面白い border 関連 CSS プロパティ</dt>
+          <dd>
+            <a href="../CSS/border-image.html" title=""><code>border-image</code></a> 及びそれに関連付いた非省略形のプロパティを使って枠線の形成に画像を使うことができるだけでなく、 <a href="../CSS/border-radius.html" title=""><code>border-radius</code></a> プロパティを通じて角丸の枠線がサポートされます。</dd>
+          <dt>
+            スタイルのアニメーション</dt>
+          <dd>
+            異なる状態にアニメーションするための <a href="../Guide/CSS/Using_CSS_transitions.html" title="CSS/Using_CSS_transitions">CSS Transitions</a> の使用、またはイベントの引き金無くページのパーツをアニメーションするための <a href="../Guide/CSS/Using_CSS_animations.html" title="CSS/Using_CSS_animations">CSS Animations</a> の使用により、ページの可動要素を操作することができます。</dd>
+          <dt>
+            タイポグラフィの改善</dt>
+          <dd>
+            著者には、より良いタイポグラフィに到達するための、より良いコントロールがあります。 <a href="../CSS/text-overflow.html" title=""><code>text-overflow</code></a> や<a href="../CSS/hyphens.html" title="/ja/docs/CSS/hyphens">ハイフネーション</a>はもちろん、<a href="../CSS/text-shadow.html" title="/ja/docs/CSS/text-shadow">影</a>もコントロールでき、またはその<a class="new" href="https://developer.mozilla.org/ja/docs/CSS/text-decoration" title="/ja/docs/CSS/text-decoration">装飾</a>はより明確にコントロールすることができます。新しい <a href="../CSS/@font-face.html" title=""><code>@font-face</code></a> @規則のおかげで、特別な書体をダウンロードし、適用することができます。</dd>
+          <dt>
+            新しい表象的なレイアウト</dt>
+          <dd>
+            デザインの柔軟性の向上のため、 2 つの新しいレイアウトが加えられました。 <a href="../Guide/CSS/Using_multi-column_layouts.html" title="CSS/Using_CSS_multi-column_layouts">CSS マルチカラムレイアウト</a>と、 <a class="new" href="https://developer.mozilla.org/ja/docs/CSS/Flexbox" title="CSS/Flexbox">CSS フレキシブルボックスレイアウト</a>です。</dd>
+        </dl>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p> </p>
+                                                </article>
+
+              
+                <!-- attachments list -->
+                                  <section id="page-attachments" class="wiki-block">
+
+  <h3><i aria-hidden="true" class="icon-paperclip"></i>添付ファイル <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/Contributing/Editor_guide/Editing#The_attachments_box"><i aria-hidden="true" title="Learn how to use Attachments" class="icon-question-sign editor-help-icon"></i></a></h3>
+
+  
+  <p id="page-attachments-no-message" class="hidden">
+    This document has no attachments. Images can be attached, and then embedded in the article.
+      </p>
+
+  <script>
+    mdn.wiki.attachments = [{"description": "", "creator": "Jay", "mime": "image/png", "date": "2011-12-20 00:36:08", "id": 3563, "size": 2223, "title": "HTML5_Logo_128.png", "url": "https://mdn.mozillademos.org/files/3563/HTML5_Logo_128.png", "html": "<tr data-revision-id=\"3872\" data-attachment-id=\"3563\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3563/HTML5_Logo_128.png\" target=\"_blank\">HTML5_Logo_128.png</a>\n      <div class=\"attachment-description\"></div>\n  </td>\n  <td>2223 \u30d0\u30a4\u30c8</td>\n  <td>2011-12-20 00:36:08</td>\n  <td><a href=\"/ja/profiles/Jay\">Jay</a></td>\n</tr>", "creator_url": "/ja/profiles/Jay", "revision": 3872}, {"description": " ", "creator": "teoli", "mime": "image/png", "date": "2012-08-20 05:08:25", "id": 3827, "size": 4932, "title": "HTML5 Semantics", "url": "https://mdn.mozillademos.org/files/3827/HTML5_Semantics_512.png", "html": "<tr data-revision-id=\"4155\" data-attachment-id=\"3827\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3827/HTML5_Semantics_512.png\" target=\"_blank\">HTML5 Semantics</a>\n      <div class=\"attachment-description\"> </div>\n  </td>\n  <td>4932 \u30d0\u30a4\u30c8</td>\n  <td>2012-08-20 05:08:25</td>\n  <td><a href=\"/ja/profiles/teoli\">teoli</a></td>\n</tr>", "creator_url": "/ja/profiles/teoli", "revision": 4155}, {"description": " ", "creator": "teoli", "mime": "image/png", "date": "2012-08-20 05:08:50", "id": 3829, "size": 3991, "title": "HTML5 Styling", "url": "https://mdn.mozillademos.org/files/3829/HTML5_Styling_512.png", "html": "<tr data-revision-id=\"4157\" data-attachment-id=\"3829\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3829/HTML5_Styling_512.png\" target=\"_blank\">HTML5 Styling</a>\n      <div class=\"attachment-description\"> </div>\n  </td>\n  <td>3991 \u30d0\u30a4\u30c8</td>\n  <td>2012-08-20 05:08:50</td>\n  <td><a href=\"/ja/profiles/teoli\">teoli</a></td>\n</tr>", "creator_url": "/ja/profiles/teoli", "revision": 4157}, {"description": " ", "creator": "teoli", "mime": "image/png", "date": "2012-08-20 05:09:06", "id": 3831, "size": 11330, "title": "HTML5 Performance", "url": "https://mdn.mozillademos.org/files/3831/HTML5_Performance_512.png", "html": "<tr data-revision-id=\"4159\" data-attachment-id=\"3831\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3831/HTML5_Performance_512.png\" target=\"_blank\">HTML5 Performance</a>\n      <div class=\"attachment-description\"> </div>\n  </td>\n  <td>11330 \u30d0\u30a4\u30c8</td>\n  <td>2012-08-20 05:09:06</td>\n  <td><a href=\"/ja/profiles/teoli\">teoli</a></td>\n</tr>", "creator_url": "/ja/profiles/teoli", "revision": 4159}, {"description": " ", "creator": "teoli", "mime": "image/png", "date": "2012-08-20 05:09:32", "id": 3833, "size": 9223, "title": "HTML5 Offline storage", "url": "https://mdn.mozillademos.org/files/3833/HTML5_Offline_Storage_512.png", "html": "<tr data-revision-id=\"4161\" data-attachment-id=\"3833\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3833/HTML5_Offline_Storage_512.png\" target=\"_blank\">HTML5 Offline storage</a>\n      <div class=\"attachment-description\"> </div>\n  </td>\n  <td>9223 \u30d0\u30a4\u30c8</td>\n  <td>2012-08-20 05:09:32</td>\n  <td><a href=\"/ja/profiles/teoli\">teoli</a></td>\n</tr>", "creator_url": "/ja/profiles/teoli", "revision": 4161}, {"description": " ", "creator": "teoli", "mime": "image/png", "date": "2012-08-20 05:09:54", "id": 3835, "size": 2159, "title": "HTML5 Multimedia", "url": "https://mdn.mozillademos.org/files/3835/HTML5_Multimedia_512.png", "html": "<tr data-revision-id=\"4163\" data-attachment-id=\"3835\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3835/HTML5_Multimedia_512.png\" target=\"_blank\">HTML5 Multimedia</a>\n      <div class=\"attachment-description\"> </div>\n  </td>\n  <td>2159 \u30d0\u30a4\u30c8</td>\n  <td>2012-08-20 05:09:54</td>\n  <td><a href=\"/ja/profiles/teoli\">teoli</a></td>\n</tr>", "creator_url": "/ja/profiles/teoli", "revision": 4163}, {"description": " ", "creator": "teoli", "mime": "image/png", "date": "2012-08-20 05:10:17", "id": 3837, "size": 3103, "title": "HTML5 Device Access", "url": "https://mdn.mozillademos.org/files/3837/HTML5_Device_Access_512.png", "html": "<tr data-revision-id=\"4165\" data-attachment-id=\"3837\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3837/HTML5_Device_Access_512.png\" target=\"_blank\">HTML5 Device Access</a>\n      <div class=\"attachment-description\"> </div>\n  </td>\n  <td>3103 \u30d0\u30a4\u30c8</td>\n  <td>2012-08-20 05:10:17</td>\n  <td><a href=\"/ja/profiles/teoli\">teoli</a></td>\n</tr>", "creator_url": "/ja/profiles/teoli", "revision": 4165}, {"description": " ", "creator": "teoli", "mime": "image/png", "date": "2012-08-20 05:10:41", "id": 3839, "size": 3920, "title": "HTML5 Connectivity", "url": "https://mdn.mozillademos.org/files/3839/HTML5_Connectivity_512.png", "html": "<tr data-revision-id=\"4167\" data-attachment-id=\"3839\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3839/HTML5_Connectivity_512.png\" target=\"_blank\">HTML5 Connectivity</a>\n      <div class=\"attachment-description\"> </div>\n  </td>\n  <td>3920 \u30d0\u30a4\u30c8</td>\n  <td>2012-08-20 05:10:41</td>\n  <td><a href=\"/ja/profiles/teoli\">teoli</a></td>\n</tr>", "creator_url": "/ja/profiles/teoli", "revision": 4167}, {"description": " ", "creator": "teoli", "mime": "image/png", "date": "2012-08-20 05:11:16", "id": 3841, "size": 4474, "title": "HTML5 3D Effects", "url": "https://mdn.mozillademos.org/files/3841/HTML5_3D_Effects_512.png", "html": "<tr data-revision-id=\"4169\" data-attachment-id=\"3841\">\n  <td class=\"attachment-name-cell\">\n    <a href=\"https://mdn.mozillademos.org/files/3841/HTML5_3D_Effects_512.png\" target=\"_blank\">HTML5 3D Effects</a>\n      <div class=\"attachment-description\"> </div>\n  </td>\n  <td>4474 \u30d0\u30a4\u30c8</td>\n  <td>2012-08-20 05:11:16</td>\n  <td><a href=\"/ja/profiles/teoli\">teoli</a></td>\n</tr>", "creator_url": "/ja/profiles/teoli", "revision": 4169}];
+  </script>
+
+
+    <table cellpadding="0" cellspacing="0" id="page-attachments-table" class="">
+      <thead>
+        <th>ファイル</th>
+        <th>サイズ</th>
+        <th>日時</th>
+        <th>添付者:</th>
+      </thead>
+      <tbody>
+                  <tr data-revision-id="3872" data-attachment-id="3563">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3563/HTML5_Logo_128.png" target="_blank">HTML5_Logo_128.png</a>
+      <div class="attachment-description"></div>
+  </td>
+  <td>2223 バイト</td>
+  <td>2011-12-20 00:36:08</td>
+  <td><a href="../../../profiles/Jay.html">Jay</a></td>
+</tr>
+                  <tr data-revision-id="4155" data-attachment-id="3827">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3827/HTML5_Semantics_512.png" target="_blank">HTML5 Semantics</a>
+      <div class="attachment-description"> </div>
+  </td>
+  <td>4932 バイト</td>
+  <td>2012-08-20 05:08:25</td>
+  <td><a href="../../../profiles/teoli.html">teoli</a></td>
+</tr>
+                  <tr data-revision-id="4157" data-attachment-id="3829">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3829/HTML5_Styling_512.png" target="_blank">HTML5 Styling</a>
+      <div class="attachment-description"> </div>
+  </td>
+  <td>3991 バイト</td>
+  <td>2012-08-20 05:08:50</td>
+  <td><a href="../../../profiles/teoli.html">teoli</a></td>
+</tr>
+                  <tr data-revision-id="4159" data-attachment-id="3831">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3831/HTML5_Performance_512.png" target="_blank">HTML5 Performance</a>
+      <div class="attachment-description"> </div>
+  </td>
+  <td>11330 バイト</td>
+  <td>2012-08-20 05:09:06</td>
+  <td><a href="../../../profiles/teoli.html">teoli</a></td>
+</tr>
+                  <tr data-revision-id="4161" data-attachment-id="3833">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3833/HTML5_Offline_Storage_512.png" target="_blank">HTML5 Offline storage</a>
+      <div class="attachment-description"> </div>
+  </td>
+  <td>9223 バイト</td>
+  <td>2012-08-20 05:09:32</td>
+  <td><a href="../../../profiles/teoli.html">teoli</a></td>
+</tr>
+                  <tr data-revision-id="4163" data-attachment-id="3835">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3835/HTML5_Multimedia_512.png" target="_blank">HTML5 Multimedia</a>
+      <div class="attachment-description"> </div>
+  </td>
+  <td>2159 バイト</td>
+  <td>2012-08-20 05:09:54</td>
+  <td><a href="../../../profiles/teoli.html">teoli</a></td>
+</tr>
+                  <tr data-revision-id="4165" data-attachment-id="3837">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3837/HTML5_Device_Access_512.png" target="_blank">HTML5 Device Access</a>
+      <div class="attachment-description"> </div>
+  </td>
+  <td>3103 バイト</td>
+  <td>2012-08-20 05:10:17</td>
+  <td><a href="../../../profiles/teoli.html">teoli</a></td>
+</tr>
+                  <tr data-revision-id="4167" data-attachment-id="3839">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3839/HTML5_Connectivity_512.png" target="_blank">HTML5 Connectivity</a>
+      <div class="attachment-description"> </div>
+  </td>
+  <td>3920 バイト</td>
+  <td>2012-08-20 05:10:41</td>
+  <td><a href="../../../profiles/teoli.html">teoli</a></td>
+</tr>
+                  <tr data-revision-id="4169" data-attachment-id="3841">
+  <td class="attachment-name-cell">
+    <a href="https://mdn.mozillademos.org/files/3841/HTML5_3D_Effects_512.png" target="_blank">HTML5 3D Effects</a>
+      <div class="attachment-description"> </div>
+  </td>
+  <td>4474 バイト</td>
+  <td>2012-08-20 05:11:16</td>
+  <td><a href="../../../profiles/teoli.html">teoli</a></td>
+</tr>
+              </tbody>
+    </table>
+
+
+  </section>                
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../tag/References.html">References</a></li><li><a href="../../tag/HTML.html">HTML</a></li><li><a href="../../tag/HTML5.html">HTML5</a></li><li><a href="../../tag/Web Development.html">Web Development</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../profiles/saneyuki_s.html">saneyuki_s</a>, <a href="../../../profiles/Dwchiang.html">Dwchiang</a>, <a href="../../../profiles/ethertank.html">ethertank</a>, <a href="../../../profiles/Marsf.html">Marsf</a>, <a href="../../../profiles/vigia122.html">vigia122</a>, <a href="../../../profiles/sii.html">sii</a>, <a href="../../../profiles/shirayuki.html">shirayuki</a>, <a href="../../../profiles/Potappo.html">Potappo</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-05-09T14:05:36-07:00">2013/05/09 14:05:36</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/HTML/HTML5" selected>
+          日本語
+        </option>
+                  <option value="/pl/docs/HTML/HTML5">
+            Polski
+          </option>          <option value="/en-US/docs/Web/Guide/HTML/HTML5">
+            English (US)
+          </option>          <option value="/pt-PT/docs/Web/HTML/HTML5">
+            Português (Europeu)
+          </option>          <option value="/fr/docs/Web/Guide/HTML/HTML5">
+            Français
+          </option>          <option value="/zh-TW/docs/Web/HTML/HTML5">
+            正體中文 (繁體)
+          </option>          <option value="/es/docs/HTML/HTML5">
+            Español
+          </option>          <option value="/ko/docs/Web/HTML/HTML5">
+            한국어
+          </option>          <option value="/pt-BR/docs/Web/HTML/HTML5">
+            Português (do Brasil)
+          </option>          <option value="/fa/docs/HTML/HTML5">
+            فارسی
+          </option>          <option value="/ru/docs/HTML/HTML5">
+            Русский
+          </option>          <option value="/tr/docs/Web/HTML/HTML5">
+            Türkçe
+          </option>          <option value="/it/docs/Web/HTML/HTML5">
+            Italiano
+          </option>          <option value="/zh-CN/docs/Web/Guide/HTML/HTML5">
+            中文 (简体)
+          </option>          <option value="/bn-BD/docs/HTML/HTML5">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/de/docs/Web/HTML/HTML5">
+            Deutsch
+          </option>          <option value="/cs/docs/cs_HTML/HTML5">
+            Čeština
+          </option>          <option value="/id/docs/Web/Guide/HTML/HTML5">
+            Bahasa Indonesia
+          </option>          <option value="/ro/docs/Web/Guide/HTML/HTML5">
+            română
+          </option>          <option value="/ar/docs/Web/Guide/HTML/HTML5">
+            عربي
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="../../../jsi18n/build-1324c0a.js"></script>
+  
+      <!--[if lte IE 8]><script src="/media/redesign/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1324c0a"></script>
+
+          <script>
+        mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1324c0a"></script>
+      
+    <script type="text/javascript">
+      jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":667}</script></body>
+</html>

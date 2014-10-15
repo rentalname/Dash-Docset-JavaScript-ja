@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Using web workers - Web developer guide | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../index.html">
+  <link rel="copyright" href="Using_web_workers.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/Guide/Performance/Using_web_workers$json">
+  <link rel="canonical" href="Using_web_workers.html" >
+
+            <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Utilisation_des_web_workers" title="Utilisation des web workers">
+          <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Performance/Using_web_workers" title="Using web workers">
+          <link rel="alternate" hreflang="nl" href="https://developer.mozilla.org/nl/docs/Gebruik_maken_van_DOM_workers" title="Gebruik DOM workers">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/DOM/Using_web_workers" title="Using web workers">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Performance/Using_web_workers" title="使用 Web Workers">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Web/Guide/Performance/Using_web_workers" title="使用 web workers">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Web/Guide/Performance/Usando_web_workers" title="Usando web workers">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/Web/Guide/Performance/Uzycie_web_workers" title="Użycie web workers">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Using web workers">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/Guide/Performance/Using_web_workers">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/Guide/Performance/Using_web_workers">
+  <meta name="twitter:title" content="Using web workers">
+    <meta property="og:description" content="Dedicated Web Workers は、Web コンテンツがスクリプトをバックグラウンドのスレッドで実行するための簡単な方法を提供します。Worker は生成されると、生成元が指定したイベントハンドラへメッセージを送ることにより、生み出しているタスクにメッセージを送信できます。">
+  <meta name="description" content="Dedicated Web Workers は、Web コンテンツがスクリプトをバックグラウンドのスレッドで実行するための簡単な方法を提供します。Worker は生成されると、生成元が指定したイベントハンドラへメッセージを送ることにより、生み出しているタスクにメッセージを送信できます。">
+  <meta name="twitter:description" content="Dedicated Web Workers は、Web コンテンツがスクリプトをバックグラウンドのスレッドで実行するための簡単な方法を提供します。Worker は生成されると、生成元が指定したイベントハンドラへメッセージを送ることにより、生み出しているタスクにメッセージを送信できます。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/Guide/Performance/Using_web_workers" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Using_web_workers.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Using_web_workers.html#language">言語の選択</a></li>
+          <li><a href="Using_web_workers.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/Guide/Performance/Using_web_workers" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/Guide/Performance/Using_web_workers" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Tools.html">ツール</a></li><li><a href="../../../../demos/index.html">MDN デモ</a></li><li><a href="../../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Utilisation_des_web_workers" title="Utilisation des web workers">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Performance/Using_web_workers" title="Using web workers">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/nl/docs/Gebruik_maken_van_DOM_workers" title="Gebruik DOM workers">Nederlands</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/DOM/Using_web_workers" title="Using web workers">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Performance/Using_web_workers" title="使用 Web Workers">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Web/Guide/Performance/Using_web_workers" title="使用 web workers">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Web/Guide/Performance/Usando_web_workers" title="Usando web workers">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/Web/Guide/Performance/Uzycie_web_workers" title="Użycie web workers">Polski</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/Guide/Performance/Using_web_workers$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/Guide/Performance/Using_web_workers$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Using_web_workers.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../DOM.html" rel="v:url" property="v:title">DOM</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Using web workers</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Using_web_workers.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Using web workers</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Using_web_workers.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Using_web_workers.html#About_thread_safety" rel="internal">スレッドセーフについて</a><code></code><li><a href="Using_web_workers.html#Spawning_a_worker" rel="internal">Worker の生成</a><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Using_web_workers.html#Passing_data" rel="internal">データの引き渡し</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><ol><li><a href="Using_web_workers.html#Example_.231.3A_Create_a_generic_.22asynchronous_eval().22" rel="internal">例 1: 汎用の "非同期 <code>eval()</code> を生成"</a><code></code><li><a href="Using_web_workers.html#Example_.232.3A_Advanced_passing_JSON_Data_and_creating_a_switching_system" rel="internal">例 2: 高度な JSON データの引き渡しと振り分けシステムの作成</a></ol></li><li><a href="Using_web_workers.html#Passing_data_by_transferring_ownership_(transferable_objects)" rel="internal">所有権の譲渡 (Transferable Objects) によるデータの引き渡し</a><code></code><code></code></ol></li><li><a href="Using_web_workers.html#Spawning_subworkers" rel="internal">Subworker の生成</a><li><a href="Using_web_workers.html#Embedded_workers" rel="internal">埋め込み worker</a><code></code><code></code><code></code><code></code><code></code><li><a href="Using_web_workers.html#Timeouts_and_intervals" rel="internal">Timeout と Interval</a><code></code><code></code><code></code><code></code><li><a href="Using_web_workers.html#Terminating_a_worker" rel="internal">Worker の終了</a><code></code><code></code><li><a href="Using_web_workers.html#Handling_errors" rel="internal">エラーのハンドリング</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Using_web_workers.html#Accessing_the_navigator_object" rel="internal">navigator オブジェクトへのアクセス</a><code></code><code></code><code></code><code></code><code></code><li><a href="Using_web_workers.html#Importing_scripts_and_libraries" rel="internal">スクリプトやライブラリのインポート</a><code></code><code></code><code><code></code></code><code></code><code></code><code></code><li><a href="Using_web_workers.html#Examples" rel="internal">例</a><ol><li><a href="Using_web_workers.html#Performing_computations_in_the_background" rel="internal">バックグラウンドでの演算</a><ol><li><a href="Using_web_workers.html#The_JavaScript_code" rel="internal">JavaScript コード</a><code></code><code></code><code></code><code></code><li><a href="Using_web_workers.html#The_HTML_code" rel="internal">HTML コード</a><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="Using_web_workers.html#Performing_web_I.2FO_in_the_background" rel="internal">バックグラウンドでの Web 入出力</a><li><a href="Using_web_workers.html#Dividing_tasks_among_multiple_workers" rel="internal">複数 Worker へのタスク分割</a><li><a href="Using_web_workers.html#Creating_workers_from_within_workers" rel="internal">Worker 内部での Worker 生成</a></ol></li><li><a href="Using_web_workers.html#Browser_compatibility" rel="internal">ブラウザ実装状況</a><code></code><code></code><code></code><li><a href="Using_web_workers.html#See_also" rel="internal">関連情報</a><code></code><code></code><code></code>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p><span class="seoSummary">Dedicated Web Workers は、Web コンテンツがスクリプトをバックグラウンドのスレッドで実行するための簡単な方法を提供します。Worker は生成されると、生成元が指定したイベントハンドラへメッセージを送ることにより、生み出しているタスクにメッセージを送信できます。</span> しかし、それらは<strong>カレントの window とは異なる<a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript/DedicatedWorkerGlobalScope" title="JavaScript/DedicatedWorkerGlobalScope">グローバルコンテキスト</a>で動作します</strong> (<a class="new" href="../../API/Worker.html" title="The documentation about this has not yet been written; please consider contributing!"><code>Worker</code></a> でカレントのグローバルスコープを得るために、<a href="https://developer.mozilla.org/ja/docs/Web/API/window.self" title="window オブジェクトへの参照を返します。"><code>self</code></a> の代わりに <a href="../../API/window.html" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference."><code>window</code></a> ショートカットを使用すると、実際にエラーが返るでしょう)。</p>
+<p>Worker スレッドは、ユーザインターフェイスに干渉することなくタスクを実行できます。さらに、<code><a class="new" href="https://developer.mozilla.org/ja/docs/nsIXMLHttpRequest" title="XMLHttpRequest">XMLHttpRequest</a></code> を使用して入出力を実行できます (<code>responseXML</code> 属性や <code>channel</code> 属性は常に null 値ですが)。</p>
+<p>Worker に関するリファレンス文書については <a class="new" href="../../API/Worker.html" title="The documentation about this has not yet been written; please consider contributing!"><code>Worker</code></a> をご覧ください。本記事では、例示や追加情報の補足を行います。Worker で利用できる関数については <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Worker/Functions_available_to_workers" title="DOM/Worker/Functions available to workers">Functions available to workers</a> をご覧ください。</p>
+<h2 id="About_thread_safety" name="About_thread_safety">スレッドセーフについて</h2>
+<p><code>Worker</code> インターフェイスは実際の OS レベルのスレッドを生成するため、注意しなければ同時実行によって、コードにおいて興味深い効果を引き起こすことがあります。しかし Web Workers の場合は他のスレッドとの通信ポイントが注意深く制御されており、それは同時実行の問題を引き起こすことが非常に困難であることを意味します。スレッドセーフではないコンポーネントや DOM へのアクセスはできず、また具体的なデータはシリアライズしたオブジェクトによって入出力しなければなりません。よって、コードで問題を起こすのはとても困難です。</p>
+<h2 id="Spawning_a_worker" name="Spawning_a_worker">Worker の生成</h2>
+<p>新しい Worker の生成は簡単です。必要なことは Worker スレッドで実行するスクリプトの URI を指定する <code>Worker()</code> コンストラクタの呼び出しと、Worker から通知を受け取れるようにしたい場合は Worker の <code>onmessage</code> プロパティに適切なイベントハンドラ関数を設定することです。</p>
+<div style="overflow: hidden;">
+  <pre class="brush: js">var myWorker = new Worker("my_task.js");
+
+myWorker.onmessage = function (oEvent) {
+  console.log("Called back by the worker!\n");
+};</pre>
+</div>
+<p>あるいは、<code>addEventListener</code> も利用できます:</p>
+<div style="overflow: hidden;">
+  <pre class="brush: js">var myWorker = new Worker("my_task.js");
+
+myWorker.addEventListener("message", function (oEvent) {
+  console.log("Called back by the worker!\n");
+}, false);
+
+myWorker.postMessage(""); // start the worker.</pre>
+</div>
+<p>この例の 1 行目は、新しい Worker スレッドを生成しています。3 行目は、Worker で発生した <code>message</code> イベントを処理するリスナを設定しています。Worker が自身の <code>postMessage()</code> 関数を呼び出したときに、このイベントハンドラが呼び出されます。最後に、7 行目で Worker スレッドを開始します。</p>
+<div class="note">
+  <strong>注記</strong> : <code>Worker</code> コンストラクタの引数として渡す URI は、<a href="https://developer.mozilla.org/ja/docs/Same_origin_policy_for_JavaScript" title="Same origin policy for JavaScript">同一生成元ポリシー</a>に従わなければなりません。現状、どのような URI が同一生成元であるかについてブラウザベンダー間の意見は一致していません。Gecko 10.0 (Firefox 10.0 / Thunderbird 10.0 / SeaMonkey 2.7) 以降は、data URI を Worker 向けの正当なスクリプトとして許可します。また Internet Explore 10 は、Blob URI を Worker 向けの正当なスクリプトとして許可しません。</div>
+<h2 id="Passing_data" name="Passing_data">データの引き渡し</h2>
+<p>メインページと Worker との間で送られるメッセージは共有されるのではなく、<strong>コピーされます</strong>。オブジェクトは <code>worker</code> で処理されるときにシリアライズされ、その後戻されたときにシリアライズが解除されます。ページと Worker は<strong>同一のインスタンスを共有しません</strong>ので、結果として双方に<strong>複製</strong>が作られます。ほとんどのブラウザはこの機能を <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/The_structured_clone_algorithm" title="The structured clone algorithm">structured cloning</a> として実装しています。</p>
+<p>続ける前に、<code>worker</code> からメインページまたはその逆の移動において<em>共有されず複製される</em>値の動作をシミュレーションする、教育的な用途の関数 <code>emulateMessage()</code> を作成しましょう:</p>
+<pre class="brush: js">function emulateMessage (vVal) {
+    return eval("(" + JSON.stringify(vVal) + ")");
+}
+
+// Tests
+
+// test #1
+var example1 = new Number(3);
+alert(typeof example1); // object
+alert(typeof emulateMessage(example1)); // number
+
+// test #2
+var example2 = true;
+alert(typeof example2); // boolean
+alert(typeof emulateMessage(example2)); // boolean
+
+// test #3
+var example3 = new String("Hello World");
+alert(typeof example3); // object
+alert(typeof emulateMessage(example3)); // string
+
+// test #4
+var example4 = {
+    "name": "John Smith",
+    "age": 43
+};
+alert(typeof example4); // object
+alert(typeof emulateMessage(example4)); // object
+
+// test #5
+function Animal (sType, nAge) {
+    this.type = sType;
+    this.age = nAge;
+}
+var example5 = new Animal("Cat", 3);
+alert(example5.constructor); // Animal
+alert(emulateMessage(example5).constructor); // Object</pre>
+<p>共有されず複製される値を<em>message</em>と呼びます。<code>worker</code> の話に戻って、<em>message</em>は <code>postMessage()</code> を使用してメインスレッドから、またはメインスレッドへ送信できます。<code>message</code> イベントの <code>data</code> 属性に、worker から渡されたデータが含まれます。</p>
+<p><strong>example.html</strong>: (メインページ):</p>
+<pre class="brush: js">var myWorker = new Worker("my_task.js");
+
+myWorker.onmessage = function (oEvent) {
+  console.log("Worker said : " + oEvent.data);
+};
+
+myWorker.postMessage("ali");</pre>
+<p><strong>my_task.js</strong> (worker):</p>
+<pre class="brush: js">postMessage("I\'m working before postMessage(\'ali\').");
+
+onmessage = function (oEvent) {
+  postMessage("Hi " + oEvent.data);
+};</pre>
+<div class="note">
+  <strong>注記:</strong> 通常、バックグラウンドスレッド (Worker を含む) は <strong>DOM を操作できません</strong>。バックグラウンドスレッドが実行するアクションで DOM の変更が必要である場合は、それを作成元に行ってもらうためにメッセージを送らなければなりません。</div>
+<p><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/The_structured_clone_algorithm" title="structured clone algorithm">structured cloning</a> のアルゴリズムは JSON や、循環参照のように JSON ではできないいくつかのことを受け入れます。</p>
+<p><span style="font-family: Georgia, Times, 'Times New Roman', serif; font-size: 1.428em; line-height: 1.572;">データ引き渡しの例</span></p>
+<h4 id="Example_.231.3A_Create_a_generic_.22asynchronous_eval().22" name="Example_.231.3A_Create_a_generic_.22asynchronous_eval().22">例 1: 汎用の "非同期 <a href="../../JavaScript/Reference/Global_Objects/eval.html" title="JavaScript/Reference/Global_Objects/eval"><code>eval()</code></a> を生成"</h4>
+<p>以下の例では、worker 内の <a href="../../JavaScript/Reference/Global_Objects/eval.html" title="JavaScript/Reference/Global_Objects/eval"><code>eval()</code></a> によって何らかの JavaScript コードを<strong>非同期的に</strong>実行する方法を示します:</p>
+<pre class="brush: js">// 構文: asyncEval(code[, listener])
+
+var asyncEval = (function () {
+
+  var aListeners = [], oParser = new Worker("data:text/javascript;charset=US-ASCII,onmessage%20%3D%20function%20%28oEvent%29%20%7B%0A%09postMessage%28%7B%0A%09%09%22id%22%3A%20oEvent.data.id%2C%0A%09%09%22evaluated%22%3A%20eval%28oEvent.data.code%29%0A%09%7D%29%3B%0A%7D");
+
+  oParser.onmessage = function (oEvent) {
+    if (aListeners[oEvent.data.id]) { aListeners[oEvent.data.id](oEvent.data.evaluated); }
+    delete aListeners[oEvent.data.id];
+  };
+
+
+  return function (sCode, fListener) {
+    aListeners.push(fListener || null);
+    oParser.postMessage({
+      "id": aListeners.length - 1,
+      "code": sCode
+    });
+  };
+
+})();</pre>
+<p>使用例:</p>
+<pre class="brush: js">// 非同期のメッセージ alert...
+asyncEval("3 + 2", function (sMessage) {
+    alert("3 + 2 = " + sMessage);
+});
+
+// 非同期のメッセージ出力...
+asyncEval("\"Hello World!!!\"", function (sHTML) {
+    document.body.appendChild(document.createTextNode(sHTML));
+});
+
+// 非同期の void...
+asyncEval("(function () {\n\tvar oReq = new XMLHttpRequest();\n\toReq.open(\"get\", \"http://www.mozilla.org/\", false);\n\toReq.send(null);\n\treturn oReq.responseText;\n})()");</pre>
+<h4 id="Example_.232.3A_Advanced_passing_JSON_Data_and_creating_a_switching_system" name="Example_.232.3A_Advanced_passing_JSON_Data_and_creating_a_switching_system">例 2: 高度な JSON データの引き渡しと振り分けシステムの作成</h4>
+<p>複雑なデータを渡さなければならず、またメインページと Worker の双方で多くのさまざまな関数を呼び出さなければならない場合は、以下のようなシステムを作成できます。</p>
+<p><strong>example.html</strong> (メインページ):</p>
+<pre class="brush: html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"  /&gt;
+&lt;title&gt;MDN Example - Queryable worker&lt;/title&gt;
+&lt;script type="text/javascript"&gt;
+  /*
+    QueryableWorker インスタンスのメソッド:
+     * sendQuery(照会可能な関数名, 渡す引数 1, 渡す引数 2, 等々): Worker で照会可能な関数を呼び出す
+     * postMessage(文字列または JSON データ): Worker.prototype.postMessage() を参照
+     * terminate(): Worker を終了
+     * addListener(名称, 関数): リスナを追加
+     * removeListener(名称): リスナを削除
+    QueryableWorker インスタンスのプロパティ:
+     * defaultListener: Worker が postMessage() 関数を直接呼び出したときに限り実行される、デフォルトのリスナ
+  */
+  function QueryableWorker (sURL, fDefListener, fOnError) {
+    var oInstance = this, oWorker = new Worker(sURL), oListeners = {};
+    this.defaultListener = fDefListener || function () {};
+    oWorker.onmessage = function (oEvent) {
+      if (oEvent.data instanceof Object &amp;&amp; oEvent.data.hasOwnProperty("vo42t30") &amp;&amp; oEvent.data.hasOwnProperty("rnb93qh")) {
+        oListeners[oEvent.data.vo42t30].apply(oInstance, oEvent.data.rnb93qh);
+      } else {
+        this.defaultListener.call(oInstance, oEvent.data);
+      }
+    };
+    if (fOnError) { oWorker.onerror = fOnError; }
+    this.sendQuery = function (/* 照会可能な関数名, 渡す引数 1, 渡す引数 2, 等々 */) {
+      if (arguments.length &lt; 1) { throw new TypeError("QueryableWorker.sendQuery - not enough arguments"); return; }
+      oWorker.postMessage({ "bk4e1h0": arguments[0], "ktp3fm1": Array.prototype.slice.call(arguments, 1) });
+    };
+    this.postMessage = function (vMsg) {
+      // call() メソッドをを使用する必要性はないと考えます
+      // oWorker.postMessage(vMsg); を使用するのはどうか?
+      // 正常に完了することは同じですが、
+      // プロトタイプチェーンの探索がないため少しだけ速くなります
+      Worker.prototype.postMessage.call(oWorker, vMsg);
+    };
+    this.terminate = function () {
+      Worker.prototype.terminate.call(oWorker);
+    };
+    this.addListener = function (sName, fListener) {
+      oListeners[sName] = fListener;
+    };
+    this.removeListener = function (sName) {
+      delete oListeners[sName];
+    };
+  };
+
+  // 自製の "照会可能な" worker
+  var oMyTask = new QueryableWorker("my_task.js" /* , 既定のメッセージリスナ [省略可], エラーリスナ [省略可] */);
+
+  // 自製の "リスナ"
+
+  oMyTask.addListener("printSomething", function (nResult) {
+    document.getElementById("firstLink").parentNode.appendChild(document.createTextNode(" The difference is " + nResult + "!"));
+  });
+
+  oMyTask.addListener("alertSomething", function (nDeltaT, sUnit) {
+    alert("Worker waited for " + nDeltaT + " " + sUnit + " :-)");
+ });
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a id="firstLink" href="javascript:oMyTask.sendQuery('getDifference', 5, 3);"&gt;What is the difference between 5 and 3?&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="javascript:oMyTask.sendQuery('waitSomething');"&gt;Wait 3 seconds&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="javascript:oMyTask.terminate();"&gt;terminate() the Worker&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p><strong>my_task.js</strong> (worker):</p>
+<pre class="brush: js">// 独自の PRIVATE 関数
+
+function myPrivateFunc1 () {
+  // 何らかの処理
+}
+
+function myPrivateFunc2 () {
+  // 何らかの処理
+}
+
+// 等々...
+
+// 独自の PUBLIC 関数 (つまり、メインページから照会可能)
+
+var queryableFunctions = {
+  // 例 1: 2 つの値の差を得る:
+  getDifference: function (nMinuend, nSubtrahend) {
+      reply("printSomething", nMinuend - nSubtrahend);
+  },
+  // 例 2: 3 秒待つ
+  waitSomething: function () {
+      setTimeout(function() { reply("alertSomething", 3, "seconds"); }, 3000);
+  }
+};
+
+// システム関数
+
+function defaultQuery (vMsg) {
+  // メインページが queryableWorker.postMessage() メソッドを直接呼び出したときに限り実行される、デフォルトの PUBLIC 関数
+  // 何らかの処理
+}
+
+function reply (/* リスナ名, 渡す引数 1, 渡す引数 2, 等々 */) {
+  if (arguments.length &lt; 1) { throw new TypeError("reply - not enough arguments"); return; }
+  postMessage({ "vo42t30": arguments[0], "rnb93qh": Array.prototype.slice.call(arguments, 1) });
+}
+
+onmessage = function (oEvent) {
+  if (oEvent.data instanceof Object &amp;&amp; oEvent.data.hasOwnProperty("bk4e1h0") &amp;&amp; oEvent.data.hasOwnProperty("ktp3fm1")) {
+    queryableFunctions[oEvent.data.bk4e1h0].apply(self, oEvent.data.ktp3fm1);
+  } else {
+    defaultQuery(oEvent.data);
+  }
+};</pre>
+<p>メソッドが、メインページ - worker (および逆方向) の各メッセージの内容を切り替えることが可能です。</p>
+<h3 id="Passing_data_by_transferring_ownership_(transferable_objects)" name="Passing_data_by_transferring_ownership_(transferable_objects)">所有権の譲渡 (Transferable Objects) によるデータの引き渡し</h3>
+<p>Google Chrome 17 および Firefox 18 には、ある種のオブジェクト (<a class="external" href="http://dev.w3.org/html5/spec/common-dom-interfaces.html#transferable-objects">Transferable Objects</a>) を高いパフォーマンスで worker からまたは worker へ渡すための、付加的な手段があります。Transferable Objects は、あるコンテキストから別のコンテキストへコピー操作なしにデータを転送します。これにより、大きなデータを送る際のパフォーマンスが著しく向上します。C/C++ の経験者であれば、参照渡しと考えてください。しかし参照渡しとは異なり、転送されると元のコンテキストからその版が失われます。そしてその所有権は新しいコンテキストに譲渡されます。例えば、<code><a href="../../JavaScript/Typed_arrays/ArrayBuffer.html" title="ArrayBuffer">ArrayBuffer</a></code> をメインアプリケーションから Worker に転送すると、元の <code>ArrayBuffer</code> は消去されて使用できなくなります。その内容物は (文字どおり) Worker コンテキストに転送されます。</p>
+<pre class="brush: js">// 32MB の "file" を作成して埋めます。
+var uInt8View = new Uint8Array(1024*1024*32); // 32MB
+for (var i = 0; i &lt; uInt8View.length; ++i) {
+  uInt8View[i] = i;
+}
+
+worker.postMessage(uInt8Array.buffer, [uInt8Array.buffer]);
+</pre>
+<p>Transferable Objects について詳しくは、<a class="external" href="http://updates.html5rocks.com/2011/12/Transferable-Objects-Lightning-Fast" title="http://updates.html5rocks.com/2011/12/Transferable-Objects-Lightning-Fast">HTML5Rocks</a> をご覧ください。</p>
+<h2 id="Spawning_subworkers" name="Spawning_subworkers">Subworker の生成</h2>
+<p>必要であれば、Worker がさらに Worker を生成することができます。いわゆる Subworker は、親ページと同じ生成元で提供することが必要です。また Subworker 用の URI は、その所有ページではなく Worker の場所からの相対位置として決められます。これは、Worker の依存関係がどこにあるかを追跡し続けることを容易にします。</p>
+<p>現在 Chrome は Subworker をサポートしていません。<a class="external" href="http://code.google.com/p/chromium/issues/detail?id=31666" title="http://code.google.com/p/chromium/issues/detail?id=31666">crbug.com/31666</a> をご覧ください。</p>
+<h2 id="Embedded_workers" name="Embedded_workers">埋め込み worker</h2>
+<p>Worker のコードを <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/script" title="HTML &lt;script> 要素は HTML または XHTML 文書内に実行可能なスクリプトを埋め込み、または外部参照するコードを指定する際に用いられます。"><code>&lt;script&gt;</code></a> 要素として Web ページに埋め込む、"公式な" 方法はありません。しかし <code>src</code> 属性は持たずに実行可能な MIME タイプを指定しない <code>type</code> 属性を持つ <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/script" title="HTML &lt;script> 要素は HTML または XHTML 文書内に実行可能なスクリプトを埋め込み、または外部参照するコードを指定する際に用いられます。"><code>&lt;script&gt;</code></a> 要素は、データブロックと判断され、それは JavaScript が使用できます。"データブロック" はほとんどのテキストデータを抱えることが可能な、HTML5 でより一般的な機能です。よって、以下の方法で Worker を埋め込むことができます:</p>
+<pre class="brush: html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;title&gt;MDN Example - Embedded worker&lt;/title&gt;
+&lt;script type="text/js-worker"&gt;
+  // MIME タイプが text/js-worker であるため、このスクリプトは JS エンジンに解釈されません。
+  var myVar = "Hello World!";
+  // worker の残りのコードをここに置きます。
+&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  // MIME タイプが text/javascript であるため、このスクリプトは JS エンジンに解釈されます。
+  function pageLog (sMsg) {
+    // fragment を使用: ブラウザは 1 回だけレンダリング/リフローします。
+    var oFragm = document.createDocumentFragment();
+    oFragm.appendChild(document.createTextNode(sMsg));
+    oFragm.appendChild(document.createElement("br"));
+    document.querySelector("#logDisplay").appendChild(oFragm);
+  }
+&lt;/script&gt;
+&lt;script type="text/js-worker"&gt;
+  // MIME タイプが text/js-worker であるため、このスクリプトは JS エンジンに解釈されません。
+  onmessage = function (oEvent) {
+    postMessage(myVar);
+  };
+  // worker の残りのコードをここに置きます。
+&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  // MIME タイプが text/javascript であるため、このスクリプトは JS エンジンに解釈されます。
+
+  // 
+  // 以前は blob を構築していましたが、
+  // 現在は Blob を使用します:
+  var blob = new Blob(Array.prototype.map.call(document.querySelectorAll("script[type=\"text\/js-worker\"]"), function (oScript) { return oScript.textContent; }),{type: "text/javascript"});
+
+  // すべての "text/js-worker" スクリプトを含む、新たな document.worker プロパティを生成します。
+  document.worker = new Worker(window.URL.createObjectURL(blob));
+
+  document.worker.onmessage = function (oEvent) {
+    pageLog("Received: " + oEvent.data);
+  };
+
+  // worker を開始します。
+  window.onload = function() { document.worker.postMessage(""); };
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;div id="logDisplay"&gt;&lt;/div&gt;&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p>埋め込み Workerが、新たな自製の <code>document.worker</code> プロパティへ入れ子になります。</p>
+<h2 id="Timeouts_and_intervals" name="Timeouts_and_intervals">Timeout と Interval</h2>
+<p>orker ではメインスレッドと同様に Timeout や Interval を使用できます。これは、例えば Worker スレッドでコードを連続的ではなく間欠的に実行したい場合に有用です。</p>
+<p>詳しくは <a href="https://developer.mozilla.org/ja/docs/DOM/window.setTimeout" title="DOM/Window.setTimeout"> <code>setTimeout()</code></a>、<a href="https://developer.mozilla.org/ja/docs/DOM/window.clearTimeout" title="DOM/Window.clearTimeout"><code>clearTimeout()</code></a>、<a href="https://developer.mozilla.org/ja/docs/DOM/window.setInterval" title="DOM/Window.setInterval"><code>setInterval()</code></a> および <a href="https://developer.mozilla.org/ja/docs/DOM/window.clearInterval" title="DOM/Window.clearInterval"><code>clearInterval()</code></a> をご覧ください。参考: <a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript/Timers" title="JavaScript/Timers">JavaScript Timers</a>。</p>
+<h2 id="Terminating_a_worker" name="Terminating_a_worker">Worker の終了</h2>
+<p>実行中の Worker を直ちに終了したい場合は、Worker の <code>terminate()</code> メソッドを呼び出してください:</p>
+<pre class="syntaxbox">myWorker.terminate();</pre>
+<p>Worker スレッドは自身の操作を完了したり自身をクリーンアップしたりすることなく、直ちに終了します。</p>
+<p>Worker は自身の <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIWorkerScope#close()">nsIWorkerScope.close()</a></code> メソッドを呼び出すことで、自分自身を終了できます:</p>
+<pre class="syntaxbox">self.close();</pre>
+<h2 id="Handling_errors" name="Handling_errors">エラーのハンドリング</h2>
+<p>Worker で実行時エラーが発生すると、<code>onerror</code> イベントハンドラが呼び出されます。これは <code>ErrorEvent</code> インタフェースを実装している、<code>error</code> という名前のイベントを受け取ります。イベントは伝播せず、またキャンセルすることはできます。発生元でデフォルトのアクションを止めるために、Worker はエラーイベントの <a href="https://developer.mozilla.org/ja/docs/DOM/event.preventDefault" title="DOM/Event.preventDefault"><code>preventDefault()</code></a> メソッドを呼び出すことができます。</p>
+<p>エラーイベントは、以下の重要な 3 つの項目があります:</p>
+<dl>
+  <dt>
+    <code>message</code></dt>
+  <dd>
+    人間が読み取れるエラーメッセージです。</dd>
+  <dt>
+    <code>filename</code></dt>
+  <dd>
+    エラーが発生したスクリプトのファイル名です。</dd>
+  <dt>
+    <code>lineno</code></dt>
+  <dd>
+    スクリプトファイル内でエラーが発生した場所の行番号です。</dd>
+</dl>
+<h2 id="Accessing_the_navigator_object" name="Accessing_the_navigator_object">navigator オブジェクトへのアクセス</h2>
+<p>Worker は <code>navigator</code> オブジェクトにアクセスでき、それは自身のスコープから可能です。通常のスクリプトで行うのと同様に、オブジェクトはブラウザの特定に利用できる以下の文字列を含みます:</p>
+<ul>
+  <li><code>appName</code></li>
+  <li><code>appVersion</code></li>
+  <li><code>platform</code></li>
+  <li><code>userAgent</code></li>
+</ul>
+<h2 id="Importing_scripts_and_libraries" name="Importing_scripts_and_libraries">スクリプトやライブラリのインポート</h2>
+<p>Worker スレッドはグローバル関数へのアクセスや、<code>importScripts()</code> でスクリプトやライブラリを自身のスコープへインポートすることができます。これはインポートするリソースの URI を 0 個以上、引数として受け入れます。以下の例はすべて妥当です:</p>
+<pre class="brush: js">importScripts();                        /* 何もインポートしない */
+importScripts('foo.js');                /* "foo.js" をインポート */
+importScripts('foo.js', 'bar.js');      /* 2 つのスクリプトをインポート */
+</pre>
+<p>ブラウザはそれぞれのスクリプトを読み込み、実行します。Worker は各スクリプトのグローバルオブジェクトを使用できます。スクリプトを読み込むことができない場合は <code>NETWORK_ERROR</code> を発生させて、それ以降のコードを実行しません。それでも、すでに実行されたコード (<code><a href="../../API/window.setTimeout.html" title="指定された遅延の後に、コードの断片または関数を実行します。"><code>window.setTimeout()</code></a></code> で繰り延べされているコードを含みます) は動作します。<code>importScript()</code> メソッドより<strong>後方</strong>にある関数の宣言は、常にコードの残りの部分より先に評価されることから、同様に保持されます。</p>
+<div class="note">
+  <strong>注記:</strong> スクリプトは順不同にダウンロードされますが、実行は <code>importScripts()</code> に渡したファイル名の順に行われます。これは同時に行われます。すべてのスクリプトの読み込みと実行が行われるまで <code>importScripts()</code> から返りません。</div>
+<h2 id="Examples" name="Examples">例</h2>
+<p>ここでは、DOM Worker の利用法についていくつかの例を示します。</p>
+<h3 id="Performing_computations_in_the_background" name="Performing_computations_in_the_background">バックグラウンドでの演算</h3>
+<p>Worker が役立つ用途として、ユーザインタフェースのスレッドを妨げずに CPU の負荷が大きい演算を実行可能にすることがあります。この例では、Worker をフィボナッチ数の計算に用います。</p>
+<h4 id="The_JavaScript_code" name="The_JavaScript_code">JavaScript コード</h4>
+<p>以下の JavaScript コードはファイル "fibonacci.js" に保存され、次章の HTML が参照します。</p>
+<pre class="brush: js">var results = [];
+
+function resultReceiver(event) {
+  results.push(parseInt(event.data));
+  if (results.length == 2) {
+    postMessage(results[0] + results[1]);
+  }
+}
+
+function errorReceiver(event) {
+  throw event.data;
+}
+
+onmessage = function(event) {
+  var n = parseInt(event.data);
+
+  if (n == 0 || n == 1) {
+    postMessage(n);
+    return;
+  }
+
+  for (var i = 1; i &lt;= 2; i++) {
+    var worker = new Worker("fibonacci.js");
+    worker.onmessage = resultReceiver;
+    worker.onerror = errorReceiver;
+    worker.postMessage(n - i);
+  }
+ };</pre>
+<p>Worker は、Worker オブジェクトの <code>postMessage()</code> が呼び出されたときに送られたメッセージを受け取る関数に、<code>onmessage</code> プロパティを設定します。(これは、その名前でグローバル<em>変数</em>や<em>関数</em>を定義することとは違う点に注意してください。<code>var onmessage</code> や <code>function onmessage</code> はその名前でグローバルプロパティを定義しますが、それらは Worker を生成した Web ページが送信したメッセージを受け取る関数として登録されません。) これは再帰的に開始し、計算の各反復処理を行うために自身のコピーを生成します。</p>
+<h4 id="The_HTML_code" name="The_HTML_code">HTML コード</h4>
+<pre class="brush: html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"  /&gt;
+    &lt;title&gt;Test threads fibonacci&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+  &lt;div id="result"&gt;&lt;/div&gt;
+
+  &lt;script language="javascript"&gt;
+
+    var worker = new Worker("fibonacci.js");
+
+    worker.onmessage = function(event) {
+      document.getElementById("result").textContent = event.data;
+      dump("Got: " + event.data + "\n");
+    };
+
+    worker.onerror = function(error) {
+      dump("Worker error: " + error.message + "\n");
+      throw error;
+    };
+
+    worker.postMessage("5");
+
+  &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>Web ページは ID <code>result</code> を持つ <code>div</code> 要素を作成し、それを結果を表示するために用います。そして、Worker を生成します。Worker を生成した後は、<code>onmessage</code> ハンドラを <code>div</code> 要素の内容物を指定することで結果を表示するように、<code>onerror</code> ハンドラはエラーメッセージを<a class="new" href="https://developer.mozilla.org/ja/docs/Debugging_JavaScript#dump()" title="https://developer.mozilla.org/editor/fckeditor/core/editor/en/Debugging_JavaScript#dump()">ダンプ</a>するよう設定します。</p>
+<p>最後に、Worker を開始するためにメッセージを送信します。</p>
+<p><a href="https://developer.mozilla.org/samples/workers/fibonacci" title="https://developer.mozilla.org/samples/workers/fibonacci/">この例を試してみてください</a>。</p>
+<h3 id="Performing_web_I.2FO_in_the_background" name="Performing_web_I.2FO_in_the_background">バックグラウンドでの Web 入出力</h3>
+<p>この例は、<a class="new" href="https://developer.mozilla.org/ja/docs/Using_workers_in_extensions" title="Using workers in extensions">Using workers in extensions</a> の記事にあります。</p>
+<h3 id="Dividing_tasks_among_multiple_workers" name="Dividing_tasks_among_multiple_workers">複数 Worker へのタスク分割</h3>
+<p>マルチコアのコンピュータが次第に一般化することで複数の Worker に複雑な計算処理を分割することが有用になり、それらのタスクを複数の CPU コアで実行することが可能になります。</p>
+<p>例は近日紹介します。</p>
+<h3 id="Creating_workers_from_within_workers" name="Creating_workers_from_within_workers">Worker 内部での Worker 生成</h3>
+<p>前出のフィボナッチ数の例示では、実は Worker がさらに Worker を生成できています。これは、再帰ルーチンの生成を容易にします。</p>
+<h2 id="Browser_compatibility" name="Browser_compatibility">ブラウザ実装状況</h2>
+<div>
+  <div class="htab"> 
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a> 
+    <ul> 
+        <li class="selected"><a>デスクトップ</a></li> 
+        <li><a>モバイル</a></li> 
+    </ul> 
+</div></div>
+<div id="compat-desktop">
+  <table class="compat-table">
+    <tbody>
+      <tr>
+        <th>機能</th>
+        <th>Chrome</th>
+        <th>Firefox (Gecko)</th>
+        <th>Internet Explorer</th>
+        <th>Opera</th>
+        <th>Safari (WebKit)</th>
+      </tr>
+      <tr>
+        <td>Dedicated workers</td>
+        <td>3</td>
+        <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/3.5" title="Released on 2009-06-30.">3.5</a> (1.9.1)</td>
+        <td>10</td>
+        <td>10.60</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>Shared workers</td>
+        <td>3</td>
+        <td><span style="color: #f00;">未サポート</span></td>
+        <td><span style="color: #f00;">未サポート</span></td>
+        <td>10.60</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/The_structured_clone_algorithm" title="The structured clone algorithm">structured cloning</a> によるデータ渡し</td>
+        <td>13</td>
+        <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/8" title="Released on undefined.">8</a> (8)</td>
+        <td>10</td>
+        <td>11.50</td>
+        <td>5.1</td>
+      </tr>
+      <tr>
+        <td><a class="external" href="http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#transferable-objects" title="http://dev.w3.org/html5/spec/common-dom-interfaces.html#transferable-objects">transferable objects</a> によるデータ渡し</td>
+        <td>17 <span class="inlineIndicator prefixBox prefixBoxInline" title="prefix">webkit</span><br>
+          21</td>
+        <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/18" title="Released on undefined.">18</a> (18)</td>
+        <td><span style="color: #f00;">未サポート</span></td>
+        <td>15</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>グローバル <a href="https://developer.mozilla.org/ja/docs/Web/API/window.URL" title="オブジェクト URL の作成や削除に用いるメソッドを提供します。"><code>URL</code></a></td>
+        <td>10 (<code>webkitURL</code> として)<br>
+          23</td>
+        <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/21" title="Released on undefined.">21</a> (21)</td>
+        <td>11</td>
+        <td>15</td>
+        <td>6 (<code>webkitURL</code> として)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="compat-mobile">
+  <table class="compat-table">
+    <tbody>
+      <tr>
+        <th>機能</th>
+        <th>Android</th>
+        <th>Chrome for Android</th>
+        <th>Firefox Mobile (Gecko)</th>
+        <th>IE Phone</th>
+        <th>Opera Mobile</th>
+        <th>Safari Mobile</th>
+      </tr>
+      <tr>
+        <td>Dedicated workers</td>
+        <td>---</td>
+        <td>0.16</td>
+        <td>3.5 (1.9.1)</td>
+        <td>---</td>
+        <td>11</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>Shared workers</td>
+        <td>---</td>
+        <td><span style="color: #f00;">未サポート</span></td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+      </tr>
+      <tr>
+        <td><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/The_structured_clone_algorithm" title="The structured clone algorithm">structured cloning</a> によるデータ渡し</td>
+        <td>---</td>
+        <td>0.16</td>
+        <td>8</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+      </tr>
+      <tr>
+        <td><a class="external" href="http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#transferable-objectshtml%23transferable-objects" title="http://dev.w3.org/html5/spec/common-dom-interfaces.html#transferable-objects">transferable objects</a> によるデータ渡し</td>
+        <td>---</td>
+        <td> </td>
+        <td>18</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h2 id="See_also" name="See_also">関連情報</h2>
+<ul>
+  <li><a class="external" href="http://dev.w3.org/html5/workers/">File API Specification: Web Workers</a><span style="color: #fff; background: #e61919; display: inline-block; font-size: x-small; margin-left: 6px; white-space: nowrap; padding: 2px 5px;" title="草案（非公式）">ED</span></li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Worker" title="DOM/Worker">Worker</a></code> インターフェイス</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/SharedWorker" title="DOM/SharedWorker">SharedWorker</a></code> インターフェイス</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Worker/Functions_available_to_workers" title="DOM/Worker/Functions available to workers">Functions available to workers</a></li>
+  <li><a class="external" href="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-enviornment-subworkers" title="http://www.html5rocks.com/en/tutorials/workers/basics/#toc-enviornment-subworkers">HTML5Rocks - The Basics of Web Workers</a></li>
+  <li><code><a class="external" href="http://code.google.com/p/chromium/issues/detail?id=127990" title="Chrome has Problems with many workers">Chrome has problems when using too many workers</a></code></li>
+</ul>
+<div>
+  <div class="horizFlexboxContainer"> 
+  <div class="smallTextMultiColumnBoxHeading">HTML5 関連文書</div> 
+  <div class="smallTextMultiColumnBoxList"> 
+<table class="html5ArticleToc"> 
+	<tbody> 
+		<tr> 
+			<td style="width: 150px; border-left: none; border-right: none; border-top: none; border-bottom: dotted 2px rgba(224,244,244,200);"><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#HTML" title="HTML5 Documentation">HTML</a></td> 
+			<td style="border-left: none; border-right: none; border-top: none; border-bottom: dotted 2px rgba(224,244,244,200);"> 
+				<ul> 
+					<li><a href="../../HTML/Using_HTML5_audio_and_video.html" title="Firefox でマルチメディアコンテンツを扱う">Audio/Video</a></li> 
+					<li><a href="../../HTML/Canvas.html" title="Canvas">Canvas</a></li> 
+					<li><a href="../../WebGL.html" title="WebGL">WebGL</a></li> 
+					<li><a href="../../SVG.html" title="SVG">SVG</a></li> 
+					<li><a href="../../MathML.html" title="MathML">MathML</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#WebForms" title="HTML5 Thematic Classification #WebForms">WebForms</a></li> 
+					<li><a href="../../HTML/Using_the_application_cache.html" title="Using Application Cache">AppCache</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/Using_microformats" title="Using microformats">Microformats</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Semantic_tags" title="HTML5 Thematic Classification - セマンティックなタグ">SemanticTags</a></li> 
+				</ul> 
+			</td> 
+		</tr> 
+		<tr> 
+			<td style="width: 150px; border-left: none; border-right: none; border-top: none; border-bottom: dotted 2px rgba(224,244,244,200);"><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#JavaScript" title="HTML5 Thematic Classification #JavaScript">JavaScript</a></td> 
+			<td style="border-left: none; border-right: none; border-top: none; border-bottom: dotted 2px rgba(224,244,244,200);"> 
+				<ul> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Client-Side_Storage" title="HTML5 Thematic Classification #Client-Side Storage">Storage</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#IndexedDB" title="HTML5 Thematic Classification #IndexedDB">IndexedDB</a></li> 
+					<li><a href="../../../WebSockets.html" title="WebSockets">WebSockets</a></li> 
+					<li><a href="Using_web_workers.html" title="Using web workers">WebWorkers</a></li> 
+					<li><a href="../../../Online_and_offline_events.html" title="Online and offline events">Events</a></li> 
+					<li><a href="../../../DragDrop/Drag_and_Drop.html" title="ドラッグ＆ドロップ">Drag/Drop</a></li> 
+					<li><a href="../../../Web-based_protocol_handlers.html" title="Web-based protocol handlers">ProtocolHandler</a></li> 
+					<li><a href="../../../WebAPI/Using_geolocation.html" title="Geolocation の利用">Geolocation</a></li> 
+					<li><a href="../../HTML/Focus_management_in_HTML.html" title="Focus management in HTML">Focus</a></li> 
+				</ul> 
+			</td> 
+		</tr> 
+		<tr> 
+			<td style="border: none;"><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#CSS" title="HTML5 Thematic Classification #CSS">CSS</a></td> 
+			<td style="border: none;"> 
+				<ul> 
+					<li><a href="../../../Mozilla_CSS_support_chart.html" title="Mozilla CSS サポートチャート">NewSelectors</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Typography" title="HTML5 Thematic Classification - タイポグラフィ">Typography</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Visual" title="HTML5 Thematic Classification - ビジュアル">Visual</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Effects" title="HTML5 Thematic Classification - 動的なエフェクト">Effects</a></li> 
+				</ul> 
+			</td> 
+		</tr> 
+	</tbody> 
+</table> 
+</div> 
+</div></div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Workers">Workers</a></li><li><a href="../../../tag/Firefox.html">Firefox</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Gecko%201.9.1">Gecko 1.9.1</a></li><li><a href="../../../tag/HTML5.html">HTML5</a></li><li><a href="../../../tag/JavaScript.html">JavaScript</a></li><li><a href="../../../tag/NeedsTechnicalReview.html">NeedsTechnicalReview</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../profiles/ethertank.html">ethertank</a>, <a href="../../../../profiles/yyss.html">yyss</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../profiles/yyss.html">yyss</a>,
+                      <time datetime="2013-09-07T00:38:02-07:00">2013/09/07 0:38:02</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/Guide/Performance/Using_web_workers" selected>
+          日本語
+        </option>
+                  <option value="/fr/docs/Utilisation_des_web_workers">
+            Français
+          </option>          <option value="/en-US/docs/Web/Guide/Performance/Using_web_workers">
+            English (US)
+          </option>          <option value="/nl/docs/Gebruik_maken_van_DOM_workers">
+            Nederlands
+          </option>          <option value="/ru/docs/DOM/Using_web_workers">
+            Русский
+          </option>          <option value="/zh-CN/docs/Web/Guide/Performance/Using_web_workers">
+            中文 (简体)
+          </option>          <option value="/zh-TW/docs/Web/Guide/Performance/Using_web_workers">
+            正體中文 (繁體)
+          </option>          <option value="/es/docs/Web/Guide/Performance/Usando_web_workers">
+            Español
+          </option>          <option value="/pl/docs/Web/Guide/Performance/Uzycie_web_workers">
+            Polski
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":574}</script></body>
+</html>

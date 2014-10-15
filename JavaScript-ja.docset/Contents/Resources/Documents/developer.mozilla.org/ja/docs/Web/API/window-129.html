@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/API/window.onmouseout by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:02:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Window.onmouseout - Web API インターフェイス | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="Window-279.html">
+  <link rel="canonical" href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseout" >
+
+  
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Window.onmouseout">
+  <meta property="og:url" content="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseout">
+  <meta name="twitter:url" content="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseout">
+  <meta name="twitter:title" content="Window.onmouseout">
+    <meta property="og:description" content="An event handler for the mouseout event on the window">
+  <meta name="description" content="An event handler for the mouseout event on the window">
+  <meta name="twitter:description" content="An event handler for the mouseout event on the window">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/API/Window.onmouseout" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/API/window.onmouseout" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/API/window.onmouseout" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+  
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                              <li class="smaller">No translations exist for this document.</li>
+              
+                              <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseout$locales">Add a translation</a></li>
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseout$translate?tolocale=ja" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="Window-280.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">Web technology for developers</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../API.html" rel="v:url" property="v:title">Web API Interfaces</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Window.onmouseout</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Window.onmouseout</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="#Summary" rel="internal">Summary</a><code></code><li><a href="#Syntax" rel="internal">Syntax</a><code></code><li><a href="#Example" rel="internal">Example</a><li><a href="#Notes" rel="internal">Notes</a><li><a href="#Specification" rel="internal">Specification</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                                          <div id="doc-pending-fallback" class="warning">
+                  この記事はまだ日本語に翻訳されていません。MDN の翻訳はボランティアによって行われています。<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseout$translate?tolocale=ja">是非 MDN に登録し、私たちの力になって下さい。</a>                </div>
+              
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                  <div>
+  <span class="breadcrumbs domRef_breadcrumbs themeUpdated">« <a href="https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference">DOM Reference</a></span> 
+ 
+ 
+<section class="Quick_links" id="Quick_Links"><!-- --></section></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>An event handler for the mouseout event on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/window" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, interfaces, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference and DOM Reference."><code>window</code></a></p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">window.onmouseout = funcRef;
+</pre>
+<ul>
+  <li><code>funcRef</code> is a reference to a function.</li>
+</ul>
+<h2 id="Example" name="Example">Example</h2>
+<pre class="brush:js">window.onmouseout = doFunc;
+</pre>
+<pre class="brush:html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;title&gt;onmouseout test&lt;/title&gt;
+
+&lt;style&gt;
+body { border: 1px solid blue; }
+.my_box { border: 1px solid red; }
+p { border: 1px solid green; }
+&lt;/style&gt;
+
+&lt;script&gt;
+window.onmouseout = mouseout;
+
+function mouseout() {
+ alert("mouseout event detected!");
+}
+&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="my_box"&gt;
+&lt;p&gt;move the mouse pointer away from the element it is on&lt;br /&gt;
+to fire the mouseout event.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h2 id="Notes" name="Notes">Notes</h2>
+<p>The mouseout event is raised when the mouse leaves the area of the specified element (in this case the window itself).</p>
+<h2 id="Specification" name="Specification">Specification</h2>
+<p>Not part of specification.</p>
+                              </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/API">API</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Property">Property</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/DOM">DOM</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Window">Window</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/Sheppy">Sheppy</a>, <a href="https://developer.mozilla.org/ja/profiles/LibreGeekingKid">LibreGeekingKid</a>, <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/Rappo">Rappo</a>, <a href="https://developer.mozilla.org/ja/profiles/Jabez">Jabez</a>, <a href="https://developer.mozilla.org/ja/profiles/teoli">teoli</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/teoli">teoli</a>,
+                      <time datetime="2013-09-26T03:45:22-07:00">2013/09/26 3:45:22</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+  <ol> 
+     
+    <li><a href="https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference">DOM Reference</a></li> 
+    <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window" title="This section provides a brief reference for all of the methods, properties, and events available through the DOM window object. The window object implements the Window interface, which in turn inherits from the AbstractView interface. Some additional global functions, namespaces objects, interfaces, and constructors, not typically associated with the window, but available on it, are listed in the JavaScript Reference and DOM Reference."><code>Window</code></a></strong></li> 
+     
+    <li data-default-state="open"><a href="#"><strong>Properties</strong></a> 
+    <ol> 
+     
+        <li> 
+         
+            <span class="sidebar-icon"><span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></span> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.URL" title="The Window.URL property returns a URL object that provides static methods used for creating and managing object URLs."><code>Window.URL</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.XPCSafeJSObjectWrapper" title="See XPCSafeJSObjectWrapper"><code>Window.XPCSafeJSObjectWrapper</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.alert" title="The Window.alert() method displays an alert dialog with the optional specified content and an OK button."><code>Window.alert</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.applicationCache" title="Returns a reference to the application cache object for the window."><code>Window.applicationCache</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.arguments" title="See https://developer.mozilla.org/en-US/docs/Working_with_windows_in_chrome_code#Passing_data_between_windows"><code>Window.arguments</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.closed" title="This read-only property indicates whether the referenced window is closed or not."><code>Window.closed</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.content" title='Returns a Window object for the primary content window. This is useful in XUL windows that have a &lt;browser> (or tabbrowser or &lt;iframe>) with type="content-primary" attribute on it - the most famous example is Firefox main window, browser.xul. In such cases, content returns a reference to the Window object for the document currently displayed in the browser. It is a shortcut for browserRef.contentWindow.'><code>Window.content</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.controllers" title="Returns the XUL controllers of the chrome window."><code>Window.controllers</code></a></em></li> 
+     
+        <li> 
+         
+            <span class="sidebar-icon"><span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></span> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.crypto" title="The crypto API allows web pages access to certain cryptographic related services. These services are a balance between the functionality web pages need, and the requirement to protect users from malicious web sites."><code>Window.crypto</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+             <span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span> 
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.defaultStatus" title="Gets/sets the status bar text for the given window."><code>Window.defaultStatus</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.dialogArguments" title="The dialogArguments property returns the parameters that were passed into the window.showModalDialog() method. This lets you determine what parameters were specified when the modal dialog was created."><code>Window.dialogArguments</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+             <span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span> 
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.directories" title="Returned the window personalbar toolbar object. Use the window.personalbar instead."><code>Window.directories</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.document" title="Returns a reference to the document contained in the window."><code>Window.document</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.frameElement" title="Returns the element (such as &lt;iframe> or &lt;object>) in which the window is embedded, or null if the window is top-level."><code>Window.frameElement</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.frames" title="Returns the window itself, which is an array-like object, listing the direct sub-frames of the current window."><code>Window.frames</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.fullScreen" title="This property indicates whether the window is displayed in full screen mode or not. It is only reliable in Gecko 1.9 (Firefox 3) and later, see the Notes below."><code>Window.fullScreen</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.history" title="The Window.history read-only property returns a reference to the History object, which provides an interface for manipulating the browser session history (pages visited in the tab or frame that the current page is loaded in)."><code>Window.history</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.innerHeight" title="Height (in pixels) of the browser window viewport including, if rendered, the horizontal scrollbar."><code>Window.innerHeight</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.innerWidth" title="Width (in pixels) of the browser window viewport including, if rendered, the vertical scrollbar."><code>Window.innerWidth</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.length" title="Returns the number of frames (either frame or iframe elements) in the window."><code>Window.length</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.location" title="Window"><code>Window.location</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.locationbar" title="Returns the locationbar object, whose visibility can be checked."><code>Window.locationbar</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.menubar" title="Returns the menubar object, whose visibility can be checked."><code>Window.menubar</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.messageManager" title="Returns the message manager object for this window. See The message manager for details."><code>Window.messageManager</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.mozAnimationStartTime" title="Returns the time, in milliseconds since the epoch, at which animations started now should be considered to have started. This value should be used instead of, for example, Date.now(), because this value will be the same for all animations started in this window during this refresh interval, allowing them to remain in sync with one another."><code>Window.mozAnimationStartTime</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.mozInnerScreenX" title="Gets the X coordinate of the top-left corner of the window's viewport, in screen coordinates."><code>Window.mozInnerScreenX</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.mozInnerScreenY" title="Gets the Y coordinate of the top-left corner of the window's viewport, in screen coordinates."><code>Window.mozInnerScreenY</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.mozPaintCount" title="Returns the number of times the current document has been painted to the screen in this window."><code>Window.mozPaintCount</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.name" title="Gets/sets the name of the window."><code>Window.name</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.navigator" title="The Window.navigator read-only property returns a reference to the Navigator object, which can be queried for information about the application running the script."><code>Window.navigator</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onafterprint" title="The onafterprint property sets and returns the onafterprint event handler code for the current window."><code>Window.onafterprint</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onbeforeprint" title="The onbeforeprint property sets and returns the onbeforeprint event handler code for the current window."><code>Window.onbeforeprint</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onblur" title="The onblur property can be used to set the blur handler on the window, which is triggered when the window loses focus."><code>Window.onblur</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onchange" title="An event handler for change events sent to the window."><code>Window.onchange</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onclick" title="Called when the user clicks the mouse button while the cursor is in the window. This event is fired for any mouse button pressed; you can look at the event properties to find out which button was pressed and where."><code>Window.onclick</code></a></em></li> 
+     
+        <li> 
+         
+            <span class="sidebar-icon"><span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></span> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.ondevicelight" title="{{ APIRef }}"><code>Window.ondevicelight</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.ondevicemotion" title="An event handler for the devicemotion events sent to the window."><code>Window.ondevicemotion</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.ondeviceorientation" title="An event handler for the deviceorientation events sent to the window."><code>Window.ondeviceorientation</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.ondragdrop" title="An event handler for drag and drop events sent to the window."><code>Window.ondragdrop</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onfocus" title="An event handler for focus events sent to the window."><code>Window.onfocus</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onhashchange" title="The hashchange event fires when a window's hash changes (see location.hash)."><code>Window.onhashchange</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onkeydown" title="An event handler for the keydown event on the window."><code>Window.onkeydown</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onkeypress" title="An event handler for the keypress event on the window."><code>Window.onkeypress</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onkeyup" title="An event handler for the keyup event on the window."><code>Window.onkeyup</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmousedown" title="An event handler for the mousedown event on the window."><code>Window.onmousedown</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmousemove" title="An event handler for the mousemove event on the window."><code>Window.onmousemove</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseout" title="An event handler for the mouseout event on the window"><code>Window.onmouseout</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseover" title="An event handler for the mouseover event on the window."><code>Window.onmouseover</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmouseup" title="An event handler for the mouseup event on the window."><code>Window.onmouseup</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmozbeforepaint" title="An event handler for the MozBeforePaint event. This is used in concert with the window.mozRequestAnimationFrame() method to perform smooth, synchronized animations from JavaScript code."><code>Window.onmozbeforepaint</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onmoztimechange" title="An event handler for the moztimechange events sent to the window."><code>Window.onmoztimechange</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onpaint" title="An event handler for the paint event on the window. Not working in Gecko-based applications currently, see Notes section!"><code>Window.onpaint</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onpopstate" title="An event handler for the popstate event on the window."><code>Window.onpopstate</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onreset" title="An event handler for the reset event on the window."><code>Window.onreset</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onresize" title="An event handler for the resize event on the window."><code>Window.onresize</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onscroll" title="Specifies the function to be called when the window is scrolled."><code>Window.onscroll</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.outerHeight" title="Window.outerHeight gets the height in pixels of the whole browser window. It represents the height of the whole browser window including sidebar (if expanded), window chrome and window resizing borders/handles."><code>Window.outerHeight</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.outerWidth" title="Window.outerWidth gets the width of the outside of the browser window. It represents the width of the whole browser window including sidebar (if expanded), window chrome and window resizing borders/handles."><code>Window.outerWidth</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.parent" title="{{ DOMRef }}"><code>Window.parent</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.performance" title="The Web Performance API allows web pages access to certain functions for measuring the performance of web pages and web applications, including the Navigation Timing API and high-resolution time data."><code>Window.performance</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.personalbar" title="Returns the personalbar object, whose visibility can be toggled in the window."><code>Window.personalbar</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+             <span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span> 
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.pkcs11" title="Returns the pkcs11 object, which is used to install drivers and other software associated with the pkcs11 protocol. If pkcs11 isn't supported, this property returns null."><code>Window.pkcs11</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.screen" title="Returns a reference to the screen object associated with the window."><code>Window.screen</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.screenX" title="Returns the horizontal distance of the left border of the user's browser from the left side of the screen."><code>Window.screenX</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.screenY" title="Returns the vertical distance of the top border of the user's browser from the top edge of the screen."><code>Window.screenY</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollMaxX" title="Returns the maximum number of pixels that the document can be scrolled horizontally."><code>Window.scrollMaxX</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollMaxY" title="Returns the maximum number of pixels that the document can be scrolled vertically."><code>Window.scrollMaxY</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollX" title="Returns the number of pixels that the document has already been scrolled horizontally."><code>Window.scrollX</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollY" title="Returns the number of pixels that the document has already been scrolled vertically."><code>Window.scrollY</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollbars" title="Returns the scrollbars object, whose visibility can checked."><code>Window.scrollbars</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.self" title="Returns an object reference to the window object."><code>Window.self</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.sidebar" title="Returns a sidebar object, which contains several methods for registering add-ons with browser."><code>Window.sidebar</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.status" title="Sets the text in the status bar at the bottom of the browser or returns the previously set text."><code>Window.status</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.statusbar" title="Returns the statusbar object, whose visibility can be toggled in the window."><code>Window.statusbar</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.toolbar" title="Returns the toolbar object, whose visibility can be toggled in the window."><code>Window.toolbar</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.window" title="The window property of a window object points to the window object itself. Thus the following expressions all return the same window object:"><code>Window.window</code></a></em></li> 
+     
+        <li> 
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/window.navigator.mozVoicemail" title="Returns a MozVoicemail object you can use to handle the access to the voicemail functionality from the RIL of a Firefox OS phone."><code>window.navigator.mozVoicemail</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/window.onbeforeunload" title="An event that fires when a window is about to unload its resources. The document is still visible and the event is still cancelable."><code>window.onbeforeunload</code></a></em></li> 
+     
+        <li> 
+         
+            <span class="sidebar-icon"><span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></span> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/window.ondeviceproximity" title="Specifies an event listener to receive deviceproximity events. These events occur when the device sensor detects that an object becomes closer to or farther from the device."><code>window.ondeviceproximity</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/window.onunload" title="The unload event is raised when the window is unloading its content and resources. The resources removal is processed
+ 
+   after
+ the unload event occurs."><code>window.onunload</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/window.opener" title="Returns a reference to the window that opened this current window."><code>window.opener</code></a></em></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <em><a href="https://developer.mozilla.org/en-US/docs/Web/API/window.top" title="Returns a reference to the topmost window in the window hierarchy."><code>window.top</code></a></em></li> 
+     
+    </ol></li> 
+     
+    <li data-default-state="open"><a href="#"><strong>Methods</strong></a> 
+    <ol> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.QueryInterface" title="See QueryInterface"><code>Window.QueryInterface()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.atob" title="The Window.atob()decodes a string of data which has been encoded using base-64 encoding. You can use the window.btoa() method to encode and transmit data which may otherwise cause communication problems, then transmit it and use the window.atob() method to decode the data again. For example, you can encode, transmit, and decode control characters such as ASCII values 0 through 31."><code>Window.atob()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.back" title="Returns the window to the previous item in the history."><code>Window.back()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.blur" title="Shifts focus away from the window."><code>Window.blur()</code></a></li> 
+     
+        <li> 
+         
+         
+            <span class="sidebar-icon"><span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></span> 
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.cancelAnimationFrame" title="Cancels an animation frame request previously scheduled through a call to window.requestAnimationFrame()."><code>Window.cancelAnimationFrame()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.clearImmediate" title="This method clears the action specified by window.setImmediate."><code>Window.clearImmediate()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.clearInterval" title="Cancels repeated action which was set up using setInterval."><code>Window.clearInterval()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.clearTimeout" title="Clears the delay set by window.setTimeout()."><code>Window.clearTimeout()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.close" title="Closes the current window, or a referenced window."><code>Window.close()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.dispatchEvent" title="See EventTarget.dispatchEvent"><code>Window.dispatchEvent()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.dump" title="Prints messages to the (native) console."><code>Window.dump()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.find" title="Finds a string in a window."><code>Window.find()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.focus" title="Makes a request to bring the window to the front. It may fail due to user settings and the window isn't guaranteed to be frontmost before this method returns."><code>Window.focus()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.forward" title="Moves the window one document forward in the history."><code>Window.forward()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getAttention" title="Attempts to get the user's attention. How this happens varies based on OS and window manager."><code>Window.getAttention()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getComputedStyle" title="The Window.getComputedStyle() method gives the values of all the CSS properties of an element after applying the active stylesheets and resolving any basic computation those values may contain."><code>Window.getComputedStyle()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getDefaultComputedStyle" title="getDefaultComputedStyle() gives the default computed values of all the CSS properties of an element, ignoring author styling.  That is, only user-agent and user styles are taken into account."><code>Window.getDefaultComputedStyle()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection" title="Returns a selection object representing the range of text selected by the user."><code>Window.getSelection()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.home" title="Returns the window to the home page."><code>Window.home()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.importDialog" title="Because opening windows on mobile isn't necessarily appropriate, the Firefox Mobile team designed the importDialog() method to replace window.openDialog(). Instead of opening a new window, it merges the specified XUL dialog into the main window."><code>Window.importDialog()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.matchMedia" title="Returns a new MediaQueryList object representing the parsed results of the specified media query string."><code>Window.matchMedia()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.minimize" title="Sets a window to minimized state (a way to undo it programatically is by calling window.moveTo())."><code>Window.minimize()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.moveBy" title="Moves the current window by a specified amount."><code>Window.moveBy()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.moveTo" title="Moves the window to the specified coordinates."><code>Window.moveTo()()</code></a></li> 
+     
+        <li> 
+         
+         
+            <span class="sidebar-icon"><span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></span> 
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.onuserproximity" title="The Window.onuserproxymity property represents an EventHandler, that is a function to be called when the userproximity event occurs. These events are of type UserProximityEvent and occur when the the device sensor detects that an object becomes nearby."><code>Window.onuserproximity()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.open" title="{{ APIRef }}"><code>Window.open()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.openDialog" title="window.openDialog is an extension to window.open. It behaves the same, except that it can optionally take one or more parameters past windowFeatures, and windowFeatures itself is treated a little differently."><code>Window.openDialog()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage" title="The window.postMessage method safely enables cross-origin communication. Normally, scripts on different pages are allowed to access each other if and only if the pages that executed them are at locations with the same protocol (usually both http), port number (80 being the default for http), and host (modulo document.domain being set by both pages to the same value). window.postMessage provides a controlled mechanism to circumvent this restriction in a way which is secure when properly used."><code>Window.postMessage()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.print" title="Opens the Print Dialog to print the current document."><code>Window.print()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.prompt" title="The Window.prompt() displays a dialog with an optional message prompting the user to input some text."><code>Window.prompt()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.prompter" title="Returns a reference to an nsIPrompt instance, allowing to show dialogs parented to the current window."><code>Window.prompter()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.releaseEvents" title="Releases the window from trapping events of a specific type."><code>Window.releaseEvents()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.requestAnimationFrame" title="The window.requestAnimationFrame() method tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint. The method takes as an argument a callback to be invoked before the repaint."><code>Window.requestAnimationFrame()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.resizeBy" title="Resizes the current window by a certain amount."><code>Window.resizeBy()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.resizeTo" title="Dynamically resizes window."><code>Window.resizeTo()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.restore" title="This method is currently not working, but you can use:"><code>Window.restore()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+         
+             <span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span> 
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.routeEvent" title="The documentation about this has not yet been written; please consider contributing!"><code>Window.routeEvent()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scroll" title="Scrolls the window to a particular place in the document."><code>Window.scroll()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollBy" title="Scrolls the document in the window by the given amount."><code>Window.scrollBy()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollByLines" title="Scrolls the document by the given number of lines."><code>Window.scrollByLines()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollByPages" title="Scrolls the current document by the specified number of pages."><code>Window.scrollByPages()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollTo" title="Scrolls to a particular set of coordinates in the document."><code>Window.scrollTo()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.setCursor" title="Changes the cursor for the current window."><code>Window.setCursor()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.setInterval" title="Calls a function or executes a code snippet repeatedly, with a fixed time delay between each call to that function."><code>Window.setInterval()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+             <span class="sidebar-icon"><span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></span> 
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.showModalDialog" title="The Window.showModalDialog() creates and displays a modal dialog box containing a specified HTML document."><code>Window.showModalDialog()()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.sizeToContent" title="Sizes the window according to its content."><code>Window.sizeToContent()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.stop" title="This method stops window loading."><code>Window.stop()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.updateCommands" title="Updates the state of commands of the current chrome window (UI)."><code>Window.updateCommands()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/window.btoa" title='Creates a base-64 encoded ASCII string from a "string" of binary data.'><code>window.btoa()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/window.captureEvents" title="Registers the window to capture all events of the specified type."><code>window.captureEvents()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/window.confirm" title="The Window.confirm() method displays a modal dialog with an optional message and two buttons, OK and Cancel."><code>window.confirm()</code></a></li> 
+     
+        <li> 
+         
+         
+            <span class="sidebar-icon"><span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></span> 
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/window.crypto.getRandomValues" title="{{ DOMRef }}"><code>window.crypto.getRandomValues()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+             <span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span> 
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/window.setImmediate" title="This method is used to break up long running operations and run a callback function immediately after the browser has completed other operations such as events and display updates."><code>window.setImmediate()</code></a></li> 
+     
+        <li> 
+         
+         
+         
+         
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/window.setTimeout" title="Calls a function or executes a code snippet after a specified delay."><code>window.setTimeout()</code></a></li> 
+     
+    </ol></li> 
+  </ol> 
+
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                  </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":552}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/API/window.onmouseout by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:02:49 GMT -->
+</html>

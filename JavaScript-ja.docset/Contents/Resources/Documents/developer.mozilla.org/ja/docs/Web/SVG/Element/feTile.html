@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/SVG/Element/feTile by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 22:15:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>feTile - SVG | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="feTile%24json.html">
+  <link rel="canonical" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile" >
+
+  
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="feTile">
+  <meta property="og:url" content="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile">
+  <meta name="twitter:url" content="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile">
+  <meta name="twitter:title" content="feTile">
+    <meta property="og:description" content="An input image is tiled and the result used to fill a target. The effect is similar to the one of a pattern.">
+  <meta name="description" content="An input image is tiled and the result used to fill a target. The effect is similar to the one of a pattern.">
+  <meta name="twitter:description" content="An input image is tiled and the result used to fill a target. The effect is similar to the one of a pattern.">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/SVG/Element/feTile" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': true,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+                
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/SVG/Element/feTile" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                          <span class="oauth-icon oauth-github" data-service="GitHub" data-href="/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FSVG%2FElement%2FfeTile" title="GitHub"><i class="icon-github" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/SVG/Element/feTile" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                                  <li><a href="https://developer.mozilla.org/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FSVG%2FElement%2FfeTile" class="login-link" data-service="GitHub"><i class="icon-github" aria-hidden="true"></i>GitHub</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../HTML.html">HTML</a></li>
+              <li><a href="../../CSS.html">CSS</a></li>
+              <li><a href="../../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../API.html">API / DOM</a></li>
+              <li><a href="../../Apps.html">Apps</a></li>
+              <li><a href="../../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../Reference.html">レファレンス</a></li>
+              <li><a href="../../Guide.html">開発者ガイド</a></li>
+              <li><a href="../../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+  
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                              <li class="smaller">No translations exist for this document.</li>
+              
+                              <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile$locales">Add a translation</a></li>
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile$translate?tolocale=ja" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="feTile%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">Web technology for developers</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../SVG.html" rel="v:url" property="v:title">SVG</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Element.html" rel="v:url" property="v:title">SVG element reference</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">feTile</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>feTile</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><li><a href="#Usage_context" rel="internal">Usage context</a><code></code><code></code><li><a href="#Example" rel="internal">Example</a><li><a href="#Attributes" rel="internal">Attributes</a><ol><li><a href="#Global_attributes" rel="internal">Global attributes</a><code></code><code></code><li><a href="#Specific_attributes" rel="internal">Specific attributes</a><code></code></ol></li><li><a href="#DOM.C2.A0Interface" rel="internal">DOM Interface</a><code></code><li><a href="#See_also" rel="internal">See also</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                                          <div id="doc-pending-fallback" class="warning">
+                  この記事はまだ日本語に翻訳されていません。MDN の翻訳はボランティアによって行われています。<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile$translate?tolocale=ja">是非 MDN に登録し、私たちの力になって下さい。</a>                </div>
+              
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                  <p></p>
+<p>An input image is tiled and the result used to fill a target. The effect is similar to the one of a <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/pattern" title='A pattern is used to fill or stroke an object using a pre-defined graphic object which can be replicated ("tiled") at fixed intervals in x and y to cover the areas to be painted. Patterns are defined using the pattern element and then referenced by properties fill and stroke on a given graphics element to indicate that the given element shall be filled or stroked with the referenced pattern.'><code>&lt;pattern&gt;</code></a>.</p>
+<h2 id="Usage_context">Usage context</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="row">Categories</th>
+   <td>Filter primitive element</td>
+  </tr>
+  <tr>
+   <th scope="row">Permitted content</th>
+   <td>Any number of the following elements, in any order:<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate" title="The animate element is put inside a shape element and defines how an attribute of an element changes over the animation. The attribute will change from the initial value to the end value in the duration specified."><code>&lt;animate&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/set" title="The set element provides a simple means of just setting the value of an attribute for a specified duration. It supports all attribute types, including those that cannot reasonably be interpolated, such as string and boolean values. The set element is non-additive. The additive and accumulate attributes are not allowed, and will be ignored if specified."><code>&lt;set&gt;</code></a></td>
+  </tr>
+  <tr>
+   <th scope="row">Normative document</th>
+   <td><a class="external" href="http://www.w3.org/TR/SVG/filters.html#feTileElement" title="http://www.w3.org/TR/SVG/filters.html#feTileElement">SVG 1.1 (2nd Edition)</a></td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Example">Example</h2>
+<h2 id="Attributes">Attributes</h2>
+<h3 id="Global_attributes">Global attributes</h3>
+<ul>
+ <li><a href="https://developer.mozilla.org/en/SVG/Attribute#Core" title="en/SVG/Attribute#Core">Core attributes</a> »</li>
+ <li><a href="https://developer.mozilla.org/en/SVG/Attribute#Presentation" title="en/SVG/Attribute#Presentation">Presentation attributes</a> »</li>
+ <li><a href="https://developer.mozilla.org/en/SVG/Attribute#Filter" title="en/SVG/Attribute#Filter">Filter primitive attributes</a> »</li>
+ <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/class">class</a></code></li>
+ <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/style">style</a></code></li>
+</ul>
+<h3 id="Specific_attributes">Specific attributes</h3>
+<ul>
+ <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in">in</a></code></li>
+</ul>
+<h2 id="DOM.C2.A0Interface">DOM Interface</h2>
+<p>This element implements the <code><a href="https://developer.mozilla.org/en/DOM/SVGFETileElement" title="en/DOM/SVGFETileElement">SVGFETileElement</a></code> interface.</p>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter" title="The filter element serves as container for atomic filter operations. It is never rendered directly. A filter is referenced by using the filter attribute on the target SVG element."><code>&lt;filter&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate" title="The animate element is put inside a shape element and defines how an attribute of an element changes over the animation. The attribute will change from the initial value to the end value in the duration specified."><code>&lt;animate&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/set" title="The set element provides a simple means of just setting the value of an attribute for a specified duration. It supports all attribute types, including those that cannot reasonably be interpolated, such as string and boolean values. The set element is non-additive. The additive and accumulate attributes are not allowed, and will be ignored if specified."><code>&lt;set&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feBlend" title="The feBlend filter composes two objects together ruled by a certain blending mode. This is similar to what is known from image editing software when blending two layers. The mode is defined by the mode attribute."><code>&lt;feblend&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feColorMatrix" title="This filter changes colors based on a transformation matrix. Every pixel's color value (represented by an [R,G,B,A] vector) is matrix multiplied to create a new color."><code>&lt;fecolormatrix&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feComponentTransfer" title="The color of each pixel is modified by changing each channel (R, G, B, and A) to the result of what the children &lt;fefuncr>, &lt;fefuncb>, &lt;fefuncg>, and &lt;fefunca> return."><code>&lt;fecomponenttransfer&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feComposite" title="This filter primitive performs the combination of two input images pixel-wise in image space using one of the Porter-Duff compositing operations: over, in, atop, out, xor. Additionally, a component-wise arithmetic operation (with the result clamped between [0..1]) can be applied."><code>&lt;fecomposite&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feConvolveMatrix" title="the feConvolveMatrix element applies a matrix convolution filter effect. A convolution combines pixels in the input image with neighboring pixels to produce a resulting image. A wide variety of imaging operations can be achieved through convolutions, including blurring, edge detection, sharpening, embossing and beveling."><code>&lt;feconvolvematrix&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDiffuseLighting" title="This filter primitive lights an image using the alpha channel as a bump map. The resulting image, which is an RGBA opaque image, depends on the light color, light position and surface geometry of the input bump map."><code>&lt;fediffuselighting&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap" title="This filter primitive uses the pixels values from the image from in2 to spatially displace the image from in."><code>&lt;fedisplacementmap&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFlood" title="The filter fills the filter subregion with the color and opacity defined by flood-color and flood-opacity."><code>&lt;feflood&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur" title="The filter blurs the input image by the amount specified in stdDeviation, which defines the bell-curve."><code>&lt;fegaussianblur&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feImage" title="The feImage filter fetches image data from an external source and provides the pixel data as output (meaning, if the external source is an SVG image, it is rasterize)."><code>&lt;feimage&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMerge" title="The feMerge filter allows filter effects to be applied concurrently instead of sequentially. This is achieved by other filters storing their output via the result attribute and then accessing it in a &lt;femergenode> child."><code>&lt;femerge&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMorphology" title="This filter is used to erode or dilate the input image. It's usefulness lies especially in fattening or thinning effects."><code>&lt;femorphology&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feOffset" title="The input image as a whole is offset by the values specified in the dx and dy attributes. It's used in creating drop-shadows."><code>&lt;feoffset&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feSpecularLighting" title="This filter primitive lights a source graphic using the alpha channel as a bump map. The resulting image is an RGBA image based on the light color. The lighting calculation follows the standard specular component of the Phong lighting model. The resulting image depends on the light color, light position and surface geometry of the input bump map. The result of the lighting calculation is added. The filter primitive assumes that the viewer is at infinity in the z direction."><code>&lt;fespecularlighting&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTurbulence" title="This filter primitive creates an image using the Perlin turbulence function. It allows the synthesis of artificial textures like clouds or marble."><code>&lt;feturbulence&gt;</code></a></li>
+ <li><a href="https://developer.mozilla.org/en/SVG/Tutorial/Filter_effects" title="en/SVG/Tutorial/Filter_effects">SVG tutorial: Filter effects</a></li>
+</ul>
+<p></p><section class="Quick_links" id="Quick_Links"><!-- --></section><p></p>
+                              </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/SVG Filter">SVG Filter</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/SVG">SVG</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Élément">Élément</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/NeedsExample">NeedsExample</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/NeedsContent">NeedsContent</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Element">Element</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/NeedsCompatTable">NeedsCompatTable</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/kscarfone">kscarfone</a>, <a href="https://developer.mozilla.org/ja/profiles/Manuel_Strehl">Manuel_Strehl</a>, <a href="https://developer.mozilla.org/ja/profiles/Jeremie">Jeremie</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/kscarfone">kscarfone</a>,
+                      <time datetime="2013-12-05T18:41:22-08:00">2013/12/05 18:41:22</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+  <ol> 
+    
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feBlend" title="The feBlend filter composes two objects together ruled by a certain blending mode. This is similar to what is known from image editing software when blending two layers. The mode is defined by the mode attribute."><code>&lt;feblend&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feColorMatrix" title="This filter changes colors based on a transformation matrix. Every pixel's color value (represented by an [R,G,B,A] vector) is matrix multiplied to create a new color."><code>&lt;fecolormatrix&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feComponentTransfer" title="The color of each pixel is modified by changing each channel (R, G, B, and A) to the result of what the children &lt;fefuncr>, &lt;fefuncb>, &lt;fefuncg>, and &lt;fefunca> return."><code>&lt;fecomponenttransfer&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feComposite" title="This filter primitive performs the combination of two input images pixel-wise in image space using one of the Porter-Duff compositing operations: over, in, atop, out, xor. Additionally, a component-wise arithmetic operation (with the result clamped between [0..1]) can be applied."><code>&lt;fecomposite&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feConvolveMatrix" title="the feConvolveMatrix element applies a matrix convolution filter effect. A convolution combines pixels in the input image with neighboring pixels to produce a resulting image. A wide variety of imaging operations can be achieved through convolutions, including blurring, edge detection, sharpening, embossing and beveling."><code>&lt;feconvolvematrix&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDiffuseLighting" title="This filter primitive lights an image using the alpha channel as a bump map. The resulting image, which is an RGBA opaque image, depends on the light color, light position and surface geometry of the input bump map."><code>&lt;fediffuselighting&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap" title="This filter primitive uses the pixels values from the image from in2 to spatially displace the image from in."><code>&lt;fedisplacementmap&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFlood" title="The filter fills the filter subregion with the color and opacity defined by flood-color and flood-opacity."><code>&lt;feflood&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncA" title="This filter primitive defines the transfer function for the alpha component of the input graphic of its parent &lt;fecomponenttransfer> element."><code>&lt;fefunca&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncB" title="This filter primitive defines the transfer function for the blue component of the input graphic of its parent &lt;fecomponenttransfer> element."><code>&lt;fefuncb&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncG" title="This filter primitive defines the transfer function for the green component of the input graphic of its parent &lt;fecomponenttransfer> element."><code>&lt;fefuncg&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncR" title="This filter primitive defines the transfer function for the red component of the input graphic of its parent &lt;fecomponenttransfer> element."><code>&lt;fefuncr&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur" title="The filter blurs the input image by the amount specified in stdDeviation, which defines the bell-curve."><code>&lt;fegaussianblur&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feImage" title="The feImage filter fetches image data from an external source and provides the pixel data as output (meaning, if the external source is an SVG image, it is rasterize)."><code>&lt;feimage&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMerge" title="The feMerge filter allows filter effects to be applied concurrently instead of sequentially. This is achieved by other filters storing their output via the result attribute and then accessing it in a &lt;femergenode> child."><code>&lt;femerge&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMergeNode" title="The feMergeNode takes the result of another filter to be processed by its parent &lt;femerge>."><code>&lt;femergenode&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMorphology" title="This filter is used to erode or dilate the input image. It's usefulness lies especially in fattening or thinning effects."><code>&lt;femorphology&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feOffset" title="The input image as a whole is offset by the values specified in the dx and dy attributes. It's used in creating drop-shadows."><code>&lt;feoffset&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feSpecularLighting" title="This filter primitive lights a source graphic using the alpha channel as a bump map. The resulting image is an RGBA image based on the light color. The lighting calculation follows the standard specular component of the Phong lighting model. The resulting image depends on the light color, light position and surface geometry of the input bump map. The result of the lighting calculation is added. The filter primitive assumes that the viewer is at infinity in the z direction."><code>&lt;fespecularlighting&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile" title="An input image is tiled and the result used to fill a target. The effect is similar to the one of a &lt;pattern>."><code>&lt;fetile&gt;</code></a></li> 
+   
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTurbulence" title="This filter primitive creates an image using the Perlin turbulence function. It allows the synthesis of artificial textures like clouds or marble."><code>&lt;feturbulence&gt;</code></a></li> 
+   
+   <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG Elements</a><ol> 
+ <li>A 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a" title="The SVG Anchor Element () defines a hyperlink"><code>&lt;a&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/altGlyph" title="The altGlyph element allows sophisticated selection of the glyphs used to render its child character data."><code>&lt;altglyph&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/altGlyphDef" title="The altGlyphDef element defines a substitution representation for glyphs."><code>&lt;altglyphdef&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/altGlyphItem" title="The altGlyphItem element provides a set of candidates for glyph substitution by the &lt;altglyph> element."><code>&lt;altglyphitem&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate" title="The animate element is put inside a shape element and defines how an attribute of an element changes over the animation. The attribute will change from the initial value to the end value in the duration specified."><code>&lt;animate&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animateColor" title="The animateColor element specifies a color transformation over time."><code>&lt;animatecolor&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animateMotion" title="The animateMotion element causes a referenced element to move along a motion path."><code>&lt;animatemotion&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animateTransform" title="The animateTransform element animates a transformation attribute on a target element, thereby allowing animations to control translation, scaling, rotation and/or skewing."><code>&lt;animatetransform&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>B-C 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle" title="The circle element is an SVG basic shape, used to create circles based on a center point and a radius."><code>&lt;circle&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath" title="The clipping path restricts the region to which paint can be applied. Conceptually, any parts of the drawing that lie outside of the region bounded by the currently active clipping path are not drawn."><code>&lt;clippath&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/color-profile" title="The element allows describing the color profile used for the image."><code>&lt;color-profile&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/cursor" title="The cursor element can be used to define a platform-independent custom cursor. A recommended approach for defining a platform-independent custom cursor is to create a PNG image and define a cursor element that references the PNG image and identifies the exact position within the image which is the pointer position (i.e., the hot spot)."><code>&lt;cursor&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>D 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/defs" title="SVG allows graphical objects to be defined for later reuse. It is recommended that, wherever possible, referenced elements be defined inside of a defs element. Defining these elements inside of a defs element promotes understandability of the SVG content and thus promotes accessibility. Graphical elements defined in a defs will not be directly rendered. You can use a &lt;use> element to render those elements wherever you want on the viewport."><code>&lt;defs&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/desc" title="Each container element or graphics element in an SVG drawing can supply a desc description string where the description is text-only. When the current SVG document fragment is rendered as SVG on visual media, desc elements are not rendered as part of the graphics. Alternate presentations are possible, both visual and aural, which display the desc element but do not display path elements or other graphics elements. The desc element generally improve accessibility of SVG documents"><code>&lt;desc&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>E 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/ellipse" title="The ellipse element is an SVG basic shape, used to create ellipses based on a center coordinate, and both their x and y radius."><code>&lt;ellipse&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>F 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feBlend" title="The feBlend filter composes two objects together ruled by a certain blending mode. This is similar to what is known from image editing software when blending two layers. The mode is defined by the mode attribute."><code>&lt;feblend&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feColorMatrix" title="This filter changes colors based on a transformation matrix. Every pixel's color value (represented by an [R,G,B,A] vector) is matrix multiplied to create a new color."><code>&lt;fecolormatrix&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feComponentTransfer" title="The color of each pixel is modified by changing each channel (R, G, B, and A) to the result of what the children &lt;fefuncr>, &lt;fefuncb>, &lt;fefuncg>, and &lt;fefunca> return."><code>&lt;fecomponenttransfer&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feComposite" title="This filter primitive performs the combination of two input images pixel-wise in image space using one of the Porter-Duff compositing operations: over, in, atop, out, xor. Additionally, a component-wise arithmetic operation (with the result clamped between [0..1]) can be applied."><code>&lt;fecomposite&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feConvolveMatrix" title="the feConvolveMatrix element applies a matrix convolution filter effect. A convolution combines pixels in the input image with neighboring pixels to produce a resulting image. A wide variety of imaging operations can be achieved through convolutions, including blurring, edge detection, sharpening, embossing and beveling."><code>&lt;feconvolvematrix&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDiffuseLighting" title="This filter primitive lights an image using the alpha channel as a bump map. The resulting image, which is an RGBA opaque image, depends on the light color, light position and surface geometry of the input bump map."><code>&lt;fediffuselighting&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDisplacementMap" title="This filter primitive uses the pixels values from the image from in2 to spatially displace the image from in."><code>&lt;fedisplacementmap&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feDistantLight" title="This filter primitive define a distant light source that can be used within a lighting filter primitive : &lt;fediffuselighting> or &lt;fespecularlighting>."><code>&lt;fedistantlight&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFlood" title="The filter fills the filter subregion with the color and opacity defined by flood-color and flood-opacity."><code>&lt;feflood&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncA" title="This filter primitive defines the transfer function for the alpha component of the input graphic of its parent &lt;fecomponenttransfer> element."><code>&lt;fefunca&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncB" title="This filter primitive defines the transfer function for the blue component of the input graphic of its parent &lt;fecomponenttransfer> element."><code>&lt;fefuncb&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncG" title="This filter primitive defines the transfer function for the green component of the input graphic of its parent &lt;fecomponenttransfer> element."><code>&lt;fefuncg&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feFuncR" title="This filter primitive defines the transfer function for the red component of the input graphic of its parent &lt;fecomponenttransfer> element."><code>&lt;fefuncr&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur" title="The filter blurs the input image by the amount specified in stdDeviation, which defines the bell-curve."><code>&lt;fegaussianblur&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feImage" title="The feImage filter fetches image data from an external source and provides the pixel data as output (meaning, if the external source is an SVG image, it is rasterize)."><code>&lt;feimage&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMerge" title="The feMerge filter allows filter effects to be applied concurrently instead of sequentially. This is achieved by other filters storing their output via the result attribute and then accessing it in a &lt;femergenode> child."><code>&lt;femerge&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMergeNode" title="The feMergeNode takes the result of another filter to be processed by its parent &lt;femerge>."><code>&lt;femergenode&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMorphology" title="This filter is used to erode or dilate the input image. It's usefulness lies especially in fattening or thinning effects."><code>&lt;femorphology&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feOffset" title="The input image as a whole is offset by the values specified in the dx and dy attributes. It's used in creating drop-shadows."><code>&lt;feoffset&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/fePointLight" title="This page hasn't been written yet. Please consider contributing to MDN by writing it!"><code>&lt;fepointlight&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feSpecularLighting" title="This filter primitive lights a source graphic using the alpha channel as a bump map. The resulting image is an RGBA image based on the light color. The lighting calculation follows the standard specular component of the Phong lighting model. The resulting image depends on the light color, light position and surface geometry of the input bump map. The result of the lighting calculation is added. The filter primitive assumes that the viewer is at infinity in the z direction."><code>&lt;fespecularlighting&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feSpotLight" title="This page hasn't been written yet. Please consider contributing to MDN by writing it!"><code>&lt;fespotlight&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTile" title="An input image is tiled and the result used to fill a target. The effect is similar to the one of a &lt;pattern>."><code>&lt;fetile&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTurbulence" title="This filter primitive creates an image using the Perlin turbulence function. It allows the synthesis of artificial textures like clouds or marble."><code>&lt;feturbulence&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter" title="The filter element serves as container for atomic filter operations. It is never rendered directly. A filter is referenced by using the filter attribute on the target SVG element."><code>&lt;filter&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/font" title="The font element defines a font to be used for text layout."><code>&lt;font&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/font-face" title="The font-face element corresponds to the CSS @font-face declaration. It defines a font's outer properties."><code>&lt;font-face&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/font-face-format" title="The font-face-format element describes the type of font referenced by its parent &lt;font-face-uri>."><code>&lt;font-face-format&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/font-face-name" title="The font-face-name element points to a locally installed copy of this font, identified by its name."><code>&lt;font-face-name&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/font-face-src" title="The font-face-src element corresponds to the src property in CSS @font-face descriptions. It serves as container for &lt;font-face-name>, pointing to locally installed copies of this font, and &lt;font-face-uri>, utilizing remotely defined fonts."><code>&lt;font-face-src&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/font-face-uri" title="The font-face-uri element points to a remote definition of the current font."><code>&lt;font-face-uri&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject" title="The foreignObject element allows for inclusion of a foreign XML namespace which has its graphical content drawn by a different user agent. The included foreign graphical content is subject to SVG transformations and compositing."><code>&lt;foreignobject&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>G 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g" title="The g element is a container used to group objects. Transformations applied to the g element are performed on all of its child elements. Attributes applied are inherited by child elements. In addition, it can be used to define complex objects that can later be referenced with the &lt;use> element."><code>&lt;g&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/glyph" title="A glyph defines a single glyph in an SVG font."><code>&lt;glyph&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/glyphRef" title="The glyphRef element provides a single possible glyph to the referencing &lt;altglyph> substitution."><code>&lt;glyphref&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>H 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/hkern" title="The horizontal distance between two glyphs can be fine-tweaked with an hkern Element. This process is known as Kerning."><code>&lt;hkern&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>I 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/image" title="The SVG Image Element () allows a raster image into be included in an SVG document."><code>&lt;image&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>J-L 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/line" title="The line element is an SVG basic shape, used to create a line connecting two points."><code>&lt;line&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient" title="linearGradient lets authors define linear gradients to fill or stroke graphical elements."><code>&lt;lineargradient&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>M 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker" title="The marker element defines the graphics that is to be used for drawing arrowheads or polymarkers on a given &lt;path>, &lt;line>, &lt;polyline> or &lt;polygon> element."><code>&lt;marker&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/mask" title="In SVG, you can specify that any other graphics object or &lt;g> element can be used as an alpha mask for compositing the current object into the background. A mask is defined with the mask element. A mask is used/referenced using the mask property."><code>&lt;mask&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/metadata" title="Metadata is structured data about data. Metadata which is included with SVG content should be specified within metadata elements. The contents of the metadata should be elements from other XML namespaces such as RDF, FOAF, etc."><code>&lt;metadata&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/missing-glyph" title="The missing-glyph's content is rendered, if for a given character the font doesn't define an appropriate &lt;glyph>."><code>&lt;missing-glyph&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/mpath" title="the mpath sub-element for the &lt;animatemotion> element provides the ability to reference an external &lt;path> element as the definition of a motion path."><code>&lt;mpath&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>N-P 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/path" title="The path element is the generic element to define a shape. All the basic shapes can be created with a path element."><code>&lt;path&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/pattern" title='A pattern is used to fill or stroke an object using a pre-defined graphic object which can be replicated ("tiled") at fixed intervals in x and y to cover the areas to be painted. Patterns are defined using the pattern element and then referenced by properties fill and stroke on a given graphics element to indicate that the given element shall be filled or stroked with the referenced pattern.'><code>&lt;pattern&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon" title="The polygon element defines a closed shape consisting of a set of connected straight line segments."><code>&lt;polygon&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline" title="The polyline element is an SVG basic shape, used to create a series of straight lines connecting several points. Typically a polyline is used to create open shapes"><code>&lt;polyline&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>Q-R 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/radialGradient" title="radialGradient lets authors define radial gradients to fill or stroke graphical elements."><code>&lt;radialgradient&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect" title="The rect element is an SVG basic shape, used to create rectangles based on the position of a corner and their width and height. It may also be used to create rectangles with rounded corners."><code>&lt;rect&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>S 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script" title="A SVG script element is equivalent to the script element in HTML and thus is the place for scripts (e.g., ECMAScript)."><code>&lt;script&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/set" title="The set element provides a simple means of just setting the value of an attribute for a specified duration. It supports all attribute types, including those that cannot reasonably be interpolated, such as string and boolean values. The set element is non-additive. The additive and accumulate attributes are not allowed, and will be ignored if specified."><code>&lt;set&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/stop" title="The ramp of colors to use on a gradient is defined by the stop elements that are child elements to either the &lt;lineargradient> element or the &lt;radialgradient> element."><code>&lt;stop&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/style" title="The style element allows style sheets to be embedded directly within SVG content. SVG's style element has the same attributes as the corresponding element in HTML (see HTML's &lt;style> element)."><code>&lt;style&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg" title="The svg element can be used to nest a standalone SVG fragment inside the current document (including an HTML document) as long as the svg is not the root element. This standalone fragment has its own viewPort and its own coordinate system."><code>&lt;svg&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/switch" title="The switch element evaluates the requiredFeatures, requiredExtensions and systemLanguage attributes on its direct child elements in order, and then processes and renders the first child for which these attributes evaluate to true. All others will be bypassed and therefore not rendered. If the child element is a container element such as a &lt;g>, then the entire subtree is either processed/rendered or bypassed/not rendered."><code>&lt;switch&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/symbol" title="The symbol element is used to define graphical template objects which can be instantiated by a &lt;use> element. The use of symbol elements for graphics that are used multiple times in the same document adds structure and semantics. Documents that are rich in structure may be rendered graphically, as speech, or as braille, and thus promote accessibility. note that a symbol element itself is not rendered. Only instances of a symbol element (i.e., a reference to a symbol by a &lt;use> element) are rendered."><code>&lt;symbol&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>T 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/text" title="The text element defines a graphics element consisting of text. Note that it is possible to apply a gradient, pattern, clipping path, mask or filter to text"><code>&lt;text&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/textPath" title="In addition to text drawn in a straight line, SVG also includes the ability to place text along the shape of a &lt;path> element. To specify that a block of text is to be rendered along the shape of a &lt;path>, include the given text within a textPath element which includes an xlink:href attribute with a reference to a &lt;path> element."><code>&lt;textpath&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title" title="Each container element or graphics element in an SVG drawing can supply a title description string where the description is text-only. When the current SVG document fragment is rendered as SVG on visual media, title element is not rendered as part of the graphics. However, some user agents may, for example, display the title element as a tooltip. Alternate presentations are possible, both visual and aural, which display the title element but do not display path elements or other graphics elements. The title element generally improve accessibility of SVG documents"><code>&lt;title&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/tref" title="The textual content for a &lt;text> can be either character data directly embedded within the &lt;text> element or the character data content of a referenced element, where the referencing is specified with a tref element."><code>&lt;tref&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/tspan" title="Within a &lt;text> element, text and font properties and the current text position can be adjusted with absolute or relative coordinate values by including a tspan element."><code>&lt;tspan&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>U 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use" title="The use element takes nodes from within the SVG document, and duplicates them somewhere else. The effect is the same as if the nodes were deeply cloned into a non-exposed DOM, and then pasted where the use element is, much like anonymous content and XBL. Since the cloned nodes are not exposed, care must be taken when using CSS to style a use element and its hidden descendants. CSS attributes are not guaranteed to be inherited by the hidden, cloned DOM unless you explicitly request it using CSS inheritance."><code>&lt;use&gt;</code></a></li> 
+   </ol> 
+ </li> 
+ <li>V-Z 
+   <ol> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/view" title="A view is a defined way to view the image, like a zoom level or a detail view."><code>&lt;view&gt;</code></a></li> 
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/vkern" title="The vertical distance between two glyphs in top-to-bottom fonts can be fine-tweaked with an vkern Element. This process is known as Kerning."><code>&lt;vkern&gt;</code></a></li> 
+   </ol>    
+ </li> 
+   </ol></li> 
+   </ol> 
+  
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                  </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":0,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":656}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/SVG/Element/feTile by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 22:15:14 GMT -->
+</html>

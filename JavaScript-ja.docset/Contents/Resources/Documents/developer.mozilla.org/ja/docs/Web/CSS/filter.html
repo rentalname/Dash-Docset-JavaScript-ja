@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/CSS/filter by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:06:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>filter - CSS | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="filter%24json.html">
+  <link rel="canonical" href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" >
+
+            <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/CSS/filter" title="filter">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/CSS/filter" title="filter">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="filter">
+  <meta property="og:url" content="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">
+  <meta name="twitter:url" content="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">
+  <meta name="twitter:title" content="filter">
+    <meta property="og:description" content="The CSS filter property provides for effects like blurring or color shifting on an element’s rendering before the element is displayed. Filters are commonly used to adjust the rendering of an image, a background, or a border.">
+  <meta name="description" content="The CSS filter property provides for effects like blurring or color shifting on an element’s rendering before the element is displayed. Filters are commonly used to adjust the rendering of an image, a background, or a border.">
+  <meta name="twitter:description" content="The CSS filter property provides for effects like blurring or color shifting on an element’s rendering before the element is displayed. Filters are commonly used to adjust the rendering of an image, a background, or a border.">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/CSS/filter" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': true,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+                
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/CSS/filter" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                          <span class="oauth-icon oauth-github" data-service="GitHub" data-href="/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FCSS%2Ffilter" title="GitHub"><i class="icon-github" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/CSS/filter" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                                  <li><a href="https://developer.mozilla.org/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FCSS%2Ffilter" class="login-link" data-service="GitHub"><i class="icon-github" aria-hidden="true"></i>GitHub</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+  
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/CSS/filter" title="filter">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/CSS/filter" title="filter">Français</a></bdi></li>
+                              
+                              <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter$locales">Add a translation</a></li>
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter$translate?tolocale=ja" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="filter%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">Web technology for developers</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../CSS.html" rel="v:url" property="v:title">CSS</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">filter</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>filter</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#Summary" rel="internal">Summary</a><li><a href="#Syntax" rel="internal">Syntax</a><li><a href="#Examples" rel="internal">Examples</a><li><a href="#Functions" rel="internal">Functions</a><ol><li><a href="#url()" rel="internal"><code>url()</code></a><li><a href="#blur()" rel="internal"><code>blur()</code></a><li><a href="#brightness()" rel="internal"><code>brightness()</code></a><li><a href="#contrast()" rel="internal"><code>contrast()</code></a><li><a href="#drop-shadow()" rel="internal"><code>drop-shadow()</code></a><li><a href="#grayscale()" rel="internal"><code>grayscale()</code></a><li><a href="#hue-rotate()" rel="internal"><code>hue-rotate()</code></a><li><a href="#invert()" rel="internal"><code>invert()</code></a><li><a href="#opacity()" rel="internal"><code>opacity()</code></a><li><a href="#saturate()" rel="internal"><code>saturate()</code></a><li><a href="#sepia()" rel="internal"><code>sepia()</code></a></ol></li><li><a href="#Combining_functions" rel="internal">Combining functions</a><li><a href="#Specifications" rel="internal">Specifications</a><li><a href="#Browser_compatibility" rel="internal">Browser compatibility</a><li><a href="#See_also" rel="internal">See also</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                                          <div id="doc-pending-fallback" class="warning">
+                  この記事はまだ日本語に翻訳されていません。MDN の翻訳はボランティアによって行われています。<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter$translate?tolocale=ja">是非 MDN に登録し、私たちの力になって下さい。</a>                </div>
+              
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                  <p></p><section class="Quick_links" id="Quick_Links"><!-- --></section><p></p>
+<p></p><div class="notice experimental"> 
+    <p><strong>This is an experimental technology</strong><br>Because this technology's specification has not stabilized, check the <a href="#Browser_compatibility">compatibility table</a> for the proper prefixes to use in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future versions of browsers as the spec changes.</p> 
+</div><p></p>
+<h2 id="Summary">Summary</h2>
+<p>The CSS <code>filter</code> property provides for effects like blurring or color shifting on an element’s rendering before the element is displayed. Filters are commonly used to adjust the rendering of an image, a background, or a border.</p>
+<p>Included in the CSS standard are several functions that achieve predefined effects. You can also reference a filter specified in SVG with a URL to an <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter" title="/en/SVG/Element/filter">SVG filter element</a>.</p>
+<div class="note">
+ <strong>Note:</strong> Older versions (4.0 through 9.0) of the Windows Internet Explorer browser supported a non-standard <a class="external" href="http://msdn.microsoft.com/en-us/library/ms532853(v=vs.85).aspx" title="http://msdn.microsoft.com/en-us/library/ms532853(v=vs.85).aspx">"filter"</a> that has since been deprecated.</div>
+<ul class="cssprop">
+ <li><dfn><a href="https://developer.mozilla.org/en-US/docs/CSS/initial_value">Initial value</a></dfn> <code>none</code></li>
+ <li><dfn>Applies to</dfn> graphics and container elements</li>
+ <li><dfn><a href="https://developer.mozilla.org/en-US/docs/CSS/inheritance">Inherited</a></dfn> no</li>
+ <li><dfn>Media</dfn> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media/Visual" title="The documentation about this has not yet been written; please consider contributing!"><code>visual</code></a></li>
+ <li><dfn><a href="https://developer.mozilla.org/en-US/docs/CSS/computed_value">Computed value</a></dfn> as specified</li>
+ <li><dfn>Animatable</dfn> yes</li>
+</ul>
+<h2 id="Syntax">Syntax</h2>
+<p>With a function, use the following:</p>
+<pre>filter: &lt;filter-function&gt; [&lt;filter-function&gt;]* | none
+</pre>
+<p>For a reference to an SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter" title="The filter element serves as container for atomic filter operations. It is never rendered directly. A filter is referenced by using the filter attribute on the target SVG element."><code>&lt;filter&gt;</code></a> element, use the following:</p>
+<pre class="eval">filter: url(svg-url#element-id) 
+</pre>
+<h2 id="Examples">Examples</h2>
+<p>Examples of using the predefined functions are shown below. See each function for a specific example.</p>
+<pre class="brush: css">.mydiv { filter: grayscale(50%) }
+
+/* gray all images by 50% and blur by 10px */
+img {
+  filter: grayscale(0.5) blur(10px);
+}</pre>
+<p>Examples of using the URL function with an SVG resource are shown below.</p>
+<pre class="brush: css">.target { filter: url(#c1); }
+
+.mydiv { filter: url(commonfilters.xml#large-blur) }
+</pre>
+<h2 id="Functions">Functions</h2>
+<p>To use the CSS <code>filter</code> property, you specify a value for one of the following functions. If the value is invalid, the function returns "none." Except where noted, the functions that take a value expressed with a percent sign (as in 34%) also accept the value expressed as decimal (as in 0.34).</p>
+<h3 id="url()"><code>url()</code></h3>
+<p>The url() function takes the location of an XML file that specifies an SVG filter, and may include an anchor to a specific filter element.</p>
+<pre class="brush: css">filter: url(resources.svg#c1)
+</pre>
+<h3 id="blur()"><code>blur()</code></h3>
+<p>Applies a Gaussian blur to the input image. The value of ‘radius’ defines the value of the standard deviation to the Gaussian function, or how many pixels on the screen blend into each other, so a larger value will create more blur. If no parameter is provided, then a value <code>0</code> is used. The parameter is specified as a CSS length, but does not accept percentage values.</p>
+<pre class="brush: css">filter: blur(5px)
+</pre>
+<div id="blur_example" style="display: none;">
+ <pre class="brush: html">  &lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form.jpg" id="img1" class="internal default" src="/files/3710/Test_Form_2.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form.jpg" id="img2" class="internal default" src="/files/3710/Test_Form_2.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg id="img3" viewbox="0 0 233 176"&gt;
+  &lt;filter id="svgBlur" x="-5%" y="-5%" width="110%" height="110%" &gt;
+    &lt;feGaussianBlur in="SourceGraphic" stdDeviation="5" /&gt;
+  &lt;/filter&gt;
+  &lt;image xlink:href="/files/3710/Test_Form_2.jpeg" filter="url(#svgBlur)" x="5%" y="5%" width="212px" height="161px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_s.jpg" id="img4" class="internal default" src="/files/3711/Test_Form_2_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter:blur(5px);
+  -webkit-filter:blur(5px);
+  -o-filter:blur(5px);
+  -ms-filter:blur(5px);
+  filter:blur(5px); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  height: 100%;
+  width: 85%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<pre class="brush: html">&lt;svg height="0" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;filter id="svgBlur" x="-5%" y="-5%" width="110%" height="110%"&gt;
+    &lt;feGaussianBlur in="SourceGraphic" stdDeviation="5"/&gt;
+  &lt;/filter&gt;
+&lt;/svg&gt;</pre>
+<p><iframe class="live-sample-frame" frameborder="0" height="236px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/blur_example?revision=676703" width="100%"></iframe></p>
+<h3 id="brightness()"><code>brightness()</code></h3>
+<p>Applies a linear multiplier to input image, making it appear more or less bright. A value of <code>0%</code> will create an image that is completely black. A value of <code>100%</code> leaves the input unchanged. Other values are linear multipliers on the effect. Values of an amount over <code>100%</code> are allowed, providing brighter results. If the ‘amount’ parameter is missing, a value of <code>1</code> is used.</p>
+<pre class="brush: css">filter: brightness(0.5)</pre>
+<pre class="brush: html">&lt;svg height="0" xmlns="http://www.w3.org/2000/svg"&gt;
+ &lt;filter id="brightness"&gt;
+    &lt;feComponentTransfer&gt;
+        &lt;feFuncR type="linear" slope="[amount]"/&gt;
+        &lt;feFuncG type="linear" slope="[amount]"/&gt;
+        &lt;feFuncB type="linear" slope="[amount]"/&gt;
+    &lt;/feComponentTransfer&gt;
+  &lt;/filter&gt;
+&lt;/svg&gt;</pre>
+<div id="brightness_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form.jpg" id="img1" class="internal default" src="/files/3708/Test_Form.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form.jpg" id="img2" class="internal default" src="/files/3708/Test_Form.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 286 217"&gt;
+ &lt;filter id="brightness"&gt;
+    &lt;feComponentTransfer&gt;
+        &lt;feFuncR type="linear" slope="2"/&gt;
+        &lt;feFuncG type="linear" slope="2"/&gt;
+        &lt;feFuncB type="linear" slope="2"/&gt;
+    &lt;/feComponentTransfer&gt;
+  &lt;/filter&gt;
+  &lt;image xlink:href="/files/3708/Test_Form.jpg" filter="url(#brightness)" width="286px" height="217px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_s.jpg" id="img4" class="internal default" src="/files/3709/Test_Form_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter:brightness(2);
+  -webkit-filter:brightness(2);
+  -o-filter:brightness(2);
+  -ms-filter:brightness(2);
+  filter:brightness(2); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  height:100%;
+  width: 85%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="231px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/brightness_example?revision=676703" width="100%"></iframe></p>
+<h3 id="contrast()"><code>contrast()</code></h3>
+<p>Adjusts the contrast of the input. A value of <code>0%</code> will create an image that is completely black. A value of <code>100%</code> leaves the input unchanged. Values of amount over <code>100%</code> are allowed, providing results with less contrast. If the ‘amount’ parameter is missing, a value of <code>1</code> is used.</p>
+<pre class="brush: css">filter: contrast(200%)
+</pre>
+<pre class="brush: html">&lt;svg height="0" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;filter id="contrast"&gt;
+    &lt;feComponentTransfer&gt;
+      &lt;feFuncR type="linear" slope="[amount]" intercept="-(0.5 * [amount]) + 0.5"/&gt;
+      &lt;feFuncG type="linear" slope="[amount]" intercept="-(0.5 * [amount]) + 0.5"/&gt;
+      &lt;feFuncB type="linear" slope="[amount]" intercept="-(0.5 * [amount]) + 0.5"/&gt;
+    &lt;/feComponentTransfer&gt;
+  &lt;/filter&gt;
+&lt;/svg&gt;
+</pre>
+<div id="contrast_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_3.jpeg" id="img1" class="internal default" src="/files/3712/Test_Form_3.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_3.jpg" id="img2" class="internal default" src="/files/3712/Test_Form_3.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 240 151"&gt;
+ &lt;filter id="contrast"&gt;
+    &lt;feComponentTransfer&gt;
+      &lt;feFuncR type="linear" slope="2" intercept="-0.5"/&gt;
+      &lt;feFuncG type="linear" slope="2" intercept="-0.5"/&gt;
+      &lt;feFuncB type="linear" slope="2" intercept="-0.5"/&gt;
+    &lt;/feComponentTransfer&gt;
+  &lt;/filter&gt;
+  &lt;image xlink:href="/files/3712/Test_Form_3.jpeg" filter="url(#contrast)" width="240px" height="151px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_s.jpg" id="img4" class="internal default" src="/files/3713/Test_Form_3_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter:contrast(200%);
+  -webkit-filter:contrast(200%);
+  -o-filter:contrast(200%);
+  -ms-filter:contrast(200%);
+  filter:contrast(200%); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="203px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/contrast_example?revision=676703" width="100%"></iframe></p>
+<h3 id="drop-shadow()"><code>drop-shadow()</code></h3>
+<p>Applies a drop shadow effect to the input image. A drop shadow is effectively a blurred, offset version of the input image's alpha mask drawn in a particular color, composited below the image. The function accepts a parameter of type &lt;shadow&gt; (defined in CSS3 Backgrounds), with the exception that the ‘inset’ keyword is not allowed. This function is similar to the more established <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow" title="Technical review completed."><code>box-shadow</code></a> property; the difference is that with filters, some browsers provide hardware acceleration for better performance. The parameters of the <code>&lt;shadow&gt;</code> parameter are as follows.</p>
+<dl>
+ <dt>
+  <code>&lt;offset-x&gt;</code> <code>&lt;offset-y&gt;</code> <small>(required)</small></dt>
+ <dd>
+  This are two <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length" title="The documentation about this has not yet been written; please consider contributing!"><code>&lt;length&gt;</code></a> values to set the shadow offset. <code>&lt;offset-x&gt;</code> specifies the horizontal distance. Negative values place the shadow to the left of the element. <code>&lt;offset-y&gt;</code> specifies the vertical distance. Negative values place the shadow above the element. See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length" title="The documentation about this has not yet been written; please consider contributing!"><code>&lt;length&gt;</code></a> for possible units.<br>
+  If both values are <code>0</code>, the shadow is placed behind the element (and may generate a blur effect if <code>&lt;blur-radius&gt;</code> and/or <code>&lt;spread-radius&gt;</code> is set).</dd>
+ <dt>
+  <code>&lt;blur-radius&gt;</code> <small>(optional)</small></dt>
+ <dd>
+  This is a third <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length" title="The documentation about this has not yet been written; please consider contributing!"><code>&lt;length&gt;</code></a> value. The larger this value, the bigger the blur, so the shadow becomes bigger and lighter. Negative values are not allowed. If not specified, it will be <code>0</code> (the shadow's edge is sharp).</dd>
+ <dt>
+  <code>&lt;spread-radius&gt;</code> <small>(optional)</small></dt>
+ <dd>
+  This is a fourth <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length" title="The documentation about this has not yet been written; please consider contributing!"><code>&lt;length&gt;</code></a> value. Positive values will cause the shadow to expand and grow bigger, negative values will cause the shadow to shrink. If not specified, it will be <code>0</code> (the shadow will be the same size as the element). <br>
+  Note: Webkit, and maybe other browsers, do not support this 4th length, it will not render if added.</dd>
+ <dt>
+   </dt>
+ <dt>
+  <code>&lt;color&gt;</code> <small>(optional)</small></dt>
+ <dd>
+  See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value" title="The documentation about this has not yet been written; please consider contributing!"><code>&lt;color&gt;</code></a> values for possible keywords and notations.<br>
+  If not specified, the color depends on the browser. In Gecko (Firefox), Presto (Opera) and Trident (Internet Explorer), the value of the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" title="The CSS color property sets the foreground color of an element's text content, and its decorations. It doesn't affect any other characteristic of the element; it should really be called text-color and would have been named so, save for historical reasons and its appearance in CSS Level 1."><code>color</code></a> property is used. On the other hand, WebKit's shadow is transparent and therefore useless if <code>&lt;color&gt;</code> is omitted.</dd>
+</dl>
+<pre class="brush: css">filter: drop-shadow(16px 16px 10px black)</pre>
+<pre class="brush: html">&lt;svg height="0" xmlns="http://www.w3.org/2000/svg"&gt;
+ &lt;filter id="drop-shadow"&gt;
+    &lt;feGaussianBlur in="SourceAlpha" stdDeviation="[radius]"/&gt;
+    &lt;feOffset dx="[offset-x]" dy="[offset-y]" result="offsetblur"/&gt;
+    &lt;feFlood flood-color="[color]"/&gt;
+    &lt;feComposite in2="offsetblur" operator="in"/&gt;
+    &lt;feMerge&gt;
+      &lt;feMergeNode/&gt;
+      &lt;feMergeNode in="SourceGraphic"/&gt;
+    &lt;/feMerge&gt;
+  &lt;/filter&gt;
+&lt;/svg&gt;
+</pre>
+<p>The second example highlights the difference compared to <a href="https://developer.mozilla.org/en/CSS/box-shadow" title="/en/CSS/box-shadow">box-shadow</a>.</p>
+<div id="shadow_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_4.jpeg" id="img1" class="internal default" src="/files/3714/Test_Form_4.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_4.jpg" id="img2" class="internal default" src="/files/3714/Test_Form_4.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 239 187"&gt;
+ &lt;filter id="drop-shadow"&gt;
+    &lt;feGaussianBlur in="SourceAlpha" stdDeviation="5"/&gt;
+    &lt;feOffset dx="16" dy="16"/&gt;
+    &lt;feMerge&gt;
+      &lt;feMergeNode/&gt;
+      &lt;feMergeNode in="SourceGraphic"/&gt;
+    &lt;/feMerge&gt;
+ &lt;/filter&gt;
+ &lt;image xlink:href="/files/3714/Test_Form_4.jpeg" filter="url(#drop-shadow)" width="213px" height="161px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_4_s.jpg" id="img4" class="internal default" src="/files/3715/Test_Form_4_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_4 distorded border - Original image" id="img11" class="internal default" src="/files/8467/Test_Form_4_irregular-shape_opacity-gradient.png" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_4 distorded border - Live example" id="img12" class="internal default" src="/files/8467/Test_Form_4_irregular-shape_opacity-gradient.png" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;
+        &lt;div class="svg-container"&gt;
+          &lt;svg xmlns="http://www.w3.org/2000/svg" id="img13" viewbox="0 0 239 187"&gt;
+            &lt;filter id="drop-shadow2"&gt;
+              &lt;feGaussianBlur in="SourceAlpha" stdDeviation="4"/&gt;
+              &lt;feOffset dx="8" dy="10"/&gt;
+              &lt;feMerge&gt;
+                &lt;feMergeNode/&gt;
+                &lt;feMergeNode in="SourceGraphic"/&gt;
+              &lt;/feMerge&gt;
+            &lt;/filter&gt;
+            &lt;image xlink:href="/files/8467/Test_Form_4_irregular-shape_opacity-gradient.png<span style="font-size: 1rem;">" filter="url(#drop-shadow2)" width="213px" height="161px" /&gt;</span>
+          &lt;/svg&gt;
+        &lt;div&gt;
+      &lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_4 distorded border drop shadow - Static example" id="img14" class="internal default" src="/files/8469/Test_Form_4_irregular-shape_opacity-gradient_drop-shadow.png" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter: drop-shadow(16px 16px 10px black);
+  -webkit-filter: drop-shadow(16px 16px 10px black);
+  -o-filter: drop-shadow(16px 16px 10px black);
+  -ms-filter: drop-shadow(16px 16px 10px black);
+  filter: drop-shadow(16px 16px 10px black);
+}
+#img12 {
+  width:100%;
+  height:auto;
+  -moz-filter: drop-shadow(8px 9px 5px rgba(0,0,0,.8));
+  -webkit-filter: drop-shadow(8px 9px 5px rgba(0,0,0,.8));
+  -o-filter: drop-shadow(8px 9px 5px rgba(0,0,0,.8));
+  -ms-filter: drop-shadow(8px 9px 5px rgba(0,0,0,.8));
+  filter: ;
+}
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+#irregular-shape {
+  width: 64%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3, #img13 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="300px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/shadow_example?revision=676703" width="100%"></iframe></p>
+<h3 id="grayscale()"><code>grayscale()</code></h3>
+<p>Converts the input image to grayscale. The value of ‘amount’ defines the proportion of the conversion. A value of <code>100%</code> is completely grayscale. A value of <code>0%</code> leaves the input unchanged. Values between <code>0%</code> and <code>100%</code> are linear multipliers on the effect. If the ‘amount’ parameter is missing, a value of <code>0</code> is used.</p>
+<pre class="brush: css">filter: grayscale(100%)</pre>
+<div id="grayscale_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_5.jpeg" id="img1" class="internal default" src="/files/3716/Test_Form_5.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_5.jpg" id="img2" class="internal default" src="/files/3716/Test_Form_5.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 276 184"&gt;
+ &lt;filter id="grayscale"&gt;
+    &lt;feColorMatrix type="matrix"
+               values="0.2126 0.7152 0.0722 0 0
+                       0.2126 0.7152 0.0722 0 0
+                       0.2126 0.7152 0.0722 0 0
+                       0 0 0 1 0"/&gt;
+  &lt;/filter&gt;
+  &lt;image xlink:href="/files/3716/Test_Form_5.jpeg" filter="url(#grayscale)" width="276px" height="184px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_5_s.jpg" id="img4" class="internal default" src="/files/3717/Test_Form_5_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter:grayscale(100%);
+  -webkit-filter:grayscale(100%);
+  -o-filter:grayscale(100%);
+  -ms-filter:grayscale(100%);
+  filter:grayscale(100%); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="209px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/grayscale_example?revision=676703" width="100%"></iframe></p>
+<h3 id="hue-rotate()"><code>hue-rotate()</code></h3>
+<p>Applies a hue rotation on the input image. The value of ‘<code class="property">angle</code>’ defines the number of degrees around the color circle the input samples will be adjusted. A value of <code>0deg </code>leaves the input unchanged. If the ‘<code class="property">angle</code>’ parameter is missing, a value of <code>0deg</code> is used. Though there is no maximum value, the effect of values above <code>360deg</code> wraps around.</p>
+<pre class="brush: css">filter: hue-rotate(90deg)</pre>
+<div id="huerotate_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_6.jpeg" id="img1" class="internal default" src="/files/3718/Test_Form_6.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_6.jpg" id="img2" class="internal default" src="/files/3718/Test_Form_6.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 266 190"&gt;
+ &lt;filter id="hue-rotate"&gt;
+    &lt;feColorMatrix type="hueRotate"
+               values="90"/&gt;
+  &lt;/filter&gt;
+  &lt;image xlink:href="/files/3718/Test_Form_6.jpeg" filter="url(#hue-rotate)" width="266px" height="190px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_6_s.jpg" id="img4" class="internal default" src="/files/3719/Test_Form_6_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter:hue-rotate(90deg);
+  -webkit-filter:hue-rotate(90deg);
+  -o-filter:hue-rotate(90deg);
+  -ms-filter:hue-rotate(90deg);
+  filter:hue-rotate(90deg); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="221px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/huerotate_example?revision=676703" width="100%"></iframe></p>
+<h3 id="invert()"><code>invert()</code></h3>
+<p>Inverts the samples in the input image. The value of ‘<code class="property">amount</code>’ defines the proportion of the conversion. A value of <code>100%</code> is completely inverted. A value of <code>0%</code> leaves the input unchanged. Values between <code>0%</code> and <code>100%</code> are linear multipliers on the effect. If the ‘<code class="property">amount</code>’ parameter is missing, a value of <code>0</code> is used.</p>
+<pre class="brush: css">filter: invert(100%)</pre>
+<div id="invert_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_7.jpeg" id="img1" class="internal default" src="/files/3720/Test_Form_7.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_7.jpg" id="img2" class="internal default" src="/files/3720/Test_Form_7.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 183 276"&gt;
+ &lt;filter id="invert"&gt;
+    &lt;feComponentTransfer&gt;
+        &lt;feFuncR type="table" tableValues="1 0"/&gt;
+        &lt;feFuncG type="table" tableValues="1 0"/&gt;
+        &lt;feFuncB type="table" tableValues="1 0"/&gt;
+    &lt;/feComponentTransfer&gt;
+ &lt;/filter&gt;
+ &lt;image xlink:href="/files/3720/Test_Form_7.jpeg" filter="url(#invert)" width="183px" height="276px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_7_s.jpg" id="img4" class="internal default" src="/files/3721/Test_Form_7_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter: invert(100%);
+  -webkit-filter: invert(100%);
+  -o-filter: invert(100%);
+  -ms-filter: invert(100%);
+  filter: invert(100%); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="407px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/invert_example?revision=676703" width="100%"></iframe></p>
+<h3 id="opacity()"><code>opacity()</code></h3>
+<p>Applies transparency to the samples in the input image. The value of ‘<code class="property">amount</code>’ defines the proportion of the conversion. A value of <code>0%</code> is completely transparent. A value of <code>100%</code> leaves the input unchanged. Values between <code>0%</code> and <code>100%</code> are linear multipliers on the effect. This is equivalent to multiplying the input image samples by amount. If the ‘<code class="property">amount</code>’ parameter is missing, a value of <code>1</code> is used. This function is similar to the more established <a href="https://developer.mozilla.org/en/CSS/opacity" title="/en/CSS/opacity">opacity</a> property; the difference is that with filters, some browsers provide hardware acceleration for better performance.</p>
+<pre class="brush: css">filter: opacity(50%)</pre>
+<div id="opacity_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_14.jpeg" id="img1" class="internal default" src="/files/3725/Test_Form_14.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_14.jpg" id="img2" class="internal default" src="/files/3725/Test_Form_14.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 276 183"&gt;
+ &lt;filter id="opacity"&gt;
+    &lt;feComponentTransfer&gt;
+        &lt;feFuncA type="table" tableValues="0 0.5"&gt;
+    &lt;/feComponentTransfer&gt;
+ &lt;/filter&gt;
+ &lt;image xlink:href="/files/3725/Test_Form_14.jpeg" filter="url(#opacity)" width="276px" height="183px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_14_s.jpg" id="img4" class="internal default" src="/files/3726/Test_Form_14_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter: opacity(50%);
+  -webkit-filter: opacity(50%);
+  -o-filter: opacity(50%);
+  -ms-filter: opacity(50%);
+  filter: opacity(50%); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="210px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/opacity_example?revision=676703" width="100%"></iframe></p>
+<h3 id="saturate()"><code>saturate()</code></h3>
+<p>Saturates the input image. The value of ‘<code class="property">amount</code>’ defines the proportion of the conversion. A value of <code>0%</code> is completely un-saturated. A value of <code>100%</code> leaves the input unchanged. Other values are linear multipliers on the effect. Values of amount over <code>100%</code> are allowed, providing super-saturated results. If the ‘<code class="property">amount</code>’ parameter is missing, a value of <code>1</code> is used.</p>
+<pre class="brush: css">filter: saturate(200%)</pre>
+<div id="saturate_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_9.jpeg" id="img1" class="internal default" src="/files/3722/Test_Form_9.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_9.jpg" id="img2" class="internal default" src="/files/3722/Test_Form_9.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 201 239"&gt;
+ &lt;filter id="saturate"&gt;
+    &lt;feColorMatrix type="saturate"
+               values="2"/&gt;
+ &lt;/filter&gt;
+ &lt;image xlink:href="/files/3722/Test_Form_9.jpeg" filter="url(#saturate)" width="201px" height="239px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_9_s.jpg" id="img4" class="internal default" src="/files/3724/Test_Form_9_s.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter: saturate(200%);
+  -webkit-filter: saturate(200%);
+  -o-filter: saturate(200%);
+  -ms-filter: saturate(200%);
+  filter: saturate(200%); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="332px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/saturate_example?revision=676703" width="100%"></iframe></p>
+<h3 id="sepia()"><code>sepia()</code></h3>
+<p>Converts the input image to sepia. The value of ‘<code class="property">amount</code>’ defines the proportion of the conversion. A value of 100% is completely sepia. A value of <code>0%</code> leaves the input unchanged. Values between <code>0%</code> and <code>100%</code> are linear multipliers on the effect. If the ‘<code class="property">amount</code>’ parameter is missing, a value of <code>0</code> is used.</p>
+<pre class="brush: css">filter: sepia(100%)</pre>
+<div id="sepia_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;SVG Equivalent&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_12.jpeg" id="img1" class="internal default" src="/files/3727/Test_Form_12.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_12.jpg" id="img2" class="internal default" src="/files/3727/Test_Form_12.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;div class="svg-container"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" id="img3" viewbox="0 0 259 194"&gt;
+ &lt;filter id="sepia"&gt;
+    &lt;feColorMatrix type="matrix"
+               values="0.393 0.769 0.189 0 0
+                       0.349 0.686 0.168 0 0
+                       0.272 0.534 0.131 0 0
+                       0 0 0 1 0"/&gt;
+ &lt;/filter&gt;
+ &lt;image xlink:href="/files/3727/Test_Form_12.jpeg" filter="url(#sepia)" width="259px" height="194px" /&gt;
+&lt;/svg&gt;&lt;div&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_12_s.jpg" id="img4" class="internal default" src="/files/3728/Test_Form_12_s.jpg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter: sepia(100%);
+  -webkit-filter: sepia(100%);
+  -o-filter: sepia(100%);
+  -ms-filter: sepia(100%);
+  filter: sepia(100%); }
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="229px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/sepia_example?revision=676703" width="100%"></iframe></p>
+<h2 id="Combining_functions">Combining functions</h2>
+<p>You may combine any number of functions to manipulate the rendering. The following example enhances the contrast and brightness of the image.</p>
+<pre class="brush: css">filter: contrast(175%) brightness(3%)</pre>
+<div id="combination_example" style="display: none;">
+ <pre class="brush: html">&lt;table class="standard-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th align="left" scope="col"&gt;Original image&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Live example&lt;/th&gt;
+      &lt;th align="left" scope="col"&gt;Static example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_8.jpeg" id="img1" class="internal default" src="/files/3729/Test_Form_8.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_8.jpg" id="img2" class="internal default" src="/files/3729/Test_Form_8.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img alt="Test_Form_8_s.jpg" id="img4" class="internal default" src="/files/3730/Test_Form_8_s.jpeg" style="width: 100%;" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+ <pre class="brush: css">html {
+  height:100%;
+}
+body {
+  font: 14px/1.286 "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+  color: rgb(51, 51, 51);
+  height:100%;
+  overflow:hidden;
+}
+#img2 {
+  width:100%;
+  height:auto;
+  -moz-filter: contrast(175%) brightness(103%);
+  -webkit-filter: contrast(175%) brightness(103%);
+  -o-filter: contrast(175%) brightness(103%);
+  -ms-filter: contrast(175%) brightness(103%);
+  filter: contrast(175%) brightness(103%);
+}
+table.standard-table {
+  border: 1px solid rgb(187, 187, 187);
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: 0px 0px 1.286em;
+  width: 85%;
+  height: 100%;
+}
+table.standard-table th {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 0px 5px;
+  background: none repeat scroll 0% 0% rgb(238, 238, 238);
+  text-align: left;
+  font-weight: bold;
+}
+table.standard-table td {
+  padding: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: left;
+  vertical-align: top;
+  width:25%;
+  height:auto;
+}
+#img3 {
+  height:100%;
+}
+</pre>
+</div>
+<p><iframe class="live-sample-frame" frameborder="0" height="209px" src="https://mdn.mozillademos.org/en-US/docs/Web/CSS/filter$samples/combination_example?revision=676703" width="100%"></iframe></p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <thead>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><a class="external" href="http://dev.w3.org/fxtf/filters/#FilterProperty" hreflang="en" lang="en">Filter Effects Module Level 1<br><small>The definition of 'filter' in that specification.</small></a></td>
+   <td><span class="spec-WD">Working Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Browser_compatibility" name="Browser_compatibility">Browser compatibility</h2>
+<p></p><div style="margin-bottom: 20px;">Help improve compatibility tables by filling out <a class="external" href="http://www.surveygizmo.com/s3/1780174/e8a1839160ab"> this 11 question survey</a>.</div> 
+ 
+<div class="htab"> 
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a> 
+    <ul> 
+        <li class="selected"><a>Desktop</a></li> 
+        <li><a>Mobile</a></li> 
+    </ul> 
+</div><p></p>
+<div id="compat-desktop">
+ <table class="compat-table">
+  <tbody>
+   <tr>
+    <th>Feature</th>
+    <th>Chrome</th>
+    <th>Firefox (Gecko)</th>
+    <th>Internet Explorer</th>
+    <th>Opera</th>
+    <th>Safari (WebKit)</th>
+   </tr>
+   <tr>
+    <td>Basic support</td>
+    <td>18.0<span class="inlineIndicator prefixBox prefixBoxInline" title="prefix">--webkit</span> [4]</td>
+    <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/34" title="Released on 2014-11-25.">34</a> (34) [1] [2]</td>
+    <td><span style="color: #f00;">Not supported</span> [3]</td>
+    <td>15.0<span class="inlineIndicator prefixBox prefixBoxInline" title="prefix">--webkit</span></td>
+    <td>6.0<span class="inlineIndicator prefixBox prefixBoxInline" title="prefix">--webkit</span></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<div id="compat-mobile">
+ <table class="compat-table">
+  <tbody>
+   <tr>
+    <th>Feature</th>
+    <th>Android</th>
+    <th>Firefox Mobile (Gecko)</th>
+    <th>IE Mobile</th>
+    <th>Opera Mobile</th>
+    <th>Safari Mobile</th>
+   </tr>
+   <tr>
+    <td>Basic support</td>
+    <td>4.4<span class="inlineIndicator prefixBox prefixBoxInline" title="prefix">--webkit</span></td>
+    <td><a href="https://developer.mozilla.org/en-US/Firefox/Releases/35" title="Released on 2015-01-06.">35</a> (35)</td>
+    <td><span style="color: #f00;">Not supported</span></td>
+    <td>22.0 <span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span><span class="inlineIndicator prefixBox prefixBoxInline" title="prefix">--webkit</span></td>
+    <td>
+     <p>6.0 <span style="color: #888;" title="Please update this with the earliest version of support.">(Yes)</span><span class="inlineIndicator prefixBox prefixBoxInline" title="prefix">--webkit</span></p>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p>[1] Before Firefox 34, Gecko only implements the <code><a href="#url()">url()</a></code> form of the <code>filter</code> property; as chaining was not implemented then, only one <code>url()</code> was allowed (or when the <code>layout.css.filters.enabled </code>pref is set to <code>false</code>).<br>
+ <br>
+ [2] The functional values of <code>filter</code> are disabled by default and controlled by the <code>layout.css.filters.enabled </code>pref.</p>
+<p>[3] Internet Explorer 4.0 to 9.0 implemented a non-standard <code>filter</code> property. The syntax was completely different from this one and is not documented here.</p>
+<p>[4] In Chrome 18 to 19, <code>saturate()</code> function only takes integers instead of decimal or percentage values. This bug is fixed in Chrome 20 and further.</p>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a class="internal" href="https://developer.mozilla.org/en-US/docs/Applying_SVG_effects_to_HTML_content" title="En/Applying SVG effects to HTML content">Applying SVG effects to HTML content</a></li>
+ <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask" title="The documentation about this has not yet been written; please consider contributing!"><code>mask</code></a> property</li>
+ <li><a class="internal" href="https://developer.mozilla.org/en-US/docs/SVG" title="En/SVG">SVG</a></li>
+ <li><a class="external" href="http://www.html5rocks.com/en/tutorials/filters/understanding-css/" title="http://www.html5rocks.com/en/tutorials/filters/understanding-css/">Understanding CSS filters</a>, HTML5Rocks! article</li>
+ <li><a class="external" href="http://techstream.org/Web-Design/CSS3-Image-Filters" title="CSS filters">CSS 3 filters</a> Tech Stream article</li>
+ <li><a class="external" href="http://davidwalsh.name/css-filters" title="CSS filters">CSS filters</a> By David Walsh</li>
+</ul>
+                              </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/SVG Filter">SVG Filter</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/SVG">SVG</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/CSS">CSS</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Reference">Reference</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Référence">Référence</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Graphics">Graphics</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Web">Web</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/CSS Property">CSS Property</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Layout">Layout</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/louuis">louuis</a>, <a href="https://developer.mozilla.org/ja/profiles/shybloo">shybloo</a>, <a href="https://developer.mozilla.org/ja/profiles/jswisher">jswisher</a>, <a href="https://developer.mozilla.org/ja/profiles/emersonveenstra">emersonveenstra</a>, <a href="https://developer.mozilla.org/ja/profiles/Loiro">Loiro</a>, <a href="https://developer.mozilla.org/ja/profiles/kscarfone">kscarfone</a>, <a href="https://developer.mozilla.org/ja/profiles/kathyw">kathyw</a>, <a href="https://developer.mozilla.org/ja/profiles/patrick91">patrick91</a>, <a href="https://developer.mozilla.org/ja/profiles/Sheppy">Sheppy</a>, <a href="https://developer.mozilla.org/ja/profiles/openjck">openjck</a>, <a href="https://developer.mozilla.org/ja/profiles/LouCypher">LouCypher</a>, <a href="https://developer.mozilla.org/ja/profiles/rushcreekdev">rushcreekdev</a>, <a href="https://developer.mozilla.org/ja/profiles/m_gol">m_gol</a>, <a href="https://developer.mozilla.org/ja/profiles/anushbmx">anushbmx</a>, <a href="https://developer.mozilla.org/ja/profiles/Joao_Beno">Joao_Beno</a>, <a href="https://developer.mozilla.org/ja/profiles/FredB">FredB</a>, <a href="https://developer.mozilla.org/ja/profiles/Ugoku">Ugoku</a>, <a href="https://developer.mozilla.org/ja/profiles/grendel">grendel</a>, <a href="https://developer.mozilla.org/ja/profiles/wesj">wesj</a>, <a href="https://developer.mozilla.org/ja/profiles/scottrowe">scottrowe</a>, <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/teoli">teoli</a>, <a href="https://developer.mozilla.org/ja/profiles/BijuGC">BijuGC</a>, <a href="https://developer.mozilla.org/ja/profiles/Aerilys">Aerilys</a>, <a href="https://developer.mozilla.org/ja/profiles/pldz">pldz</a>, <a href="https://developer.mozilla.org/ja/profiles/amitabha197">amitabha197</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/Loiro">Loiro</a>,
+                      <time datetime="2014-10-08T09:34:04-07:00">2014/10/08 9:34:04</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+   <ol> 
+   
+   </ol> 
+  
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/en-US/docs/Web/CSS/filter" selected>
+          English (US)
+        </option>
+                  <option value="/de/docs/Web/CSS/filter">
+            Deutsch
+          </option>          <option value="/fr/docs/Web/CSS/filter">
+            Français
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":885}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/CSS/filter by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 20:06:39 GMT -->
+</html>

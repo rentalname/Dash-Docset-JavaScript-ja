@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/SVG/Attribute by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 22:27:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>SVG 属性リファレンス - SVG | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=1843b89" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=1843b89" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="Attribute%24json.json">
+  <link rel="canonical" href="Attribute.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute" title="SVG Attribute reference">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/SVG/Attribute" title="SVG Attribute reference">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Web/SVG/Attribute" title="SVG Attribute reference">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/SVG/Attribute" title="SVG Attribute reference">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute" title="SVG Attribute reference">
+          <link rel="alternate" hreflang="ar" href="https://developer.mozilla.org/ar/docs/Web/SVG/Attribute" title="SVG Attribute reference">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="SVG 属性リファレンス">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/SVG/Attribute">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/SVG/Attribute">
+  <meta name="twitter:title" content="SVG 属性リファレンス">
+    <meta property="og:description" content="onbegin , onend , onload , onrepeat">
+  <meta name="description" content="onbegin , onend , onload , onrepeat">
+  <meta name="twitter:description" content="onbegin , onend , onload , onrepeat">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/SVG/Attribute" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'github_login': true,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '1843b89',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+                
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/SVG/Attribute" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                          <span class="oauth-icon oauth-github" data-service="GitHub" data-href="/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FSVG%2FAttribute" title="GitHub"><i class="icon-github" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/SVG/Attribute" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                                  <li><a href="https://developer.mozilla.org/users/github/login/?next=%2Fja%2Fdocs%2FWeb%2FSVG%2FAttribute" class="login-link" data-service="GitHub"><i class="icon-github" aria-hidden="true"></i>GitHub</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute" title="SVG Attribute reference">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/SVG/Attribute" title="SVG Attribute reference">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Web/SVG/Attribute" title="SVG Attribute reference">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/SVG/Attribute" title="SVG Attribute reference">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute" title="SVG Attribute reference">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ar/docs/Web/SVG/Attribute" title="SVG Attribute reference">عربي</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/SVG/Attribute%24edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="Attribute%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../SVG.html" rel="v:url" property="v:title">SVG</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">SVG 属性リファレンス</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>SVG 属性リファレンス</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#SVG.E5.B1.9E.E6.80.A7.E4.B8.80.E8.A6.A7.EF.BC.88.E3.82.A2.E3.83.AB.E3.83.95.E3.82.A1.E3.83.99.E3.83.83.E3.83.88.E9.A0.86.EF.BC.89" rel="internal">SVG属性一覧（アルファベット順）</a><ol><li><a href="#A" rel="internal">A</a><li><a href="#B" rel="internal">B</a><li><a href="#C" rel="internal">C</a><li><a href="#D" rel="internal">D</a><li><a href="#E" rel="internal">E</a><li><a href="#F" rel="internal">F</a><li><a href="#G" rel="internal">G</a><li><a href="#H" rel="internal">H</a><li><a href="#I" rel="internal">I</a><li><a href="#K" rel="internal">K</a><li><a href="#L" rel="internal">L</a><li><a href="#M" rel="internal">M</a><li><a href="#N" rel="internal">N</a><li><a href="#O" rel="internal">O</a><li><a href="#P" rel="internal">P</a><li><a href="#R" rel="internal">R</a><li><a href="#S" rel="internal">S</a><li><a href="#T" rel="internal">T</a><li><a href="#U" rel="internal">U</a><li><a href="#V" rel="internal">V</a><li><a href="#W" rel="internal">W</a><li><a href="#X" rel="internal">X</a><li><a href="#Y" rel="internal">Y</a><li><a href="#Z" rel="internal">Z</a></ol></li><li><a href="#SVG_.E5.B1.9E.E6.80.A7.E4.B8.80.E8.A6.A7.EF.BC.88.E3.82.AB.E3.83.86.E3.82.B4.E3.83.AA.E5.88.A5.EF.BC.89" rel="internal">SVG 属性一覧（カテゴリ別）</a><ol><li><a href="#.E3.82.A2.E3.83.8B.E3.83.A1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.82.A4.E3.83.99.E3.83.B3.E3.83.88.E5.B1.9E.E6.80.A7" rel="internal">アニメーションイベント属性</a><li><a href="#AnimationAttributeTarget" rel="internal">Animation attribute target attributes</a><li><a href="#.E3.82.A2.E3.83.8B.E3.83.A1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.82.BF.E3.82.A4.E3.83.9F.E3.83.B3.E3.82.B0.E5.B1.9E.E6.80.A7" rel="internal">アニメーションタイミング属性</a><li><a href="#Animation_value_attributes" rel="internal">Animation value attributes</a><li><a href="#Animation_addition_attributes" rel="internal">Animation addition attributes</a><li><a href="#.E6.9D.A1.E4.BB.B6.E5.87.A6.E7.90.86.E5.B1.9E.E6.80.A7" rel="internal">条件処理属性</a><li><a href="#.E3.82.B3.E3.82.A2.E5.B1.9E.E6.80.A7" rel="internal">コア属性</a><li><a href="#.E3.83.89.E3.82.AD.E3.83.A5.E3.83.A1.E3.83.B3.E3.83.88.E3.82.A4.E3.83.99.E3.83.B3.E3.83.88.E5.B1.9E.E6.80.A7" rel="internal">ドキュメントイベント属性</a><li><a href="#Filter_primitive_attributes" rel="internal">Filter primitive attributes</a><li><a href="#.E3.82.B0.E3.83.A9.E3.83.95.E3.82.A3.E3.82.AB.E3.83.AB.E3.82.A4.E3.83.99.E3.83.B3.E3.83.88.E5.B1.9E.E6.80.A7" rel="internal">グラフィカルイベント属性</a><li><a href="#.E3.83.97.E3.83.AC.E3.82.BC.E3.83.B3.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E5.B1.9E.E6.80.A7" rel="internal">プレゼンテーション属性</a><li><a href="#Transfer_function_attributes" rel="internal">Transfer function attributes</a><li><a href="#XLink_attributes" rel="internal">XLink attributes</a></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                                      <div class="warning warning-review"><p>This translation is incomplete. Please help <a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/SVG/Attribute%24edit">translate this article</a> from English.</p></div>
+                                                              
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>« <a href="https://developer.mozilla.org/ja/SVG" title="ja/SVG">SVG</a> / <a href="https://developer.mozilla.org/ja/SVG/Element" title="ja/SVG/Element">SVG 要素リファレンス</a> »</p>
+<p></p><div class="overheadIndicator translationInProgress translationInProgressHeader"> 
+    <p>この文書は翻訳中です。他国語のままの部分などがあるのはその為です。<br>是非お気軽に MDN に登録して翻訳に参加し、私たちの手助けをして下さい！</p> 
+</div><p></p>
+<h2 id="SVG.E5.B1.9E.E6.80.A7.E4.B8.80.E8.A6.A7.EF.BC.88.E3.82.A2.E3.83.AB.E3.83.95.E3.82.A1.E3.83.99.E3.83.83.E3.83.88.E9.A0.86.EF.BC.89">SVG属性一覧（アルファベット順）</h2>
+<div style="-moz-column-width: 14em; -webkit-columns: 14em; columns: 14em;">
+ <h3 id="A">A</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/accent-height.html">accent-height</a></code></li>
+  <li><code><a class="new" href="Attribute/accumulate.html">accumulate</a></code></li>
+  <li><code><a class="new" href="Attribute/additive.html">additive</a></code></li>
+  <li><code><a class="new" href="Attribute/alignment-baseline.html">alignment-baseline</a></code></li>
+  <li><code><a class="new" href="Attribute/allowReorder.html">allowReorder</a></code></li>
+  <li><code><a class="new" href="Attribute/alphabetic.html">alphabetic</a></code></li>
+  <li><code><a class="new" href="Attribute/amplitude.html">amplitude</a></code></li>
+  <li><code><a class="new" href="Attribute/arabic-form.html">arabic-form</a></code></li>
+  <li><code><a class="new" href="Attribute/ascent.html">ascent</a></code></li>
+  <li><code><a class="new" href="Attribute/attributeName.html">attributeName</a></code></li>
+  <li><code><a class="new" href="Attribute/attributeType.html">attributeType</a></code></li>
+  <li><code><a class="new" href="Attribute/azimuth.html">azimuth</a></code></li>
+ </ul>
+ <h3 id="B">B</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/baseFrequency.html">baseFrequency</a></code></li>
+  <li><code><a class="new" href="Attribute/baseline-shift.html">baseline-shift</a></code></li>
+  <li><code><a class="new" href="Attribute/baseProfile.html">baseProfile</a></code></li>
+  <li><code><a class="new" href="Attribute/bbox.html">bbox</a></code></li>
+  <li><code><a class="new" href="Attribute/begin.html">begin</a></code></li>
+  <li><code><a class="new" href="Attribute/bias.html">bias</a></code></li>
+  <li><code><a class="new" href="Attribute/by.html">by</a></code></li>
+ </ul>
+ <h3 id="C">C</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/calcMode.html">calcMode</a></code></li>
+  <li><code><a class="new" href="Attribute/cap-height.html">cap-height</a></code></li>
+  <li><code><a class="new" href="Attribute/class.html">class</a></code></li>
+  <li><code><a class="new" href="Attribute/clip.html">clip</a></code></li>
+  <li><code><a class="new" href="Attribute/clipPathUnits.html">clipPathUnits</a></code></li>
+  <li><code><a class="new" href="Attribute/clip-path.html">clip-path</a></code></li>
+  <li><code><a class="new" href="Attribute/clip-rule.html">clip-rule</a></code></li>
+  <li><code><a class="new" href="Attribute/color.html">color</a></code></li>
+  <li><code><a class="new" href="Attribute/color-interpolation.html">color-interpolation</a></code></li>
+  <li><code><a class="new" href="Attribute/color-interpolation-filters.html">color-interpolation-filters</a></code></li>
+  <li><code><a class="new" href="Attribute/color-profile.html">color-profile</a></code></li>
+  <li><code><a class="new" href="Attribute/color-rendering.html">color-rendering</a></code></li>
+  <li><code><a class="new" href="Attribute/contentScriptType.html">contentScriptType</a></code></li>
+  <li><code><a class="new" href="Attribute/contentStyleType.html">contentStyleType</a></code></li>
+  <li><code><a class="new" href="Attribute/cursor.html">cursor</a></code></li>
+  <li><code><a class="new" href="Attribute/cx.html">cx</a></code></li>
+  <li><code><a class="new" href="Attribute/cy.html">cy</a></code></li>
+ </ul>
+ <h3 id="D">D</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/d.html">d</a></code></li>
+  <li><code><a class="new" href="Attribute/descent.html">descent</a></code></li>
+  <li><code><a class="new" href="Attribute/diffuseConstant.html">diffuseConstant</a></code></li>
+  <li><code><a class="new" href="Attribute/direction.html">direction</a></code></li>
+  <li><code><a class="new" href="Attribute/display.html">display</a></code></li>
+  <li><code><a class="new" href="Attribute/divisor.html">divisor</a></code></li>
+  <li><code><a class="new" href="Attribute/dominant-baseline.html">dominant-baseline</a></code></li>
+  <li><code><a class="new" href="Attribute/dur.html">dur</a></code></li>
+  <li><code><a class="new" href="Attribute/dx.html">dx</a></code></li>
+  <li><code><a class="new" href="Attribute/dy.html">dy</a></code></li>
+ </ul>
+ <h3 id="E">E</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/edgeMode.html">edgeMode</a></code></li>
+  <li><code><a class="new" href="Attribute/elevation.html">elevation</a></code></li>
+  <li><code><a class="new" href="Attribute/enable-background.html">enable-background</a></code></li>
+  <li><code><a class="new" href="Attribute/end.html">end</a></code></li>
+  <li><code><a class="new" href="Attribute/exponent.html">exponent</a></code></li>
+  <li><code><a class="new" href="Attribute/externalResourcesRequired.html">externalResourcesRequired</a></code></li>
+ </ul>
+ <h3 id="F">F</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/fill.html">fill</a></code></li>
+  <li><code><a class="new" href="Attribute/fill-opacity.html">fill-opacity</a></code></li>
+  <li><code><a class="new" href="Attribute/fill-rule.html">fill-rule</a></code></li>
+  <li><code><a class="new" href="Attribute/filter.html">filter</a></code></li>
+  <li><code><a class="new" href="Attribute/filterRes.html">filterRes</a></code></li>
+  <li><code><a class="new" href="Attribute/filterUnits.html">filterUnits</a></code></li>
+  <li><code><a class="new" href="Attribute/flood-color.html">flood-color</a></code></li>
+  <li><code><a class="new" href="Attribute/flood-opacity.html">flood-opacity</a></code></li>
+  <li><code><a class="new" href="Attribute/font-family.html">font-family</a></code></li>
+  <li><code><a class="new" href="Attribute/font-size.html">font-size</a></code></li>
+  <li><code><a class="new" href="Attribute/font-size-adjust.html">font-size-adjust</a></code></li>
+  <li><code><a class="new" href="Attribute/font-stretch.html">font-stretch</a></code></li>
+  <li><code><a class="new" href="Attribute/font-style.html">font-style</a></code></li>
+  <li><code><a class="new" href="Attribute/font-variant.html">font-variant</a></code></li>
+  <li><code><a class="new" href="Attribute/font-weight.html">font-weight</a></code></li>
+  <li><code><a class="new" href="Attribute/format.html">format</a></code></li>
+  <li><code><a class="new" href="Attribute/from.html">from</a></code></li>
+  <li><code><a class="new" href="Attribute/fx.html">fx</a></code></li>
+  <li><code><a class="new" href="Attribute/fy.html">fy</a></code></li>
+ </ul>
+ <h3 id="G">G</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/g1.html">g1</a></code></li>
+  <li><code><a class="new" href="Attribute/g2.html">g2</a></code></li>
+  <li><code><a class="new" href="Attribute/glyph-name.html">glyph-name</a></code></li>
+  <li><code><a class="new" href="Attribute/glyph-orientation-horizontal.html">glyph-orientation-horizontal</a></code></li>
+  <li><code><a class="new" href="Attribute/glyph-orientation-vertical.html">glyph-orientation-vertical</a></code></li>
+  <li><code><a class="new" href="Attribute/glyphRef.html">glyphRef</a></code></li>
+  <li><code><a class="new" href="Attribute/gradientTransform.html">gradientTransform</a></code></li>
+  <li><code><a class="new" href="Attribute/gradientUnits.html">gradientUnits</a></code></li>
+ </ul>
+ <h3 id="H">H</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/hanging.html">hanging</a></code></li>
+  <li><code><a class="new" href="Attribute/height.html">height</a></code></li>
+  <li><code><a class="new" href="Attribute/horiz-adv-x.html">horiz-adv-x</a></code></li>
+  <li><code><a class="new" href="Attribute/horiz-origin-x.html">horiz-origin-x</a></code></li>
+ </ul>
+ <h3 id="I">I</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/id.html">id</a></code></li>
+  <li><code><a class="new" href="Attribute/ideographic.html">ideographic</a></code></li>
+  <li><code><a class="new" href="Attribute/image-rendering.html">image-rendering</a></code></li>
+  <li><code><a class="new" href="Attribute/in.html">in</a></code></li>
+  <li><code><a class="new" href="Attribute/in2.html">in2</a></code></li>
+  <li><code><a class="new" href="Attribute/intercept.html">intercept</a></code></li>
+ </ul>
+ <h3 id="K">K</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/k.html">k</a></code></li>
+  <li><code><a class="new" href="Attribute/k1.html">k1</a></code></li>
+  <li><code><a class="new" href="Attribute/k2.html">k2</a></code></li>
+  <li><code><a class="new" href="Attribute/k3.html">k3</a></code></li>
+  <li><code><a class="new" href="Attribute/k4.html">k4</a></code></li>
+  <li><code><a class="new" href="Attribute/kernelMatrix.html">kernelMatrix</a></code></li>
+  <li><code><a class="new" href="Attribute/kernelUnitLength.html">kernelUnitLength</a></code></li>
+  <li><code><a class="new" href="Attribute/kerning.html">kerning</a></code></li>
+  <li><code><a class="new" href="Attribute/keyPoints.html">keyPoints</a></code></li>
+  <li><code><a class="new" href="Attribute/keySplines.html">keySplines</a></code></li>
+  <li><code><a class="new" href="Attribute/keyTimes.html">keyTimes</a></code></li>
+ </ul>
+ <h3 id="L">L</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/lang.html">lang</a></code></li>
+  <li><code><a class="new" href="Attribute/lengthAdjust.html">lengthAdjust</a></code></li>
+  <li><code><a class="new" href="Attribute/letter-spacing.html">letter-spacing</a></code></li>
+  <li><code><a class="new" href="Attribute/lighting-color.html">lighting-color</a></code></li>
+  <li><code><a class="new" href="Attribute/limitingConeAngle.html">limitingConeAngle</a></code></li>
+  <li><code><a class="new" href="Attribute/local.html">local</a></code></li>
+ </ul>
+ <h3 id="M">M</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/marker-end.html">marker-end</a></code></li>
+  <li><code><a class="new" href="Attribute/marker-mid.html">marker-mid</a></code></li>
+  <li><code><a class="new" href="Attribute/marker-start.html">marker-start</a></code></li>
+  <li><code><a class="new" href="Attribute/markerHeight.html">markerHeight</a></code></li>
+  <li><code><a class="new" href="Attribute/markerUnits.html">markerUnits</a></code></li>
+  <li><code><a class="new" href="Attribute/markerWidth.html">markerWidth</a></code></li>
+  <li><code><a class="new" href="Attribute/mask.html">mask</a></code></li>
+  <li><code><a class="new" href="Attribute/maskContentUnits.html">maskContentUnits</a></code></li>
+  <li><code><a class="new" href="Attribute/maskUnits.html">maskUnits</a></code></li>
+  <li><code><a class="new" href="Attribute/mathematical.html">mathematical</a></code></li>
+  <li><code><a class="new" href="Attribute/max.html">max</a></code></li>
+  <li><code><a class="new" href="Attribute/media.html">media</a></code></li>
+  <li><code><a class="new" href="Attribute/method.html">method</a></code></li>
+  <li><code><a class="new" href="Attribute/min.html">min</a></code></li>
+  <li><code><a class="new" href="Attribute/mode.html">mode</a></code></li>
+ </ul>
+ <h3 id="N">N</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/name.html">name</a></code></li>
+  <li><code><a class="new" href="Attribute/numOctaves.html">numOctaves</a></code></li>
+ </ul>
+ <h3 id="O">O</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/offset.html">offset</a></code></li>
+  <li><code><a class="new" href="Attribute/onabort.html">onabort</a></code></li>
+  <li><code><a class="new" href="Attribute/onactivate.html">onactivate</a></code></li>
+  <li><code><a class="new" href="Attribute/onbegin.html">onbegin</a></code></li>
+  <li><code><a class="new" href="Attribute/onclick.html">onclick</a></code></li>
+  <li><code><a class="new" href="Attribute/onend.html">onend</a></code></li>
+  <li><code><a class="new" href="Attribute/onerror.html">onerror</a></code></li>
+  <li><code><a class="new" href="Attribute/onfocusin.html">onfocusin</a></code></li>
+  <li><code><a class="new" href="Attribute/onfocusout.html">onfocusout</a></code></li>
+  <li><code><a class="new" href="Attribute/onload.html">onload</a></code></li>
+  <li><code><a class="new" href="Attribute/onmousedown.html">onmousedown</a></code></li>
+  <li><code><a class="new" href="Attribute/onmousemove.html">onmousemove</a></code></li>
+  <li><code><a class="new" href="Attribute/onmouseout.html">onmouseout</a></code></li>
+  <li><code><a class="new" href="Attribute/onmouseover.html">onmouseover</a></code></li>
+  <li><code><a class="new" href="Attribute/onmouseup.html">onmouseup</a></code></li>
+  <li><code><a class="new" href="Attribute/onrepeat.html">onrepeat</a></code></li>
+  <li><code><a class="new" href="Attribute/onresize.html">onresize</a></code></li>
+  <li><code><a class="new" href="Attribute/onscroll.html">onscroll</a></code></li>
+  <li><code><a class="new" href="Attribute/onunload.html">onunload</a></code></li>
+  <li><code><a class="new" href="Attribute/onzoom.html">onzoom</a></code></li>
+  <li><code><a class="new" href="Attribute/opacity.html">opacity</a></code></li>
+  <li><code><a class="new" href="Attribute/operator.html">operator</a></code></li>
+  <li><code><a class="new" href="Attribute/order.html">order</a></code></li>
+  <li><code><a class="new" href="Attribute/orient.html">orient</a></code></li>
+  <li><code><a class="new" href="Attribute/orientation.html">orientation</a></code></li>
+  <li><code><a class="new" href="Attribute/origin.html">origin</a></code></li>
+  <li><code><a class="new" href="Attribute/overflow.html">overflow</a></code></li>
+  <li><code><a class="new" href="Attribute/overline-position.html">overline-position</a></code></li>
+  <li><code><a class="new" href="Attribute/overline-thickness.html">overline-thickness</a></code></li>
+ </ul>
+ <h3 id="P">P</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/panose-1.html">panose-1</a></code></li>
+  <li><code><a class="new" href="Attribute/paint-order.html">paint-order</a></code></li>
+  <li><code><a class="new" href="Attribute/path.html">path</a></code></li>
+  <li><code><a class="new" href="Attribute/pathLength.html">pathLength</a></code></li>
+  <li><code><a class="new" href="Attribute/patternContentUnits.html">patternContentUnits</a></code></li>
+  <li><code><a class="new" href="Attribute/patternTransform.html">patternTransform</a></code></li>
+  <li><code><a class="new" href="Attribute/patternUnits.html">patternUnits</a></code></li>
+  <li><code><a class="new" href="Attribute/pointer-events.html">pointer-events</a></code></li>
+  <li><code><a class="new" href="Attribute/points.html">points</a></code></li>
+  <li><code><a class="new" href="Attribute/pointsAtX.html">pointsAtX</a></code></li>
+  <li><code><a class="new" href="Attribute/pointsAtY.html">pointsAtY</a></code></li>
+  <li><code><a class="new" href="Attribute/pointsAtZ.html">pointsAtZ</a></code></li>
+  <li><code><a class="new" href="Attribute/preserveAlpha.html">preserveAlpha</a></code></li>
+  <li><code><a class="new" href="Attribute/preserveAspectRatio.html">preserveAspectRatio</a></code></li>
+  <li><code><a class="new" href="Attribute/primitiveUnits.html">primitiveUnits</a></code></li>
+ </ul>
+ <h3 id="R">R</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/r.html">r</a></code></li>
+  <li><code><a class="new" href="Attribute/radius.html">radius</a></code></li>
+  <li><code><a class="new" href="Attribute/refX.html">refX</a></code></li>
+  <li><code><a class="new" href="Attribute/refY.html">refY</a></code></li>
+  <li><code><a class="new" href="Attribute/rendering-intent.html">rendering-intent</a></code></li>
+  <li><code><a class="new" href="Attribute/repeatCount.html">repeatCount</a></code></li>
+  <li><code><a class="new" href="Attribute/repeatDur.html">repeatDur</a></code></li>
+  <li><code><a class="new" href="Attribute/requiredExtensions.html">requiredExtensions</a></code></li>
+  <li><code><a class="new" href="Attribute/requiredFeatures.html">requiredFeatures</a></code></li>
+  <li><code><a class="new" href="Attribute/restart.html">restart</a></code></li>
+  <li><code><a class="new" href="Attribute/result.html">result</a></code></li>
+  <li><code><a class="new" href="Attribute/rotate.html">rotate</a></code></li>
+  <li><code><a class="new" href="Attribute/rx.html">rx</a></code></li>
+  <li><code><a class="new" href="Attribute/ry.html">ry</a></code></li>
+ </ul>
+ <h3 id="S">S</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/scale.html">scale</a></code></li>
+  <li><code><a class="new" href="Attribute/seed.html">seed</a></code></li>
+  <li><code><a class="new" href="Attribute/shape-rendering.html">shape-rendering</a></code></li>
+  <li><code><a class="new" href="Attribute/slope.html">slope</a></code></li>
+  <li><code><a class="new" href="Attribute/spacing.html">spacing</a></code></li>
+  <li><code><a class="new" href="Attribute/specularConstant.html">specularConstant</a></code></li>
+  <li><code><a class="new" href="Attribute/specularExponent.html">specularExponent</a></code></li>
+  <li><code><a class="new" href="Attribute/spreadMethod.html">spreadMethod</a></code></li>
+  <li><code><a class="new" href="Attribute/startOffset.html">startOffset</a></code></li>
+  <li><code><a class="new" href="Attribute/stdDeviation.html">stdDeviation</a></code></li>
+  <li><code><a class="new" href="Attribute/stemh.html">stemh</a></code></li>
+  <li><code><a class="new" href="Attribute/stemv.html">stemv</a></code></li>
+  <li><code><a class="new" href="Attribute/stitchTiles.html">stitchTiles</a></code></li>
+  <li><code><a class="new" href="Attribute/stop-color.html">stop-color</a></code></li>
+  <li><code><a class="new" href="Attribute/stop-opacity.html">stop-opacity</a></code></li>
+  <li><code><a class="new" href="Attribute/strikethrough-position.html">strikethrough-position</a></code></li>
+  <li><code><a class="new" href="Attribute/strikethrough-thickness.html">strikethrough-thickness</a></code></li>
+  <li><code><a class="new" href="Attribute/string.html">string</a></code></li>
+  <li><code><a class="new" href="Attribute/stroke.html">stroke</a></code></li>
+  <li><code><a class="new" href="Attribute/stroke-dasharray.html">stroke-dasharray</a></code></li>
+  <li><code><a class="new" href="Attribute/stroke-dashoffset.html">stroke-dashoffset</a></code></li>
+  <li><code><a class="new" href="Attribute/stroke-linecap.html">stroke-linecap</a></code></li>
+  <li><code><a class="new" href="Attribute/stroke-linejoin.html">stroke-linejoin</a></code></li>
+  <li><code><a class="new" href="Attribute/stroke-miterlimit.html">stroke-miterlimit</a></code></li>
+  <li><code><a class="new" href="Attribute/stroke-opacity.html">stroke-opacity</a></code></li>
+  <li><code><a class="new" href="Attribute/stroke-width.html">stroke-width</a></code></li>
+  <li><code><a class="new" href="Attribute/style.html">style</a></code></li>
+  <li><code><a class="new" href="Attribute/surfaceScale.html">surfaceScale</a></code></li>
+  <li><code><a class="new" href="Attribute/systemLanguage.html">systemLanguage</a></code></li>
+ </ul>
+ <h3 id="T">T</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/tableValues.html">tableValues</a></code></li>
+  <li><code><a class="new" href="Attribute/target.html">target</a></code></li>
+  <li><code><a class="new" href="Attribute/targetX.html">targetX</a></code></li>
+  <li><code><a class="new" href="Attribute/targetY.html">targetY</a></code></li>
+  <li><code><a class="new" href="Attribute/text-anchor.html">text-anchor</a></code></li>
+  <li><code><a class="new" href="Attribute/text-decoration.html">text-decoration</a></code></li>
+  <li><code><a class="new" href="Attribute/text-rendering.html">text-rendering</a></code></li>
+  <li><code><a class="new" href="Attribute/textLength.html">textLength</a></code></li>
+  <li><code><a class="new" href="Attribute/to.html">to</a></code></li>
+  <li><code><a href="Attribute/transform.html">transform</a></code></li>
+  <li><code><a class="new" href="Attribute/type.html">type</a></code></li>
+ </ul>
+ <h3 id="U">U</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/u1.html">u1</a></code></li>
+  <li><code><a class="new" href="Attribute/u2.html">u2</a></code></li>
+  <li><code><a class="new" href="Attribute/underline-position.html">underline-position</a></code></li>
+  <li><code><a class="new" href="Attribute/underline-thickness.html">underline-thickness</a></code></li>
+  <li><code><a class="new" href="Attribute/unicode.html">unicode</a></code></li>
+  <li><code><a class="new" href="Attribute/unicode-bidi.html">unicode-bidi</a></code></li>
+  <li><code><a class="new" href="Attribute/unicode-range.html">unicode-range</a></code></li>
+  <li><code><a class="new" href="Attribute/units-per-em.html">units-per-em</a></code></li>
+ </ul>
+ <h3 id="V">V</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/v-alphabetic.html">v-alphabetic</a></code></li>
+  <li><code><a class="new" href="Attribute/v-hanging.html">v-hanging</a></code></li>
+  <li><code><a class="new" href="Attribute/v-ideographic.html">v-ideographic</a></code></li>
+  <li><code><a class="new" href="Attribute/v-mathematical.html">v-mathematical</a></code></li>
+  <li><code><a class="new" href="Attribute/values.html">values</a></code></li>
+  <li><code><a class="new" href="Attribute/version.html">version</a></code></li>
+  <li><code><a class="new" href="Attribute/vert-adv-y.html">vert-adv-y</a></code></li>
+  <li><code><a class="new" href="Attribute/vert-origin-x.html">vert-origin-x</a></code></li>
+  <li><code><a class="new" href="Attribute/vert-origin-y.html">vert-origin-y</a></code></li>
+  <li><code><a class="new" href="Attribute/viewBox.html">viewBox</a></code></li>
+  <li><code><a class="new" href="Attribute/viewTarget.html">viewTarget</a></code></li>
+  <li><code><a class="new" href="Attribute/visibility.html">visibility</a></code></li>
+ </ul>
+ <h3 id="W">W</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/width.html">width</a></code></li>
+  <li><code><a class="new" href="Attribute/widths.html">widths</a></code></li>
+  <li><code><a class="new" href="Attribute/word-spacing.html">word-spacing</a></code></li>
+  <li><code><a class="new" href="Attribute/writing-mode.html">writing-mode</a></code></li>
+ </ul>
+ <h3 id="X">X</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/x.html">x</a></code></li>
+  <li><code><a class="new" href="Attribute/x-height.html">x-height</a></code></li>
+  <li><code><a class="new" href="Attribute/x1.html">x1</a></code></li>
+  <li><code><a class="new" href="Attribute/x2.html">x2</a></code></li>
+  <li><code><a class="new" href="Attribute/xChannelSelector.html">xChannelSelector</a></code></li>
+  <li><code><a class="new" href="Attribute/xlink_actuate.html">xlink:actuate</a></code></li>
+  <li><code><a class="new" href="Attribute/xlink_arcrole.html">xlink:arcrole</a></code></li>
+  <li><code><a class="new" href="Attribute/xlink_href.html">xlink:href</a></code></li>
+  <li><code><a class="new" href="Attribute/xlink_role.html">xlink:role</a></code></li>
+  <li><code><a class="new" href="Attribute/xlink_show.html">xlink:show</a></code></li>
+  <li><code><a class="new" href="Attribute/xlink_title.html">xlink:title</a></code></li>
+  <li><code><a class="new" href="Attribute/xlink_type.html">xlink:type</a></code></li>
+  <li><code><a class="new" href="Attribute/xml_base.html">xml:base</a></code></li>
+  <li><code><a class="new" href="Attribute/xml_lang.html">xml:lang</a></code></li>
+  <li><code><a class="new" href="Attribute/xml_space.html">xml:space</a></code></li>
+ </ul>
+ <h3 id="Y">Y</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/y.html">y</a></code></li>
+  <li><code><a class="new" href="Attribute/y1.html">y1</a></code></li>
+  <li><code><a class="new" href="Attribute/y2.html">y2</a></code></li>
+  <li><code><a class="new" href="Attribute/yChannelSelector.html">yChannelSelector</a></code></li>
+ </ul>
+ <h3 id="Z">Z</h3>
+ <ul>
+  <li><code><a class="new" href="Attribute/z.html">z</a></code></li>
+  <li><code><a class="new" href="Attribute/zoomAndPan.html">zoomAndPan</a></code></li>
+ </ul>
+</div>
+<h2 id="SVG_.E5.B1.9E.E6.80.A7.E4.B8.80.E8.A6.A7.EF.BC.88.E3.82.AB.E3.83.86.E3.82.B4.E3.83.AA.E5.88.A5.EF.BC.89">SVG 属性一覧（カテゴリ別）</h2>
+<h3 id=".E3.82.A2.E3.83.8B.E3.83.A1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.82.A4.E3.83.99.E3.83.B3.E3.83.88.E5.B1.9E.E6.80.A7"><a name="AnimationEvent">アニメーションイベント属性</a></h3>
+<p><code><a class="new" href="Attribute/onbegin.html">onbegin</a></code>, <code><a class="new" href="Attribute/onend.html">onend</a></code>, <code><a class="new" href="Attribute/onload.html">onload</a></code>, <code><a class="new" href="Attribute/onrepeat.html">onrepeat</a></code></p>
+<h3 id="AnimationAttributeTarget" name="AnimationAttributeTarget"><a name="AnimationAttributeTarget">Animation attribute target attributes</a></h3>
+<p><code><a class="new" href="Attribute/attributeType.html">attributeType</a></code>, <code><a class="new" href="Attribute/attributeName.html">attributeName</a></code></p>
+<h3 id=".E3.82.A2.E3.83.8B.E3.83.A1.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.82.BF.E3.82.A4.E3.83.9F.E3.83.B3.E3.82.B0.E5.B1.9E.E6.80.A7"><a name="AnimationTiming">アニメーションタイミング属性</a></h3>
+<p><code><a class="new" href="Attribute/begin.html">begin</a></code>, <code><a class="new" href="Attribute/dur.html">dur</a></code>, <code><a class="new" href="Attribute/end.html">end</a></code>, <code><a class="new" href="Attribute/min.html">min</a></code>, <code><a class="new" href="Attribute/max.html">max</a></code>, <code><a class="new" href="Attribute/restart.html">restart</a></code>, <code><a class="new" href="Attribute/repeatCount.html">repeatCount</a></code>, <code><a class="new" href="Attribute/repeatDur.html">repeatDur</a></code>, <code><a class="new" href="Attribute/fill.html">fill</a></code></p>
+<h3 id="Animation_value_attributes"><a name="AnimationValue">Animation value attributes</a></h3>
+<p><code><a class="new" href="Attribute/calcMode.html">calcMode</a></code>, <code><a class="new" href="Attribute/values.html">values</a></code>, <code><a class="new" href="Attribute/keyTimes.html">keyTimes</a></code>, <code><a class="new" href="Attribute/keySplines.html">keySplines</a></code>, <code><a class="new" href="Attribute/from.html">from</a></code>, <code><a class="new" href="Attribute/to.html">to</a></code>, <code><a class="new" href="Attribute/by.html">by</a></code></p>
+<h3 id="Animation_addition_attributes"><a name="AnimationAddition">Animation addition attributes</a></h3>
+<p><code><a class="new" href="Attribute/additive.html">additive</a></code>, <code><a class="new" href="Attribute/accumulate.html">accumulate</a></code></p>
+<h3 id=".E6.9D.A1.E4.BB.B6.E5.87.A6.E7.90.86.E5.B1.9E.E6.80.A7"><a name="ConditionalProcessing">条件処理属性</a></h3>
+<p><code><a class="new" href="Attribute/requiredExtensions.html">requiredExtensions</a></code>, <code><a class="new" href="Attribute/requiredFeatures.html">requiredFeatures</a></code>, <code><a class="new" href="Attribute/systemLanguage.html">systemLanguage</a></code>.</p>
+<h3 id=".E3.82.B3.E3.82.A2.E5.B1.9E.E6.80.A7"><a name="Core">コア属性</a></h3>
+<p><code><a class="new" href="Attribute/id.html">id</a></code>, <code><a class="new" href="Attribute/xml_base.html">xml:base</a></code>, <code><a class="new" href="Attribute/xml_lang.html">xml:lang</a></code>, <code><a class="new" href="Attribute/xml_space.html">xml:space</a></code></p>
+<h3 id=".E3.83.89.E3.82.AD.E3.83.A5.E3.83.A1.E3.83.B3.E3.83.88.E3.82.A4.E3.83.99.E3.83.B3.E3.83.88.E5.B1.9E.E6.80.A7"><a name="DocumentEvent">ドキュメントイベント属性</a></h3>
+<p><code><a class="new" href="Attribute/onabort.html">onabort</a></code>, <code><a class="new" href="Attribute/onerror.html">onerror</a></code>, <code><a class="new" href="Attribute/onresize.html">onresize</a></code>, <code><a class="new" href="Attribute/onscroll.html">onscroll</a></code>, <code><a class="new" href="Attribute/onunload.html">onunload</a></code>, <code><a class="new" href="Attribute/onzoom.html">onzoom</a></code></p>
+<h3 id="Filter_primitive_attributes"><a name="FilterPrimitive">Filter primitive attributes</a></h3>
+<p><code><a class="new" href="Attribute/height.html">height</a></code>, <code><a class="new" href="Attribute/result.html">result</a></code>, <code><a class="new" href="Attribute/width.html">width</a></code>, <code><a class="new" href="Attribute/x.html">x</a></code>, <code><a class="new" href="Attribute/y.html">y</a></code></p>
+<h3 id=".E3.82.B0.E3.83.A9.E3.83.95.E3.82.A3.E3.82.AB.E3.83.AB.E3.82.A4.E3.83.99.E3.83.B3.E3.83.88.E5.B1.9E.E6.80.A7"><a name="GraphicalEvent">グラフィカルイベント属性</a></h3>
+<p><code><a class="new" href="Attribute/onactivate.html">onactivate</a></code>, <code><a class="new" href="Attribute/onclick.html">onclick</a></code>, <code><a class="new" href="Attribute/onfocusin.html">onfocusin</a></code>, <code><a class="new" href="Attribute/onfocusout.html">onfocusout</a></code>, <code><a class="new" href="Attribute/onload.html">onload</a></code>, <code><a class="new" href="Attribute/onmousedown.html">onmousedown</a></code>, <code><a class="new" href="Attribute/onmousemove.html">onmousemove</a></code>, <code><a class="new" href="Attribute/onmouseout.html">onmouseout</a></code>, <code><a class="new" href="Attribute/onmouseover.html">onmouseover</a></code>, <code><a class="new" href="Attribute/onmouseup.html">onmouseup</a></code></p>
+<h3 id=".E3.83.97.E3.83.AC.E3.82.BC.E3.83.B3.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E5.B1.9E.E6.80.A7"><a name="Presentation">プレゼンテーション属性</a></h3>
+<div class="note">
+ Note すべてのSVGプレゼンテーション属性はCSSとして使用することができます。</div>
+<p><code><a class="new" href="Attribute/alignment-baseline.html">alignment-baseline</a></code>, <code><a class="new" href="Attribute/baseline-shift.html">baseline-shift</a></code>, <code><a class="new" href="Attribute/clip.html">clip</a></code>, <code><a class="new" href="Attribute/clip-path.html">clip-path</a></code>, <code><a class="new" href="Attribute/clip-rule.html">clip-rule</a></code>, <code><a class="new" href="Attribute/color.html">color</a></code>, <code><a class="new" href="Attribute/color-interpolation.html">color-interpolation</a></code>, <code><a class="new" href="Attribute/color-interpolation-filters.html">color-interpolation-filters</a></code>, <code><a class="new" href="Attribute/color-profile.html">color-profile</a></code>, <code><a class="new" href="Attribute/color-rendering.html">color-rendering</a></code>, <code><a class="new" href="Attribute/cursor.html">cursor</a></code>, <code><a class="new" href="Attribute/direction.html">direction</a></code>, <code><a class="new" href="Attribute/display.html">display</a></code>, <code><a class="new" href="Attribute/dominant-baseline.html">dominant-baseline</a></code>, <code><a class="new" href="Attribute/enable-background.html">enable-background</a></code>, <code><a class="new" href="Attribute/fill.html">fill</a></code>, <code><a class="new" href="Attribute/fill-opacity.html">fill-opacity</a></code>, <code><a class="new" href="Attribute/fill-rule.html">fill-rule</a></code>, <code><a class="new" href="Attribute/filter.html">filter</a></code>, <code><a class="new" href="Attribute/flood-color.html">flood-color</a></code>, <code><a class="new" href="Attribute/flood-opacity.html">flood-opacity</a></code>, <code><a class="new" href="Attribute/font-family.html">font-family</a></code>, <code><a class="new" href="Attribute/font-size.html">font-size</a></code>, <code><a class="new" href="Attribute/font-size-adjust.html">font-size-adjust</a></code>, <code><a class="new" href="Attribute/font-stretch.html">font-stretch</a></code>, <code><a class="new" href="Attribute/font-style.html">font-style</a></code>, <code><a class="new" href="Attribute/font-variant.html">font-variant</a></code>, <code><a class="new" href="Attribute/font-weight.html">font-weight</a></code>, <code><a class="new" href="Attribute/glyph-orientation-horizontal.html">glyph-orientation-horizontal</a></code>, <code><a class="new" href="Attribute/glyph-orientation-vertical.html">glyph-orientation-vertical</a></code>, <code><a class="new" href="Attribute/image-rendering.html">image-rendering</a></code>, <code><a class="new" href="Attribute/kerning.html">kerning</a></code>, <code><a class="new" href="Attribute/letter-spacing.html">letter-spacing</a></code>, <code><a class="new" href="Attribute/lighting-color.html">lighting-color</a></code>, <code><a class="new" href="Attribute/marker-end.html">marker-end</a></code>, <code><a class="new" href="Attribute/marker-mid.html">marker-mid</a></code>, <code><a class="new" href="Attribute/marker-start.html">marker-start</a></code>, <code><a class="new" href="Attribute/mask.html">mask</a></code>, <code><a class="new" href="Attribute/opacity.html">opacity</a></code>, <code><a class="new" href="Attribute/overflow.html">overflow</a></code>, <code><a class="new" href="Attribute/pointer-events.html">pointer-events</a></code>, <code><a class="new" href="Attribute/shape-rendering.html">shape-rendering</a></code>, <code><a class="new" href="Attribute/stop-color.html">stop-color</a></code>, <code><a class="new" href="Attribute/stop-opacity.html">stop-opacity</a></code>, <code><a class="new" href="Attribute/stroke.html">stroke</a></code>, <code><a class="new" href="Attribute/stroke-dasharray.html">stroke-dasharray</a></code>, <code><a class="new" href="Attribute/stroke-dashoffset.html">stroke-dashoffset</a></code>, <code><a class="new" href="Attribute/stroke-linecap.html">stroke-linecap</a></code>, <code><a class="new" href="Attribute/stroke-linejoin.html">stroke-linejoin</a></code>, <code><a class="new" href="Attribute/stroke-miterlimit.html">stroke-miterlimit</a></code>, <code><a class="new" href="Attribute/stroke-opacity.html">stroke-opacity</a></code>, <code><a class="new" href="Attribute/stroke-width.html">stroke-width</a></code>, <code><a class="new" href="Attribute/text-anchor.html">text-anchor</a></code>, <code><a class="new" href="Attribute/text-decoration.html">text-decoration</a></code>, <code><a class="new" href="Attribute/text-rendering.html">text-rendering</a></code>, <code><a class="new" href="Attribute/unicode-bidi.html">unicode-bidi</a></code>, <code><a class="new" href="Attribute/visibility.html">visibility</a></code>, <code><a class="new" href="Attribute/word-spacing.html">word-spacing</a></code>, <code><a class="new" href="Attribute/writing-mode.html">writing-mode</a></code></p>
+<h3 id="Transfer_function_attributes"><a name="TransferFunction">Transfer function attributes</a></h3>
+<p><code><a class="new" href="Attribute/type.html">type</a></code>, <code><a class="new" href="Attribute/tableValues.html">tableValues</a></code>, <code><a class="new" href="Attribute/slope.html">slope</a></code>, <code><a class="new" href="Attribute/intercept.html">intercept</a></code>, <code><a class="new" href="Attribute/amplitude.html">amplitude</a></code>, <code><a class="new" href="Attribute/exponent.html">exponent</a></code>, <code><a class="new" href="Attribute/offset.html">offset</a></code></p>
+<h3 id="XLink_attributes"><a name="XLink">XLink attributes</a></h3>
+<p><code><a class="new" href="Attribute/xlink_href.html">xlink:href</a></code>, <code><a class="new" href="Attribute/xlink_type.html">xlink:type</a></code>, <code><a class="new" href="Attribute/xlink_role.html">xlink:role</a></code>, <code><a class="new" href="Attribute/xlink_arcrole.html">xlink:arcrole</a></code>, <code><a class="new" href="Attribute/xlink_title.html">xlink:title</a></code>, <code><a class="new" href="Attribute/xlink_show.html">xlink:show</a></code>, <code><a class="new" href="Attribute/xlink_actuate.html">xlink:actuate</a></code></p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/SVG">SVG</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/TopicStub">TopicStub</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/NeedsTranslation">NeedsTranslation</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/SVG Reference">SVG Reference</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/NeedsHelp">NeedsHelp</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/SVG Attribute">SVG Attribute</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/kscarfone">kscarfone</a>, <a href="https://developer.mozilla.org/ja/profiles/manzyun">manzyun</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/manzyun">manzyun</a>,
+                      <time datetime="2014-03-27T00:53:43-07:00">2014/03/27 0:53:43</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/SVG/Attribute" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/SVG/Attribute">
+            English (US)
+          </option>          <option value="/fr/docs/Web/SVG/Attribute">
+            Français
+          </option>          <option value="/zh-TW/docs/Web/SVG/Attribute">
+            正體中文 (繁體)
+          </option>          <option value="/ru/docs/Web/SVG/Attribute">
+            Русский
+          </option>          <option value="/zh-CN/docs/Web/SVG/Attribute">
+            中文 (简体)
+          </option>          <option value="/ar/docs/Web/SVG/Attribute">
+            عربي
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:1843b89"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=1843b89"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=1843b89"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":498}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/SVG/Attribute by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 22:29:39 GMT -->
+</html>

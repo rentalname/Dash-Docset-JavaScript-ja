@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>XMLHttpRequest - Web API インターフェイス | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../index.html">
+  <link rel="copyright" href="XMLHttpRequest.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest$json">
+  <link rel="canonical" href="XMLHttpRequest.html" >
+
+  
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="XMLHttpRequest">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest">
+  <meta name="twitter:title" content="XMLHttpRequest">
+    <meta property="og:description" content="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています 。URL から データを読み出す簡単な方法を提供します。 XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。">
+  <meta name="description" content="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています 。URL から データを読み出す簡単な方法を提供します。 XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。">
+  <meta name="twitter:description" content="XMLHttpRequest は Microsoft によって設計され、Mozilla、Apple および Google が採用した JavaScript オブジェクトです。現在は W3C にて標準化されています 。URL から データを読み出す簡単な方法を提供します。 XMLHttpRequest という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ file および ftp を含む） HTTP 以外のプロトコルもサポートしています。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/API/XMLHttpRequest" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="XMLHttpRequest.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="XMLHttpRequest.html#language">言語の選択</a></li>
+          <li><a href="XMLHttpRequest.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/API/XMLHttpRequest" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Web/API/XMLHttpRequest" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../Tools.html">ツール</a></li><li><a href="../../../demos/index.html">MDN デモ</a></li><li><a href="../../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+        
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                              <li class="smaller">No translations exist for this document.</li>
+              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="XMLHttpRequest.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Web.html" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../API.html" rel="v:url" property="v:title">Web API インターフェイス</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">XMLHttpRequest</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="XMLHttpRequest.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>XMLHttpRequest</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="XMLHttpRequest.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="XMLHttpRequest.html#.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89.E6.A6.82.E8.A6.81" rel="internal">メソッド概要</a><li><a href="XMLHttpRequest.html#.E3.83.97.E3.83.AD.E3.83.91.E3.83.86.E3.82.A3" rel="internal">プロパティ</a><li><a href="XMLHttpRequest.html#.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89" rel="internal">メソッド</a><ol><li><a href="XMLHttpRequest.html#abort()" rel="internal">abort()</a><li><a href="XMLHttpRequest.html#getAllResponseHeaders()" rel="internal">getAllResponseHeaders()</a><li><a href="XMLHttpRequest.html#getResponseHeader()" rel="internal">getResponseHeader()</a><li><a href="XMLHttpRequest.html#init()" rel="internal">init()</a><li><a href="XMLHttpRequest.html#open()" rel="internal">open()</a><li><a href="XMLHttpRequest.html#openRequest()" rel="internal">openRequest()</a><li><a href="XMLHttpRequest.html#overrideMimeType()" rel="internal">overrideMimeType()</a><li><a href="XMLHttpRequest.html#send()" rel="internal">send()</a><li><a href="XMLHttpRequest.html#_" rel="internal"> 
+    非標準 
+    sendAsBinary()</a></a><li><a href="XMLHttpRequest.html#setRequestHeader()" rel="internal">setRequestHeader()</a></ol></li><li><a href="XMLHttpRequest.html#.E8.A8.BB" rel="internal">註</a><ol><li><ol><li><a href="XMLHttpRequest.html#.E3.82.A4.E3.83.99.E3.83.B3.E3.83.88" rel="internal">イベント</a></ol></li></ol></li><li><a href="XMLHttpRequest.html#Browser_Compatibility" rel="internal">ブラウザ互換性</a><li><a href="XMLHttpRequest.html#.E5.8F.82.E8.80.83" rel="internal">参考</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p><code>XMLHttpRequest</code> は Microsoft によって設計され、Mozilla、Apple および Google が採用した <a class="internal" href="../JavaScript.html" title="ja/JavaScript">JavaScript</a> オブジェクトです。現在は <a class="external" href="http://www.w3.org/TR/XMLHttpRequest/" title="http://www.w3.org/TR/XMLHttpRequest/">W3C にて標準化されています</a>。URL から データを読み出す簡単な方法を提供します。<code>XMLHttpRequest</code> という名前ではあるものの、XML に限らないデータ形式を取り扱うことができ、（ <code>file</code> および <code>ftp</code> を含む） <a href="https://developer.mozilla.org/ja/HTTP" title="ja/HTTP">HTTP</a> 以外のプロトコルもサポートしています。</p>
+<p><code>XMLHttpRequest</code> のインスタンスは、このように簡単に生成できます：</p>
+<pre>var req = new XMLHttpRequest();
+</pre>
+<p><code>XMLHttpRequest</code> の使い方の詳細については、<a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest/Using_XMLHttpRequest" title="ja/Using XMLHttpRequest">Using XMLHttpRequest</a> を参照してください。</p>
+<h2 id=".E3.83.A1.E3.82.BD.E3.83.83.E3.83.89.E6.A6.82.E8.A6.81">メソッド概要</h2>
+<table class="standard-table"> <tbody> <tr> <td><code>void <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#abort()" title="ja/DOM/XMLHttpRequest#abort()">abort</a>();</code></td> </tr> <tr> <td><code>string <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#getAllResponseHeaders()" title="ja/DOM/XMLHttpRequest#getAllResponseHeaders()">getAllResponseHeaders</a>();</code></td> </tr> <tr> <td><code>ACString <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#getResponseHeader()" title="ja/DOM/XMLHttpRequest#getResponseHeader()">getResponseHeader</a>(in AUTF8String header);</code></td> </tr> <tr> <td><code>[noscript] void <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#init()" title="ja/DOM/XMLHttpRequest#init()">init</a>(in nsIPrincipal principal, in nsIScriptContext scriptContext, in nsPIDOMWindow ownerWindow); <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></code></td> </tr> <tr> <td><code>void <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#open()" title="ja/DOM/XMLHttpRequest#open()">open</a>(in AUTF8String method, in AUTF8String url);</code></td> </tr> <tr> <td><code>[noscript] void <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#openRequest()" title="ja/DOM/XMLHttpRequest#openRequest()">openRequest</a>(in AUTF8String method, in AUTF8String url, in boolean async, in AString user, in AString password); <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></code></td> </tr> <tr> <td><code>void <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#overrideMimeType()" title="ja/DOM/XMLHttpRequest#overrideMimeType()">overrideMimeType</a>(in AUTF8String mimetype); <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></code></td> </tr> <tr> <td><code>void <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#send()" title="ja/DOM/XMLHttpRequest#send()">send</a>([optional] in nsIVariant body);</code></td> </tr> <tr> <td><code>void <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#sendAsBinary()" title="ja/DOM/XMLHttpRequest#sendAsBinary()">sendAsBinary</a>(in DOMString body);  <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span><br> </code></td> </tr> <tr> <td><code>void <a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest#setRequestHeader()" title="ja/DOM/XMLHttpRequest#setRequestHeader()">setRequestHeader</a>(in AUTF8String header, in AUTF8String value);</code></td> </tr> </tbody>
+</table>
+<h2 id=".E3.83.97.E3.83.AD.E3.83.91.E3.83.86.E3.82.A3">プロパティ</h2>
+<table class="standard-table"> <tbody> <tr> <td class="header">属性</td> <td class="header">型</td> <td class="header">詳細</td> </tr> <tr id="channel"> <td><code>channel</code> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td> <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIChannel" title="">nsIChannel</a></code></td> <td>リクエストの実行の際にオブジェクトによって使われるチャンネルです。チャンネルが作成されていない場合、この値は <code>null</code> となります。マルチパート・リクエストにおいてこの値は、マルチパート・リクエスト中の別々のパートではなく、最初のチャンネルとなります。<strong>アクセスには昇格された権限が必要です。読み取り専用。</strong></td> </tr> <tr id="mozBackgroundRequest"> <td><code>mozBackgroundRequest</code> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td> <td><code>boolean</code></td> <td> <p>オブジェクトがバックグラウンドサービスのリクエストであるかどうかを示します。 <code>true</code> である場合、リクエストに関連した読み込みグループは無く、セキュリティダイアログのユーザーへの表示が防止されます。<strong>アクセスには昇格された権限が必要です。</strong></p> <p>この場合において、（認証や不正な証明書の通知といった）セキュリティダイアログが通常通り表示されたのであれば、単純にリクエストが失敗したことを意味します。</p> </td> </tr> <tr id="mozResponseArrayBuffer"> <td><code>mozResponseArrayBuffer</code>  <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 6 / Thunderbird 6 / SeaMonkey 2.3)">廃止 Gecko 6</span></td> <td><a href="https://developer.mozilla.org/ja/javascript_typed_arrays/ArrayBuffer" title="ja/JavaScript typed arrays/ArrayBuffer"><code>ArrayBuffer</code></a></td> <td>リクエストに対する、JavaScript typed array 形式でのレスポンス。この値が NULL である場合、リクエストが成功しなかった、またはリクエストがまだ送信されていないかもしれません。<strong>読み取り専用。</strong></td> </tr> <tr id="multipart"> <td><code>multipart</code> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td> <td><code>boolean</code></td> <td> <p>レスポンスが複数のXML文書のストリームになることが予想されるかどうかを表します。<code>true</code> が設定された場合、最初のレスポンスのコンテンツタイプが <code>multipart/x-mixed-replace</code> でなければエラーが発生するでしょう。すべてのリクエストは非同期でなければなりません。</p> <p>これによりサーバーからのプッシュ通信が可能になります； ひとつひとつの XML　document を、このリクエスト形式で記述することにより、ドキュメントが送られてくる都度、新たな XML DOM document が生成され、<code>onload</code> ハンドラが呼び出されます。</p> <div class="note"><strong>註:</strong>　<code>true</code> に設定された場合、最初の XMLdocument が読み込まれて以降、 <code>onload</code> ハンドラと他のイベントハンドラはリセットされません。そして以後、レスポンスの断片を受け取る度に <code>onload</code> ハンドラが呼び出されることとなります。</div> </td> </tr> <tr id="onreadystatechange"> <td> <p><code>onreadystatechange</code></p> </td> <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIDOMEventListener" title="">nsIDOMEventListener</a></code></td> <td> <p><code>readyState</code> 属性が変更する都度呼び出される、 JavaScript 関数オブジェクト。コールバック関数はユーザーインターフェーススレッドから呼び出されます。</p> <div class="warning"><strong>警告:</strong> このプロパティはネイティブコードから使用してはいけません。また、同期リクエストとともに利用するべきでもありません。</div> </td> </tr> <tr id="readyState"> <td><code>readyState</code></td> <td><code>unsigned short</code></td> <td> <p>リクエストの状態です：</p> <table class="standard-table"> <tbody> <tr> <td class="header">値</td> <td class="header">状態</td> <td class="header">詳細</td> </tr> <tr> <td><code>0</code></td> <td><code>UNSENT</code></td> <td><code>open()</code> がまだ呼び出されていない。</td> </tr> <tr> <td><code>1</code></td> <td><code>OPENED</code></td> <td><code>send()</code> がまだ呼び出されていない。</td> </tr> <tr> <td><code>2</code></td> <td><code>HEADERS_RECEIVED</code></td> <td><code>send()</code> が呼び出され、ヘッダーとステータスが通った。</td> </tr> <tr> <td><code>3</code></td> <td><code>LOADING</code></td> <td>ダウンロード中；　<code>responseText</code> は断片的なデータを保持している。</td> </tr> <tr> <td><code>4</code></td> <td><code>DONE</code></td> <td>一連の動作が完了した。</td> </tr> </tbody> </table> </td> </tr> <tr id="response"> <td><code>response</code>  <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td> <td>varies</td> <td> <p><a href="https://developer.mozilla.org/ja/javascript_typed_arrays/ArrayBuffer" title="ja/JavaScript typed arrays/ArrayBuffer"><code>ArrayBuffer</code></a>、<a href="https://developer.mozilla.org/ja/DOM/Blob" title="ja/DOM/Blob"><code>Blob</code></a>、{domxref("Document")}} 、JavaScript object ("json"を指定した場合)、または string といった <code><a href="XMLHttpRequest.html#responseType">responseType</a></code> に従ったレスポンスの実体ボディ。リクエストが完了していない、または成功しなかった場合、この値は <code>NULL</code> となります。</p> </td> </tr> <tr id="responseText"> <td><code>responseText</code></td> <td><code>AString</code></td> <td>リクエストに対するテキスト形式でのレスポンス。リクエストの失敗または未送信の場合は null となります。<strong>読み取り専用。</strong></td> </tr> <tr id="responseType"> <td><code>responseType</code>  <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td> <td><code>AString</code></td> <td> <p>値を設定することでレスポンス型を変更することができます。これにより、サーバーに対して、どの形式のレスポンスを求めているかを表明します。</p> <table class="standard-table" style="width: auto;"> <tbody> <tr> <td class="header">値</td> <td class="header"><code>response</code> プロパティのデータ型</td> </tr> <tr> <td><em>empty string</em></td> <td>String （デフォルト値）</td> </tr> <tr> <td>"arraybuffer"</td> <td><a href="https://developer.mozilla.org/ja/javascript_typed_arrays/ArrayBuffer" title="ja/JavaScript typed arrays/ArrayBuffer"><code>ArrayBuffer</code></a></td> </tr> <tr> <td>"blob"</td> <td><a class="new" href="../../DOM/Blob.html" title="The documentation about this has not yet been written; please consider contributing!"><code>Blob</code></a></td> </tr> <tr> <td>"document"</td> <td><a href="https://developer.mozilla.org/ja/docs/Web/API/Document" title="DOM において、document オブジェクトは HTML, XHTML, そして XML ドキュメントを表す一般的な方法を提供します。document オブジェクトは一般的な DOM Core document インタフェースを備えています。"><code>Document</code></a></td> </tr> <tr> <td>"text"</td> <td>String</td> </tr> <tr> <td>"json"</td> <td>サーバーが返してきたJSON文字列をパースした JavaScript オブジェクト  <div class="note"><strong>註:</strong> この指定は Firefox 9 では "<code>moz-json</code>" として実装されていました。この接頭辞付きの指定は Firefox 10 で削除されたため、今後は動作しません。</div> </td> </tr> </tbody> </table> </td> </tr> <tr id="responseXML"> <td><code>responseXML</code></td> <td><code>nsIDOMDocument</code></td> <td> <p>リクエストに対する、DOM <code><a class="internal" href="https://developer.mozilla.org/ja/DOM/document" title="ja/DOM/Document">Document</a></code> オブジェクト形式のレスポンスです。リクエストが完了してない、成功しなかった、もしくはXMLとしてパースに失敗した場合、この値は <code>null</code> となります。レスポンスは <code>text/xml</code> ストリームとしてパースされます。<strong>読み取り専用。</strong></p> <div class="note"><strong>註:</strong> サーバーが <code>text/xml</code> Content-Type ヘッダを付与していない場合、<code>overrideMimeType()</code> を用いることで、<code>XMLHttpRequest</code> に強制的に XML としてパースさせることができます。</div> </td> </tr> <tr id="status"> <td><code>status</code></td> <td><code>unsigned long</code></td> <td>リクエストに対するレスポンスのステータスです。この値は HTTP リザルトコードとなります（例えばリクエストに成功した場合、<code>status</code> は 200 となります）.<strong>読み取り専用。</strong></td> </tr> <tr id="statusText"> <td><code>statusText</code></td> <td><code>AUTF8String</code></td> <td>HTTP サーバーから返ってきたレスポンス文字列です。<code>status</code> とは異なり、（"<code>200 OK</code>" のように）レスポンスメッセージの完全な文が含まれています。<strong>読み取り専用。</strong></td> </tr> <tr id="upload"> <td><code>upload</code> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td> <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIXMLHttpRequestUpload" title="">nsIXMLHttpRequestUpload</a></code></td> <td><code>upload</code>にイベントリスナを加えることにより、アップロードプロセスを追跡することができます。 </td> </tr> <tr id="withCredentials"> <td><code>withCredentials</code> <span title="この API は標準化されていません。"><i class="icon-warning-sign"> </i></span></td> <td><code>boolean</code></td> <td> <p>クロスサイト Access-Control リクエストに cookie や 認証ヘッダといった 認証情報を使用させるかを示します。</p> <div class="note"><strong>註:</strong> 同一サイトでのリクエストに影響を与えることはありません。</div> <p>デフォルト値は <code>false</code> です。</p> </td> </tr> </tbody>
+</table>
+<h2 id=".E3.83.A1.E3.82.BD.E3.83.83.E3.83.89">メソッド</h2>
+<h3 id="abort()">abort()</h3>
+<p>リクエストがすでに送信されている場合、リクエストを中止します。</p>
+<h3 id="getAllResponseHeaders()">getAllResponseHeaders()</h3>
+<pre>string getAllResponseHeaders();
+</pre>
+<p>文字列として、すべてのレスポンスヘッダを返します。レスポンスを何も受け取らなかった場合は <code>null</code> を返します。<strong> 註:</strong> マルチパートリクエストでは、オリジナルのチャンネルではなく、リクエストの<em>現在の</em>パートのヘッダを返します。</p>
+<h3 id="getResponseHeader()">getResponseHeader()</h3>
+<pre>ACString getResponseHeader(
+ in AUTF8String header
+);
+</pre>
+<p>指定したヘッダ文を含む文字列を返します。レスポンスを受信していない、またはレスポンス中に指定したヘッダが存在しない場合は <code>null</code> を返します。</p>
+<p></p><div> 
+    <span class="indicatorInHeadline nonStandard nonStandardMethod">非標準</span> 
+    <h3 id="init()">init()</h3> 
+</div><p></p>
+<p>C++ のコードから使うことにより、オブジェクトを初期化します。</p>
+<div class="warning"><strong>警告:</strong> JavaScript からこのメソッドを<em>呼び出してはいけません</em>。</div>
+<pre>[noscript] void init(
+ in nsIPrincipal principal,
+ in nsIScriptContext scriptContext,
+ in nsPIDOMWindow ownerWindow
+);
+</pre>
+<h6 id=".E5.BC.95.E6.95.B0">引数</h6>
+<dl> <dt><code>principal</code></dt> <dd>レスポンスに用いる主体。<code>null</code> は禁止されています。</dd> <dt><code>scriptContext</code></dt> <dd>リクエストに用いたスクリプトコンテクスト。<code>null</code> は禁止されています。</dd> <dt><code>ownerWindow</code></dt> <dd>リクエストに関連するウィンドウ。<code>null</code> は禁止されています。</dd>
+</dl>
+<h3 id="open()">open()</h3>
+<p>リクエストを初期化します。このメソッドは JavaScript から使用するようにしてください。ネイティブコードからの初期化には、代わりに <a class="internal" href="https://developer.mozilla.org/ja/nsIXMLHttpRequest#openRequest()" title="/ja/XMLHttpRequest#openRequest()"><code>openRequest()</code></a>　を使用するようにしてください。</p>
+<div class="note"><strong>註:</strong> 既にアクティブなリクエストがある状況（ <code>open()</code> または <code>openRequest()</code> が既に呼び出された状況）で、このメソッドを呼び出した場合、<code>abort()</code> を呼び出すのと等価となります。</div>
+<pre>void open(
+ in AUTF8String method,
+ in AUTF8String url,
+ [optional] in boolean async,
+ [optional] in AString user,
+ [optional] in AString password
+);
+</pre>
+<h6 id=".E5.BC.95.E6.95.B0_2">引数</h6>
+<dl> <dt><code>method</code></dt> <dd>使用する HTTP メソッド。"POST" または "GET"となります。HTTP URLでない場合は無視されます。</dd> <dt><code>url</code></dt> <dd>リクエストを送信する URL</dd> <dt><code>async</code></dt> <dd>非同期で操作を実行するかを示す、オプションの真偽値です。デフォルトでは <code>true</code> に設定されています。<code>false</code> が設定されている場合、<code>send()</code> メソッドはレスポンスを受信するまで返しません。<code>true</code> が設定されている場合、トランザクションが完了した通知は、イベントリスナによって提供されます。<code>multipart</code> 属性が <code>true</code> である、または例外が投げられるであろう場合、この値は <code>true</code> で<em>なければなりません</em>。</dd> <dt><code>user</code></dt> <dd>認証を目的として使用される、ユーザー名のオプションです。デフォルトでは、空の文字列となっています。</dd> <dt><code>password</code></dt> <dd>認証を目的として使用される、パスワードのオプションです。デフォルトでは、空の文字列となっています。</dd>
+</dl>
+<p></p><div> 
+    <span class="indicatorInHeadline nonStandard nonStandardMethod">非標準</span> 
+    <h3 id="openRequest()">openRequest()</h3> 
+</div><p></p>
+<p>リクエストを初期化します。このメソッドは ネイティブコード から使用するようにしてください。JavaScript コードからの初期化には、代わりに <a class="internal" href="https://developer.mozilla.org/ja/nsIXMLHttpRequest#open()" title="/ja/XMLHttpRequest#open()"><code>open()</code></a>　を使用するようにしてください。<code>open()</code> の項目を参照してください。</p>
+<p></p><div> 
+    <span class="indicatorInHeadline nonStandard nonStandardMethod">非標準</span> 
+    <h3 id="overrideMimeType()">overrideMimeType()</h3> 
+</div><p></p>
+<p>サーバーから返ってくる MIME タイプを上書きします。例えば、サーバーの返す MIME タイプに関わらず、強制的に text/xml としてストリームをパースするなどの用途に使えるでしょう。このメソッドは <code>send()</code> が呼び出される前に呼び出す必要があります。</p>
+<pre>void overrideMimeType(
+ in AUTF8String mimetype
+);
+</pre>
+<h3 id="send()">send()</h3>
+<p>リクエストを送信します。非同期リクエストの場合（デフォルトの場合ですが）、メソッドはリクエストを送信して間もなく返ります。同期リクエストの場合、このメソッドはレスポンスが到着するまで返りません。</p>
+<div class="note"><strong>註:</strong> <code>send()</code> を呼び出す前に、イベントリスナを設定する必要があります。</div>
+<pre>void send(
+ [optional] in nsIVariant body
+);
+</pre>
+<h6 id=".E5.BC.95.E6.95.B0_3">引数</h6>
+<dl> <dt><code>body</code></dt> <dd>POST リクエストの本文として使われる場合、この値は <code>nsIDocument</code>、<code>nsIInputStream</code>、または文字列 (ネイティブコードから呼び出している場合は <code>nsISupportsString</code>) のいずれかとなります。Gecko 1.9.2 からは DOM <a class="new" href="File.html" title="The documentation about this has not yet been written; please consider contributing!"><code>File</code></a> を、Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1) からは、<a href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest/FormData" title="ja/XMLHttpRequest/FormData"><code>FormData</code></a> オブジェクトを指定できるようになりました。</dd>
+</dl><h6 id=".E8.84.9A.E6.B3.A8">脚注</h6>
+<p>body が <code>nsIDOMDocument</code> である場合、送信の前にシリアライズされます。nsIDOMDocument を送信するとき、Firefox　3 までのバージョンでは常に UTF-8 エンコーディングを用いてリクエストが送信されます。<a href="https://developer.mozilla.org/ja/Firefox_3" rel="internal" title="ja/Firefox_3">Firefox 3</a> では、正確に <code>body.xmlEncoding</code> で指定されている、またはエンコードの指定が無い場合は UTF-8 を用いてエンコードされたドキュメントを送信します。</p>
+<p>body が <code>nsIInputStream</code>の場合、<code>nsIUploadChannel</code> の <code>setUploadStream()</code> メソッドと互換性が無ければなりません。その場合、リクエストの Content-Length ヘッダに <code>nsIInputStream</code> の <code>available()</code> メソッドを用いて取得された値が設定されます。ッセージ本文の一部として扱われるストリームの最初には、あらゆるヘッダが含まれます。ストリームの MIME タイプは、<code>send()</code> よりも先に呼び出した <a class="internal" href="https://developer.mozilla.org/ja/nsIXMLHttpRequest#setRequestHeader()" title="/ja/XMLHttpRequest#setRequestHeader()"><code>setRequestHeader()</code></a>メソッドを用いて設定された Content-Type ヘッダが指定されるはずです。</p>
+<h3 id="_
+____.E9.9D.9E.E6.A8.99.E6.BA.96_
+____sendAsBinary()"><div> 
+    <span class="indicatorInHeadline nonStandard nonStandardMethod">非標準</span> 
+    <h3>sendAsBinary()</h3> 
+</div> </h3>
+<p>バイナリデータを送る、<code>send()</code> メソッドの亜種です。</p>
+<pre>void sendAsBinary(
+ in DOMString body
+);
+</pre>
+<h6 id=".E5.BC.95.E6.95.B0_4">引数</h6>
+<dl> <dt><code>body</code></dt> <dd>DOMstring 形式のリクエスト本体です。このデータは切り捨て処理（それぞれの文字の上位バイトを削除）によって1バイト文字の文字列に変換されます。</dd>
+</dl><h3 id="setRequestHeader()">setRequestHeader()</h3>
+<p>HTTP リクエストヘッダの値を設定します。 このメソッドを使用する前に、<a class="internal" href="https://developer.mozilla.org/ja/nsIXMLHttpRequest#open()" title="/ja/XMLHttpRequest#open()"><code>open()</code></a> を呼び出さなくてはいけません。</p>
+<pre>void setRequestHeader(
+ in AUTF8String header,
+ in AUTF8String value
+);
+</pre>
+<h6 id=".E5.BC.95.E6.95.B0_5">引数</h6>
+<dl> <dt><code>header</code></dt> <dd>設定されるヘッダーの名前。</dd> <dt><code>value</code></dt> <dd>設定されるヘッダー本文の値。</dd>
+</dl><h2 id=".E8.A8.BB">註</h2>
+<ul> <li class="note">デフォルトでは、irefox 3 では <code>XMLHttpRequest</code> のサーバー毎の接続数は6つずつに制限されています（それ以前のバージョンではこの値はサーバーごとに2つずつでした）。いくつかのインタラクティブな Web サイトでは <code>XMLHttpRequest</code> の接続を開いたままにしており、そうしたサイトでは複数のセッションが開かれているために、ウィンドウの再描画が行われなかったり操作に反応しなくなるなど、ブラウザが応答しなくなるかもしれません。この値は <code><a class="new linkification-ext" href="https://developer.mozilla.org/about%3Aconfig" rel="internal" title="Linkification: about:config">about:config</a></code> 内の <code>network.http.max-persistent-connections-per-server</code> の設定を編集することにより変更が可能です。</li> <li class="note"><span title="(Firefox 7.0 / Thunderbird 7.0 / SeaMonkey 2.4)">Gecko 7.0</span> より、<code><a href="XMLHttpRequest.html#setRequestHeader()">setRequestHeader()</a></code> によってセットされるヘッダーが、リダイレクト時にもリクエストともに送信されるようになりました。以前では、これらのヘッダーが送信されることはありませんでした。</li> <li class="note"><code>XMLHttpRequest</code> は Gecko に於いて <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIXMLHttpRequest" title="">nsIXMLHttpRequest</a></code>、<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIXMLHttpRequestEventTarget" title="">nsIXMLHttpRequestEventTarget</a></code>、および <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIJSXMLHttpRequest" title="">nsIJSXMLHttpRequest</a></code> インターフェースを用いて実装されています。</li>
+</ul>
+<h4 class="note" id=".E3.82.A4.E3.83.99.E3.83.B3.E3.83.88">イベント</h4>
+<p>後に、多くのブラウザでは 追加でイベントハンドラがいくつもサポートされてきました（<code>onload</code>、<code>onerror</code>、<code>onprogress</code> など）。これらは Firefox でもサポートされています。詳細は、<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIXMLHttpRequestEventTarget" title="">nsIXMLHttpRequestEventTarget</a></code> および <a href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest/Using_XMLHttpRequest" title="ja/XMLHttpRequest/Using_XMLHttpRequest">Using XMLHttpRequest</a>　を参照してください。</p>
+<p>Firefox を含む最近のブラウザでは、<code>XMLHttpRequest</code> のイベントを監視する方法として、<code>on*</code> プロパティにハンドラ関数を設定する方法に加え、標準のイベントの <code><a href="https://developer.mozilla.org/ja/DOM/element.addEventListener" title="element.addEventListener">addEventListener</a></code> APIを使用してイベントを監視する方法が提供されています。</p><h2 id="Browser_Compatibility" name="Browser_Compatibility">ブラウザ互換性</h2>
+<p></p><div class="htab"> 
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a> 
+    <ul> 
+        <li class="selected"><a>デスクトップ</a></li> 
+        <li><a>モバイル</a></li> 
+    </ul> 
+</div><p></p>
+<div id="compat-desktop"> <table class="compat-table"> <tbody> <tr> <th>機能</th> <th>Chrome</th> <th>Firefox (Gecko)</th> <th>Internet Explorer</th> <th>Opera</th> <th>Safari (WebKit)</th> </tr> <tr> <td>基本機能のサポート</td> <td>1</td> <td>1.0</td> <td> <p>5 (ActiveXObject により実装)</p> <p>7 (XMLHttpRequest)</p> </td> <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td> <td>1.2</td> </tr> </tbody> </table>
+</div>
+<div id="compat-mobile"> <table class="compat-table"> <tbody> <tr> <th>機能</th> <th>Android</th> <th>Chrome for Android</th> <th>Firefox Mobile (Gecko)</th> <th>IE Phone</th> <th>Opera Mobile</th> <th>Safari Mobile</th> </tr> <tr> <td>基本機能のサポート</td> <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td> <td>0.16</td> <td><span style="color: #888;" title="最新の対応状況に更新してください。">(有)</span></td> <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td> <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td> <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td> </tr> </tbody> </table>
+</div>
+<h2 id=".E5.8F.82.E8.80.83">参考</h2>
+<ul> <li>XMLHttpRequest に関連する MDN の記事: <ul> <li><a href="https://developer.mozilla.org/ja/AJAX/Getting_Started" title="ja/AJAX/Getting_Started">AJAX - Getting Started</a></li> <li><a class="internal" href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest/Using_XMLHttpRequest" title="ja/Using XMLHttpRequest">Using XMLHttpRequest</a></li> <li><a href="https://developer.mozilla.org/ja/HTML_in_XMLHttpRequest" title="ja/HTML_in_XMLHttpRequest">HTML in XMLHttpRequest</a></li> <li><a href="https://developer.mozilla.org/ja/DOM/XMLHttpRequest/FormData" title="ja/XMLHttpRequest/FormData"><code>FormData</code></a></li> </ul> </li> <li>W3C および ブラウザベンダの XMLHttpRequest リファレンス: <ul> <li><a class="external" href="http://www.w3.org/TR/XMLHttpRequest/">W3C: XMLHttpRequest</a> (基本機能)</li> <li><a class="external" href="http://dvcs.w3.org/hg/xhr/raw-file/tip/Overview.html" title="http://dvcs.w3.org/hg/xhr/raw-file/tip/Overview.html">W3C: XMLHttpRequest</a> (基本機能の拡張についての最新のエディターズドラフト。公式には <a class="external" href="http://www.w3.org/TR/XMLHttpRequest2/" title="http://www.w3.org/TR/XMLHttpRequest2/">XMLHttpRequest Level 2</a> と呼ばれています。)</li> <li><a class="external" href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/xmlsdk/html/xmobjxmlhttprequest.asp">Microsoft の文書</a></li> <li><a class="external" href="http://developer.apple.com/internet/webcontent/xmlhttpreq.html">Apple developers' reference</a></li> </ul> </li> <li><a class="external" href="http://jibbering.com/2002/4/httprequest.html">"Using the XMLHttpRequest Object" (jibbering.com)</a></li> <li><a class="external" href="http://www.peej.co.uk/articles/rich-user-experience.html">XMLHttpRequest - REST and the Rich User Experience</a></li>
+</ul>
+<p></p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../tag/AJAX.html">AJAX</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/XMLHttpRequest">XMLHttpRequest</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../profiles/saneyuki_s.html">saneyuki_s</a>, <a href="../../../profiles/ethertank.html">ethertank</a>, <a href="../../../profiles/Mgjbot.html">Mgjbot</a>, <a href="../../../profiles/Hfjapancom.html">Hfjapancom</a>, <a href="https://developer.mozilla.org/ja/profiles/torinome">torinome</a>, <a href="../../../profiles/Electrolysis.html">Electrolysis</a>, <a href="../../../profiles/Okome.html">Okome</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-06-05T10:31:33-07:00">2013/06/05 10:31:33</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                                  </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":669}</script></body>
+</html>

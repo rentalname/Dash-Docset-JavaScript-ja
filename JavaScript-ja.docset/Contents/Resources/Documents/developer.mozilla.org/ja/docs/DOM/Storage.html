@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>DOM Storage - DOM | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../index.html">
+  <link rel="copyright" href="Storage.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/DOM/Storage$json">
+  <link rel="canonical" href="Storage.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage" title="DOM Storage guide">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/API/DOM/Storage/Storage" title="Storage">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/DOM/Almacenamiento" title="Almacenamiento">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/DOM/Storage" title="Storage">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/DOM/Storage" title="Storage">
+          <link rel="alternate" hreflang="nl" href="https://developer.mozilla.org/nl/docs/DOM/Storage" title="DOM Storage">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/Web/Guide/API/DOM/Storage" title="DOM Storage guide">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/Guide/API/DOM/Storage" title="DOM Storage guide">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="DOM Storage">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/DOM/Storage">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/DOM/Storage">
+  <meta name="twitter:title" content="DOM Storage">
+    <meta property="og:description" content="DOM Storage とは、 Web Applications 1.0 仕様で導入された ストレージに関する一連の機能 に付けられた名称です。現在は W3C Web Storage 仕様として独立しています。DOM Storage は Cookie の代わりとなるもので、より大容量で、より安全かつ簡単に情報を保存できるように設計されています。 Firefox 2 と Safari 4 で導入されました。">
+  <meta name="description" content="DOM Storage とは、 Web Applications 1.0 仕様で導入された ストレージに関する一連の機能 に付けられた名称です。現在は W3C Web Storage 仕様として独立しています。DOM Storage は Cookie の代わりとなるもので、より大容量で、より安全かつ簡単に情報を保存できるように設計されています。 Firefox 2 と Safari 4 で導入されました。">
+  <meta name="twitter:description" content="DOM Storage とは、 Web Applications 1.0 仕様で導入された ストレージに関する一連の機能 に付けられた名称です。現在は W3C Web Storage 仕様として独立しています。DOM Storage は Cookie の代わりとなるもので、より大容量で、より安全かつ簡単に情報を保存できるように設計されています。 Firefox 2 と Safari 4 で導入されました。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="DOM/Storage" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Storage.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Storage.html#language">言語の選択</a></li>
+          <li><a href="Storage.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/DOM/Storage" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/DOM/Storage" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../Web/HTML.html">HTML</a></li>
+              <li><a href="../Web/CSS.html">CSS</a></li>
+              <li><a href="../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../Web/API.html">API / DOM</a></li>
+              <li><a href="../Web/Apps.html">Apps</a></li>
+              <li><a href="../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Tools.html">ツール</a></li><li><a href="../../demos/index.html">MDN デモ</a></li><li><a href="../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage" title="DOM Storage guide">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/API/DOM/Storage/Storage" title="Storage">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/DOM/Almacenamiento" title="Almacenamiento">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/DOM/Storage" title="Storage">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/DOM/Storage" title="Storage">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/nl/docs/DOM/Storage" title="DOM Storage">Nederlands</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/Web/Guide/API/DOM/Storage" title="DOM Storage guide">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/Guide/API/DOM/Storage" title="DOM Storage guide">Русский</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/DOM/Storage$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/DOM/Storage$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Storage.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../DOM.html" rel="v:url" property="v:title">DOM</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">DOM Storage</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Storage.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>DOM Storage</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-present">
+
+                    <!-- additional controls row; hidden unless needed -->
+          <div id="wiki-controls" class="column-container column-container-reverse">
+            <div class="column-strip">
+              <!-- Show TOC "show" link -->
+            </div>
+            <div class="column-half">
+            </div>
+            <div class="column-strip quick-links hidden">
+              <a href="Storage.html#show-quick-links" class="title smaller" id="show-quick-links"><i aria-hidden="true" class="icon-caret-down"></i>サイドバーを表示</a>
+            </div>
+          </div>
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Storage.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <code></code><li><ol><li><a href="Storage.html#Summary" rel="internal">概要</a><li><a href="Storage.html#.E8.A7.A3.E8.AA.AC" rel="internal">解説</a><li><a href="Storage.html#.E3.83.AA.E3.83.95.E3.82.A1.E3.83.AC.E3.83.B3.E3.82.B9" rel="internal">リファレンス</a><code></code><code></code><code></code><ol><li><a href="Storage.html#Storage" rel="internal"><code>Storage</code></a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Storage.html#sessionStorage" rel="internal"><code>sessionStorage</code></a><code></code><code></code><li><a href="Storage.html#localStorage" rel="internal"><code>localStorage</code></a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Storage.html#globalStorage" rel="internal"><code>globalStorage</code></a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="Storage.html#Storage_.E3.81.AE.E5.A0.B4.E6.89.80.E3.81.A8.E3.83.87.E3.83.BC.E3.82.BF.E3.81.AE.E6.B6.88.E5.8E.BB" rel="internal">Storage の場所とデータの消去</a><li><a href="Storage.html#.E8.A9.B3.E7.B4.B0" rel="internal">詳細</a><li><a href="Storage.html#.E4.BE.8B" rel="internal">例</a><li><a href="Storage.html#Browser_compatibility" rel="internal">ブラウザの互換性</a><li><a href="Storage.html#.E9.96.A2.E9.80.A3.E3.83.AA.E3.83.B3.E3.82.AF" rel="internal">関連リンク</a><code></code></ol></li>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-half wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p><span class="breadcrumbs domRef_breadcrumbs themeUpdated">« <a href="DOM_Reference.html">DOM リファレンス</a></span> 
+ 
+ 
+</p><section class="Quick_links" id="Quick_Links"><!-- --></section> <span id="Summary"></span><p></p>
+<h3 id="Summary" name="Summary">概要</h3>
+<p>DOM Storage とは、<a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/">Web Applications 1.0</a> 仕様で導入された<a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/#storage">ストレージに関する一連の機能</a>に付けられた名称です。現在は <a class="external" href="http://dev.w3.org/html5/webstorage/">W3C Web Storage</a> 仕様として独立しています。DOM Storage は Cookie の代わりとなるもので、より大容量で、より安全かつ簡単に情報を保存できるように設計されています。<a href="https://developer.mozilla.org/ja/docs/Firefox_2_for_developers">Firefox 2</a>と<a class="external" href="http://developer.apple.com/safari/library/documentation/iPhone/Conceptual/SafariJSDatabaseGuide/Name-ValueStorage/Name-ValueStorage.html">Safari 4</a>で導入されました。</p>
+<div class="note">
+  <strong>注:</strong> DOM Storage は <a href="https://developer.mozilla.org/ja/docs/Storage">mozStorage</a> (Mozilla の SQLite 用 XPCOM インタフェース) や <a href="https://developer.mozilla.org/ja/docs/Session_store_API"> セッションストア API</a> (拡張機能用の <a href="../XPCOM.html">XPCOM</a> ストレージユーティリティ) とは別のものです。</div>
+<p><span id="Description"></span></p>
+<h3 id=".E8.A7.A3.E8.AA.AC" name=".E8.A7.A3.E8.AA.AC">解説</h3>
+<p>DOM Storage の仕組みを利用すると、文字列のキーと値のペアを安全に保存し、後で取り出して使用することが可能になります。この機能は、長期間オフラインのまま作業ができるような高度な機能を持った対話式のアプリケーションを構築するための包括的な方法を提供することを目標として追加されたものです。</p>
+<p>Mozilla ベースのブラウザ、Internet Explorer 8以降、Safari 4以降、およびChromeはすべて、動作可能な DOM Storage 仕様を実装しています。(IEの古いバージョンにも対応して、このような機能をブラウザに依存せず使用する必要がある場合、Internet ExplorerにはDOM Storageより以前からある“<a class="external" href="http://msdn.microsoft.com/workshop/author/behaviors/reference/behaviors/userdata.asp">userData behavior</a>”という類似のレガシーな機能があることを知っているとよいでしょう。)</p>
+<p>ブラウザのみを使って充分な量のデータを任意の期間永続化させる良い方法は存在しないため、DOM Storage は役立つでしょう。<a class="external" href="http://en.wikipedia.org/wiki/HTTP_cookie">ブラウザの Cookie</a> には容量に制限があり、永続化されたデータを管理する方法がサポートされていませんし、<a class="external" href="http://www.macromedia.com/support/documentation/en/flashplayer/help/help02.html">Flash Local Storage</a> などの他の方法は外部プラグインを必要とします。</p>
+<p>新しい DOM Storage の機能 (と Internet Explorer の userData Behavior) を使った最初の公開アプリケーションのひとつとして、<a class="external" href="http://aaronboodman.com/">Aaron Boodman</a> 氏が作成した、メモを取るためのアプリケーション <a class="external" href="http://aaronboodman.com/halfnote/">halfnote</a> があります。このアプリケーションはメモをローカルの保存領域と (インターネットに接続できれば) サーバーに同時に保存します。 この方法によって、インターネットに常時接続できない環境でも、ユーザはバックアップを取りながら安全にメモを書くことができます。</p>
+<p>halfnote が提示したコンセプトと実装は比較的シンプルなものでしたが、これが作成されることによって、オンラインとオフラインの両方で使用可能な新しい種類の Web アプリケーションの可能性が示されました。</p>
+<p><span id="Reference"></span></p>
+<h3 id=".E3.83.AA.E3.83.95.E3.82.A1.E3.83.AC.E3.83.B3.E3.82.B9" name=".E3.83.AA.E3.83.95.E3.82.A1.E3.83.AC.E3.83.B3.E3.82.B9">リファレンス</h3>
+<p>以下に挙げるのは、すべての <a href="https://developer.mozilla.org/ja/docs/DOM/window"><code>window</code> オブジェクト</a>のプロパティとして存在するグローバルオブジェクトです。つまり、<code>sessionStorage</code> または <code>window.sessionStorage</code> のようにしてアクセスできます。 (これは重要なポイントです。なぜならこれにより、iframe を使って、そのデータがページに直接含まれているかどうかに関わらず、追加のデータを保存したりアクセスすることができるからです。)</p>
+<h4 id="Storage" name="Storage"><code>Storage</code></h4>
+<p>これは、すべてのStorageインスタンス(<code>sessionStorage</code> , <code>globalStorage[location.hostname])</code>に対するコンストラクタ (<code>Storage</code>) です。 <code>Storage.prototype.removeKey = function(key){ this.removeItem(this.key(key)) }</code> と設定すれば、<code>localStorage.removeKey</code> と <code>sessionStorage.removeKey</code> にも影響します。</p>
+<p>ただし、<code>globalStorage</code> の要素は <code>Storage</code> のインスタンスではなく、 <code>StorageObsolete</code> のインスタンスです。</p>
+<p><code>Storage</code> は WhatWG <a class="external" href="http://dev.w3.org/html5/webstorage/#storage-0">Storage Interface</a> によって以下のように定義されています。</p>
+<pre>interface <dfn>Storage</dfn> {
+  readonly attribute unsigned long <a class="external" href="http://dev.w3.org/html5/webstorage/#dom-storage-length">length</a>;
+  [IndexGetter] DOMString <a class="external" href="http://dev.w3.org/html5/webstorage/#dom-storage-key">key</a>(in unsigned long index);
+  [NameGetter] DOMString <a class="external" href="http://dev.w3.org/html5/webstorage/#dom-storage-getitem">getItem</a>(in DOMString key);
+  [NameSetter] void <a class="external" href="http://dev.w3.org/html5/webstorage/#dom-storage-setitem">setItem</a>(in DOMString key, in DOMString data);
+  [NameDeleter] void <a class="external" href="http://dev.w3.org/html5/webstorage/#dom-storage-removeitem">removeItem</a>(in DOMString key);
+  void <a class="external" href="http://dev.w3.org/html5/webstorage/#dom-storage-clear">clear</a>();
+};
+</pre>
+<div class="note">
+  <strong>注: </strong>通常のJavaScriptのプロパティアクセスメソッド経由で値を読み書きできますが、<code>getItem</code> および <code>setItem</code> メソッドの使用が推奨されています。</div>
+<div class="note">
+  <strong>注:</strong> このページで説明しているどの Storage も、それにストアするものはすべてその <code>.toString</code> メソッドによって文字列に変換されてからストアされるということを念頭に置いてください。ですから、普通のオブジェクトをストアしようとすれば、そのオブジェクトやJSON表現がストアされるのではなく、<code>"[object Object]"</code>という文字列となります。オブジェクトを文字列形式にするには、ブラウザが提供するJSONのパース、文字列化のネイティブなメソッドを使うのが、普通で有効な方法でしょう。</div>
+<h4 id="sessionStorage" name="sessionStorage"><code>sessionStorage</code></h4>
+<p><code>sessionStorage</code> はページセッションの間利用できるストレージを保持するグローバルオブジェクトです。ページセッションはブラウザが開かれている間だけ継続され、ページが更新されたり復元されても持続されます。ページを新しいタブやウィンドウで開くと、新しいセッションが開始されます。</p>
+<pre>// 現在のセッションの保存領域にデータを保存する
+sessionStorage.setItem("username", "John");
+
+// 保存されたデータにアクセスする
+alert( "username = " + sessionStorage.getItem("username"));
+</pre>
+<p><code>sessionStorage</code> オブジェクトは、誤ってブラウザを更新してしまっても一時データが失われないように、そのデータを保存および復元したい場合に最も役立ちます。</p>
+<p></p><div class="blockIndicator standardNote standardNoteBlock"> 
+    <p><a href="../Mozilla/Firefox/Releases/3.5.html">Firefox 3.5 における注記</a></p> 
+    <p style="font-weight: 400;">Firefox 3.5 より前のバージョンでは、ブラウザがクラッシュして復元した後では、sessionStorage のデータが自動的に復元されません。Firefox 3.5 から仕様どおりに動作します。</p> 
+</div><p></p>
+<p><strong>使用例:</strong></p>
+<p>テキスト入力欄の内容を自動で保存します。もし誤ってブラウザを更新してしまっても、テキスト入力欄の内容が復元されるため、書いた内容が失われません。</p>
+<pre> // 値を記録するテキスト入力欄を取得
+ var field = document.getElementById("field");
+ 
+ // 自動保存された値が存在するか確認
+ // (ページが誤って更新された場合にのみ実行される)
+ if ( sessionStorage.getItem("autosave")) {
+     // テキスト入力欄の内容を復元
+    field.value = sessionStorage.getItem("autosave");
+ }
+ 
+ // テキスト入力欄の内容を 1 秒ごとにチェック
+ setInterval(function(){
+     // 取得結果を sessionStorage オブジェクトに保存
+    sessionStorage.setItem("autosave", field.value);
+ }, 1000);
+</pre>
+<p><strong>詳細:</strong></p>
+<ul>
+  <li><a class="external" href="http://dev.w3.org/html5/webstorage/#the-sessionstorage-attribute">sessionStorage 仕様</a></li>
+</ul>
+<h4 id="localStorage" name="localStorage"><code>localStorage</code></h4>
+<p><code>localStorage</code> は、同じ同一生成元(same-origin)ルールが適用される <code>sessionStorage</code> と同じですが、永続します。<code>localStorage</code> は Firefox 3.5 で導入されました。</p>
+<div class="note">
+  <strong>注:</strong> ブラウザがプライベートブラウジングモードに入ると、新しく一時的なデータベースが作られ、そこに<code>localStorage</code>データがストアされます。このデータベースは空で、プライベートブラウジングモードが終了すると破棄されます。</div>
+<h5 id=".E4.BA.92.E6.8F.9B.E6.80.A7" name=".E4.BA.92.E6.8F.9B.E6.80.A7">互換性</h5>
+<p><code>Storage</code> オブジェクトは最近標準に加えられたので、すべてのブラウザには存在しない可能性があります。以下の2つのコードのうちの1つをスクリプトの最初に挿入すれば、ネイティブでは <code>localStorage</code> をサポートしていない実装でも <code>localStorage</code> オブジェクトを使えます。</p>
+<p>このアルゴリズムは、クッキーを活用して <code>localStorage</code> オブジェクトを正確に模倣しています。</p>
+<pre class="eval deki-transform">if (!window.localStorage) {
+  Object.defineProperty(window, "localStorage", new (function () {
+    var aKeys = [], oStorage = {};
+    Object.defineProperty(oStorage, "getItem", {
+      value: function (sKey) { return sKey ? this[sKey] : null; },
+      writable: false,
+      configurable: false,
+      enumerable: false
+    });
+    Object.defineProperty(oStorage, "key", {
+      value: function (nKeyId) { return aKeys[nKeyId]; },
+      writable: false,
+      configurable: false,
+      enumerable: false
+    });
+    Object.defineProperty(oStorage, "setItem", {
+      value: function (sKey, sValue) {
+        if(!sKey) { return; }
+        document.cookie = escape(sKey) + "=" + escape(sValue) + "; path=/";
+      },
+      writable: false,
+      configurable: false,
+      enumerable: false
+    });
+    Object.defineProperty(oStorage, "length", {
+      get: function () { return aKeys.length; },
+      configurable: false,
+      enumerable: false
+    });
+    Object.defineProperty(oStorage, "removeItem", {
+      value: function (sKey) {
+        if(!sKey) { return; }
+        var sExpDate = new Date();
+        sExpDate.setDate(sExpDate.getDate() - 1);
+        document.cookie = escape(sKey) + "=; expires=" + sExpDate.toGMTString() + "; path=/";
+      },
+      writable: false,
+      configurable: false,
+      enumerable: false
+    });
+    this.get = function () {
+      var iThisIndx;
+      for (var sKey in oStorage) {
+        iThisIndx = aKeys.indexOf(sKey);
+        if (iThisIndx === -1) { oStorage.setItem(sKey, oStorage[sKey]); }
+        else { aKeys.splice(iThisIndx, 1); }
+        delete oStorage[sKey];
+      }
+      for (aKeys; aKeys.length &gt; 0; aKeys.splice(0, 1)) { oStorage.removeItem(aKeys[0]); }
+      for (var iCouple, iKey, iCouplId = 0, aCouples = document.cookie.split(/\s*;\s*/); iCouplId &lt; aCouples.length; iCouplId++) {
+        iCouple = aCouples[iCouplId].split(/\s*=\s*/);
+        if (iCouple.length &gt; 1) {
+          oStorage[iKey = unescape(iCouple[0])] = unescape(iCouple[1]);
+          aKeys.push(iKey);
+        }
+      }
+      return oStorage;
+    };
+    this.configurable = false;
+    this.enumerable = true;
+  })());
+}
+</pre>
+<div class="note">
+  <strong>注:</strong> 保存できるデータの最大サイズは、クッキーを使っているため、厳しく制限されます。このアルゴリズムを使う際は、キーの追加や変更、削除には <code>localStorage.setItem()</code> 関数と <code>localStorage.removeItem()</code> 関数を使ってください。キーの設定や削除に <code>localStorage.yourKey = yourValue;</code> や <code>delete localStorage.yourKey;</code> とすることは、<strong>このコードでは保証されません</strong>。それから、名前を変えて <code>localStorage</code> オブジェクトとは関係なくドキュメントのクッキーを操作するためだけに使うこともできます。</div>
+<p>これは、別の、正確さに少し欠けますが、 <code>localStorage</code> オブジェクトの模倣です。上のものよりシンプルで、Internet Explorerの8未満のような古いブラウザにも対応してます。これもクッキーを活用しています。</p>
+<pre class="eval deki-transform">if (!window.localStorage) {
+  window.localStorage = {
+    getItem: function (sKey) {
+      if (!sKey || !this.hasOwnProperty(sKey)) { return null; }
+      return unescape(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + escape(sKey).replace(/[\-\.\+\*]/g, "\\$&amp;") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1"));
+    },
+    key: function (nKeyId) { return unescape(document.cookie.replace(/\s*\=(?:.(?!;))*$/, "").split(/\s*\=(?:[^;](?!;))*[^;]?;\s*/)[nKeyId]); },
+    setItem: function (sKey, sValue) {
+      if(!sKey) { return; }
+      document.cookie = escape(sKey) + "=" + escape(sValue) + "; path=/";
+      this.length = document.cookie.match(/\=/g).length;
+    },
+    length: 0,
+    removeItem: function (sKey) {
+      if (!sKey || !this.hasOwnProperty(sKey)) { return; }
+      var sExpDate = new Date();
+      sExpDate.setDate(sExpDate.getDate() - 1);
+      document.cookie = escape(sKey) + "=; expires=" + sExpDate.toGMTString() + "; path=/";
+      this.length--;
+    },
+    hasOwnProperty: function (sKey) { return (new RegExp("(?:^|;\\s*)" + escape(sKey).replace(/[\-\.\+\*]/g, "\\$&amp;") + "\\s*\\=")).test(document.cookie); }
+  };
+  window.localStorage.length = (document.cookie.match(/\=/g) || window.localStorage).length;
+}
+</pre>
+<div class="note">
+  <strong>注:</strong> 保存できるデータの最大サイズは、クッキーを使っているため、厳しく制限されます。このアルゴリズムを使う際は、キーの取得、追加や変更、削除には <code>localStorage.getItem()</code> 関数、 <code>localStorage.setItem()</code> 関数、 <code>localStorage.removeItem()</code> 関数を使ってください。キーの設定や削除に <code>localStorage.yourKey</code> とすることは、<strong>このコードでは許されません</strong>。それから、名前を変えて <code>localStorage</code> オブジェクトとは関係なくドキュメントのクッキーを操作するためだけに使うこともできます。</div>
+<h5 id=".E4.BA.92.E6.8F.9B.E6.80.A7.E3.81.8A.E3.82.88.E3.81.B3_globalStorage_.E3.81.A8.E3.81.AE.E9.96.A2.E4.BF.82" name=".E4.BA.92.E6.8F.9B.E6.80.A7.E3.81.8A.E3.82.88.E3.81.B3_globalStorage_.E3.81.A8.E3.81.AE.E9.96.A2.E4.BF.82">互換性および globalStorage との関係</h5>
+<p class="note"><code>localStorage</code> は、 <code>globalStorage[location.hostname]</code>とも同じですが、以下の点で異なります。HTML5の生成元 (スキーム+ホスト名+非標準ポート番号) へのスコープを持つこと、および <code>localStorage</code> が <code>Storage</code> のインスタンスで <code>globalStorage[location.hostname]</code> が(下で説明するように) <code>StorageObsolete</code> のインスタンスであることです。例えば、<a class="external" href="http://example.com" rel="freelink">http://example.com</a> は、<a class="external link-https" href="https://example.com" rel="freelink">https://example.com</a> と同一の <code>localStorage</code> オブジェクトにはアクセスできませんが、どちらも同一の <code>globalStorage</code> にアクセスできます。<code>localStorage</code> は標準のインタフェースですが、 <code>globalStorage</code> は非標準のインタフェースなので、これらに頼るべきではありません。</p>
+<p>次のことに注意してください。 <code>globalStorage[location.hostname]</code> のプロパティを設定しても <code>localStorage</code> には設定<strong>されません</strong>し、 <code>Storage.prototype</code> を拡張しても <code>globalStorage</code> には影響せず <code>StorageObsolete.prototype</code> の拡張のみ影響します。</p>
+<h4 id="globalStorage" name="globalStorage"><code>globalStorage</code></h4>
+<p></p><div class="overheadIndicator nonStandard nonStandardHeader"> 
+      <p><strong>非標準</strong><br> 
+      </p> 
+      </div> <code>globalStorage</code> は、複数のページセッションやブラウザセッションにまたがるような長期間にわたってデータを保存できる、複数のプライベートなストレージ領域を保持するグローバルオブジェクトです。<p></p>
+<div class="warning">
+  <strong>注:</strong> <code>globalStorage</code> は <code>Storage</code> のインスタンスではなく、 <code>StorageObsolete</code> のインスタンスを持つ <code>StorageList</code> のインスタンスです。</div>
+<pre>// ドメイン mozilla.org にあるスクリプトのみがアクセスできるデータを保存する
+globalStorage['mozilla.org'].setItem("snippet", "&lt;b&gt;Hello&lt;/b&gt;, how are you?");
+</pre>
+<p>具体的には、<code>globalStorage</code> オブジェクトを使うと、データの保存が可能なたくさんの異なるストレージオブジェクトへのアクセスが可能になります。たとえば、<code>globalStorage</code> を使用した Web ページをドメイン developer.mozilla.org に作成したとすると、以下のストレージオブジェクトが利用できます。</p>
+<ul>
+  <li><code>globalStorage['developer.mozilla.org']</code> - サブドメイン developer.mozilla.org にあるすべての Web ページがこのストレージオブジェクトに読み書きできる。</li>
+</ul>
+<p></p><div class="blockIndicator standardNote standardNoteBlock"> 
+    <p><a href="../Mozilla/Firefox/Releases/3.html">Firefox 3 における注記</a></p> 
+    <p style="font-weight: 400;">Firefox 2 では、現在のドキュメントよりも上位のドメイン階層のストレージオブジェクトへのアクセスが許可されていましたが、Firefox 3 ではセキュリティ上の理由により許可されなくなりました。さらに、HTML 5 仕様への <code>globalStorage</code> の追加案は削除され、代わりに <code>localStorage</code> が追加されました。こちらは Firefox 3.5 で実装されました。</p> 
+</div><p></p>
+<p><strong>使用例:</strong></p>
+<p>以下の例を使用する場合には、実行結果を見たいページすべてにこれらのコードが書かれたスクリプトを挿入する必要があります。</p>
+<p>ユーザが訪れた特定のサブドメインでユーザ名を記憶させます。</p>
+<pre> globalStorage['developer.mozilla.org'].setItem("username", "John");
+</pre>
+<p>ユーザがあなたのドメインにあるすべてのページを何回訪れたか記録します。</p>
+<pre> // データはすべて文字列として保存されるので parseInt が必要
+ globalStorage['mozilla.org'].setItem("visits",
+         parseInt(globalStorage['mozilla.org'].getItem("visits") || 0 ) + 1);
+</pre>
+<p><span id="Storage_location_and_clearing_the_data"></span></p>
+<h3 id="Storage_.E3.81.AE.E5.A0.B4.E6.89.80.E3.81.A8.E3.83.87.E3.83.BC.E3.82.BF.E3.81.AE.E6.B6.88.E5.8E.BB" name="Storage_.E3.81.AE.E5.A0.B4.E6.89.80.E3.81.A8.E3.83.87.E3.83.BC.E3.82.BF.E3.81.AE.E6.B6.88.E5.8E.BB">Storage の場所とデータの消去</h3>
+<p>Firefoxでは、DOM storage のデータはプロファイルフォルダ内の <a class="external" href="http://kb.mozillazine.org/Webappsstore.sqlite">webappsstore.sqlite ファイル</a> にストアされます。(chromeappsstore.sqlite ファイルというものもありますが、<a class="external link-https" href="https://bugzilla.mozilla.org/show_bug.cgi?id=592990">特別にスタートページ(about:home)のデータ</a>や、“about:”で始まるURLのほかの内部ページのデータといった、ブラウザ自身のデータがストアされます。)</p>
+<ul>
+  <li>DOM Storage を消去するには、“ツール -&gt; 最近の履歴を消去 -&gt; Cookies” から 消去する履歴の期間を “すべての履歴” とすることで(nsICookieManager::removeAll を通じて)できます。
+    <ul>
+      <li>ところが、別の期間を選ぶと消去できません (<a class="external link-https" href="https://bugzilla.mozilla.org/show_bug.cgi?id=527667">bug 527667</a>)</li>
+      <li>ツール -&gt; オプション -&gt; プライバシー -&gt; cookiesを個別に削除 には表示されません (<a class="external link-https" href="https://bugzilla.mozilla.org/show_bug.cgi?id=506692">bug 506692</a>)</li>
+    </ul></li>
+  <li>ツール -&gt; オプション -&gt; 詳細 -&gt; ネットワーク -&gt; オフラインデータ -&gt; 今すぐ消去 としても DOM Storage は消去されません</li>
+  <li>そのサイトがオフラインキャッシュも使用しているのでなければ、“ツール -&gt; オプション -&gt; 詳細 -&gt; ネットワーク -&gt; オフラインデータ” のリストには表示されません。もしそのサイトがリストの中にあるならば、そのサイトの DOM Storage データは、削除ボタンを押すことで<a href="https://developer.mozilla.org/ja/docs/Using_Application_Cache">オフラインキャッシュ</a>とともに削除されます。</li>
+</ul>
+<p>参照: <a href="https://developer.mozilla.org/ja/docs/Using_Application_Cache#Storage_location_and_clearing_the_offline_cache">clearing offline resources cache</a></p>
+<p><span id="More_information"></span></p>
+<h3 id=".E8.A9.B3.E7.B4.B0" name=".E8.A9.B3.E7.B4.B0">詳細</h3>
+<ul>
+  <li><a class="external" href="http://www.w3.org/TR/webstorage/">Web Storage</a> (W3C Web Apps Working Group)</li>
+  <li><a class="external" href="http://kb.mozillazine.org/Dom.storage.enabled">Firefox や SeaMonkey で DOM Storage を有効/無効にする方法</a></li>
+</ul>
+<p><span id="Examples"></span></p>
+<h3 id=".E4.BE.8B" name=".E4.BE.8B">例</h3>
+<ul>
+  <li><a class="external" href="http://www.diveintojavascript.com/tutorials/web-storage-tutorial-creating-an-address-book-application">JavaScript Web Storage Tutorial: アドレス帳アプリケーションを作る</a> ― 簡単なアドレス帳アプリケーションの作成を通じて、Web Storage APIの使い方を説明した実践的チュートリアル</li>
+  <li><a class="external" href="http://hacks.mozilla.org/2010/01/offline-web-applications/">offline web applications</a> at hacks.mozilla.org ― あるオフラインアプリのデモと、それの動作説明がある</li>
+  <li><a class="external" href="http://noteboard.eligrey.com/">Noteboard</a> ― すべてのデータをローカルに保存するメモ書きアプリ</li>
+  <li><a class="external" href="http://github.com/eligrey/jData-host">jData</a> ― インターネット上のどのウェブサイトからでもアクセスできる、共有の localStorage オブジェクトインタフェース。Firefox 3 以降、Webkit 3.1.2 nightly 以降、IE8で動作する。書き込みにユーザの許可が必要な globalStorage[""] のようなもの。</li>
+  <li><a class="external" href="http://codebase.es/test/webstorage.html">HTML 5 localStorage example</a> ― すごく簡潔でわかりやすい localStorage の使用例。テキストの保存と読みだし、保存されたデータの一覧の表示方法。Firefox 3 以降で動作を確認。</li>
+  <li><a class="external" href="http://upload.jonathanwilsson.com/html5/sessionstorage.php">HTML5 Session Storage</a> ― すごく簡潔な session storage の使用例。local storage の例もある。Firefox 3.6 以降で動作を確認。</li>
+  <li><a class="external" href="http://channy.creation.net/work/firefox/domstorage/"><strike>Basic DOMStorage Examples</strike></a><strike> ― Firefox 3 以降では動作しない。現在のドメインより 1 つ上位のドメインレベルの globalStorage は、Firefox 3 で使えなくなった。</strike></li>
+  <li><a class="external" href="http://aaronboodman.com/halfnote/"><strike>halfnote</strike></a><strike> ― (Firefox 3 で表示が崩れる) </strike><strike>DOM Storage を使用したメモアプリケーション</strike></li>
+</ul>
+<p id="Browser_compatibility"><span id="Browser_compatibility"></span></p>
+<h3 id="Browser_compatibility" name="Browser_compatibility">ブラウザの互換性</h3>
+<div><div class="htab"> 
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a> 
+    <ul> 
+        <li class="selected"><a>デスクトップ</a></li> 
+        <li><a>モバイル</a></li> 
+    </ul> 
+</div></div>
+<div id="compat-desktop">
+  <table class="compat-table">
+    <tbody>
+      <tr>
+        <th>機能</th>
+        <th>Chrome</th>
+        <th>Firefox (Gecko)</th>
+        <th>Internet Explorer</th>
+        <th>Opera</th>
+        <th>Safari (WebKit)</th>
+      </tr>
+      <tr>
+        <td>localStorage</td>
+        <td>4</td>
+        <td>3.5</td>
+        <td>8</td>
+        <td>10.50</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>sessionStorage</td>
+        <td>5</td>
+        <td>2</td>
+        <td>8</td>
+        <td>10.50</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>globalStorage</td>
+        <td><span style="color: #f00;">未サポート</span></td>
+        <td>2</td>
+        <td><span style="color: #f00;">未サポート</span></td>
+        <td><span style="color: #f00;">未サポート</span></td>
+        <td><span style="color: #f00;">未サポート</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="compat-mobile">
+  <table class="compat-table">
+    <tbody>
+      <tr>
+        <th>機能</th>
+        <th>Android</th>
+        <th>Firefox Mobile (Gecko)</th>
+        <th>IE Phone</th>
+        <th>Opera Mobile</th>
+        <th>Safari Mobile</th>
+      </tr>
+      <tr>
+        <td>基本サポート</td>
+        <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+        <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+        <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+        <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+        <td><span style="color: rgb(255, 153, 0);" title="Compatibility unknown; please update this.">?</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>ブラウザによって localStorage と sessionStorage の最大容量はまちまちです。<a class="external" href="http://dev-test.nemikor.com/web-storage/support-test/">いろいろなブラウザでの Storage の最大容量がここで報告されています</a>。</p>
+<p><span id="Related"></span></p>
+<h3 id=".E9.96.A2.E9.80.A3.E3.83.AA.E3.83.B3.E3.82.AF" name=".E9.96.A2.E9.80.A3.E3.83.AA.E3.83.B3.E3.82.AF">関連リンク</h3>
+<ul>
+  <li><a class="external" href="http://en.wikipedia.org/wiki/HTTP_cookie">HTTP Cookie</a> (<code><a href="https://developer.mozilla.org/ja/docs/DOM/document.cookie">document.cookie</a></code>)</li>
+  <li><a class="external" href="http://www.macromedia.com/support/documentation/en/flashplayer/help/help02.html">Flash Local Storage</a></li>
+  <li><a class="external" href="http://msdn2.microsoft.com/en-us/library/ms531424.aspx">Internet Explorer の userData behavior</a></li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIDOMStorageEventObsolete">nsIDOMStorageEventObsolete</a></li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/event/StorageEvent">StorageEvent</a></li>
+</ul>
+<div><div class="horizFlexboxContainer"> 
+  <div class="smallTextMultiColumnBoxHeading">HTML5 関連文書</div> 
+  <div class="smallTextMultiColumnBoxList"> 
+<table class="html5ArticleToc"> 
+	<tbody> 
+		<tr> 
+			<td style="width: 150px; border-left: none; border-right: none; border-top: none; border-bottom: dotted 2px rgba(224,244,244,200);"><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#HTML" title="HTML5 Documentation">HTML</a></td> 
+			<td style="border-left: none; border-right: none; border-top: none; border-bottom: dotted 2px rgba(224,244,244,200);"> 
+				<ul> 
+					<li><a href="../Web/HTML/Using_HTML5_audio_and_video.html" title="Firefox でマルチメディアコンテンツを扱う">Audio/Video</a></li> 
+					<li><a href="../Web/HTML/Canvas.html" title="Canvas">Canvas</a></li> 
+					<li><a href="../Web/WebGL.html" title="WebGL">WebGL</a></li> 
+					<li><a href="../Web/SVG.html" title="SVG">SVG</a></li> 
+					<li><a href="../Web/MathML.html" title="MathML">MathML</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#WebForms" title="HTML5 Thematic Classification #WebForms">WebForms</a></li> 
+					<li><a href="../Web/HTML/Using_the_application_cache.html" title="Using Application Cache">AppCache</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/Using_microformats" title="Using microformats">Microformats</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Semantic_tags" title="HTML5 Thematic Classification - セマンティックなタグ">SemanticTags</a></li> 
+				</ul> 
+			</td> 
+		</tr> 
+		<tr> 
+			<td style="width: 150px; border-left: none; border-right: none; border-top: none; border-bottom: dotted 2px rgba(224,244,244,200);"><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#JavaScript" title="HTML5 Thematic Classification #JavaScript">JavaScript</a></td> 
+			<td style="border-left: none; border-right: none; border-top: none; border-bottom: dotted 2px rgba(224,244,244,200);"> 
+				<ul> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Client-Side_Storage" title="HTML5 Thematic Classification #Client-Side Storage">Storage</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#IndexedDB" title="HTML5 Thematic Classification #IndexedDB">IndexedDB</a></li> 
+					<li><a href="../WebSockets.html" title="WebSockets">WebSockets</a></li> 
+					<li><a href="../Web/Guide/Performance/Using_web_workers.html" title="Using web workers">WebWorkers</a></li> 
+					<li><a href="../Online_and_offline_events.html" title="Online and offline events">Events</a></li> 
+					<li><a href="../DragDrop/Drag_and_Drop.html" title="ドラッグ＆ドロップ">Drag/Drop</a></li> 
+					<li><a href="../Web-based_protocol_handlers.html" title="Web-based protocol handlers">ProtocolHandler</a></li> 
+					<li><a href="../WebAPI/Using_geolocation.html" title="Geolocation の利用">Geolocation</a></li> 
+					<li><a href="../Web/HTML/Focus_management_in_HTML.html" title="Focus management in HTML">Focus</a></li> 
+				</ul> 
+			</td> 
+		</tr> 
+		<tr> 
+			<td style="border: none;"><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#CSS" title="HTML5 Thematic Classification #CSS">CSS</a></td> 
+			<td style="border: none;"> 
+				<ul> 
+					<li><a href="../Mozilla_CSS_support_chart.html" title="Mozilla CSS サポートチャート">NewSelectors</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Typography" title="HTML5 Thematic Classification - タイポグラフィ">Typography</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Visual" title="HTML5 Thematic Classification - ビジュアル">Visual</a></li> 
+					<li><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Thematic_Classification#Effects" title="HTML5 Thematic Classification - 動的なエフェクト">Effects</a></li> 
+				</ul> 
+			</td> 
+		</tr> 
+	</tbody> 
+</table> 
+</div> 
+</div></div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Offline%20web%20applications">Offline web applications</a></li><li><a href="../tag/要更新.html">要更新</a></li><li><a href="../tag/HTML5.html">HTML5</a></li><li><a href="../tag/JavaScript.html">JavaScript</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Gecko%20DOM%20Reference">Gecko DOM Reference</a></li><li><a href="../tag/DOM.html">DOM</a></li><li><a href="../tag/Gecko.html">Gecko</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/woby">woby</a>, <a href="../../profiles/ethertank.html">ethertank</a>, <a href="../../profiles/Marsf.html">Marsf</a>, <a href="../../profiles/Shoot.html">Shoot</a>, <a href="../../profiles/Mgjbot.html">Mgjbot</a>, <a href="../../profiles/Potappo.html">Potappo</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-06-08T14:16:18-07:00">2013/06/08 14:16:18</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                          <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+              
+                <a href="Storage.html#quick-links" class="title smaller" id="quick-links-toggle"><i aria-hidden="true" class="icon-caret-up"></i>サイドバーを隠す</a>
+
+                
+                                  <!-- quick links -->
+                    <div class="quick-links" id="quick-links">
+    <div class="title see-also">See also</div>
+     
+  <ol> 
+     
+    <li><a href="DOM_Reference.html">DOM リファレンス</a></li> 
+    <li><strong><a href="https://developer.mozilla.org/ja/docs/Web/API/Storage" title="The documentation about this has not yet been written; please consider contributing!"><code>Storage</code></a></strong></li> 
+     
+    <li data-default-state="open"><a href="Storage.html#"><strong>Properties</strong></a> 
+    <ol> 
+     
+    </ol></li> 
+     
+    <li data-default-state="open"><a href="Storage.html#"><strong>Methods</strong></a> 
+    <ol> 
+     
+    </ol></li> 
+  </ol> 
+
+  </div>
+                
+                <!-- approvals -->
+                
+              
+              </div>
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/DOM/Storage" selected>
+          日本語
+        </option>
+                  <option value="/en-US/docs/Web/Guide/API/DOM/Storage">
+            English (US)
+          </option>          <option value="/zh-CN/docs/Web/Guide/API/DOM/Storage/Storage">
+            中文 (简体)
+          </option>          <option value="/es/docs/DOM/Almacenamiento">
+            Español
+          </option>          <option value="/fr/docs/DOM/Storage">
+            Français
+          </option>          <option value="/pl/docs/DOM/Storage">
+            Polski
+          </option>          <option value="/nl/docs/DOM/Storage">
+            Nederlands
+          </option>          <option value="/bn-BD/docs/Web/Guide/API/DOM/Storage">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/ru/docs/Web/Guide/API/DOM/Storage">
+            Русский
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":502}</script></body>
+</html>

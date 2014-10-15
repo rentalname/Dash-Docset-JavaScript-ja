@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Getting Started - AJAX | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../index.html">
+  <link rel="copyright" href="Getting_Started.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/AJAX/Getting_Started$json">
+  <link rel="canonical" href="Getting_Started.html" >
+
+            <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/AJAX/Premiers_pas" title="Premiers pas">
+          <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started" title="Getting Started">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/AJAX/Getting_Started" title="开始">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/AJAX/Einf%C3%BChrung" title="Einführung">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/AJAX/%D0%A1_%D1%87%D0%B5%D0%B3%D0%BE_%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C" title="С чего начать">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/AJAX/%E4%B8%8A%E6%89%8B%E7%AF%87" title="上手篇">
+          <link rel="alternate" hreflang="pt-PT" href="https://developer.mozilla.org/pt-PT/docs/AJAX/Como_come%C3%A7ar" title="Como começar">
+          <link rel="alternate" hreflang="pl" href="https://developer.mozilla.org/pl/docs/AJAX/Na_pocz%C4%85tek" title="Na początek">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/AJAX/Primeros_Pasos" title="Primeros Pasos">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/AJAX/Getting_Started" title="Ajax 시작하기">
+          <link rel="alternate" hreflang="cs" href="https://developer.mozilla.org/cs/docs/AJAX/Jak_za%C4%8D%C3%ADt" title="AJAX/Jak_začít">
+          <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/docs/AJAX/Iniziare" title="Iniziare">
+          <link rel="alternate" hreflang="ca" href="https://developer.mozilla.org/ca/docs/AJAX/Primers_passos" title="Primers passos">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/AJAX/Getting_Started" title="Getting Started">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Getting Started">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/AJAX/Getting_Started">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/AJAX/Getting_Started">
+  <meta name="twitter:title" content="Getting Started">
+    <meta property="og:description" content="この記事は AJAX の基礎の概観と、入門のための二つの実践的なサンプルを示します。">
+  <meta name="description" content="この記事は AJAX の基礎の概観と、入門のための二つの実践的なサンプルを示します。">
+  <meta name="twitter:description" content="この記事は AJAX の基礎の概観と、入門のための二つの実践的なサンプルを示します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="AJAX/Getting_Started" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="Getting_Started.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="Getting_Started.html#language">言語の選択</a></li>
+          <li><a href="Getting_Started.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/AJAX/Getting_Started" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/AJAX/Getting_Started" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../Mozilla/Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../Mozilla/Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../Web/HTML.html">HTML</a></li>
+              <li><a href="../Web/CSS.html">CSS</a></li>
+              <li><a href="../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../Web/API.html">API / DOM</a></li>
+              <li><a href="../Web/Apps.html">Apps</a></li>
+              <li><a href="../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../Tools.html">ツール</a></li><li><a href="../../demos/index.html">MDN デモ</a></li><li><a href="../Mozilla/Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/AJAX/Premiers_pas" title="Premiers pas">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started" title="Getting Started">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/AJAX/Getting_Started" title="开始">中文 (简体)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/AJAX/Einf%C3%BChrung" title="Einführung">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/AJAX/%D0%A1_%D1%87%D0%B5%D0%B3%D0%BE_%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C" title="С чего начать">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/AJAX/%E4%B8%8A%E6%89%8B%E7%AF%87" title="上手篇">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-PT/docs/AJAX/Como_come%C3%A7ar" title="Como começar">Português (Europeu)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pl/docs/AJAX/Na_pocz%C4%85tek" title="Na początek">Polski</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/AJAX/Primeros_Pasos" title="Primeros Pasos">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/AJAX/Getting_Started" title="Ajax 시작하기">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/cs/docs/AJAX/Jak_za%C4%8D%C3%ADt" title="AJAX/Jak_začít">Čeština</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/docs/AJAX/Iniziare" title="Iniziare">Italiano</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ca/docs/AJAX/Primers_passos" title="Primers passos">Català</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/AJAX/Getting_Started" title="Getting Started">Português (do Brasil)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/AJAX/Getting_Started$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/AJAX/Getting_Started$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="Getting_Started.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../AJAX.html" rel="v:url" property="v:title">AJAX</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Getting Started</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="Getting_Started.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Getting Started</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="Getting_Started.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="Getting_Started.html#AJAX_.E3.81.A8.E3.81.AF.3F" rel="internal">AJAX とは?</a><code></code><li><a href="Getting_Started.html#Step_1_.E2.80.93_.E3.80.8C.E3.81.8A.E9.A1.98.E3.81.84.E3.81.97.E3.81.BE.E3.81.99.EF.BC.81.E3.80.8D_.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF_HTTP_.E3.83.AA.E3.82.AF.E3.82.A8.E3.82.B9.E3.83.88.E3.81.AE.E9.80.81.E3.82.8A.E6.96.B9" rel="internal">Step 1 – 「お願いします！」 もしくは HTTP リクエストの送り方</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Getting_Started.html#Step_2_.E2.80.93_.E3.80.8C.E3.81.AF.E3.81.84.E3.81.A9.E3.81.86.E3.81.9E.EF.BC.81.E3.80.8D_.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF.E3.82.B5.E3.83.BC.E3.83.90.E5.BF.9C.E7.AD.94.E3.81.AE.E6.89.B1.E3.81.84.E6.96.B9" rel="internal">Step 2 – 「はいどうぞ！」 もしくはサーバ応答の扱い方</a><code></code><code></code><code></code><code></code><code></code><li><a href="Getting_Started.html#Step_3_.E2.80.93_.E3.80.8C.E3.81.BF.E3.82.93.E3.81.AA.E3.81.BE.E3.81.A8.E3.82.81.E3.81.A6.EF.BC.81.E3.80.8D_-_.E7.B0.A1.E5.8D.98.E3.81.AA.E4.BE.8B" rel="internal">Step 3 – 「みんなまとめて！」 - 簡単な例</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="Getting_Started.html#Step_4_.E2.80.93_.E3.80.8CX-.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.80.8D_.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF_XML_.E3.83.AC.E3.82.B9.E3.83.9D.E3.83.B3.E3.82.B9.E3.81.AE.E6.89.B1.E3.81.84.E6.96.B9" rel="internal">Step 4 – 「X-ファイル」 もしくは XML レスポンスの扱い方</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <p>この記事は AJAX の基礎の概観と、入門のための二つの実践的なサンプルを示します。</p>
+
+
+
+
+
+<div><span id="What's_AJAX?"></span></div>
+<h2 id="AJAX_.E3.81.A8.E3.81.AF.3F">AJAX とは?</h2>
+<p>AJAX は Asynchronous JavaScript and XML の頭文字を取ったものです。これは一言で言えば、非標準の <code><a href="https://developer.mozilla.org/ja/docs/XMLHttpRequest">XMLHttpRequest</a></code> オブジェクトを使用してサーバサイドスクリプトとやり取りすることを指します。AJAX は、XML や HTML、テキストファイルさえ含む様々なフォーマットの情報を送受信することができます。しかしながら、AJAX の特徴の中で最も魅力的なのは、こういったことすべてをページを再読み込みすることなく「非同期」に実行できるというところです。これにより、ユーザイベントによってページを部分的に更新することができます。</p>
+<p>ここで重要な機能は次の 2 つです。</p>
+<ul>
+  <li>ページを再読み込みすることなくサーバにリクエストを送る</li>
+  <li>XML 文書をパースして利用する</li>
+</ul>
+
+
+
+
+
+<div><span id="Step_1_–_say_"></span></div>
+<h2 id="Step_1_.E2.80.93_.E3.80.8C.E3.81.8A.E9.A1.98.E3.81.84.E3.81.97.E3.81.BE.E3.81.99.EF.BC.81.E3.80.8D_.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF_HTTP_.E3.83.AA.E3.82.AF.E3.82.A8.E3.82.B9.E3.83.88.E3.81.AE.E9.80.81.E3.82.8A.E6.96.B9">Step 1 – 「お願いします！」 もしくは HTTP リクエストの送り方</h2>
+<p>JavaScript からサーバに HTTP リクエストを送るためには、この機能を提供するクラスのインスタンスが必要になります。このクラスは、もともとは Internet Explorer で <code>XMLHTTP</code> という名前の ActiveX オブジェクトとして導入されたものです。その後、Mozilla や Safari やその他のブラウザがこれに追随し、Microsoft のオリジナルの ActiveX オブジェクトのメソッドやプロパティをサポートする <code>XMLHttpRequest</code> クラスを実装しました。</p>
+<p>この結果、必要なクラスのクロスブラウザインスタンス (オブジェクト) を生成するには、</p>
+<pre class="brush:js">if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+    httpRequest = new XMLHttpRequest();
+} else if (window.ActiveXObject) { // IE
+    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+}
+</pre>
+
+<p>とすることになります。</p>
+<p>(説明のために、このコードは実際に XMLHTTP インスタンスを作成するのに使用するコードよりも多少簡単にしています。より実際に近いサンプルは、この記事の step 3 を見てください。)</p>
+<p>Mozilla ブラウザのいくつかのバージョンでは、サーバから XML <code>mime-type</code> のヘッダが帰ってこなかった場合に、正常に動作しないことがあります。これを何とかするためには、サーバからのヘッダが <code>text/xml</code> でない場合に備えて、ヘッダを上書きするメソッドを余分に呼び出すのがいいでしょう。</p>
+
+
+<pre class="brush:js">httpRequest = new XMLHttpRequest();
+httpRequest.overrideMimeType('text/xml');
+</pre>
+
+<p>次に、リクエストに対するサーバからの応答を受け取った後に何をするかを決めなければなりません。この段階で行う必要があるのは、どの JavaScript 関数に応答を処理させるかを HTTP リクエストオブジェクトに教えることだけです。これは、オブジェクトの <code>onreadystatechange</code> プロパティに、使おうとしている JavaScript 関数の名前をこのように設定することで行えます。</p>
+<p><code>httpRequest.onreadystatechange = nameOfTheFunction;</code></p>
+<p>このとき、関数名の後に括弧やパラメータが必要ないことに注意してください。それは、実際にそれを呼ぶのではなく単純に関数の参照を渡しているからです。また、関数名を設定するのではなく、以下のように関数や応答を処理する動作をその場で定義するという JavaScript の機能 (「無名関数」と呼ばれる) を利用することもできます。</p>
+
+
+<pre class="brush:js">httpRequest.onreadystatechange = function(){
+    // 処理を行う
+};
+</pre>
+
+<p>応答を受け取った後に何をするかを宣言したら、あとは実際にリクエストを投げるだけです。これは、次のように HTTP リクエストクラスの <code>open()</code> と <code>send()</code> メソッドを呼び出すことで行えます。</p>
+
+
+<pre class="brush:js">httpRequest.open('GET', 'http://www.example.org/some.file', true);
+httpRequest.send(null);
+</pre>
+
+<ul>
+  <li><code>open()</code> の第 1 引数はサーバでサポートされている HTTP リクエストメソッド、つまり、GET、POST、HEAD やその他のメソッドのなかで利用したいものになります。HTTP 標準に準拠するためにメソッド名は大文字で入れてください。そうでなければ、いくつかのブラウザ (Firefox など) ではリクエストを送信しません。利用可能な HTTP リクエストメソッドに関しての詳細情報については <a class="external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">W3C 仕様</a> を参照してください。</li>
+  <li>第 2 引数は、リクエストを送るページの URL です。セキュリティ上の問題から、他のドメインのページを読むことはできません。つまり、すべてのページに対して同一のドメイン名を利用しないと、<code>open()</code> を呼び出したときに「権限エラー」を受け取ることになるということです。よくある落とし穴は、サイトに <code>domain.tld</code> でアクセスしながら、<code>www.domain.tld</code> でページを読み込もうとすることです。</li>
+  <li>第 3 引数は、リクエストを非同期に送るかどうかを示します。もし、<code>TRUE</code> であれば、JavaScript 関数の動作は、サーバから応答が返らなくても続けられます。これは、AJAX の A にあたります。</li>
+</ul>
+
+<p><code>send()</code> メソッドのパラメータには、サーバに <code>POST</code> で送るデータを入れることができます。このデータは、</p>
+<p><code>name=value&amp;anothername=othervalue&amp;so=on</code></p>
+<p>のようなクエリ文字列の形式である必要があります。</p>
+<p>データを POST する必要がある場合、次の方法でリクエストの MIME タイプを変更しなければなりません。</p>
+<pre>httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+</pre>
+<p>そうでなければ、サーバは POST されたデータを破棄します。</p>
+
+
+
+
+
+<div><span id="Step_2_–_"></span></div>
+<h2 id="Step_2_.E2.80.93_.E3.80.8C.E3.81.AF.E3.81.84.E3.81.A9.E3.81.86.E3.81.9E.EF.BC.81.E3.80.8D_.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF.E3.82.B5.E3.83.BC.E3.83.90.E5.BF.9C.E7.AD.94.E3.81.AE.E6.89.B1.E3.81.84.E6.96.B9">Step 2 – 「はいどうぞ！」 もしくはサーバ応答の扱い方</h2>
+<p>サーバへリクエストを送る前に、次のように応答を扱う JavaScript 関数の名前を設定したことを思い出してください。</p>
+
+<pre class="brush:js">httpRequest.onreadystatechange = <i>nameOfTheFunction</i>;
+</pre>
+
+<p>では、この関数で何をすべきかを見て行きましょう。最初に、この関数ではリクエストの状態を調べる必要があります。ステータス値が 4 であるなら、サーバからの応答が完全に返ってきており、処理を進められることを意味します。</p>
+
+<pre class="brush:js">if (httpRequest.readyState == 4) {
+    // 全てが問題ない状態で、応答も返ってきています
+} else {
+    // まだ準備ができていません
+}
+</pre>
+
+<p><code>readyState</code> の値のリストは以下のようになります。</p>
+<ul>
+  <li>0 (初期化されていません)</li>
+  <li>1 (読み込み中です)</li>
+  <li>2 (読み込みは完了しました)</li>
+  <li>3 (双方向に扱えます)</li>
+  <li>4 (すべて完了しました)</li>
+</ul>
+
+<p>(<a class="external" href="http://msdn.microsoft.com/workshop/author/dhtml/reference/properties/readystate_1.asp">情報元</a>)</p>
+
+<p>次に、HTTP サーバの応答コードを調べます。帰ってくる可能性のあるコードは<a class="external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">W3C のサイト</a> にリストされています。われわれの目的にとっては、<code>200 OK</code> が返ってきているかどうかのみが重要です。</p>
+
+<pre class="brush:js">if (httpRequest.status == 200) {
+    // 完璧です！
+} else {
+    // 何らかの問題が発生しています。
+    // たとえば、404 (ページは存在しません) や、500 (サーバ内部エラー)
+    // などが返ってきているでしょう
+}
+</pre>
+
+<p>ここで、リクエストの状態とレスポンスの HTTP ステータスコードの両方が確認できたので、サーバから返ってきたデータに対して好きなことを実行できるようになりました。このデータにアクセスするには 2 通りの方法があります。</p>
+<ul>
+  <li><code>httpRequest.responseText</code> – サーバの応答をテキスト文字列として返します</li>
+  <li><code>httpRequest.responseXML</code> – サーバの応答を JavaScript DOM 関数で扱える <code>XMLDocument</code> オブジェクトとして返します</li>
+</ul>
+<div><span id="Step_3_–_"></span></div>
+<h2 id="Step_3_.E2.80.93_.E3.80.8C.E3.81.BF.E3.82.93.E3.81.AA.E3.81.BE.E3.81.A8.E3.82.81.E3.81.A6.EF.BC.81.E3.80.8D_-_.E7.B0.A1.E5.8D.98.E3.81.AA.E4.BE.8B">Step 3 – 「みんなまとめて！」 - 簡単な例</h2>
+<p>さて、ここまでに紹介した方法を使って簡単な HTTP リクエストを実行してみましょう。われわれの JavaScript では <code>test.html</code> という名前の、"これはテストです" と書かれた HTML 文書を要求し、その内容を <code>alert()</code> で表示します。</p>
+
+
+<pre class="brush:xml">&lt;script type="text/javascript" language="javascript"&gt;
+function makeRequest(url) {
+    var httpRequest;
+
+    if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+        httpRequest = new XMLHttpRequest();
+        if (httpRequest.overrideMimeType) {
+            httpRequest.overrideMimeType('text/xml');
+            // この行については下の注記を参照
+        }
+    } else if (window.ActiveXObject) { // IE
+        try {
+            httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {}
+        }
+    }
+
+    if (!httpRequest) {
+        alert('中断 :( XMLHTTP インスタンスを生成できませんでした');
+        return false;
+    }
+
+    httpRequest.onreadystatechange = function() { alertContents(httpRequest); };
+    httpRequest.open('GET', url, true);
+    httpRequest.send('');
+}
+
+function alertContents(httpRequest) {
+    if (httpRequest.readyState == 4) {
+        if (httpRequest.status == 200) {
+            alert(httpRequest.responseText);
+        } else {
+            alert('リクエストに問題が発生しました');
+        }
+    }
+}
+&lt;/script&gt;
+&lt;span
+    style="cursor: pointer; text-decoration: underline"
+    onclick="makeRequest('test.html')"&gt;
+        リクエストを実行
+&lt;/span&gt;
+</pre>
+
+
+<p>このサンプルでは、</p>
+<ul>
+  <li>ユーザがブラウザで「リクエストを実行」をクリックする</li>
+  <li>クリックにより <code>makeRequest()</code> 関数が、同じディレクトリにある HTML ファイルの名前 <code>test.html</code> というパラメータを使って呼び出される</li>
+  <li>リクエストが作成され、<code>onreadystatechange</code> により <code>alertContents()</code> への処理引継ぎが設定される</li>
+  <li><code>alertContents()</code> では、応答が返ってきていて問題無いかを確認した後、<code>test.html</code> ファイルの中身を <code>alert()</code> で表示します。</li>
+</ul>
+<p><b>注</b>: 上のコードの <code>httpRequest.overrideMimeType('text/xml');</code> という行は、Firefox 1.5 以降では、<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=311724" title="JavaScript Console reports XML syntax error whenever XMLHttpRequest is used with an XML mime type and non-XML content">バグ 311724</a> で述べられているように、XMLHttpRequest によって取得されたページが妥当な XML ではない (プレーンテキストなど) 場合、JavaScript コンソールにエラーを出力します。 これは実際には正しい挙動です。この記事はこの変更に対応するためすぐに改訂されるでしょう。</p>
+<p><b>注 2</b>: リクエストを送信する先が静的な XML ファイルではなく、XML を返すコードである場合、Mozilla だけではなく Internet Explorer でもそのページを動作させたければ、いくつかのレスポンスヘッダを設定しなければなりません。<code>Content-Type: application/xml</code> というヘッダを設定しなければ、XML 要素にアクセスしようとしている行で IE が 'Object Expected' という Javascript エラーを投げるでしょう。また <code>Cache-Control: no-cache</code> というヘッダを設定しなければ、ブラウザがレスポンスをキャッシュしてリクエストを再送信しなくなるため、デバッグが「やりがいのある」ものとなるでしょう。</p>
+<p><b>注 3</b>: <code>httpRequest</code> 変数をグローバルに使用すると、<code>makeRequest()</code> を呼び出す関数がお互いにこの変数を上書きしあうため、競合状態が発生します。 <code>httpRequest</code> 変数を関数ローカルで宣言して <code>alertContent()</code> 関数に渡すようにすれば競合状態は発生しません。</p>
+<p><b>注 4</b>: <code>onreadystatechange</code> にコールバック関数を登録する際、引数を渡すことはできません。このため、次のようなコードは機能しません。</p>
+
+
+<pre><code>httpRequest.onreadystatechange = alertContents(httpRequest); // (機能しない)</code></pre>
+
+
+<p>したがって、関数の登録を成功させるには、無名関数を使って間接的に引数を渡すか、<code>httpRequest</code> をグローバル変数として使用するのがいいでしょう。例を示します。</p>
+
+
+<pre class="brush:js">httpRequest.onreadystatechange = function() { alertContents(httpRequest); };  //1 (同時リクエスト)
+httpRequest.onreadystatechange = alertContents;  //2 (グローバル変数)
+</pre>
+
+
+<p>方法 1 を使用すれば複数のリクエストを同時に処理できるのに対し、方法 2 を使用するには <code>httpRequest</code> をグローバル変数にする必要があります。</p>
+<p><b>注 5</b>: Web サーバーのダウンなどの理由で通信エラーが発生した場合、onreadystatechange メソッドで .status 変数にアクセスしようとすると例外が発生します。 if...then 文は必ず try...catch で囲むようにしてください (参照: <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=238559" title="XMLHttpRequest needs a way to report networking errors">バグ 238559</a>)。</p>
+
+
+<pre class="brush:js">function alertContents(httpRequest) {
+    try {
+        if (httpRequest.readyState == 4) {
+            if (httpRequest.status == 200) {
+                alert(httpRequest.responseText);
+            } else {
+                alert('リクエストに問題が発生しました');
+            }
+        }
+    } catch( e ) {
+        alert('例外を捕捉: ' + e.description);
+    }
+}</pre>
+
+<div><span id="Step_4_–_"></span></div>
+
+<h2 id="Step_4_.E2.80.93_.E3.80.8CX-.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.80.8D_.E3.82.82.E3.81.97.E3.81.8F.E3.81.AF_XML_.E3.83.AC.E3.82.B9.E3.83.9D.E3.83.B3.E3.82.B9.E3.81.AE.E6.89.B1.E3.81.84.E6.96.B9">Step 4 – 「X-ファイル」 もしくは XML レスポンスの扱い方</h2>
+<p>前の例では、HTTP リクエストへの応答を受け取った後、リクエストオブジェクトの <code>responseText</code> プロパティを用いて、それに含まれている &lt;tt&gt;test.html&lt;/tt&gt; の中身を取得しました。では、次に <code>responseXML</code> プロパティのほうを試してみましょう。</p>
+<p>はじめに、あとでサーバに要求する妥当な XML 文書を作成します。&lt;tt&gt;test.xml&lt;/tt&gt; ファイルの中身は以下のようなものです。</p>
+
+
+<pre class="brush:xml">&lt;?xml version="1.0" ?&gt;
+&lt;root&gt;
+    I'm a test.
+&lt;/root&gt;
+</pre>
+
+
+<p>スクリプトでは、リクエスト送出を以下のように変更します。</p>
+
+
+<pre>...
+onclick="makeRequest('test.xml')"&gt;
+...
+</pre>
+
+
+<p>そして、<code>alertContents()</code> では、<code>alert(httpRequest.responseText);</code> としている行を以下のように変更します。</p>
+
+
+<pre class="brush:js">var xmldoc = httpRequest.responseXML;
+var root_node = xmldoc.getElementsByTagName('root').item(0);
+alert(root_node.firstChild.data);
+</pre>
+
+
+<p>このコードでは、<code>responseXML</code> から <code>XMLDocument</code> オブジェクトを取得し、DOM メソッドを利用して XML 文書に含まれるデータにアクセスしています。 この<code>test.xml</code> ファイルは <a class="external" href="http://www.w3clubs.com/mozdev/test.xml">ここ</a> で、変更されたスクリプトは <a class="external" href="http://www.w3clubs.com/mozdev/httprequest_test_xml.html">ここ</a> で見ることができます。</p>
+<p>DOM メソッドについてより詳しくは、<a class="external" href="http://www.mozilla.org/docs/dom/">Mozilla での DOM の実装</a> の文書を参照してください。</p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../tag/AJAX.html">AJAX</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../profiles/Taken.html">Taken</a>, <a href="../../profiles/ethertank.html">ethertank</a>, <a href="../../profiles/Taken Bot.html">Taken Bot</a>, <a href="../../profiles/Shimono.html">Shimono</a>, <a href="../../profiles/Marsf.html">Marsf</a>, <a href="../../profiles/Shoot.html">Shoot</a>, <a href="https://developer.mozilla.org/ja/profiles/Diskostu">Diskostu</a>, <a href="https://developer.mozilla.org/ja/profiles/Yu-raku-an">Yu-raku-an</a>, <a href="../../profiles/Mgjbot.html">Mgjbot</a>, <a href="https://developer.mozilla.org/ja/profiles/maco81">maco81</a>, <a href="../../profiles/Okome.html">Okome</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2012-09-12T15:48:55-07:00">2012/09/12 15:48:55</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/AJAX/Getting_Started" selected>
+          日本語
+        </option>
+                  <option value="/fr/docs/AJAX/Premiers_pas">
+            Français
+          </option>          <option value="/en-US/docs/AJAX/Getting_Started">
+            English (US)
+          </option>          <option value="/zh-CN/docs/AJAX/Getting_Started">
+            中文 (简体)
+          </option>          <option value="/de/docs/AJAX/Einf%C3%BChrung">
+            Deutsch
+          </option>          <option value="/ru/docs/AJAX/%D0%A1_%D1%87%D0%B5%D0%B3%D0%BE_%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C">
+            Русский
+          </option>          <option value="/zh-TW/docs/AJAX/%E4%B8%8A%E6%89%8B%E7%AF%87">
+            正體中文 (繁體)
+          </option>          <option value="/pt-PT/docs/AJAX/Como_come%C3%A7ar">
+            Português (Europeu)
+          </option>          <option value="/pl/docs/AJAX/Na_pocz%C4%85tek">
+            Polski
+          </option>          <option value="/es/docs/AJAX/Primeros_Pasos">
+            Español
+          </option>          <option value="/ko/docs/AJAX/Getting_Started">
+            한국어
+          </option>          <option value="/cs/docs/AJAX/Jak_za%C4%8D%C3%ADt">
+            Čeština
+          </option>          <option value="/it/docs/AJAX/Iniziare">
+            Italiano
+          </option>          <option value="/ca/docs/AJAX/Primers_passos">
+            Català
+          </option>          <option value="/pt-BR/docs/AJAX/Getting_Started">
+            Português (do Brasil)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":551}</script></body>
+</html>

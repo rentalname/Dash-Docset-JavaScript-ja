@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/Apps/Manifest by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:44:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="http://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>アプリマニフェスト - アプリセンター | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="https://developer.mozilla.org/ja/">
+  <link rel="copyright" href="#copyright">
+
+  <link href="http://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/ja/search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="Manifest%24json.json">
+  <link rel="canonical" href="Manifest.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/Apps/Build/Manifest" title="App manifest">
+          <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/Apps/Manifest" title="App manifest">
+          <link rel="alternate" hreflang="id" href="https://developer.mozilla.org/id/docs/Apps/Manifest" title="App manifest">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/Apps/Manifeste" title="Manifeste d&#39;application">
+          <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Web/Apps/Developing/Manifest/Manifest" title="앱 매니페스트 설정">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/Apps/Developing/Manifest/Manifest-840092-dup" title="App manifest">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/Apps/Build/Manifest" title="App manifest">
+          <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/Apps/Manifest" title="App manifest">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Apps/Manifest" title="App manifest">
+          <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/Apps/Manifest" title="App manifest">
+          <link rel="alternate" hreflang="bn-BD" href="https://developer.mozilla.org/bn-BD/docs/Web/Apps/Developing/Manifest" title="অ্যাপ বৃত্তান্ত (মেনিফেস্ট)">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/Apps/Build/Manifest" title="App manifest">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="アプリマニフェスト">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Web/Apps/Manifest">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Web/Apps/Manifest">
+  <meta name="twitter:title" content="アプリマニフェスト">
+    <meta property="og:description" content="Open Web App の マニフェスト には、Web ブラウザがアプリとやりとりするのに必要な情報が含まれます。マニフェストは、Open Web App を Web サイトと区別する重要なポイントのひとつです。これはアプリの名称と説明を記載した JSON ファイルで、アプリの配信元、アイコン、そのアプリに必要な許可設定などを含めることもできます。マニフェストを扱うブラウザは Web ランタイム を組み込む必要があります。この記事ではマニフェストに含めることのできる内容を詳細に解説します。">
+  <meta name="description" content="Open Web App の マニフェスト には、Web ブラウザがアプリとやりとりするのに必要な情報が含まれます。マニフェストは、Open Web App を Web サイトと区別する重要なポイントのひとつです。これはアプリの名称と説明を記載した JSON ファイルで、アプリの配信元、アイコン、そのアプリに必要な許可設定などを含めることもできます。マニフェストを扱うブラウザは Web ランタイム を組み込む必要があります。この記事ではマニフェストに含めることのできる内容を詳細に解説します。">
+  <meta name="twitter:description" content="Open Web App の マニフェスト には、Web ブラウザがアプリとやりとりするのに必要な情報が含まれます。マニフェストは、Open Web App を Web サイトと区別する重要なポイントのひとつです。これはアプリの名称と説明を記載した JSON ファイルで、アプリの配信元、アイコン、そのアプリに必要な許可設定などを含めることもできます。マニフェストを扱うブラウザは Web ランタイム を組み込む必要があります。この記事ではマニフェストに含めることのできる内容を詳細に解説します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("https://developer.mozilla.org/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Web/Apps/Manifest" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="#language">言語の選択</a></li>
+          <li><a href="#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="http://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="https://developer.mozilla.org/ja/" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Web/Apps/Manifest" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="https://developer.mozilla.org/ja/users/signin" class="login-link launch-persona-login" data-next="/ja/docs/Web/Apps/Manifest" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Marketplace">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Web">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../HTML.html">HTML</a></li>
+              <li><a href="../CSS.html">CSS</a></li>
+              <li><a href="../JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../API.html">API / DOM</a></li>
+              <li><a href="../Apps.html">Apps</a></li>
+              <li><a href="../MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../Reference.html">レファレンス</a></li>
+              <li><a href="../Guide.html">開発者ガイド</a></li>
+              <li><a href="../Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li>
+              <li><a href="https://developer.mozilla.org/ja/docs/Web">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="https://developer.mozilla.org/ja/docs/Tools">ツール</a></li><li><a href="https://developer.mozilla.org/ja/demos/">MDN デモ</a></li><li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Connect">Connect</a></li><li class="main-nav-search"><form action="https://developer.mozilla.org/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/Apps/Build/Manifest" title="App manifest">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/Apps/Manifest" title="App manifest">Português (do Brasil)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/id/docs/Apps/Manifest" title="App manifest">Bahasa Indonesia</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/Apps/Manifeste" title="Manifeste d&#39;application">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Web/Apps/Developing/Manifest/Manifest" title="앱 매니페스트 설정">한국어</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/Apps/Developing/Manifest/Manifest-840092-dup" title="App manifest">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/Apps/Build/Manifest" title="App manifest">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/Apps/Manifest" title="App manifest">Русский</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Apps/Manifest" title="App manifest">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/Apps/Manifest" title="App manifest">Italiano</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/bn-BD/docs/Web/Apps/Developing/Manifest" title="অ্যাপ বৃত্তান্ত (মেনিফেস্ট)">বাংলা (বাংলাদেশ)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/Apps/Build/Manifest" title="App manifest">中文 (简体)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/users/signin?next=/ja/docs/Web/Apps/Manifest%24edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="Manifest%24history.html">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="https://developer.mozilla.org/ja/docs/Web" rel="v:url" property="v:title">開発者向けのWeb技術</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Apps.html" rel="v:url" property="v:title">アプリセンター</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">アプリマニフェスト</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>アプリマニフェスト</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="#Example_manifest" rel="internal">マニフェストの例</a><li><a href="#Manifest_fields" rel="internal">マニフェストの項目</a><ol><li><a href="#activities" rel="internal"><code>activities</code></a><li><a href="#appcache_path" rel="internal"><code>appcache_path</code></a><li><a href="#chrome" rel="internal"><code>chrome</code></a><li><a href="#csp" rel="internal"><code>csp</code></a><li><a href="#default_locale" rel="internal"><code>default_locale</code></a><li><a href="#description" rel="internal"><code>description</code></a><li><a href="#developer" rel="internal"><code>developer</code></a><li><a href="#fullscreen" rel="internal"><code>fullscreen</code></a><li><a href="#icons" rel="internal"><code>icons</code></a><li><a href="#installs_allowed_from" rel="internal"><code>installs_allowed_from</code></a><li><a href="#launch_path" rel="internal"><code>launch_path</code></a><li><a href="#locales" rel="internal"><code>locales</code></a><li><a href="#messages" rel="internal"><code>messages</code></a><li><a href="#name" rel="internal"><code>name</code></a><li><a href="#orientation" rel="internal"><code>orientation</code></a><li><a href="#origin" rel="internal"><code>origin</code></a><li><a href="#permissions" rel="internal"><code>permissions</code></a><li><a href="#precompile" rel="internal"><code>precompile</code></a><li><a href="#redirects" rel="internal"><code>redirects</code></a><li><a href="#type" rel="internal"><code>type</code></a><li><a href="#version" rel="internal"><code>version</code></a></ol></li><li><a href="#Path_handling" rel="internal">パス処理</a><li><a href="#Validating_a_manifest" rel="internal">マニフェストの検証</a><li><a href="#Serving_manifests" rel="internal">マニフェストの配信</a><li><a href="#Updating_manifests" rel="internal">マニフェストの更新</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div class="summary">
+ <p><span class="seoSummary">Open Web App の <strong>マニフェスト</strong> には、Web ブラウザがアプリとやりとりするのに必要な情報が含まれます。マニフェストは、Open Web App を Web サイトと区別する重要なポイントのひとつです。これはアプリの名称と説明を記載した <a href="https://developer.mozilla.org/ja/docs/JSON">JSON</a> ファイルで、アプリの配信元、アイコン、そのアプリに必要な許可設定などを含めることもできます。マニフェストを扱うブラウザは <a class="new" href="https://developer.mozilla.org/en-US/docs/Web/Apps/Developing/Architecture#Web_runtime">Web ランタイム</a> を組み込む必要があります。この記事ではマニフェストに含めることのできる内容を詳細に解説します。</span></p>
+</div>
+<p>マニフェストファイルには <code>manifest.webapp</code> というファイル名を付け、<code>index.html</code> ファイルとともに Web アプリディレクトリのルートに配置する必要があります。</p>
+<p>自分が管理するページからアプリを自主配布する場合は、(例えばボタンから <a href="../API/Apps-3.html"><code>navigator.mozApps.install()</code></a> を呼び出すことで) アプリのインストールを実行します。ストアやマーケットプレイスでアプリを配布する場合は、そのストアが掲載アプリのマニフェストの URL をブラウザに提供することでインストールを実行します。</p>
+<p><a href="FAQs/About_app_manifests.html">アプリマニフェストに関するよくある質問</a> も参照してください。<a class="external" href="https://marketplace.firefox.com/developers/validator">マニフェストバリデータ</a> も利用できます。このツールを使えば、マニフェストの内容を検証し、エラーを事前に特定できます。</p>
+<h2 id="Example_manifest" name="Example_manifest">マニフェストの例</h2>
+<p>以下が最小限のマニフェストです。これをテキストファイルへコピーし、それぞれの値を独自の情報に置き換えてください。</p>
+<div class="note">
+ <p><strong>注:</strong> あなたのアプリにはおそらくこれ以上の情報が必要でしょう。マニフェストのすべての項目については以下のドキュメントを参照してください。</p>
+</div>
+<pre class="brush: js">{
+  "name": "My App",
+  "description": "My elevator pitch goes here",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "Your name or organization",
+    "url": "http://your-homepage-here.org"
+  },
+  "default_locale": "en"
+}
+</pre>
+<h2 id="Manifest_fields" name="Manifest_fields">マニフェストの項目</h2>
+<p>マニフェストには以下の項目を含めることができます。マニフェスト検証時の必須項目は <code>name</code>、<code>description</code>、(128px のアイコンを含む) <code>icons</code> の 3 つだけです。特定の項目を使う場合に必要となる他の項目もあります。それらはこのドキュメントに注釈付きで書かれています。</p>
+<p>マニフェスト内の項目は順序を問いません。ここに書かれていない項目がマニフェストに含まれていても無視されます。</p>
+<h3 id="activities" name="activities"><code>activities</code></h3>
+<p>(Firefox OS のみ、オプション) アプリが対応している一連の <a class="new" href="https://developer.mozilla.org/ja/docs/WebAPI/Web_Activities">Web Activities</a> を指定します。この項目の各プロパティはアクティビティです。アクティビティ名は自由形式テキストで、各アクティビティはオブジェクトで表されます。以下は <code>share</code> というアクティビティを 1 つ含んだアクティビティ項目の例です。</p>
+<pre class="brush: js">"activities": {
+  "share": {
+    "filters": {
+      "type": [ "image/png", "image/gif" ]
+    },
+    "href": "foo.html",
+    "disposition": "window",
+    "returnValue": true
+  }
+}</pre>
+<p>この例では、<code>share</code> アクティビティのオブジェクトは、<code>filters</code>、<code>href</code>、<code>disposition</code>、<code>returnValue</code> というプロパティを持っています。これらの意味は <a class="new" href="https://developer.mozilla.org/ja/docs/WebAPI/Web_Activities#Activity_handler_description">アクティビティハンドラの説明</a> に書かれています。</p>
+<h3 id="appcache_path" name="appcache_path"><code>appcache_path</code></h3>
+<p>(オプション) アプリケーションキャッシュ (<a href="https://developer.mozilla.org/ja/docs/HTML/Using_the_application_cache">AppCache</a>) マニフェストへの絶対パス。Open Web App がインストールされる際、この AppCache マニフェストが取得、解析され、<code>CACHE</code> ヘッダ以下の静的ファイルがキャッシュされます。</p>
+<pre class="brush: js">"appcache_path": "/cache.manifest"</pre>
+<h3 id="chrome" name="chrome"><code>chrome</code></h3>
+<p><span class="inlineIndicator geckoMinVer standardNote standardNoteInline">Firefox OS 1.1 ???</span></p>
+<p>(オプション) 画面下部にナビゲーションインタフェースを追加します。これは独自の戻るボタンを備えていないアプリに多少のナビゲーションコントロールを追加する簡単な方法です。</p>
+<p>ナビゲーションエリアは以下の左側の画像では折り畳まれています。上向きにドラッグすると右側の画像のようになります。</p>
+<p><img alt="クロームナビゲーション" src="https://mdn.mozillademos.org/files/5843/nav-both2.png" style="width: 726px; height: 98px;"></p>
+<p>例:</p>
+<pre class="brush: js">"chrome": { "navigation": true }</pre>
+<div class="note">
+ <p><strong>注:</strong> この項目は最後の手段であるべきです。最高のユーザ体験を提供するため、アプリのインタフェースに戻るボタンを追加することを検討してください。</p>
+</div>
+<h3 id="csp" name="csp"><code>csp</code></h3>
+<p>(オプション) アプリの <a href="https://developer.mozilla.org/ja/docs/Security/CSP">Content Security Policy</a> を指定します。このポリシーはアプリに読み込まれたすべてのページに適用されます。<a href="CSP.html">詳しくは Apps の CSP ページを参照してください</a>。</p>
+<h3 id="default_locale" name="default_locale"><code>default_locale</code></h3>
+<p>(<code>locales</code> がある場合は必須) マニフェストの使用言語を示す言語タグ (<a class="external" href="http://www.ietf.org/rfc/rfc4646.txt">RFC 4646</a>) です。ここで用いた言語タグは <a href="#locales"><code>locales</code></a> 項目に含めないでください。<code>locales</code> を記載しない場合でも <code>default_locale</code> を定義しておくのが良いでしょう。Firefox Marketplace ではこの値からマニフェストの使用言語が認識され、翻訳された項目に適切なロケール値が使用されます。<code>default_locale</code> が定義されていない場合、Marketplace は配信ロケールに基づいて言語を推定しなければなりません。<code>default_locale</code> はアプリをインストールする端末では使用されません。</p>
+<p>英語の例:</p>
+<pre class="brush: js">"default_locale": "en"​</pre>
+<h3 id="description" name="description"><code>description</code></h3>
+<p>(必須) 人間が読み取れるアプリの説明 (最長 1024 文字)。</p>
+<h3 id="developer" name="developer"><code>developer</code></h3>
+<p>(オプションですが下記注参照) アプリの開発者に関する情報。以下のプロパティを持ちます。</p>
+<ul>
+ <li><strong><code>name</code></strong> - 開発者の名前。</li>
+ <li><strong><code>url</code></strong> - アプリの開発者についての詳しい情報を記載したサイトの URL。この URL は通常、ユーザがダッシュボード (もしくはブラウザ) 内でアプリの詳細情報を表示し、アプリ開発者の名前をクリックしたときに開かれます。</li>
+</ul>
+<div class="note">
+ <p><strong>注:</strong> Firefox Marketplace は、アプリの一覧に表示するため、すべての登録アプリに開発者名の記載を求めています。</p>
+</div>
+<h3 id="fullscreen" name="fullscreen"><code>fullscreen</code></h3>
+<p>(Firefox OS のみ、オプション) これを <code>true</code> もしくは <code>false</code> に設定することで、ランタイムがそのアプリを全画面モードで起動するかどうかを示します。例:</p>
+<pre class="brush: js">"fullscreen": "true"</pre>
+<h3 id="icons" name="icons"><code>icons</code></h3>
+<p>(必須) アイコンの URI に対するアイコンサイズを示すマップ (<a href="#Path_handling">絶対パス</a>、<code>data</code> URI のいずれか)。アイコンは正方形で、アプリを視覚的に表すことを目的としたものです。<code>/</code> で始まるパスは、アプリの配信元からの相対パスとして解釈されます。アイコンには、その画像の 4 つの角すべてに広がる無地の背景を敷いてはいけません。</p>
+<p>Firefox OS については、アイコンは <a class="external" href="http://www.mozilla.org/en-US/styleguide/products/firefoxos/icons/">アプリアイコンガイドライン</a> に従う必要があり、ドロップシャドウを付けてはいけません。典型的なサイズは、</p>
+<dl>
+ <dt>
+  128 x 128</dt>
+ <dd>
+  Firefox Marketplace 表示用</dd>
+ <dt>
+  60 x 60</dt>
+ <dd>
+  実機アイコン用。128px のアイコンのみ必須ですが、端末上での表示を最適化するためこのサイズも含めることを推奨します</dd>
+ <dt>
+  32 x 32, 90 x 90, 120 x 120 and 256 x 256</dt>
+ <dd>
+  これらのアイコンは、Windows 7 や Android など、アプリをインストール可能な他の様々なプラットフォームでの表示最適化のために必要です。</dd>
+</dl>
+<div class="warning">
+ <p><strong>重要</strong>: Marketplace 登録時に求められる必須サイズは 128 x 128 のみです。</p>
+</div>
+<p>複数のアイコンは以下の例のように指定できます。</p>
+<pre class="brush:js;">"icons": {
+  "60": "/img/icon-60.png",
+  "128": "/img/icon-128.png"
+}</pre>
+<div class="note">
+ <p><strong>注</strong>: Windows 7 と Android プラットフォームでは次のアプリアイコンサイズに対応しています: 16 x 16、32 x 32、48 x 48、64 x 64、128 x 128、256 x 256</p>
+</div>
+<h3 id="installs_allowed_from" name="installs_allowed_from"><code>installs_allowed_from</code></h3>
+<p>(オプション) アプリのインストール実行を許可するひとつ以上のサイト。この項目は、有料アプリ (購入が必要なアプリ) が商取引を行いたいストアを特定する目的で使用することを意図したものです。無料アプリの場合は、この項目を省略することで、どこからでもインストール可能にすることを推奨します。</p>
+<p>これは、<code>&lt;スキーマ名&gt;</code> + <code>&lt;ドメイン&gt;</code> の形式を持つ配信元の配列です。例:</p>
+<pre class="brush: js">"installs_allowed_from": [
+  "https://marketplace.firefox.com",
+  "https://marketplace.example.com"
+]</pre>
+<p>配列を <code>["*"]</code> のような形式にした場合、このアプリのインストールはすべてのサイトに許可されます。これが既定値です。なお、空の配列 <code>[]</code> にした場合、自分のサイトを含め、すべてのサイトからのインストールを禁止することになります。</p>
+<p>この項目は、<a class="new" href="https://developer.mozilla.org/en-US/docs/Mozilla/Marketplace/Validating_a_receipt">レシートバリデータ</a> が、どのストアがアプリのレシートを発行可能かを管理するために使用できます。</p>
+<div class="note">
+ <p><strong>注:</strong> この配列内の URL の末尾にはスラッシュを付けないでください。例えば <code>https://marketplace.example.com/</code> は正しくありません。末尾にスラッシュを付けるとインストールに失敗します。この問題に関するバグは <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=755044">これ</a> です。</p>
+</div>
+<div class="note">
+ <p><strong>注:</strong> インストール URL のひとつが Firefox Marketplace の場合は、<code>https://marketplace.firefox.com</code> を含めてください。</p>
+</div>
+<h3 id="launch_path" name="launch_path"><code>launch_path</code></h3>
+<p>(オプション、パッケージ型アプリには必須) アプリの起動時に読み込まれる、アプリの配信元内でのパス。指定されていない場合、アプリの配信元が起動ドメイン URL として扱われます。詳細は <a href="#Path_handling">パス処理</a> を参照してください。アプリがドメインのルートディレクトリにない場合は特別な配慮が必要です。</p>
+<p><a href="Packaged_apps.html">パッケージ型アプリ</a> では、この項目は、そのパッケージ型アプリを含んだ ZIP ファイルを起点とするコンテンツの開始点を指定します。例えば、<code>launch_path</code> に <code>/myApp/index.html</code> という値が指定された場合、パッケージ型アプリは起動時に <code>/myApp/index.html</code> ファイルを開きます。</p>
+<div class="warning">
+ <p>注意: <code>launch_path</code> の値は常にサーバの配信元 (パッケージ型アプリの場合は ZIP ファイルのルート) からの相対パスにする必要があります。配信元やルートに <code>index.html</code> ファイルが置かれている場合でも、この値は単に <code>index.html</code> ではなく <code>/index.html</code> としなければなりません。</p>
+</div>
+<h3 id="locales" name="locales"><code>locales</code></h3>
+<p>(オプション) マニフェストに含まれるデータのひとつ以上のロケール固有の上書きを示すマップ。アクセスされた端末のロケールに基づいて UI がローカライズされたビューを提供するのに使用します。例えば、イタリア語圏のユーザがアプリをインストールした場合は、おそらくイタリア語の UI テキストを提供したいと思うでしょう。各ロケールエントリは言語タグ (<a class="external" href="http://www.ietf.org/rfc/rfc4646.txt">RFC 4646</a>) をキーとし、マニフェストのスパース表現を含みます。<code>locale</code> 項目内に存在するすべての項目が、マニフェスト内で一致する項目を上書きします。<code>default_locale</code>、<code>locales</code> 自体、<code>installs_allowed_from</code> は上書きできません。これらの項目を上書きするマニフェストは不正なものと見なされます。<code>locales</code> が存在する場合は <code>default_locale</code> も存在しなければなりません。</p>
+<p>この項目のキーは <code>xx-YY</code> あるいは <code>xx</code> といった形式にする必要があります。例えば、<code>pt-BR</code> あるいは <code>es</code> といった形式を使用し、他の <code>pt_br</code>、<code>pt_BR</code>、<code>ES</code> といった形式は避けてください。Firefox Marketplace では一貫性を保つためこのアドバイスが強制されます。</p>
+<div class="note">
+ <p><strong>注:</strong> アプリケーションが自分の言語で使用可能かどうかユーザにヒントを与えるため、<code>locales</code> キーを実際のコンテンツのローカライズと一致させることを推奨します。コンテンツのローカライズと <code>locales</code> キーが完全に一致していなくても技術的な問題は生じませんが、ユーザ体験と開発者の評判に関して良くない結果につながる可能性があります。</p>
+</div>
+<p>スペイン語とイタリア語の例:</p>
+<pre class="brush: js">"locales": {
+"es": {
+  "description": "¡Acción abierta emocionante del desarrollo del Web!",
+  "developer": {
+    "url": "http://es.mozillalabs.com/"
+  }
+},
+"it": {
+  "description": "Azione aperta emozionante di sviluppo di fotoricettore!",
+  "developer": {
+    "url": "http://it.mozillalabs.com/"
+  }
+}
+}</pre>
+<h3 id="messages"><code>messages</code></h3>
+<p>(Firefox OS のみ、オプション) アプリから捕捉可能とするシステムメッセージを示します。これは、システムメッセージとそのメッセージが送信された場合に表示するページのマッピングを記述した配列です。ある Firefox OS アプリからの例を以下に示します。</p>
+<pre class="brush: js">"messages": [
+  { "telephony-new-call": "/dialer/index.html#keyboard-view" },
+  { "bluetooth-dialer-command": "/dialer/index.html#keyboard-view" },
+  { "headset-button": "/dialer/index.html#keyboard-view" },
+  { "notification": "/dialer/index.html#keyboard-view" },
+  { "alarm": "/facebook/fb_sync.html" }
+]</pre>
+<p>この例では、(電話の着信を示す) <code>telephony-new-call</code> システムメッセージが送信された場合、端末は <code>/dialer/index.html</code> ページの <code>#keyboard-view</code> アンカーを表示します。このページでは、ユーザに着信を通知し、その通話に応答するコントロールを提供するといった処理を行う必要があります。</p>
+<div class="note">
+ <p><strong>注:</strong> <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=800431" title="System Message for Alarm delivers message to page that added the alarm, and not the page declared in the manifest">バグ 800431</a> が解決するまで、指定されたページはこのメッセージ用に登録されたのと同じでなければなりません。</p>
+</div>
+<h3 id="name" name="name"><code>name</code></h3>
+<p>(必須) 人間が読み取れるアプリの名称 (最長 128 文字)。</p>
+<div class="note">
+ <p><strong>注:</strong> 配布後にアプリの名称を変更した場合、ユーザの端末にインストールされている既存のアプリについては名前が更新されません。</p>
+</div>
+<h3 id="orientation" name="orientation"><code>orientation</code></h3>
+<p>(Android と Firefox OS のみ、オプション) 端末の向きが変わった場合でもアプリを固定する向きを定義する配列。配列内の各エントリは、<code>portrait</code>、<code>landscape</code>、<code>portrait-primary</code>、<code>landscape-primary</code>、<code>portrait-secondary</code>、<code>landscape-secondary</code> のいずれかを取ることができます。<code>-primary</code> と <code>-secondary</code> を含んだオプションは、端末の向きが変わった場合でも、ひとつの端末の向きを固定します。<code>-primary</code> と <code>-secondary</code> を含まないオプションは、プライマリとセカンダリの両方のルールを組み合わせます。追加で <code>-secondary</code> という接尾辞を付けたオプションは、接尾辞なしのオプションから 180 度の回転を暗示します。例えば、スマートフォンを逆さまに持つこと (それでもまだ高さよりも幅が小さいという場合) は <code>portrait-secondary</code> の向きという意味になります。この項目が適切な値の場合、端末の向きが変わった場合でもランタイムはアプリの表示方向を変えません。例:</p>
+<pre>"orientation": ["portrait","landscape-secondary"]</pre>
+<h3 id="origin"><code>origin</code></h3>
+<p><span class="inlineIndicator geckoMinVer standardNote standardNoteInline">Firefox OS 1.1 ???</span></p>
+<p>(特権、公認アプリのみ) <a href="Packaged_apps.html">特権あるいは公認のパッケージ型アプリ</a> に <a href="FAQs/About_app_manifests.html">配信元</a> を与えるために使用されます。ホスト型アプリについては、既に配信元 (アプリが配信されているサイト) が設定されているため、この項目は必要ありません。この項目のひとつの使用例として、OAuth や Persona といった認証機能をパッケージ型アプリへ追加したい場合にそれを容易にすることが挙げられます。</p>
+<p>パッケージ型アプリについて内部的に使用される特別なプロトコルがあります。それは <code>app://&lt;UUID&gt;</code> というもので、<code><a class="external" href="http://en.wikipedia.org/wiki/UUID">&lt;UUID&gt;</a></code> はアプリがインストールされている端末に固有の長い文字列です。現時点ではアプリ開発者がこの URL を簡単に取得する方法はありません。<code>origin</code> 項目は、<code>app://my-app.com</code> のような、各インストール済みアプリが使用する単独のドメイン名でこの UUID を置き換えられるようにするものです。</p>
+<p>このドメイン名は開発者の管理下にあるドメインでなければなりません。例えば Facebook ではないのに <code>app://facebook.com</code> のようなドメインを使ったアプリはおそらく Firefox Marketplace では承認されないでしょう。</p>
+<p>例 (必ず <code>app://</code> プロトコルを使ってください):</p>
+<pre>"origin": "app://my-app.com"</pre>
+<h3 id="permissions" name="permissions"><code>permissions</code></h3>
+<p>(オプション) アプリが必要とする一連の許可設定。許可設定は重要な端末 API (WebAPI) へのアクセスを制御するものです。アプリは、ユーザの許可を必要とし、使おうとするすべての API をリストアップしなければなりません。アプリがそうした API を <code>permissions</code> 項目内の対応するエントリなしに使おうとした場合、エラーとなり使用できません。</p>
+<div class="note">
+ <p><strong>注:</strong> これらの許可設定の多くは <a href="Packaged_apps.html">特権付きアプリと公認アプリ</a> にのみ必要なもので、ホスト型アプリには意味がありません。</p>
+</div>
+<p>許可設定項目はオブジェクトで、プロパティごとにひとつの許可を指定します。各 API エントリには <code>description</code> プロパティを含める必要があります。一部の API は <code>access</code> プロパティも必要です。<code>permissions</code> 項目の例は以下の通りです。</p>
+<pre>"permissions": {
+  "contacts": {
+    "description": "Required for autocompletion in the share screen",
+    "access": "readcreate"
+  },
+  "alarms": {
+    "description": "Required to schedule notifications"
+  }
+}</pre>
+<ul>
+ <li><strong><code>description</code></strong> - この API の使用を要求する意図を明記した文字列。このプロパティは必須です。</li>
+ <li><strong><code>access</code></strong> - 許可に必要なアクセスの種類を指定する文字列。このプロパティは一部の API のみ必要です。取り得る値は <code>readonly</code>、<code>readwrite</code>、<code>readcreate</code>、<code>createonly</code> です。</li>
+</ul>
+<p>WebAPI には様々な種類があります。使用可能な許可設定の一覧は <a href="App_permissions.html">アプリの許可設定</a> を参照してください。</p>
+<h3 id="precompile"><code>precompile</code></h3>
+<p><span class="inlineIndicator geckoMinVer standardNote standardNoteInline">Firefox OS 1.4 ???</span></p>
+<p>(Firefox OS のみ、オプション、パッケージ型もしくは公認アプリ) アプリ内に含まれている <a href="https://developer.mozilla.org/en-US/docs/Games/Tools/asm.js">asm.js</a> コードをインストール時にコンパイルし、初回起動時にインストールする必要がある場合に指定します。これにより、最初のインストール時間が長くなる代わりに、初回起動時のアプリ起動コストが大幅に削減されます。この項目には、コンパイルする必要のある asm.js コードを含む JavaScript ファイルへの相対パス配列を記載します。</p>
+<pre>"precompile": [
+  "game.js",
+  "database.js"
+]</pre>
+<h3 id="redirects" name="redirects"><code>redirects</code></h3>
+<p>(Firefox OS のみ、オプション、特権・認定アプリのみ) 特権アプリや認定アプリは外部認証を行う必要があるかもしれません。例えば、Facebook の OAuth 認証を行って、個人の連絡先情報を取得するアプリもあるでしょう。認証が完了すると、認証サーバは通常、アプリ開発者があらかじめ指定した URL へアプリをリダイレクトし返します。</p>
+<p>しかし、特権・認定アプリアプリは、リダイレクト先として指定可能な正規の Web URL を持っていません。なぜならそのアプリはどのサイトにもホストされていないからです (これは公開の配信元を持たない <a href="Packaged_apps.html">パッケージ型アプリ</a> です)。そのため、<code>redirects</code> 項目を使って、Web URL を内部アプリ URL へリダイレクトします。</p>
+<p>例:</p>
+<pre class="brush: js">"redirects": [
+  {"from": "http://mydomain.com/oauth2/flow.html",
+    "to": "/redirects/redirect.html"},
+  {"from": "http://mydomain.com/oauth2/dialogs_end.html",
+    "to": "/redirects/dialogs_end.html"}
+]</pre>
+<p><code>from</code> には Web URL を、<code>to</code> にはリダイレクト先の内部アプリ URL を設定します。内部アプリ URL は相対 URL でなければならず、URL の前に <code>http://</code> のようなプロトコルを使うことはできません。</p>
+<p><code>redirects</code> によって宣言されるリダイレクトの範囲は、それを宣言したアプリ自体に制限されます。これは、複数のアプリが同じ公開 URL を独自のローカルリソースへリダイレクトできるようにするためであり、また特定のアプリケーションによる公開 URL のグローバルハイジャックを防ぐための措置でもあります。</p>
+<div class="note">
+ <p><strong>注:</strong> <code>from</code> で定義された URL は、HTTP リダイレクト (<code>30x</code> HTTP ステータスヘッダ) を通じてリクエストされた場合に限って認識され、内部の <code>to</code> パスへ引き渡されます。HTTP リダイレクトなしに URL を開いた場合、<code>redirects</code> 設定は無視されます。</p>
+</div>
+<h3 id="type" name="type"><code>type</code></h3>
+<p>(オプション) アプリの種類。<code>web</code>、<code>privileged</code>、<code>certified</code> のいずれか。これらのアプリの種類によって、重要な端末 API (<a href="https://developer.mozilla.org/ja/docs/WebAPI">WebAPI</a>) へアクセス可能なレベルが異なります。各タイプの説明は以下の通りですが、詳しい説明は <a href="Packaged_apps.html">パッケージ型アプリ</a> を参照してください。WebAPI へのアクセスについては <a href="#permissions"><code>permissions</code></a> 項目を参照してください。</p>
+<ul>
+ <li><strong><code>web</code></strong> - 通常のホスト型アプリ。この種類のアプリには WebAPI への最低限のアクセスが提供されます。マニフェストで <code>type</code> 項目を指定しない場合、<code>web</code> が既定値となります。</li>
+ <li><strong><code>privileged</code></strong> - Firefox Marketplace などのアプリストアによって承認された、認証済みアプリ。この種類のアプリには <code>web</code> アプリよりも広範な WebAPI へのアクセスが提供されます。</li>
+ <li><strong><code>certified</code></strong> - スマートフォン上の既定通話アプリやシステム設定アプリなど、重要なシステム機能を備えたアプリ。アプリストアに登録されたサードパーティ製アプリに与えられる権限ではありません。この種類のアプリには WebAPI への最大限のアクセスが提供されます。</li>
+</ul>
+<p>例:</p>
+<pre>"type": "privileged"</pre>
+<h3 id="version" name="version"><code>version</code></h3>
+<p>(オプション) マニフェストのバージョンを表す文字列。Web ランタイムはこの値を一切使用しませんので、任意の値を取ることができます。 この文字列をマニフェストへ追加し、抽出して、様々な更新のケースに対処するために役立てることもできます。<a href="Updating_apps.html">アプリの更新</a> を参照してください。</p>
+<h2 id="Path_handling" name="Path_handling">パス処理</h2>
+<p>マニフェスト内でパスを持つすべての項目は絶対パス (例えば <code>/images/myicon.png</code>) でなければならず、そのパスはアプリと同じ配信元から提供されるものでなければなりません。</p>
+<p>また、<code>launch_path</code> を設定する場合は、次の 2 通りの方法があります。</p>
+<ul>
+ <li>例えば <code>mywebapp.github.com/</code> のように、アプリが Web サーバのルートに保存されている場合は、<code>launch_path</code> を <code>/</code> とします。</li>
+ <li>そうではなく、例えば <code>mymarket.github.com/mywebapp/</code> のように、アプリがサブディレクトリに保存されている場合は、<code>launch_path</code> を <code>/mywebapp/</code> とします。</li>
+</ul>
+<h2 id="Validating_a_manifest" name="Validating_a_manifest">マニフェストの検証</h2>
+<p>マニフェストを検証するには、このサイトを使用してください: <a class="external" href="https://marketplace.firefox.com/developers/validator">https://marketplace.firefox.com/developers/validator</a></p>
+<p>マニフェストの検証に使用できる API もあります: <a class="external" href="http://firefox-marketplace-api.readthedocs.org/en/latest/">http://firefox-marketplace-api.readthedocs.org/en/latest/</a></p>
+<h2 id="Serving_manifests" name="Serving_manifests">マニフェストの配信</h2>
+<p>アプリマニフェストはアプリが配信されるのと <a href="FAQs/About_app_manifests.html">同じ配信元</a> から配信する必要があります。</p>
+<p>マニフェストはファイル拡張子 <code>.webapp</code> 付きで保存しなければなりません。また、<code>Content-Type</code> ヘッダを <code>application/x-web-app-manifest+json</code> として配信する必要があります。これは今のところ Firefox では必須ではありませんが、Firefox Marketplace では必須です。Firefox OS は、ユーザがインストールを実行したページの <em>origin</em> がアプリ自体の <em>origin</em> の異なる場合のみ、この確認を行います。<code>Content-Security-Policy</code> や <code>X-UA-Compatible</code> といった他のヘッダは必要ありません。</p>
+<p>特定の攻撃リスクを軽減するため、SSL 通信を通じてマニフェストを配信することも可能です。マニフェストは <a class="external" href="http://en.wikipedia.org/wiki/HTTP_compression">HTTP 圧縮</a> で配信することもできますが、キャッシュされるべきではありません。</p>
+<p>Firefox Marketplace へアプリを登録する場合、マニフェストの文字エンコーディングは UTF-8 とする必要があります。バイトオーダーマーク (BOM) は省略することをお勧めします。他のエンコーディングは、Marketplace では評価されませんが、<code>Content-Type</code> ヘッダの <code>charset</code> パラメータで指定可能です (例: <code>Content-Type: application/x-web-app-manifest+json; charset=ISO-8859-4</code>)。</p>
+<p>ユーザエージェントは、可能な場合、アプリのインストールをユーザに確認する際、サイト識別情報と TLS ステータスを意味のある形で伝えます。</p>
+<h5 id="Serving_from_Apache" name="Serving_from_Apache">Apache からの配信</h5>
+<p><code>.htaccess</code> ファイルに以下の行を追加します。</p>
+<pre>AddType application/x-web-app-manifest+json .webapp</pre>
+<div class="note">
+ <strong>注:</strong> これは <code>.webapp</code> を拡張子として使っていることを前提としています。<code>.json</code> やその他の拡張子を使う場合は、それに応じてコードを書き換えてください。</div>
+<p><code>.htaccess</code> ファイルがない場合は、サーバのルートディレクトリに新規作成してください。もし上記のコードを追加しても期待通りに動作しない場合、<code>AddHandler x-web-app-manifest+json .webapp</code> という行も追加する必要があるかもしれません。</p>
+<h5 id="Serving_from_IIS" name="Serving_from_IIS">IIS からの配信</h5>
+<p><code>web.config</code> ファイルを編集する必要があります。これはおそらく Web サイトのルートディレクトリにあるでしょう。</p>
+<p><code>&lt;configuration&gt;</code> <code>&lt;system.webServer&gt;</code> <code>&lt;staticContent&gt;</code> セクションに新しい項目を追加する必要があります。</p>
+<pre>&lt;remove fileExtension=".webapp" /&gt;
+&lt;mimeMap fileExtension=".webapp" mimeType="application/x-web-app-manifest+json; charset=UTF-8" /&gt;</pre>
+<p><a class="external" href="http://www.iis.net/configreference/system.webserver/staticcontent/mimemap">IIS での静的なコンテンツ MIME マッピングの追加に関する詳しい情報</a></p>
+<div class="note">
+ <strong>注:</strong> これは <code>.webapp</code> を拡張子として使っていることを前提としています。<code>.json</code> やその他の拡張子を使う場合は、それに応じてコードを書き換えてください。</div>
+<h5 id="Serving_from_nginx" name="Serving_from_nginx">nginx からの配信</h5>
+<p>設定ディレクトリにある <code>mime.types</code> ファイルを編集する必要があります。これはおそらく <code>/etc/nginx/</code> か <code>/opt/nginx/</code> にあります。</p>
+<p>以下のような設定が見つかるはずです。最後の行を追加してください。</p>
+<pre>types {
+text/html   html htm shtml;
+text/css    css;
+text/xml    xml;
+application/x-web-app-manifest+json   webapp;
+}</pre>
+<div class="note">
+ <strong>注:</strong> これは <code>.webapp</code> を拡張子として使っていることを前提としています。<code>.json</code> やその他の拡張子を使う場合は、それに応じてコードを書き換えてください。</div>
+<h5 id="Serving_from_GitHub" name="Serving_from_GitHub">GitHub からの配信</h5>
+<p>マニフェストファイルを <a class="external" href="http://pages.github.com/">GitHub Pages</a> から提供する場合、GitHub が自動的に <code>application/x-web-app-manifest+json</code> の <code>Content-Type</code> ヘッダで提供してくれます。マニフェストファイルは <code>.webapp</code> 拡張子を使う必要があります。例: <code>manifest.webapp</code></p>
+<h5 id="Serving_from_Python" name="Serving_from_Python">Python からの提供</h5>
+<p>Python がインストールされている場合は、Python を起動し、以下のコードを実行することで、ローカルディレクトリから簡単にサーバを実行できます。</p>
+<pre>import SimpleHTTPServer
+import SocketServer
+SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map['.webapp'] = 'application/x-web-app-manifest+json'
+httpd = SocketServer.TCPServer(("", 3000), SimpleHTTPServer.SimpleHTTPRequestHandler)
+httpd.serve_forever()
+</pre>
+<h5 id="Serving_from_Rack_(Ruby)" name="Serving_from_Rack_(Ruby)">Rack (Ruby) からの配信</h5>
+<p><code>config/initializers/mime_types.rb</code> に以下の行を追加します。</p>
+<pre>Rack::Mime::MIME_TYPES['.webapp'] = 'application/x-web-app-manifest+json'</pre>
+<h2 id="Updating_manifests" name="Updating_manifests">マニフェストの更新</h2>
+<p>アプリの更新に関する情報は <a href="Updating_apps.html">アプリの更新</a> を参照してください。</p>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="https://developer.mozilla.org/ja/docs/tag/Apps">Apps</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="https://developer.mozilla.org/ja/profiles/ethertank">ethertank</a>, <a href="https://developer.mozilla.org/ja/profiles/Yoshino">Yoshino</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="https://developer.mozilla.org/ja/profiles/Yoshino">Yoshino</a>,
+                      <time datetime="2014-06-23T20:16:45-07:00">2014/06/23 20:16:45</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="http://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="http://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="https://developer.mozilla.org/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Web/Apps/Manifest" selected>
+          日本語
+        </option>
+                  <option value="/en-US/Apps/Build/Manifest">
+            English (US)
+          </option>          <option value="/pt-BR/Apps/Manifest">
+            Português (do Brasil)
+          </option>          <option value="/id/docs/Apps/Manifest">
+            Bahasa Indonesia
+          </option>          <option value="/fr/Apps/Manifeste">
+            Français
+          </option>          <option value="/ko/docs/Web/Apps/Developing/Manifest/Manifest">
+            한국어
+          </option>          <option value="/zh-TW/Apps/Developing/Manifest/Manifest-840092-dup">
+            正體中文 (繁體)
+          </option>          <option value="/es/Apps/Build/Manifest">
+            Español
+          </option>          <option value="/ru/Apps/Manifest">
+            Русский
+          </option>          <option value="/de/docs/Apps/Manifest">
+            Deutsch
+          </option>          <option value="/it/Apps/Manifest">
+            Italiano
+          </option>          <option value="/bn-BD/docs/Web/Apps/Developing/Manifest">
+            বাংলা (বাংলাদেশ)
+          </option>          <option value="/zh-CN/Apps/Build/Manifest">
+            中文 (简体)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="https://developer.mozilla.org/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":493}</script></body>
+
+<!-- Mirrored from developer.mozilla.org/ja/docs/Web/Apps/Manifest by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Oct 2014 19:44:29 GMT -->
+</html>

@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" class="redesign no-js">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+          <script src="https://cdn.optimizely.com/js/237572123.js"></script>
+  
+    <title>Firefox 4 for developers - Mozilla | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <link rel="home" href="../../../../index.html">
+  <link rel="copyright" href="4.html#copyright">
+
+  <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" type="text/css" rel="stylesheet">
+              <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=46533d5" />
+
+      
+    <link rel="stylesheet" media="all" href="https://developer.cdn.mozilla.net/media/css/wiki-min.css?build=46533d5" />
+
+    
+    
+  <!-- common social tags -->
+    <meta property="og:type" content="website">
+  <meta property="og:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta property="og:site_name" content="Mozilla Developer Network">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://developer.mozilla.org/media/redesign/img/opengraph-logo.png">
+  <meta name="twitter:site" content="@NewOnMDN">
+  <meta name="twitter:creator" content="@NewOnMDN">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="../../../../search/xml" title="Mozilla Developer Network">
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon144.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon114.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon72.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon57.png">
+  <!-- basic favicon -->
+          <link rel="shortcut icon" href="https://developer.cdn.mozilla.net/media/redesign/img/favicon32.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script src="https://developer.cdn.mozilla.net/media/js/libs/html5.js"></script>
+  <![endif]-->
+
+    <link rel="alternate" type="application/json" href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/4$json">
+  <link rel="canonical" href="4.html" >
+
+            <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/Firefox/Releases/4" title="Firefox 4 for developers">
+          <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Firefox_4_for_developers" title="Firefox 4 技術文件">
+          <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Firefox_4_para_desarrolladores" title="Firefox 4 para desarrolladores">
+          <link rel="alternate" hreflang="pt-PT" href="https://developer.mozilla.org/pt-PT/docs/Firefox_4_para_desenvolvedores" title="Firefox 4 para desenvolvedores">
+          <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Firefox_4_f%C3%BCr_Entwickler" title="Firefox 4 für Entwickler">
+          <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Mozilla/Firefox/Versions/4" title="Firefox 4 pour les développeurs">
+          <link rel="alternate" hreflang="zh-CN" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Firefox/Releases/4" title="Firefox 4 技术文件">
+      
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Firefox 4 for developers">
+  <meta property="og:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/4">
+  <meta name="twitter:url" content="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/4">
+  <meta name="twitter:title" content="Firefox 4 for developers">
+    <meta property="og:description" content="Firefox 4 （6 月後半にベータ版リリースが予定されています）では、パフォーマンスが向上し、 HTML 5 やその他の革新的な Web 技術のさらなるサポートが追加され、さらには、セキュリティも改善しています。 この記事では、この次期リリースについてのとっかかりの情報と、 Web 開発者、アドオン開発者、そして、Gecko プラットフォーム開発者向けに利用可能になる機能の一覧を提供します。">
+  <meta name="description" content="Firefox 4 （6 月後半にベータ版リリースが予定されています）では、パフォーマンスが向上し、 HTML 5 やその他の革新的な Web 技術のさらなるサポートが追加され、さらには、セキュリティも改善しています。 この記事では、この次期リリースについてのとっかかりの情報と、 Web 開発者、アドオン開発者、そして、Gecko プラットフォーム開発者向けに利用可能になる機能の一覧を提供します。">
+  <meta name="twitter:description" content="Firefox 4 （6 月後半にベータ版リリースが予定されています）では、パフォーマンスが向上し、 HTML 5 やその他の革新的な Web 技術のさらなるサポートが追加され、さらには、セキュリティも改善しています。 この記事では、この次期リリースについてのとっかかりの情報と、 Web 開発者、アドオン開発者、そして、Gecko プラットフォーム開発者向けに利用可能になる機能の一覧を提供します。">
+  
+      <script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-36116321-5', 'mozilla.org');
+    ga('set', 'anonymizeIp', true);
+
+    
+    
+    
+    
+    (function() {
+        // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+        var win = window;
+        var removeUtms = function(){
+            var location = win.location;
+            if (location.hash.indexOf('utm') != -1) {
+                var anchor = location.hash.match(/#(?!utm)[^&]+/);
+                anchor = anchor ? anchor[0] : '';
+                if(!anchor && win.history.replaceState){
+                    history.replaceState({}, '', location.pathname + location.search);
+                } else {
+                    location.hash = anchor;
+                }
+            }
+        };
+
+        ga('send', 'pageview', removeUtms(win.location + ''));
+    })();
+</script>
+  <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VgAEV1RTGwABU1NSAAQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script></head>
+<body data-slug="Mozilla/Firefox/Releases/4" contextmenu="edit-history-menu" class="document  ">
+
+  <script type="text/javascript">
+    (function(win) {
+        'use strict';
+
+                    (function(){
+  var FLAGS = {
+    'derby_closed': true,'dirtiness_tracking': true,'ga_outbound_links': true,'github_beta_notice': false,'kumaediting': false,'page_move': false,'promote_script': false,'redirect_messages': false,'search_suggestions': false,'top_contributors': false,'wiki_spellcheck': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'render_stale_documents_async': true,'enable_optimizely': true,'welcome_email': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+                
+        // This represents the site configuration
+        win.mdn = {
+            build: '46533d5',
+            // Properties and settings for CKEditor will go here
+            ckeditor: {},
+            // Feature test results and methods will be placed here
+            features: {},
+            // The path to media (images, CSS, JS) in MDN
+            mediaPath: 'https://developer.cdn.mozilla.net/media/',
+            // Optimizely API
+            optimizely: win['optimizely'] || [],
+            // Site notifications
+                        notifications: [],
+                        // Wiki-specific settings will be placed here
+            wiki: {
+                autosuggestTitleUrl: '/ja/docs/get-documents'
+            },
+            searchFilters: [{"name": "Document type", "slug": "type", "order": 1, "filters": [{"name": "Tools", "slug": "tools", "shortcut": null}, {"name": "Code Samples", "slug": "code", "shortcut": null}, {"name": "How-To & Tutorial", "slug": "howto", "shortcut": null}]}, {"name": "Skill level", "slug": "skill", "order": 1, "filters": [{"name": "I'm an Expert", "slug": "advanced", "shortcut": null}, {"name": "Intermediate", "slug": "intermediate", "shortcut": null}, {"name": "I'm Learning", "slug": "beginner", "shortcut": null}]}, {"name": "Topics", "slug": "topic", "order": 1, "filters": [{"name": "Open Web Apps", "slug": "apps", "shortcut": null}, {"name": "HTML", "slug": "html", "shortcut": null}, {"name": "CSS", "slug": "css", "shortcut": null}, {"name": "JavaScript", "slug": "js", "shortcut": null}, {"name": "APIs and DOM", "slug": "api", "shortcut": null}, {"name": "Canvas", "slug": "canvas", "shortcut": null}, {"name": "SVG", "slug": "svg", "shortcut": null}, {"name": "MathML", "slug": "mathml", "shortcut": null}, {"name": "WebGL", "slug": "webgl", "shortcut": null}, {"name": "XUL", "slug": "xul", "shortcut": null}, {"name": "Marketplace", "slug": "marketplace", "shortcut": null}, {"name": "Firefox", "slug": "firefox", "shortcut": null}, {"name": "Firefox for Android", "slug": "firefox-mobile", "shortcut": "fennec"}, {"name": "Firefox for Desktop", "slug": "firefox-desktop", "shortcut": "fx"}, {"name": "Firefox OS", "slug": "firefox-os", "shortcut": "fxos"}, {"name": "Mobile", "slug": "mobile", "shortcut": null}, {"name": "Web Development", "slug": "webdev", "shortcut": null}, {"name": "Add-ons & Extensions", "slug": "addons", "shortcut": null}, {"name": "Games", "slug": "games", "shortcut": null}, {"name": "Writing Documentation", "slug": "docs", "shortcut": null}]}]
+        };
+
+        // Ensures gettext always returns something, is always set
+        win.gettext = function(x) {
+            return x;
+        }
+    })(window);
+</script>
+  
+
+  
+
+  
+  <ul id="nav-access">
+    <li><a href="4.html#document-main" id="skip-main">メインコンテンツへ移動</a></li>
+    <li><a id="skip-language" href="4.html#language">言語の選択</a></li>
+          <li><a href="4.html#q" id="skip-search">検索へ移動</a></li>
+      </ul>
+
+  <!-- Header -->
+  <header id="main-header"><div class="center">
+
+    <a href="https://www.mozilla.org/" id="tabzilla" class="no-track">mozilla</a>
+
+    <div class="clear header-clear"></div>
+
+    <a href="../../../../index.html" class="logo">Mozilla Developer Network</a>
+
+    <div class="header-login">
+                    
+    
+    <form>
+      <div class="oauth-login-container">
+          <div class="oauth-login-options" tabIndex="0">
+              <span class="oauth-login-options-text">
+                <span class="oauth-login-options-text-icons">Sign in with</span>
+                <span class="oauth-login-options-text-no-icons">Sign in</span>
+              </span>
+              <span class="oauth-icon oauth-persona launch-persona-login" data-service="Persona" data-next="/ja/docs/Mozilla/Firefox/Releases/4" title="Persona"><i class="icon-user" aria-hidden="true"></i></span>
+                      </div>
+          <div class="submenu oauth-login-picker" aria-hidden="true">
+              <ul>
+                  <li><a href="../../../../users/signin.html" class="login-link launch-persona-login" data-next="/ja/docs/Mozilla/Firefox/Releases/4" data-service="Persona"><i class="icon-user" aria-hidden="true"></i>Persona</a></li>
+                              </ul>
+          </div>
+      </div>
+    </form>
+            </div>
+
+    <nav id="main-nav" role="navigation"><ul><li><a href="https://developer.mozilla.org/en-US/docs/Zones">ゾーン<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu submenu-single" id="nav-zones-submenu">
+          <div class="submenu-column">
+            <ul>
+              <li><a href="../../Add-ons.html">アドオン</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Apps">App センター</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox">Firefox</a></li>
+              <li><a href="../../Marketplace.html">Firefox Marketplace</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Firefox_OS">Firefox OS</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Persona">Persona</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Web.html">Web プラットフォーム<i aria-hidden="true" class="icon-caret-down"></i></a>
+
+        <div class="submenu" id="nav-platform-submenu">
+          <div class="submenu-column">
+            <div class="title">テクノロジ</div>
+            <ul>
+              <li><a href="../../../Web/HTML.html">HTML</a></li>
+              <li><a href="../../../Web/CSS.html">CSS</a></li>
+              <li><a href="../../../Web/JavaScript.html">JavaScript</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Graphics">グラフィクス</a></li>
+              <li><a href="../../../Web/API.html">API / DOM</a></li>
+              <li><a href="../../../Web/Apps.html">Apps</a></li>
+              <li><a href="../../../Web/MathML.html">MathML</a></li>
+            </ul>
+          </div><div class="submenu-column last">
+            <div class="title">リファレンスとガイド</div>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Tutorials">チュートリアル</a></li>
+              <li><a href="../../../Web/Reference.html">レファレンス</a></li>
+              <li><a href="../../../Web/Guide.html">開発者ガイド</a></li>
+              <li><a href="../../../Web/Accessibility.html">アクセシビリティ</a></li>
+              <li><a href="../../../../demos/index.html">MDN デモ</a></li>
+              <li><a href="../../../Web.html">さらに見る</a></li>
+            </ul>
+          </div>
+        </div>
+      </li><li><a href="../../../Tools.html">ツール</a></li><li><a href="../../../../demos/index.html">MDN デモ</a></li><li><a href="../../Connect.html">Connect</a></li><li class="main-nav-search"><form action="/ja/search" method="get" role="search">
+        <div class="search-wrap">
+          <label for="main-q" class="offscreen">検索</label>
+          <input type="search" id="main-q" name="q" data-placeholder="検索" data-value="" value="" />
+          <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>&nbsp;
+          <button type="submit" class="offscreen">検索</button>
+        </div>
+      </form></li></ul></nav>
+  </div></header>
+
+  <!-- Content will go here -->
+  <main id="content"><div class="center clear">
+  
+   <!-- end is_zone -->
+
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+            <div class="article-meta">
+        <!-- action buttons -->
+        
+            
+        
+
+  <ul class="page-buttons" data-sticky="false"><li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>言語</span><i aria-hidden="true" class="icon-globe"></i></button>
+
+        <div class="submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+                                                <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/Firefox/Releases/4" title="Firefox 4 for developers">English (US)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Firefox_4_for_developers" title="Firefox 4 技術文件">正體中文 (繁體)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Firefox_4_para_desarrolladores" title="Firefox 4 para desarrolladores">Español</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-PT/docs/Firefox_4_para_desenvolvedores" title="Firefox 4 para desenvolvedores">Português (Europeu)</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Firefox_4_f%C3%BCr_Entwickler" title="Firefox 4 für Entwickler">Deutsch</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Mozilla/Firefox/Versions/4" title="Firefox 4 pour les développeurs">Français</a></bdi></li>
+                                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Firefox/Releases/4" title="Firefox 4 技术文件">中文 (简体)</a></bdi></li>
+                              
+                          </ul>
+          </div>
+        </div></li><li class="page-buttons-edit"><a href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/4$edit" class="button" data-optimizely-hook="button-edit-doc" id="edit-button">編集<i aria-hidden="true" class="icon-pencil"></i></a></li><li><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>詳細</span><i aria-hidden="true" class="icon-cog"></i></button>
+
+        <div class="submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">詳細</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Firefox/Releases/4$history">履歴</a></li>
+                                                                
+                
+                                
+                                                                <li class="page-print"><a href="4.html#" onclick="return window.print();">このページを印刷</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+
+        <!-- crumbs -->
+          <nav class="crumbs" role="navigation"><ol xmlns:v="http://rdf.data-vocabulary.org/#" aria-label="breadcrumbs">
+    <li typeof="v:Breadcrumb"><a href="../../../../index.html" rel="v:url" property="v:title">MDN</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../../Mozilla.html" rel="v:url" property="v:title">Mozilla</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../../Firefox.html" rel="v:url" property="v:title">Firefox</a></li>
+          <li class="crumb" typeof="v:Breadcrumb"><a href="../Releases.html" rel="v:url" property="v:title">Firefox 開発者向けリリースノート</a></li>
+        <li class="crumb" typeof="v:Breadcrumb" property="v:title">Firefox 4 for developers</li>
+  </ol></nav>
+      </div>
+
+      <!-- heading -->
+      <div id="wiki-document-head" class="document-head">
+          <span class="from-search-previous-box">
+            <a class="button from-search-previous only-icon disabled" title="Previous Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-left"></i></a>
+          </span>
+          <span class="from-search-navigate-wrap">
+            <a href="4.html#" class="from-search-navigate"><span class="from-search-navigate-up"><i aria-hidden="true" class="icon-double-angle-up"></i></span><span class="from-search-navigate-down"><i aria-hidden="true" class="icon-double-angle-down"></i></span></a>
+          </span>
+          <div class="from-search-toc">
+            <span class="title">Your Search Results</span>
+            <ol></ol>
+          </div>
+          <span class="from-search-next-box">
+            <a class="button from-search-next only-icon disabled" title="Next Search Result" data-empty-title="No Previous Search Result"><i aria-hidden="true" class="icon-chevron-right"></i></a>
+          </span>
+        <h1>Firefox 4 for developers</h1>
+        
+      </div>
+      
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-right-present wiki-left-closed wiki-left-none">
+
+          
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+                          <!-- TOC, approvals, etc -->
+              <div class="column-strip wiki-column" id="wiki-right">
+                            <!-- table of contents -->
+              <div id="toc" class="toc toggleable">
+                <a href="4.html#toc" class="title toggler" data-open-icon="icon-plus" data-closed-icon="icon-minus">In This Article<i></i></a>
+                <ol class="toggle-container">
+                  <li><a href="4.html#Features_for_web_developers" rel="internal">Web 開発者向け機能</a><ol><li><a href="4.html#HTML" rel="internal">HTML</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="4.html#Canvas_improvements" rel="internal">Canvas improvements</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#Miscellaneous_HTML_changes" rel="internal">小さな HTML の変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="4.html#CSS" rel="internal">CSS</a><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="4.html#New_CSS_properties" rel="internal">新しい CSS プロパティ</a><code></code><code></code><code></code><li><a href="4.html#New_CSS_pseudo-classes" rel="internal">新しい CSS 擬似クラス</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#New_CSS_pseudo-selectors" rel="internal">新しい CSS 擬似セレクタ</a><code></code><li><a href="4.html#New_CSS_functions" rel="internal">新しい CSS 関数</a><code></code><code></code><code><code></code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#Renamed_CSS_properties" rel="internal">改名された CSS プロパティ</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#Miscellaneous_CSS_changes" rel="internal">小さな CSS の変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="4.html#Graphics_and_video" rel="internal">グラフィックとビデオ</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#DOM" rel="internal">DOM</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><ol><li><a href="4.html#HTML_elements'_DOM_interfaces_have_changed" rel="internal">HTML 要素の DOM インタフェースが変更されました</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#Miscellaneous_DOM_changes" rel="internal">小さな DOM の変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="4.html#Security" rel="internal">セキュリティ</a><li><a href="4.html#JavaScript" rel="internal">JavaScript</a><li><a href="4.html#Developer_tools" rel="internal">開発者ツール</a><code></code><code></code></ol></li><li><a href="4.html#Changes_for_Mozilla_and_add-on_developers" rel="internal">Mozilla およびアドオン開発者向けの変更</a><ol><li><a href="4.html#New_JavaScript_code_modules" rel="internal">新しいJavaScript コードモジュール</a><code></code><code></code><code></code><code></code><ol><li><a href="4.html#Miscellaneous_changes_to_code_modules" rel="internal">小さなコードモジュールの変更</a><code></code><code></code></ol></li><li><a href="4.html#DOM_changes" rel="internal">DOM の変更</a><code></code><li><a href="4.html#XUL" rel="internal">XUL</a><ol><li><a href="4.html#Changes_to_the_tabbrowser_element" rel="internal">Tabbrowser (gBrowser) の変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code id="a-tabmodalPromptShowing"></code><li><a href="4.html#Changes_to_popups" rel="internal">ポップアップに対する変更点</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code id="a-fade"></code><code id="a-flip"></code><li><a href="4.html#Remote_XUL_support_removed" rel="internal">リモート XUL サポートの削除</a><code></code><code></code><code></code><code></code><li><a href="4.html#Miscellaneous_XUL_changes" rel="internal">小さな XUL の変更</a><code id="a-readonly"></code><code></code><code id="a-element"></code><code></code><code id="a-resizer.type"></code><code></code><code id="a-emptytext"></code><code id="a-placeholder"></code><code></code><code></code><code></code><code id="a-accelerated"></code><code></code><code id="a-bottom"></code><code id="a-right"></code><code></code><code id="a-alternatingbackground"></code><code></code><code></code><code></code><code></code><code></code><code id="a-drawintitlebar"></code><code></code><code></code><code></code><code></code><code id="a-label"></code><code id="a-crop"></code><code id="a-busy"></code><code id="a-image"></code><code id="a-selected"></code><code></code><code id="a-pinned"></code><code></code><code></code><code></code><code id="a-chromemargin"></code><code></code><code id="a-disablechrome"></code><code></code><code></code><code id="a-disablefastfind"></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="4.html#UI_changes_affecting_developers" rel="internal">開発者に影響がある UI の変更</a><code></code><li><a href="4.html#Storage" rel="internal">Storage</a><ol><li><a href="4.html#Miscellaneous_storage_API_changes" rel="internal">小さなストレージ API の変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code></ol></li><li><a href="4.html#XPCOM" rel="internal">XPCOM</a><code></code><li><a href="4.html#Places" rel="internal">Places</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#Interface_changes" rel="internal">インタフェースの変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#Memory_management" rel="internal">メモリ管理</a><li><a href="4.html#Other_changes" rel="internal">その他の変更</a><code></code><code></code></ol></li><li><a href="4.html#Other_changes_2" rel="internal">その他の変更</a><code></code><code></code><code></code><code></code><code></code><code></code><code></code><li><a href="4.html#See_also" rel="internal">関連情報</a>
+                </ol>
+              </div>
+                            </div>
+            
+                                                  
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+              
+                                                                                          
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                                                      <div><div class="overheadIndicator translationInProgress translationInProgressHeader"> 
+    <p>この文書は翻訳中です。他国語のままの部分などがあるのはその為です。<br>是非お気軽に MDN に登録して翻訳に参加し、私たちの手助けをして下さい！</p> 
+</div></div>
+<p>Firefox 4 （6 月後半にベータ版リリースが予定されています）では、パフォーマンスが向上し、 HTML 5 やその他の革新的な Web 技術のさらなるサポートが追加され、さらには、セキュリティも改善しています。 この記事では、この次期リリースについてのとっかかりの情報と、 Web 開発者、アドオン開発者、そして、Gecko プラットフォーム開発者向けに利用可能になる機能の一覧を提供します。</p>
+<p>これらの機能の多くはすでに <a class="external" href="http://www.mozilla.com/en-US/firefox/beta/">Firefox 4 beta</a> リリース、もしくは（冒険心にあふれているなら）<a class="external" href="http://nightly.mozilla.org/">ナイトリー trunk ビルド</a> で試すことできます。</p>
+<div class="note">
+  <strong>註：</strong>この記事は作成中であり、このページからリンクされている記事もまた同様です。多くの記事名が仮名であり、いくつかのトピックは複数の記事に分割されるかもしれません。</div>
+<h2 id="Features_for_web_developers" name="Features_for_web_developers">Web 開発者向け機能</h2>
+<p>Gecko は現在 <a href="../../../Web/HTML/HTML5.html">HTML5</a> パーサーを利用しています。それはバグが修正され、相互運用性が改善され、また、パフォーマンスが向上されたものです。また、HTML マークアップでコンテンツに <a href="../../../Web/SVG.html">SVG</a> と <a href="../../../Web/MathML.html">MathML</a> を直接埋め込むことも可能にします。</p>
+<h3 id="HTML" name="HTML">HTML</h3>
+<dl>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/HTML/HTML5/HTML5_Parser">HTML5 パーサー入門</a></dt>
+  <dd>HTML5 パーサーが意味することと、どのように SVG と MathML をコンテンツにインラインで埋め込むかの概説。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/HTML/HTML5/Forms_in_HTML5">HTML5 におけるフォーム</a></dt>
+  <dd>HTML5 における Web フォームの改善の概説。これらの変更点には <a href="../../../Web/HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> 要素における入力種類の追加、データバリデーションなどが含まれています。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Sections_and_outlines_of_an_HTML5_document">HTML5 Sections</a></dt>
+  <dd>Gecko は文書におけるセクションに関する新しい HTML5 要素をサポートします。: <a href="../../../Web/HTML/Element/article.html" title="HTML &lt;article> 要素はドキュメント、ページ、アプリケーション、あるいはサイトの中で自己完結した構成物を表します。これは、例えば通信社によって独立して配信や再利用が可能であることを意図します。これはフォーラムへの投稿、雑誌や新聞の記事、ブログのエントリ、ユーザが投稿したコメント、インタラクティブなウィジェットやガジェット、その他のコンテンツで独立したアイテムが考えられるでしょう。"><code>&lt;article&gt;</code></a>、<a class="new" href="../../../HTML/Element/section.html" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;section&gt;</code></a>、<a href="../../../Web/HTML/Element/nav.html" title="ナビゲーション要素(&lt;nav>) は、その内容がページ上の主要なナビゲーションである事を表します。"><code>&lt;nav&gt;</code></a>、<a href="../../../Web/HTML/Element/aside.html" title="aside 要素（&lt;aside>）は、メインコンテンツとの関連性が希薄でメインコンテンツから切り離す事が可能なセクションを表します。いわゆる「サイドバー」や、メインの記事内のコラムの部分に頻繁に用いられます。用語の説明、広告（コンテンツ・マッチング広告の様な主文に僅かな関連性を持つ広告であれば article 要素等の子要素として配置する）、著作者に関する情報、ウェブアプリケーションに於けるユーザ情報、ブログロール等に用います。"><code>&lt;aside&gt;</code></a>、 <a href="../../../Web/HTML/Element/hgroup.html" title="HTML &lt;hgroup> 要素 (HTML Headings Group 要素) は、セクションのヘッダを表します。これはドキュメントのアウトラインに関する 1 つのタイトルを、それが属する暗黙的または明示的なセクションのヘッダとして定義します。"><code>&lt;hgroup&gt;</code></a>、<a href="../../../Web/HTML/Element/header.html" title="header 要素（&lt;header>）は、イントロダクション、ナビゲーション等のグループを表します。ひとつまたは複数の見出し以外に、ロゴ、セクションのヘッダー部分、検索フォームなども含める事ができます。"><code>&lt;header&gt;</code></a> および <a href="../../../Web/HTML/Element/footer.html" title="Footer 要素（&lt;footer>）は自身の祖先要素の内で直近のセクショニングコンテンツかセクショニングルート要素（つまり &lt;article>、 &lt;aside>、 &lt;nav>、 &lt;section>、 &lt;blockquote>、 &lt;body>、 &lt;details>、 &lt;fieldset>、 &lt;figure>、 &lt;td> の中で最も近い親要素）のフッターを表します。「フッター」には通常、そのセクションの著作者に関する情報、関連ドキュメントへのリンク、著作権情報等を含めます。"><code>&lt;footer&gt;</code></a>。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/HTML/Global_attributes#attr-hidden">HTML5 の hidden 属性</a></dt>
+  <dd>この属性は、すべての要素に共通であり、Web ページでユーザに現在は関係しないコンテントを隠すために用いられます。</dd>
+  <dt>その他の HTML5 要素</dt>
+  <dd>Gecko は次の新しい HTML5 要素もサポートします。: <a href="../../../Web/HTML/Element/mark.html" title="HTML の mark 要素 (&lt;mark>)は、他の場所からの参照を目的とした、テキストのハイライトに使用されます。例えばウェブサイトの検索窓からの検索結果を表示するページ上で、検索した語句をハイライトする為などに使用できます。"><code>&lt;mark&gt;</code></a>、<a href="../../../Web/HTML/Element/figure.html" title="figure 要素（&lt;figure>）は図表などの自己完結型のコンテンツを表す要素です。多くの場合、キャプション（&lt;figcaption>）を伴って使用され、単独のユニットとして参照されます。メインのフローに関連しつつも、メインのフローとは無関係な位置に配置する事が可能です。この要素は通常、「主なテキストの中から参考文献として参照されるが、メインのフローに影響を与える事無く別ページまたは付録に移動することが可能な画像、実例、図表、コード断片あるいは図表など」に対し用います。"><code>&lt;figure&gt;</code></a> および <a href="../../../Web/HTML/Element/figcaption.html" title="figcaption 要素（&lt;figcaption>) は、親要素となる &lt;figure> 要素の中の自身以外のコンテンツのキャプションや説明を表します。 &lt;figcaption> は &lt;figure> 要素内の先頭、或いは末尾に入れることが出来ます。 &lt;figure> 要素に於いて、figcaption 要素は必須という訳ではありません。figcaption 要素が省略された場合は、親の &lt;figure> 要素はキャプションを持たないものと見做されます。"><code>&lt;figcaption&gt;</code></a>。</dd>
+  <dt><a href="../../../WebSockets.html">WebSocket</a></dt>
+  <dd>Web アプリケーションとサーバーの間でリアルタイムコミュニケーションを行うための WebSocket API を利用するためのガイド。</dd>
+</dl>
+<h4 id="Canvas_improvements" name="Canvas_improvements">Canvas improvements</h4>
+<p>The following changes were made to the <a class="new" href="../../../Web/API/CanvasRenderingContext2D.html" title="The documentation about this has not yet been written; please consider contributing!"><code>CanvasRenderingContext2D</code></a> interface to bring our <a href="../../../Web/HTML/Element/canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> implementation closer to being in line with the specification:</p>
+<ul>
+  <li>Specifying a negative radius when calling <code>arc()</code> now correctly throws an <code>INDEX_SIZE_ERR</code> exception.</li>
+  <li>Specifying non-finite values when calling <code>createLinearGradient()</code> and <code>createRadialGradient()</code> now throws <code>NOT_SUPPORTED_ERR</code> instead of <code>SYNTAX_ERR</code>.</li>
+  <li>Setting <code>miterLimit</code> to a negative value no longer throws an exception; instead, it properly ignores non-positive values.</li>
+  <li>Setting <code>lineWidth</code> to a negative value no longer throws an exception; instead, it properly ignores non-positive values.</li>
+  <li>The <code>putImageData()</code> method now supports the optional parameters <code>dirtyX</code>, <code>dirtyY</code>, <code>dirtyWidth</code>, and <code>dirtyHeight</code>.</li>
+</ul>
+<h4 id="Miscellaneous_HTML_changes" name="Miscellaneous_HTML_changes">小さな HTML の変更</h4>
+<ul>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea" title="HTML &lt;textarea> 要素は、複数行のプレーンテキスト編集コントロールを表します。"><code>&lt;textarea&gt;</code></a> 要素をデフォルトでサイズ変更できるようになりました。これを無効にするために <a href="https://developer.mozilla.org/ja/docs/Web/CSS/resize" title=""><code>resize</code></a> CSS プロパティが利用できます。</li>
+  <li><code>canvas.getContext</code> および <code>canvas.toDataURL</code> が認識できない引数を指定して呼び出したときに例外を投げなくなりました。</li>
+  <li><a href="../../../Web/HTML/Element/canvas.html" title="HTML の canvas 要素 (&lt;canvas>) は、スクリプティング（基本的には JavaScript）によりグラフィックを描画する事ができます。 たとえば、グラフの描画、写真の合成、更にはアニメーションの作成までが可能です。&lt;canvas> のブロック内で、代替コンテンツを提供することが可能 (また、提供すべき) です。その内容物は、canvas をサポートしない古いブラウザおよび JavaScript が無効であるブラウザで描画されます。"><code>&lt;canvas&gt;</code></a> 要素に Mozilla 固有の <code>mozGetAsFile()</code> メソッドが追加されました。これを用いることで、Canvas の内容である画像を含んだメモリベースのファイルを保持できます。詳細は <a class="new" href="../../../Web/API/HTMLCanvasElement.html" title="The documentation about this has not yet been written; please consider contributing!"><code>HTMLCanvasElement</code></a> を参照してください。</li>
+  <li><code>canvas2dcontext.lineCap</code> および <code>canvas2dcontext.lineJoin</code> が認識できない値を設定したときに例外を投げなくなりました。</li>
+  <li><code>canvas2dcontext.globalCompositeOperation</code> が認識できない値を設定したときに例外を投げなくなりました。また、非標準の値 <code>darker</code> をサポートしなくなりました。</li>
+  <li>他のブラウザでは実装されておらず、非推奨 な要素である <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/spacer" title="&lt;spacer> は、Web ページにホワイトスペースを挿入する為の非標準の HTML 要素です。Web デザイナーによって用いられていた 1px の透過 GIF 画像（いわゆるスペーサー GIF ）の挿入と同様の効果を実現する為に NetScape 社が実装したものです。しかし &lt;spacer> は殆どの主要ブラウザでサポートされず、また、同様の効果は CSS を用いて実現可能です。したがって、&lt;spacer> を使用する必要性はありませんでした。Mozilla アプリケーションに於いては、この要素のサポートは Gecko 2.0 にて打ち切られています。"><code>&lt;spacer&gt;</code></a> 要素のサポートが無くなりました。</li>
+  <li>The <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/isindex" title="&lt;isindex> は、ドキュメントに問い合わせを行うためのテキストフィールドを、ドキュメントに追加するための HTML 要素です。W3C は &lt;isindex> を &lt;head> 要素内で使用するものとしましたが、ブラウザはドキュメント内のどこででも使用するものとしてサポートしました。"><code>&lt;isindex&gt;</code></a> 要素が、<a href="https://developer.mozilla.org/ja/docs/Web/API/document.createElement" title="指定の要素名の要素を生成します。"><code>document.createElement()</code></a> メソッドによって作成されたときに、 一切プロパティもメソッドも持たない単純な要素として作成されるようになりました。</li>
+  <li>Gecko に <a href="../../../Web/HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> 要素での <code>click() </code>メソッドの呼び出しが追加されました。このメソッドを用いることでファイル選択ダイアログが開けます。<a href="../../../Using_files_from_web_applications.html">Web アプリケーションからファイルを利用する</a> の記事内の <a href="../../../Using_files_from_web_applications.html#Using_hidden_file_input_elements_using_the_click%28%29_method">例</a> を参照してください。</li>
+  <li><a href="../../../Web/HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> 要素に新しい <a class="new" href="https://developer.mozilla.org/ja/docs/HTML/Element/Input#attr-mozactionhint"><code>mozactionhint</code></a> 属性が追加されました。これを用いることで仮想キーボード上でのエンターキーのラベルを指定できます。</li>
+  <li><a href="../../../Web/HTML/Element/iframe.html" title="HTML の &lt;iframe> 要素 (またはHTML インラインフレーム要素) は、ブラウジングコンテキスト (browsing context) の入れ子を表現し、事実上現在のページに他の HTML ページを埋め込むことができます。HTML 4.01 では、文書は head および body、または head および frame-set を持つことができ、body と frame-set の両方は持ちません。しかし、&lt;iframe> は通常の文書 body 内で使用できます。ブラウジングコンテキストはそれぞれ、セッション履歴とアクティブな文書を持ちます。埋め込みコンテンツを含む側のブラウジングコンテキストを、親ブラウジングコンテキストと呼びます。トップレベルのブラウジングコンテキスト（親を持ちません）は通常ブラウザウィンドウです。"><code>&lt;iframe&gt;</code></a>、<a class="new" href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/noembed" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;noembed&gt;</code></a>、および <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/noframes" title="&lt;noframes> は、&lt;frame> 要素をサポートしない、またはフレームを無効に設定したブラウザを支援するために使用する HTML 要素です。"><code>&lt;noframes&gt;</code></a> 要素内の <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/script" title="HTML &lt;script> 要素は HTML または XHTML 文書内に実行可能なスクリプトを埋め込み、または外部参照するコードを指定する際に用いられます。"><code>&lt;script&gt;</code></a> 要素が実行されるようになりました。以前のバージョンの Firefox ではこれらの要素内での実行はされませんでした。これは仕様準拠であり、他のブラウザの挙動と合致します。</li>
+</ul>
+<h3 id="CSS" name="CSS">CSS</h3>
+<dl>
+  <dt><a href="https://developer.mozilla.org/ja/docs/CSS/CSS_transitions">CSS transitions</a></dt>
+  <dd>新しい CSS transitions サポートが Firefox 4 では利用できるようになりました。</dd>
+  <dt>CSS での算出値</dt>
+  <dd><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-calc" title=""><code>-moz-calc</code></a> のサポートが追加されました。これを用いることで、<a href="https://developer.mozilla.org/ja/docs/Web/CSS/length" title=""><code>&lt;length&gt;</code></a> の値を数式で指定できます。</dd>
+  <dt>セレクタのグルーピング</dt>
+  <dd>セレクタをグループ化しコンビネータを分解する <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-any" title=""><code>:-moz-any</code></a> がサポートされました。</dd>
+  <dt>背景画像の部分領域のサポート</dt>
+  <dd><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-image-rect" title=""><code>-moz-image-rect</code></a> 関数を用いることで、画像の一部分の領域 (<span style="color: green;">subrectangle</span>)を背景画像として利用できるようになります。</dd>
+  <dt>CSS touch プロパティ群</dt>
+  <dd>touch プロパティ群が追加されました。詳細と正式な記事名は後日追記予定です。</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/CSS/-moz-element">CSS 背景として任意の要素を使用する</a></dt>
+  <dd><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-element" title=""><code>-moz-element</code></a> CSS 関数と <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/document.mozSetImageElement" title="The documentation about this has not yet been written; please consider contributing!"><code>document.mozSetImageElement()</code></a> DOM 関数を用いることで、任意の HTML 要素を背景として使用することができます。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/CSS/Privacy_and_the_:visited_selector">プライバシーと :visited セレクタ</a></dt>
+  <dd>CSS セレクタを用いた訪問済みリンクのスタイルについて取得できる情報が変更されました。これはいくつかの Web アプリケーションに影響するかもしれません。</dd>
+</dl>
+<h4 id="New_CSS_properties" name="New_CSS_properties">新しい CSS プロパティ</h4>
+<table class="standard-table">
+  <tbody>
+    <tr>
+      <td class="header">プロパティ</td>
+      <td class="header">説明</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-font-feature-settings" title=""><code>-moz-font-feature-settings</code></a></td>
+      <td>OpenType フォントの高度な機能を変更できます。</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-tab-size" title=""><code>-moz-tab-size</code></a></td>
+      <td>テキストを描画するときのタブ文字 (U+0009) の幅を空白文字数で指定します。</td>
+    </tr>
+    <tr>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/CSS/resize" title=""><code>resize</code></a></td>
+      <td>サイズ変更可能な要素の方向を制御できます。</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="New_CSS_pseudo-classes" name="New_CSS_pseudo-classes">新しい CSS 擬似クラス</h4>
+<table class="standard-table">
+  <tbody>
+    <tr>
+      <td class="header">擬似クラス</td>
+      <td class="header">説明</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-handler-crashed" title=""><code>:-moz-handler-crashed</code></a></td>
+      <td>プラグインがクラッシュした要素の表示に用いられます。</td>
+    </tr>
+    <tr>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-placeholder" title=""><code>:-moz-placeholder</code></a></td>
+      <td>フォームフィールドのガイドテキストに適用されます。</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-submit-invalid" title=""><code>:-moz-submit-invalid</code></a></td>
+      <td>1 つ、もしくは、複数のフォームフィールドの入力が妥当でないときのフォームの送信ボタンに適用されます。</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-window-inactive" title=""><code>:-moz-window-inactive</code></a></td>
+      <td>アクティブでないウィンドウの要素に適用されます。</td>
+    </tr>
+    <tr>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/CSS/:invalid" title=""><code>:invalid</code></a></td>
+      <td>入力が妥当でない <a href="../../../Web/HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> フィールドに自動的に適用されます。</td>
+    </tr>
+    <tr>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/CSS/:optional" title=""><code>:optional</code></a></td>
+      <td><code>required</code> 属性を指定していない <a href="../../../Web/HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> フィールドに自動的に適用されます。</td>
+    </tr>
+    <tr>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/CSS/:required" title=""><code>:required</code></a></td>
+      <td><code>required</code> 属性を指定している <a href="../../../Web/HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> フィールドに自動的に適用されます。</td>
+    </tr>
+    <tr>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/CSS/:valid" title=""><code>:valid</code></a></td>
+      <td>入力が妥当であると判断された <a href="../../../Web/HTML/Element/input.html" title="HTML &lt;input> 要素は、Web ベースのフォーム用のインタラクティブなコントロールを作成するために使用します。"><code>&lt;input&gt;</code></a> フィールドに自動的に適用されます。</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="New_CSS_pseudo-selectors" name="New_CSS_pseudo-selectors">新しい CSS 擬似セレクタ</h4>
+<table class="standard-table">
+  <tbody>
+    <tr>
+      <td class="header">擬似セレクタ</td>
+      <td class="header">説明</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-focusring" title=""><code>:-moz-focusring</code></a></td>
+      <td>Gecko がフォーカスインジケータを描画すべきとしている要素の見え方を指定できます。</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="New_CSS_functions" name="New_CSS_functions">新しい CSS 関数</h4>
+<table class="standard-table">
+  <tbody>
+    <tr>
+      <td class="header">関数</td>
+      <td class="header">説明</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-any" title=""><code>:-moz-any</code></a></td>
+      <td>セレクタをグループ化しコンビネータを分解できます。</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-calc" title=""><code>-moz-calc</code></a></td>
+      <td><code><span style="font-family: Verdana,Tahoma,sans-serif;"><a href="https://developer.mozilla.org/ja/docs/Web/CSS/length" title=""><code>&lt;length&gt;</code></a> の値を数式で指定できます。</span></code></td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-element" title=""><code>-moz-element</code></a></td>
+      <td>任意の要素を <a href="../../../Web/CSS/background-image.html" title=""><code>background-image</code></a> および <a href="https://developer.mozilla.org/ja/docs/Web/CSS/background" title=""><code>background</code></a> の背景として使用できます。</td>
+    </tr>
+    <tr>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-image-rect" title=""><code>-moz-image-rect</code></a></td>
+      <td>画像の一部分を <a href="../../../Web/CSS/background-image.html" title=""><code>background-image</code></a> もしくは <a href="https://developer.mozilla.org/ja/docs/Web/CSS/background" title=""><code>background</code></a>で利用できます。</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="Renamed_CSS_properties" name="Renamed_CSS_properties">改名された CSS プロパティ</h4>
+<table class="standard-table">
+  <thead>
+    <tr>
+      <td class="header">旧名称</td>
+      <td class="header">新名称</td>
+      <td class="header">備考</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>-moz-background-size</code></td>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/CSS/background-size" title=""><code>background-size</code></a></td>
+      <td><code>-moz-background-size</code> という名称はサポートされません。</td>
+    </tr>
+    <tr>
+      <td><code>-moz-border-radius</code></td>
+      <td><a href="../../../Web/CSS/border-radius.html" title=""><code>border-radius</code></a></td>
+      <td>旧名称は、サイトを更新するための時間を考慮して、限られた期間サポートされます。描画の変更も仕様の最新版に適合するようになります。</td>
+    </tr>
+    <tr>
+      <td><code>-moz-box-shadow</code></td>
+      <td><a href="../../../Web/CSS/box-shadow.html" title=""><code>box-shadow</code></a></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="Miscellaneous_CSS_changes" name="Miscellaneous_CSS_changes">小さな CSS の変更</h4>
+<ul>
+  <li><a href="../../../Web/CSS/text-shadow.html" title=""><code>text-shadow</code></a> プロパティのぼかし範囲が 300 までに制限されるようになりました。これは健全さとパフォーマンスの理由によるものです。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/overflow" title=""><code>overflow</code></a> プロパティがテーブルグループ要素 (<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>、および <code>&lt;tfoot&gt;</code>) に適用されなくなりました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/-moz-appearance" title=""><code>-moz-appearance</code></a> プロパティが要素に境界のない Aero Glass の見た目を適用する <code>-moz-win-borderless-glass 値をサポートするようになりました。</code></li>
+  <li><code><a href="../../../Web/Guide/CSS/Media_queries.html#-moz-device-pixel-ratio">-moz-device-pixel-ratio</a></code> メディア機能が追加されました。これを用いることで、<a href="../../../Web/Guide/CSS/Media_queries.html">Media Query</a> で用いられる、CSS ピクセルを基準としたデバイスのピクセル比率を指定できます。</li>
+  <li>Gecko の <a class="new" href="https://developer.mozilla.org/ja/docs/CSS-2_Quick_Reference/Units">CSS 単位の</a> 扱いが他のブラウザにより良く適合するように、また、絶対的長さをデバイスの DPI を基準にした画面ピクセル数により的確に変換するように修正されました。</li>
+</ul>
+<h3 id="Graphics_and_video" name="Graphics_and_video">グラフィックとビデオ</h3>
+<dl>
+  <dt><a href="../../../Web/WebGL.html">WebGL</a></dt>
+  <dd>開発中の WebGL 標準が Firefox でサポートされました。</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Optimizing_graphics_performance">グラフィックパフォーマンスの最適化</a></dt>
+  <dd>Firefox 4 でグラフィックとビデオのパフォーマンスを最大限引き出すための Tips &amp; Tricks。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Media_formats_supported_by_the_audio_and_video_elements#WebM">WebM ビデオのサポート</a></dt>
+  <dd>新しいオープンな <a class="external" href="http://www.webmproject.org/">WebM</a> ビデオフォーマットが Gecko2.0 でサポートされます。このサポートは 6 月 9 日以降のナイトリーに含まれています。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/SVG/SVG_animation_with_SMIL">SMIL による SVG アニメーション</a></dt>
+  <dd>SVG の SMIL アニメーションのサポートが利用できるようになりました。<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=482402" title='FIXED: Enable "svg.smil.enabled" pref by default'>バグ 482402</a> を参照してください。</dd>
+  <dt>画像と CSS 背景としての SVG の利用</dt>
+  <dd>SVG を <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/img" title="HTML 画像要素 (&lt;img>) は、ドキュメントに画像を表示します。"><code>&lt;img&gt;</code></a> 要素とともに、また、CSS の <a href="../../../Web/CSS/background-image.html" title=""><code>background-image</code></a> で利用することができるようになりました。</dd>
+  <dt>メディア要素での <code>buffered</code> 属性サポート</dt>
+  <dd><a href="../../../Web/HTML/Element/video.html" title="video 要素は HTML もしくは XHTML 文書に映像コンテンツを埋め込むために用いられます。 video 要素は HTML 5 の一部として導入されました。"><code>&lt;video&gt;</code></a> および <a href="../../../Web/HTML/Element/audio.html" title="HTML &lt;audio> 要素は、ドキュメント内で音声コンテンツを表します。audio 要素は HTML5 の一部として導入され、複数の音声ソースを含むことができます。音声ソースは &lt;source> 要素の src 属性を使用して表し、ブラウザはもっとも適切なソースを選択します。また、&lt;audio> 要素をサポートしないブラウザ向けのコンテンツも追加できます。"><code>&lt;audio&gt;</code></a> 要素での <code>buffered</code> 属性がサポートされました。これを用いることでメディアファイルでバッファリングされた範囲が判断可能になります。これをサポートするために <a class="new" href="../../../Web/API/TimeRanges.html" title="The documentation about this has not yet been written; please consider contributing!"><code>TimeRanges</code></a> DOM インタフェースが実装されました。</dd>
+  <dt>メディア要素での <code>preload</code> 属性</dt>
+  <dd>HTML5 仕様から <code>preload</code> 属性が実装されました。これは以前実装された（そしてもうサポートされない）<code>autobuffer</code> 属性を置き換えものです。これは <a href="../../../Web/HTML/Element/video.html" title="video 要素は HTML もしくは XHTML 文書に映像コンテンツを埋め込むために用いられます。 video 要素は HTML 5 の一部として導入されました。"><code>&lt;video&gt;</code></a> および <a href="../../../Web/HTML/Element/audio.html" title="HTML &lt;audio> 要素は、ドキュメント内で音声コンテンツを表します。audio 要素は HTML5 の一部として導入され、複数の音声ソースを含むことができます。音声ソースは &lt;source> 要素の src 属性を使用して表し、ブラウザはもっとも適切なソースを選択します。また、&lt;audio> 要素をサポートしないブラウザ向けのコンテンツも追加できます。"><code>&lt;audio&gt;</code></a> 要素、同様に<code><a href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIDOMHTMLMediaElement" title="">nsIDOMHTMLMediaElement</a></code> インタフェースを実装した要素で利用できます。</dd>
+  <dt>SVG text 位置指定の改善</dt>
+  <dd>SVG <a class="new" href="https://developer.mozilla.org/ja/docs/Web/SVG/Element/text" title="This page hasn't been written yet. Please consider contributing to MDN by writing it!"><code>&lt;text&gt;</code></a> and <a class="new" href="https://developer.mozilla.org/ja/docs/Web/SVG/Element/tspan" title="This page hasn't been written yet. Please consider contributing to MDN by writing it!"><code>&lt;tspan&gt;</code></a> 要素で <code>x</code>、<code>y</code>、<code>dx</code>、および <code>dy</code> プロパティの値のためのリストを指定できるようになりました。これを用いることで、文字列中の各文字の位置を個別に制御できます。</dd>
+</dl>
+<h3 id="DOM" name="DOM">DOM</h3>
+<dl>
+  <dt><a href="../../../Web/JavaScript/Typed_arrays.html">JavaScript 型付き配列</a></dt>
+  <dd>JavaScript 型付き配列 (<span style="color: green;">typed arrays</span>) のサポートが追加されました。これを用いることで、ネイティブデータ型を用いた生のデータを含むバッファを扱えます。 <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/File">File API</a>、<a href="../../../Web/WebGL.html">WebGL</a>、および <a href="../../../WebSockets.html">WebSockets</a> を含む、いくつかの API でこれを用いることができます。</dd>
+  <dt>範囲の境界領域の保持</dt>
+  <dd><a href="https://developer.mozilla.org/ja/docs/Web/API/Range" title="Range オブジェクトとは document の断片で、ある document 中のノードやテキストノードの一部を含むことのできるものです。"><code>Range</code></a> オブジェクトに <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/range.getClientRects" title="The documentation about this has not yet been written; please consider contributing!"><code>range.getClientRects()</code></a> および <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/range.getBoundingClientRect" title="The documentation about this has not yet been written; please consider contributing!"><code>range.getBoundingClientRect()</code></a> メソッドが追加されました。</dd>
+  <dt>任意の要素上でのマウスイベントのキャプチャ</dt>
+  <dd>Internet Explorer 由来の <code>setCapture()</code> と <code>releaseCapture() </code>API のサポートが追加されました。<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=503943" title="FIXED: Need a way to grab mouse events on arbitrary elements (implement setCapture/releaseCapture)">バグ 503943</a> を参照してください。</dd>
+  <dt><a href="../../../Web/Guide/DOM/Manipulating_the_browser_history.html">ブラウザ履歴の操作</a></dt>
+  <dd><a href="https://developer.mozilla.org/ja/docs/Web/API/window.history" title="ブラウザの履歴を扱うためのインタフェースを提供する history オブジェクトへの参照を返します。"><code>window.history</code></a> オブジェクトを通して利用できる、既存のドキュメント履歴オブジェクトが新しい HTML5 の <code>pushState()</code> と <code>replaceState()</code> メソッドをサポートするようになりました。</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Animations_using_MozBeforePaint">MozBeforePaint を用いたアニメーション</a></dt>
+  <dd>追加された新しいイベントと <a href="https://developer.mozilla.org/ja/docs/Web/API/window.mozRequestAnimationFrame" title="window.requestAnimationFrame() メソッドは、ブラウザに描画させたいアニメーションを指定し、次の再描画の前に、アニメーションを更新する指定した関数を呼び出すように要求します。このメソッドは再描画する前に呼び出されるコールバックメソッドを引数にひとつとります。"><code>window.mozRequestAnimationFrame()</code></a> メソッドおよび <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.mozAnimationStartTime" title="The documentation about this has not yet been written; please consider contributing!"><code>window.mozAnimationStartTime</code></a> プロパティを組み合わせることで、互いに同期したアニメーションを作成する方法が提供されます。</dd>
+  <dt>タッチイベントとマルチタッチイベント</dt>
+  <dd>タッチイベントとマルチタッチイベントのサポートが追加されました。</dd>
+</dl>
+<h4 id="HTML_elements'_DOM_interfaces_have_changed" name="HTML_elements'_DOM_interfaces_have_changed">HTML 要素の DOM インタフェースが変更されました</h4>
+<p>いくつかの HTML 要素に関連づけられた DOM インタフェースが、以下のように、 HTML5 仕様で要求されるひとつのインタフェースに変更されました。</p>
+<table class="standard-table">
+  <tbody>
+    <tr>
+      <td class="header">Firefox 3.6 でのインタフェース</td>
+      <td class="header">Firefox 4 でのインタフェース</td>
+      <td class="header">HTML 要素</td>
+    </tr>
+    <tr>
+      <td><a href="../../../Web/API/HTMLSpanElement.html" title="&lt;span> 要素には、HTMLElement インタフェースを継承元とする HTMLSpanElement インタフェースが実装されています。HTMLElement から継承されるもの以外に、プロパティやメソッドは実装されていません。"><code>HTMLSpanElement</code></a></td>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/DOM/HTMLElement">HTMLElement</a></code></td>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/abbr" title="HTML の &lt;abbr> 要素 (または HTML 略語要素) は、略語と、また任意でその略語の完全な説明を提供します。略語の説明は title 属性にすべて含める必要があります。"><code>&lt;abbr&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/acronym" title="HTML の acronym 要素 (&lt;acronym>) は、頭字語または省略形の単語を構成する文字のシーケンスを明示することができます。"><code>&lt;acronym&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/address" title="HTML &lt;address> 要素は、祖先要素の内、直近の &lt;article> 要素か &lt;body> 要素の著作者の連絡先情報を表します。後者の場合は、ドキュメント全体に適用します。"><code>&lt;address&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/b" title="HTML の b 要素 ( &lt;b> ) は、特別な重要性や関連性を伴わないで通常と文体の異なるテキストの範囲を表します。一般的に、要約中のキーワード、レビュー文内での製品名などの部分。または、その他の表記上太字で記述される通例のある箇所などに用います。記事の各段落のリード文をマークする場合にも適しています。"><code>&lt;b&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/bdo" title="HTML の Bidirectional Override 要素（&lt;bdo>）は、テキストの書字方向規則を部分的に上書きします。例えば ltr の書字方向規則を持つ英語や日本語の文中に rtl の書字方向規則を持つアラビア語等のテキストを挿入する際に用いる事が出来ます。"><code>&lt;bdo&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/big" title="big 要素（&lt;big>) 内包するテキストの font size をブラウザの最大フォントサイズを限度に一段階大きくします（※small から medium、large から x-large）"><code>&lt;big&gt;</code></a>, <a href="../../../Web/HTML/Element/blink.html" title="Blink 要素(&lt;blink>) は Netscape Navigator 2.0 に独自に実装された、テキストを点滅させる為の要素です。その後、他のブラウザにも実装され、後に標準仕様で非推奨要素と定められました。"><code>&lt;blink&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/center" title="HTML のセンター要素 （&lt;center>）はブロックレベルの要素で段落や他のブロックレベルの要素やインライン要素を含むことができます。含んでいる要素の中の全体のコンテンツを水平方向にセンタリングします 。このタグは HTML 4 （及び XHTML）で非推奨要素に指定され、HTML5 で完全に廃止されています。代替として CSS の text-align プロパティを用い、この属性値に centerを指定する事で同じ表現を実現可能です（※その際、対象とする要素のスタイルは display: block 等になっていなくてはなりません。インライン要素はテキストの中央寄せは出来ません）"><code>&lt;center&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/cite" title="cite (Citation) 要素（&lt;cite>）は、書籍、楽曲、映画、TV番組、絵画、彫刻のような、作品のタイトルを示します。"><code>&lt;cite&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/code" title="コード 要素（&lt;code>）はコンピューター・コードの断片を表します。殆どのブラウザーのデフォルト・スタイルは、これを等幅フォントで描画するように指定されています。"><code>&lt;code&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/dd" title="HTML の 定義説明要素 (&lt;dd>) は、定義リスト要素（&lt;dl>）に於ける、定義語の説明部分を表します。この要素は定義リストの子要素としてのみ配置可能であり、また、&lt;dt> に後続する必要があります。"><code>&lt;dd&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/dfn" title="HTML の dfn 要素（&lt;dfn>）は、内包する語句の意味合いを定義し、同時に自身が定義語で有る事を表します。"><code>&lt;dfn&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/dt" title="HTML の 定義語要素 (Definition Term Element) (&lt;dt>) は、定義リスト中の用語を表す部分です。この要素は、&lt;dl> の子要素としてのみ用いる事が出来ます。後続する &lt;dd> 要素により、先行する &lt;dt> の用語を定義します。複数の &lt;dt> 要素を続けて配置し、後続する &lt;dd> 要素でまとめてそれらを定義する事も可能です。"><code>&lt;dt&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/em" title="HTML の強調要素（&lt;em>）は、強調されたテキストを示します。 &lt;em> 要素は入れ子にすることができ、入れ子の段階に応じてより強い程度の強調を表すことができます。"><code>&lt;em&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/i" title="オフセットテキスト（或いはイタリック）要素（&lt;i>）は、技術用語、外国語のフレーズ、または架空の人物の思考など、何らかの理由で他のテキストと離して配置して区別されるテキストの範囲を表します。英文においては通常斜体で表示される事の多い部分であり、殆どの場合、ブラウザはこの要素に対しイタリック体のデフォルトスタイルを指定しています。"><code>&lt;i&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/kbd" title="キーボードインプット要素（&lt;kbd>）はコンピューターへのユーザーの入力コードを表します。要素名はキーボードの略語ですが、音声入力や手書き入力などの他の入力方法も含みます。多くのデフォルトスタイルは、等幅フォントのインラインで表示するものとなっています。"><code>&lt;kbd&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/listing" title="HTML Listing 要素 (&lt;listing>) は、開始タグと終了タグの間にあるテキストを HTML として解釈せず、等幅フォントを使用して表示します。HTML 2 標準では、1 行が 132 文字を超えない場合は改行すべきではないと勧告しています。"><code>&lt;listing&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/nobr" title="nobr 要素（&lt;nobr>） は、その内包するテキストの自動改行を無効化します。行内におさまらないテキストは、領域からはみ出てレンダリングされるか、スクロールバーを伴なって表示されます。"><code>&lt;nobr&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/plaintext" title="Plaintext 要素（&lt;plaintext>）は、開始タグ以降を HTML としてではなくプレーンテキストとして解してレンダリングさせます。開始タグ以降は全てプレーンテキスト扱いになるので、終了タグはありません。"><code>&lt;plaintext&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/s" title="HTML の 打ち消し要素 (&lt;s>) はその範囲のテキストが既に正確でなくなった事を表す為に用います。これは殆どの環境で、打ち消し線を伴うスタイルでレンダリングされます。但し、編集箇所を伝える用途の場合には &lt;del> と &lt;ins> が適しています。"><code>&lt;s&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/samp" title="サンプル要素（&lt;samp>）は、コンピュータープログラムなどからの出力を表すインライン要素です。CSS を使用しない場合、殆どのブラウザで、ブラウザのデフォルトの等幅フォントか、ユーザーの指定した等幅フォントで表示されます。"><code>&lt;samp&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/small" title="small 要素（&lt;small>）は、内包するテキストのフォントサイズをブラウザの最小フォントサイズを限度とし、一段階縮小します（※large から medium、small から x-small）"><code>&lt;small&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/strike" title="HTML の打消し線要素（&lt;strike>）は、その範囲のテキストを打消し線付きで描画します。"><code>&lt;strike&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/strong" title="strong 要素（&lt;strong>）は重要なテキストを表します。ほとんどのブラウザーのデフォルトスタイルでは、太字で描画するように指定されています。"><code>&lt;strong&gt;</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/sub" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;sub&gt;</code></a>, <a class="new" href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/sup" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;sup&gt;</code></a>, , <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/tt" title="HTML テレタイプテキスト要素 (&lt;tt>) は、ブラウザのデフォルトの等幅フォントで表示されるインライン要素を生成します。この要素は、テレタイプのような等幅の表示装置で表示されるテキストとしてスタイルを設定しようとするものです。おそらく、&lt;code> 要素を使用する等幅文字の表示がより一般的です。"><code>&lt;tt&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/u" title="u 要素（&lt;u>）は、内包するテキストのベースラインの下部にアンダーライン（下線）をレンダリングします。"><code>&lt;u&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/var" title="HTML の var 要素(&lt;var>)は、数式やプログラムのコード中での変数を表します。"><code>&lt;var&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/xmp" title="xmp (Example) 要素( &lt;xmp> )は、その開始タグから終了タグまでの間の HTML タグを HTML として解釈せず、等幅フォントでレンダリングします。HTML2 はこれが一行当たり 80 文字を表示するのに充分な幅でレンダリングするよう推奨しています。"><code>&lt;xmp&gt;</code></a></td>
+    </tr>
+    <tr>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/DOM/HTMLDivElement">HTMLDivElement</a></code></td>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/DOM/HTMLElement">HTMLElement</a></code></td>
+      <td><a class="new" href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/noembed" title="This article hasn't been written yet. Please consider contributing!"><code>&lt;noembed&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/noframes" title="&lt;noframes> は、&lt;frame> 要素をサポートしない、またはフレームを無効に設定したブラウザを支援するために使用する HTML 要素です。"><code>&lt;noframes&gt;</code></a>, <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/noscript" title="NoScript 要素（&lt;noscript>）はページで使用中のスクリプト言語が閲覧者のブラウザでサポートされていないタイプである場合や、ブラウザの設定でスクリプトが無効にされている場合に表示するセクションを表します。"><code>&lt;noscript&gt;</code></a></td>
+    </tr>
+    <tr>
+      <td><code><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/HTMLWBRElement">HTMLWBRElement</a></code></td>
+      <td><code><a href="https://developer.mozilla.org/ja/docs/DOM/HTMLElement">HTMLElement</a></code></td>
+      <td><a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/wbr" title="Word Break Opportunity (&lt;wbr>) HTML 要素は、テキスト内でブラウザが任意で改行を行ってよい位置を表します。また、この改行規則により他の場所で改行されることがなくなるでしょう。"><code>&lt;wbr&gt;</code></a></td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="Miscellaneous_DOM_changes" name="Miscellaneous_DOM_changes">小さな DOM の変更</h4>
+<ul>
+  <li><code>wrap</code> DOM 属性を利用することで、<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea" title="HTML &lt;textarea> 要素は、複数行のプレーンテキスト編集コントロールを表します。"><code>&lt;textarea&gt;</code></a> <code>要素の折り返しを </code>DOM によってコントロールできるようになりました。<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=41464" title="FIXED: textarea.wrap not exposed through DOM (IE compatability)">バグ 41464</a></li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/document.createElement" title="指定の要素名の要素を生成します。"><code>document.createElement()</code></a> を用いて作成されてドキュメントに追加された <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/script" title="HTML &lt;script> 要素は HTML または XHTML 文書内に実行可能なスクリプトを埋め込み、または外部参照するコードを指定する際に用いられます。"><code>&lt;script&gt;</code></a> 要素が、標準で HTML5 仕様に従って動作するようになりました。 <code>src</code> 属性で指定されたスクリプトは（順番を調整することはせずに）実行可能になりしだい実行され、<code>src</code> 属性で指定されていないスクリプトは同期的に実行されます。<code>src</code> 属性を持つ挿入されたスクリプトを挿入された順番で実行するには、<code>それらに .async=false を指定します。</code></li>
+  <li>DOM の <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/file" title="The documentation about this has not yet been written; please consider contributing!"><code>file</code></a> オブジェクトが url プロパティを提供するようになりました。</li>
+  <li>DOM の <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/file" title="The documentation about this has not yet been written; please consider contributing!"><code>file</code></a> オブジェクトに<code>新しく click()</code> メソッドが追加されました。</li>
+  <li>XMLHttpRequest で <a class="new" href="https://developer.mozilla.org/ja/docs/XMLHttpRequest/Using_XMLHttpRequest#Using_FormData_objects">FormData</a> がサポートされました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/element.isContentEditable" title="isContentEditable は、要素が編集可能である場合には true を、編集可能でない場合には false を返します。"><code>element.isContentEditable</code></a> プロパティが実装されました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/document.currentScript" title="そのスクリプトを処理している &lt;script> 要素を返します。"><code>document.currentScript</code></a> プロパティを用いることで、現在実行されている <a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/script" title="HTML &lt;script> 要素は HTML または XHTML 文書内に実行可能なスクリプトを埋め込み、または外部参照するコードを指定する際に用いられます。"><code>&lt;script&gt;</code></a> 要素のスクリプトを判別できます。新しく追加された <a href="https://developer.mozilla.org/ja/docs/Web/API/element.onbeforescriptexecute" title="HTML 文書内で宣言された &lt;script> 要素内のコードの実行開始直前に発生するイベントをハンドリングします。appendChild() などを用いるなどして動的に追加された script 要素ではこのイベントは発生しません。"><code>element.onbeforescriptexecute</code></a> および <a href="https://developer.mozilla.org/ja/docs/Web/API/element.onafterscriptexecute" title="静的な &lt;script> 要素のスクリプトの実行終了時に発生するイベントをハンドリングします。 appendChild() などを用いるなどして動的に追加された script 要素ではこのイベントは発生しません。"><code>element.onafterscriptexecute</code></a> イベントは script 要素の実行前後に発生します。</li>
+  <li><a href="../../../DragDrop/DataTransfer.html"><code>DragTransfer</code></a> オブジェクトに <a href="../../../DragDrop/DataTransfer.html#mozSourceNode"><code>mozSourceNode</code></a> プロパティが追加されました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Selection" title="このオブジェクトのクラスは window.getSelection() やその他のメソッドによって返されるものです。"><code>Selection</code></a> オブジェクトに <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Selection/modify"><code>selection.modify()</code></a> メソッドが追加されました。このメソッドを用いると、ブラウザウィンドウでの現在のテキスト選択範囲あるいはカーソル位置を簡単に変更できます。</li>
+  <li><code>window.directories</code> オブジェクトと <a href="https://developer.mozilla.org/ja/docs/Web/API/window.open" title="新しい副ブラウザウィンドウを生成し、参照されているリソースをロードします。"><code>window.open</code></a> の <code>directories</code> 特性（これらは他のブラウザではサポートされていません）が 削除されました。代わりに <code>personalbar</code> を利用してください。<a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=474058" title="FIXED: Drop support for window.directories">バグ 474058</a></li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/event.mozInputSource" title="The documentation about this has not yet been written; please consider contributing!"><code>event.mozInputSource</code></a> プロパティが DOM ユーザインタフェースイベントに追加されました。この非標準プロパティを用いると、イベントを生成したデバイスのタイプを判別できます。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/document.onreadystatechange" title="The documentation about this has not yet been written; please consider contributing!"><code>document.onreadystatechange</code></a> イベントが実装されました。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/document.createElement" title="指定の要素名の要素を生成します。"><code>document.createElement</code></a> メソッドが Quirks モードでタグ名の前後の <code>&lt;</code> と <code>&gt;</code> を受け入れないようになりました。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/element.setCapture" title="The documentation about this has not yet been written; please consider contributing!"><code>element.setCapture()</code></a> および<a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/document.releaseCapture" title="The documentation about this has not yet been written; please consider contributing!"><code>document.releaseCapture()</code></a> メソッドが追加され、これらを用いることで、<code>指定要素で mousedown</code> イベントが発生した後にマウスが通常の追跡領域を越えても、マウスイベントを追い続けることができます。</li>
+  <li>The <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.mozPaintCount" title="The documentation about this has not yet been written; please consider contributing!"><code>window.mozPaintCount</code></a> プロパティが追加されました。これを用いることで、何回ドキュメントが描画されたかを判定できます。これは Web アプリケーションのパフォーマンスをテストするときに役立ちます。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/window.navigator.appVersion" title="The documentation about this has not yet been written; please consider contributing!"><code>window.navigator.appVersion</code></a> および <a href="https://developer.mozilla.org/ja/docs/Web/API/window.navigator.userAgent" title="現在のブラウザでのユーザエージェントを表す文字列を返します。 "><code>window.navigator.userAgent</code></a> から言語トークンが削除されました。代わりに <a href="https://developer.mozilla.org/ja/docs/Web/API/window.navigator.language" title="ブラウザの言語バージョンを表す文字列を返します。"><code>window.navigator.language</code></a> もしくは <a class="new" href="https://developer.mozilla.org/ja/docs/Content_negotiation">Accept-Language ヘッダ</a> を利用してください。 <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=572656" title="FIXED: Remove the UI language from the UA string and navigator.appVersion">バグ 572656</a></li>
+  <li><a href="https://developer.mozilla.org/ja/docs/XMLHttpRequest">XMLHttpRequest</a> オブジェクトに追加された Gecko 固有の <code>mozResponseArrayBuffer </code>プロパティを用いると、レスポンスを文字列と同様 に JavaScript Typed Array として扱えます。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/DOM/Event/UIEvent/MouseEvent">Mouse イベント</a> に <code>mozPressure</code> プロパティが追加されました。このプロパティは圧力感知をサポートする入力デバイスでの圧力を示します。</li>
+  <li><del>window.createBlobURL()</del> <ins><a href="https://developer.mozilla.org/ja/docs/Web/API/window.URL.createObjectURL" title="createObjectURL メソッドは、それが作成されたウィンドウ内の document と同じ寿命を持つ、新しいオブジェクトの URL を作成します。新しいオブジェクトの URL は、指定された File オブジェクトを表します。"><code>window.URL.createObjectURL()</code></a></ins> および <a href="https://developer.mozilla.org/ja/docs/Web/API/window.URL.revokeObjectURL" title="window.URL.createObjectURL() を用いてオブジェクト URL を生成した後、ブラウザがファイルへの参照を維持する必要が無くなった際にこのメソッドを呼び出します。"><code>window.URL.revokeObjectURL()</code></a> メソッドを用いることで、ローカルファイルを参照する BLOB <span style="color: darkgreen; background: #ef9;">【訳注: Binary Large OBject】</span> URL を作成できます。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/DOMImplementation.createHTMLDocument" title="The documentation about this has not yet been written; please consider contributing!"><code>DOMImplementation.createHTMLDocument()</code></a> メソッドを用いることで、新しい HTML 文書を作成できます。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/Node.mozMatchesSelector" title="The documentation about this has not yet been written; please consider contributing!"><code>Node.mozMatchesSelector()</code></a> が指定セレクタ文字列が妥当ではない場合に正しくない <code>false</code> を返すのではなく、<code>SYNTAX_ERR</code> 例外を投げるようになりました。</li>
+  <li>CSS 同様の省略構文を用いて 要素の SVG プロパティの値を設定できるようになりました。例: <code>element.style.fill = 'lime'</code>。詳細は <a class="new" href="https://developer.mozilla.org/ja/docs/Web/API/element.style" title="The documentation about this has not yet been written; please consider contributing!"><code>element.style</code></a> を参照してください。</li>
+  <li>ドキュメントルートに <a class="new" href="https://developer.mozilla.org/ja/docs/Supporting_private_browsing_mode#Detecting_whether_private_browsing_mode_is_permanent"><code>privatebrowsingmode</code> 属性</a> が追加されました。これはプライベートブラウジングがセッションで一時的であるか永続的であるかの状態を含む、プライベートブラウジングモードの状態を示します。</li>
+  <li><a href="https://developer.mozilla.org/ja/docs/Web/API/window.getComputedStyle" title="要素の算出スタイルを返します。算出スタイルは、要素に対して適用される全ての CSS プロパティにおいて最終的に算出された値です。"><code>window.getComputedStyle()</code></a> メソッドの 2 番目のパラメータが、他の主なブラウザと同様に省略可能になりました。</li>
+  <li>DOM の <a class="new" href="https://developer.mozilla.org/ja/docs/DOM/event/StorageEvent"><code>StorageEvent</code></a> オブジェクトが仕様の最新版に合致するようになりました。</li>
+  <li><a href="../../../Web/API/window.setTimeout.html" title="指定された遅延の後に、コードの断片または関数を実行します。"><code>window.setTimeout()</code></a> メソッドの最小遅延時間を設定するための <code>dom.min_timeout_value が追加されました。</code></li>
+  <li><a href="../../../Gecko-Specific_DOM_Events.html#MozAfterPaint"><code>MozAfterPaint</code></a> イベントは、潜在的なセキュリティ問題があるため、デフォルトでは送られなくなりました。設定を変更することで有効にできます。</li>
+</ul>
+<h3 id="Security" name="Security">セキュリティ</h3>
+<dl>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Introducing_Content_Security_Policy">Content Security Policy (CSP)</a></dt>
+  <dd>Content Security Policy (CSP) は Mozilla が提案する Web デザイナーとサーバー管理者が Web サイトの相互利用でどのようなコンテンツを指定するかの仕様です。目的はクロスサイトスクリプティングを含む攻撃とデータインジェクション攻撃を判定し、軽減することです。</dd>
+  <dt><a href="../../../Security/HTTP_Strict_Transport_Security.html">HTTP Strict Transport Security</a></dt>
+  <dd>HTTP Strict Transport Security は Web サイトがブラウザに HTTP を用いる代わりに HTTPS を用いてのみやり取りすべきであることを伝えるセキュリティ機能です。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/The_X-FRAME-OPTIONS_response_header">X-FRAME-OPTIONS レスポンスヘッダ</a></dt>
+  <dd>Internet Explorer 8 で導入された X-FRAME-OPTIONS HTTP レスポンスヘッダが Firefox でサポートされるようになりました。これを用いることでサイトがページをフレーム内で用いることができるかどうか、フレーム内で利用可能ならば、同じドメイン内に限定するかどうかを指示することができます。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/User_Agent_Strings_Reference">User Agent 文字列</a> の変更</dt>
+  <dd><a class="external link-https" href="https://bugzilla.mozilla.org/show_bug.cgi?id=572650">HTTP リクエストで送ったデータとエントロピーの総量を減少させるべき</a>にあるように、 ユーザエージェント文字列から暗号の強度を表す文字列と言語を表す文字列が削除されました。</dd>
+</dl>
+<h3 id="JavaScript" name="JavaScript">JavaScript</h3>
+<p>JavaScript 1.8.5 で実装される変更の概要については、<a class="new" href="https://developer.mozilla.org/ja/docs/New_in_JavaScript_1.8.5">JavaScript 1.8.5の新機能</a> を参照してください。Firefox 4 における JavaScript は ECMASCript 5 標準へのさらなる順守となる予定です。</p>
+<h3 id="Developer_tools" name="Developer_tools">開発者ツール</h3>
+<dl>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Using_the_Web_Console">Web コンソールの利用</a></dt>
+  <dd>Web コンソールツールは Web 開発者および拡張開発者のデバッグ作業の補助に役立ちます。</dd>
+</dl>
+<div class="geckoVersionNote">
+  <p></p><div class="geckoVersionHeading"> 
+Gecko 2.0 note 
+<div style="font-size: 9px; line-height: 1; font-style: italic;">(Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1)</div> 
+</div><p></p>
+  <p>エラーコンソールは Firefox 4 からデフォルトで無効化されます。<code>devtools.errorconsole.enabled 設定を</code> <code>true</code> に変更し、ブラウザを再起動することで再び有効にすることができます。</p>
+</div>
+<h2 id="Changes_for_Mozilla_and_add-on_developers" name="Changes_for_Mozilla_and_add-on_developers">Mozilla およびアドオン開発者向けの変更</h2>
+<p>Firefox 4 向けに既存の拡張を更新する上で役立つ Tips は、<a class="new" href="https://developer.mozilla.org/ja/docs/Extensions/Updating_extensions_for_Firefox_4">Updating extensions for Firefox 4</a> を参照してください。ここでは既存のアドオンの互換性を破壊する主な変更点のいくつかを取り上げているだけです。ですから、上記記事も必ず読んでください。</p>
+<p>テーマ開発者であるならば、注意する必要がある重要な変更点を理解するために <a class="new" href="https://developer.mozilla.org/ja/docs/Theme_changes_in_Firefox_4">Theme changes in Firefox 4</a> を読むべきです。</p>
+<h3 id="New_JavaScript_code_modules" name="New_JavaScript_code_modules">新しいJavaScript コードモジュール</h3>
+<dl>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/Services.jsm">Services.jsm</a></dt>
+  <dd><code>Services.jsm</code> コードモジュールは preferences service や window mediator などのよく用いられているサービスへの参照を簡単に取得できるようにするゲッターを提供します。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/ctypes.jsm">JS-ctypes API</a></dt>
+  <dd>JS-ctypes API は C 互換外部ライブラリ関数を XPCOM を利用すること無しに呼び出せるようにします。</dd>
+  <dt><a href="../../Add-ons/Add-on_Manager.html">Add-ons Manager</a></dt>
+  <dd>新しい Add-ons Manager はインストールされたアドオンについての情報の提供、それらの管理のためのサポート、および、アドオンのインストールと削除の方法を提供します。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/PopupNotifications.jsm">PopupNotifications.jsm</a></dt>
+  <dd>新しいポップアップ通知モジュールを用いることで簡単に魅力的な非モーダルな通知をユーザに提供できます。この API の使い方は<a class="new" href="https://developer.mozilla.org/ja/docs/Using_popup_notifications">ポップアップ通知の利用</a>で参照できます。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/Using#Locating_the_code_module">chrome: URL からコードモジュールを読み込む</a></dt>
+  <dd><strong>chrome:</strong> URL を用いて JavaScript コードモジュールを読め込むことができるようになりました。JAR ファイルの中でも可能です。</dd>
+  <dt>DownloadLastDir.jsm</dt>
+  <dd><a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/DownloadLastDir.jsm"><code>DownloadLastDir.jsm</code></a> コードモジュールは <code>gDownloadLastDir</code> グローバル変数を提供します。この変数には最後のダウンロードが行われたディレクトリのパスを知るために利用可能な文字列が含まれています。このモジュールはプライベートブラウジングに対応しています。</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Performance/Measuring_performance_using_the_PerfMeasurement.jsm_code_module">PerfMeasurement.jsm コードモジュールを用いたパフォーマンスの測定</a></dt>
+  <dd><a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/PerfMeasurement.jsm"><code>PerfMeasurement.jsm</code></a> コードモジュールは JavaScript コードにおける CPU レベルでのパフォーマンスデータを測定するための API を提供します。</dd>
+</dl>
+<h4 id="Miscellaneous_changes_to_code_modules" name="Miscellaneous_changes_to_code_modules">小さなコードモジュールの変更</h4>
+<ul>
+  <li><code>NetUtil.jsm</code> コードモジュールが <a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/NetUtil.jsm#readInputStreamToString()"><code>readInputStreamToString()</code></a> メソッドを提供するようになりました。これを用いることで、ストリームが null 文字を含んでいても、ストリームから文字列に任意のバイトを読み出せます。</li>
+  <li><a class="new" href="https://developer.mozilla.org/ja/docs/JavaScript_code_modules/Using_workers_in_JavaScript_code_modules">JavaScript コードモジュール内で Worker を利用</a>できるようになりました。</li>
+</ul>
+<h3 id="DOM_changes" name="DOM_changes">DOM の変更</h3>
+<dl>
+  <dt><a class="new" href="../../../Web/API/ChromeWorker.html" title="The documentation about this has not yet been written; please consider contributing!"><code>ChromeWorker</code></a></dt>
+  <dd>特権コード向けの新しいタイプの Worker です。これを用いると、拡張およびアプリケーションコードで Worker から <a class="new" href="https://developer.mozilla.org/ja/docs/js-ctypes">js-ctypes</a> のようなものを用いることができます。</dd>
+  <dt><a href="../../../Web/Guide/DOM/Events/Touch_events.html">タッチイベント</a></dt>
+  <dd>(非標準の) タッチイベントのサポートが追加されました。これを用いると、タッチスクリーン上で同時に複数の指でトラックできます。</dd>
+</dl>
+<h3 id="XUL" name="XUL">XUL</h3>
+<h4 id="Changes_to_the_tabbrowser_element" name="Changes_to_the_tabbrowser_element">Tabbrowser (gBrowser) の変更</h4>
+<p>いくつかの変更が &lt;tabbrowser&gt; 要素になされており、タブ機能の拡張に影響があります。アイコンタブのサポートに加えて、タブバーが標準ツールバーに統合されたという変更もあります。この変更によって、ユーザがツールバーボタンをそこへドラッグできるようになっています。</p>
+<ul>
+  <li>TabClose/TabSelect/TabOpen イベントはもはや tabbrowser 要素 (gBrowser) にバブルアップしません。これらのイベントのためのイベントリスナーは gBrowser 直接ではなく gBrowser.tabContainer に追加すべきです。</li>
+  <li>タブコンテキストメニューはもはや tabbrowser の無名の子要素ではありません。それゆえ <a href="https://developer.mozilla.org/ja/docs/XUL_Overlays">XUL オーバーレイ</a>で直接オーバレイできるようになります。gBrowser.tabContextMenu 経由で JavaScript でより直接的にアクセスすることもできます。詳細は<a class="external" href="http://www.gavinsharp.com/blog/2010/03/31/accessingmodifying-the-firefox-tab-context-menu-from-extensions/">このブログ投稿</a>を参照してください。</li>
+  <li>新たに <code><span><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Property/visibleTabs">visibleTabs</a></span></code> プロパティが追加され、これを用いると、現在表示されているタブの配列を取得することができます。このことにより、現在のタブセットでどのタブが表示されているかを知ることができます。これは例えば、Firefox Panorama で利用されています。</li>
+  <li>新たに <span id="m-showOnlyTheseTabs"><code><a href="https://developer.mozilla.org/ja/docs/XUL/Method/showOnlyTheseTabs">showOnlyTheseTabs</a></code></span> メソッドが追加されました。これは Firefox Panorama で用いられています。</li>
+  <li>新たに <span id="m-getIcon"><code><a href="https://developer.mozilla.org/ja/docs/XUL/Method/getIcon">getIcon</a></code></span> メソッドが追加されました。これを用いると、<code><a href="https://developer.mozilla.org/ja/docs/XUL/browser" title="browser">browser</a></code> 要素から引っ張り出す必要無しに、 タブのファビコンを得ることができます。</li>
+  <li>新たに <code><span><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Property/tabbrowser.tabs">tabbrowser.tabs</a></span></code> プロパティが追加されました。これを用いると、簡単に <code><a href="https://developer.mozilla.org/ja/docs/XUL/tabbrowser" title="tabbrowser">tabbrowser</a></code> 要素内のタブの一覧を取得できます。</li>
+  <li>新たに <span id="m-pinTab"><code><a href="https://developer.mozilla.org/ja/docs/XUL/Method/pinTab">pinTab</a></code></span> と <span id="m-unpinTab"><code><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Method/unpinTab">unpinTab</a></code></span> メソッドが追加されました。これを用いると、タブのアイコン化およびタブのアイコン化の解除ができます（つまり、アイコンタブと通常タブを切り替えます）。</li>
+  <li><span id="m-getTabModalPromptBox"><code><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Method/getTabModalPromptBox">getTabModalPromptBox</a></code></span> メソッドと <code><a href="https://developer.mozilla.org/ja/docs/XUL/tabbrowser" title="tabbrowser">tabbrowser</a></code> 要素の <code id="a-tabmodalPromptShowing"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/tabmodalPromptShowing">tabmodalPromptShowing</a></code> 属性がタブモーダルアラートのサポートのために追加されました。</li>
+</ul>
+<h4 id="Changes_to_popups" name="Changes_to_popups">ポップアップに対する変更点</h4>
+<ul>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/popup" title="popup">popup</a></code> 要素がサポートされなくなりました。代わりに <code><a href="https://developer.mozilla.org/ja/docs/XUL/menupopup" title="menupopup">menupopup</a></code> 要素を使うべきです。(<code>popup</code> 要素を用い続けた場合、その要素にはもはや何の特別な意味もないため、不具合に遭遇するでしょう。例えば、<code><a href="https://developer.mozilla.org/ja/docs/XUL/menuseparator" title="menuseparator">menuseparator</a></code> 要素は <code><a href="https://developer.mozilla.org/ja/docs/XUL/popup" title="popup">popup</a></code> 要素内で用いたときに透明で表示される可能性があります。)</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/menupopup" title="menupopup">menupopup</a></code> XUL 要素に <code><span><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Property/triggerNode">triggerNode</a></span></code> プロパティが追加されました。このプロパティはポップアップを開くイベントが起こったノードを示します。これは <span id="m-openPopup"><code><a href="https://developer.mozilla.org/ja/docs/XUL/Method/openPopup">openPopup</a></code></span> メソッドに対するトリガーイベント引数の追加も必要とします。また、 <code><span><a href="https://developer.mozilla.org/ja/docs/XUL/Property/anchorNode">anchorNode</a></span></code> プロパティも追加されました。このプロパティはポップアップが作成されたときに指定されたアンカーを返します。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/panel" title="panel">panel</a></code> 要素に <code id="a-fade"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/fade">fade</a></code> および <code id="a-flip"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/flip">flip</a></code> 属性が追加されました。これらの属性は新しい "arrow" スタイル通知パネルの挙動を設定するために用いられます。</li>
+</ul>
+<h4 id="Remote_XUL_support_removed" name="Remote_XUL_support_removed">リモート XUL サポートの削除</h4>
+<p>リモート XUL <a class="external link-https" href="https://bugzilla.mozilla.org/show_bug.cgi?id=546857">がサポートされなくなりました</a>。 これは HTTP を経由して供給される XUL ドキュメントにのみ影響します。 また、<code>dom.</code><code>allow_XUL_XBL_for_file</code> の設定を作成して、その値を <code>true に設定しない限り、</code><span class="nowiki"><code>file://</code></span> URL 形式を用いた XUL 文書の読み込みも行えなくなります。しかしながら、ホワイトリスト機能を用いることで、特定ドメインのリモート XUL を読み込むことを許可できます。<a class="external link-https" href="https://addons.mozilla.org/en-US/firefox/addon/235281/">Remote XUL Manager 拡張</a> を用いると、このホワイトリストを管理できます。</p>
+<h4 id="Miscellaneous_XUL_changes" name="Miscellaneous_XUL_changes">小さな XUL の変更</h4>
+<ul>
+  <li><code id="a-readonly"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/readonly">readonly</a></code> 属性がフィールドで正しく動作するようになりました。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/resizer" title="resizer">resizer</a></code> 要素でウィンドウをリサイズする代わりにリサイズする要素を指定できる <code id="a-element"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/element">element</a></code> 属性を用いることができるようになりました。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/resizer" title="resizer">resizer</a></code> 要素に <code id="a-resizer.type"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/resizer.type">type</a></code> 属性が追加され、これを用いることで、要素の変わりにウィンドウのリサイズグリップを指定し、ウィンドウのリサイズグリップが 2 度描画されることを防ぐことができます。</li>
+  <li>"active" 属性は XUL ウィンドウでは設定されません。背景ウィンドウに異なるスタイルを指定するための新しい <a class="new" href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-window-inactive" title=""><code>:-moz-window-inactive</code></a> 擬似クラスを利用してください。</li>
+  <li><code id="a-emptytext"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/emptytext">emptytext</a></code> 属性は非推奨になりました。代わりに <code id="a-placeholder"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/placeholder">placeholder</a></code> を用いるべきです。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/popup" title="popup">popup</a></code> 要素はサポートされません。代わりに <code><a href="https://developer.mozilla.org/ja/docs/XUL/menupopup" title="menupopup">menupopup</a></code> を持ちいるべきです。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/window" title="window">window</a></code> 要素が <code id="a-accelerated"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/accelerated">accelerated</a></code> 属性を提供するようになりました。true の場合、ハードウェアレイヤーマネージャがウィンドウをアクセラレーションすることが許可されます。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/stack" title="stack">stack</a></code> 要素が <code id="a-bottom"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/bottom">bottom</a></code> と <code id="a-right"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/right">right</a></code> 要素をサポートするようになりました。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/tree" title="tree">tree</a></code> 要素での <code id="a-alternatingbackground"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/alternatingbackground">alternatingbackground</a></code> 属性はサポートされません。代わりに <a href="https://developer.mozilla.org/ja/docs/Web/CSS/:-moz-tree-row" title=""><code>:-moz-tree-row</code></a> 擬似クラスを利用できます。</li>
+  <li>anonid chevronPopup を持っていたブックマークツールバーのオーバーフローボタンは無名になりました。それは PlacesChevron の id を持っています。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/tabs" title="tabs">tabs</a></code> 要素に <code><span><a href="https://developer.mozilla.org/ja/docs/XUL/Property/tabbox">tabbox</a></span></code> プロパティが追加されました。これは古い <code>_tabbox</code> プロパティを置き換えます。古い方のプロパティは非推奨です（そして決してドキュメント化されません）。</li>
+  <li>XUL <code><a href="https://developer.mozilla.org/ja/docs/XUL/window" title="window">window</a></code> 要素に <code id="a-drawintitlebar"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/drawintitlebar">drawintitlebar</a></code> 属性が追加されました。この値が <code>true であれば、</code>ウィンドウのコンテント領域にはタイトルバーが含まれており、タイトルバー内に描画することを許可します。</li>
+  <li>新たに <code>TabPinned</code> および <code>TabUnpinned</code> イベントが追加され、これを用いることで、<a href="https://developer.mozilla.org/ja/docs/Code_snippets/Tabbed_browser#Notification_when_a_tab_is_pinned_or_unpinned">タブがアイコン化したかアイコン化が解除されたかを検知できます</a>。</li>
+  <li>新しい <a href="https://developer.mozilla.org/ja/docs/Code_snippets/Tabbed_browser#Notification_when_a_tab%27s_attributes_change"><code>TabAttrModified</code> イベント</a> はタブの <code id="a-label"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/label">label</a></code>、<code id="a-crop"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/crop">crop</a></code>、<code id="a-busy"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/busy">busy</a></code>、 <code id="a-image"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/image">image</a></code>、あるいは、<code id="a-selected"><a href="https://developer.mozilla.org/ja/docs/XUL/Attribute/selected">selected</a></code> 属性のいずれかが変化したときに送られます。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/tab" title="tab">tab</a></code> 要素に <code id="a-pinned"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/pinned">pinned</a></code> 属性が追加されました。これを用いることで、タブが現在アイコン化されているかどうか判定できます。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/tree" title="tree">tree</a></code> 要素上の <code>setDirectionIndicator</code> クラスは何もしないことがありましたが、一切利用されないようになりました。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/window" title="window">window</a></code> 要素に <code id="a-chromemargin"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/chromemargin">chromemargin</a></code> 属性が追加され、これを用いることで、ウィンドウの両端のChrome とコンテントのマージンを設定できます。例えば、タイトルバーに描画するためにこれを用いることができます。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/window" title="window">window</a></code> 要素に <code id="a-disablechrome"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/disablechrome">disablechrome</a></code> 属性が追加されました。これは <code>about:addons のように</code>ブラウザ内 UI に表示するために用いるときにウィンドウで Chrome のほどんどを隠すために用いることができます。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XUL/window" title="window">window</a></code> 要素に <code id="a-disablefastfind"><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Attribute/disablefastfind">disablefastfind</a></code> 属性が追加されました。これを用いることで、ウィンドウ内のページ内検索バーを無効にできます。このときコンテント内でページ検索バーはサポートされません。例えば、これはアドオンパネルで使われています。</li>
+  <li>ツールバーをツールボックスの外部に置けるようになりました。<code><a href="https://developer.mozilla.org/ja/docs/XUL/toolbar" title="toolbar">toolbar</a></code> 要素の <code><span><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Property/toolboxid">toolboxid</a></span></code> プロパティを設定することで、以前のように <code><a href="https://developer.mozilla.org/ja/docs/XUL/toolbox" title="toolbox">toolbox</a></code> 要素のメンバーとして扱うことができます。また、<code><a href="https://developer.mozilla.org/ja/docs/XUL/toolbox" title="toolbox">toolbox</a></code> 要素に <code><span><a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Property/externalToolbars">externalToolbars</a></span></code> プロパティが追加されました。このプロパティによって、そのツールボックスのメンバーとして扱われるツールバーのすべての一覧を取得できます。</li>
+  <li>デバッグ目的向けに <a class="new" href="https://developer.mozilla.org/ja/docs/XUL/Template_Guide/Template_Logging">logging XUL テンプレートのロギング</a> のサポートが追加されました。</li>
+</ul>
+<h3 id="UI_changes_affecting_developers" name="UI_changes_affecting_developers">開発者に影響がある UI の変更</h3>
+<dl>
+  <dt><a href="https://developer.mozilla.org/ja/docs/The_add-on_bar">アドオンバー</a></dt>
+  <dd>ステータスバーが削除され、新しいアドオンバーに置き換えられました。以前にステータスバーに UI を追加していた拡張は更新する必要があります。</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Hiding_browser_chrome">ブラウザのクロームを隠す</a></dt>
+  <dd>ブラウザのクロームを隠したいときに、隠せるようになりました。例えば、<code>about:addons</code> がこれを用いています。</dd>
+</dl>
+<h3 id="Storage" name="Storage">Storage</h3>
+<h4 id="Miscellaneous_storage_API_changes" name="Miscellaneous_storage_API_changes">小さなストレージ API の変更</h4>
+<ul>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageBindingParamsArray" title="">mozIStorageBindingParamsArray</a></code> インタフェースが 配列である<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageBindingParams" title="">mozIStorageBindingParams</a></code> オブジェクトの数を示す length 属性を持つようになりました。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageStatement" title="">mozIStorageStatement </a></code> の メソッド <a class="new" href="https://developer.mozilla.org/ja/docs/mozIStorageStatemt#bindPrameters">bindParameters</a> が 指定された <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageBindingParamsArray" title="">mozIStorageBindingParamsArray</a></code> が空のときにエラーを返すようになりました。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageConnection#clone()">mozIStorageConnection.clone()</a></code> メソッドが追加されました。これを用いると、存在するデータベース接続を複製できます。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageConnection#asyncClose()">mozIStorageConnection.asyncClose()</a></code> が追加されました。これを用いると、非同期にデータベース接続を閉じることができます。クローズ処理が完了したときに通知されるコールバックを指定します。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/mozIStorageConnection#setGrowthIncrement()">mozIStorageConnection.setGrowthIncrement()</a></code> メソッドが追加されました。これを用いると、SQLite のフラグメンテーションを減らすことを助けるために、データベースファイルでの一度の増加量を指定できます。</li>
+  <li><code>SQLITE_CONSTRAINT</code> エラーが <code>NS_ERROR_FAILURE</code> の代わりに <code>NS_ERROR_STORAGE_CONSTRAINT</code> を報告するようになりました。</li>
+</ul>
+<h3 id="XPCOM" name="XPCOM">XPCOM</h3>
+<p>以下から参照できる特定の変更に加えて、凍結されたインタフェースが一切無くなったという重要な変更もあります。すべてのインタフェースは非凍結となっています。ドキュメンテーションに書いていることに関わらずです。ドキュメンテーションを後ほど更新する予定です。</p>
+<dl>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM/XPCOM_changes_in_Gecko_2.0">Gecko 2.0 における XPCOM の変更</a></dt>
+  <dd>Firefox 4 で互換性に影響を与える XPCOM への変更についての詳細。</dd>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Components.utils.getGlobalForObject">Components.utils.getGlobalForObject()</a></dt>
+  <dd>この新しいメソッドはオブジェクトが属しているグローバルオブジェクトを返します。これは現在削除された <code>__parent__ の一般的用途を置き換えます。</code></dd>
+</dl>
+<h3 id="Places" name="Places">Places</h3>
+<ul>
+  <li>Places クエリの結果が複数のオブザーバによって提供されるようになり、それらのクエリは非同期で実行される可能性があります。このことにより、<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsINavHistoryResult" title="">nsINavHistoryResult</a></code>、<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsINavHistoryQueryOptions" title="">nsINavHistoryQueryOptions</a></code>、および<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsINavHistoryContainerResultNode" title="">nsINavHistoryContainerResultNode</a></code> インタフェースにいくつかの変更があります。より大きな変更は、<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsINavHistoryResultViewer" title="">nsINavHistoryResultViewer</a></code> インタフェースが <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsINavHistoryResultObserver" title="">nsINavHistoryResultObserver</a></code> に改名されたことです。</li>
+  <li>いくつかの <a href="https://developer.mozilla.org/ja/docs/Observer_Notifications#Places">新しい通知</a> が追加されました。この通知を用いると、ブラウザが Places サービスのシャットダウンプロセスをより確実に追跡できます。これらのうち、ほとんどは内部での利用のためにのみ用意されたものですが、<code>places-connection-closed</code> 通知は Places サービスが自身のシャットダウンプロセスを完了したときを知るために利用可能です。</li>
+  <li>いくつかの Places のメソッドで配列サイズ出力を指定する引数がオプションになりました。</li>
+  <li><code>&lt;menupopup type="places"&gt;</code> のサポートが削除されました。代わりに、以前は自動で行なわれていた Places の情報を持つメニューを手動で作成して配置する必要があります。詳細は<a href="https://developer.mozilla.org/ja/docs/Displaying_Places_information_using_views#Menu_view">メニュービューを用いて Places 情報を表示する</a>を参照してください。</li>
+</ul>
+<h3 id="Interface_changes" name="Interface_changes">インタフェースの変更</h3>
+<ul>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIDocShell">nsIDocShell</a></code> and <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIWebBrowser">nsIWebBrowser</a></code> interfaces now have a new <code>isActive</code> attribute, which is used to allow optimization of code paths for documents that aren't currently visible.</li>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIMemory">nsIMemory</a></code> method <code><a href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/nsIMemory#isLowMemory()">nsIMemory.isLowMemory()</a></code> has been deprecated. You should use <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIMemory#Low_memory_notifications">"memory-pressure" notifications</a> to watch for low memory situations instead.</li>
+  <li>The API for handling redirects on HTTP channels has changed to let them be processed asynchronously. Any code that implements redirect handling using <code><a href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/nsIChannelEventSink#onChannelRedirect()">nsIChannelEventSink.onChannelRedirect()</a></code> needs to be updated to use <code><a href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/nsIChannelEventSink#asyncOnChannelRedirect()">nsIChannelEventSink.asyncOnChannelRedirect()</a></code> instead. This accepts a callback handler that must be called when a redirect is successfully completed.</li>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/nsINavHistoryResultObserver#batching()">nsINavHistoryResultObserver.batching()</a></code> method has been added, providing a way to group Places operations into batches, reducing the number of update notifications delivered, which can improve performance when observers are performing relatively involved tasks (such as refreshing views).</li>
+  <li>The long-obsolete <code>nsIPref</code> interface has finally been removed. If you haven't already switched to <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrefService">nsIPrefService</a></code>, now is the time.</li>
+  <li>The <code><a href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsISessionStore">nsISessionStore</a></code> and <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsISessionStartup">nsISessionStartup</a></code> interfaces received changes to support on-demand session restore. See the <code><a href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/nsISessionStore#restoreLastSession()">nsISessionStore.restoreLastSession()</a></code> method.</li>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrincipal">nsIPrincipal</a></code> methods <code><a href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/nsIPrincipal#subsumes()">nsIPrincipal.subsumes()</a></code> and <code><a href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/nsIPrincipal#checkMayLoad()">nsIPrincipal.checkMayLoad()</a></code>, as well as its <code>origin</code>, <code>csp</code>, and <code>URI</code> attributes, are now available from script; previously they were only available from native code.</li>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrompt">nsIPrompt</a></code> interface now supports tab-modal alerts; see <a class="new" href="https://developer.mozilla.org/ja/docs/Using_tab-modal_prompts">Using tab-modal prompts</a> for details.</li>
+  <li>The <code><a href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/nsIEffectiveTLDService#getPublicSuffixFromHost()">nsIEffectiveTLDService.getPublicSuffixFromHost()</a></code> method now correctly rejects host name starting with a period (".").</li>
+  <li>The <code><a href="https://developer.mozilla.org/ja/docs/en-US/XPCOM_Interface_Reference/mozIJSSubScriptLoader#loadSubScript()">mozIJSSubScriptLoader.loadSubScript()</a></code> method now has an optional argument allowing you to specify the character set of the script; if one is not provided, ASCII is assumed (as was always assumed previously).</li>
+  <li>The <code>nsIAccessProxy</code> interface has been removed. It was an implementation detail that has outlived its usefulness.</li>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIContentView">nsIContentView</a></code> and <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIContentViewManager">nsIContentViewManager</a></code> interfaces have been added for Firefox Mobile. It represents a scrollable content view whose contents are actually drawn by a separate process.</li>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIDiskCacheStreamInternal">nsIDiskCacheStreamInternal</a></code> interface has been added.</li>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIExternalURLHandlerService">nsIExternalURLHandlerService</a></code> interface has been added.</li>
+  <li>The <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsISyncJPAKE">nsISyncJPAKE</a></code> interface has been added. See <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=601645">bug 601645</a>.</li>
+</ul>
+<ul>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIDocShell" title="">nsIDocShell</a></code> および <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIWebBrowser" title="">nsIWebBrowser</a></code> インタフェースに新しく <code>isActive</code> 属性が追加されました。これは現在表示されていないドキュメントのためにコードパスを最適化することを許可するために用いることができます。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIMemory" title="">nsIMemory</a></code> のメソッドである <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIMemory/isLowMemory"><code>isLowMemory()</code></a> は非推奨になりました。低メモリ状況を監視するには <a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIMemory#Low_memory_notifications">"memory-pressure" 通知</a> を用いることが推奨されます。</li>
+  <li>HTTP チャンネル上でリダイレクトを扱う API が非同期で動作できるように変更されました。<code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIChannelEventSink#onChannelRedirect()">nsIChannelEventSink.onChannelRedirect()</a></code> を用いてリダイレクトを扱う実装を行なっているコードは {ifmethod("nsIChannelEventSink", "asyncOnChannelRedirect")} } を代わりに用いて更新する必要があります。これはリダイレクトが正常に完了したときに呼び出されるコールバックハンドラを受け入れます。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsINavHistoryResultObserver#batching()">nsINavHistoryResultObserver.batching()</a></code> メソッドが追加されました。このメソッドは Places 操作をバッチにグループ化する方法を提供し、送られてくる更新通知の数を減少させ、その結果、オブザーバが（ビューをリフレッシュするような）相対的にタスクを追加するときのパフォーマンスを向上させます。</li>
+  <li>長い間廃止状態であった <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPref" title="">nsIPref</a></code> インタフェースがついに削除されました。まだ <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrefService" title="">nsIPrefService</a></code> に移行していないなら、今がそのときです。</li>
+  <li><code><a href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsISessionStore" title="">nsISessionStore</a></code> および <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsISessionStartup" title="">nsISessionStartup</a></code> インタフェースがユーザの要求に応じたセッションリストアのサポートへの変更を受けとるようになりました。<code><a href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsISessionStore#restoreLastSession()">nsISessionStore.restoreLastSession()</a></code> メソッドを参照してください。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrincipal" title="">nsIPrincipal</a></code> のメソッドである <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrincipal#subsumes()">nsIPrincipal.subsumes()</a></code> および <code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrincipal#checkMayLoad()">nsIPrincipal.checkMayLoad()</a></code> が <code>origin</code>、<code>csp、</code> および <code>URI</code> 属性同様に、スクリプトから利用可能になりました。以前はこれらはネイティブコードからのみ利用可能でした。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIPrompt" title="">nsIPrompt</a></code> インタフェースがタブモーダルアラートをサポートするようになりました。詳細は<a class="new" href="https://developer.mozilla.org/ja/docs/Using_tab-modal_prompts">タブモーダルプロンプトの利用</a>を参照してください。</li>
+  <li><code><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIEffectiveTLDService#getPublicSuffixFromHost()">nsIEffectiveTLDService.getPublicSuffixFromHost()</a></code> メソッドがピリオド (".") で始まるホスト名を正しく拒否するようになりました。</li>
+</ul>
+<h3 id="Memory_management" name="Memory_management">メモリ管理</h3>
+<dl>
+  <dt><a class="new" href="https://developer.mozilla.org/ja/docs/Infallible_memory_allocation">確実なメモリアロケーション</a></dt>
+  <dd>Mozilla は null を返さないことを保証する確実なメモリアロケータを複数提供するようになりました。この記事を読んでそれらがどのように動作し、どのようにして不確実な、あるいは、確実なメモリアロケーションを明確に指定して呼び出すのかを学んでください。</dd>
+</dl>
+<h3 id="Other_changes" name="Other_changes">その他の変更</h3>
+<ul>
+  <li>Firefox 内に含まれるリソースのほとんどが単一の JAR アーカイブである <code>omni.jar</code> にまとめられました。これにより、 I/O が減少し、その結果、起動パフォーマンスが向上しています。詳細は <a href="https://developer.mozilla.org/ja/docs/About_omni.jar">omni.jar について</a>を読んでください。</li>
+  <li><code>accessibility.disablecache</code> 設定はサポートされなくなりました。これはデバッグ目的で公開されており、もはや用いられません。</li>
+  <li>バージョンアップによって GUID が変更になるアドオンが正しく更新されるようになりました。</li>
+  <li>プラットフォーム固有のディレクトリを削除した副作用として、各プラットフォーム向けに異なった設定を提供することができなくなりました。</li>
+  <li>デフォルトで、拡張はインストール時に展開されなくなりました。その代わりに XPI ファイルから直接実行されます。拡張は古い挙動を選択するために<a href="https://developer.mozilla.org/ja/docs/Install_Manifests">インストールマニフェスト</a>内で <a href="https://developer.mozilla.org/ja/docs/Install_Manifests#unpack">unpack</a> プロパティを使用できます。バイナリコンポーネントや、<a class="new" href="https://developer.mozilla.org/ja/docs/js-ctypes">js-ctypes</a> を利用して読み込まれる DLL、<a href="../../../Creating_OpenSearch_plugins_for_Firefox.html">検索プラグイン</a>、辞書、ウィンドウアイコンは展開される必要があるように指定しなければなりません。<a href="https://developer.mozilla.org/ja/docs/XUL/School_tutorial/Local_Storage#SQLite">SQLite データベースを生成する</a>拡張や、拡張ディレクトリからファイルシステムへ相対的に何かをコピーする拡張も、それらのコードを変更する必要があるかもしれません。</li>
+  <li>カスタマイズされた Firefox に<a class="new" href="https://developer.mozilla.org/ja/docs/Developer_Guide/Customizing_Firefox#Including_extensions_with_your_distribution_of_Firefox">アプリケーションスタートアップ時に自動でインストールされる</a>拡張を含められるようになりました。</li>
+</ul>
+<h2 id="Other_changes_2" name="Other_changes_2">その他の変更</h2>
+<dl>
+  <dt>ルートの chrome.manifest ファイルだけが読み込まれるように</dt>
+  <dd>ルートの <code>chrome.manifest</code> ファイルだけが読み込まれるようになりました。 2 つ以上のマニフェストファイルを読み込む必要がある場合は、ルートの <code>chrome.manifest</code> でそれらを読み込むために <a href="https://developer.mozilla.org/ja/docs/Chrome_Registration#manifest"><code>manifest</code></a> コマンドを使用できます。</dd>
+  <dt>Gopher サポートの削除</dt>
+  <dd>Gopher プロトコルがネイティブでサポートされなくなりました。継続してサポートを受けるには <a class="external link-https" href="https://addons.mozilla.org/addon/7685/">OverbiteFF</a> 拡張を利用できます。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/The_message_manager">コンテントプロセスイベントハンドリング</a></dt>
+  <dd>out-of-process プラグインのサポートとその他の multiple-process 機能をサポートするために、プロセス間でメッセージを送ることをサポートするための新しい API が導入されました。</dd>
+  <dt><a href="https://developer.mozilla.org/ja/docs/Extensions/Bootstrapped_extensions">ブートストラップ拡張</a></dt>
+  <dd>ブラウザを再起動せずにインストール、アンインストール、更新（またはダウングレード）できる拡張を作成できるようになりました。</dd>
+  <dt>デフォルトプラグイン の削除</dt>
+  <dd>デフォルトプラグインが削除されました。アプリケーションプラグインフォルダもデフォルトで削除されますが、このフォルダ経由でプラグインをインストールするためのサポートはまだ存在します。<a class="external link-https" href="https://bugzilla.mozilla.org/show_bug.cgi?id=533891">bug 533891</a> を参照してください。</dd>
+  <dt>Extension Manager の AddonManager への置き換え</dt>
+  <dd><a class="new" href="https://developer.mozilla.org/ja/docs/XPCOM_Interface_Reference/nsIExtensionManager">nsIExtensionManager</a> は <a class="new" href="https://developer.mozilla.org/ja/docs/Addons/Add-on_Manager/AddonManager">AddonManager</a> に置き換えられました。 指定した拡張 ID からインストール場所を取得するための方法は現在のところ存在しないと思われるので、それに最も近い回避策はプロファイルディレクトリを見つけるためにディレクトリサービスを用い、それに "extensions" を追加することです（この手段ではプロファイルディレクトリ外あるいは他の位置にエイリアスされている拡張は取得できません）。</dd>
+  <dt>子 HWND はもはや利用されません</dt>
+  <dd>Firefox は Windows で内部利用していた 子 HWND を作成しないようになりました。これらの HWND を扱うネィティブコードを用いる拡張を書いていた場合、その拡張は Firefox 4 では動作しないでしょう。HWND を用いることを止めるか、<a href="https://developer.mozilla.org/ja/docs/NPAPI">NPAPI</a> プラグインで HWND に依存するコードをラップする必要があります。それは多大な作業であり、HWND を直接用いることを避けられるならば、そうすべきです。</dd>
+  <dt>ジェスチャの変更</dt>
+  <dd>トラックパッド上の 3 本指の上下スワイプジェスチャが、デフォルトで、Firefox Panorama (旧称 TabCandy) の開閉に変更されました。これらの変更を以前の scroll-to-top および scroll-to-bottom コマンドに戻すには、about:config を開き、<code>browser.gesture.swipe.down</code> を <code>cmd_scrollBottom</code> にし、<code>browser.gesture.swipe.up</code> を <code>cmd_scrollTop</code> に設定してください。</dd>
+</dl>
+<h2 id="See_also" name="See_also">関連情報</h2>
+<div>
+  <div class="multiColumnList"> 
+<ul> 
+<li><a href="5.html">Firefox 5 for developers</a></li><li><a href="4.html">Firefox 4 for developers</a></li><li><a class="new" href="../../../Firefox_3.6_for_developers.html">Firefox 3.6 for developers</a></li><li><a href="3.5.html">Firefox 3.5 for developers</a></li><li><a href="3.html">Firefox 3 for developers</a></li><li><a href="2.html">Firefox 2 for developers</a></li><li><a href="1.5.html">Firefox 1.5 for developers</a></li></ul> 
+</div></div>
+                                                </article>
+
+              
+                <!-- contributors -->
+                <div class="wiki-block contributors">
+                  <h2 class="offscreen">Document Tags and Contributors</h2>
+                                                      <!-- tags if present -->
+                  <div class="tag-attach-list contributor-sub">
+                    <i aria-hidden="true" class="icon-tags"></i><strong>タグ:</strong>&nbsp;
+                    <ul class="tags tags-small"><li><a href="../../../tag/Firefox.html">Firefox</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/Gecko%202.0">Gecko 2.0</a></li><li><a href="../../../tag/CSS.html">CSS</a></li><li><a href="../../../tag/JavaScript.html">JavaScript</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/XPCOM">XPCOM</a></li><li><a href="../../../tag/要更新.html">要更新</a></li><li><a href="https://developer.mozilla.org/ja/docs/tag/XUL">XUL</a></li><li><a href="../../../tag/HTML.html">HTML</a></li><li><a href="../../../tag/Firefox 4.html">Firefox 4</a></li><li><a href="../../../tag/Gecko.html">Gecko</a></li></ul>
+                  </div>
+                                    <div class="contributor-sub"> <i aria-hidden="true" class="icon-group"></i><strong>Contributors to this page:</strong> <a href="../../../../profiles/Potappo.html">Potappo</a>, <a href="../../../../profiles/nonki777.html">nonki777</a>, <a href="../../../../profiles/ethertank.html">ethertank</a>, <a href="../../../../profiles/Marsf.html">Marsf</a> </div>                                      <div class="contributor-sub">
+                      <i aria-hidden="true" class="icon-clock-o"></i><strong>最終更新者:</strong>
+                      <a href="../../../../profiles/ethertank.html">ethertank</a>,
+                      <time datetime="2013-06-08T14:04:49-07:00">2013/06/08 14:04:49</time>
+                    </div>
+                                  </div>
+                          </div>
+
+                      </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="$edit" label="ページを編集"></menuitem>
+    <menuitem data-action="$history" label="ページの履歴を表示"></menuitem>
+  </menu>
+  </div></main>
+
+  <!-- Footer -->
+  <footer><div class="center">
+    <div class="column-container">
+      <div class="column-main">
+                <p>
+          <bdi>&copy; 2005-2014 Mozilla Developer Network and individual contributors<br /> Content is available under <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About#Copyrights_and_licenses">these licenses</a> &middot; <a href="https://developer.mozilla.org/en-US/docs/Project:MDN/About">About MDN</a> &middot; <a href="https://github.com/mozilla/kuma">Contribute to the code</a> &middot; <a href="https://www.mozilla.org/privacy/websites/">Privacy policy</a></bdi>        </p>
+              </div>
+      <div class="column-strip">
+                        <form class="languages go" method="get" action="/ja/docs/Web">
+      <label for="language">他の言語:</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option value="/ja/docs/Mozilla/Firefox/Releases/4" selected>
+          日本語
+        </option>
+                  <option value="/en-US/Firefox/Releases/4">
+            English (US)
+          </option>          <option value="/zh-TW/docs/Firefox_4_for_developers">
+            正體中文 (繁體)
+          </option>          <option value="/es/docs/Firefox_4_para_desarrolladores">
+            Español
+          </option>          <option value="/pt-PT/docs/Firefox_4_para_desenvolvedores">
+            Português (Europeu)
+          </option>          <option value="/de/docs/Firefox_4_f%C3%BCr_Entwickler">
+            Deutsch
+          </option>          <option value="/fr/docs/Mozilla/Firefox/Versions/4">
+            Français
+          </option>          <option value="/zh-CN/docs/Mozilla/Firefox/Releases/4">
+            中文 (简体)
+          </option>      </select>
+      <noscript><button type="submit">移動</button></noscript>
+    </form>
+                </div>
+    </div>
+  </div></footer>
+
+  <!-- site js -->
+    <script src="https://developer.mozilla.org/ja/jsi18n/build:46533d5"></script>
+  
+      <!--[if lte IE 8]><script src="/media/js/libs/selectivizr-1.0.2/selectivizr-build.js"></script><![endif]-->
+
+    <script src="https://login.persona.org/include.js"></script>
+<form id="_persona_login" method="post" action="/users/persona/signin" data-csrf-token-url="/users/persona/csrf" data-request='{"siteName": "Mozilla Developer Network", "siteLogo": "/media/redesign/img/opengraph-logo.png"}'>
+  <input type="hidden" name="csrfmiddlewaretoken" value="" id="_persona_csrf_token" />
+  <input type="hidden" name="next" value="" id="_persona_next_url"/>
+  <input type="hidden" name="process" value="" id="_persona_process"/>
+  <input type="hidden" name="assertion" id="_persona_assertion"/>
+</form>
+
+    <script src="https://developer.cdn.mozilla.net/media/js/main-min.js?build=46533d5"></script>
+
+          <script>
+        if(window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+      </script>
+    
+          <script src="https://developer.cdn.mozilla.net/media/js/wiki-min.js?build=46533d5"></script>
+      
+    <script type="text/javascript">
+      if(window.jQuery) jQuery('.from-search-toc').mozSearchResults('');
+  </script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","queueTime":1,"licenseKey":"42869b6ed3","agent":"js-agent.newrelic.com/nr-476.min.js","transactionName":"b1QHMUtVDRdSW0YKXVYeIxBXVxcNXFYdCEdVUEsSUF8KSkVRVxRBAlUKBkxZBgpH","applicationID":"3172075","errorBeacon":"bam.nr-data.net","applicationTime":475}</script></body>
+</html>
